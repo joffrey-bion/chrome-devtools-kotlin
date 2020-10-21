@@ -158,6 +158,10 @@ sealed class ChromeDPType {
 
     abstract fun toTypeName(rootPackageName: String): TypeName
 
+    object Unknown : ChromeDPType() {
+        override fun toTypeName(rootPackageName: String): TypeName = ExternalDeclarations.jsonElementClass
+    }
+
     data class Primitive<T : Any>(val type: KClass<T>) : ChromeDPType() {
         override fun toTypeName(rootPackageName: String): TypeName = type.asTypeName()
     }
@@ -195,10 +199,10 @@ sealed class ChromeDPType {
             "boolean" -> Primitive(Boolean::class)
             "integer" -> Primitive(Int::class)
             "number" -> Primitive(Double::class)
-            "any" -> Primitive(Any::class)
+            "any" -> Unknown
             "array" -> Array(items?.toChromeDPType(domainName) ?: error("Missing 'items' property on array type"))
             "object" -> if (properties.isEmpty()) {
-                Primitive(Any::class)
+                Unknown
             } else {
                 Object(properties.map { it.toParameter(domainName) }, domainName)
             }

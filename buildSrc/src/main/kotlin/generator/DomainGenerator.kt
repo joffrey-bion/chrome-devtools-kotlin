@@ -23,12 +23,14 @@ private fun mapOfDeserializers(eventsSealedClassName: ClassName): ParameterizedT
 
 fun ChromeDPCommand.createInputTypeSpec(): TypeSpec =
     TypeSpec.classBuilder(inputTypeName).apply {
+        addAnnotation(ExternalDeclarations.serializableAnnotation)
         addModifiers(KModifier.DATA)
         addPrimaryConstructorProps(parameters)
     }.build()
 
 fun ChromeDPCommand.createOutputTypeSpec(): TypeSpec =
     TypeSpec.classBuilder(outputTypeName).apply {
+        addAnnotation(ExternalDeclarations.serializableAnnotation)
         addModifiers(KModifier.DATA)
         addPrimaryConstructorProps(returns)
     }.build()

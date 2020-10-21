@@ -14,4 +14,8 @@ object ExternalDeclarations {
             .build()
 
     val experimentalAnnotation = AnnotationSpec.builder(ClassName(rootPackageName, "ExperimentalChromeApi")).build()
+
+    val serializableAnnotation = AnnotationSpec.builder(ClassName("kotlinx.serialization", "Serializable")).build()
+
+    val jsonElementClass = ClassName("kotlinx.serialization.json", "JsonElement")
 }
