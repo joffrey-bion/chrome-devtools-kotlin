@@ -6,7 +6,7 @@ import com.squareup.kotlinpoet.ClassName
 object ExternalDeclarations {
     const val rootPackageName: String = "org.hildan.chrome.devtools"
 
-    val chromeConnectionClass = ClassName("$rootPackageName.protocol", "ChromeDebuggerConnection")
+    val chromeSessionClass = ClassName("$rootPackageName.protocol", "ChromeDPSession")
 
     val deprecatedAnnotation =
         AnnotationSpec.builder(Deprecated::class)

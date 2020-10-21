@@ -14,6 +14,29 @@ import org.hildan.chrome.devtools.build.json.JsonDomainType
 import kotlin.reflect.KClass
 
 typealias DomainName = String
+// inline class DomainName(private val value: String)
+
+fun DomainName.asVariableName() = when {
+    this[1].isLowerCase() -> decapitalize()
+    all { it.isUpperCase() } -> toLowerCase()
+    else -> {
+        // This handles domains starting with acronyms (DOM, CSS...) by lowercasing the whole acronym
+        val firstLowercaseIndex = indexOfFirst { it.isLowerCase() }
+        substring(0, firstLowercaseIndex - 1).toLowerCase() + substring(firstLowercaseIndex - 1)
+    }
+}
+
+val DomainName.packageName
+    get() = "${ExternalDeclarations.rootPackageName}.domains.${toLowerCase()}"
+
+fun DomainName.asClassName() = ClassName(packageName, "${this}Domain")
+
+// Distinct events sub-package to avoid conflicts with domain types
+val DomainName.eventsPackageName
+    get() = "$packageName.events"
+
+private val DomainName.eventsParentClassName
+    get() = ClassName(eventsPackageName, "${this}Event")
 
 data class ChromeDPDomain(
     val name: DomainName,
@@ -25,24 +48,11 @@ data class ChromeDPDomain(
     val commands: List<ChromeDPCommand> = emptyList(),
     val events: List<ChromeDPEvent> = emptyList()
 ) {
-    val decapitalizedName = when {
-        name[1].isLowerCase() -> name.decapitalize()
-        name.all { it.isUpperCase() } -> name.toLowerCase()
-        else -> {
-            // This handles domains starting with acronyms (DOM, CSS...) by lowercasing the whole acronym
-            val firstLowercaseIndex = name.indexOfFirst { it.isLowerCase() }
-            name.substring(0, firstLowercaseIndex - 1).toLowerCase() + name.substring(firstLowercaseIndex - 1)
-        }
-    }
+    val packageName = name.packageName
 
-    val packageName = name.asPackageName()
+    val eventsPackageName = name.eventsPackageName
 
-    // Distinct events sub-package to avoid conflicts with domain types
-    val eventsPackageName = "$packageName.events"
-
-    val eventsSealedClassName = ClassName(eventsPackageName, "${name}Event")
-
-    val domainClassName = ClassName(packageName, "${name}Domain")
+    val eventsParentClassName = name.eventsParentClassName
 }
 
 fun sanitize(domain: JsonDomain): ChromeDPDomain = ChromeDPDomain(name = domain.domain,
@@ -132,7 +142,7 @@ data class ChromeDPEvent(
     val parameters: List<ChromeDPParameter> = emptyList()
 ) {
     val eventTypeName
-        get() = "${name.capitalize()}Event"
+        get() = domainName.eventsParentClassName.nestedClass("${name.capitalize()}Event")
 }
 
 private fun JsonDomainEvent.toEvent(domainName: DomainName) = ChromeDPEvent(
@@ -153,7 +163,7 @@ sealed class ChromeDPType {
     }
 
     data class Reference(val typeName: String, val domainName: String) : ChromeDPType() {
-        override fun toTypeName(rootPackageName: String): TypeName = ClassName(domainName.asPackageName(), typeName)
+        override fun toTypeName(rootPackageName: String): TypeName = ClassName(domainName.packageName, typeName)
     }
 
     data class Enum(val enumValues: List<String>, val domainName: String) : ChromeDPType() {
@@ -206,5 +216,3 @@ sealed class ChromeDPType {
 
 private fun ArrayItemDescriptor.toChromeDPType(domainName: String): ChromeDPType =
     ChromeDPType.of(type = type, enum = enum, ref = `$ref`, domainName = domainName)
-
-private fun DomainName.asPackageName() = "${ExternalDeclarations.rootPackageName}.domains.${toLowerCase()}"

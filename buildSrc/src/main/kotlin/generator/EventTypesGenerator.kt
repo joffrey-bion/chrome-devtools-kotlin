@@ -6,10 +6,10 @@ import com.squareup.kotlinpoet.TypeSpec
 import org.hildan.chrome.devtools.build.model.ChromeDPDomain
 import org.hildan.chrome.devtools.build.model.ChromeDPEvent
 
-fun ChromeDPDomain.createEventSealedClass(): TypeSpec = TypeSpec.classBuilder(eventsSealedClassName).apply {
+fun ChromeDPDomain.createEventSealedClass(): TypeSpec = TypeSpec.classBuilder(eventsParentClassName).apply {
     addModifiers(KModifier.SEALED)
     events.forEach {
-        addType(it.createEventSubTypeSpec(eventsSealedClassName))
+        addType(it.createEventSubTypeSpec(eventsParentClassName))
     }
 }.build()
 

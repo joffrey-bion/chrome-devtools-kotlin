@@ -5,23 +5,25 @@ import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import org.hildan.chrome.devtools.build.model.ChromeDPDomain
+import org.hildan.chrome.devtools.build.model.asClassName
+import org.hildan.chrome.devtools.build.model.asVariableName
 
-private const val CONNECTION_ARG = "connection"
+private const val SESSION_ARG = "session"
 
-fun createClientClass(domains: List<ChromeDPDomain>): TypeSpec = TypeSpec.classBuilder("ChromeDPClient").apply {
+fun createClientClass(domains: List<ChromeDPDomain>): TypeSpec = TypeSpec.classBuilder("ChromeTargetSession").apply {
     addModifiers(KModifier.OPEN)
     primaryConstructor(FunSpec.constructorBuilder()
         .addModifiers(KModifier.INTERNAL)
-        .addParameter(CONNECTION_ARG, ExternalDeclarations.chromeConnectionClass)
+        .addParameter(SESSION_ARG, ExternalDeclarations.chromeSessionClass)
         .build())
     val connectionProp =
-        PropertySpec.builder(CONNECTION_ARG, ExternalDeclarations.chromeConnectionClass)
-            .initializer(CONNECTION_ARG)
+        PropertySpec.builder(SESSION_ARG, ExternalDeclarations.chromeSessionClass)
+            .initializer(SESSION_ARG)
             .build()
     addProperty(connectionProp)
     domains.forEach {
-        addProperty(PropertySpec.builder(it.decapitalizedName, it.domainClassName)
-            .delegate("lazy { %T(%N) }", it.domainClassName, connectionProp)
+        addProperty(PropertySpec.builder(it.name.asVariableName(), it.name.asClassName())
+            .delegate("lazy { %T(%N) }", it.name.asClassName(), connectionProp)
             .build())
     }
     addFunction(FunSpec.builder("close")

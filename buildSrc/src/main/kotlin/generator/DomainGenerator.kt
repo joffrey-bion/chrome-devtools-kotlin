@@ -1,20 +1,25 @@
 package org.hildan.chrome.devtools.build.generator
 
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import com.squareup.kotlinpoet.PropertySpec
-import com.squareup.kotlinpoet.TypeSpec
 import org.hildan.chrome.devtools.build.model.ChromeDPCommand
 import org.hildan.chrome.devtools.build.model.ChromeDPDomain
 import org.hildan.chrome.devtools.build.model.ChromeDPEvent
+import org.hildan.chrome.devtools.build.model.asClassName
 
 private const val INPUT_ARG = "input"
-
-private const val CONNECTION_ARG = "connection"
+private const val SESSION_ARG = "session"
+private const val DESERIALIZERS_PROP = "deserializersByEventName"
 
 private val coroutineFlowClass = ClassName("kotlinx.coroutines.flow", "Flow")
+private val deserializerClassName = ClassName("kotlinx.serialization", "DeserializationStrategy")
+private val serializerFun = MemberName("kotlinx.serialization", "serializer")
+
+private fun mapOfDeserializers(eventsSealedClassName: ClassName): ParameterizedTypeName {
+    val kotlinMapClass = ClassName("kotlin.collections", "Map")
+    val deserializerClass = deserializerClassName.parameterizedBy(WildcardTypeName.producerOf(eventsSealedClassName))
+    return kotlinMapClass.parameterizedBy(String::class.asTypeName(), deserializerClass)
+}
 
 fun ChromeDPCommand.createInputTypeSpec(): TypeSpec =
     TypeSpec.classBuilder(inputTypeName).apply {
@@ -28,25 +33,28 @@ fun ChromeDPCommand.createOutputTypeSpec(): TypeSpec =
         addPrimaryConstructorProps(returns)
     }.build()
 
-fun ChromeDPDomain.createDomainClass(): TypeSpec = TypeSpec.classBuilder(domainClassName).apply {
+fun ChromeDPDomain.createDomainClass(): TypeSpec = TypeSpec.classBuilder(name.asClassName()).apply {
     description?.let { addKdoc(it.escapeKDoc()) }
     primaryConstructor(FunSpec.constructorBuilder()
         .addModifiers(KModifier.INTERNAL)
-        .addParameter(CONNECTION_ARG, ExternalDeclarations.chromeConnectionClass)
+        .addParameter(SESSION_ARG, ExternalDeclarations.chromeSessionClass)
         .build())
-    addProperty(PropertySpec.builder(CONNECTION_ARG, ExternalDeclarations.chromeConnectionClass)
+    addProperty(PropertySpec.builder(SESSION_ARG, ExternalDeclarations.chromeSessionClass)
         .addModifiers(KModifier.PRIVATE)
-        .initializer(CONNECTION_ARG)
+        .initializer(SESSION_ARG)
         .build())
-    commands.forEach { cmd ->
-        addFunction(cmd.createFunctionSpec(packageName))
+    if (events.isNotEmpty()) {
+        addAllEventsFunction(this@createDomainClass)
+        events.forEach { event ->
+            addFunction(event.toSubscribeFunctionSpec())
+        }
     }
-    events.forEach { event ->
-        addFunction(event.createFunctionSpec(eventsSealedClassName))
+    commands.forEach { cmd ->
+        addFunction(cmd.toFunctionSpec(packageName))
     }
 }.build()
 
-private fun ChromeDPCommand.createFunctionSpec(domainPackage: String): FunSpec = FunSpec.builder(name).apply {
+private fun ChromeDPCommand.toFunctionSpec(domainPackage: String): FunSpec = FunSpec.builder(name).apply {
     description?.let { addKdoc(it.escapeKDoc()) }
     if (deprecated) {
         addAnnotation(ExternalDeclarations.deprecatedAnnotation)
@@ -55,7 +63,7 @@ private fun ChromeDPCommand.createFunctionSpec(domainPackage: String): FunSpec =
         addAnnotation(ExternalDeclarations.experimentalAnnotation)
     }
     addModifiers(KModifier.SUSPEND)
-    val inputArg = if (this@createFunctionSpec.parameters.isNotEmpty()) {
+    val inputArg = if (this@toFunctionSpec.parameters.isNotEmpty()) {
         addParameter(INPUT_ARG, ClassName(domainPackage, inputTypeName))
         INPUT_ARG
     } else {
@@ -63,13 +71,13 @@ private fun ChromeDPCommand.createFunctionSpec(domainPackage: String): FunSpec =
     }
     if (returns.isNotEmpty()) {
         returns(ClassName(domainPackage, outputTypeName))
-        addStatement("""return connection.requestForResult("$domainName.$name", %L)""", inputArg)
+        addStatement("return %N.requestForResult(%S, %L)", SESSION_ARG, "$domainName.$name", inputArg)
     } else {
-        addStatement("""connection.request("$domainName.$name", %L)""", inputArg)
+        addStatement("%N.request(%S, %L)", SESSION_ARG, "$domainName.$name", inputArg)
     }
 }.build()
 
-private fun ChromeDPEvent.createFunctionSpec(eventsSealedClassName: ClassName): FunSpec =
+private fun ChromeDPEvent.toSubscribeFunctionSpec(): FunSpec =
     FunSpec.builder(name).apply {
         description?.let { addKdoc(it.escapeKDoc()) }
         if (deprecated) {
@@ -78,6 +86,25 @@ private fun ChromeDPEvent.createFunctionSpec(eventsSealedClassName: ClassName): 
         if (experimental) {
             addAnnotation(ExternalDeclarations.experimentalAnnotation)
         }
-        returns(coroutineFlowClass.parameterizedBy(eventsSealedClassName.nestedClass(eventTypeName)))
-        addStatement("""return connection.events(%S)""", "$domainName.$name")
+        returns(coroutineFlowClass.parameterizedBy(eventTypeName))
+        addStatement("return %N.events(%S)", SESSION_ARG, "$domainName.$name")
     }.build()
+
+private fun TypeSpec.Builder.addAllEventsFunction(domain: ChromeDPDomain) {
+    addProperty(PropertySpec.builder(DESERIALIZERS_PROP, mapOfDeserializers(domain.eventsParentClassName))
+            .addModifiers(KModifier.PRIVATE)
+            .initializer(domain.deserializersMapCodeBlock())
+            .build())
+    addFunction(FunSpec.builder("events")
+            .returns(coroutineFlowClass.parameterizedBy(domain.eventsParentClassName))
+            .addCode("return %N.events(%N)", SESSION_ARG, DESERIALIZERS_PROP)
+            .build())
+}
+
+private fun ChromeDPDomain.deserializersMapCodeBlock(): CodeBlock = CodeBlock.builder().apply {
+    add("mapOf(\n")
+    events.forEach { e ->
+        add("%S to %M<%T>(),\n", "${e.domainName}.${e.name}", serializerFun, e.eventTypeName)
+    }
+    add(")")
+}.build()
