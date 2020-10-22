@@ -40,9 +40,10 @@ internal class ChromeDPConnection private constructor(
         )
         val framesSubscription = frames.openSubscription()
         webSocket.sendText(json.encodeToString(request))
-        val response = framesSubscription.consumeAsFlow().filter { it.matchesRequest(request) }.first()
+        val response = framesSubscription.consumeAsFlow().filter { it.matchesRequest(request) }.firstOrNull()
+            ?: throw MissingResponse(request)
         if (response.error != null) {
-            throw RequestFailed(response.error)
+            throw RequestFailed(request, response.error)
         }
         return response
     }
@@ -72,4 +73,6 @@ private val json = Json { ignoreUnknownKeys = true }
 
 private fun WebSocketFrame.Text.decodeInboundFrame() = json.decodeFromString<InboundFrame>(text)
 
-class RequestFailed(val error: RequestError) : Exception(error.message)
+class RequestFailed(var request: RequestFrame, val error: RequestError) : Exception(error.message)
+
+class MissingResponse(var request: RequestFrame) : Exception("Missing response for request ${request.method} #${request.id}")

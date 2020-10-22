@@ -9,7 +9,7 @@ import org.hildan.chrome.devtools.domains.target.SessionID
  * [in the protocol's README](https://github.com/aslushnikov/getting-started-with-cdp/blob/master/README.md#protocol-fundamentals)
  */
 @Serializable
-internal data class RequestFrame(
+data class RequestFrame(
     /**
      * Request id, must be unique.
      */
