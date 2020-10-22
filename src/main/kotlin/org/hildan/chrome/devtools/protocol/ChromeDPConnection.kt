@@ -27,6 +27,7 @@ internal class ChromeDPConnection private constructor(
 
     @OptIn(FlowPreview::class)
     private val frames = webSocket.incomingFrames.consumeAsFlow()
+        .filterIsInstance<WebSocketFrame.Text>()
         .map { frame -> frame.decodeInboundFrame() }
         .broadcastIn(coroutineScope + CoroutineName("ChromeDP-frame-decoder"))
 
@@ -69,7 +70,6 @@ internal class ChromeDPConnection private constructor(
 
 private val json = Json { ignoreUnknownKeys = true }
 
-private fun WebSocketFrame.decodeInboundFrame() =
-    json.decodeFromString<InboundFrame>((this as WebSocketFrame.Text).text)
+private fun WebSocketFrame.Text.decodeInboundFrame() = json.decodeFromString<InboundFrame>(text)
 
 class RequestFailed(val error: RequestError) : Exception(error.message)
