@@ -5,12 +5,9 @@ import kotlinx.coroutines.flow.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonElement
-import org.hildan.chrome.devtools.domains.target.SessionID
 import org.hildan.krossbow.websocket.WebSocketFrame
 import org.hildan.krossbow.websocket.WebSocketSession
 import org.hildan.krossbow.websocket.defaultWebSocketClient
-import java.util.concurrent.atomic.AtomicLong
 
 /**
  * ChromeDebuggerConnection represents connection to chrome's debugger via
@@ -23,21 +20,13 @@ internal class ChromeDPConnection private constructor(
     private val job = Job()
     private val coroutineScope = CoroutineScope(job)
 
-    private val nextRequestId = AtomicLong(0)
-
     @OptIn(FlowPreview::class)
     private val frames = webSocket.incomingFrames.consumeAsFlow()
         .filterIsInstance<WebSocketFrame.Text>()
         .map { frame -> frame.decodeInboundFrame() }
         .broadcastIn(coroutineScope + CoroutineName("ChromeDP-frame-decoder"))
 
-    suspend fun request(methodName: String, requestParams: JsonElement?, sessionId: SessionID?): InboundFrame {
-        val request = RequestFrame(
-            id = nextRequestId.incrementAndGet(),
-            method = methodName,
-            params = requestParams,
-            sessionId = sessionId,
-        )
+    suspend fun request(request: RequestFrame): InboundFrame {
         val framesSubscription = frames.openSubscription()
         webSocket.sendText(json.encodeToString(request))
         val response = framesSubscription.consumeAsFlow().filter { it.matchesRequest(request) }.firstOrNull()

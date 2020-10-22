@@ -13,6 +13,7 @@ import org.hildan.chrome.devtools.ExperimentalChromeApi
 import org.hildan.chrome.devtools.domains.browser.BrowserContextID
 import org.hildan.chrome.devtools.domains.target.SessionID
 import org.hildan.chrome.devtools.domains.target.TargetID
+import java.util.concurrent.atomic.AtomicLong
 
 /**
  * Represents session we are currently connected to.
@@ -32,26 +33,29 @@ class ChromeDPSession internal constructor(
     val targetId: TargetID?,
     val browserContextId: BrowserContextID? = null,
 ) {
-    internal suspend inline fun <reified I> request(methodName: String, requestParams: I?): InboundFrame =
-        request(methodName, requestParams, serializer())
+    private val nextRequestId = AtomicLong(0)
 
-    internal suspend fun <I> request(methodName: String, requestParams: I?, serializer: SerializationStrategy<I>): InboundFrame {
-        val params = requestParams?.let { json.encodeToJsonElement(serializer, it) }
-        return connection.request(methodName, params, sessionId)
-    }
-
-    suspend inline fun <reified I, reified O : Any> requestForResult(methodName: String, requestParams: I?): O =
-        requestForResult(methodName, requestParams, serializer = serializer(), deserializer = serializer())
+    suspend inline fun <reified I, reified O> request(methodName: String, requestParams: I?): O =
+        request(methodName, requestParams, serializer = serializer(), deserializer = serializer())
 
     /**
      * Sends request and captures response from the stream.
      */
-    suspend fun <I, O : Any> requestForResult(
+    suspend fun <I, O> request(
         methodName: String,
         requestParams: I?,
         serializer: SerializationStrategy<I>,
         deserializer: DeserializationStrategy<O>,
-    ): O = request(methodName, requestParams, serializer).decodeResponsePayload(deserializer)
+    ): O {
+        val params = requestParams?.let { json.encodeToJsonElement(serializer, it) }
+        val request = RequestFrame(
+            id = nextRequestId.incrementAndGet(),
+            method = methodName,
+            params = params,
+            sessionId = sessionId,
+        )
+        return connection.request(request).decodeResponsePayload(deserializer)
+    }
 
     /**
      * Subscribes to events of the given [eventName], converting their payload to instances of [E].

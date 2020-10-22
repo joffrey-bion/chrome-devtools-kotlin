@@ -85,12 +85,9 @@ private fun ChromeDPCommand.toFunctionSpec(domainPackage: String): FunSpec = Fun
     } else {
         "Unit"
     }
-    if (returns.isNotEmpty()) {
-        returns(ClassName(domainPackage, outputTypeName))
-        addStatement("return %N.requestForResult(%S, %L)", SESSION_ARG, "$domainName.$name", inputArg)
-    } else {
-        addStatement("%N.request(%S, %L)", SESSION_ARG, "$domainName.$name", inputArg)
-    }
+    val returnType = if (returns.isEmpty()) Unit::class.asTypeName() else ClassName(domainPackage, outputTypeName)
+    returns(returnType)
+    addStatement("return %N.request(%S, %L)", SESSION_ARG, "$domainName.$name", inputArg)
 }.build()
 
 private fun ChromeDPEvent.toSubscribeFunctionSpec(): FunSpec =
