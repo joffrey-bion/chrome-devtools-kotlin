@@ -14,6 +14,12 @@ kotlin {
     }
 }
 
+tasks {
+    compileKotlin {
+        kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+    }
+}
+
 dependencies {
     implementation("org.hildan.krossbow:krossbow-websocket-core:0.43.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.0")
