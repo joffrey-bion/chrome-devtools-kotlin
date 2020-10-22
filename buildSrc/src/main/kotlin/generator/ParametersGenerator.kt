@@ -18,7 +18,9 @@ private fun ChromeDPParameter.toParameterSpec(): ParameterSpec =
         // We don't handle deprecated/experimental here as it's already added on the property declaration
         // Since both the property and the constructor arg are the same declaration, it would result in double
         // annotations
-        if (optional) {
+
+        // we make experimental fields nullable too because they might not be present in the JSON
+        if (optional || experimental) {
             defaultValue("null")
         }
     }.build()
@@ -38,5 +40,6 @@ private fun ChromeDPParameter.toPropertySpec(): PropertySpec =
 
 private fun ChromeDPParameter.getTypeName(rootPackageName: String): TypeName {
     val typeName = type.toTypeName(rootPackageName)
-    return if (optional) typeName.copy(nullable = true) else typeName
+    // we make experimental fields nullable too because they might not be present in the JSON
+    return if (optional || experimental) typeName.copy(nullable = true) else typeName
 }
