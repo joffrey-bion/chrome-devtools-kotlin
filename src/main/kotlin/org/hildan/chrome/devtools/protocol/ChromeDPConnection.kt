@@ -1,15 +1,11 @@
 package org.hildan.chrome.devtools.protocol
 
-import kotlinx.coroutines.CoroutineName
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.plus
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonElement
 import org.hildan.chrome.devtools.domains.target.SessionID
 import org.hildan.krossbow.websocket.WebSocketFrame
 import org.hildan.krossbow.websocket.WebSocketSession
@@ -34,7 +30,7 @@ internal class ChromeDPConnection private constructor(
         .map { frame -> frame.decodeInboundFrame() }
         .broadcastIn(coroutineScope + CoroutineName("ChromeDP-frame-decoder"))
 
-    suspend fun <I> request(methodName: String, requestParams: I?, sessionId: SessionID): InboundFrame {
+    suspend fun request(methodName: String, requestParams: JsonElement?, sessionId: SessionID?): InboundFrame {
         val request = RequestFrame(
             id = nextRequestId.incrementAndGet(),
             method = methodName,
@@ -42,7 +38,7 @@ internal class ChromeDPConnection private constructor(
             sessionId = sessionId,
         )
         val framesSubscription = frames.openSubscription()
-        webSocket.sendText(lenientJson.encodeToString(request))
+        webSocket.sendText(json.encodeToString(request))
         val response = framesSubscription.consumeAsFlow().filter { it.matchesRequest(request) }.first()
         if (response.error != null) {
             throw RequestFailed(response.error)
@@ -50,10 +46,9 @@ internal class ChromeDPConnection private constructor(
         return response
     }
 
-    fun sessionEvents(sessionId: SessionID) = frames.openSubscription()
+    fun events() = frames.openSubscription()
         .consumeAsFlow()
         .filter(InboundFrame::isEvent)
-        .filter { it.matchesSessionId(sessionId) }
 
     /**
      * Closes connection to remote debugger.
@@ -66,16 +61,15 @@ internal class ChromeDPConnection private constructor(
         /**
          * Creates new ChromeDebuggerConnection session for given websocket uri and frames buffer size.
          */
-        suspend fun open(websocketUri: String): ChromeDPConnection =
-            ChromeDPConnection(client.connect(websocketUri))
+        suspend fun open(websocketUrl: String): ChromeDPConnection = ChromeDPConnection(client.connect(websocketUrl))
 
         private val client by lazy { defaultWebSocketClient() }
     }
 }
 
-private val lenientJson = Json { ignoreUnknownKeys = true }
+private val json = Json { ignoreUnknownKeys = true }
 
 private fun WebSocketFrame.decodeInboundFrame() =
-    lenientJson.decodeFromString<InboundFrame>((this as WebSocketFrame.Text).text)
+    json.decodeFromString<InboundFrame>((this as WebSocketFrame.Text).text)
 
 class RequestFailed(val error: RequestError) : Exception(error.message)

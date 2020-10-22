@@ -6,6 +6,8 @@ import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import org.hildan.chrome.devtools.ChromeApi
+import org.hildan.chrome.devtools.domains.target.TargetID
 
 private fun ktorClientWithJson() = HttpClient {
     install(JsonFeature) {
@@ -23,11 +25,16 @@ class ChromeDPClient(
 
     suspend fun protocolJson(): String = httpClient.get("$remoteDebugUrl/json/protocol")
 
-    suspend fun newTab(url: String): ChromeDPTarget = httpClient.get("$remoteDebugUrl/json/new?$url")
+    suspend fun newTab(url: String = "about:blank"): ChromeDPTarget = httpClient.get("$remoteDebugUrl/json/new?$url")
 
     suspend fun activateTab(targetId: String): String = httpClient.get("$remoteDebugUrl/json/activate/$targetId")
 
     suspend fun closeTab(targetId: String): String = httpClient.get("$remoteDebugUrl/json/close/$targetId")
+
+    suspend fun detachedWebSocketDebugger(): ChromeApi {
+        val browserDebuggerUrl = version().webSocketDebuggerUrl
+        return ChromeDPConnection.open(browserDebuggerUrl).detachedSession().api()
+    }
 }
 
 @Serializable
@@ -49,7 +56,19 @@ data class ChromeDPTarget(
     val devtoolsFrontendUrl: String,
     val webSocketDebuggerUrl: String,
 ) {
-    suspend fun debugger(): ChromeDPSession {
-        return ChromeDPConnection.open(webSocketDebuggerUrl).newSession("")
+    suspend fun attach(): ChromeApi {
+        val connection = ChromeDPConnection.open(webSocketDebuggerUrl)
+        return connection.detachedSession().attach(id).api()
+    }
+
+    suspend inline fun <T> use(block: (ChromeApi) -> T): T {
+        val api = attach()
+        try {
+            return block(api)
+        } finally {
+            api.close()
+        }
     }
 }
+
+suspend fun ChromeApi.attach(targetId: TargetID): ChromeApi = session.attach(targetId).api()

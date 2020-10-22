@@ -27,7 +27,7 @@ class Generator(
         descriptors.distinctBy { it.version == descriptors[0].version }.size <= 1
 
     private fun generateClientFile(domains: List<ChromeDPDomain>) {
-        FileSpec.builder(packageName = ExternalDeclarations.rootPackageName, fileName = "ChromeDPClient").apply {
+        FileSpec.builder(packageName = ExternalDeclarations.rootPackageName, fileName = "ChromeApi").apply {
             addType(createClientClass(domains))
         }.build().writeTo(generatedSourcesDir)
     }

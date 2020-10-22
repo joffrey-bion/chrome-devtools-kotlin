@@ -10,7 +10,7 @@ import org.hildan.chrome.devtools.build.model.asVariableName
 
 private const val SESSION_ARG = "session"
 
-fun createClientClass(domains: List<ChromeDPDomain>): TypeSpec = TypeSpec.classBuilder("ChromeTargetSession").apply {
+fun createClientClass(domains: List<ChromeDPDomain>): TypeSpec = TypeSpec.classBuilder("ChromeApi").apply {
     addModifiers(KModifier.OPEN)
     primaryConstructor(FunSpec.constructorBuilder()
         .addModifiers(KModifier.INTERNAL)

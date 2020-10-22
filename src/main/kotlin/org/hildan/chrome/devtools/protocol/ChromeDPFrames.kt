@@ -9,7 +9,7 @@ import org.hildan.chrome.devtools.domains.target.SessionID
  * [in the protocol's README](https://github.com/aslushnikov/getting-started-with-cdp/blob/master/README.md#protocol-fundamentals)
  */
 @Serializable
-internal data class RequestFrame<T>(
+internal data class RequestFrame(
     /**
      * Request id, must be unique.
      */
@@ -28,7 +28,7 @@ internal data class RequestFrame<T>(
     /**
      * Request params (if any)
      */
-    val params: T
+    val params: JsonElement? = null
 )
 
 /**
@@ -39,7 +39,7 @@ internal data class InboundFrame(
     /**
      * Response id.
      */
-    val id: Long?,
+    val id: Long? = null,
 
     /**
      * Response result (when responding to a request).
@@ -59,7 +59,7 @@ internal data class InboundFrame(
     /**
      * Response params (when representing an event).
      */
-    val params: JsonElement?,
+    val params: JsonElement? = null,
 
     val sessionId: SessionID? = null
 ) {
@@ -73,13 +73,9 @@ internal data class InboundFrame(
      */
     private fun isResponse(): Boolean = !this.isEvent()
 
-    fun matchesRequest(request: RequestFrame<*>): Boolean = isResponse() &&
+    fun matchesRequest(request: RequestFrame): Boolean = isResponse() &&
         id == request.id &&
         sessionId == request.sessionId
-
-    fun matchesMethod(method: String): Boolean = this.method == method
-
-    fun matchesSessionId(sessionId: SessionID?) = this.sessionId == sessionId
 }
 
 /**
