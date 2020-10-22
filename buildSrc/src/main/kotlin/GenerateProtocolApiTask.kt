@@ -20,5 +20,6 @@ open class GenerateProtocolApiTask : DefaultTask() {
     fun generate() {
         println("Generating Chrome DevTools Protocol API...")
         Generator(protocolPaths, outputDirPath).generate()
+        println("Done.")
     }
 }
