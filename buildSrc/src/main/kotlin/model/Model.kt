@@ -13,6 +13,12 @@ import org.hildan.chrome.devtools.build.json.JsonDomainParameter
 import org.hildan.chrome.devtools.build.json.JsonDomainType
 import kotlin.reflect.KClass
 
+/**
+ * Domains available on detached session.
+ */
+private val BROWSER_ONLY = listOf("Target", "Tethering")
+private val COMMON_DOMAINS = listOf("Browser")
+
 typealias DomainName = String
 // inline class DomainName(private val value: String)
 
@@ -48,10 +54,11 @@ data class ChromeDPDomain(
     val commands: List<ChromeDPCommand> = emptyList(),
     val events: List<ChromeDPEvent> = emptyList()
 ) {
+    val availableForTargets = name !in BROWSER_ONLY
+    val availableForBrowser = name in COMMON_DOMAINS || name in BROWSER_ONLY
+
     val packageName = name.packageName
-
     val eventsPackageName = name.eventsPackageName
-
     val eventsParentClassName = name.eventsParentClassName
 }
 

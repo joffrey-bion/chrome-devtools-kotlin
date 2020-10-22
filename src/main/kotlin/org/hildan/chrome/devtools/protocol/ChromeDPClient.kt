@@ -6,7 +6,6 @@ import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import org.hildan.chrome.devtools.ChromeApi
 
 /**
  * A Chrome Devtools Protocol client.
@@ -39,15 +38,16 @@ class ChromeDPClient(
     /**
      * Opens a web socket connection to interact with the root (browser) session.
      *
-     * The returned [ChromeApi] doesn't use session IDs (it is not attached to any target).
-     * To attach to a target using the same underlying web socket connection, call [ChromeApi.attachTo] on the returned
-     * [ChromeApi].
+     * The returned [ChromeBrowserSession] only provides a limited subset of the possible operations, because it is not
+     * attached to any target.
+     * To attach to a target using the same underlying web socket connection, call [ChromeBrowserSession.attachTo] on
+     * the returned [ChromeBrowserSession].
      *
      * You may prefer directly attaching to any target via a new web socket connection by calling [ChromeDPTarget.attach].
      */
-    suspend fun detachedWebSocketDebugger(): ChromeApi {
+    suspend fun webSocket(): ChromeBrowserSession {
         val browserDebuggerUrl = version().webSocketDebuggerUrl
-        return ChromeDPSession.connectDetached(browserDebuggerUrl)
+        return ChromeDPSession.connect(browserDebuggerUrl)
     }
 }
 
@@ -67,11 +67,7 @@ data class ChromeVersion(
  *
  * When a client wants to interact with a target using CDP, it has to first attach to the target using
  * [ChromeDPTarget.attach]. This will establish a protocol session to the given target.
- *
- * The client can then interact with the target using the [ChromeApi].
- *
- * To manipulate targets themselves, use the [TargetDomain][org.hildan.chrome.devtools.domains.target.TargetDomain]
- * (accessible through [ChromeApi.target]).
+ * The client can then interact with the target using the [ChromeTargetSession].
  */
 @Serializable
 data class ChromeDPTarget(
@@ -86,13 +82,13 @@ data class ChromeDPTarget(
      * Attaches to this target via a new web socket connection.
      * This establishes a new protocol session to this target.
      */
-    suspend fun attach(): ChromeApi = ChromeDPSession.connectDetached(webSocketDebuggerUrl).attachTo(id)
+    suspend fun attach(): ChromeTargetSession = ChromeDPSession.connect(webSocketDebuggerUrl).attachTo(id)
 
     /**
      * Attaches to this target via a new web socket connection, and performs the given operation before closing the
      * connection.
      */
-    suspend inline fun <T> use(block: (ChromeApi) -> T): T {
+    suspend inline fun <T> use(block: (ChromeTargetSession) -> T): T {
         val api = attach()
         try {
             return block(api)

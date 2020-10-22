@@ -3,6 +3,7 @@ package org.hildan.chrome.devtools.build.generator
 import com.squareup.kotlinpoet.FileSpec
 import org.hildan.chrome.devtools.build.json.ChromeProtocolDescriptor
 import org.hildan.chrome.devtools.build.model.ChromeDPDomain
+import org.hildan.chrome.devtools.build.model.DomainKind
 import org.hildan.chrome.devtools.build.model.sanitize
 import java.nio.file.Files
 import java.nio.file.Path
@@ -27,8 +28,9 @@ class Generator(
         descriptors.distinctBy { it.version == descriptors[0].version }.size <= 1
 
     private fun generateClientFile(domains: List<ChromeDPDomain>) {
-        FileSpec.builder(packageName = ExternalDeclarations.rootPackageName, fileName = "ChromeApi").apply {
-            addType(createClientClass(domains))
+        FileSpec.builder(packageName = ExternalDeclarations.rootPackageName, fileName = "ChromeSessions").apply {
+            addType(createClientClass(domains.filter { it.kind == DomainKind.BROWSER }, "ChromeBrowserSession"))
+            addType(createClientClass(domains.filter { it.kind == DomainKind.TARGET }, "ChromeTargetSession"))
         }.build().writeTo(generatedSourcesDir)
     }
 

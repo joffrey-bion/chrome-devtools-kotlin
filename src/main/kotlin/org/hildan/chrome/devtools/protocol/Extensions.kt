@@ -1,45 +1,42 @@
 package org.hildan.chrome.devtools.protocol
 
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
-import org.hildan.chrome.devtools.ChromeApi
+import org.hildan.chrome.devtools.ChromeBrowserSession
+import org.hildan.chrome.devtools.ChromeTargetSession
 import org.hildan.chrome.devtools.ExperimentalChromeApi
 import org.hildan.chrome.devtools.domains.browser.BrowserContextID
 import org.hildan.chrome.devtools.domains.target.*
-import org.hildan.chrome.devtools.domains.target.events.TargetEvent
 
 /**
- * Creates a new [ChromeApi] instance attached to the target with the given [targetId].
- * The new [ChromeApi] shares the same underlying web socket connection.
+ * Creates a new [ChromeTargetSession] attached to the target with the given [targetId].
+ * The new session shares the same underlying web socket connection as this [ChromeBrowserSession].
  */
 @OptIn(ExperimentalChromeApi::class)
-public suspend fun ChromeApi.attachTo(targetId: TargetID, browserContextID: BrowserContextID? = null): ChromeApi {
+public suspend fun ChromeBrowserSession.attachTo(targetId: TargetID, browserContextID: BrowserContextID? = null): ChromeTargetSession {
+    println("Attaching to target $targetId")
+    val attachedEvents = target.attachedToTarget()
     val sessionId = target.attachToTarget(AttachToTargetRequest(targetId = targetId, flatten = true)).sessionId
-    return ChromeDPSession(session.connection, sessionId, targetId, browserContextID).api()
+    println("Attached to target $targetId, session = $sessionId")
+    val event = attachedEvents.filter { it.sessionId == sessionId }.first()
+    println("Received attached event to target $targetId, session = $sessionId: $event")
+    return ChromeTargetSession(ChromeDPSession(session.connection, sessionId, targetId, browserContextID))
 }
-
-@OptIn(ExperimentalChromeApi::class)
-public suspend fun ChromeApi.detach(): TargetEvent.DetachedFromTargetEvent {
-    val detachedEvents = target.detachedFromTarget()
-    target.detachFromTarget(DetachFromTargetRequest(targetId = session.targetId, sessionId = session.sessionId))
-    return detachedEvents.first()
-}
-
-internal fun ChromeDPSession.api() = ChromeApi(this)
 
 /**
  * Creates and attaches to a new target with given [url] and viewport [width] and [height].
- * This action doesn't affect this [ChromeApi], but creates a new one.
+ * This action doesn't affect this [ChromeBrowserSession]; instead, it creates a [ChromeTargetSession].
  * The underlying web socket connection is reused for both the old and new sessions.
  *
  * If [incognito] is true, than new target is created in separate browser context (think of it as incognito window).
  */
 @OptIn(ExperimentalChromeApi::class)
-public suspend fun ChromeApi.attachToNewTarget(
+public suspend fun ChromeBrowserSession.attachToNewTarget(
     url: String,
     incognito: Boolean = true,
     width: Int = 1024,
     height: Int = 768,
-): ChromeApi {
+): ChromeTargetSession {
     val browserContextId = when (incognito) {
         true -> target.createBrowserContext(CreateBrowserContextRequest(disposeOnDetach = true)).browserContextId
         false -> null
@@ -58,19 +55,25 @@ public suspend fun ChromeApi.attachToNewTarget(
     return attachTo(targetId, browserContextId)
 }
 
-public suspend fun ChromeApi.close() {
+public suspend fun ChromeBrowserSession.close() {
     closeTarget()
+    print("Closing connection... ")
     session.close()
+    println("Done.")
 }
 
 @OptIn(ExperimentalChromeApi::class)
-private suspend fun ChromeApi.closeTarget() {
+private suspend fun ChromeBrowserSession.closeTarget() {
     if (session.targetId != null) {
-        target.closeTarget(CloseTargetRequest(session.targetId))
+        println("Closing target ${session.targetId}... ")
+        target.closeTarget(CloseTargetRequest(targetId = session.targetId))
+        println("Done.")
     }
     // FIXME do we really need this given the "disposeOnDetach=true" used at creation?
     val browserContextID = session.browserContextId
     if (!browserContextID.isNullOrEmpty()) {
+        println("Disposing browser context ${session.browserContextId}... ")
         target.disposeBrowserContext(DisposeBrowserContextRequest(browserContextID))
+        println("Done.")
     }
 }

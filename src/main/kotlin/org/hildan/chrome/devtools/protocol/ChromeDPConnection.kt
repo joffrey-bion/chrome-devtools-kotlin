@@ -49,9 +49,7 @@ internal class ChromeDPConnection private constructor(
     }
 
     companion object Factory {
-        /**
-         * Creates new ChromeDebuggerConnection session for given websocket uri and frames buffer size.
-         */
+
         suspend fun open(websocketUrl: String): ChromeDPConnection = ChromeDPConnection(client.connect(websocketUrl))
 
         private val client by lazy { defaultWebSocketClient() }
