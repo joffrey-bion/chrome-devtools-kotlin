@@ -25,6 +25,12 @@ fun ChromeDPCommand.createInputTypeSpec(): TypeSpec =
     TypeSpec.classBuilder(inputTypeName).apply {
         addKdoc("Request object containing input parameters for the [%T.%N] command.", domainName.asClassName(), name)
         addAnnotation(ExternalDeclarations.serializableAnnotation)
+        if (deprecated) {
+            addAnnotation(ExternalDeclarations.deprecatedAnnotation)
+        }
+        if (experimental) {
+            addAnnotation(ExternalDeclarations.experimentalAnnotation)
+        }
         addModifiers(KModifier.DATA)
         addPrimaryConstructorProps(parameters)
     }.build()
@@ -33,6 +39,12 @@ fun ChromeDPCommand.createOutputTypeSpec(): TypeSpec =
     TypeSpec.classBuilder(outputTypeName).apply {
         addKdoc("Response type for the [%T.%N] command.", domainName.asClassName(), name)
         addAnnotation(ExternalDeclarations.serializableAnnotation)
+        if (deprecated) {
+            addAnnotation(ExternalDeclarations.deprecatedAnnotation)
+        }
+        if (experimental) {
+            addAnnotation(ExternalDeclarations.experimentalAnnotation)
+        }
         addModifiers(KModifier.DATA)
         addPrimaryConstructorProps(returns)
     }.build()
