@@ -69,7 +69,7 @@ private fun ChromeDPCommand.toFunctionSpec(domainPackage: String): FunSpec = Fun
         addParameter(INPUT_ARG, ClassName(domainPackage, inputTypeName))
         INPUT_ARG
     } else {
-        "null"
+        "Unit"
     }
     if (returns.isNotEmpty()) {
         returns(ClassName(domainPackage, outputTypeName))
