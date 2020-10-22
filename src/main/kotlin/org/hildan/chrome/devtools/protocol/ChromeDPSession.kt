@@ -9,22 +9,28 @@ import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
 import org.hildan.chrome.devtools.ChromeApi
-import org.hildan.chrome.devtools.domains.target.AttachToTargetRequest
+import org.hildan.chrome.devtools.ExperimentalChromeApi
+import org.hildan.chrome.devtools.domains.browser.BrowserContextID
 import org.hildan.chrome.devtools.domains.target.SessionID
 import org.hildan.chrome.devtools.domains.target.TargetID
 
-internal fun ChromeDPConnection.detachedSession() = ChromeDPSession(this, null)
+/**
+ * Represents session we are currently connected to.
+ */
+@OptIn(ExperimentalChromeApi::class)
+data class SessionInfo(
+    val sessionId: SessionID,
+    val targetId: TargetID,
+    val browserContextID: BrowserContextID? = null
+)
 
-internal fun ChromeDPSession.api() = ChromeApi(this)
-
-internal suspend fun ChromeDPSession.attach(targetId: TargetID): ChromeDPSession {
-    val sessionId = api().target.attachToTarget(AttachToTargetRequest(targetId = targetId, flatten = true)).sessionId
-    return ChromeDPSession(connection, sessionId)
-}
-
+// TODO maybe make ChromeApi a subclass of this to avoid all conversions/wrapping between session<->api?
+@OptIn(ExperimentalChromeApi::class)
 class ChromeDPSession internal constructor(
     internal val connection: ChromeDPConnection,
     val sessionId: SessionID?,
+    val targetId: TargetID?,
+    val browserContextId: BrowserContextID? = null,
 ) {
     internal suspend inline fun <reified I> request(methodName: String, requestParams: I?): InboundFrame =
         request(methodName, requestParams, serializer())
@@ -70,6 +76,13 @@ class ChromeDPSession internal constructor(
 
     suspend fun close() {
         connection.close()
+    }
+
+    companion object {
+        internal suspend fun connectDetached(webSocketUrl: String): ChromeApi {
+            val connection = ChromeDPConnection.open(webSocketUrl)
+            return ChromeDPSession(connection, null, null).api()
+        }
     }
 }
 

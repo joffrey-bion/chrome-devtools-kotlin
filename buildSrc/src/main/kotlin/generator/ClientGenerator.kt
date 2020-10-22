@@ -16,18 +16,16 @@ fun createClientClass(domains: List<ChromeDPDomain>): TypeSpec = TypeSpec.classB
         .addModifiers(KModifier.INTERNAL)
         .addParameter(SESSION_ARG, ExternalDeclarations.chromeSessionClass)
         .build())
-    val connectionProp =
-        PropertySpec.builder(SESSION_ARG, ExternalDeclarations.chromeSessionClass)
-            .initializer(SESSION_ARG)
-            .build()
-    addProperty(connectionProp)
-    domains.forEach {
-        addProperty(PropertySpec.builder(it.name.asVariableName(), it.name.asClassName())
-            .delegate("lazy { %T(%N) }", it.name.asClassName(), connectionProp)
-            .build())
-    }
-    addFunction(FunSpec.builder("close")
-        .addModifiers(KModifier.SUSPEND, KModifier.OPEN)
-        .addCode("%N.close()", connectionProp)
+    addProperty(PropertySpec.builder(SESSION_ARG, ExternalDeclarations.chromeSessionClass)
+        .initializer(SESSION_ARG)
         .build())
+    domains.forEach {
+        addProperty(it.toPropertySpec())
+    }
 }.build()
+
+private fun ChromeDPDomain.toPropertySpec(): PropertySpec =
+    PropertySpec.builder(name.asVariableName(), name.asClassName()).apply {
+        description?.let { addKdoc(it.escapeKDoc()) }
+        delegate("lazy { %T(%N) }", name.asClassName(), SESSION_ARG)
+    }.build()
