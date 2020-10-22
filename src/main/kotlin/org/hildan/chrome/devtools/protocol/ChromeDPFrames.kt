@@ -96,5 +96,5 @@ data class RequestError(
     /**
      * Associated error data.
      */
-    val data: String?
+    val data: String? = null
 )
