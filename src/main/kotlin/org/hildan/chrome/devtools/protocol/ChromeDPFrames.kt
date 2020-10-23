@@ -73,9 +73,8 @@ internal data class InboundFrame(
      */
     private fun isResponse(): Boolean = !this.isEvent()
 
-    fun matchesRequest(request: RequestFrame): Boolean = isResponse() &&
-        id == request.id &&
-        sessionId == request.sessionId
+    fun matchesRequest(request: RequestFrame): Boolean =
+        isResponse() && id == request.id && sessionId == request.sessionId
 }
 
 /**

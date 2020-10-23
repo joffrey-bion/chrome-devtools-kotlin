@@ -9,7 +9,10 @@ import org.hildan.chrome.devtools.domains.target.*
  * The new session shares the same underlying web socket connection as this [ChromeBrowserSession].
  */
 @OptIn(ExperimentalChromeApi::class)
-public suspend fun ChromeBrowserSession.attachTo(targetId: TargetID, browserContextID: BrowserContextID? = null): ChromeTargetSession {
+public suspend fun ChromeBrowserSession.attachTo(
+    targetId: TargetID,
+    browserContextID: BrowserContextID? = null
+): ChromeTargetSession {
     val sessionId = target.attachToTarget(AttachToTargetRequest(targetId = targetId, flatten = true)).sessionId
     return ChromeTargetSession(connection, sessionId, this, targetId, browserContextID)
 }

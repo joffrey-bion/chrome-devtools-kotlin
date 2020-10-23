@@ -77,7 +77,7 @@ open class ChromeDPSession internal constructor(
 private val json = Json { ignoreUnknownKeys = true }
 
 private fun <T> InboundFrame.decodeResponsePayload(deserializer: DeserializationStrategy<T>): T =
-        json.decodeFromJsonElement(deserializer, result ?: error("Missing result in response"))
+    json.decodeFromJsonElement(deserializer, result ?: error("Missing result in response"))
 
 private fun <T> InboundFrame.decodeEventPayload(deserializer: DeserializationStrategy<T>): T =
-        json.decodeFromJsonElement(deserializer, params ?: error("Missing params field in event"))
+    json.decodeFromJsonElement(deserializer, params ?: error("Missing params field in event"))

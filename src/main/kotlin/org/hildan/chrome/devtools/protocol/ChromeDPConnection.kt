@@ -37,9 +37,7 @@ internal class ChromeDPConnection private constructor(
         return response
     }
 
-    fun events() = frames.openSubscription()
-        .consumeAsFlow()
-        .filter(InboundFrame::isEvent)
+    fun events() = frames.openSubscription().consumeAsFlow().filter(InboundFrame::isEvent)
 
     /**
      * Closes connection to remote debugger.
@@ -62,4 +60,5 @@ private fun WebSocketFrame.Text.decodeInboundFrame() = json.decodeFromString<Inb
 
 class RequestFailed(var request: RequestFrame, val error: RequestError) : Exception(error.message)
 
-class MissingResponse(var request: RequestFrame) : Exception("Missing response for request ${request.method} #${request.id}")
+class MissingResponse(var request: RequestFrame) :
+    Exception("Missing response for request ${request.method} #${request.id}")

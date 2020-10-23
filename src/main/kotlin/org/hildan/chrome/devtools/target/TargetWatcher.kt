@@ -35,7 +35,5 @@ private fun Map<TargetID, TargetInfo>.updatedBy(event: TargetEvent): Map<TargetI
     is TargetInfoChangedEvent -> if (event.targetInfo.type == "page") this + (event.targetInfo.targetId to event.targetInfo) else this
     is TargetDestroyedEvent -> this - event.targetId
     is TargetCrashedEvent -> this - event.targetId
-    is AttachedToTargetEvent,
-    is DetachedFromTargetEvent,
-    is ReceivedMessageFromTargetEvent -> this // irrelevant events
+    is AttachedToTargetEvent, is DetachedFromTargetEvent, is ReceivedMessageFromTargetEvent -> this // irrelevant events
 }
