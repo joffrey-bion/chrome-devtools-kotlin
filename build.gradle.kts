@@ -18,13 +18,34 @@ repositories {
     jcenter()
 }
 
+dependencies {
+    implementation("org.hildan.krossbow:krossbow-websocket-core:0.43.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.0")
+
+    val ktorVersion = "1.4.0"
+    implementation("io.ktor:ktor-client-core:$ktorVersion")
+    implementation("io.ktor:ktor-client-json:$ktorVersion")
+    implementation("io.ktor:ktor-client-apache:$ktorVersion")
+    implementation("io.ktor:ktor-client-serialization-jvm:$ktorVersion")
+
+    testImplementation(kotlin("test"))
+    testImplementation(kotlin("test-junit5"))
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+}
+
 kotlin {
     sourceSets.main {
         kotlin.srcDirs(kotlin.srcDirs + file("src/main/generated"))
     }
 }
 
+val generateProtocolApi by tasks.registering(org.hildan.chrome.devtools.build.GenerateProtocolApiTask::class)
+
 tasks {
+    compileKotlin {
+        kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+        dependsOn(generateProtocolApi)
+    }
     test {
         useJUnitPlatform()
         testLogging {
@@ -32,9 +53,6 @@ tasks {
             exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
             showStackTraces = true
         }
-    }
-    compileKotlin {
-        kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
     }
 }
 
