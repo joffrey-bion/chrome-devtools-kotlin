@@ -2,6 +2,7 @@ plugins {
     val kotlinVersion = "1.4.10"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
+    id("org.jetbrains.dokka") version "0.10.1"
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.2.3"
 }
 
@@ -39,6 +40,10 @@ tasks {
     compileKotlin {
         kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
         dependsOn(generateProtocolApi)
+    }
+    dokka {
+        outputFormat = "html"
+        outputDirectory = "$buildDir/javadoc"
     }
     test {
         useJUnitPlatform()
