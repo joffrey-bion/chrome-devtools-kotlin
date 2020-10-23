@@ -51,6 +51,12 @@ fun ChromeDPCommand.createOutputTypeSpec(): TypeSpec =
 
 fun ChromeDPDomain.createDomainClass(): TypeSpec = TypeSpec.classBuilder(name.asClassName()).apply {
     description?.let { addKdoc(it.escapeKDoc()) }
+    if (deprecated) {
+        addAnnotation(ExternalDeclarations.deprecatedAnnotation)
+    }
+    if (experimental) {
+        addAnnotation(ExternalDeclarations.experimentalAnnotation)
+    }
     primaryConstructor(FunSpec.constructorBuilder()
         .addModifiers(KModifier.INTERNAL)
         .addParameter(SESSION_ARG, ExternalDeclarations.chromeSessionClass)
