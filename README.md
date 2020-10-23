@@ -1,6 +1,6 @@
 # chrome-devtools-kotlin
 
-A Kotlin client based on the Chrome DevTools Protocol
+A Kotlin client for the Chrome DevTools Protocol.
 
 ## License
 

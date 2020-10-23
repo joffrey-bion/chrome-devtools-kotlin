@@ -5,6 +5,15 @@ plugins {
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.2.3"
 }
 
+version = "0.1.0"
+description = "A Kotlin client for the Chrome DevTools Protocol"
+
+val Project.labels: Array<String>
+    get() = arrayOf("chrome", "devtools", "protocol", "chromedp", "kotlin", "coroutines", "async")
+
+val Project.licenses: Array<String>
+    get() = arrayOf("MIT")
+
 repositories {
     jcenter()
 }
