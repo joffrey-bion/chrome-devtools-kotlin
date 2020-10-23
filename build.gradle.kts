@@ -1,13 +1,28 @@
+import com.jfrog.bintray.gradle.BintrayExtension.*
+
 plugins {
     val kotlinVersion = "1.4.10"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
     id("org.jetbrains.dokka") version "0.10.1"
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.2.3"
+    `maven-publish`
+    id("com.jfrog.bintray") version "1.8.5"
 }
 
 version = "0.1.0"
 description = "A Kotlin client for the Chrome DevTools Protocol"
+
+val Project.labels: Array<String>
+    get() = arrayOf("chrome", "devtools", "protocol", "chromedp", "kotlin", "coroutines", "async")
+
+val Project.licenses: Array<String>
+    get() = arrayOf("MIT")
+
+val githubUser = getPropOrEnv("githubUser", "GITHUB_USER")
+val githubRepoName = rootProject.name
+val githubSlug = "$githubUser/${rootProject.name}"
+val githubRepoUrl = "https://github.com/$githubSlug"
 
 repositories {
     jcenter()
@@ -55,23 +70,86 @@ tasks {
     }
 }
 
-dependencies {
-    implementation("org.hildan.krossbow:krossbow-websocket-core:0.43.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.0")
-
-    val ktorVersion = "1.4.0"
-    implementation("io.ktor:ktor-client-core:$ktorVersion")
-    implementation("io.ktor:ktor-client-json:$ktorVersion")
-    implementation("io.ktor:ktor-client-apache:$ktorVersion")
-    implementation("io.ktor:ktor-client-serialization-jvm:$ktorVersion")
-
-    testImplementation(kotlin("test"))
-    testImplementation(kotlin("test-junit5"))
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+val sourcesJar by tasks.creating(Jar::class) {
+    archiveClassifier.set("sources")
+    from(sourceSets.main.get().allSource)
 }
 
-val generateProtocolApi by tasks.registering(org.hildan.chrome.devtools.build.GenerateProtocolApiTask::class)
-
-tasks.compileKotlin {
-    dependsOn(generateProtocolApi)
+val dokkaJar by tasks.creating(Jar::class) {
+    group = JavaBasePlugin.DOCUMENTATION_GROUP
+    description = "Assembles Kotlin docs with Dokka"
+    archiveClassifier.set("javadoc")
+    from(tasks.dokka)
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+
+            artifact(sourcesJar)
+            artifact(dokkaJar)
+
+            pom {
+                name.set(project.name)
+                description.set(project.description)
+                url.set(githubRepoUrl)
+                licenses {
+                    license {
+                        name.set("The MIT License")
+                        url.set("https://opensource.org/licenses/MIT")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("joffrey-bion")
+                        name.set("Joffrey Bion")
+                        email.set("joffrey.bion@gmail.com")
+                    }
+                }
+                scm {
+                    connection.set("scm:git:$githubRepoUrl.git")
+                    developerConnection.set("scm:git:git@github.com:$githubSlug.git")
+                    url.set(githubRepoUrl)
+                }
+            }
+        }
+    }
+}
+
+bintray {
+    user = getPropOrEnv("bintrayUser", "BINTRAY_USER")
+    key = getPropOrEnv("bintrayApiKey", "BINTRAY_KEY")
+    setPublications("maven")
+    publish = true
+
+    pkg(closureOf<PackageConfig> {
+        repo = getPropOrEnv("bintrayRepo", "BINTRAY_REPO")
+        name = project.name
+        desc = project.description
+        setLabels(*project.labels)
+        setLicenses(*project.licenses)
+
+        websiteUrl = githubRepoUrl
+        issueTrackerUrl = "$githubRepoUrl/issues"
+        vcsUrl = "$githubRepoUrl.git"
+        githubRepo = githubSlug
+
+        version(closureOf<VersionConfig> {
+            desc = project.description
+            vcsTag = project.version.toString()
+            gpg(closureOf<GpgConfig> {
+                sign = true
+            })
+            mavenCentralSync(closureOf<MavenCentralSyncConfig> {
+                sync = true
+                user = getPropOrEnv("ossrhUserToken", "OSSRH_USER_TOKEN")
+                password = getPropOrEnv("ossrhKey", "OSSRH_KEY")
+            })
+        })
+    })
+}
+tasks.bintrayUpload.get().dependsOn(tasks.build)
+
+fun Project.getPropOrEnv(propName: String, envVar: String? = null): String? =
+    findProperty(propName) as String? ?: System.getenv(envVar)
