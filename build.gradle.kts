@@ -2,6 +2,7 @@ plugins {
     val kotlinVersion = "1.4.10"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
+    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.2.3"
 }
 
 repositories {
