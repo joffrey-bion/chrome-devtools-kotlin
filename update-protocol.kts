@@ -3,15 +3,19 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 
-val outputDir = Paths.get("protocol")
-Files.createDirectories(outputDir)
-
 object ChromeDevToolsRepo {
     val baseUrl = "https://raw.githubusercontent.com/ChromeDevTools/devtools-protocol"
     val branch = "master"
+    val packageJsonUrl = "$baseUrl/$branch/package.json"
     val browserProtocolUrl = "$baseUrl/$branch/json/browser_protocol.json"
     val jsProtocolUrl = "$baseUrl/$branch/json/js_protocol.json"
     val protocolUrls = listOf(browserProtocolUrl, jsProtocolUrl)
+
+    val npmVersion: String
+        get() {
+            val packageJson = URL(packageJsonUrl).readText()
+            return Regex(""""version"\s*:\s*"([^"]+)"""").find(packageJson)?.groupValues?.get(1) ?: "not-found"
+        }
 }
 
 fun downloadTextFile(fileUrl: String, targetDir: Path) {
@@ -21,4 +25,17 @@ fun downloadTextFile(fileUrl: String, targetDir: Path) {
     outputFilePath.toFile().writeText(text)
 }
 
-ChromeDevToolsRepo.protocolUrls.forEach { url -> downloadTextFile(url, outputDir) }
+fun updateProtocolFiles() {
+    val outputDir = Paths.get("protocol")
+    Files.createDirectories(outputDir)
+
+    ChromeDevToolsRepo.protocolUrls.forEach { url ->
+        print("Downloading protocol JSON spec from $url ... ")
+        downloadTextFile(url, outputDir)
+        println("Done.")
+    }
+
+    println("Chrome Devtools Protocol definition updated to ${ChromeDevToolsRepo.npmVersion}")
+}
+
+updateProtocolFiles()
