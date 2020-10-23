@@ -8,20 +8,14 @@ import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
-import org.hildan.chrome.devtools.ChromeBrowserSession
 import org.hildan.chrome.devtools.ExperimentalChromeApi
-import org.hildan.chrome.devtools.domains.browser.BrowserContextID
 import org.hildan.chrome.devtools.domains.target.SessionID
-import org.hildan.chrome.devtools.domains.target.TargetID
 import java.util.concurrent.atomic.AtomicLong
 
-// TODO maybe make ChromeApi a subclass of this to avoid all conversions/wrapping between session<->api?
 @OptIn(ExperimentalChromeApi::class)
-class ChromeDPSession internal constructor(
+open class ChromeDPSession internal constructor(
     internal val connection: ChromeDPConnection,
     val sessionId: SessionID?,
-    val targetId: TargetID?,
-    val browserContextId: BrowserContextID? = null,
 ) {
     private val nextRequestId = AtomicLong(0)
 
@@ -75,7 +69,7 @@ class ChromeDPSession internal constructor(
     companion object {
         internal suspend fun connect(webSocketUrl: String): ChromeBrowserSession {
             val connection = ChromeDPConnection.open(webSocketUrl)
-            return ChromeBrowserSession(ChromeDPSession(connection, null, null))
+            return ChromeBrowserSession(connection)
         }
     }
 }

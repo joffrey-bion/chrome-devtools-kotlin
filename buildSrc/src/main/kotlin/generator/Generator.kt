@@ -3,7 +3,6 @@ package org.hildan.chrome.devtools.build.generator
 import com.squareup.kotlinpoet.FileSpec
 import org.hildan.chrome.devtools.build.json.ChromeProtocolDescriptor
 import org.hildan.chrome.devtools.build.model.ChromeDPDomain
-import org.hildan.chrome.devtools.build.model.DomainKind
 import org.hildan.chrome.devtools.build.model.sanitize
 import java.nio.file.Files
 import java.nio.file.Path
@@ -21,17 +20,29 @@ class Generator(
         Files.createDirectories(generatedSourcesDir)
         val domains = descriptors.flatMap { it.domains }.map { sanitize(it) }
         domains.forEach(::generateDomainFiles)
-        generateClientFile(domains)
+        generateBrowserSessionFile(domains.filter { it.availableForBrowser })
+        generateTargetSessionFile(domains.filter { it.availableForTargets })
     }
 
     private fun haveSameVersion(descriptors: List<ChromeProtocolDescriptor>): Boolean =
         descriptors.distinctBy { it.version == descriptors[0].version }.size <= 1
 
-    private fun generateClientFile(domains: List<ChromeDPDomain>) {
-        FileSpec.builder(packageName = ExternalDeclarations.rootPackageName, fileName = "ChromeSessions").apply {
-            addType(createClientClass(domains.filter { it.kind == DomainKind.BROWSER }, "ChromeBrowserSession"))
-            addType(createClientClass(domains.filter { it.kind == DomainKind.TARGET }, "ChromeTargetSession"))
-        }.build().writeTo(generatedSourcesDir)
+    private fun generateBrowserSessionFile(domains: List<ChromeDPDomain>) {
+        val packageName = ExternalDeclarations.browserSessionClass.packageName
+        val className = ExternalDeclarations.browserSessionClass.simpleName
+        FileSpec.builder(packageName, className)
+            .addType(createBrowserSessionClass(domains, className))
+            .build()
+            .writeTo(generatedSourcesDir)
+    }
+
+    private fun generateTargetSessionFile(domains: List<ChromeDPDomain>) {
+        val packageName = ExternalDeclarations.targetSessionClass.packageName
+        val className = ExternalDeclarations.targetSessionClass.simpleName
+        FileSpec.builder(packageName = packageName, fileName = className)
+            .addType(createTargetSessionClass(domains, className))
+            .build()
+            .writeTo(generatedSourcesDir)
     }
 
     private fun generateDomainFiles(domain: ChromeDPDomain) {

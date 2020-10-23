@@ -1,9 +1,5 @@
 package org.hildan.chrome.devtools.protocol
 
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.first
-import org.hildan.chrome.devtools.ChromeBrowserSession
-import org.hildan.chrome.devtools.ChromeTargetSession
 import org.hildan.chrome.devtools.ExperimentalChromeApi
 import org.hildan.chrome.devtools.domains.browser.BrowserContextID
 import org.hildan.chrome.devtools.domains.target.*
@@ -14,13 +10,8 @@ import org.hildan.chrome.devtools.domains.target.*
  */
 @OptIn(ExperimentalChromeApi::class)
 public suspend fun ChromeBrowserSession.attachTo(targetId: TargetID, browserContextID: BrowserContextID? = null): ChromeTargetSession {
-    println("Attaching to target $targetId")
-    val attachedEvents = target.attachedToTarget()
     val sessionId = target.attachToTarget(AttachToTargetRequest(targetId = targetId, flatten = true)).sessionId
-    println("Attached to target $targetId, session = $sessionId")
-    val event = attachedEvents.filter { it.sessionId == sessionId }.first()
-    println("Received attached event to target $targetId, session = $sessionId: $event")
-    return ChromeTargetSession(ChromeDPSession(session.connection, sessionId, targetId, browserContextID))
+    return ChromeTargetSession(connection, sessionId, this, targetId, browserContextID)
 }
 
 /**
@@ -36,9 +27,10 @@ public suspend fun ChromeBrowserSession.attachToNewTarget(
     incognito: Boolean = true,
     width: Int = 1024,
     height: Int = 768,
+    background: Boolean = false,
 ): ChromeTargetSession {
     val browserContextId = when (incognito) {
-        true -> target.createBrowserContext(CreateBrowserContextRequest(disposeOnDetach = true)).browserContextId
+        true -> target.createBrowserContext(CreateBrowserContextRequest(disposeOnDetach = background)).browserContextId
         false -> null
     }
 
@@ -48,32 +40,23 @@ public suspend fun ChromeBrowserSession.attachToNewTarget(
             browserContextId = browserContextId,
             height = height,
             width = width,
-            background = true,
+            background = background,
         )
     ).targetId
 
     return attachTo(targetId, browserContextId)
 }
 
-public suspend fun ChromeBrowserSession.close() {
-    closeTarget()
-    print("Closing connection... ")
-    session.close()
-    println("Done.")
-}
-
 @OptIn(ExperimentalChromeApi::class)
-private suspend fun ChromeBrowserSession.closeTarget() {
-    if (session.targetId != null) {
-        println("Closing target ${session.targetId}... ")
-        target.closeTarget(CloseTargetRequest(targetId = session.targetId))
-        println("Done.")
-    }
+private suspend fun ChromeTargetSession.closeTarget() {
+    println("Closing target ${targetId}... ")
+    parent.target.closeTarget(CloseTargetRequest(targetId = targetId))
+    println("Done.")
+
     // FIXME do we really need this given the "disposeOnDetach=true" used at creation?
-    val browserContextID = session.browserContextId
-    if (!browserContextID.isNullOrEmpty()) {
-        println("Disposing browser context ${session.browserContextId}... ")
-        target.disposeBrowserContext(DisposeBrowserContextRequest(browserContextID))
+    if (!browserContextId.isNullOrEmpty()) {
+        println("Disposing browser context ${browserContextId}... ")
+        parent.target.disposeBrowserContext(DisposeBrowserContextRequest(browserContextId))
         println("Done.")
     }
 }
