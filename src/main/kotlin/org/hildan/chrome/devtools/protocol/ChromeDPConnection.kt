@@ -7,14 +7,15 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.hildan.krossbow.websocket.WebSocketFrame
 import org.hildan.krossbow.websocket.WebSocketSession
-import org.hildan.krossbow.websocket.defaultWebSocketClient
+
+internal fun WebSocketSession.chromeDp(): ChromeDPConnection = ChromeDPConnection(this)
 
 /**
  * ChromeDebuggerConnection represents connection to chrome's debugger via
  * [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
  */
 @OptIn(ExperimentalCoroutinesApi::class)
-internal class ChromeDPConnection private constructor(
+internal class ChromeDPConnection(
     private val webSocket: WebSocketSession
 ) {
     private val job = Job()
@@ -44,13 +45,6 @@ internal class ChromeDPConnection private constructor(
      */
     suspend fun close() {
         webSocket.close()
-    }
-
-    companion object Factory {
-
-        suspend fun open(websocketUrl: String): ChromeDPConnection = ChromeDPConnection(client.connect(websocketUrl))
-
-        private val client by lazy { defaultWebSocketClient() }
     }
 }
 

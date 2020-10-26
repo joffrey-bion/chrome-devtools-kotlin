@@ -32793,9 +32793,10 @@ public final class org/hildan/chrome/devtools/protocol/ChromeBrowserSession : or
 
 public final class org/hildan/chrome/devtools/protocol/ChromeDPClient {
 	public fun <init> ()V
-	public fun <init> (Ljava/lang/String;Lio/ktor/client/HttpClient;)V
-	public synthetic fun <init> (Ljava/lang/String;Lio/ktor/client/HttpClient;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Lio/ktor/client/HttpClient;Lorg/hildan/krossbow/websocket/WebSocketClient;)V
+	public synthetic fun <init> (Ljava/lang/String;Lio/ktor/client/HttpClient;Lorg/hildan/krossbow/websocket/WebSocketClient;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun activateTab (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun closeAllTargets (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun closeTab (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun newTab (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun newTab$default (Lorg/hildan/chrome/devtools/protocol/ChromeDPClient;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
@@ -32806,7 +32807,6 @@ public final class org/hildan/chrome/devtools/protocol/ChromeDPClient {
 }
 
 public class org/hildan/chrome/devtools/protocol/ChromeDPSession {
-	public static final field Companion Lorg/hildan/chrome/devtools/protocol/ChromeDPSession$Companion;
 	public final fun close (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events (Ljava/lang/String;Lkotlinx/serialization/DeserializationStrategy;)Lkotlinx/coroutines/flow/Flow;
 	public final fun events (Ljava/util/Map;)Lkotlinx/coroutines/flow/Flow;
@@ -32814,14 +32814,12 @@ public class org/hildan/chrome/devtools/protocol/ChromeDPSession {
 	public final fun request (Ljava/lang/String;Ljava/lang/Object;Lkotlinx/serialization/SerializationStrategy;Lkotlinx/serialization/DeserializationStrategy;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class org/hildan/chrome/devtools/protocol/ChromeDPSession$Companion {
-}
-
 public final class org/hildan/chrome/devtools/protocol/ChromeDPTarget {
 	public static final field Companion Lorg/hildan/chrome/devtools/protocol/ChromeDPTarget$Companion;
 	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public final fun attach (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun attach (Lorg/hildan/krossbow/websocket/WebSocketClient;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun attach$default (Lorg/hildan/chrome/devtools/protocol/ChromeDPTarget;Lorg/hildan/krossbow/websocket/WebSocketClient;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
@@ -32839,7 +32837,6 @@ public final class org/hildan/chrome/devtools/protocol/ChromeDPTarget {
 	public final fun getWebSocketDebuggerUrl ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public final fun use (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun write$Self (Lorg/hildan/chrome/devtools/protocol/ChromeDPTarget;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
@@ -32947,13 +32944,6 @@ public final class org/hildan/chrome/devtools/protocol/ChromeVersion$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class org/hildan/chrome/devtools/protocol/ExtensionsKt {
-	public static final fun attachTo (Lorg/hildan/chrome/devtools/protocol/ChromeBrowserSession;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun attachTo$default (Lorg/hildan/chrome/devtools/protocol/ChromeBrowserSession;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public static final fun attachToNewTarget (Lorg/hildan/chrome/devtools/protocol/ChromeBrowserSession;Ljava/lang/String;ZIIZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun attachToNewTarget$default (Lorg/hildan/chrome/devtools/protocol/ChromeBrowserSession;Ljava/lang/String;ZIIZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-}
-
 public final class org/hildan/chrome/devtools/protocol/MissingResponse : java/lang/Exception {
 	public fun <init> (Lorg/hildan/chrome/devtools/protocol/RequestFrame;)V
 	public final fun getRequest ()Lorg/hildan/chrome/devtools/protocol/RequestFrame;
@@ -33037,7 +33027,12 @@ public final class org/hildan/chrome/devtools/protocol/RequestFrame$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class org/hildan/chrome/devtools/target/TargetWatcherKt {
+public final class org/hildan/chrome/devtools/protocol/TargetExtensionsKt {
+	public static final fun attachTo (Lorg/hildan/chrome/devtools/protocol/ChromeBrowserSession;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun attachTo$default (Lorg/hildan/chrome/devtools/protocol/ChromeBrowserSession;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun attachToNewPage (Lorg/hildan/chrome/devtools/protocol/ChromeBrowserSession;Ljava/lang/String;ZIIZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun attachToNewPage$default (Lorg/hildan/chrome/devtools/protocol/ChromeBrowserSession;Ljava/lang/String;ZIIZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun use (Lorg/hildan/chrome/devtools/protocol/ChromeDPTarget;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun watchTargetsIn (Lorg/hildan/chrome/devtools/protocol/ChromeBrowserSession;Lkotlinx/coroutines/CoroutineScope;)Lkotlinx/coroutines/flow/StateFlow;
 }
 

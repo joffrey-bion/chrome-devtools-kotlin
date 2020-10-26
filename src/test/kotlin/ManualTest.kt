@@ -38,10 +38,7 @@ class ManualTest {
     fun detachedSession_nonTargetDomain_shouldFail() {
         runBlocking(Dispatchers.Default) {
             val chrome = ChromeDPClient()
-            val version = chrome.version()
-            assertTrue(version.browser.contains("Chrome"))
-            val targets = chrome.targets()
-            targets.forEach { chrome.closeTab(it.id) }
+            chrome.closeAllTargets()
             val target = chrome.newTab("http://www.google.com")
             val api = target.attach()
             println(api.browser.getVersion())

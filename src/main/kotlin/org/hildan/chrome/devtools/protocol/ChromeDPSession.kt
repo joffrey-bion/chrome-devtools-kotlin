@@ -62,15 +62,11 @@ open class ChromeDPSession internal constructor(
         .filter { it.sessionId == sessionId }
         .mapNotNull { f -> deserializers[f.method]?.let { f.decodeEventPayload(it) } }
 
+    /**
+     * Closes the web socket connection.
+     */
     suspend fun close() {
         connection.close()
-    }
-
-    companion object {
-        internal suspend fun connect(webSocketUrl: String): ChromeBrowserSession {
-            val connection = ChromeDPConnection.open(webSocketUrl)
-            return ChromeBrowserSession(connection)
-        }
     }
 }
 
