@@ -10,6 +10,7 @@ plugins {
     id("com.jfrog.bintray") version "1.8.5"
 }
 
+group = "org.hildan.chrome"
 version = "0.1.0"
 description = "A Kotlin client for the Chrome DevTools Protocol"
 
