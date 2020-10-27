@@ -5,76 +5,57 @@ import kotlinx.serialization.json.JsonElement
 import org.hildan.chrome.devtools.domains.target.SessionID
 
 /**
- * Represents a request frame, as defined
+ * A request frame which can be sent to the server, as defined
  * [in the protocol's README](https://github.com/aslushnikov/getting-started-with-cdp/blob/master/README.md#protocol-fundamentals)
  */
 @Serializable
 data class RequestFrame(
-    /**
-     * Request id, must be unique.
-     */
+    /** Request id, must be unique in the current session. */
     val id: Long,
 
-    /**
-     * Session ID for Target's flatten mode requests (see [http://crbug.com/991325](http://crbug.com/991325)).
-     */
-    val sessionId: String? = null,
-
-    /**
-     * Protocol method (domain.method_name i.e. Page.navigateTo)
-     */
+    /** Protocol method (e.g. Page.navigateTo). */
     val method: String,
 
-    /**
-     * Request params (if any)
-     */
-    val params: JsonElement? = null
+    /** Request params (if any). */
+    val params: JsonElement? = null,
+
+    /** Session ID for Target's flatten mode requests (see [http://crbug.com/991325](http://crbug.com/991325)). */
+    val sessionId: String? = null,
 )
 
 /**
- * Represents generic protocol response.
+ * A generic inbound frame received from the server. It can represent responses to requests, or server-initiated events.
  */
 @Serializable
 internal data class InboundFrame(
-    /**
-     * Response id.
-     */
+    /** The ID of the request that triggered this response (only present on responses, not on events). */
     val id: Long? = null,
 
-    /**
-     * Response result (when responding to a request).
-     */
+    /** Response result (when responding to a request). */
     val result: JsonElement? = null,
 
     /**
-     * Request error.
+     * Error data.
+     * Only present if this frame represents a response, and an error occurred during request processing.
      */
     val error: RequestError? = null,
 
-    /**
-     * Event name.
-     */
+    /** Event name. */
     val method: String? = null,
 
-    /**
-     * Response params (when representing an event).
-     */
+    /** Event params (only when representing an event). */
     val params: JsonElement? = null,
 
-    val sessionId: SessionID? = null
+    /** Session ID of the target concerned by this event. */
+    val sessionId: SessionID? = null,
 ) {
-    /**
-     * Checks if response is event
-     */
-    fun isEvent(): Boolean = !this.method.isNullOrEmpty()
+    /** True if this is an event (as opposed to a response to a request). */
+    // Implementation as defined by:
+    // https://github.com/aslushnikov/getting-started-with-cdp/blob/master/README.md#protocol-fundamentals
+    fun isEvent(): Boolean = id == null
 
-    /**
-     * Checks if response is event
-     */
-    private fun isResponse(): Boolean = !this.isEvent()
-
-    fun matchesRequest(request: RequestFrame): Boolean =
-        isResponse() && id == request.id && sessionId == request.sessionId
+    /** Checks if this frame is a response to the given request. */
+    fun matchesRequest(request: RequestFrame): Boolean = id == request.id && sessionId == request.sessionId
 }
 
 /**
@@ -82,18 +63,12 @@ internal data class InboundFrame(
  */
 @Serializable
 data class RequestError(
-    /**
-     * Error code.
-     */
+    /** Error code. */
     val code: Long,
 
-    /**
-     * Error message.
-     */
+    /** Error message. */
     val message: String,
 
-    /**
-     * Associated error data.
-     */
-    val data: String? = null
+    /** Associated error data. */
+    val data: JsonElement? = null
 )
