@@ -44,6 +44,7 @@ internal class ChromeDPConnection(
      * Closes connection to remote debugger.
      */
     suspend fun close() {
+        job.cancelAndJoin()
         webSocket.close()
     }
 }
