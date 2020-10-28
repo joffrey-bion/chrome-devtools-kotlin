@@ -1,4 +1,4 @@
-# chrome-devtools-kotlin
+# Chrome Devtools Kotlin
 
 [![Maven central version](https://img.shields.io/maven-central/v/org.hildan.chrome/chrome-devtools-kotlin.svg)](http://mvnrepository.com/artifact/org.hildan.chrome/chrome-devtools-kotlin)
 [![Bintray Download](https://img.shields.io/bintray/v/joffrey-bion/maven/chrome-devtools-kotlin)](https://bintray.com/joffrey-bion/maven/chrome-devtools-kotlin/_latestVersion)
@@ -31,13 +31,15 @@ The protocol requires to attach to a "target" (via a web socket connection) in o
 Targets can be the browser itself, a browser tab, a service worker, etc.
 Each type of target supports only a subset of the available domains.
 
-This project exposes the protocol's API via `ChromeXxxxxSession` objects, representing sessions with attached 
-targets, where "xxx" is the type of target.
+This library exposes the protocol's API via session objects, such as `ChromeBrowserSession` or `ChromePageSession`. 
+They represent web socket sessions with attached targets, for different types of target.
 The supported domains are defined as properties on these session objects, so accessing these properties is a type-safe
 way to know which domains can actually be used.
-The supported set of domains for each target type is not clearly defined by the protocol, so there might be some missing
-domains on some target types. If this is the case, use the `unsafe()` method on the session object to get full access to
-all domains (also, please open an issue so I can fix the missing domain).
+
+> Note: The supported set of domains for each target type is not clearly defined by the protocol, so there might be some
+> missing domains on some target types.
+> If this is the case, use the `unsafe()` method on the session object to get full access to all domains
+> (also, please open an issue so I can fix the missing domain).
 
 Each domain type exposes:
 
