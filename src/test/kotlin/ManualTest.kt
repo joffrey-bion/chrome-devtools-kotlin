@@ -2,12 +2,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.Serializable
 import org.hildan.chrome.devtools.domains.dom.GetDocumentRequest
 import org.hildan.chrome.devtools.domains.dom.GetOuterHTMLRequest
 import org.hildan.chrome.devtools.domains.dom.QuerySelectorRequest
+import org.hildan.chrome.devtools.domains.runtime.evaluateJs
 import org.hildan.chrome.devtools.domains.target.CloseTargetRequest
 import org.hildan.chrome.devtools.protocol.ChromeDPClient
 import org.hildan.chrome.devtools.targets.attachToNewPage
+import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
@@ -48,6 +51,33 @@ class ManualTest {
             val target = chrome.newTab("http://www.google.com")
             val api = target.attach()
             println(api.browser.getVersion())
+        }
+    }
+
+    @Test
+    fun listTargets() {
+        runBlocking {
+            val chrome = ChromeDPClient()
+            chrome.closeAllTargets()
+            val browser = chrome.webSocket()
+            val page = browser.attachToNewPage("http://google.com")
+            println(page.target.getTargets())
+        }
+    }
+
+    @Test
+    fun evaluateJs() {
+        runBlocking {
+            @Serializable
+            data class Person(val firstName: String, val lastName: String)
+
+            val chrome = ChromeDPClient()
+            chrome.closeAllTargets()
+            val browser = chrome.webSocket()
+            val page = browser.attachToNewPage("http://google.com")
+            println(page.runtime.evaluateJs<Int>("42"))
+            println(page.runtime.evaluateJs<Pair<Int, String>>("""eval({first: 42, second: "test"})"""))
+            println(page.runtime.evaluateJs<Person>("""eval({firstName: "Bob", lastName: "Lee Swagger"})"""))
         }
     }
 }

@@ -8582,6 +8582,12 @@ public final class org/hildan/chrome/devtools/domains/dom/DOMDomain {
 	public final fun undo (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
+public final class org/hildan/chrome/devtools/domains/dom/DOMExtensionsKt {
+	public static final fun findNodeBySelector (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun focusNodeBySelector (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun getRootNodeId (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
 public final class org/hildan/chrome/devtools/domains/dom/DescribeNodeRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/dom/DescribeNodeRequest$Companion;
 	public fun <init> ()V
@@ -23589,6 +23595,11 @@ public final class org/hildan/chrome/devtools/domains/page/PageDomain {
 	public final fun windowOpen ()Lkotlinx/coroutines/flow/Flow;
 }
 
+public final class org/hildan/chrome/devtools/domains/page/PageExtensionsKt {
+	public static final fun captureScreenshotToFile (Lorg/hildan/chrome/devtools/domains/page/PageDomain;Ljava/nio/file/Path;Lorg/hildan/chrome/devtools/domains/page/CaptureScreenshotRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun navigateAndWaitLoading (Lorg/hildan/chrome/devtools/domains/page/PageDomain;Lorg/hildan/chrome/devtools/domains/page/NavigateRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
 public final class org/hildan/chrome/devtools/domains/page/PrintToPDFRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/PrintToPDFRequest$Companion;
 	public fun <init> ()V
@@ -27448,6 +27459,16 @@ public final class org/hildan/chrome/devtools/domains/runtime/RuntimeDomain {
 	public final fun setCustomObjectFormatterEnabled (Lorg/hildan/chrome/devtools/domains/runtime/SetCustomObjectFormatterEnabledRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setMaxCallStackSizeToCapture (Lorg/hildan/chrome/devtools/domains/runtime/SetMaxCallStackSizeToCaptureRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun terminateExecution (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/hildan/chrome/devtools/domains/runtime/RuntimeExtensionsKt {
+	public static final fun evaluateJs (Lorg/hildan/chrome/devtools/domains/runtime/RuntimeDomain;Ljava/lang/String;Lkotlinx/serialization/DeserializationStrategy;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/hildan/chrome/devtools/domains/runtime/RuntimeJSEvaluationException : java/lang/Exception {
+	public fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/runtime/ExceptionDetails;)V
+	public final fun getDetails ()Lorg/hildan/chrome/devtools/domains/runtime/ExceptionDetails;
+	public final fun getJsExpression ()Ljava/lang/String;
 }
 
 public final class org/hildan/chrome/devtools/domains/runtime/SetAsyncCallStackDepthRequest {
