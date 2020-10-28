@@ -10,10 +10,6 @@ import org.hildan.krossbow.websocket.WebSocketSession
 
 internal fun WebSocketSession.chromeDp(): ChromeDPConnection = ChromeDPConnection(this)
 
-/**
- * ChromeDebuggerConnection represents connection to chrome's debugger via
- * [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
- */
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class ChromeDPConnection(
     private val webSocket: WebSocketSession
@@ -40,9 +36,6 @@ internal class ChromeDPConnection(
 
     fun events() = frames.openSubscription().consumeAsFlow().filter(InboundFrame::isEvent)
 
-    /**
-     * Closes connection to remote debugger.
-     */
     suspend fun close() {
         job.cancelAndJoin()
         webSocket.close()

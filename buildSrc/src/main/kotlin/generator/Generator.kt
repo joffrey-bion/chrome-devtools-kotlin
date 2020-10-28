@@ -1,7 +1,9 @@
 package org.hildan.chrome.devtools.build.generator
 
 import com.squareup.kotlinpoet.FileSpec
+import org.hildan.chrome.devtools.build.json.ALL_DOMAINS_TARGET
 import org.hildan.chrome.devtools.build.json.ChromeProtocolDescriptor
+import org.hildan.chrome.devtools.build.json.TargetType
 import org.hildan.chrome.devtools.build.model.ChromeDPDomain
 import org.hildan.chrome.devtools.build.model.sanitize
 import java.nio.file.Files
@@ -9,38 +11,46 @@ import java.nio.file.Path
 
 class Generator(
     private val protocolFiles: List<Path>,
+    private val targetTypesFile: Path,
     private val generatedSourcesDir: Path
 ) {
     fun generate() {
-        val descriptors = protocolFiles.map { ChromeProtocolDescriptor.parseJson(it) }
-        if (!haveSameVersion(descriptors)) {
-            println("Some descriptors have differing versions: ${descriptors.map { it.version }}")
-        }
         generatedSourcesDir.toFile().deleteRecursively()
         Files.createDirectories(generatedSourcesDir)
-        val domains = descriptors.flatMap { it.domains }.map { sanitize(it) }
+
+        val domains = loadProtocolDomains()
         domains.forEach(::generateDomainFiles)
-        generateBrowserSessionFile(domains.filter { it.availableForBrowser })
-        generateTargetSessionFile(domains.filter { it.availableForTargets })
+
+        val targets = TargetType.parseJson(targetTypesFile) + TargetType(ALL_DOMAINS_TARGET, domains.map { it.name })
+        targets.forEach { target ->
+            generateTargetInterfaceFile(targetName = target.name, domains = domains.filter { it.name in target.supportedDomains })
+        }
+        generateSimpleTargetFile(domains = domains, targetTypes = targets)
+    }
+
+    private fun loadProtocolDomains(): List<ChromeDPDomain> {
+        val descriptors = protocolFiles.map { ChromeProtocolDescriptor.parseJson(it) }
+        if (!haveSameVersion(descriptors)) {
+            error("Some descriptors have differing versions: ${descriptors.map { it.version }}")
+        }
+        return descriptors.flatMap { it.domains }.map { sanitize(it) }
     }
 
     private fun haveSameVersion(descriptors: List<ChromeProtocolDescriptor>): Boolean =
         descriptors.distinctBy { it.version == descriptors[0].version }.size <= 1
 
-    private fun generateBrowserSessionFile(domains: List<ChromeDPDomain>) {
-        val packageName = ExternalDeclarations.browserSessionClass.packageName
-        val className = ExternalDeclarations.browserSessionClass.simpleName
-        FileSpec.builder(packageName, className)
-            .addType(createBrowserSessionClass(domains, className))
+    private fun generateTargetInterfaceFile(targetName: String, domains: List<ChromeDPDomain>) {
+        val targetInterface = ExternalDeclarations.targetInterface(targetName)
+        FileSpec.builder(targetInterface.packageName, targetInterface.simpleName)
+            .addType(createTargetInterface(targetName, domains))
             .build()
             .writeTo(generatedSourcesDir)
     }
 
-    private fun generateTargetSessionFile(domains: List<ChromeDPDomain>) {
-        val packageName = ExternalDeclarations.targetSessionClass.packageName
-        val className = ExternalDeclarations.targetSessionClass.simpleName
-        FileSpec.builder(packageName = packageName, fileName = className)
-            .addType(createTargetSessionClass(domains, className))
+    private fun generateSimpleTargetFile(domains: List<ChromeDPDomain>, targetTypes: List<TargetType>) {
+        val targetClass = ExternalDeclarations.targetImplementationClass
+        FileSpec.builder(targetClass.packageName, targetClass.simpleName)
+            .addType(createSimpleAllTargetsImpl(domains, targetTypes))
             .build()
             .writeTo(generatedSourcesDir)
     }

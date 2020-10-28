@@ -8,12 +8,11 @@ import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
-import org.hildan.chrome.devtools.ExperimentalChromeApi
 import org.hildan.chrome.devtools.domains.target.SessionID
 import java.util.concurrent.atomic.AtomicLong
 
 @OptIn(ExperimentalChromeApi::class)
-open class ChromeDPSession internal constructor(
+internal class ChromeDPSession internal constructor(
     internal val connection: ChromeDPConnection,
     val sessionId: SessionID?,
 ) {

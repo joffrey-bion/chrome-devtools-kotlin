@@ -1,0 +1,73 @@
+[
+  {
+    "name": "Browser",
+    "supportedDomains": [
+      "Target",
+      "Browser",
+      "IO",
+      "Fetch",
+      "Memory",
+      "Security",
+      "Storage",
+      "SystemInfo",
+      "Tethering",
+      "Tracing"
+    ]
+  },
+  {
+    "name": "RenderFrame",
+    "supportedDomains": [
+      "Audits",
+      "BackgroundService",
+      "Browser",
+      "DOM",
+      "Emulation",
+      "Input",
+      "Inspector",
+      "IO",
+      "Memory",
+      "Overlay",
+      "Network",
+      "Fetch",
+      "Schema",
+      "ServiceWorker",
+      "Storage",
+      "Target",
+      "Page",
+      "Security",
+      "Tracing",
+      "Log",
+      "WebAuthn",
+      "Runtime"
+    ]
+  },
+  {
+    "name": "Worker",
+    "supportedDomains": [
+      "IO",
+      "Target",
+      "Network"
+    ]
+  },
+  {
+    "name": "ServiceWorker",
+    "supportedDomains": [
+      "IO",
+      "Inspector",
+      "Network",
+      "Fetch",
+      "Schema",
+      "Target"
+    ]
+  },
+  {
+    "name": "SharedWorker",
+    "supportedDomains": [
+      "IO",
+      "Inspector",
+      "Network",
+      "Schema",
+      "Target"
+    ]
+  }
+]

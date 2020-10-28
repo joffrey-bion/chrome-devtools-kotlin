@@ -59,9 +59,9 @@ fun ChromeDPDomain.createDomainClass(): TypeSpec = TypeSpec.classBuilder(name.as
     }
     primaryConstructor(FunSpec.constructorBuilder()
         .addModifiers(KModifier.INTERNAL)
-        .addParameter(SESSION_ARG, ExternalDeclarations.chromeSessionClass)
+        .addParameter(SESSION_ARG, ExternalDeclarations.chromeDPSessionClass)
         .build())
-    addProperty(PropertySpec.builder(SESSION_ARG, ExternalDeclarations.chromeSessionClass)
+    addProperty(PropertySpec.builder(SESSION_ARG, ExternalDeclarations.chromeDPSessionClass)
         .addModifiers(KModifier.PRIVATE)
         .initializer(SESSION_ARG)
         .build())

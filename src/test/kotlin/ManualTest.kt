@@ -1,11 +1,13 @@
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.hildan.chrome.devtools.domains.dom.GetDocumentRequest
 import org.hildan.chrome.devtools.domains.dom.GetOuterHTMLRequest
 import org.hildan.chrome.devtools.domains.dom.QuerySelectorRequest
 import org.hildan.chrome.devtools.domains.target.CloseTargetRequest
 import org.hildan.chrome.devtools.protocol.ChromeDPClient
-import kotlin.test.Ignore
+import org.hildan.chrome.devtools.targets.attachToNewPage
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
@@ -18,19 +20,23 @@ class ManualTest {
     fun test() {
         runBlocking(Dispatchers.Default) {
             val chrome = ChromeDPClient()
+            chrome.closeAllTargets()
+
             val version = chrome.version()
             assertTrue(version.browser.contains("Chrome"))
-            val targets = chrome.targets()
-            targets.forEach { chrome.closeTab(it.id) }
-            val target = chrome.newTab("http://www.google.com")
-            val api = target.attach()
+
+            val browser = chrome.webSocket()
+            val api = browser.attachToNewPage("http://www.google.com")
+            api.page.enable()
+            api.page.frameStoppedLoading().first()
+            delay(500)
             api.dom.enable()
             val doc = api.dom.getDocument(GetDocumentRequest()).root
             val nodeId = api.dom.querySelector(QuerySelectorRequest(doc.nodeId, "#main")).nodeId
             println(nodeId)
             val html = api.dom.getOuterHTML(GetOuterHTMLRequest(nodeId = nodeId))
             println(html)
-            chrome.webSocket().target.closeTarget(CloseTargetRequest(targetId = target.id))
+            browser.target.closeTarget(CloseTargetRequest(targetId = api.targetInfo.targetId))
         }
     }
 

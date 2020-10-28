@@ -5,22 +5,10 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.asTypeName
 import org.hildan.chrome.devtools.build.generator.ExternalDeclarations
-import org.hildan.chrome.devtools.build.json.ArrayItemDescriptor
-import org.hildan.chrome.devtools.build.json.JsonDomain
-import org.hildan.chrome.devtools.build.json.JsonDomainCommand
-import org.hildan.chrome.devtools.build.json.JsonDomainEvent
-import org.hildan.chrome.devtools.build.json.JsonDomainParameter
-import org.hildan.chrome.devtools.build.json.JsonDomainType
+import org.hildan.chrome.devtools.build.json.*
 import kotlin.reflect.KClass
 
-/**
- * Domains available on detached session.
- */
-private val BROWSER_ONLY = listOf("Target", "Tethering")
-private val COMMON_DOMAINS = listOf("Browser")
-
 typealias DomainName = String
-// inline class DomainName(private val value: String)
 
 fun DomainName.asVariableName() = when {
     this[1].isLowerCase() -> decapitalize()
@@ -54,9 +42,6 @@ data class ChromeDPDomain(
     val commands: List<ChromeDPCommand> = emptyList(),
     val events: List<ChromeDPEvent> = emptyList()
 ) {
-    val availableForTargets = name !in BROWSER_ONLY
-    val availableForBrowser = name in COMMON_DOMAINS || name in BROWSER_ONLY
-
     val packageName = name.packageName
     val eventsPackageName = name.eventsPackageName
     val eventsParentClassName = name.eventsParentClassName
