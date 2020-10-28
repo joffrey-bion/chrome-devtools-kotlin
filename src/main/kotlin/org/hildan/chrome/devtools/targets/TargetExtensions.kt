@@ -50,7 +50,7 @@ suspend fun ChromeBrowserSession.attachToPage(targetId: TargetID): ChromePageSes
  */
 @OptIn(ExperimentalChromeApi::class)
 suspend fun ChromeBrowserSession.attachToNewPage(
-    url: String,
+    url: String = "about:blank",
     incognito: Boolean = true,
     width: Int = 1024,
     height: Int = 768,
