@@ -43,7 +43,17 @@ class ChromeBrowserSession internal constructor(
  */
 class ChromePageSession internal constructor(
     session: ChromeDPSession,
+    /**
+     * The parent session which created this page target.
+     *
+     * This is described in the
+     * [session hierarchy section](https://github.com/aslushnikov/getting-started-with-cdp/blob/master/README.md#session-hierarchy)
+     * in the "getting started" guide.
+     */
     val parent: ChromeBrowserSession,
+    /**
+     * Info about the underlying page target.
+     */
     val targetInfo: TargetInfo,
     override val targetImplementation: SimpleTarget = SimpleTarget(session),
 ) : AbstractTargetSession(session), RenderFrameTarget by targetImplementation
