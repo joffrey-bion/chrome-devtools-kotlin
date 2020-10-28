@@ -91,6 +91,26 @@ val doc = pageSession.dom.getDocument(GetDocumentRequest()).root
 val base64Img = pageSession.page.captureScreenshot(CaptureScreenshotRequest(format = "jpg", quality = 80))
 ```
 
+### High level extensions
+
+In addition to the generated domain commands and events, some extensions are provided to provide higher-level 
+functionality.
+
+For instance, `Runtime.evaluateJs(js: String)`:
+
+```kotlin
+@Serializable
+data class Person(val firstName: String, val lastName: String)
+
+val pageSession = ChromeDPClient().webSocket().attachToNewPage("http://google.com")
+
+val evaluatedInt = page.runtime.evaluateJs<Int>("42")
+assertEquals(42, evaluatedInt)
+
+val evaluatedPerson = page.runtime.evaluateJs<Person>("""eval({firstName: "Bob", lastName: "Lee Swagger"})""")
+assertEquals(Person("Bob", "Lee Swagger"), evaluatedPerson)
+```
+
 ## Add the dependency
 
 Using Gradle:
