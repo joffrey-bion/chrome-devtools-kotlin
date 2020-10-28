@@ -108,10 +108,14 @@ data class ChromeDPCommand(
     val parameters: List<ChromeDPParameter> = emptyList(),
     val returns: List<ChromeDPParameter> = emptyList()
 ) {
-    val inputTypeName: String
-        get() = "${name.capitalize()}Request"
-    val outputTypeName: String
-        get() = "${name.capitalize()}Response"
+    val inputTypeName = when {
+        parameters.isEmpty() -> null
+        else -> ClassName(domainName.packageName, "${name.capitalize()}Request")
+    }
+    val outputTypeName = when {
+        returns.isEmpty() -> Unit::class.asTypeName()
+        else -> ClassName(domainName.packageName, "${name.capitalize()}Response")
+    }
 }
 
 private fun JsonDomainCommand.toCommand(domainName: DomainName) = ChromeDPCommand(

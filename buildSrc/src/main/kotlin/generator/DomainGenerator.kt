@@ -22,7 +22,7 @@ private fun mapOfDeserializers(eventsSealedClassName: ClassName): ParameterizedT
 }
 
 fun ChromeDPCommand.createInputTypeSpec(): TypeSpec =
-    TypeSpec.classBuilder(inputTypeName).apply {
+    TypeSpec.classBuilder(inputTypeName ?: error("trying to build input type for no-arg command")).apply {
         addKdoc("Request object containing input parameters for the [%T.%N] command.", domainName.asClassName(), name)
         addAnnotation(ExternalDeclarations.serializableAnnotation)
         if (deprecated) {
@@ -72,11 +72,11 @@ fun ChromeDPDomain.createDomainClass(): TypeSpec = TypeSpec.classBuilder(name.as
         }
     }
     commands.forEach { cmd ->
-        addFunction(cmd.toFunctionSpec(packageName))
+        addFunction(cmd.toFunctionSpec())
     }
 }.build()
 
-private fun ChromeDPCommand.toFunctionSpec(domainPackage: String): FunSpec = FunSpec.builder(name).apply {
+private fun ChromeDPCommand.toFunctionSpec(): FunSpec = FunSpec.builder(name).apply {
     description?.let { addKdoc(it.escapeKDoc()) }
     if (deprecated) {
         addAnnotation(ExternalDeclarations.deprecatedAnnotation)
@@ -85,14 +85,13 @@ private fun ChromeDPCommand.toFunctionSpec(domainPackage: String): FunSpec = Fun
         addAnnotation(ExternalDeclarations.experimentalAnnotation)
     }
     addModifiers(KModifier.SUSPEND)
-    val inputArg = if (this@toFunctionSpec.parameters.isNotEmpty()) {
-        addParameter(INPUT_ARG, ClassName(domainPackage, inputTypeName))
+    val inputArg = if (inputTypeName != null) {
+        addParameter(INPUT_ARG, inputTypeName)
         INPUT_ARG
     } else {
         "Unit"
     }
-    val returnType = if (returns.isEmpty()) Unit::class.asTypeName() else ClassName(domainPackage, outputTypeName)
-    returns(returnType)
+    returns(outputTypeName)
     addStatement("return %N.request(%S, %L)", SESSION_ARG, "$domainName.$name", inputArg)
 }.build()
 
