@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "org.hildan.chrome"
-version = "0.3.0"
+version = "0.4.0"
 description = "A Kotlin client for the Chrome DevTools Protocol"
 
 val Project.labels: Array<String>
