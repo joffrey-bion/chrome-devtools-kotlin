@@ -3,10 +3,7 @@ package org.hildan.chrome.devtools.domains.dom
 /**
  * Retrieves the ID of the root node of the current document.
  */
-suspend fun DOMDomain.getDocumentRootNodeId(): NodeId {
-    val document = getDocument(GetDocumentRequest())
-    return document.root.nodeId
-}
+suspend fun DOMDomain.getDocumentRootNodeId(): NodeId = getDocument(GetDocumentRequest()).root.nodeId
 
 /**
  * Retrieves the ID of the node corresponding to the given [selector], or null if not found.

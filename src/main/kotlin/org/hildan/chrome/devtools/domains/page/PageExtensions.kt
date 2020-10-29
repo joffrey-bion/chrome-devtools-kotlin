@@ -5,6 +5,19 @@ import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
 import java.nio.file.Path
 import java.util.*
 
+/**
+ * Navigates the current page according to the provided [url], and suspends until the corresponding
+ * `frameStoppedLoading` event is received.
+ */
+@OptIn(ExperimentalChromeApi::class)
+suspend fun PageDomain.navigateAndWaitLoading(url: String) {
+    navigateAndWaitLoading(NavigateRequest(url = url))
+}
+
+/**
+ * Navigates the current page according to the provided [navigateRequest], and suspends until the
+ * corresponding `frameStoppedLoading` event is received.
+ */
 @OptIn(ExperimentalChromeApi::class)
 suspend fun PageDomain.navigateAndWaitLoading(navigateRequest: NavigateRequest) {
     enable()
@@ -13,7 +26,14 @@ suspend fun PageDomain.navigateAndWaitLoading(navigateRequest: NavigateRequest) 
     frameStoppedLoadingEvents.first { it.frameId == frameId }
 }
 
-suspend fun PageDomain.captureScreenshotToFile(outputImagePath: Path, request: CaptureScreenshotRequest) {
+/**
+ * Captures a screenshot of the current page based on the given [request], and store the resulting image into a new file
+ * at the given [outputImagePath].
+ */
+suspend fun PageDomain.captureScreenshotToFile(
+    outputImagePath: Path,
+    request: CaptureScreenshotRequest = CaptureScreenshotRequest()
+) {
     val capture = captureScreenshot(request)
     val imageBytes = Base64.getDecoder().decode(capture.data)
     outputImagePath.toFile().writeBytes(imageBytes)
