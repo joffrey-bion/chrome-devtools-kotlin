@@ -51,6 +51,7 @@ fun ChromeDPCommand.createOutputTypeSpec(): TypeSpec =
 
 fun ChromeDPDomain.createDomainClass(): TypeSpec = TypeSpec.classBuilder(name.asClassName()).apply {
     description?.let { addKdoc(it.escapeKDoc()) }
+    addKdoc(linkToDocSentence(docUrl))
     if (deprecated) {
         addAnnotation(ExternalDeclarations.deprecatedAnnotation)
     }
@@ -78,6 +79,7 @@ fun ChromeDPDomain.createDomainClass(): TypeSpec = TypeSpec.classBuilder(name.as
 
 private fun ChromeDPCommand.toFunctionSpec(): FunSpec = FunSpec.builder(name).apply {
     description?.let { addKdoc(it.escapeKDoc()) }
+    addKdoc(linkToDocSentence(docUrl))
     if (deprecated) {
         addAnnotation(ExternalDeclarations.deprecatedAnnotation)
     }
@@ -98,6 +100,7 @@ private fun ChromeDPCommand.toFunctionSpec(): FunSpec = FunSpec.builder(name).ap
 private fun ChromeDPEvent.toSubscribeFunctionSpec(): FunSpec =
     FunSpec.builder(name).apply {
         description?.let { addKdoc(it.escapeKDoc()) }
+        addKdoc(linkToDocSentence(docUrl))
         if (deprecated) {
             addAnnotation(ExternalDeclarations.deprecatedAnnotation)
         }

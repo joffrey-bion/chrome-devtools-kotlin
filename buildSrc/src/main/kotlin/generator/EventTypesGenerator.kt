@@ -15,15 +15,26 @@ fun ChromeDPDomain.createEventSealedClass(): TypeSpec = TypeSpec.classBuilder(ev
 }.build()
 
 private fun ChromeDPEvent.createEventSubTypeSpec(parentSealedClass: ClassName): TypeSpec = if (parameters.isEmpty()) {
-    TypeSpec.objectBuilder(eventTypeName)
-        .addAnnotation(ExternalDeclarations.serializableAnnotation)
-        .superclass(parentSealedClass)
-        .build()
+    TypeSpec.objectBuilder(eventTypeName).apply {
+        configureCommonSettings(this@createEventSubTypeSpec, parentSealedClass)
+    }.build()
 } else {
     TypeSpec.classBuilder(eventTypeName).apply {
-        addAnnotation(ExternalDeclarations.serializableAnnotation)
+        configureCommonSettings(this@createEventSubTypeSpec, parentSealedClass)
         addModifiers(KModifier.DATA)
         addPrimaryConstructorProps(parameters)
-        superclass(parentSealedClass)
     }.build()
+}
+
+private fun TypeSpec.Builder.configureCommonSettings(chromeDPEvent: ChromeDPEvent, parentSealedClass: ClassName) {
+    chromeDPEvent.description?.let { addKdoc(it.escapeKDoc()) }
+    addKdoc(linkToDocSentence(chromeDPEvent.docUrl))
+    superclass(parentSealedClass)
+    if (chromeDPEvent.deprecated) {
+        addAnnotation(ExternalDeclarations.deprecatedAnnotation)
+    }
+    if (chromeDPEvent.experimental) {
+        addAnnotation(ExternalDeclarations.experimentalAnnotation)
+    }
+    addAnnotation(ExternalDeclarations.serializableAnnotation)
 }

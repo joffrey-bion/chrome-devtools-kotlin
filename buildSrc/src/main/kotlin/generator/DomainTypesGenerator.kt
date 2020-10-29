@@ -21,35 +21,33 @@ fun FileSpec.Builder.addDomainType(typeDeclaration: DomainTypeDeclaration) {
 private fun DomainTypeDeclaration.toDataClassTypeSpec(type: ChromeDPType.Object): TypeSpec =
     TypeSpec.classBuilder(name).apply {
         addModifiers(KModifier.DATA)
-        // TODO add link to ChromeDP doc web page?
-        description?.let { addKdoc(it.escapeKDoc()) }
-        if (deprecated) {
-            addAnnotation(ExternalDeclarations.deprecatedAnnotation)
-        }
-        if (experimental) {
-            addAnnotation(ExternalDeclarations.experimentalAnnotation)
-        }
-        addAnnotation(ExternalDeclarations.serializableAnnotation)
+        addCommonConfig(this@toDataClassTypeSpec)
         addPrimaryConstructorProps(type.properties)
     }.build()
 
 private fun DomainTypeDeclaration.toEnumTypeSpec(type: ChromeDPType.Enum): TypeSpec =
     TypeSpec.enumBuilder(name).apply {
-        description?.let { addKdoc(it.escapeKDoc()) }
-        if (deprecated) {
-            addAnnotation(ExternalDeclarations.deprecatedAnnotation)
-        }
-        if (experimental) {
-            addAnnotation(ExternalDeclarations.experimentalAnnotation)
-        }
-        addAnnotation(ExternalDeclarations.serializableAnnotation)
+        addCommonConfig(this@toEnumTypeSpec)
         // TODO capitalize enum values with serialization annotation?
         type.enumValues.forEach { addEnumConstant(it) }
     }.build()
 
+private fun TypeSpec.Builder.addCommonConfig(domainTypeDeclaration: DomainTypeDeclaration) {
+    domainTypeDeclaration.description?.let { addKdoc(it.escapeKDoc()) }
+    addKdoc(linkToDocSentence(domainTypeDeclaration.docUrl))
+    if (domainTypeDeclaration.deprecated) {
+        addAnnotation(ExternalDeclarations.deprecatedAnnotation)
+    }
+    if (domainTypeDeclaration.experimental) {
+        addAnnotation(ExternalDeclarations.experimentalAnnotation)
+    }
+    addAnnotation(ExternalDeclarations.serializableAnnotation)
+}
+
 private fun DomainTypeDeclaration.toTypeAliasSpec(): TypeAliasSpec =
     TypeAliasSpec.builder(name, type.toTypeName(ExternalDeclarations.rootPackageName)).apply {
         description?.let { addKdoc(it.escapeKDoc()) }
+        addKdoc(linkToDocSentence(docUrl))
         if (deprecated) {
             addAnnotation(ExternalDeclarations.deprecatedAnnotation)
         }

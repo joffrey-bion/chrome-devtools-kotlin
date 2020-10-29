@@ -84,5 +84,3 @@ class Generator(
             addType(createDomainClass())
         }.build()
 }
-
-fun String.escapeKDoc(): String = replace("%", "%%")

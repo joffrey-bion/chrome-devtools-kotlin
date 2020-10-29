@@ -45,6 +45,7 @@ data class ChromeDPDomain(
     val packageName = name.packageName
     val eventsPackageName = name.eventsPackageName
     val eventsParentClassName = name.eventsParentClassName
+    val docUrl = ExternalDeclarations.domainDocUrl(name)
 }
 
 fun sanitize(domain: JsonDomain): ChromeDPDomain = ChromeDPDomain(name = domain.domain,
@@ -59,15 +60,19 @@ fun sanitize(domain: JsonDomain): ChromeDPDomain = ChromeDPDomain(name = domain.
 
 data class DomainTypeDeclaration(
     val name: String,
+    val domainName: DomainName,
     val description: String? = null,
     val deprecated: Boolean = false,
     val experimental: Boolean = false,
     val type: ChromeDPType
-)
+) {
+    val docUrl = ExternalDeclarations.typeDocUrl(domainName, name)
+}
 
 private fun JsonDomainType.toTypeDeclaration(domainName: DomainName): DomainTypeDeclaration =
     DomainTypeDeclaration(
         name = id,
+        domainName = domainName,
         description = description,
         deprecated = deprecated,
         experimental = experimental,
@@ -108,6 +113,7 @@ data class ChromeDPCommand(
     val parameters: List<ChromeDPParameter> = emptyList(),
     val returns: List<ChromeDPParameter> = emptyList()
 ) {
+    val docUrl = ExternalDeclarations.commandDocUrl(domainName, name)
     val inputTypeName = when {
         parameters.isEmpty() -> null
         else -> ClassName(domainName.packageName, "${name.capitalize()}Request")
@@ -137,6 +143,7 @@ data class ChromeDPEvent(
     val experimental: Boolean = false,
     val parameters: List<ChromeDPParameter> = emptyList()
 ) {
+    val docUrl = ExternalDeclarations.eventDocUrl(domainName, name)
     val eventTypeName
         get() = domainName.eventsParentClassName.nestedClass("${name.capitalize()}Event")
 }
