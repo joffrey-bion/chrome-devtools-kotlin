@@ -28,7 +28,6 @@ private fun DomainTypeDeclaration.toDataClassTypeSpec(type: ChromeDPType.Object)
 private fun DomainTypeDeclaration.toEnumTypeSpec(type: ChromeDPType.Enum): TypeSpec =
     TypeSpec.enumBuilder(name).apply {
         addCommonConfig(this@toEnumTypeSpec)
-        // TODO capitalize enum values with serialization annotation?
         type.enumValues.forEach { addEnumConstant(it) }
     }.build()
 
