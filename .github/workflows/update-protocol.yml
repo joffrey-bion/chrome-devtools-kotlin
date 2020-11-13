@@ -17,13 +17,20 @@ jobs:
       - name: Update protocol
         run: kotlinc -script update-protocol.kts
 
+      - name: Read protocol version
+        uses: pCYSl5EDgo/cat@master
+        id: version
+        with:
+          path: protocol/version.txt
+          trim: true
+
       - name: Create pull-request
         uses: gr2m/create-or-update-pull-request-action@v1.x
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          title: "Update Chrome Dev Tools protocol definitions"
+          title: "Update Chrome DevTools Protocol definitions to ${{ steps.version.outputs.text }}"
           body: "This is an automated PR."
           branch: "protocol-update"
           path: "protocol/"
-          commit-message: "Update Chrome DevTools Protocol definitions"
+          commit-message: "Update Chrome DevTools Protocol definitions to ${{ steps.version.outputs.text }}"
