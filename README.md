@@ -17,6 +17,7 @@ This client is partly generated based on information from the "latest" JSON desc
 All the domains' commands and events defined in these protocol descriptors are therefore available in
 `chrome-devtools-kotlin`, as well as their doc and deprecated/experimental status. 
 
+The protocol definitions are automatically updated daily.
 If you're missing some APIs or updates, don't hesitate to open an issue to request a new release with updated protocol.
 
 ## Usage
