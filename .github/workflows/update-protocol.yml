@@ -1,4 +1,4 @@
-name: "Daily update of Chrome DevTools Protocol"
+name: Daily protocol updates
 on:
   schedule:
     # Every night at 4am
