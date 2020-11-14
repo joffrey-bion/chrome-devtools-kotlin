@@ -1,6 +1,7 @@
 package org.hildan.chrome.devtools.targets
 
 import org.hildan.chrome.devtools.domains.target.CloseTargetRequest
+import org.hildan.chrome.devtools.domains.target.DetachFromTargetRequest
 import org.hildan.chrome.devtools.domains.target.DisposeBrowserContextRequest
 import org.hildan.chrome.devtools.domains.target.TargetInfo
 import org.hildan.chrome.devtools.protocol.ChromeDPSession
@@ -69,6 +70,17 @@ class ChromePageSession internal constructor(
     val targetInfo: TargetInfo,
     override val targetImplementation: SimpleTarget = SimpleTarget(session),
 ) : AbstractTargetSession(session), RenderFrameTarget by targetImplementation {
+
+    /**
+     * Detaches from this page session, leaving the tab open.
+     *
+     * This preserves the underlying web socket connection (of the parent browser session), because it could be used
+     * by other page sessions.
+     */
+    @OptIn(ExperimentalChromeApi::class)
+    suspend fun detach() {
+        parent.target.detachFromTarget(DetachFromTargetRequest(sessionId = session.sessionId))
+    }
 
     /**
      * Closes this page session.

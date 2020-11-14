@@ -33334,6 +33334,7 @@ public final class org/hildan/chrome/devtools/targets/ChromeBrowserSession : org
 
 public final class org/hildan/chrome/devtools/targets/ChromePageSession : org/hildan/chrome/devtools/targets/AbstractTargetSession, org/hildan/chrome/devtools/targets/RenderFrameTarget {
 	public final fun close (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun detach (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun getAudits ()Lorg/hildan/chrome/devtools/domains/audits/AuditsDomain;
 	public fun getBackgroundService ()Lorg/hildan/chrome/devtools/domains/backgroundservice/BackgroundServiceDomain;
 	public fun getBrowser ()Lorg/hildan/chrome/devtools/domains/browser/BrowserDomain;
