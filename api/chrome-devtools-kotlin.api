@@ -33253,7 +33253,7 @@ public final class org/hildan/chrome/devtools/protocol/RequestFrame$Companion {
 }
 
 public abstract class org/hildan/chrome/devtools/targets/AbstractTargetSession {
-	public final fun close (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun closeWebSocket (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun unsafe ()Lorg/hildan/chrome/devtools/targets/AllDomainsTarget;
 }
 
@@ -33319,6 +33319,7 @@ public abstract interface class org/hildan/chrome/devtools/targets/BrowserTarget
 }
 
 public final class org/hildan/chrome/devtools/targets/ChromeBrowserSession : org/hildan/chrome/devtools/targets/AbstractTargetSession, org/hildan/chrome/devtools/targets/BrowserTarget {
+	public final fun close (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun getBrowser ()Lorg/hildan/chrome/devtools/domains/browser/BrowserDomain;
 	public fun getFetch ()Lorg/hildan/chrome/devtools/domains/fetch/FetchDomain;
 	public fun getIo ()Lorg/hildan/chrome/devtools/domains/io/IODomain;
@@ -33332,6 +33333,7 @@ public final class org/hildan/chrome/devtools/targets/ChromeBrowserSession : org
 }
 
 public final class org/hildan/chrome/devtools/targets/ChromePageSession : org/hildan/chrome/devtools/targets/AbstractTargetSession, org/hildan/chrome/devtools/targets/RenderFrameTarget {
+	public final fun close (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun getAudits ()Lorg/hildan/chrome/devtools/domains/audits/AuditsDomain;
 	public fun getBackgroundService ()Lorg/hildan/chrome/devtools/domains/backgroundservice/BackgroundServiceDomain;
 	public fun getBrowser ()Lorg/hildan/chrome/devtools/domains/browser/BrowserDomain;
@@ -33404,7 +33406,8 @@ public final class org/hildan/chrome/devtools/targets/TargetExtensionsKt {
 	public static final fun attachToNewPage (Lorg/hildan/chrome/devtools/targets/ChromeBrowserSession;Ljava/lang/String;ZIIZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun attachToNewPage$default (Lorg/hildan/chrome/devtools/targets/ChromeBrowserSession;Ljava/lang/String;ZIIZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun attachToPage (Lorg/hildan/chrome/devtools/targets/ChromeBrowserSession;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun use (Lorg/hildan/chrome/devtools/targets/AbstractTargetSession;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun use (Lorg/hildan/chrome/devtools/targets/ChromeBrowserSession;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun use (Lorg/hildan/chrome/devtools/targets/ChromePageSession;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun watchTargetsIn (Lorg/hildan/chrome/devtools/targets/ChromeBrowserSession;Lkotlinx/coroutines/CoroutineScope;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 

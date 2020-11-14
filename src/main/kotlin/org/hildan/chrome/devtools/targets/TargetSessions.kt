@@ -1,7 +1,10 @@
 package org.hildan.chrome.devtools.targets
 
+import org.hildan.chrome.devtools.domains.target.CloseTargetRequest
+import org.hildan.chrome.devtools.domains.target.DisposeBrowserContextRequest
 import org.hildan.chrome.devtools.domains.target.TargetInfo
 import org.hildan.chrome.devtools.protocol.ChromeDPSession
+import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
 
 /**
  * A protocol session, created when attached to a target.
@@ -22,10 +25,10 @@ sealed class AbstractTargetSession(
     fun unsafe(): AllDomainsTarget = targetImplementation
 
     /**
-     * Closes this session and the underlying web socket connection.
-     * This effectively closes every session based on the same connection.
+     * Closes the underlying web socket connection, effectively closing every session based on the same web socket
+     * connection.
      */
-    suspend fun close() {
+    suspend fun closeWebSocket() {
         session.close()
     }
 }
@@ -36,7 +39,16 @@ sealed class AbstractTargetSession(
 class ChromeBrowserSession internal constructor(
     session: ChromeDPSession,
     override val targetImplementation: SimpleTarget = SimpleTarget(session),
-) : AbstractTargetSession(session), BrowserTarget by targetImplementation
+) : AbstractTargetSession(session), BrowserTarget by targetImplementation {
+
+    /**
+     * Closes this session and the underlying web socket connection.
+     * This effectively closes every session based on the same web socket connection.
+     */
+    suspend fun close() {
+        closeWebSocket()
+    }
+}
 
 /**
  * A page session, usually created when attaching to a page from the root browser session.
@@ -56,4 +68,21 @@ class ChromePageSession internal constructor(
      */
     val targetInfo: TargetInfo,
     override val targetImplementation: SimpleTarget = SimpleTarget(session),
-) : AbstractTargetSession(session), RenderFrameTarget by targetImplementation
+) : AbstractTargetSession(session), RenderFrameTarget by targetImplementation {
+
+    /**
+     * Closes this page session.
+     *
+     * This only closes the corresponding tab, but preserves the underlying web socket connection (of the parent
+     * browser session), because it could be used by other page sessions.
+     */
+    @OptIn(ExperimentalChromeApi::class)
+    suspend fun close() {
+        parent.target.closeTarget(CloseTargetRequest(targetId = targetInfo.targetId))
+
+        // FIXME do we really need this given the "disposeOnDetach=true" used at creation?
+        if (!targetInfo.browserContextId.isNullOrEmpty()) {
+            parent.target.disposeBrowserContext(DisposeBrowserContextRequest(targetInfo.browserContextId))
+        }
+    }
+}

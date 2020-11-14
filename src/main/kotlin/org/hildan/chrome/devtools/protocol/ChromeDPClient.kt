@@ -66,7 +66,8 @@ class ChromeDPClient(
      * The returned [ChromeBrowserSession] only provides a limited subset of the possible operations, because it is
      * attached to the default *browser* target, not a *page* target.
      * To attach to a specific target using the same underlying web socket connection, call
-     * [ChromeBrowserSession.attachToPage] or [ChromeBrowserSession.attachToNewPage].
+     * [ChromeBrowserSession.attachToPage] or
+     * [ChromeBrowserSession.attachToNewPage][org.hildan.chrome.devtools.targets.attachToNewPage].
      */
     suspend fun webSocket(): ChromeBrowserSession {
         val browserDebuggerUrl = version().webSocketDebuggerUrl
@@ -74,6 +75,9 @@ class ChromeDPClient(
     }
 }
 
+/**
+ * Browser version information retrieved via the debugger API.
+ */
 @Serializable
 data class ChromeVersion(
     @SerialName("Browser") val browser: String,
@@ -109,6 +113,15 @@ data class ChromeDPTarget(
         webSocketClient.connectToChrome(webSocketDebuggerUrl).attachToPage(id)
 }
 
+/**
+ * Connects to the Chrome debugger at the given [webSocketDebuggerUrl].
+ *
+ * The returned [ChromeBrowserSession] only provides a limited subset of the possible operations, because it is
+ * attached to the default *browser* target, not a *page* target.
+ * To attach to a specific target using the same underlying web socket connection, call
+ * [ChromeBrowserSession.attachToPage] or
+ * [ChromeBrowserSession.attachToNewPage][org.hildan.chrome.devtools.targets.attachToNewPage].
+ */
 suspend fun WebSocketClient.connectToChrome(webSocketDebuggerUrl: String): ChromeBrowserSession {
     val connection = connect(webSocketDebuggerUrl).chromeDp()
     return ChromeBrowserSession(ChromeDPSession(connection, null))

@@ -12,17 +12,6 @@ import org.hildan.chrome.devtools.protocol.ChromeDPSession
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
 
 /**
- * Performs the given operation in this session and closes the connection.
- */
-suspend inline fun <T, S : AbstractTargetSession> S.use(block: (S) -> T): T {
-    try {
-        return block(this)
-    } finally {
-        close()
-    }
-}
-
-/**
  * Creates a new [ChromePageSession] attached to the page target with the given [targetId].
  * The new session shares the same underlying web socket connection as this [ChromeBrowserSession].
  *
@@ -74,14 +63,30 @@ suspend fun ChromeBrowserSession.attachToNewPage(
     return attachToPage(targetId)
 }
 
-// TODO expose this? or wait until we understand better what this does?
-@OptIn(ExperimentalChromeApi::class)
-private suspend fun ChromePageSession.closeTarget() {
-    parent.target.closeTarget(CloseTargetRequest(targetId = targetInfo.targetId))
+/**
+ * Performs the given operation in this session and closes the web socket connection.
+ *
+ * Note: This effectively closes every session based on the same web socket connection.
+ */
+suspend inline fun <T> ChromeBrowserSession.use(block: (ChromeBrowserSession) -> T): T {
+    try {
+        return block(this)
+    } finally {
+        close()
+    }
+}
 
-    // FIXME do we really need this given the "disposeOnDetach=true" used at creation?
-    if (!targetInfo.browserContextId.isNullOrEmpty()) {
-        parent.target.disposeBrowserContext(DisposeBrowserContextRequest(targetInfo.browserContextId))
+/**
+ * Performs the given operation in this session and closes the target.
+ *
+ * This preserves the underlying web socket connection (of the parent browser session), because it could be used by
+ * other page sessions.
+ */
+suspend inline fun <T> ChromePageSession.use(block: (ChromePageSession) -> T): T {
+    try {
+        return block(this)
+    } finally {
+        close()
     }
 }
 
@@ -104,5 +109,7 @@ private fun Map<TargetID, TargetInfo>.updatedBy(event: TargetEvent): Map<TargetI
     is TargetEvent.TargetInfoChangedEvent -> this + (event.targetInfo.targetId to event.targetInfo)
     is TargetEvent.TargetDestroyedEvent -> this - event.targetId
     is TargetEvent.TargetCrashedEvent -> this - event.targetId
-    is TargetEvent.AttachedToTargetEvent, is TargetEvent.DetachedFromTargetEvent, is TargetEvent.ReceivedMessageFromTargetEvent -> this // irrelevant events
+    is TargetEvent.AttachedToTargetEvent, //
+    is TargetEvent.DetachedFromTargetEvent, //
+    is TargetEvent.ReceivedMessageFromTargetEvent -> this // irrelevant events
 }
