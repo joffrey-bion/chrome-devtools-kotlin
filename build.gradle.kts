@@ -8,10 +8,11 @@ plugins {
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.2.3"
     `maven-publish`
     id("com.jfrog.bintray") version "1.8.5"
+    id("org.hildan.github.changelog") version "0.8.0"
 }
 
 group = "org.hildan.chrome"
-version = "0.4.0"
+version = "0.5.0"
 description = "A Kotlin client for the Chrome DevTools Protocol"
 
 val Project.labels: Array<String>
@@ -69,6 +70,11 @@ tasks {
             showStackTraces = true
         }
     }
+}
+
+changelog {
+    futureVersionTag = project.version.toString()
+    sinceTag = "0.5.0"
 }
 
 val sourcesJar by tasks.creating(Jar::class) {
