@@ -36,7 +36,7 @@ fun updateProtocolFiles() {
     }
 
     val newVersion = ChromeDevToolsRepo.npmVersion
-    outputDir.resolve("version.txt").toFile().writeText("$newVersion\n")
+    outputDir.resolve("version.txt").toFile().writeText(newVersion)
     println("Chrome Devtools Protocol definition updated to $newVersion")
 }
 
