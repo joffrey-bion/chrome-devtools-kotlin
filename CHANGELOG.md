@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.6.1](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.6.1) (2020-11-16)
+[Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.6.0...0.6.1)
+
+**Merged pull requests:**
+
+- Expose \`ktor\` dependencies as "api" transitive [\#5](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/5) ([@ArchangelX360](https://github.com/ArchangelX360))
+
 ## [0.6.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.6.0) (2020-11-14)
 [Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.5.0...0.6.0)
 
