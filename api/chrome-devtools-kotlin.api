@@ -11097,6 +11097,29 @@ public final class org/hildan/chrome/devtools/domains/dom/events/DOMEvent$Shadow
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/domdebugger/CSPViolationType : java/lang/Enum {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/domdebugger/CSPViolationType$Companion;
+	public static final field trustedtype-policy-violation Lorg/hildan/chrome/devtools/domains/domdebugger/CSPViolationType;
+	public static final field trustedtype-sink-violation Lorg/hildan/chrome/devtools/domains/domdebugger/CSPViolationType;
+	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/domdebugger/CSPViolationType;
+	public static fun values ()[Lorg/hildan/chrome/devtools/domains/domdebugger/CSPViolationType;
+}
+
+public final class org/hildan/chrome/devtools/domains/domdebugger/CSPViolationType$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/domdebugger/CSPViolationType$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/domdebugger/CSPViolationType;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/domdebugger/CSPViolationType;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/domdebugger/CSPViolationType$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/domdebugger/DOMBreakpointType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/domdebugger/DOMBreakpointType$Companion;
 	public static final field attribute-modified Lorg/hildan/chrome/devtools/domains/domdebugger/DOMBreakpointType;
@@ -11127,6 +11150,7 @@ public final class org/hildan/chrome/devtools/domains/domdebugger/DOMDebuggerDom
 	public final fun removeEventListenerBreakpoint (Lorg/hildan/chrome/devtools/domains/domdebugger/RemoveEventListenerBreakpointRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun removeInstrumentationBreakpoint (Lorg/hildan/chrome/devtools/domains/domdebugger/RemoveInstrumentationBreakpointRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun removeXHRBreakpoint (Lorg/hildan/chrome/devtools/domains/domdebugger/RemoveXHRBreakpointRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setBreakOnCSPViolation (Lorg/hildan/chrome/devtools/domains/domdebugger/SetBreakOnCSPViolationRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setDOMBreakpoint (Lorg/hildan/chrome/devtools/domains/domdebugger/SetDOMBreakpointRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setEventListenerBreakpoint (Lorg/hildan/chrome/devtools/domains/domdebugger/SetEventListenerBreakpointRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setInstrumentationBreakpoint (Lorg/hildan/chrome/devtools/domains/domdebugger/SetInstrumentationBreakpointRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -11362,6 +11386,35 @@ public final class org/hildan/chrome/devtools/domains/domdebugger/RemoveXHRBreak
 }
 
 public final class org/hildan/chrome/devtools/domains/domdebugger/RemoveXHRBreakpointRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/domdebugger/SetBreakOnCSPViolationRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/domdebugger/SetBreakOnCSPViolationRequest$Companion;
+	public synthetic fun <init> (ILjava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/domdebugger/SetBreakOnCSPViolationRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/domdebugger/SetBreakOnCSPViolationRequest;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/domdebugger/SetBreakOnCSPViolationRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getViolationTypes ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/domdebugger/SetBreakOnCSPViolationRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/domdebugger/SetBreakOnCSPViolationRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/domdebugger/SetBreakOnCSPViolationRequest$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/domdebugger/SetBreakOnCSPViolationRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/domdebugger/SetBreakOnCSPViolationRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/domdebugger/SetBreakOnCSPViolationRequest$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -21173,6 +21226,37 @@ public final class org/hildan/chrome/devtools/domains/overlay/FlexContainerHighl
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/overlay/FlexNodeHighlightConfig {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/overlay/FlexNodeHighlightConfig$Companion;
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/overlay/FlexContainerHighlightConfig;ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/overlay/FlexContainerHighlightConfig;I)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/overlay/FlexContainerHighlightConfig;
+	public final fun component2 ()I
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/overlay/FlexContainerHighlightConfig;I)Lorg/hildan/chrome/devtools/domains/overlay/FlexNodeHighlightConfig;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/overlay/FlexNodeHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexContainerHighlightConfig;IILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/overlay/FlexNodeHighlightConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFlexContainerHighlightConfig ()Lorg/hildan/chrome/devtools/domains/overlay/FlexContainerHighlightConfig;
+	public final fun getNodeId ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/overlay/FlexNodeHighlightConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/FlexNodeHighlightConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/overlay/FlexNodeHighlightConfig$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/overlay/FlexNodeHighlightConfig;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/overlay/FlexNodeHighlightConfig;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/FlexNodeHighlightConfig$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/overlay/GetGridHighlightObjectsForTestRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/overlay/GetGridHighlightObjectsForTestRequest$Companion;
 	public synthetic fun <init> (ILjava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
@@ -21814,6 +21898,7 @@ public final class org/hildan/chrome/devtools/domains/overlay/OverlayDomain {
 	public final fun setShowAdHighlights (Lorg/hildan/chrome/devtools/domains/overlay/SetShowAdHighlightsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setShowDebugBorders (Lorg/hildan/chrome/devtools/domains/overlay/SetShowDebugBordersRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setShowFPSCounter (Lorg/hildan/chrome/devtools/domains/overlay/SetShowFPSCounterRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setShowFlexOverlays (Lorg/hildan/chrome/devtools/domains/overlay/SetShowFlexOverlaysRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setShowGridOverlays (Lorg/hildan/chrome/devtools/domains/overlay/SetShowGridOverlaysRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setShowHinge (Lorg/hildan/chrome/devtools/domains/overlay/SetShowHingeRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setShowHitTestBorders (Lorg/hildan/chrome/devtools/domains/overlay/SetShowHitTestBordersRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -21970,6 +22055,35 @@ public final class org/hildan/chrome/devtools/domains/overlay/SetShowFPSCounterR
 }
 
 public final class org/hildan/chrome/devtools/domains/overlay/SetShowFPSCounterRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/SetShowFlexOverlaysRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/overlay/SetShowFlexOverlaysRequest$Companion;
+	public synthetic fun <init> (ILjava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/overlay/SetShowFlexOverlaysRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/overlay/SetShowFlexOverlaysRequest;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/overlay/SetShowFlexOverlaysRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFlexNodeHighlightConfigs ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/overlay/SetShowFlexOverlaysRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/SetShowFlexOverlaysRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/overlay/SetShowFlexOverlaysRequest$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/overlay/SetShowFlexOverlaysRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/overlay/SetShowFlexOverlaysRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/SetShowFlexOverlaysRequest$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
