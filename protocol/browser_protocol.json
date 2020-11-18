@@ -5375,6 +5375,16 @@
                     ]
                 },
                 {
+                    "id": "CSPViolationType",
+                    "description": "CSP Violation type.",
+                    "experimental": true,
+                    "type": "string",
+                    "enum": [
+                        "trustedtype-sink-violation",
+                        "trustedtype-policy-violation"
+                    ]
+                },
+                {
                     "id": "EventListener",
                     "description": "Object event listener.",
                     "type": "object",
@@ -5523,6 +5533,21 @@
                             "name": "url",
                             "description": "Resource URL substring.",
                             "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "name": "setBreakOnCSPViolation",
+                    "description": "Sets breakpoint on particular CSP violations.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "violationTypes",
+                            "description": "CSP Violations to stop upon.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "CSPViolationType"
+                            }
                         }
                     ]
                 },
@@ -12384,6 +12409,22 @@
                     ]
                 },
                 {
+                    "id": "FlexNodeHighlightConfig",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "flexContainerHighlightConfig",
+                            "description": "A descriptor for the highlight appearance of flex containers.",
+                            "$ref": "FlexContainerHighlightConfig"
+                        },
+                        {
+                            "name": "nodeId",
+                            "description": "Identifier of the node to highlight.",
+                            "$ref": "DOM.NodeId"
+                        }
+                    ]
+                },
+                {
                     "id": "HingeConfig",
                     "description": "Configuration for dual screen hinge",
                     "type": "object",
@@ -12732,6 +12773,19 @@
                             "type": "array",
                             "items": {
                                 "$ref": "GridNodeHighlightConfig"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setShowFlexOverlays",
+                    "parameters": [
+                        {
+                            "name": "flexNodeHighlightConfigs",
+                            "description": "An array of node identifiers and descriptors for the highlight appearance.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "FlexNodeHighlightConfig"
                             }
                         }
                     ]
