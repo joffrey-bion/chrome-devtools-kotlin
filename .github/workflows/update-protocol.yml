@@ -11,6 +11,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      # for Gradle, as setup-kotlin action only brings JDK 8
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1.4.3
+        with:
+          java-version: 11
+
+      - name: Gradle build cache
+        uses: actions/cache@v2.1.1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-build-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: ${{ runner.os }}-gradle-build-
+
+      - name: Gradle wrapper cache
+        uses: actions/cache@v2.1.1
+        with:
+          path: ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle-wrapper.properties') }}
+
       - name: Set up Kotlin
         uses: fwilhe2/setup-kotlin@main
 
@@ -24,6 +43,9 @@ jobs:
           path: protocol/version.txt
           trim: true
 
+      - name: Update public ABI descriptors
+        run: ./gradlew apiDump
+
       - name: Create pull-request
         uses: gr2m/create-or-update-pull-request-action@v1.x
         env:
@@ -32,5 +54,4 @@ jobs:
           title: "Update Chrome DevTools Protocol definitions to ${{ steps.version.outputs.text }}"
           body: "This is an automated PR."
           branch: "protocol-update"
-          path: "protocol/"
           commit-message: "Update Chrome DevTools Protocol definitions to ${{ steps.version.outputs.text }}"
