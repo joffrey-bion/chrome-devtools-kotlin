@@ -51,7 +51,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          title: "Update Chrome DevTools Protocol definitions to ${{ steps.version.outputs.text }}"
-          body: "This is an automated PR."
           branch: "protocol-update"
-          commit-message: "Update Chrome DevTools Protocol definitions to ${{ steps.version.outputs.text }}"
+          author: "Protocol Update Workflow <protocol-updater@users.noreply.github.com>"
+          commit-message: "Update to Chrome DevTools Protocol version ${{ steps.version.outputs.text }}"
+          title: "Update to Chrome DevTools Protocol version ${{ steps.version.outputs.text }}"
+          body: |
+            This PR updates the protocol definitions (under `protocol/`) to the latest version found in
+            [the `devtools-protocol` github repo](https://github.com/ChromeDevTools/devtools-protocol/tree/master/json).
+
+            The ABI descriptors (under `api/`) are also updated to reflect the changes in the generated code.
