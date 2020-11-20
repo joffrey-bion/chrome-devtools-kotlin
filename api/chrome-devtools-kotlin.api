@@ -23917,6 +23917,7 @@ public final class org/hildan/chrome/devtools/domains/page/PageDomain {
 	public final fun createIsolatedWorld (Lorg/hildan/chrome/devtools/domains/page/CreateIsolatedWorldRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun deleteCookie (Lorg/hildan/chrome/devtools/domains/page/DeleteCookieRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun documentOpened ()Lkotlinx/coroutines/flow/Flow;
 	public final fun domContentEventFired ()Lkotlinx/coroutines/flow/Flow;
 	public final fun downloadProgress ()Lkotlinx/coroutines/flow/Flow;
 	public final fun downloadWillBegin ()Lkotlinx/coroutines/flow/Flow;
@@ -25004,6 +25005,35 @@ public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$Comp
 }
 
 public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$CompilationCacheProducedEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$DocumentOpenedEvent : org/hildan/chrome/devtools/domains/page/events/PageEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$DocumentOpenedEvent$Companion;
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/page/Frame;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/page/Frame;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/page/Frame;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/page/Frame;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$DocumentOpenedEvent;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$DocumentOpenedEvent;Lorg/hildan/chrome/devtools/domains/page/Frame;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$DocumentOpenedEvent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFrame ()Lorg/hildan/chrome/devtools/domains/page/Frame;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$DocumentOpenedEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$DocumentOpenedEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$DocumentOpenedEvent$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$DocumentOpenedEvent;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$DocumentOpenedEvent;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$DocumentOpenedEvent$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
