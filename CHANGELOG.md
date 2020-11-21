@@ -1,5 +1,14 @@
 # Change Log
 
+## [0.7.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.7.0) (2020-11-21)
+[Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.6.1...0.7.0)
+
+**Merged pull requests:**
+
+- Update Chrome DevTools Protocol definitions to 0.0.829242 [\#8](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/8) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Update Chrome DevTools Protocol definitions to 0.0.828856 [\#7](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/7) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Update Chrome DevTools Protocol definitions to 0.0.828424 [\#6](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/6) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [0.6.1](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.6.1) (2020-11-16)
 [Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.6.0...0.6.1)
 
