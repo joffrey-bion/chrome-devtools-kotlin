@@ -9397,6 +9397,7 @@
                         "SignedExchange",
                         "Ping",
                         "CSPViolationReport",
+                        "Preflight",
                         "Other"
                     ]
                 },
@@ -10210,6 +10211,7 @@
                                 "script",
                                 "preload",
                                 "SignedExchange",
+                                "preflight",
                                 "other"
                             ]
                         },
@@ -10236,6 +10238,12 @@
                             "description": "Initiator column number, set for Parser type or for Script type (when script is importing\nmodule) (0-based).",
                             "optional": true,
                             "type": "number"
+                        },
+                        {
+                            "name": "requestId",
+                            "description": "Set if another request triggered this request (e.g. preflight).",
+                            "optional": true,
+                            "$ref": "RequestId"
                         }
                     ]
                 },
@@ -12057,6 +12065,38 @@
                     ]
                 },
                 {
+                    "name": "webTransportCreated",
+                    "description": "Fired upon WebTransport creation.",
+                    "parameters": [
+                        {
+                            "name": "transportId",
+                            "description": "WebTransport identifier.",
+                            "$ref": "RequestId"
+                        },
+                        {
+                            "name": "url",
+                            "description": "WebTransport request URL.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "initiator",
+                            "description": "Request initiator.",
+                            "optional": true,
+                            "$ref": "Initiator"
+                        }
+                    ]
+                },
+                {
+                    "name": "webTransportClosed",
+                    "parameters": [
+                        {
+                            "name": "transportId",
+                            "description": "WebTransport identifier.",
+                            "$ref": "RequestId"
+                        }
+                    ]
+                },
+                {
                     "name": "requestWillBeSentExtraInfo",
                     "description": "Fired when additional information about a requestWillBeSent event is available from the\nnetwork stack. Not every requestWillBeSent event will have an additional\nrequestWillBeSentExtraInfo fired for it, and there is no guarantee whether requestWillBeSent\nor requestWillBeSentExtraInfo will be fired first for the same request.",
                     "experimental": true,
@@ -12322,6 +12362,12 @@
                             "description": "Style of empty space caused by columns gaps (gap/column-gap).",
                             "optional": true,
                             "$ref": "BoxStyle"
+                        },
+                        {
+                            "name": "crossAlignment",
+                            "description": "Style of the self-alignment line (align-items).",
+                            "optional": true,
+                            "$ref": "LineStyle"
                         }
                     ]
                 },
