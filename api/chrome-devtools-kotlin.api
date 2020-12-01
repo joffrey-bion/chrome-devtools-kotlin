@@ -215,6 +215,7 @@ public final class org/hildan/chrome/devtools/domains/accessibility/AXValueNativ
 	public static final field labelwrapped Lorg/hildan/chrome/devtools/domains/accessibility/AXValueNativeSourceType;
 	public static final field legend Lorg/hildan/chrome/devtools/domains/accessibility/AXValueNativeSourceType;
 	public static final field other Lorg/hildan/chrome/devtools/domains/accessibility/AXValueNativeSourceType;
+	public static final field rubyannotation Lorg/hildan/chrome/devtools/domains/accessibility/AXValueNativeSourceType;
 	public static final field tablecaption Lorg/hildan/chrome/devtools/domains/accessibility/AXValueNativeSourceType;
 	public static final field title Lorg/hildan/chrome/devtools/domains/accessibility/AXValueNativeSourceType;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/accessibility/AXValueNativeSourceType;
@@ -19173,6 +19174,7 @@ public final class org/hildan/chrome/devtools/domains/network/NetworkDomain {
 	public final fun setUserAgentOverride (Lorg/hildan/chrome/devtools/domains/network/SetUserAgentOverrideRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun signedExchangeReceived ()Lkotlinx/coroutines/flow/Flow;
 	public final fun takeResponseBodyForInterceptionAsStream (Lorg/hildan/chrome/devtools/domains/network/TakeResponseBodyForInterceptionAsStreamRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun trustTokenOperationDone ()Lkotlinx/coroutines/flow/Flow;
 	public final fun webSocketClosed ()Lkotlinx/coroutines/flow/Flow;
 	public final fun webSocketCreated ()Lkotlinx/coroutines/flow/Flow;
 	public final fun webSocketFrameError ()Lkotlinx/coroutines/flow/Flow;
@@ -21021,6 +21023,46 @@ public final class org/hildan/chrome/devtools/domains/network/events/NetworkEven
 }
 
 public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$SignedExchangeReceivedEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$TrustTokenOperationDoneEvent : org/hildan/chrome/devtools/domains/network/events/NetworkEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$TrustTokenOperationDoneEvent$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/network/TrustTokenOperationType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/TrustTokenOperationType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;)V
+	public synthetic fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/TrustTokenOperationType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/network/TrustTokenOperationType;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/Integer;
+	public final fun copy (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/TrustTokenOperationType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$TrustTokenOperationDoneEvent;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$TrustTokenOperationDoneEvent;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/TrustTokenOperationType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$TrustTokenOperationDoneEvent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getIssuedTokenCount ()Ljava/lang/Integer;
+	public final fun getIssuerOrigin ()Ljava/lang/String;
+	public final fun getRequestId ()Ljava/lang/String;
+	public final fun getStatus ()Ljava/lang/String;
+	public final fun getTopLevelOrigin ()Ljava/lang/String;
+	public final fun getType ()Lorg/hildan/chrome/devtools/domains/network/TrustTokenOperationType;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$TrustTokenOperationDoneEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$TrustTokenOperationDoneEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$TrustTokenOperationDoneEvent$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$TrustTokenOperationDoneEvent;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$TrustTokenOperationDoneEvent;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$TrustTokenOperationDoneEvent$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
