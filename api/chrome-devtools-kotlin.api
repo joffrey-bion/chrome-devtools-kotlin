@@ -351,9 +351,99 @@ public final class org/hildan/chrome/devtools/domains/accessibility/AXValueType$
 public final class org/hildan/chrome/devtools/domains/accessibility/AccessibilityDomain {
 	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun getFullAXTree (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getChildAXNodes (Lorg/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getFullAXTree (Lorg/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getPartialAXTree (Lorg/hildan/chrome/devtools/domains/accessibility/GetPartialAXTreeRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun queryAXTree (Lorg/hildan/chrome/devtools/domains/accessibility/QueryAXTreeRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesRequest$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesRequest;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesRequest$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesResponse {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesResponse$Companion;
+	public synthetic fun <init> (ILjava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesResponse;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesResponse;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesResponse;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getNodes ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesResponse;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesResponse$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesResponse;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesResponse;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/accessibility/GetChildAXNodesResponse$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/Integer;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/Integer;)V
+	public synthetic fun <init> (Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/Integer;
+	public final fun copy (Ljava/lang/Integer;)Lorg/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest;Ljava/lang/Integer;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMax_depth ()Ljava/lang/Integer;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeResponse {
