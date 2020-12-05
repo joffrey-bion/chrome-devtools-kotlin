@@ -112,6 +112,21 @@ val evaluatedPerson = page.runtime.evaluateJs<Person>("""eval({firstName: "Bob",
 assertEquals(Person("Bob", "Lee Swagger"), evaluatedPerson)
 ```
 
+### Troubleshooting
+
+> Host header is specified and is not an IP address or localhost
+
+Sometimes this error also appears in the form of an HTTP 500.
+
+Chrome doesn't accept a `Host` header that is not an IP nor `localhost`, but in some environments it might be hard
+to provide this (e.g. docker services in a docker swarm, communicating using service names).
+
+To work around this problem, simply set `overrideHostHeader` to true when creating `ChromeDPClient`.
+This overrides the `Host` header to "localhost" in the HTTP requests to the Chrome debugger to make it happy, and
+also replaces the host in subsequent web socket URLs (returned by Chrome) by the initial host provided in
+`remoteDebugUrl`.
+This is necessary because Chrome uses the `Host` header to build these URLs, and it would be incorrect to keep this.
+
 ## Add the dependency
 
 Using Gradle:
