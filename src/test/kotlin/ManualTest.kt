@@ -3,16 +3,18 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.takeWhile
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.Serializable
 import org.hildan.chrome.devtools.domains.dom.GetOuterHTMLRequest
 import org.hildan.chrome.devtools.domains.dom.findNodeBySelector
 import org.hildan.chrome.devtools.domains.page.events.PageEvent
+import org.hildan.chrome.devtools.domains.page.navigateAndWaitLoading
 import org.hildan.chrome.devtools.domains.runtime.evaluateJs
-import org.hildan.chrome.devtools.domains.target.CloseTargetRequest
 import org.hildan.chrome.devtools.protocol.ChromeDPClient
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
 import org.hildan.chrome.devtools.targets.attachToNewPage
+import org.hildan.chrome.devtools.targets.use
 import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -34,24 +36,54 @@ class ManualTest {
             assertTrue(version.browser.contains("Chrome"))
 
             val browser = chrome.webSocket()
-            val page = browser.attachToNewPage("http://www.google.com")
+            browser.attachToNewPage("about:blank").use { page ->
+                page.page.navigateAndWaitLoading("http://www.google.com")
+                page.dom.enable()
 
-            page.page.enable()
-            page.dom.enable()
-            val pageJob = page.page.events().onEach { println("Page event: ${it::class.simpleName}") }.launchIn(this)
-            val domJob = page.dom.events().onEach { println("DOM event: ${it::class.simpleName}") }.launchIn(this)
+                val pageJob = page.page.events()
+                    .onEach { println("Page event: ${it::class.simpleName}") }
+                    .launchIn(this)
+                val domJob = page.dom.events()
+                    .onEach { println("DOM event: ${it::class.simpleName}") }
+                    .launchIn(this)
 
-            page.page.frameStoppedLoading().first()
-            println("Frame stopped loading")
+                val nodeId = page.dom.findNodeBySelector("#main")
+                println(nodeId)
+                val html = page.dom.getOuterHTML(GetOuterHTMLRequest(nodeId = nodeId))
+                println(html)
 
-            val nodeId = page.dom.findNodeBySelector("#main")
-            println(nodeId)
-            val html = page.dom.getOuterHTML(GetOuterHTMLRequest(nodeId = nodeId))
-            println(html)
-            browser.target.closeTarget(CloseTargetRequest(targetId = page.targetInfo.targetId))
+                domJob.cancel()
+                pageJob.cancel()
+            }
+            chrome.closeAllTargets()
+        }
+    }
 
-            domJob.cancel()
-            pageJob.cancel()
+    @OptIn(ExperimentalChromeApi::class)
+    @Test
+    fun test_parallelPages() {
+        runBlocking {
+            val chrome = ChromeDPClient()
+            chrome.closeAllTargets()
+
+            val browser = chrome.webSocket()
+            launch {
+                browser.attachToNewPage("http://www.google.com").use { page ->
+                    val heapUsage = page.runtime.getHeapUsage()
+                    println(heapUsage)
+                    delay(500)
+                    println("almost done 1")
+                }
+            }
+            launch {
+                browser.attachToNewPage("http://www.github.com").use { page ->
+                    println(page.browser.getVersion())
+                    val heapUsage = page.runtime.getHeapUsage()
+                    println(heapUsage)
+                    println("almost done 2")
+                }
+            }
+            chrome.closeAllTargets()
         }
     }
 
