@@ -30,7 +30,6 @@ class ManualTest {
     fun test() {
         runBlocking {
             val chrome = ChromeDPClient()
-            chrome.closeAllTargets()
 
             val version = chrome.version()
             assertTrue(version.browser.contains("Chrome"))
@@ -55,7 +54,6 @@ class ManualTest {
                 domJob.cancel()
                 pageJob.cancel()
             }
-            chrome.closeAllTargets()
         }
     }
 
@@ -64,7 +62,6 @@ class ManualTest {
     fun test_parallelPages() {
         runBlocking {
             val chrome = ChromeDPClient()
-            chrome.closeAllTargets()
 
             val browser = chrome.webSocket()
             launch {
@@ -83,7 +80,6 @@ class ManualTest {
                     println("almost done 2")
                 }
             }
-            chrome.closeAllTargets()
         }
     }
 
@@ -92,7 +88,6 @@ class ManualTest {
     fun page_getTargets() {
         runBlocking {
             val chrome = ChromeDPClient()
-            chrome.closeAllTargets()
             val browser = chrome.webSocket()
             val page = browser.attachToNewPage("http://google.com")
             println(page.targetInfo)
@@ -109,6 +104,7 @@ class ManualTest {
             assertTrue(targets[0].attached)
             assertTrue(targets[0].url.contains("www.google.com")) // redirected
             println(targets)
+            page.close()
         }
     }
 
@@ -131,6 +127,7 @@ class ManualTest {
                 Person("Bob", "Lee Swagger"),
                 page.runtime.evaluateJs<Person>("""eval({firstName: "Bob", lastName: "Lee Swagger"})""")
             )
+            page.close()
         }
     }
 }
