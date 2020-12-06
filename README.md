@@ -114,7 +114,7 @@ assertEquals(Person("Bob", "Lee Swagger"), evaluatedPerson)
 
 ### Troubleshooting
 
-> Host header is specified and is not an IP address or localhost
+> *Host header is specified and is not an IP address or localhost*
 
 Sometimes this error also appears in the form of an HTTP 500.
 
