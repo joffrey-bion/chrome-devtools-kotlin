@@ -1,5 +1,16 @@
 # Change Log
 
+## [0.8.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.8.0) (2020-12-06)
+[Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.7.2...0.8.0)
+
+**Closed issues:**
+
+- Error: Host header is specified and is not an IP address or localhost. [\#13](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/13)
+
+**Implemented enhancements:**
+
+- Upgrade to Krossbow 1.1.2 to fix UTF\-8 issues [\#14](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/14)
+
 ## [0.7.2](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.7.2) (2020-12-05)
 [Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.7.1...0.7.2)
 
