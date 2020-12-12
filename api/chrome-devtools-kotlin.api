@@ -3178,6 +3178,7 @@ public final class org/hildan/chrome/devtools/domains/browser/PermissionType : j
 	public static final field backgroundSync Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field clipboardReadWrite Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field clipboardSanitizedWrite Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
+	public static final field displayCapture Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field durableStorage Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field flash Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field geolocation Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
@@ -31970,9 +31971,9 @@ public final class org/hildan/chrome/devtools/domains/tracing/RequestMemoryDumpR
 public final class org/hildan/chrome/devtools/domains/tracing/StartRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/tracing/StartRequest$Companion;
 	public fun <init> ()V
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/Double;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/tracing/StreamFormat;Lorg/hildan/chrome/devtools/domains/tracing/StreamCompression;Lorg/hildan/chrome/devtools/domains/tracing/TraceConfig;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Double;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/tracing/StreamFormat;Lorg/hildan/chrome/devtools/domains/tracing/StreamCompression;Lorg/hildan/chrome/devtools/domains/tracing/TraceConfig;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Double;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/tracing/StreamFormat;Lorg/hildan/chrome/devtools/domains/tracing/StreamCompression;Lorg/hildan/chrome/devtools/domains/tracing/TraceConfig;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/Double;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/tracing/StreamFormat;Lorg/hildan/chrome/devtools/domains/tracing/StreamCompression;Lorg/hildan/chrome/devtools/domains/tracing/TraceConfig;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Double;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/tracing/StreamFormat;Lorg/hildan/chrome/devtools/domains/tracing/StreamCompression;Lorg/hildan/chrome/devtools/domains/tracing/TraceConfig;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Double;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/tracing/StreamFormat;Lorg/hildan/chrome/devtools/domains/tracing/StreamCompression;Lorg/hildan/chrome/devtools/domains/tracing/TraceConfig;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/Double;
@@ -31980,12 +31981,14 @@ public final class org/hildan/chrome/devtools/domains/tracing/StartRequest {
 	public final fun component5 ()Lorg/hildan/chrome/devtools/domains/tracing/StreamFormat;
 	public final fun component6 ()Lorg/hildan/chrome/devtools/domains/tracing/StreamCompression;
 	public final fun component7 ()Lorg/hildan/chrome/devtools/domains/tracing/TraceConfig;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Double;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/tracing/StreamFormat;Lorg/hildan/chrome/devtools/domains/tracing/StreamCompression;Lorg/hildan/chrome/devtools/domains/tracing/TraceConfig;)Lorg/hildan/chrome/devtools/domains/tracing/StartRequest;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/tracing/StartRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Double;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/tracing/StreamFormat;Lorg/hildan/chrome/devtools/domains/tracing/StreamCompression;Lorg/hildan/chrome/devtools/domains/tracing/TraceConfig;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/tracing/StartRequest;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Double;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/tracing/StreamFormat;Lorg/hildan/chrome/devtools/domains/tracing/StreamCompression;Lorg/hildan/chrome/devtools/domains/tracing/TraceConfig;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/tracing/StartRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/tracing/StartRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Double;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/tracing/StreamFormat;Lorg/hildan/chrome/devtools/domains/tracing/StreamCompression;Lorg/hildan/chrome/devtools/domains/tracing/TraceConfig;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/tracing/StartRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBufferUsageReportingInterval ()Ljava/lang/Double;
 	public final fun getCategories ()Ljava/lang/String;
 	public final fun getOptions ()Ljava/lang/String;
+	public final fun getPerfettoConfig ()Ljava/lang/String;
 	public final fun getStreamCompression ()Lorg/hildan/chrome/devtools/domains/tracing/StreamCompression;
 	public final fun getStreamFormat ()Lorg/hildan/chrome/devtools/domains/tracing/StreamFormat;
 	public final fun getTraceConfig ()Lorg/hildan/chrome/devtools/domains/tracing/TraceConfig;
