@@ -5,7 +5,7 @@ on:
     - cron: "0 4 * * *"
 
 jobs:
-  stale:
+  update:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
