@@ -1,7 +1,7 @@
 import com.jfrog.bintray.gradle.BintrayExtension.*
 
 plugins {
-    val kotlinVersion = "1.4.20"
+    val kotlinVersion = "1.4.21"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
     id("org.jetbrains.dokka") version "0.10.1"
