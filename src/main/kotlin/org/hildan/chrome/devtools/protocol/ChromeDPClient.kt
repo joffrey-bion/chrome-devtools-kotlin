@@ -15,20 +15,32 @@ import org.hildan.krossbow.websocket.WebSocketClient
 import org.hildan.krossbow.websocket.defaultWebSocketClient
 import kotlinx.serialization.json.Json as KxJson
 
-private fun createHttpClient(block: HttpClientConfig<*>.() -> Unit) = HttpClient {
+private val DEFAULT_WEBSOCKET_CLIENT by lazy { defaultWebSocketClient() }
+
+private val DEFAULT_HTTP_CLIENT by lazy { createHttpClient(overrideHostHeader = false) }
+
+private val DEFAULT_HTTP_CLIENT_WITH_HOST_OVERRIDE by lazy { createHttpClient(overrideHostHeader = true) }
+
+private fun createHttpClient(overrideHostHeader: Boolean) = HttpClient {
     install(JsonFeature) {
         serializer = KotlinxSerializer(KxJson { ignoreUnknownKeys = true })
     }
-    block()
+    if (overrideHostHeader) {
+        install(DefaultRequest) {
+            headers["Host"] = "localhost"
+        }
+    }
 }
-
-private val DEFAULT_WEBSOCKET_CLIENT by lazy { defaultWebSocketClient() }
 
 /**
  * A Chrome Devtools Protocol client.
  *
  * It provides access to the basic HTTP endpoints exposed by the Chrome browser, as well as web socket connections to
  * the browser and its targets to make use of the full Chrome Devtools Protocol API.
+ *
+ * **Note:** if you already know the browser target's web socket URL, you don't need to create a `ChromeDPClient`.
+ * Instead, use a [WebSocketClient] and [WebSocketClient.connectToChrome][connectToChrome] instead.
+ * A default web socket client can be created using [defaultWebSocketClient].
  *
  * ## Host override
  *
@@ -42,20 +54,27 @@ private val DEFAULT_WEBSOCKET_CLIENT by lazy { defaultWebSocketClient() }
  * This is necessary because Chrome uses the `Host` header to build these URLs, and it would be incorrect to keep this.
  */
 class ChromeDPClient(
+    /**
+     * The Chrome debugger HTTP URL. This will be used to access metadata via HTTP, in order to ultimately get a web
+     * socket URL and connect via web socket for a richer API.
+     */
     private val remoteDebugUrl: String = "http://localhost:9222",
-    private val webSocketClient: WebSocketClient = DEFAULT_WEBSOCKET_CLIENT,
+    /**
+     * Enables override of the `Host` header to `localhost` (see section about Host override in [ChromeDPClient] doc).
+     */
     private val overrideHostHeader: Boolean = false,
-    configureHttpClient: HttpClientConfig<*>.() -> Unit = {},
+    /**
+     * This parameter should usually be left to its default value.
+     * Only use this to workaround an issue in the client's configuration/behaviour.
+     */
+    private val webSocketClient: WebSocketClient = DEFAULT_WEBSOCKET_CLIENT,
+    /**
+     * This parameter should usually be left to its default value.
+     * Only use this to workaround an issue in the client's configuration/behaviour.
+     * Note that the provided [HttpClient] has to be configured to handle Kotlinx Serialization (JSON).
+     */
+    private val httpClient: HttpClient = if (overrideHostHeader) DEFAULT_HTTP_CLIENT_WITH_HOST_OVERRIDE else DEFAULT_HTTP_CLIENT,
 ) {
-    private val httpClient: HttpClient = createHttpClient {
-        if (overrideHostHeader) {
-            install(DefaultRequest) {
-                headers["Host"] = "localhost"
-            }
-        }
-        configureHttpClient()
-    }
-
     /** Browser version metadata. */
     suspend fun version(): ChromeVersion = httpClient.get<ChromeVersion>("$remoteDebugUrl/json/version").fixHost()
 
@@ -63,20 +82,18 @@ class ChromeDPClient(
     suspend fun protocolJson(): String = httpClient.get("$remoteDebugUrl/json/protocol")
 
     /** A list of all available websocket targets (e.g. browser tabs). */
-    suspend fun targets(): List<ChromeDPTarget> {
-        val targets = httpClient.get<List<ChromeDPTarget>>("$remoteDebugUrl/json/list")
-        if (overrideHostHeader) {
-            return targets.map { it.fixHost() }
-        }
-        return targets
-    }
+    suspend fun targets(): List<ChromeDPTarget> =
+        httpClient.get<List<ChromeDPTarget>>("$remoteDebugUrl/json/list").map { it.fixHost() }
 
     /** Opens a new tab. Responds with the websocket target data for the new tab. */
-    @Deprecated(message = "Prefer richer API via web socket", replaceWith = ReplaceWith("webSocket().attachToNewPage(url)"))
+    @Deprecated(
+        message = "Prefer richer API via web socket",
+        replaceWith = ReplaceWith("webSocket().attachToNewPage(url)")
+    )
     suspend fun newTab(url: String = "about:blank"): ChromeDPTarget =
         httpClient.get<ChromeDPTarget>("$remoteDebugUrl/json/new?$url").fixHost()
 
-    /** Brings a page into the foreground (activate a tab). */
+    /** Brings a page into the foreground (activates a tab). */
     suspend fun activateTab(targetId: String): String = httpClient.get("$remoteDebugUrl/json/activate/$targetId")
 
     /** Closes the target page identified by [targetId]. */
