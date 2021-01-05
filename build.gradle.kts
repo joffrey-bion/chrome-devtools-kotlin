@@ -36,7 +36,7 @@ dependencies {
     val ktorVersion = "1.4.3"
     api("io.ktor:ktor-client-core:$ktorVersion")
     api("io.ktor:ktor-client-json:$ktorVersion")
-    api("io.ktor:ktor-client-apache:$ktorVersion")
+    api("io.ktor:ktor-client-cio:$ktorVersion")
     api("io.ktor:ktor-client-serialization-jvm:$ktorVersion")
 
     testImplementation(kotlin("test"))
