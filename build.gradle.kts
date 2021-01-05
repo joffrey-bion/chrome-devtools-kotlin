@@ -34,8 +34,6 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
 
     val ktorVersion = "1.4.3"
-    api("io.ktor:ktor-client-core:$ktorVersion")
-    api("io.ktor:ktor-client-json:$ktorVersion")
     api("io.ktor:ktor-client-cio:$ktorVersion")
     api("io.ktor:ktor-client-serialization-jvm:$ktorVersion")
 
