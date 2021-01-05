@@ -1,5 +1,16 @@
 # Change Log
 
+## [0.9.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.9.0) (2021-01-05)
+[Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.8.2...0.9.0)
+
+**Fixed bugs:**
+
+- ChromeDPClient instances leak open Ktor Apache HTTP client [\#19](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/19)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 0.0.839267 [\#18](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/18) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [0.8.2](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.8.2) (2020-12-17)
 [Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.8.1...0.8.2)
 
