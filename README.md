@@ -20,42 +20,60 @@ All the domains' commands and events defined in these protocol descriptors are t
 
 The protocol definitions are automatically updated daily, but releases of `chrome-devtools-kotlin` are still manual.
 If you're missing some APIs or updates, don't hesitate to open an issue to request a new release with updated protocol.
+You can check the latest released protocol update in the [CHANGELOG](./CHANGELOG.md).
 
-## Usage
+## Concepts
 
-### About the API
+### Domains
 
 The Chrome Devtools Protocol defines **_domains_** that expose some commands and events.
+They are subsets of the protocol's API.
 You can find the list and documentation of all domains in the 
 [protocol's web page](https://chromedevtools.github.io/devtools-protocol/).
 
-The protocol requires to attach to a **_target_** (via a web socket connection) in order to interact with it.
-Targets can be the browser itself, a browser tab, a service worker, etc.
+This library defines a type for each domain (e.g. `PageDomain`, `StorageDomain`...), which exposes:
+
+* a `suspend` method for each command, accepting a *request* type and returning a *response* type,
+  respectively containing the input and output parameters defined in the protocol for that command.
+* a method for each type of event, returning a `Flow` of this particular event type
+* an `events()` method, returning a `Flow` of all events of the domain
+
+The domains usually also expose an `enable()` command which is required to enable events.
+Without calling it, you will receive no events in the `Flow` subscriptions.
+
+### Targets
+
+Clients can interact with different parts of Chrome such as pages (tabs), serviceworkers, and extensions. 
+These parts are called **_targets_**.
+The browser itself is also a target.
+
 Each type of target supports only a subset of the available domains.
 
-This library exposes the protocol's API via session objects, such as `ChromeBrowserSession` or `ChromePageSession`. 
-They represent web socket sessions with attached targets, for different types of target.
-The supported domains are defined as properties on these session objects, so accessing these properties is a type-safe
-way to know which domains can actually be used.
+### Sessions
+
+The protocol requires you to attach to a target in order to interact with it.
+Attaching to a target opens a target **_session_** of the relevant type, such as `ChromeBrowserSession` or 
+`ChromePageSession`.
+
+When connecting to Chrome, a browser target is automatically attached, thus you obtain a `ChromeBrowserSession`.
+You can then use this session to attach to other targets (child targets), such as pages (tabs).
+
+Each of the supported domains are defined as properties of the session type, which provides a type-safe way to know
+if the attached target supports a given domain.
+For instance, `ChromePageSession.dom` gives access to the DOM domain in `this` page session,
+which allows to issue commands and listen to DOM events.
 
 > Note: The supported set of domains for each target type is not clearly defined by the protocol, so I had to
 > extract this information from
 > [Chromium's source code itself](https://source.chromium.org/search?q=%22session-%3EAddHandler%22%20f:devtools&ss=chromium)
 > and define my own extra definition file: [target_types.json](./protocol/target_types.json).
 > 
-> Because of this, there might be some missing domains on some target types at some point in time that require
+> Because of this, there might be some missing domains on some session types at some point in time that require
 > manual adjustment.
 > If this is the case, use the `unsafe()` method on the session object to get full access to all domains
 > (also, please open an issue so I can fix the missing domain).
 
-Each domain type exposes:
-
-* a `suspend` method for each command, accepting a *request* type and returning a *response* type,
-both of which are defined based on the input and output parameters defined in the protocol for that command.
-* a method for each type of event, returning a `Flow` of this particular event type
-* an `events()` method, returning a `Flow` of all events of the domain
-
-The domains usually expose an `enable()` command which is required to enable the emission of events.
+## Usage
 
 ### Connecting to the browser
 
@@ -69,7 +87,8 @@ docker container run -d -p 9222:9222 zenika/alpine-chrome --no-sandbox --remote-
 
 The starting point of this library is the `ChromeDPClient`, which is created using the 
 "remote-debugging" URL that was passed to Chrome.
-You can then open a `webSocket()` to the browser debugger, which starts a "browser session":
+You can then open a `webSocket()` to the browser debugger, which automatically attaches to the browser target and 
+starts a "browser session":
 
 ```kotlin
 val client = ChromeDPClient("http://localhost:9222")
