@@ -17,7 +17,6 @@ internal class ChromeDPConnection(
     private val job = Job()
     private val coroutineScope = CoroutineScope(job)
 
-    @OptIn(FlowPreview::class)
     private val frames = webSocket.incomingFrames.consumeAsFlow()
         .filterIsInstance<WebSocketFrame.Text>()
         .map { frame -> frame.decodeInboundFrame() }

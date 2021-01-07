@@ -11,7 +11,6 @@ import kotlinx.serialization.serializer
 import org.hildan.chrome.devtools.domains.target.SessionID
 import java.util.concurrent.atomic.AtomicLong
 
-@OptIn(ExperimentalChromeApi::class)
 internal class ChromeDPSession internal constructor(
     internal val connection: ChromeDPConnection,
     val sessionId: SessionID?,
