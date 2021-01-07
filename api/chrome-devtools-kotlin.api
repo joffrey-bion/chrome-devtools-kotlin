@@ -26221,6 +26221,231 @@ public final class org/hildan/chrome/devtools/domains/performance/events/Perform
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/performancetimeline/EnableRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/performancetimeline/EnableRequest$Companion;
+	public synthetic fun <init> (ILjava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/performancetimeline/EnableRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/performancetimeline/EnableRequest;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/performancetimeline/EnableRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEventTypes ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/performancetimeline/EnableRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/performancetimeline/EnableRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/performancetimeline/EnableRequest$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/performancetimeline/EnableRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/performancetimeline/EnableRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/performancetimeline/EnableRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/performancetimeline/LargestContentfulPaint {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/performancetimeline/LargestContentfulPaint$Companion;
+	public fun <init> (DDDLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;)V
+	public synthetic fun <init> (DDDLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (IDDDLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()D
+	public final fun component2 ()D
+	public final fun component3 ()D
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/Integer;
+	public final fun copy (DDDLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;)Lorg/hildan/chrome/devtools/domains/performancetimeline/LargestContentfulPaint;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/performancetimeline/LargestContentfulPaint;DDDLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/performancetimeline/LargestContentfulPaint;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getElementId ()Ljava/lang/String;
+	public final fun getLoadTime ()D
+	public final fun getNodeId ()Ljava/lang/Integer;
+	public final fun getRenderTime ()D
+	public final fun getSize ()D
+	public final fun getUrl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/performancetimeline/LargestContentfulPaint;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/performancetimeline/LargestContentfulPaint$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/performancetimeline/LargestContentfulPaint$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/performancetimeline/LargestContentfulPaint;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/performancetimeline/LargestContentfulPaint;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/performancetimeline/LargestContentfulPaint$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/performancetimeline/LayoutShift {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShift$Companion;
+	public fun <init> (DZDLjava/util/List;)V
+	public synthetic fun <init> (IDZDLjava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()D
+	public final fun component2 ()Z
+	public final fun component3 ()D
+	public final fun component4 ()Ljava/util/List;
+	public final fun copy (DZDLjava/util/List;)Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShift;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShift;DZDLjava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShift;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getHadRecentInput ()Z
+	public final fun getLastInputTime ()D
+	public final fun getSources ()Ljava/util/List;
+	public final fun getValue ()D
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShift;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/performancetimeline/LayoutShift$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShift$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShift;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShift;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/performancetimeline/LayoutShift$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/performancetimeline/LayoutShiftAttribution {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShiftAttribution$Companion;
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/dom/Rect;Lorg/hildan/chrome/devtools/domains/dom/Rect;Ljava/lang/Integer;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/dom/Rect;Lorg/hildan/chrome/devtools/domains/dom/Rect;Ljava/lang/Integer;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/dom/Rect;Lorg/hildan/chrome/devtools/domains/dom/Rect;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/dom/Rect;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/dom/Rect;
+	public final fun component3 ()Ljava/lang/Integer;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/dom/Rect;Lorg/hildan/chrome/devtools/domains/dom/Rect;Ljava/lang/Integer;)Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShiftAttribution;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShiftAttribution;Lorg/hildan/chrome/devtools/domains/dom/Rect;Lorg/hildan/chrome/devtools/domains/dom/Rect;Ljava/lang/Integer;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShiftAttribution;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCurrentRect ()Lorg/hildan/chrome/devtools/domains/dom/Rect;
+	public final fun getNodeId ()Ljava/lang/Integer;
+	public final fun getPreviousRect ()Lorg/hildan/chrome/devtools/domains/dom/Rect;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShiftAttribution;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/performancetimeline/LayoutShiftAttribution$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShiftAttribution$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShiftAttribution;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShiftAttribution;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/performancetimeline/LayoutShiftAttribution$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/performancetimeline/PerformanceTimelineDomain {
+	public final fun enable (Lorg/hildan/chrome/devtools/domains/performancetimeline/EnableRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun events ()Lkotlinx/coroutines/flow/Flow;
+	public final fun timelineEventAdded ()Lkotlinx/coroutines/flow/Flow;
+}
+
+public final class org/hildan/chrome/devtools/domains/performancetimeline/TimelineEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/performancetimeline/TimelineEvent$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;DLjava/lang/Double;Lorg/hildan/chrome/devtools/domains/performancetimeline/LargestContentfulPaint;Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShift;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;DLjava/lang/Double;Lorg/hildan/chrome/devtools/domains/performancetimeline/LargestContentfulPaint;Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShift;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;DLjava/lang/Double;Lorg/hildan/chrome/devtools/domains/performancetimeline/LargestContentfulPaint;Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShift;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()D
+	public final fun component5 ()Ljava/lang/Double;
+	public final fun component6 ()Lorg/hildan/chrome/devtools/domains/performancetimeline/LargestContentfulPaint;
+	public final fun component7 ()Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShift;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;DLjava/lang/Double;Lorg/hildan/chrome/devtools/domains/performancetimeline/LargestContentfulPaint;Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShift;)Lorg/hildan/chrome/devtools/domains/performancetimeline/TimelineEvent;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/performancetimeline/TimelineEvent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;DLjava/lang/Double;Lorg/hildan/chrome/devtools/domains/performancetimeline/LargestContentfulPaint;Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShift;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/performancetimeline/TimelineEvent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDuration ()Ljava/lang/Double;
+	public final fun getFrameId ()Ljava/lang/String;
+	public final fun getLayoutShiftDetails ()Lorg/hildan/chrome/devtools/domains/performancetimeline/LayoutShift;
+	public final fun getLcpDetails ()Lorg/hildan/chrome/devtools/domains/performancetimeline/LargestContentfulPaint;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getTime ()D
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/performancetimeline/TimelineEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/performancetimeline/TimelineEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/performancetimeline/TimelineEvent$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/performancetimeline/TimelineEvent;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/performancetimeline/TimelineEvent;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/performancetimeline/TimelineEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract class org/hildan/chrome/devtools/domains/performancetimeline/events/PerformanceTimelineEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/performancetimeline/events/PerformanceTimelineEvent$Companion;
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/performancetimeline/events/PerformanceTimelineEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/performancetimeline/events/PerformanceTimelineEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/performancetimeline/events/PerformanceTimelineEvent$TimelineEventAddedEvent : org/hildan/chrome/devtools/domains/performancetimeline/events/PerformanceTimelineEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/performancetimeline/events/PerformanceTimelineEvent$TimelineEventAddedEvent$Companion;
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/performancetimeline/TimelineEvent;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/performancetimeline/TimelineEvent;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/performancetimeline/TimelineEvent;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/performancetimeline/TimelineEvent;)Lorg/hildan/chrome/devtools/domains/performancetimeline/events/PerformanceTimelineEvent$TimelineEventAddedEvent;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/performancetimeline/events/PerformanceTimelineEvent$TimelineEventAddedEvent;Lorg/hildan/chrome/devtools/domains/performancetimeline/TimelineEvent;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/performancetimeline/events/PerformanceTimelineEvent$TimelineEventAddedEvent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEvent ()Lorg/hildan/chrome/devtools/domains/performancetimeline/TimelineEvent;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/performancetimeline/events/PerformanceTimelineEvent$TimelineEventAddedEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/performancetimeline/events/PerformanceTimelineEvent$TimelineEventAddedEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/performancetimeline/events/PerformanceTimelineEvent$TimelineEventAddedEvent$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/performancetimeline/events/PerformanceTimelineEvent$TimelineEventAddedEvent;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/performancetimeline/events/PerformanceTimelineEvent$TimelineEventAddedEvent;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/performancetimeline/events/PerformanceTimelineEvent$TimelineEventAddedEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/profiler/CounterInfo {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/profiler/CounterInfo$Companion;
 	public synthetic fun <init> (ILjava/lang/String;ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
@@ -33831,6 +34056,7 @@ public abstract interface class org/hildan/chrome/devtools/targets/AllDomainsTar
 	public abstract fun getOverlay ()Lorg/hildan/chrome/devtools/domains/overlay/OverlayDomain;
 	public abstract fun getPage ()Lorg/hildan/chrome/devtools/domains/page/PageDomain;
 	public abstract fun getPerformance ()Lorg/hildan/chrome/devtools/domains/performance/PerformanceDomain;
+	public abstract fun getPerformanceTimeline ()Lorg/hildan/chrome/devtools/domains/performancetimeline/PerformanceTimelineDomain;
 	public abstract fun getProfiler ()Lorg/hildan/chrome/devtools/domains/profiler/ProfilerDomain;
 	public abstract fun getRuntime ()Lorg/hildan/chrome/devtools/domains/runtime/RuntimeDomain;
 	public abstract fun getSchema ()Lorg/hildan/chrome/devtools/domains/schema/SchemaDomain;
