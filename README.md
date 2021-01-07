@@ -12,23 +12,24 @@ JVM-specific API.
 
 ## Protocol version & Code generation
 
-This client is partly generated based on information from the "latest" JSON descriptors found in the 
+This client is partly generated based on information from the "latest" (a.k.a 
+["tip-of-tree"](https://chromedevtools.github.io/devtools-protocol/tot/)) JSON descriptors found in the 
 [ChromeDevTools/devtools-protocol](https://github.com/ChromeDevTools/devtools-protocol/tree/master/json) repository.
 All the domains' commands and events defined in these protocol descriptors are therefore available in
 `chrome-devtools-kotlin`, as well as their doc and deprecated/experimental status. 
 
-The protocol definitions are automatically updated daily.
+The protocol definitions are automatically updated daily, but releases of `chrome-devtools-kotlin` are still manual.
 If you're missing some APIs or updates, don't hesitate to open an issue to request a new release with updated protocol.
 
 ## Usage
 
 ### About the API
 
-The Chrome Devtools Protocol defines "domains" that expose some commands and events.
+The Chrome Devtools Protocol defines **_domains_** that expose some commands and events.
 You can find the list and documentation of all domains in the 
 [protocol's web page](https://chromedevtools.github.io/devtools-protocol/).
 
-The protocol requires to attach to a "target" (via a web socket connection) in order to interact with it.
+The protocol requires to attach to a **_target_** (via a web socket connection) in order to interact with it.
 Targets can be the browser itself, a browser tab, a service worker, etc.
 Each type of target supports only a subset of the available domains.
 
@@ -37,8 +38,13 @@ They represent web socket sessions with attached targets, for different types of
 The supported domains are defined as properties on these session objects, so accessing these properties is a type-safe
 way to know which domains can actually be used.
 
-> Note: The supported set of domains for each target type is not clearly defined by the protocol, so there might be some
-> missing domains on some target types.
+> Note: The supported set of domains for each target type is not clearly defined by the protocol, so I had to
+> extract this information from
+> [Chromium's source code itself](https://source.chromium.org/search?q=%22session-%3EAddHandler%22%20f:devtools&ss=chromium)
+> and define my own extra definition file: [target_types.json](./protocol/target_types.json).
+> 
+> Because of this, there might be some missing domains on some target types at some point in time that require
+> manual adjustment.
 > If this is the case, use the `unsafe()` method on the session object to get full access to all domains
 > (also, please open an issue so I can fix the missing domain).
 
@@ -54,13 +60,15 @@ The domains usually expose an `enable()` command which is required to enable the
 ### Connecting to the browser
 
 You first need to have a browser running, exposing a debugger server.
-For instance, you can start a headless chrome with the following docker command, which exposes the debugger server at `http://localhost:9222`:
+For instance, you can start a headless chrome with the following docker command, 
+which exposes the debugger server at `http://localhost:9222`:
 
 ```
 docker container run -d -p 9222:9222 zenika/alpine-chrome --no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 about:blank
 ```
 
-The starting point of this library is the `ChromeDPClient`, which is created using the "remote-debugging" URL that was passed to Chrome.
+The starting point of this library is the `ChromeDPClient`, which is created using the 
+"remote-debugging" URL that was passed to Chrome.
 You can then open a `webSocket()` to the browser debugger, which starts a "browser session":
 
 ```kotlin
@@ -68,12 +76,16 @@ val client = ChromeDPClient("http://localhost:9222")
 val browserSession: ChromeBrowserSession = client.webSocket()
 ```
 
-The `ChromeBrowserSession` is not attached to a page target, so you can only interact with a subset of the protocol's API.
+The `ChromeBrowserSession` is not attached to a page target (tab), so you can only interact with 
+a subset of the protocol's API.
 All the supported domains for the browser sessions are available as properties.
 Here are a couple examples using the `target` and `storage` domains:
 
 ```kotlin
 val targets = browserSession.target.getTargets()
+```
+
+```kotlin
 browserSession.storage.clearCookies(ClearCookiesRequest())
 ```
 
@@ -87,17 +99,25 @@ Here is an example to create a new page target and attach to it:
 val browserSession = ChromeDPClient("http://localhost:9222").webSocket()
 val pageSession = browserSession.attachToNewPage("http://example.com")
 
-// This page session has access to many useful protocol domains
+// This page session has access to many useful protocol domains (e.g. dom, page...)
 val doc = pageSession.dom.getDocument(GetDocumentRequest()).root
 val base64Img = pageSession.page.captureScreenshot(CaptureScreenshotRequest(format = "jpg", quality = 80))
 ```
 
 ### High level extensions
 
-In addition to the generated domain commands and events, some extensions are provided to provide higher-level 
-functionality.
+In addition to the generated domain commands and events, some extensions are provided for higher-level functionality.
+Here are some of them:
 
-For instance, `Runtime.evaluateJs(js: String)`:
+* `DOMDomain.findNodeBySelector(selector: String): NodeId?`: finds a node using a selector query
+* `PageDomain.navigateAndWaitLoading(url: String)`: navigates and also waits for the next `frameStoppedLoading` event
+* `PageDomain.captureScreenshotToFile(outputFile: Path, request: CaptureScreenshotRequest = ...)`
+* `Runtime.evaluateJs(js: String): T?`: evaluates JS and returns the result
+  (uses Kotlinx serialization to deserialize JS results)
+
+#### Examples
+
+Example usage of `Runtime.evaluateJs(js: String)`:
 
 ```kotlin
 @Serializable
@@ -111,6 +131,9 @@ assertEquals(42, evaluatedInt)
 val evaluatedPerson = page.runtime.evaluateJs<Person>("""eval({firstName: "Bob", lastName: "Lee Swagger"})""")
 assertEquals(Person("Bob", "Lee Swagger"), evaluatedPerson)
 ```
+
+Note that the deserialization here uses [Kotlinx Serialization](https://github.com/Kotlin/kotlinx.serialization), 
+which requires annotating the deserialized classes with `@Serializable` _and_ using the corresponding compiler plugin.
 
 ### Troubleshooting
 
@@ -151,14 +174,20 @@ This project is distributed under the MIT license.
 
 ## Alternatives
 
-You can find a some Chrome-Devtools-related libraries in this
-[awesome list](https://github.com/ChromeDevTools/awesome-chrome-devtools).
-
-If you're looking for Chrome Devtools Protocol clients in Kotlin, I have only found one so far, 
+If you're looking for Chrome Devtools Protocol clients _in Kotlin_, I have only found one other so far, 
 [chrome-reactive-kotlin](https://github.com/wendigo/chrome-reactive-kotlin).
-It is useful if you're looking for a reactive API.
+This is the reactive equivalent of this project.
+The main differences are the following:
 
-I needed a coroutine-based API instead, which is how this `chrome-devtools-kotlin` project was born.
+* it uses a _reactive_ API (as opposed to coroutines and suspend functions)
+* it doesn't distinguish target types, and thus doesn't restrict the available domains at compile time
+  (it's the equivalent of always using `unsafe()` in `chrome-devtools-kotlin`)
+
+I needed a coroutine-based API instead and more type-safety, which is how this `chrome-devtools-kotlin` 
+project was born.
+
+You can find alternative Chrome DevTools libraries in other languages in this
+[awesome list](https://github.com/ChromeDevTools/awesome-chrome-devtools).
 
 ## Credits
 
