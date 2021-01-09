@@ -1,11 +1,19 @@
 # Change Log
 
+## [0.10.1](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.10.1) (2021-01-09)
+[Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.10.0...0.10.1)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 0.0.841450 [\#22](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/22) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Update to Chrome DevTools Protocol version 0.0.840815 [\#21](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/21) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [0.10.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.10.0) (2021-01-05)
 [Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.9.0...0.10.0)
 
 **Implemented enhancements:**
 
-- Switch underlying Ktor engine from Apache to CIO or JDK11 [\#20](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/20)
+- Switch underlying Ktor engine from Apache to CIO [\#20](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/20)
 
 ## [0.9.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.9.0) (2021-01-05)
 [Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.8.2...0.9.0)
