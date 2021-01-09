@@ -9871,6 +9871,7 @@ public final class org/hildan/chrome/devtools/domains/dom/PseudoType : java/lang
 	public static final field first-letter Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field first-line Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field first-line-inherited Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field grammar-error Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field input-list-button Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field marker Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field resizer Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
@@ -9881,6 +9882,7 @@ public final class org/hildan/chrome/devtools/domains/dom/PseudoType : java/lang
 	public static final field scrollbar-track Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollbar-track-piece Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field selection Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field spelling-error Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field target-text Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
