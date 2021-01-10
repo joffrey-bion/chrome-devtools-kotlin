@@ -1,11 +1,8 @@
 package org.hildan.chrome.devtools.targets
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
+import org.hildan.chrome.devtools.domains.page.NavigateRequest
 import org.hildan.chrome.devtools.domains.target.*
 import org.hildan.chrome.devtools.domains.target.events.TargetEvent
 import org.hildan.chrome.devtools.protocol.ChromeDPSession
@@ -61,6 +58,55 @@ suspend fun ChromeBrowserSession.attachToNewPage(
     ).targetId
 
     return attachToPage(targetId)
+}
+
+/**
+ * Creates and attaches to a new page (tab) initially navigated to the given [url].
+ * Suspends until the `frameStoppedLoading` event is fired.
+ * The underlying web socket connection of this [ChromeBrowserSession] is reused for the new [ChromePageSession].
+ *
+ * If [incognito] is true, the new target is created in a separate browser context (think of it as incognito window).
+ *
+ * You can use [width] and [height] to specify the viewport dimensions in DIP (Chrome Headless only).
+ *
+ * If [background] is true, the new tab will be created in the background (Chrome only).
+ */
+@OptIn(ExperimentalChromeApi::class)
+suspend fun ChromeBrowserSession.attachToNewPageAndAwaitPageLoad(
+    url: String = "about:blank",
+    incognito: Boolean = true,
+    width: Int = 1024,
+    height: Int = 768,
+    background: Boolean = false,
+): ChromePageSession {
+    val session = attachToNewPage("about:blank", incognito, width, height, background)
+    session.navigateAndAwaitPageLoad(url)
+    return session
+}
+
+/**
+ * Navigates the current page according to the provided [url], and suspends until the corresponding
+ * `frameStoppedLoading` event is received.
+ */
+suspend fun ChromePageSession.navigateAndAwaitPageLoad(url: String) {
+    navigateAndAwaitPageLoad(NavigateRequest(url = url))
+}
+
+/**
+ * Navigates the current page according to the provided [navigateRequest], and suspends until the
+ * corresponding `frameStoppedLoading` event is received.
+ */
+@OptIn(ExperimentalChromeApi::class, ExperimentalCoroutinesApi::class)
+suspend fun ChromePageSession.navigateAndAwaitPageLoad(navigateRequest: NavigateRequest) {
+    page.enable()
+    coroutineScope {
+        val events = page.frameStoppedLoading()
+        val stoppedLoadingEvent = async(start = CoroutineStart.UNDISPATCHED) {
+            events.first { it.frameId == targetInfo.targetId }
+        }
+        page.navigate(navigateRequest)
+        stoppedLoadingEvent.await()
+    }
 }
 
 /**

@@ -10,11 +10,12 @@ import kotlinx.serialization.Serializable
 import org.hildan.chrome.devtools.domains.dom.GetOuterHTMLRequest
 import org.hildan.chrome.devtools.domains.dom.findNodeBySelector
 import org.hildan.chrome.devtools.domains.page.events.PageEvent
-import org.hildan.chrome.devtools.domains.page.navigateAndWaitLoading
 import org.hildan.chrome.devtools.domains.runtime.evaluateJs
 import org.hildan.chrome.devtools.protocol.ChromeDPClient
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
 import org.hildan.chrome.devtools.targets.attachToNewPage
+import org.hildan.chrome.devtools.targets.attachToNewPageAndAwaitPageLoad
+import org.hildan.chrome.devtools.targets.navigateAndAwaitPageLoad
 import org.hildan.chrome.devtools.targets.use
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.junit.jupiter.Container
@@ -64,8 +65,7 @@ class IntegrationTests {
             val chrome = chromeDpClient()
 
             val browser = chrome.webSocket()
-            val page = browser.attachToNewPage("http://www.google.com")
-            delay(500) // FIXME clumsy way to wait for page load
+            val page = browser.attachToNewPageAndAwaitPageLoad("http://www.google.com")
             val targetInfo = page.targetInfo
 
             assertTrue(chrome.targets().any { it.id == targetInfo.targetId }, "the new target should be listed")
@@ -84,17 +84,17 @@ class IntegrationTests {
     }
 
     @Test
-    fun webSocket_navigateAndWaitLoading() {
+    fun pageSession_navigateAndAwaitPageLoad() {
         runBlocking {
             val chrome = chromeDpClient()
 
             chrome.webSocket().use { browser ->
                 browser.attachToNewPage("about:blank").use { page ->
-                    page.page.navigateAndWaitLoading("http://www.google.com")
-                    page.dom.enable()
+                    page.navigateAndAwaitPageLoad("http://www.google.com")
 
                     val nodeId = page.dom.findNodeBySelector("#main")
                     assertNotNull(nodeId)
+
                     val html = page.dom.getOuterHTML(GetOuterHTMLRequest(nodeId = nodeId))
                     println(html)
                 }
