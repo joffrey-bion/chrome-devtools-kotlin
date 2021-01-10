@@ -147,10 +147,10 @@ class IntegrationTests {
             page.page.frameStoppedLoading().first()
 
             val targets = page.target.getTargets().targetInfos
-            assertEquals(1, targets.size) // only page targets are present
-            assertEquals("page", targets[0].type)
-            assertTrue(targets[0].attached)
-            assertTrue(targets[0].url.contains("www.google.com")) // redirected
+            val targetInfo = targets.first { it.targetId == page.targetInfo.targetId }
+            assertEquals("page", targetInfo.type)
+            assertTrue(targetInfo.attached)
+            assertTrue(targetInfo.url.contains("www.google.com")) // redirected
             println(targets)
             page.close()
             browser.close()
