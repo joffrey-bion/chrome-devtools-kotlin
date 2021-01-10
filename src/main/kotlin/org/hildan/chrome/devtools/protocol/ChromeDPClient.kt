@@ -174,6 +174,8 @@ data class ChromeDPTarget(
      * Attaches to this target via a new web socket connection to this target's debugger URL.
      * This establishes a new protocol session to this target.
      */
+    @Deprecated("this method provides no way of closing the created websocket connection, prefer using " +
+        "ChromeDPClient.webSocket and using the richer websocket API to interact with targets (ChromeBrowserSession.target)")
     suspend fun attach(webSocketClient: WebSocketClient = DEFAULT_WEBSOCKET_CLIENT): ChromePageSession =
         webSocketClient.connectToChrome(webSocketDebuggerUrl).attachToPage(id)
 }
