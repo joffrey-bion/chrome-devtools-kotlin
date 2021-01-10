@@ -114,6 +114,11 @@ class ChromeDPClient(
      * To attach to a specific target using the same underlying web socket connection, call
      * [ChromeBrowserSession.attachToPage] or
      * [ChromeBrowserSession.attachToNewPage][org.hildan.chrome.devtools.targets.attachToNewPage].
+     *
+     * Note that you're responsible for closing the web socket by calling [ChromeBrowserSession.close], or indirectly
+     * by calling (`use()`).
+     * Note that calling [close()][ChromePageSession.close] or `use()` on a derived [ChromePageSession] doesn't close
+     * the underlying web socket connection.
      */
     suspend fun webSocket(): ChromeBrowserSession {
         val browserDebuggerUrl = version().webSocketDebuggerUrl
