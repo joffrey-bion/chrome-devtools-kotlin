@@ -2,10 +2,10 @@ package org.hildan.chrome.devtools.targets
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.*
+import org.hildan.chrome.devtools.domains.page.NavigateRequest
 import org.hildan.chrome.devtools.domains.target.*
 import org.hildan.chrome.devtools.domains.target.events.TargetEvent
 import org.hildan.chrome.devtools.protocol.ChromeDPSession
@@ -87,6 +87,28 @@ suspend inline fun <T> ChromePageSession.use(block: (ChromePageSession) -> T): T
         return block(this)
     } finally {
         close()
+    }
+}
+
+/**
+ * Navigates the current page according to the provided [url], and suspends until the corresponding
+ * `frameStoppedLoading` event is received.
+ */
+suspend fun ChromePageSession.navigateAndWaitLoading(url: String) {
+    navigateAndWaitLoading(NavigateRequest(url = url))
+}
+
+/**
+ * Navigates the current page according to the provided [navigateRequest], and suspends until the
+ * corresponding `frameStoppedLoading` event is received.
+ */
+@OptIn(ExperimentalChromeApi::class)
+suspend fun ChromePageSession.navigateAndWaitLoading(navigateRequest: NavigateRequest) {
+    page.enable()
+    coroutineScope {
+        val frameStoppedLoadingEvent = async { page.frameStoppedLoading().first { it.frameId == targetInfo.targetId} }
+        page.navigate(navigateRequest)
+        frameStoppedLoadingEvent.await()
     }
 }
 

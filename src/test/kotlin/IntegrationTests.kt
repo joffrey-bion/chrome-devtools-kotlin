@@ -15,6 +15,7 @@ import org.hildan.chrome.devtools.domains.runtime.evaluateJs
 import org.hildan.chrome.devtools.protocol.ChromeDPClient
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
 import org.hildan.chrome.devtools.targets.attachToNewPage
+import org.hildan.chrome.devtools.targets.navigateAndWaitLoading
 import org.hildan.chrome.devtools.targets.use
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.junit.jupiter.Container
@@ -84,13 +85,32 @@ class IntegrationTests {
     }
 
     @Test
-    fun webSocket_navigateAndWaitLoading() {
+    fun pageDomain_navigateAndWaitLoading() {
         runBlocking {
             val chrome = chromeDpClient()
 
             chrome.webSocket().use { browser ->
                 browser.attachToNewPage("about:blank").use { page ->
                     page.page.navigateAndWaitLoading("http://www.google.com")
+                    page.dom.enable()
+
+                    val nodeId = page.dom.findNodeBySelector("#main")
+                    assertNotNull(nodeId)
+                    val html = page.dom.getOuterHTML(GetOuterHTMLRequest(nodeId = nodeId))
+                    println(html)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun pageSession_navigateAndWaitLoading() {
+        runBlocking {
+            val chrome = chromeDpClient()
+
+            chrome.webSocket().use { browser ->
+                browser.attachToNewPage("about:blank").use { page ->
+                    page.navigateAndWaitLoading("http://www.google.com")
                     page.dom.enable()
 
                     val nodeId = page.dom.findNodeBySelector("#main")

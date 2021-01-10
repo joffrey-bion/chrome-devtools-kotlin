@@ -9,7 +9,7 @@ import java.util.*
  * Navigates the current page according to the provided [url], and suspends until the corresponding
  * `frameStoppedLoading` event is received.
  */
-@OptIn(ExperimentalChromeApi::class)
+@Deprecated("This method is subject to race conditions. Prefer calling it on the ChromePageSession itself instead")
 suspend fun PageDomain.navigateAndWaitLoading(url: String) {
     navigateAndWaitLoading(NavigateRequest(url = url))
 }
@@ -18,6 +18,7 @@ suspend fun PageDomain.navigateAndWaitLoading(url: String) {
  * Navigates the current page according to the provided [navigateRequest], and suspends until the
  * corresponding `frameStoppedLoading` event is received.
  */
+@Deprecated("This method is subject to race conditions. Prefer calling it on the ChromePageSession itself instead")
 @OptIn(ExperimentalChromeApi::class)
 suspend fun PageDomain.navigateAndWaitLoading(navigateRequest: NavigateRequest) {
     enable()
