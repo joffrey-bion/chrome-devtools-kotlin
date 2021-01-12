@@ -11,8 +11,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        jdk-version: [11]
+        os: [ubuntu-latest]
+        jdk-version: [11, 15]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
