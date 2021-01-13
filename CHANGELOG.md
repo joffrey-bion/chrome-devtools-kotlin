@@ -1,5 +1,16 @@
 # Change Log
 
+## [0.11.1](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.11.1) (2021-01-13)
+[Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.11.0...0.11.1)
+
+**Closed issues:**
+
+- Upgrade Dokka Gradle plugin to 1.4.20 [\#23](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/23)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 0.0.842839 [\#29](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/29) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [0.11.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.11.0) (2021-01-13)
 [Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.10.1...0.11.0)
 
