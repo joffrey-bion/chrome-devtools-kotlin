@@ -1,5 +1,21 @@
 # Change Log
 
+## [0.11.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.11.0) (2021-01-13)
+[Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.10.1...0.11.0)
+
+**Fixed bugs:**
+
+- Race condition in navigateAndWaitLoading [\#25](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/25)
+
+**Implemented enhancements:**
+
+- Add getTargetInfo convenience method [\#27](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/27)
+- Upgrade Ktor to 1.5 [\#24](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/24)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 0.0.841965 [\#28](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/28) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [0.10.1](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.10.1) (2021-01-09)
 [Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.10.0...0.10.1)
 
@@ -87,7 +103,7 @@
 ## [0.6.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.6.0) (2020-11-14)
 [Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.5.0...0.6.0)
 
-**Closed issues:**
+**Fixed bugs:**
 
 - use\(\) and close\(\) on page sessions should NOT close the web socket [\#4](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/4)
 
