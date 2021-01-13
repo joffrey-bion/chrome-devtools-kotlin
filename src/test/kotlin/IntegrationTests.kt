@@ -85,7 +85,7 @@ class IntegrationTests {
             val chrome = chromeDpClient()
 
             chrome.webSocket().use { browser ->
-                browser.attachToNewPage("about:blank").use { page ->
+                browser.attachToNewPageAndAwaitPageLoad("about:blank").use { page ->
 
                     assertEquals("about:blank", page.getTargetInfo().title)
 
