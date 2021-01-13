@@ -1,5 +1,6 @@
 name: Daily protocol updates
 on:
+  workflow_dispatch: { } # to allow manual trigger
   schedule:
     # Every night at 4am
     - cron: "0 4 * * *"
