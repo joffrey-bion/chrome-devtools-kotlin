@@ -21,7 +21,8 @@ suspend fun ChromeBrowserSession.attachToPage(targetId: TargetID): ChromePageSes
     if (targetInfo.type != "page") {
         error("Cannot initiate a page session with target of type ${targetInfo.type} (target ID: $targetId)")
     }
-    return ChromePageSession(ChromeDPSession(session.connection, sessionId), this, targetInfo)
+    val metaData = ChromePageMetaData(targetId, targetInfo.browserContextId)
+    return ChromePageSession(ChromeDPSession(session.connection, sessionId), this, metaData)
 }
 
 /**
@@ -102,7 +103,7 @@ suspend fun ChromePageSession.navigateAndAwaitPageLoad(navigateRequest: Navigate
     coroutineScope {
         val events = page.frameStoppedLoading()
         val stoppedLoadingEvent = async(start = CoroutineStart.UNDISPATCHED) {
-            events.first { it.frameId == targetInfo.targetId }
+            events.first { it.frameId == metaData.targetId }
         }
         page.navigate(navigateRequest)
         stoppedLoadingEvent.await()
@@ -135,6 +136,12 @@ suspend inline fun <T> ChromePageSession.use(block: (ChromePageSession) -> T): T
         close()
     }
 }
+
+/**
+ * Retrieves information about this session's page target.
+ */
+@OptIn(ExperimentalChromeApi::class)
+suspend fun ChromePageSession.getTargetInfo(): TargetInfo = target.getTargetInfo(GetTargetInfoRequest()).targetInfo
 
 /**
  * Watches the available targets in this browser.

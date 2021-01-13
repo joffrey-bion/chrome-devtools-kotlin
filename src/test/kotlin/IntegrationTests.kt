@@ -13,17 +13,11 @@ import org.hildan.chrome.devtools.domains.page.events.PageEvent
 import org.hildan.chrome.devtools.domains.runtime.evaluateJs
 import org.hildan.chrome.devtools.protocol.ChromeDPClient
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
-import org.hildan.chrome.devtools.targets.attachToNewPage
-import org.hildan.chrome.devtools.targets.attachToNewPageAndAwaitPageLoad
-import org.hildan.chrome.devtools.targets.navigateAndAwaitPageLoad
-import org.hildan.chrome.devtools.targets.use
+import org.hildan.chrome.devtools.targets.*
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
-import kotlin.test.assertTrue
+import kotlin.test.*
 
 // workaround for https://github.com/testcontainers/testcontainers-java/issues/318
 class KGenericContainer(imageName: String) : GenericContainer<KGenericContainer>(imageName)
@@ -65,19 +59,21 @@ class IntegrationTests {
             val chrome = chromeDpClient()
 
             val browser = chrome.webSocket()
-            val page = browser.attachToNewPageAndAwaitPageLoad("http://www.google.com")
-            val targetInfo = page.targetInfo
+            val session = browser.attachToNewPageAndAwaitPageLoad("http://www.google.com")
+            val targetId = session.metaData.targetId
 
-            assertTrue(chrome.targets().any { it.id == targetInfo.targetId }, "the new target should be listed")
+            assertEquals("Google", session.getTargetInfo().title)
 
-            val nodeId = page.dom.findNodeBySelector("#main")
+            assertTrue(chrome.targets().any { it.id == targetId }, "the new target should be listed")
+
+            val nodeId = session.dom.findNodeBySelector("#main")
             assertNotNull(nodeId)
 
-            val getOuterHTMLResponse = page.dom.getOuterHTML(GetOuterHTMLRequest(nodeId = nodeId))
+            val getOuterHTMLResponse = session.dom.getOuterHTML(GetOuterHTMLRequest(nodeId = nodeId))
             assertTrue(getOuterHTMLResponse.outerHTML.contains("<div class=\"content\""))
 
-            page.close()
-            assertTrue(chrome.targets().none { it.id == targetInfo.targetId }, "the new target should be closed (not listed)")
+            session.close()
+            assertTrue(chrome.targets().none { it.id == targetId }, "the new target should be closed (not listed)")
 
             browser.close()
         }
@@ -90,7 +86,11 @@ class IntegrationTests {
 
             chrome.webSocket().use { browser ->
                 browser.attachToNewPage("about:blank").use { page ->
+
+                    assertEquals("about:blank", page.getTargetInfo().title)
+
                     page.navigateAndAwaitPageLoad("http://www.google.com")
+                    assertEquals("Google", page.getTargetInfo().title)
 
                     val nodeId = page.dom.findNodeBySelector("#main")
                     assertNotNull(nodeId)
@@ -138,7 +138,7 @@ class IntegrationTests {
             val chrome = chromeDpClient()
             val browser = chrome.webSocket()
             val page = browser.attachToNewPage("http://google.com")
-            println(page.targetInfo)
+            println(page.metaData)
             page.page.enable()
             page.page.events()
                 .onEach { println(it) }
@@ -147,7 +147,7 @@ class IntegrationTests {
             page.page.frameStoppedLoading().first()
 
             val targets = page.target.getTargets().targetInfos
-            val targetInfo = targets.first { it.targetId == page.targetInfo.targetId }
+            val targetInfo = targets.first { it.targetId == page.metaData.targetId }
             assertEquals("page", targetInfo.type)
             assertTrue(targetInfo.attached)
             assertTrue(targetInfo.url.contains("www.google.com")) // redirected
@@ -164,7 +164,6 @@ class IntegrationTests {
             data class Person(val firstName: String, val lastName: String)
 
             val chrome = chromeDpClient()
-            chrome.closeAllTargets()
             val browser = chrome.webSocket()
             val page = browser.attachToNewPage("http://google.com")
             assertEquals(42, page.runtime.evaluateJs<Int>("42"))
@@ -177,6 +176,7 @@ class IntegrationTests {
                 page.runtime.evaluateJs<Person>("""eval({firstName: "Bob", lastName: "Lee Swagger"})""")
             )
             page.close()
+            browser.close()
         }
     }
 }

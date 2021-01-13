@@ -1,9 +1,7 @@
 package org.hildan.chrome.devtools.targets
 
-import org.hildan.chrome.devtools.domains.target.CloseTargetRequest
-import org.hildan.chrome.devtools.domains.target.DetachFromTargetRequest
-import org.hildan.chrome.devtools.domains.target.DisposeBrowserContextRequest
-import org.hildan.chrome.devtools.domains.target.TargetInfo
+import org.hildan.chrome.devtools.domains.browser.BrowserContextID
+import org.hildan.chrome.devtools.domains.target.*
 import org.hildan.chrome.devtools.protocol.ChromeDPSession
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
 
@@ -51,6 +49,12 @@ class ChromeBrowserSession internal constructor(
     }
 }
 
+@OptIn(ExperimentalChromeApi::class)
+data class ChromePageMetaData(
+    val targetId: TargetID,
+    val browserContextId: BrowserContextID? = null
+)
+
 /**
  * A page session, usually created when attaching to a page from the root browser session.
  */
@@ -67,7 +71,7 @@ class ChromePageSession internal constructor(
     /**
      * Info about the underlying page target.
      */
-    val targetInfo: TargetInfo,
+    val metaData: ChromePageMetaData,
     override val targetImplementation: SimpleTarget = SimpleTarget(session),
 ) : AbstractTargetSession(session), RenderFrameTarget by targetImplementation {
 
@@ -90,11 +94,11 @@ class ChromePageSession internal constructor(
      */
     @OptIn(ExperimentalChromeApi::class)
     suspend fun close() {
-        parent.target.closeTarget(CloseTargetRequest(targetId = targetInfo.targetId))
+        parent.target.closeTarget(CloseTargetRequest(targetId = metaData.targetId))
 
         // FIXME do we really need this given the "disposeOnDetach=true" used at creation?
-        if (!targetInfo.browserContextId.isNullOrEmpty()) {
-            parent.target.disposeBrowserContext(DisposeBrowserContextRequest(targetInfo.browserContextId))
+        if (!metaData.browserContextId.isNullOrEmpty()) {
+            parent.target.disposeBrowserContext(DisposeBrowserContextRequest(metaData.browserContextId))
         }
     }
 }
