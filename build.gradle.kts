@@ -4,7 +4,7 @@ plugins {
     val kotlinVersion = "1.4.21"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
-    id("org.jetbrains.dokka") version "0.10.1"
+    id("org.jetbrains.dokka") version "1.4.20"
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.2.3"
     `maven-publish`
     id("com.jfrog.bintray") version "1.8.5"
@@ -39,6 +39,7 @@ dependencies {
 
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit5"))
+    testImplementation("org.slf4j:slf4j-simple:1.7.30")
     testImplementation("org.testcontainers:testcontainers:1.15.1")
     testImplementation("org.testcontainers:junit-jupiter:1.15.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
@@ -56,10 +57,6 @@ tasks {
     compileKotlin {
         kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
         dependsOn(generateProtocolApi)
-    }
-    dokka {
-        outputFormat = "html"
-        outputDirectory = "$buildDir/javadoc"
     }
     test {
         useJUnitPlatform()
@@ -81,11 +78,11 @@ val sourcesJar by tasks.creating(Jar::class) {
     from(sourceSets.main.get().allSource)
 }
 
-val dokkaJar by tasks.creating(Jar::class) {
+val dokkaJavadocJar by tasks.creating(Jar::class) {
     group = JavaBasePlugin.DOCUMENTATION_GROUP
-    description = "Assembles Kotlin docs with Dokka"
+    description = "Assembles Kotlin docs with Dokka into a Javadoc jar"
     archiveClassifier.set("javadoc")
-    from(tasks.dokka)
+    from(tasks.dokkaJavadoc)
 }
 
 publishing {
@@ -94,7 +91,7 @@ publishing {
             from(components["java"])
 
             artifact(sourcesJar)
-            artifact(dokkaJar)
+            artifact(dokkaJavadocJar)
 
             pom {
                 name.set(project.name)
