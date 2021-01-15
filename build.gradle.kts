@@ -51,6 +51,8 @@ kotlin {
     }
 }
 
+val updateProtocolDefinitions by tasks.registering(org.hildan.chrome.devtools.build.UpdateProtocolDefinitionsTask::class)
+
 val generateProtocolApi by tasks.registering(org.hildan.chrome.devtools.build.GenerateProtocolApiTask::class)
 
 tasks {

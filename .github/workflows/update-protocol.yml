@@ -18,21 +18,6 @@ jobs:
         with:
           java-version: 11
 
-      - name: Set up Kotlin
-        uses: fwilhe2/setup-kotlin@0.0.6
-        with:
-          version: 1.4.20
-
-      - name: Update protocol
-        run: kotlinc -script update-protocol.kts
-
-      - name: Read protocol version
-        uses: pCYSl5EDgo/cat@master
-        id: version
-        with:
-          path: protocol/version.txt
-          trim: true
-
       - name: Gradle build cache
         uses: actions/cache@v2.1.1
         with:
@@ -45,6 +30,16 @@ jobs:
         with:
           path: ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle-wrapper.properties') }}
+
+      - name: Update protocol
+        run: ./gradlew updateProtocolDefinitions
+
+      - name: Read protocol version
+        uses: pCYSl5EDgo/cat@master
+        id: version
+        with:
+          path: protocol/version.txt
+          trim: true
 
       - name: Update public ABI descriptors
         run: ./gradlew apiDump
