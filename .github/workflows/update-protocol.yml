@@ -18,19 +18,6 @@ jobs:
         with:
           java-version: 11
 
-      - name: Gradle build cache
-        uses: actions/cache@v2.1.1
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-build-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: ${{ runner.os }}-gradle-build-
-
-      - name: Gradle wrapper cache
-        uses: actions/cache@v2.1.1
-        with:
-          path: ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle-wrapper.properties') }}
-
       - name: Set up Kotlin
         uses: fwilhe2/setup-kotlin@main
 
@@ -43,6 +30,19 @@ jobs:
         with:
           path: protocol/version.txt
           trim: true
+
+      - name: Gradle build cache
+        uses: actions/cache@v2.1.1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-build-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: ${{ runner.os }}-gradle-build-
+
+      - name: Gradle wrapper cache
+        uses: actions/cache@v2.1.1
+        with:
+          path: ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle-wrapper.properties') }}
 
       - name: Update public ABI descriptors
         run: ./gradlew apiDump
