@@ -19,7 +19,7 @@ jobs:
           java-version: 11
 
       - name: Set up Kotlin
-        uses: fwilhe2/setup-kotlin@main
+        uses: fwilhe2/setup-kotlin@0.0.6
 
       - name: Update protocol
         run: kotlinc -script update-protocol.kts
