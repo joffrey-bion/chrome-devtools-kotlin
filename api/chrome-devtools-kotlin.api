@@ -8791,6 +8791,8 @@ public final class org/hildan/chrome/devtools/domains/dom/DOMExtensionsKt {
 	public static final fun getAttributeValue (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun getAttributes (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun getAttributes (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun getBoxModel (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun getBoxModel (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun getDocumentRootNodeId (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun getNodeBySelector (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
@@ -32567,6 +32569,10 @@ public final class org/hildan/chrome/devtools/domains/tracing/events/TracingEven
 
 public final class org/hildan/chrome/devtools/domains/tracing/events/TracingEvent$TracingCompleteEvent$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/utils/ConversionsKt {
+	public static final fun toViewport (Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/page/Viewport;
 }
 
 public final class org/hildan/chrome/devtools/domains/webaudio/AudioListener {

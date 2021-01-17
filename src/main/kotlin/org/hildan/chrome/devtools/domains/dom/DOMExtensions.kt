@@ -62,3 +62,15 @@ suspend fun DOMDomain.getAttributeValue(nodeSelector: String, attributeName: Str
  */
 suspend fun DOMDomain.getAttributeValue(nodeId: NodeId, attributeName: String): String? =
     getAttributes(nodeId)[attributeName]
+
+/**
+ * Returns boxes for the node corresponding to the given [selector], or null if the selector didn't match any node.
+ */
+suspend fun DOMDomain.getBoxModel(selector: String): BoxModel? = findNodeBySelector(selector)?.let { getBoxModel(it) }
+
+/**
+ * Returns boxes for the node corresponding to the given [nodeId].
+ *
+ * [Official doc](https://chromedevtools.github.io/devtools-protocol/tot/DOM/#method-getBoxModel)
+ */
+suspend fun DOMDomain.getBoxModel(nodeId: NodeId): BoxModel = getBoxModel(GetBoxModelRequest(nodeId)).model
