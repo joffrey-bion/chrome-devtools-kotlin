@@ -8645,6 +8645,81 @@ public final class org/hildan/chrome/devtools/domains/dom/CopyToResponse$Compani
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/dom/DOMAttributes : java/util/Map, kotlin/jvm/internal/markers/KMappedMarker {
+	public fun <init> (Ljava/util/Map;)V
+	public fun clear ()V
+	public synthetic fun compute (Ljava/lang/Object;Ljava/util/function/BiFunction;)Ljava/lang/Object;
+	public fun compute (Ljava/lang/String;Ljava/util/function/BiFunction;)Ljava/lang/String;
+	public synthetic fun computeIfAbsent (Ljava/lang/Object;Ljava/util/function/Function;)Ljava/lang/Object;
+	public fun computeIfAbsent (Ljava/lang/String;Ljava/util/function/Function;)Ljava/lang/String;
+	public synthetic fun computeIfPresent (Ljava/lang/Object;Ljava/util/function/BiFunction;)Ljava/lang/Object;
+	public fun computeIfPresent (Ljava/lang/String;Ljava/util/function/BiFunction;)Ljava/lang/String;
+	public final fun containsKey (Ljava/lang/Object;)Z
+	public fun containsKey (Ljava/lang/String;)Z
+	public final fun containsValue (Ljava/lang/Object;)Z
+	public fun containsValue (Ljava/lang/String;)Z
+	public final fun entrySet ()Ljava/util/Set;
+	public final fun get (Ljava/lang/Object;)Ljava/lang/Object;
+	public fun get (Ljava/lang/String;)Ljava/lang/String;
+	public final fun getAction ()Ljava/lang/String;
+	public final fun getAlt ()Ljava/lang/String;
+	public final fun getAsync ()Ljava/lang/Boolean;
+	public final fun getAutocomplete ()Ljava/lang/Boolean;
+	public final fun getAutofocus ()Ljava/lang/Boolean;
+	public final fun getAutoplay ()Ljava/lang/Boolean;
+	public final fun getCharset ()Ljava/nio/charset/Charset;
+	public final fun getChecked ()Ljava/lang/Boolean;
+	public final fun getClass ()Ljava/lang/String;
+	public final fun getClasses ()Ljava/util/List;
+	public final fun getCols ()Ljava/lang/Integer;
+	public final fun getData ()Ljava/lang/String;
+	public fun getEntries ()Ljava/util/Set;
+	public final fun getFor ()Ljava/lang/String;
+	public final fun getForm ()Ljava/lang/String;
+	public final fun getHeight ()Ljava/lang/Integer;
+	public final fun getHref ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getInputSize ()Ljava/lang/Integer;
+	public fun getKeys ()Ljava/util/Set;
+	public final fun getLang ()Ljava/lang/String;
+	public final fun getMethod ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getPattern ()Ljava/lang/String;
+	public final fun getPlaceholder ()Ljava/lang/String;
+	public final fun getReadonly ()Ljava/lang/Boolean;
+	public final fun getRel ()Ljava/lang/String;
+	public final fun getRequired ()Ljava/lang/Boolean;
+	public final fun getRows ()Ljava/lang/Integer;
+	public final fun getRowspan ()Ljava/lang/Integer;
+	public final fun getSelected ()Ljava/lang/Boolean;
+	public fun getSize ()I
+	public final fun getSrc ()Ljava/lang/String;
+	public final fun getStyle ()Ljava/lang/String;
+	public final fun getTitle ()Ljava/lang/String;
+	public final fun getType ()Ljava/lang/String;
+	public final fun getValue ()Ljava/lang/String;
+	public fun getValues ()Ljava/util/Collection;
+	public final fun getWidth ()Ljava/lang/Integer;
+	public fun isEmpty ()Z
+	public final fun keySet ()Ljava/util/Set;
+	public synthetic fun merge (Ljava/lang/Object;Ljava/lang/Object;Ljava/util/function/BiFunction;)Ljava/lang/Object;
+	public fun merge (Ljava/lang/String;Ljava/lang/String;Ljava/util/function/BiFunction;)Ljava/lang/String;
+	public synthetic fun put (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+	public fun put (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public fun putAll (Ljava/util/Map;)V
+	public synthetic fun putIfAbsent (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+	public fun putIfAbsent (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public fun remove (Ljava/lang/Object;)Ljava/lang/Object;
+	public fun remove (Ljava/lang/Object;Ljava/lang/Object;)Z
+	public synthetic fun replace (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+	public synthetic fun replace (Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Z
+	public fun replace (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public fun replace (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z
+	public fun replaceAll (Ljava/util/function/BiFunction;)V
+	public final fun size ()I
+	public final fun values ()Ljava/util/Collection;
+}
+
 public final class org/hildan/chrome/devtools/domains/dom/DOMDomain {
 	public final fun attributeModified ()Lkotlinx/coroutines/flow/Flow;
 	public final fun attributeRemoved ()Lkotlinx/coroutines/flow/Flow;
@@ -8712,7 +8787,12 @@ public final class org/hildan/chrome/devtools/domains/dom/DOMDomain {
 public final class org/hildan/chrome/devtools/domains/dom/DOMExtensionsKt {
 	public static final fun findNodeBySelector (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun focusNodeBySelector (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun getAttributeValue (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;ILjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun getAttributeValue (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun getAttributes (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun getAttributes (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun getDocumentRootNodeId (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun getNodeBySelector (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class org/hildan/chrome/devtools/domains/dom/DescribeNodeRequest {

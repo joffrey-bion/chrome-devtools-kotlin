@@ -7,8 +7,7 @@ import kotlinx.coroutines.flow.takeWhile
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.Serializable
-import org.hildan.chrome.devtools.domains.dom.GetOuterHTMLRequest
-import org.hildan.chrome.devtools.domains.dom.findNodeBySelector
+import org.hildan.chrome.devtools.domains.dom.*
 import org.hildan.chrome.devtools.domains.page.events.PageEvent
 import org.hildan.chrome.devtools.domains.runtime.evaluateJs
 import org.hildan.chrome.devtools.protocol.ChromeDPClient
@@ -177,6 +176,27 @@ class IntegrationTests {
             )
             page.close()
             browser.close()
+        }
+    }
+
+    @Test
+    fun getAttributes_selectedWithoutValue() {
+        runBlocking {
+            chromeDpClient().webSocket().use { browser ->
+                browser.attachToNewPageAndAwaitPageLoad("https://www.htmlquick.com/reference/tags/select.html").use { page ->
+
+                    val nodeId = page.dom.findNodeBySelector("select[name=carbrand] option[selected]")
+                    val attributes1 = page.dom.getAttributes(nodeId!!)
+                    assertEquals(true, attributes1.selected)
+
+                    val attributes2 = page.dom.getAttributes("select[name=carbrand] option[selected]")!!
+                    assertEquals(true, attributes2.selected)
+
+                    // Attributes without value (e.g. "selected" in <option selected />) are returned as empty strings by the protocol.
+                    val selected = page.dom.getAttributeValue("select[name=carbrand] option[selected]", "selected")!!
+                    assertEquals("", selected)
+                }
+            }
         }
     }
 }
