@@ -60,6 +60,9 @@ tasks {
         kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
         dependsOn(generateProtocolApi)
     }
+    compileTestKotlin {
+        kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+    }
     test {
         useJUnitPlatform()
         testLogging {
