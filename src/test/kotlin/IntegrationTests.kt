@@ -1,14 +1,6 @@
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.takeWhile
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import kotlinx.serialization.Serializable
 import org.hildan.chrome.devtools.domains.dom.*
-import org.hildan.chrome.devtools.domains.page.events.PageEvent
 import org.hildan.chrome.devtools.domains.runtime.evaluateJs
 import org.hildan.chrome.devtools.protocol.ChromeDPClient
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
@@ -65,6 +57,7 @@ class IntegrationTests {
 
             assertTrue(chrome.targets().any { it.id == targetId }, "the new target should be listed")
 
+            delay(500) // sometimes the #main element is not loaded fast enough, maybe JS rendering?
             val nodeId = session.dom.findNodeBySelector("#main")
             assertNotNull(nodeId)
 
@@ -81,9 +74,7 @@ class IntegrationTests {
     @Test
     fun pageSession_navigateAndAwaitPageLoad() {
         runBlocking {
-            val chrome = chromeDpClient()
-
-            chrome.webSocket().use { browser ->
+            chromeDpClient().webSocket().use { browser ->
                 browser.attachToNewPageAndAwaitPageLoad("about:blank").use { page ->
 
                     assertEquals("about:blank", page.getTargetInfo().title)
@@ -91,42 +82,28 @@ class IntegrationTests {
                     page.navigateAndAwaitPageLoad("http://www.google.com")
                     assertEquals("Google", page.getTargetInfo().title)
 
+                    delay(500) // it seems the #main elements is not ready sometimes
                     val nodeId = page.dom.findNodeBySelector("#main")
                     assertNotNull(nodeId)
-
-                    val html = page.dom.getOuterHTML(GetOuterHTMLRequest(nodeId = nodeId))
-                    println(html)
                 }
             }
         }
     }
 
-    @OptIn(ExperimentalChromeApi::class)
+    @Ignore // this test seems to show that Krossbow's JDK11 websocket is not thread safe
     @Test
     fun test_parallelPages() {
         runBlocking {
-            val chrome = chromeDpClient()
-
-            val browser = chrome.webSocket()
-            coroutineScope {
-                launch {
-                    browser.attachToNewPage("http://www.google.com").use { page ->
-                        val heapUsage = page.runtime.getHeapUsage()
-                        println(heapUsage)
-                        delay(500)
-                        println("almost done 1")
-                    }
-                }
-                launch {
-                    browser.attachToNewPage("http://www.github.com").use { page ->
-                        println(page.browser.getVersion())
-                        val heapUsage = page.runtime.getHeapUsage()
-                        println(heapUsage)
-                        println("almost done 2")
+            chromeDpClient().webSocket().use { browser ->
+                repeat(5) {
+                    launch(Dispatchers.Default) {
+                        browser.attachToNewPage("http://www.google.com").use { page ->
+                            val docRoot = page.dom.getDocumentRootNodeId()
+                            page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
+                        }
                     }
                 }
             }
-            browser.close()
         }
     }
 
@@ -134,25 +111,15 @@ class IntegrationTests {
     @Test
     fun page_getTargets() {
         runBlocking {
-            val chrome = chromeDpClient()
-            val browser = chrome.webSocket()
-            val page = browser.attachToNewPage("http://google.com")
-            println(page.metaData)
-            page.page.enable()
-            page.page.events()
-                .onEach { println(it) }
-                .takeWhile { it !is PageEvent.FrameStoppedLoadingEvent }
-                .launchIn(this)
-            page.page.frameStoppedLoading().first()
-
-            val targets = page.target.getTargets().targetInfos
-            val targetInfo = targets.first { it.targetId == page.metaData.targetId }
-            assertEquals("page", targetInfo.type)
-            assertTrue(targetInfo.attached)
-            assertTrue(targetInfo.url.contains("www.google.com")) // redirected
-            println(targets)
-            page.close()
-            browser.close()
+            chromeDpClient().webSocket().use { browser ->
+                browser.attachToNewPageAndAwaitPageLoad("http://google.com").use { page ->
+                    val targets = page.target.getTargets().targetInfos
+                    val targetInfo = targets.first { it.targetId == page.metaData.targetId }
+                    assertEquals("page", targetInfo.type)
+                    assertTrue(targetInfo.attached)
+                    assertTrue(targetInfo.url.contains("www.google.com")) // redirected
+                }
+            }
         }
     }
 
@@ -162,13 +129,11 @@ class IntegrationTests {
             @Serializable
             data class Person(val firstName: String, val lastName: String)
 
-            val chrome = chromeDpClient()
-            val browser = chrome.webSocket()
-            val page = browser.attachToNewPage("http://google.com")
+            val browser = chromeDpClient().webSocket()
+            val page = browser.attachToNewPageAndAwaitPageLoad("http://google.com")
             assertEquals(42, page.runtime.evaluateJs<Int>("42"))
             assertEquals(
-                42 to "test",
-                page.runtime.evaluateJs<Pair<Int, String>>("""eval({first: 42, second: "test"})""")
+                42 to "test", page.runtime.evaluateJs<Pair<Int, String>>("""eval({first: 42, second: "test"})""")
             )
             assertEquals(
                 Person("Bob", "Lee Swagger"),
