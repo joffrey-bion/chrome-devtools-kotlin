@@ -30,7 +30,7 @@ repositories {
 }
 
 dependencies {
-    api("org.hildan.krossbow:krossbow-websocket-core:1.1.2")
+    api("org.hildan.krossbow:krossbow-websocket-core:1.1.4")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
 
     val ktorVersion = "1.5.0"

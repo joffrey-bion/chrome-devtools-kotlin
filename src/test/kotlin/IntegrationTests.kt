@@ -2,6 +2,7 @@ import kotlinx.coroutines.*
 import kotlinx.serialization.Serializable
 import org.hildan.chrome.devtools.domains.dom.*
 import org.hildan.chrome.devtools.domains.runtime.evaluateJs
+import org.hildan.chrome.devtools.domains.storage.GetCookiesRequest
 import org.hildan.chrome.devtools.protocol.ChromeDPClient
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
 import org.hildan.chrome.devtools.targets.*
@@ -90,16 +91,21 @@ class IntegrationTests {
         }
     }
 
-    @Ignore // this test seems to show that Krossbow's JDK11 websocket is not thread safe
+    @OptIn(ExperimentalChromeApi::class)
     @Test
     fun test_parallelPages() {
         runBlocking {
             chromeDpClient().webSocket().use { browser ->
-                repeat(5) {
-                    launch(Dispatchers.Default) {
-                        browser.attachToNewPage("http://www.google.com").use { page ->
-                            val docRoot = page.dom.getDocumentRootNodeId()
-                            page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
+                // we want all coroutines to finish before we close the browser session
+                coroutineScope {
+                    repeat(8) {
+                        launch(Dispatchers.Default) {
+                            browser.attachToNewPage("http://www.google.com").use { page ->
+                                page.runtime.getHeapUsage()
+                                val docRoot = page.dom.getDocumentRootNodeId()
+                                page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
+                                page.storage.getCookies(GetCookiesRequest())
+                            }
                         }
                     }
                 }
