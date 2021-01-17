@@ -64,6 +64,21 @@ suspend fun DOMDomain.getAttributeValue(nodeId: NodeId, attributeName: String): 
     getAttributes(nodeId)[attributeName]
 
 /**
+ * Sets the attribute of the given [name] to the given [value] on the node corresponding to the given [nodeSelector].
+ * Throws an exception if the selector didn't match any node.
+ */
+suspend fun DOMDomain.setAttributeValue(nodeSelector: String, name: String, value: String) {
+    setAttributeValue(nodeId = getNodeBySelector(nodeSelector), name, value)
+}
+
+/**
+ * Sets the attribute of the given [name] to the given [value] on the node corresponding to the given [nodeId].
+ */
+suspend fun DOMDomain.setAttributeValue(nodeId: NodeId, name: String, value: String) {
+    setAttributeValue(SetAttributeValueRequest(nodeId, name, value))
+}
+
+/**
  * Returns boxes for the node corresponding to the given [selector], or null if the selector didn't match any node.
  */
 suspend fun DOMDomain.getBoxModel(selector: String): BoxModel? = findNodeBySelector(selector)?.let { getBoxModel(it) }
