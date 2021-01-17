@@ -1,5 +1,13 @@
 # Change Log
 
+## [0.12.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.12.0) (2021-01-17)
+[Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.11.1...0.12.0)
+
+**Implemented enhancements:**
+
+- Conversions and extensions for BoxModel and Viewport [\#31](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/31)
+- Extensions and typing for HTML attributes [\#30](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/30)
+
 ## [0.11.1](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.11.1) (2021-01-13)
 [Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.11.0...0.11.1)
 
