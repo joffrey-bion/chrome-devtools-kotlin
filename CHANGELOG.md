@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.12.1](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.12.1) (2021-01-17)
+[Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.12.0...0.12.1)
+
+**Fixed bugs:**
+
+- Web socket connection is not thread safe [\#32](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/32)
+
 ## [0.12.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.12.0) (2021-01-17)
 [Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.11.1...0.12.0)
 
