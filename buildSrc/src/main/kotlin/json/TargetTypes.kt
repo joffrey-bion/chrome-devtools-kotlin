@@ -1,9 +1,8 @@
 package org.hildan.chrome.devtools.build.json
 
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.UnstableDefault
-import kotlinx.serialization.builtins.list
-import kotlinx.serialization.json.Json
+import kotlinx.serialization.*
+import kotlinx.serialization.json.*
 import java.nio.file.Path
 
 // Data for this is read from protocol/target_types.json, which is manually extracted from:
@@ -17,7 +16,6 @@ data class TargetType(
     val supportedDomains: List<String>
 ) {
     companion object {
-        @OptIn(UnstableDefault::class)
-        fun parseJson(path: Path): List<TargetType> = Json.parse(serializer().list, path.toFile().readText())
+        fun parseJson(path: Path): List<TargetType> = Json.decodeFromString(path.toFile().readText())
     }
 }
