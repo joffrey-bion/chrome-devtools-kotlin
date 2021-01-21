@@ -22386,6 +22386,7 @@ public final class org/hildan/chrome/devtools/domains/overlay/OverlayDomain {
 	public final fun setShowPaintRects (Lorg/hildan/chrome/devtools/domains/overlay/SetShowPaintRectsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setShowScrollBottleneckRects (Lorg/hildan/chrome/devtools/domains/overlay/SetShowScrollBottleneckRectsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setShowViewportSizeOnResize (Lorg/hildan/chrome/devtools/domains/overlay/SetShowViewportSizeOnResizeRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setShowWebVitals (Lorg/hildan/chrome/devtools/domains/overlay/SetShowWebVitalsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class org/hildan/chrome/devtools/domains/overlay/SetInspectModeRequest {
@@ -22769,6 +22770,35 @@ public final class org/hildan/chrome/devtools/domains/overlay/SetShowViewportSiz
 }
 
 public final class org/hildan/chrome/devtools/domains/overlay/SetShowViewportSizeOnResizeRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/SetShowWebVitalsRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/overlay/SetShowWebVitalsRequest$Companion;
+	public synthetic fun <init> (IZLkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Z)V
+	public final fun component1 ()Z
+	public final fun copy (Z)Lorg/hildan/chrome/devtools/domains/overlay/SetShowWebVitalsRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/overlay/SetShowWebVitalsRequest;ZILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/overlay/SetShowWebVitalsRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getShow ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/overlay/SetShowWebVitalsRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/SetShowWebVitalsRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/overlay/SetShowWebVitalsRequest$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/overlay/SetShowWebVitalsRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/overlay/SetShowWebVitalsRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/SetShowWebVitalsRequest$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
