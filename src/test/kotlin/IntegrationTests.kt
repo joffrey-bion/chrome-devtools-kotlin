@@ -10,6 +10,9 @@ import org.testcontainers.containers.GenericContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
 import kotlin.test.*
+import kotlin.time.Duration
+import kotlin.time.ExperimentalTime
+import kotlin.time.milliseconds
 
 // workaround for https://github.com/testcontainers/testcontainers-java/issues/318
 class KGenericContainer(imageName: String) : GenericContainer<KGenericContainer>(imageName)
@@ -45,6 +48,7 @@ class IntegrationTests {
         }
     }
 
+    @OptIn(ExperimentalTime::class)
     @Test
     fun webSocket_basic() {
         runBlocking {
@@ -58,8 +62,9 @@ class IntegrationTests {
 
             assertTrue(chrome.targets().any { it.id == targetId }, "the new target should be listed")
 
-            delay(500) // sometimes the #main element is not loaded fast enough, maybe JS rendering?
-            val nodeId = session.dom.findNodeBySelector("#main")
+            val nodeId = retryIfNull(200.milliseconds) {
+                session.dom.findNodeBySelector("#main")
+            }
             assertNotNull(nodeId)
 
             val getOuterHTMLResponse = session.dom.getOuterHTML(GetOuterHTMLRequest(nodeId = nodeId))
@@ -72,6 +77,7 @@ class IntegrationTests {
         }
     }
 
+    @OptIn(ExperimentalTime::class)
     @Test
     fun pageSession_navigateAndAwaitPageLoad() {
         runBlocking {
@@ -83,8 +89,9 @@ class IntegrationTests {
                     page.navigateAndAwaitPageLoad("http://www.google.com")
                     assertEquals("Google", page.getTargetInfo().title)
 
-                    delay(500) // it seems the #main elements is not ready sometimes
-                    val nodeId = page.dom.findNodeBySelector("#main")
+                    val nodeId = retryIfNull(200.milliseconds) {
+                        page.dom.findNodeBySelector("#main")
+                    }
                     assertNotNull(nodeId)
                 }
             }
@@ -170,4 +177,16 @@ class IntegrationTests {
             }
         }
     }
+}
+
+@OptIn(ExperimentalTime::class)
+suspend inline fun <T> retryIfNull(retryPeriod: Duration, maxRetries: Int = 5, block: () -> T): T? {
+    repeat(maxRetries + 1) {
+        val result = block()
+        if (result != null) {
+            return result
+        }
+        delay(retryPeriod)
+    }
+    return null
 }
