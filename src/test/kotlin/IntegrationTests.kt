@@ -9,10 +9,12 @@ import org.hildan.chrome.devtools.targets.*
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
-import kotlin.test.*
-import kotlin.time.Duration
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 import kotlin.time.ExperimentalTime
-import kotlin.time.milliseconds
+import kotlin.time.seconds
 
 // workaround for https://github.com/testcontainers/testcontainers-java/issues/318
 class KGenericContainer(imageName: String) : GenericContainer<KGenericContainer>(imageName)
@@ -62,8 +64,8 @@ class IntegrationTests {
 
             assertTrue(chrome.targets().any { it.id == targetId }, "the new target should be listed")
 
-            val nodeId = retryIfNull(200.milliseconds) {
-                session.dom.findNodeBySelector("#main")
+            val nodeId = withTimeoutOrNull(1.seconds) {
+                session.dom.awaitNodeBySelector("#main")
             }
             assertNotNull(nodeId)
 
@@ -89,8 +91,8 @@ class IntegrationTests {
                     page.navigateAndAwaitPageLoad("http://www.google.com")
                     assertEquals("Google", page.getTargetInfo().title)
 
-                    val nodeId = retryIfNull(200.milliseconds) {
-                        page.dom.findNodeBySelector("#main")
+                    val nodeId = withTimeoutOrNull(1.seconds) {
+                        page.dom.awaitNodeBySelector("#main")
                     }
                     assertNotNull(nodeId)
                 }
@@ -177,16 +179,4 @@ class IntegrationTests {
             }
         }
     }
-}
-
-@OptIn(ExperimentalTime::class)
-suspend inline fun <T> retryIfNull(retryPeriod: Duration, maxRetries: Int = 5, block: () -> T): T? {
-    repeat(maxRetries + 1) {
-        val result = block()
-        if (result != null) {
-            return result
-        }
-        delay(retryPeriod)
-    }
-    return null
 }

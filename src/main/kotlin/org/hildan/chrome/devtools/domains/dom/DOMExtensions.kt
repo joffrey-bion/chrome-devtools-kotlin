@@ -1,9 +1,21 @@
 package org.hildan.chrome.devtools.domains.dom
 
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlin.coroutines.coroutineContext
+import kotlin.time.Duration
+import kotlin.time.ExperimentalTime
+import kotlin.time.milliseconds
+
+/**
+ * Retrieves the root [Node] of the current document.
+ */
+suspend fun DOMDomain.getDocumentRoot() = getDocument(GetDocumentRequest()).root
+
 /**
  * Retrieves the ID of the root node of the current document.
  */
-suspend fun DOMDomain.getDocumentRootNodeId(): NodeId = getDocument(GetDocumentRequest()).root.nodeId
+suspend fun DOMDomain.getDocumentRootNodeId(): NodeId = getDocumentRoot().nodeId
 
 /**
  * Retrieves the ID of the node corresponding to the given [selector], or null if not found.
@@ -12,9 +24,36 @@ suspend fun DOMDomain.getDocumentRootNodeId(): NodeId = getDocument(GetDocumentR
  * [by design of the DOM domain](https://github.com/ChromeDevTools/devtools-protocol/issues/20).
  * It can be used to perform other CDP commands that require a [NodeId], though.
  */
-suspend fun DOMDomain.findNodeBySelector(selector: String): NodeId? {
+suspend fun DOMDomain.findNodeBySelector(selector: String): NodeId? =
+    querySelectorOnNode(getDocumentRootNodeId(), selector)
+
+/**
+ * Retrieves the ID of the node corresponding to the given [selector], and retries until there is a match using the
+ * given [pollingPeriod].
+ *
+ * This method may suspend forever if the [selector] never matches any node.
+ * The caller is responsible for using [withTimeout][kotlinx.coroutines.withTimeout] or similar cancellation mechanisms
+ * around calls to this method if handling this case is necessary.
+ *
+ * Note that the returned [NodeId] cannot really be used to retrieve actual node information, and this is apparently
+ * [by design of the DOM domain](https://github.com/ChromeDevTools/devtools-protocol/issues/20).
+ * It can be used to perform other CDP commands that require a [NodeId], though.
+ */
+@OptIn(ExperimentalTime::class)
+suspend fun DOMDomain.awaitNodeBySelector(selector: String, pollingPeriod: Duration = 200.milliseconds): NodeId {
     val rootNodeId = getDocumentRootNodeId()
-    val response = querySelector(QuerySelectorRequest(rootNodeId, selector))
+    while (coroutineContext.isActive) {
+        val nodeId = querySelectorOnNode(rootNodeId, selector)
+        if (nodeId != null) {
+            return nodeId
+        }
+        delay(pollingPeriod)
+    }
+    error("Cancelled while awaiting node by selector \"$selector\"")
+}
+
+private suspend fun DOMDomain.querySelectorOnNode(nodeId: NodeId, selector: String): NodeId? {
+    val response = querySelector(QuerySelectorRequest(nodeId, selector))
     return if (response.nodeId == 0) null else response.nodeId
 }
 
