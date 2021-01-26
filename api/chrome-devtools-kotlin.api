@@ -19464,6 +19464,7 @@ public final class org/hildan/chrome/devtools/domains/network/NetworkDomain {
 	public final fun webSocketHandshakeResponseReceived ()Lkotlinx/coroutines/flow/Flow;
 	public final fun webSocketWillSendHandshakeRequest ()Lkotlinx/coroutines/flow/Flow;
 	public final fun webTransportClosed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun webTransportConnectionEstablished ()Lkotlinx/coroutines/flow/Flow;
 	public final fun webTransportCreated ()Lkotlinx/coroutines/flow/Flow;
 }
 
@@ -21607,6 +21608,37 @@ public final class org/hildan/chrome/devtools/domains/network/events/NetworkEven
 }
 
 public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$WebTransportClosedEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$WebTransportConnectionEstablishedEvent : org/hildan/chrome/devtools/domains/network/events/NetworkEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$WebTransportConnectionEstablishedEvent$Companion;
+	public synthetic fun <init> (ILjava/lang/String;DLkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;D)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()D
+	public final fun copy (Ljava/lang/String;D)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$WebTransportConnectionEstablishedEvent;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$WebTransportConnectionEstablishedEvent;Ljava/lang/String;DILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$WebTransportConnectionEstablishedEvent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getTimestamp ()D
+	public final fun getTransportId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$WebTransportConnectionEstablishedEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$WebTransportConnectionEstablishedEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$WebTransportConnectionEstablishedEvent$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$WebTransportConnectionEstablishedEvent;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$WebTransportConnectionEstablishedEvent;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$WebTransportConnectionEstablishedEvent$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
