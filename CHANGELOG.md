@@ -1,5 +1,21 @@
 # Change Log
 
+## [0.13.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.13.0) (2021-01-27)
+[Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.12.2...0.13.0)
+
+**Closed issues:**
+
+- Flaky tests [\#35](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/35)
+
+**Implemented enhancements:**
+
+- Add extension to await a DOM element [\#36](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/36)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 0.0.847122 [\#38](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/38) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Update to Chrome DevTools Protocol version 0.0.846936 [\#37](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/37) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [0.12.2](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.12.2) (2021-01-22)
 [Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.12.1...0.12.2)
 
