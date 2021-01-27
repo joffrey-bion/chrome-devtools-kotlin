@@ -41,9 +41,9 @@ suspend fun DOMDomain.findNodeBySelector(selector: String): NodeId? =
  */
 @OptIn(ExperimentalTime::class)
 suspend fun DOMDomain.awaitNodeBySelector(selector: String, pollingPeriod: Duration = 200.milliseconds): NodeId {
-    val rootNodeId = getDocumentRootNodeId()
     while (coroutineContext.isActive) {
-        val nodeId = querySelectorOnNode(rootNodeId, selector)
+        // it looks like we do need to get a new document at each poll otherwise we may not see the new nodes
+        val nodeId = findNodeBySelector(selector)
         if (nodeId != null) {
             return nodeId
         }
