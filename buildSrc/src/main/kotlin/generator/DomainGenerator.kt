@@ -6,30 +6,30 @@ import org.hildan.chrome.devtools.build.model.ChromeDPCommand
 import org.hildan.chrome.devtools.build.model.ChromeDPDomain
 import org.hildan.chrome.devtools.build.model.ChromeDPEvent
 import org.hildan.chrome.devtools.build.model.asClassName
+import kotlinx.serialization.DeserializationStrategy
 
 private const val INPUT_ARG = "input"
 private const val SESSION_ARG = "session"
 private const val DESERIALIZERS_PROP = "deserializersByEventName"
 
-private val coroutineFlowClass = ClassName("kotlinx.coroutines.flow", "Flow")
-private val deserializerClassName = ClassName("kotlinx.serialization", "DeserializationStrategy")
+private val deserializerClassName = DeserializationStrategy::class.asClassName()
 private val serializerFun = MemberName("kotlinx.serialization", "serializer")
+private val coroutineFlowClass = ClassName("kotlinx.coroutines.flow", "Flow")
 
 private fun mapOfDeserializers(eventsSealedClassName: ClassName): ParameterizedTypeName {
-    val kotlinMapClass = ClassName("kotlin.collections", "Map")
     val deserializerClass = deserializerClassName.parameterizedBy(WildcardTypeName.producerOf(eventsSealedClassName))
-    return kotlinMapClass.parameterizedBy(String::class.asTypeName(), deserializerClass)
+    return MAP.parameterizedBy(String::class.asTypeName(), deserializerClass)
 }
 
 fun ChromeDPCommand.createInputTypeSpec(): TypeSpec =
     TypeSpec.classBuilder(inputTypeName ?: error("trying to build input type for no-arg command")).apply {
         addKdoc("Request object containing input parameters for the [%T.%N] command.", domainName.asClassName(), name)
-        addAnnotation(ExternalDeclarations.serializableAnnotation)
+        addAnnotation(Annotations.serializable)
         if (deprecated) {
-            addAnnotation(ExternalDeclarations.deprecatedAnnotation)
+            addAnnotation(Annotations.deprecatedChromeApi)
         }
         if (experimental) {
-            addAnnotation(ExternalDeclarations.experimentalAnnotation)
+            addAnnotation(Annotations.experimentalChromeApi)
         }
         addModifiers(KModifier.DATA)
         addPrimaryConstructorProps(parameters)
@@ -38,12 +38,12 @@ fun ChromeDPCommand.createInputTypeSpec(): TypeSpec =
 fun ChromeDPCommand.createOutputTypeSpec(): TypeSpec =
     TypeSpec.classBuilder(outputTypeName).apply {
         addKdoc("Response type for the [%T.%N] command.", domainName.asClassName(), name)
-        addAnnotation(ExternalDeclarations.serializableAnnotation)
+        addAnnotation(Annotations.serializable)
         if (deprecated) {
-            addAnnotation(ExternalDeclarations.deprecatedAnnotation)
+            addAnnotation(Annotations.deprecatedChromeApi)
         }
         if (experimental) {
-            addAnnotation(ExternalDeclarations.experimentalAnnotation)
+            addAnnotation(Annotations.experimentalChromeApi)
         }
         addModifiers(KModifier.DATA)
         addPrimaryConstructorProps(returns)
@@ -53,16 +53,16 @@ fun ChromeDPDomain.createDomainClass(): TypeSpec = TypeSpec.classBuilder(name.as
     description?.let { addKdoc(it.escapeKDoc()) }
     addKdoc(linkToDocSentence(docUrl))
     if (deprecated) {
-        addAnnotation(ExternalDeclarations.deprecatedAnnotation)
+        addAnnotation(Annotations.deprecatedChromeApi)
     }
     if (experimental) {
-        addAnnotation(ExternalDeclarations.experimentalAnnotation)
+        addAnnotation(Annotations.experimentalChromeApi)
     }
     primaryConstructor(FunSpec.constructorBuilder()
         .addModifiers(KModifier.INTERNAL)
-        .addParameter(SESSION_ARG, ExternalDeclarations.chromeDPSessionClass)
+        .addParameter(SESSION_ARG, ExtClasses.chromeDPSession)
         .build())
-    addProperty(PropertySpec.builder(SESSION_ARG, ExternalDeclarations.chromeDPSessionClass)
+    addProperty(PropertySpec.builder(SESSION_ARG, ExtClasses.chromeDPSession)
         .addModifiers(KModifier.PRIVATE)
         .initializer(SESSION_ARG)
         .build())
@@ -81,10 +81,10 @@ private fun ChromeDPCommand.toFunctionSpec(): FunSpec = FunSpec.builder(name).ap
     description?.let { addKdoc(it.escapeKDoc()) }
     addKdoc(linkToDocSentence(docUrl))
     if (deprecated) {
-        addAnnotation(ExternalDeclarations.deprecatedAnnotation)
+        addAnnotation(Annotations.deprecatedChromeApi)
     }
     if (experimental) {
-        addAnnotation(ExternalDeclarations.experimentalAnnotation)
+        addAnnotation(Annotations.experimentalChromeApi)
     }
     addModifiers(KModifier.SUSPEND)
     val inputArg = if (inputTypeName != null) {
@@ -102,10 +102,10 @@ private fun ChromeDPEvent.toSubscribeFunctionSpec(): FunSpec =
         description?.let { addKdoc(it.escapeKDoc()) }
         addKdoc(linkToDocSentence(docUrl))
         if (deprecated) {
-            addAnnotation(ExternalDeclarations.deprecatedAnnotation)
+            addAnnotation(Annotations.deprecatedChromeApi)
         }
         if (experimental) {
-            addAnnotation(ExternalDeclarations.experimentalAnnotation)
+            addAnnotation(Annotations.experimentalChromeApi)
         }
         returns(coroutineFlowClass.parameterizedBy(eventTypeName))
         addStatement("return %N.events(%S)", SESSION_ARG, "$domainName.$name")

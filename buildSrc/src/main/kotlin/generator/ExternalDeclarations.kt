@@ -2,35 +2,48 @@ package org.hildan.chrome.devtools.build.generator
 
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
+import kotlinx.serialization.Serializable
 
-object ExternalDeclarations {
-    const val rootPackageName: String = "org.hildan.chrome.devtools"
-    private const val targetsPackage = "$rootPackageName.targets"
-    private const val protocolPackage = "$rootPackageName.protocol"
+const val ROOT_PACKAGE_NAME = "org.hildan.chrome.devtools"
 
-    val chromeDPSessionClass = ClassName(protocolPackage, "ChromeDPSession")
+object ExtClasses {
 
-    val deprecatedAnnotation =
-        AnnotationSpec.builder(Deprecated::class)
+    private const val targetsPackage = "$ROOT_PACKAGE_NAME.targets"
+
+    private const val protocolPackage = "$ROOT_PACKAGE_NAME.protocol"
+
+    val chromeDPSession = ClassName(protocolPackage, "ChromeDPSession")
+
+    val experimentalChromeApi = ClassName(protocolPackage, "ExperimentalChromeApi")
+
+    val targetImplementation = ClassName(targetsPackage, "SimpleTarget")
+
+    fun targetInterface(targetName: String): ClassName = ClassName(targetsPackage, "${targetName}Target")
+}
+
+object Annotations {
+
+    val serializable = AnnotationSpec.builder(Serializable::class).build()
+
+    val deprecatedChromeApi = AnnotationSpec.builder(Deprecated::class)
             .addMember("message = \"Deprecated in the Chrome DevTools protocol\"")
             .build()
 
-    val experimentalAnnotation = AnnotationSpec.builder(ClassName(protocolPackage, "ExperimentalChromeApi")).build()
+    val experimentalChromeApi = AnnotationSpec.builder(ExtClasses.experimentalChromeApi).build()
+}
 
-    val serializableAnnotation = AnnotationSpec.builder(ClassName("kotlinx.serialization", "Serializable")).build()
-
-    val jsonElementClass = ClassName("kotlinx.serialization.json", "JsonElement")
-
-    fun targetInterface(targetName: String): ClassName = ClassName(targetsPackage, "${targetName}Target")
-
-    val targetImplementationClass = ClassName(targetsPackage, "SimpleTarget")
+object DocUrls {
 
     private const val docsBaseUrl = "https://chromedevtools.github.io/devtools-protocol/tot"
 
-    fun domainDocUrl(domainName: String) = "$docsBaseUrl/$domainName"
+    fun domain(domainName: String) = "$docsBaseUrl/$domainName"
+
+    fun type(domainName: String, typeName: String) = docElementUrl(domainName, "type", typeName)
+
+    fun command(domainName: String, commandName: String) = docElementUrl(domainName, "method", commandName)
+
+    fun event(domainName: String, eventName: String) = docElementUrl(domainName, "event", eventName)
+
     private fun docElementUrl(domainName: String, elementType: String, elementName: String) =
-        "${domainDocUrl(domainName)}/#$elementType-$elementName"
-    fun typeDocUrl(domainName: String, typeName: String) = docElementUrl(domainName, "type", typeName)
-    fun commandDocUrl(domainName: String, commandName: String) = docElementUrl(domainName, "method", commandName)
-    fun eventDocUrl(domainName: String, eventName: String) = docElementUrl(domainName, "event", eventName)
+        "${domain(domainName)}/#$elementType-$elementName"
 }

@@ -35,22 +35,22 @@ private fun TypeSpec.Builder.addCommonConfig(domainTypeDeclaration: DomainTypeDe
     domainTypeDeclaration.description?.let { addKdoc(it.escapeKDoc()) }
     addKdoc(linkToDocSentence(domainTypeDeclaration.docUrl))
     if (domainTypeDeclaration.deprecated) {
-        addAnnotation(ExternalDeclarations.deprecatedAnnotation)
+        addAnnotation(Annotations.deprecatedChromeApi)
     }
     if (domainTypeDeclaration.experimental) {
-        addAnnotation(ExternalDeclarations.experimentalAnnotation)
+        addAnnotation(Annotations.experimentalChromeApi)
     }
-    addAnnotation(ExternalDeclarations.serializableAnnotation)
+    addAnnotation(Annotations.serializable)
 }
 
 private fun DomainTypeDeclaration.toTypeAliasSpec(): TypeAliasSpec =
-    TypeAliasSpec.builder(name, type.toTypeName(ExternalDeclarations.rootPackageName)).apply {
+    TypeAliasSpec.builder(name, type.toTypeName()).apply {
         description?.let { addKdoc(it.escapeKDoc()) }
         addKdoc(linkToDocSentence(docUrl))
         if (deprecated) {
-            addAnnotation(ExternalDeclarations.deprecatedAnnotation)
+            addAnnotation(Annotations.deprecatedChromeApi)
         }
         if (experimental) {
-            addAnnotation(ExternalDeclarations.experimentalAnnotation)
+            addAnnotation(Annotations.experimentalChromeApi)
         }
     }.build()

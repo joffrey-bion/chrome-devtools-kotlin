@@ -11,6 +11,7 @@ import java.util.*
  */
 @Deprecated("This method is subject to race conditions. Prefer calling ChromePageSession.navigateAndAwaitPageLoad")
 suspend fun PageDomain.navigateAndWaitLoading(url: String) {
+    @Suppress("DEPRECATION")
     navigateAndWaitLoading(NavigateRequest(url = url))
 }
 

@@ -157,6 +157,7 @@ suspend fun ChromeBrowserSession.watchTargetsIn(coroutineScope: CoroutineScope):
     return targetsFlow
 }
 
+@OptIn(ExperimentalChromeApi::class)
 private fun Map<TargetID, TargetInfo>.updatedBy(event: TargetEvent): Map<TargetID, TargetInfo> = when (event) {
     is TargetEvent.TargetCreatedEvent -> this + (event.targetInfo.targetId to event.targetInfo)
     is TargetEvent.TargetInfoChangedEvent -> this + (event.targetInfo.targetId to event.targetInfo)

@@ -7,7 +7,7 @@ import org.hildan.chrome.devtools.build.model.ChromeDPDomain
 import org.hildan.chrome.devtools.build.model.ChromeDPEvent
 
 fun ChromeDPDomain.createEventSealedClass(): TypeSpec = TypeSpec.classBuilder(eventsParentClassName).apply {
-    addAnnotation(ExternalDeclarations.serializableAnnotation)
+    addAnnotation(Annotations.serializable)
     addModifiers(KModifier.SEALED)
     events.forEach {
         addType(it.createEventSubTypeSpec(eventsParentClassName))
@@ -31,10 +31,10 @@ private fun TypeSpec.Builder.configureCommonSettings(chromeDPEvent: ChromeDPEven
     addKdoc(linkToDocSentence(chromeDPEvent.docUrl))
     superclass(parentSealedClass)
     if (chromeDPEvent.deprecated) {
-        addAnnotation(ExternalDeclarations.deprecatedAnnotation)
+        addAnnotation(Annotations.deprecatedChromeApi)
     }
     if (chromeDPEvent.experimental) {
-        addAnnotation(ExternalDeclarations.experimentalAnnotation)
+        addAnnotation(Annotations.experimentalChromeApi)
     }
-    addAnnotation(ExternalDeclarations.serializableAnnotation)
+    addAnnotation(Annotations.serializable)
 }

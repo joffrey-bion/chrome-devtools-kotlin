@@ -12,7 +12,7 @@ import org.hildan.chrome.devtools.build.model.asVariableName
 private const val SESSION_ARG = "session"
 
 fun createTargetInterface(targetName: String, domains: List<ChromeDPDomain>): TypeSpec =
-    TypeSpec.interfaceBuilder(ExternalDeclarations.targetInterface(targetName)).apply {
+    TypeSpec.interfaceBuilder(ExtClasses.targetInterface(targetName)).apply {
         addKdoc("Represents the available domain APIs in $targetName targets")
         domains.forEach {
             addProperty(it.toPropertySpec())
@@ -20,16 +20,16 @@ fun createTargetInterface(targetName: String, domains: List<ChromeDPDomain>): Ty
     }.build()
 
 fun createSimpleAllTargetsImpl(domains: List<ChromeDPDomain>, targetTypes: List<TargetType>): TypeSpec =
-    TypeSpec.classBuilder(ExternalDeclarations.targetImplementationClass).apply {
+    TypeSpec.classBuilder(ExtClasses.targetImplementation).apply {
         addKdoc("Implementation of all target interfaces by exposing all domain APIs")
         addModifiers(KModifier.INTERNAL)
         targetTypes.forEach {
-            addSuperinterface(ExternalDeclarations.targetInterface(it.name))
+            addSuperinterface(ExtClasses.targetInterface(it.name))
         }
 
         primaryConstructor(
             FunSpec.constructorBuilder()
-                .addParameter(SESSION_ARG, ExternalDeclarations.chromeDPSessionClass)
+                .addParameter(SESSION_ARG, ExtClasses.chromeDPSession)
                 .build()
         )
 
@@ -45,10 +45,10 @@ private fun ChromeDPDomain.toPropertySpec(configure: PropertySpec.Builder.() -> 
     PropertySpec.builder(name.asVariableName(), name.asClassName()).apply {
         description?.let { addKdoc(it.escapeKDoc()) }
         if (deprecated) {
-            addAnnotation(ExternalDeclarations.deprecatedAnnotation)
+            addAnnotation(Annotations.deprecatedChromeApi)
         }
         if (experimental) {
-            addAnnotation(ExternalDeclarations.experimentalAnnotation)
+            addAnnotation(Annotations.experimentalChromeApi)
         }
         configure()
     }.build()

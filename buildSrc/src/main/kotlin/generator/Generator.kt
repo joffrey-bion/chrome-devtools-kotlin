@@ -40,7 +40,7 @@ class Generator(
         descriptors.distinctBy { it.version == descriptors[0].version }.size <= 1
 
     private fun generateTargetInterfaceFile(targetName: String, domains: List<ChromeDPDomain>) {
-        val targetInterface = ExternalDeclarations.targetInterface(targetName)
+        val targetInterface = ExtClasses.targetInterface(targetName)
         FileSpec.builder(targetInterface.packageName, targetInterface.simpleName)
             .addType(createTargetInterface(targetName, domains))
             .build()
@@ -48,7 +48,7 @@ class Generator(
     }
 
     private fun generateSimpleTargetFile(domains: List<ChromeDPDomain>, targetTypes: List<TargetType>) {
-        val targetClass = ExternalDeclarations.targetImplementationClass
+        val targetClass = ExtClasses.targetImplementation
         FileSpec.builder(targetClass.packageName, targetClass.simpleName)
             .addType(createSimpleAllTargetsImpl(domains, targetTypes))
             .build()

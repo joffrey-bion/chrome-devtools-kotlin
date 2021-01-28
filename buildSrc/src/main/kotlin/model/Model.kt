@@ -1,10 +1,10 @@
 package org.hildan.chrome.devtools.build.model
 
-import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import com.squareup.kotlinpoet.TypeName
-import com.squareup.kotlinpoet.asTypeName
-import org.hildan.chrome.devtools.build.generator.ExternalDeclarations
+import kotlinx.serialization.json.JsonElement
+import org.hildan.chrome.devtools.build.generator.DocUrls
+import org.hildan.chrome.devtools.build.generator.ROOT_PACKAGE_NAME
 import org.hildan.chrome.devtools.build.json.*
 import kotlin.reflect.KClass
 
@@ -21,7 +21,7 @@ fun DomainName.asVariableName() = when {
 }
 
 val DomainName.packageName
-    get() = "${ExternalDeclarations.rootPackageName}.domains.${toLowerCase()}"
+    get() = "$ROOT_PACKAGE_NAME.domains.${toLowerCase()}"
 
 fun DomainName.asClassName() = ClassName(packageName, "${this}Domain")
 
@@ -45,7 +45,7 @@ data class ChromeDPDomain(
     val packageName = name.packageName
     val eventsPackageName = name.eventsPackageName
     val eventsParentClassName = name.eventsParentClassName
-    val docUrl = ExternalDeclarations.domainDocUrl(name)
+    val docUrl = DocUrls.domain(name)
 }
 
 fun sanitize(domain: JsonDomain): ChromeDPDomain = ChromeDPDomain(name = domain.domain,
@@ -66,7 +66,7 @@ data class DomainTypeDeclaration(
     val experimental: Boolean = false,
     val type: ChromeDPType
 ) {
-    val docUrl = ExternalDeclarations.typeDocUrl(domainName, name)
+    val docUrl = DocUrls.type(domainName, name)
 }
 
 private fun JsonDomainType.toTypeDeclaration(domainName: DomainName): DomainTypeDeclaration =
@@ -113,7 +113,7 @@ data class ChromeDPCommand(
     val parameters: List<ChromeDPParameter> = emptyList(),
     val returns: List<ChromeDPParameter> = emptyList()
 ) {
-    val docUrl = ExternalDeclarations.commandDocUrl(domainName, name)
+    val docUrl = DocUrls.command(domainName, name)
     val inputTypeName = when {
         parameters.isEmpty() -> null
         else -> ClassName(domainName.packageName, "${name.capitalize()}Request")
@@ -143,7 +143,7 @@ data class ChromeDPEvent(
     val experimental: Boolean = false,
     val parameters: List<ChromeDPParameter> = emptyList()
 ) {
-    val docUrl = ExternalDeclarations.eventDocUrl(domainName, name)
+    val docUrl = DocUrls.event(domainName, name)
     val eventTypeName
         get() = domainName.eventsParentClassName.nestedClass("${name.capitalize()}Event")
 }
@@ -159,34 +159,31 @@ private fun JsonDomainEvent.toEvent(domainName: DomainName) = ChromeDPEvent(
 
 sealed class ChromeDPType {
 
-    abstract fun toTypeName(rootPackageName: String): TypeName
+    abstract fun toTypeName(): TypeName
 
     object Unknown : ChromeDPType() {
-        override fun toTypeName(rootPackageName: String): TypeName = ExternalDeclarations.jsonElementClass
+        override fun toTypeName(): TypeName = JsonElement::class.asClassName()
     }
 
     data class Primitive<T : Any>(val type: KClass<T>) : ChromeDPType() {
-        override fun toTypeName(rootPackageName: String): TypeName = type.asTypeName()
+        override fun toTypeName(): TypeName = type.asTypeName()
     }
 
     data class Reference(val typeName: String, val domainName: String) : ChromeDPType() {
-        override fun toTypeName(rootPackageName: String): TypeName = ClassName(domainName.packageName, typeName)
+        override fun toTypeName(): TypeName = ClassName(domainName.packageName, typeName)
     }
 
     data class Enum(val enumValues: List<String>, val domainName: String) : ChromeDPType() {
-        override fun toTypeName(rootPackageName: String): TypeName {
-            // enums don't have to be declared types, but without names they have to be just strings
-            return String::class.asTypeName()
-        }
+        // enums don't have to be declared types, but without names they have to be just strings
+        override fun toTypeName(): TypeName = String::class.asTypeName()
     }
 
     data class Array(val itemType: ChromeDPType) : ChromeDPType() {
-        override fun toTypeName(rootPackageName: String): TypeName =
-            ClassName("kotlin.collections", "List").parameterizedBy(itemType.toTypeName(rootPackageName))
+        override fun toTypeName(): TypeName = LIST.parameterizedBy(itemType.toTypeName())
     }
 
     data class Object(val properties: List<ChromeDPParameter>, val domainName: String) : ChromeDPType() {
-        override fun toTypeName(rootPackageName: String): TypeName = error("No proper name for object type")
+        override fun toTypeName(): TypeName = error("No proper name for object type")
     }
 
     companion object {
