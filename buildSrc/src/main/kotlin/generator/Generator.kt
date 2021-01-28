@@ -42,6 +42,7 @@ class Generator(
     private fun generateTargetInterfaceFile(targetName: String, domains: List<ChromeDPDomain>) {
         val targetInterface = ExtClasses.targetInterface(targetName)
         FileSpec.builder(targetInterface.packageName, targetInterface.simpleName)
+            .addAnnotation(Annotations.suppressWarnings)
             .addType(createTargetInterface(targetName, domains))
             .build()
             .writeTo(generatedSourcesDir)
@@ -50,6 +51,7 @@ class Generator(
     private fun generateSimpleTargetFile(domains: List<ChromeDPDomain>, targetTypes: List<TargetType>) {
         val targetClass = ExtClasses.targetImplementation
         FileSpec.builder(targetClass.packageName, targetClass.simpleName)
+            .addAnnotation(Annotations.suppressWarnings)
             .addType(createSimpleAllTargetsImpl(domains, targetTypes))
             .build()
             .writeTo(generatedSourcesDir)
@@ -67,16 +69,19 @@ class Generator(
 
     private fun ChromeDPDomain.createDomainTypesFileSpec(): FileSpec =
         FileSpec.builder(packageName = packageName, fileName = "${name}Types").apply {
+            addAnnotation(Annotations.suppressWarnings)
             types.forEach { addDomainType(it) }
         }.build()
 
     private fun ChromeDPDomain.createDomainEventTypesFileSpec(): FileSpec =
         FileSpec.builder(packageName = eventsPackageName, fileName = "${name}Events").apply {
+            addAnnotation(Annotations.suppressWarnings)
             addType(createEventSealedClass())
         }.build()
 
     private fun ChromeDPDomain.createDomainFileSpec(): FileSpec =
         FileSpec.builder(packageName = packageName, fileName = "${name}Domain").apply {
+            addAnnotation(Annotations.suppressWarnings)
             commands.forEach {
                 if (it.parameters.isNotEmpty()) addType(it.createInputTypeSpec())
                 if (it.returns.isNotEmpty()) addType(it.createOutputTypeSpec())
