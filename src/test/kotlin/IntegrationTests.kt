@@ -9,10 +9,8 @@ import org.hildan.chrome.devtools.targets.*
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
-import kotlin.test.assertTrue
+import java.io.IOException
+import kotlin.test.*
 import kotlin.time.ExperimentalTime
 import kotlin.time.seconds
 
@@ -76,6 +74,23 @@ class IntegrationTests {
             assertTrue(chrome.targets().none { it.id == targetId }, "the new target should be closed (not listed)")
 
             browser.close()
+        }
+    }
+
+    @OptIn(ExperimentalTime::class)
+    @Test
+    fun sessionThrowsIOExceptionIfAlreadyClosed() {
+        runBlocking {
+            val chrome = chromeDpClient()
+
+            val browser = chrome.webSocket()
+            val session = browser.attachToNewPageAndAwaitPageLoad("http://www.google.com")
+
+            browser.close()
+
+            assertFailsWith<IOException> {
+                session.getTargetInfo()
+            }
         }
     }
 
