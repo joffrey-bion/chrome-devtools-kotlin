@@ -1,5 +1,20 @@
 # Change Log
 
+## [0.13.1](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.13.1) (2021-01-29)
+[Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.13.0...0.13.1)
+
+**Closed issues:**
+
+- Suppress warnings for generated classes [\#39](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/39)
+
+**Implemented enhancements:**
+
+- Upgrade Krossbow to 1.1.5 [\#41](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/41)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 0.0.848227 [\#40](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/40) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [0.13.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.13.0) (2021-01-27)
 [Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.12.2...0.13.0)
 
