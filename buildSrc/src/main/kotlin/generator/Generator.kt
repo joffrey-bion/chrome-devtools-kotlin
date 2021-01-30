@@ -30,14 +30,11 @@ class Generator(
 
     private fun loadProtocolDomains(): List<ChromeDPDomain> {
         val descriptors = protocolFiles.map { ChromeProtocolDescriptor.parseJson(it) }
-        if (!haveSameVersion(descriptors)) {
+        if (descriptors.distinctBy { it.version }.size > 1) {
             error("Some descriptors have differing versions: ${descriptors.map { it.version }}")
         }
         return descriptors.flatMap { it.domains }.map { sanitize(it) }
     }
-
-    private fun haveSameVersion(descriptors: List<ChromeProtocolDescriptor>): Boolean =
-        descriptors.distinctBy { it.version == descriptors[0].version }.size <= 1
 
     private fun generateTargetInterfaceFile(targetName: String, domains: List<ChromeDPDomain>) {
         val targetInterface = ExtClasses.targetInterface(targetName)
@@ -66,26 +63,26 @@ class Generator(
         }
         domain.createDomainFileSpec().writeTo(generatedSourcesDir)
     }
-
-    private fun ChromeDPDomain.createDomainTypesFileSpec(): FileSpec =
-        FileSpec.builder(packageName = packageName, fileName = "${name}Types").apply {
-            addAnnotation(Annotations.suppressWarnings)
-            types.forEach { addDomainType(it) }
-        }.build()
-
-    private fun ChromeDPDomain.createDomainEventTypesFileSpec(): FileSpec =
-        FileSpec.builder(packageName = eventsPackageName, fileName = "${name}Events").apply {
-            addAnnotation(Annotations.suppressWarnings)
-            addType(createEventSealedClass())
-        }.build()
-
-    private fun ChromeDPDomain.createDomainFileSpec(): FileSpec =
-        FileSpec.builder(packageName = packageName, fileName = "${name}Domain").apply {
-            addAnnotation(Annotations.suppressWarnings)
-            commands.forEach {
-                if (it.parameters.isNotEmpty()) addType(it.createInputTypeSpec())
-                if (it.returns.isNotEmpty()) addType(it.createOutputTypeSpec())
-            }
-            addType(createDomainClass())
-        }.build()
 }
+
+private fun ChromeDPDomain.createDomainTypesFileSpec(): FileSpec =
+    FileSpec.builder(packageName = packageName, fileName = "${name}Types").apply {
+        addAnnotation(Annotations.suppressWarnings)
+        types.forEach { addDomainType(it) }
+    }.build()
+
+private fun ChromeDPDomain.createDomainEventTypesFileSpec(): FileSpec =
+    FileSpec.builder(packageName = eventsPackageName, fileName = "${name}Events").apply {
+        addAnnotation(Annotations.suppressWarnings)
+        addType(createEventSealedClass())
+    }.build()
+
+private fun ChromeDPDomain.createDomainFileSpec(): FileSpec =
+    FileSpec.builder(packageName = packageName, fileName = "${name}Domain").apply {
+        addAnnotation(Annotations.suppressWarnings)
+        commands.forEach {
+            if (it.parameters.isNotEmpty()) addType(it.createInputTypeSpec())
+            if (it.returns.isNotEmpty()) addType(it.createOutputTypeSpec())
+        }
+        addType(createDomainClass())
+    }.build()
