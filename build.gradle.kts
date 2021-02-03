@@ -8,7 +8,7 @@ plugins {
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.2.3"
     `maven-publish`
     id("com.jfrog.bintray") version "1.8.5"
-    id("org.hildan.github.changelog") version "0.8.0"
+    id("org.hildan.github.changelog") version "1.3.0"
 }
 
 group = "org.hildan.chrome"
