@@ -18412,6 +18412,7 @@ public final class org/hildan/chrome/devtools/domains/network/CookieBlockedReaso
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason$Companion;
 	public static final field DomainMismatch Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason;
 	public static final field NotOnPath Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason;
+	public static final field SamePartyFromCrossPartyContext Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason;
 	public static final field SameSiteLax Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason;
 	public static final field SameSiteNoneInsecure Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason;
 	public static final field SameSiteStrict Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason;
@@ -20212,6 +20213,8 @@ public final class org/hildan/chrome/devtools/domains/network/SetCookieBlockedRe
 	public static final field InvalidDomain Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
 	public static final field InvalidPrefix Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
 	public static final field OverwriteSecure Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
+	public static final field SamePartyConflictsWithOtherAttributes Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
+	public static final field SamePartyFromCrossPartyContext Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
 	public static final field SameSiteLax Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
 	public static final field SameSiteNoneInsecure Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
 	public static final field SameSiteStrict Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
