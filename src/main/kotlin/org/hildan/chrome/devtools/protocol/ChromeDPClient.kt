@@ -88,7 +88,7 @@ class ChromeDPClient(
     /** Opens a new tab. Responds with the websocket target data for the new tab. */
     @Deprecated(
         message = "Prefer richer API via web socket",
-        replaceWith = ReplaceWith("webSocket().attachToNewPage(url)")
+        replaceWith = ReplaceWith("webSocket().attachToNewPage(url)"),
     )
     suspend fun newTab(url: String = "about:blank"): ChromeDPTarget =
         httpClient.get<ChromeDPTarget>("$remoteDebugUrl/json/new?$url").fixHost()

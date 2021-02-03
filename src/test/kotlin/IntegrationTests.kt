@@ -1,6 +1,11 @@
 import kotlinx.coroutines.*
 import kotlinx.serialization.Serializable
+import org.hildan.chrome.devtools.domains.backgroundservice.ClearEventsRequest
+import org.hildan.chrome.devtools.domains.backgroundservice.ServiceName
+import org.hildan.chrome.devtools.domains.cachestorage.RequestCacheNamesRequest
 import org.hildan.chrome.devtools.domains.dom.*
+import org.hildan.chrome.devtools.domains.domdebugger.DOMBreakpointType
+import org.hildan.chrome.devtools.domains.domdebugger.SetDOMBreakpointRequest
 import org.hildan.chrome.devtools.domains.runtime.evaluateJs
 import org.hildan.chrome.devtools.domains.storage.GetCookiesRequest
 import org.hildan.chrome.devtools.protocol.ChromeDPClient
@@ -148,6 +153,49 @@ class IntegrationTests {
                     assertEquals("page", targetInfo.type)
                     assertTrue(targetInfo.attached)
                     assertTrue(targetInfo.url.contains("www.google.com")) // redirected
+                }
+            }
+        }
+    }
+
+    @OptIn(ExperimentalChromeApi::class)
+    @Test
+    fun supportedDomains() {
+        runBlocking {
+            chromeDpClient().webSocket().use { browser ->
+                browser.attachToNewPage().use { page ->
+
+                    // the following usages should not fail
+                    page.applicationCache.enable()
+                    page.cacheStorage.requestCacheNames(RequestCacheNamesRequest("google.com"))
+                    page.backgroundService.clearEvents(ClearEventsRequest(ServiceName.backgroundFetch))
+                    page.browser.getVersion()
+                    page.css.getMediaQueries()
+                    page.console.clearMessages()
+                    page.database.enable()
+                    page.debugger.disable()
+                    page.deviceOrientation.clearDeviceOrientationOverride()
+                    page.domDebugger.setDOMBreakpoint(SetDOMBreakpointRequest(
+                        nodeId = page.dom.getDocumentRootNodeId(),
+                        type = DOMBreakpointType.`attribute-modified`,
+                    ))
+                    page.domSnapshot.enable()
+                    page.domStorage.enable()
+                    page.fetch.disable()
+                    page.headlessExperimental.enable()
+                    page.heapProfiler.enable()
+                    page.indexedDB.enable()
+                    page.layerTree.enable()
+                    page.performance.disable()
+                    page.profiler.disable()
+
+                    val supportedByCode = RenderFrameTarget.supportedDomains.toSet()
+                    val supportedByServer = page.schema.getDomains().domains.map { it.name }.toSet()
+
+                    val onlyInServer = supportedByServer - supportedByCode
+                    assertEquals(emptySet(),
+                        onlyInServer,
+                        "The library should support all domains that the zenika/alpine-chrome container actually exposes")
                 }
             }
         }

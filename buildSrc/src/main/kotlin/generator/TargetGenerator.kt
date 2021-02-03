@@ -1,9 +1,7 @@
 package org.hildan.chrome.devtools.build.generator
 
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.PropertySpec
-import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import org.hildan.chrome.devtools.build.json.TargetType
 import org.hildan.chrome.devtools.build.model.ChromeDPDomain
 import org.hildan.chrome.devtools.build.model.asClassName
@@ -17,6 +15,17 @@ fun createTargetInterface(targetName: String, domains: List<ChromeDPDomain>): Ty
         domains.forEach {
             addProperty(it.toPropertySpec())
         }
+        addType(companionObjectWithSupportedDomains(domains))
+    }.build()
+
+private fun companionObjectWithSupportedDomains(domains: List<ChromeDPDomain>): TypeSpec =
+    TypeSpec.companionObjectBuilder().addProperty(supportedDomainsProperty(domains)).build()
+
+private fun supportedDomainsProperty(domains: List<ChromeDPDomain>): PropertySpec =
+    PropertySpec.builder("supportedDomains", LIST.parameterizedBy(String::class.asTypeName())).apply {
+        addModifiers(KModifier.INTERNAL)
+        val format = List(domains.size) { "%S" }.joinToString(separator = ", ", prefix = "listOf(", postfix = ")")
+        initializer(format = format, *domains.map { it.name }.toTypedArray())
     }.build()
 
 fun createSimpleAllTargetsImpl(domains: List<ChromeDPDomain>, targetTypes: List<TargetType>): TypeSpec =

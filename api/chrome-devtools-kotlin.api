@@ -34385,6 +34385,7 @@ public abstract class org/hildan/chrome/devtools/targets/AbstractTargetSession {
 }
 
 public abstract interface class org/hildan/chrome/devtools/targets/AllDomainsTarget {
+	public static final field Companion Lorg/hildan/chrome/devtools/targets/AllDomainsTarget$Companion;
 	public abstract fun getAccessibility ()Lorg/hildan/chrome/devtools/domains/accessibility/AccessibilityDomain;
 	public abstract fun getAnimation ()Lorg/hildan/chrome/devtools/domains/animation/AnimationDomain;
 	public abstract fun getApplicationCache ()Lorg/hildan/chrome/devtools/domains/applicationcache/ApplicationCacheDomain;
@@ -34433,7 +34434,11 @@ public abstract interface class org/hildan/chrome/devtools/targets/AllDomainsTar
 	public abstract fun getWebAuthn ()Lorg/hildan/chrome/devtools/domains/webauthn/WebAuthnDomain;
 }
 
+public final class org/hildan/chrome/devtools/targets/AllDomainsTarget$Companion {
+}
+
 public abstract interface class org/hildan/chrome/devtools/targets/BrowserTarget {
+	public static final field Companion Lorg/hildan/chrome/devtools/targets/BrowserTarget$Companion;
 	public abstract fun getBrowser ()Lorg/hildan/chrome/devtools/domains/browser/BrowserDomain;
 	public abstract fun getFetch ()Lorg/hildan/chrome/devtools/domains/fetch/FetchDomain;
 	public abstract fun getIo ()Lorg/hildan/chrome/devtools/domains/io/IODomain;
@@ -34444,6 +34449,9 @@ public abstract interface class org/hildan/chrome/devtools/targets/BrowserTarget
 	public abstract fun getTarget ()Lorg/hildan/chrome/devtools/domains/target/TargetDomain;
 	public abstract fun getTethering ()Lorg/hildan/chrome/devtools/domains/tethering/TetheringDomain;
 	public abstract fun getTracing ()Lorg/hildan/chrome/devtools/domains/tracing/TracingDomain;
+}
+
+public final class org/hildan/chrome/devtools/targets/BrowserTarget$Companion {
 }
 
 public final class org/hildan/chrome/devtools/targets/ChromeBrowserSession : org/hildan/chrome/devtools/targets/AbstractTargetSession, org/hildan/chrome/devtools/targets/BrowserTarget {
@@ -34477,15 +34485,31 @@ public final class org/hildan/chrome/devtools/targets/ChromePageMetaData {
 public final class org/hildan/chrome/devtools/targets/ChromePageSession : org/hildan/chrome/devtools/targets/AbstractTargetSession, org/hildan/chrome/devtools/targets/RenderFrameTarget {
 	public final fun close (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun detach (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getAccessibility ()Lorg/hildan/chrome/devtools/domains/accessibility/AccessibilityDomain;
+	public fun getAnimation ()Lorg/hildan/chrome/devtools/domains/animation/AnimationDomain;
+	public fun getApplicationCache ()Lorg/hildan/chrome/devtools/domains/applicationcache/ApplicationCacheDomain;
 	public fun getAudits ()Lorg/hildan/chrome/devtools/domains/audits/AuditsDomain;
 	public fun getBackgroundService ()Lorg/hildan/chrome/devtools/domains/backgroundservice/BackgroundServiceDomain;
 	public fun getBrowser ()Lorg/hildan/chrome/devtools/domains/browser/BrowserDomain;
+	public fun getCacheStorage ()Lorg/hildan/chrome/devtools/domains/cachestorage/CacheStorageDomain;
+	public fun getConsole ()Lorg/hildan/chrome/devtools/domains/console/ConsoleDomain;
+	public fun getCss ()Lorg/hildan/chrome/devtools/domains/css/CSSDomain;
+	public fun getDatabase ()Lorg/hildan/chrome/devtools/domains/database/DatabaseDomain;
+	public fun getDebugger ()Lorg/hildan/chrome/devtools/domains/debugger/DebuggerDomain;
+	public fun getDeviceOrientation ()Lorg/hildan/chrome/devtools/domains/deviceorientation/DeviceOrientationDomain;
 	public fun getDom ()Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;
+	public fun getDomDebugger ()Lorg/hildan/chrome/devtools/domains/domdebugger/DOMDebuggerDomain;
+	public fun getDomSnapshot ()Lorg/hildan/chrome/devtools/domains/domsnapshot/DOMSnapshotDomain;
+	public fun getDomStorage ()Lorg/hildan/chrome/devtools/domains/domstorage/DOMStorageDomain;
 	public fun getEmulation ()Lorg/hildan/chrome/devtools/domains/emulation/EmulationDomain;
 	public fun getFetch ()Lorg/hildan/chrome/devtools/domains/fetch/FetchDomain;
+	public fun getHeadlessExperimental ()Lorg/hildan/chrome/devtools/domains/headlessexperimental/HeadlessExperimentalDomain;
+	public fun getHeapProfiler ()Lorg/hildan/chrome/devtools/domains/heapprofiler/HeapProfilerDomain;
+	public fun getIndexedDB ()Lorg/hildan/chrome/devtools/domains/indexeddb/IndexedDBDomain;
 	public fun getInput ()Lorg/hildan/chrome/devtools/domains/input/InputDomain;
 	public fun getInspector ()Lorg/hildan/chrome/devtools/domains/inspector/InspectorDomain;
 	public fun getIo ()Lorg/hildan/chrome/devtools/domains/io/IODomain;
+	public fun getLayerTree ()Lorg/hildan/chrome/devtools/domains/layertree/LayerTreeDomain;
 	public fun getLog ()Lorg/hildan/chrome/devtools/domains/log/LogDomain;
 	public fun getMemory ()Lorg/hildan/chrome/devtools/domains/memory/MemoryDomain;
 	public final fun getMetaData ()Lorg/hildan/chrome/devtools/targets/ChromePageMetaData;
@@ -34493,6 +34517,8 @@ public final class org/hildan/chrome/devtools/targets/ChromePageSession : org/hi
 	public fun getOverlay ()Lorg/hildan/chrome/devtools/domains/overlay/OverlayDomain;
 	public fun getPage ()Lorg/hildan/chrome/devtools/domains/page/PageDomain;
 	public final fun getParent ()Lorg/hildan/chrome/devtools/targets/ChromeBrowserSession;
+	public fun getPerformance ()Lorg/hildan/chrome/devtools/domains/performance/PerformanceDomain;
+	public fun getProfiler ()Lorg/hildan/chrome/devtools/domains/profiler/ProfilerDomain;
 	public fun getRuntime ()Lorg/hildan/chrome/devtools/domains/runtime/RuntimeDomain;
 	public fun getSchema ()Lorg/hildan/chrome/devtools/domains/schema/SchemaDomain;
 	public fun getSecurity ()Lorg/hildan/chrome/devtools/domains/security/SecurityDomain;
@@ -34504,20 +34530,39 @@ public final class org/hildan/chrome/devtools/targets/ChromePageSession : org/hi
 }
 
 public abstract interface class org/hildan/chrome/devtools/targets/RenderFrameTarget {
+	public static final field Companion Lorg/hildan/chrome/devtools/targets/RenderFrameTarget$Companion;
+	public abstract fun getAccessibility ()Lorg/hildan/chrome/devtools/domains/accessibility/AccessibilityDomain;
+	public abstract fun getAnimation ()Lorg/hildan/chrome/devtools/domains/animation/AnimationDomain;
+	public abstract fun getApplicationCache ()Lorg/hildan/chrome/devtools/domains/applicationcache/ApplicationCacheDomain;
 	public abstract fun getAudits ()Lorg/hildan/chrome/devtools/domains/audits/AuditsDomain;
 	public abstract fun getBackgroundService ()Lorg/hildan/chrome/devtools/domains/backgroundservice/BackgroundServiceDomain;
 	public abstract fun getBrowser ()Lorg/hildan/chrome/devtools/domains/browser/BrowserDomain;
+	public abstract fun getCacheStorage ()Lorg/hildan/chrome/devtools/domains/cachestorage/CacheStorageDomain;
+	public abstract fun getConsole ()Lorg/hildan/chrome/devtools/domains/console/ConsoleDomain;
+	public abstract fun getCss ()Lorg/hildan/chrome/devtools/domains/css/CSSDomain;
+	public abstract fun getDatabase ()Lorg/hildan/chrome/devtools/domains/database/DatabaseDomain;
+	public abstract fun getDebugger ()Lorg/hildan/chrome/devtools/domains/debugger/DebuggerDomain;
+	public abstract fun getDeviceOrientation ()Lorg/hildan/chrome/devtools/domains/deviceorientation/DeviceOrientationDomain;
 	public abstract fun getDom ()Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;
+	public abstract fun getDomDebugger ()Lorg/hildan/chrome/devtools/domains/domdebugger/DOMDebuggerDomain;
+	public abstract fun getDomSnapshot ()Lorg/hildan/chrome/devtools/domains/domsnapshot/DOMSnapshotDomain;
+	public abstract fun getDomStorage ()Lorg/hildan/chrome/devtools/domains/domstorage/DOMStorageDomain;
 	public abstract fun getEmulation ()Lorg/hildan/chrome/devtools/domains/emulation/EmulationDomain;
 	public abstract fun getFetch ()Lorg/hildan/chrome/devtools/domains/fetch/FetchDomain;
+	public abstract fun getHeadlessExperimental ()Lorg/hildan/chrome/devtools/domains/headlessexperimental/HeadlessExperimentalDomain;
+	public abstract fun getHeapProfiler ()Lorg/hildan/chrome/devtools/domains/heapprofiler/HeapProfilerDomain;
+	public abstract fun getIndexedDB ()Lorg/hildan/chrome/devtools/domains/indexeddb/IndexedDBDomain;
 	public abstract fun getInput ()Lorg/hildan/chrome/devtools/domains/input/InputDomain;
 	public abstract fun getInspector ()Lorg/hildan/chrome/devtools/domains/inspector/InspectorDomain;
 	public abstract fun getIo ()Lorg/hildan/chrome/devtools/domains/io/IODomain;
+	public abstract fun getLayerTree ()Lorg/hildan/chrome/devtools/domains/layertree/LayerTreeDomain;
 	public abstract fun getLog ()Lorg/hildan/chrome/devtools/domains/log/LogDomain;
 	public abstract fun getMemory ()Lorg/hildan/chrome/devtools/domains/memory/MemoryDomain;
 	public abstract fun getNetwork ()Lorg/hildan/chrome/devtools/domains/network/NetworkDomain;
 	public abstract fun getOverlay ()Lorg/hildan/chrome/devtools/domains/overlay/OverlayDomain;
 	public abstract fun getPage ()Lorg/hildan/chrome/devtools/domains/page/PageDomain;
+	public abstract fun getPerformance ()Lorg/hildan/chrome/devtools/domains/performance/PerformanceDomain;
+	public abstract fun getProfiler ()Lorg/hildan/chrome/devtools/domains/profiler/ProfilerDomain;
 	public abstract fun getRuntime ()Lorg/hildan/chrome/devtools/domains/runtime/RuntimeDomain;
 	public abstract fun getSchema ()Lorg/hildan/chrome/devtools/domains/schema/SchemaDomain;
 	public abstract fun getSecurity ()Lorg/hildan/chrome/devtools/domains/security/SecurityDomain;
@@ -34528,7 +34573,11 @@ public abstract interface class org/hildan/chrome/devtools/targets/RenderFrameTa
 	public abstract fun getWebAuthn ()Lorg/hildan/chrome/devtools/domains/webauthn/WebAuthnDomain;
 }
 
+public final class org/hildan/chrome/devtools/targets/RenderFrameTarget$Companion {
+}
+
 public abstract interface class org/hildan/chrome/devtools/targets/ServiceWorkerTarget {
+	public static final field Companion Lorg/hildan/chrome/devtools/targets/ServiceWorkerTarget$Companion;
 	public abstract fun getFetch ()Lorg/hildan/chrome/devtools/domains/fetch/FetchDomain;
 	public abstract fun getInspector ()Lorg/hildan/chrome/devtools/domains/inspector/InspectorDomain;
 	public abstract fun getIo ()Lorg/hildan/chrome/devtools/domains/io/IODomain;
@@ -34537,12 +34586,19 @@ public abstract interface class org/hildan/chrome/devtools/targets/ServiceWorker
 	public abstract fun getTarget ()Lorg/hildan/chrome/devtools/domains/target/TargetDomain;
 }
 
+public final class org/hildan/chrome/devtools/targets/ServiceWorkerTarget$Companion {
+}
+
 public abstract interface class org/hildan/chrome/devtools/targets/SharedWorkerTarget {
+	public static final field Companion Lorg/hildan/chrome/devtools/targets/SharedWorkerTarget$Companion;
 	public abstract fun getInspector ()Lorg/hildan/chrome/devtools/domains/inspector/InspectorDomain;
 	public abstract fun getIo ()Lorg/hildan/chrome/devtools/domains/io/IODomain;
 	public abstract fun getNetwork ()Lorg/hildan/chrome/devtools/domains/network/NetworkDomain;
 	public abstract fun getSchema ()Lorg/hildan/chrome/devtools/domains/schema/SchemaDomain;
 	public abstract fun getTarget ()Lorg/hildan/chrome/devtools/domains/target/TargetDomain;
+}
+
+public final class org/hildan/chrome/devtools/targets/SharedWorkerTarget$Companion {
 }
 
 public final class org/hildan/chrome/devtools/targets/TargetExtensionsKt {
@@ -34560,8 +34616,12 @@ public final class org/hildan/chrome/devtools/targets/TargetExtensionsKt {
 }
 
 public abstract interface class org/hildan/chrome/devtools/targets/WorkerTarget {
+	public static final field Companion Lorg/hildan/chrome/devtools/targets/WorkerTarget$Companion;
 	public abstract fun getIo ()Lorg/hildan/chrome/devtools/domains/io/IODomain;
 	public abstract fun getNetwork ()Lorg/hildan/chrome/devtools/domains/network/NetworkDomain;
 	public abstract fun getTarget ()Lorg/hildan/chrome/devtools/domains/target/TargetDomain;
+}
+
+public final class org/hildan/chrome/devtools/targets/WorkerTarget$Companion {
 }
 
