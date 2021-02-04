@@ -1,5 +1,17 @@
 # Change Log
 
+## [0.14.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.14.0) (2021-02-04)
+[Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.13.1...0.14.0)
+
+**Implemented enhancements:**
+
+- Add more domains to RenderFrame \(page\) target [\#44](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/44)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 0.0.849788 [\#43](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/43) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Update to Chrome DevTools Protocol version 0.0.849057 [\#42](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/42) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [0.13.1](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.13.1) (2021-01-29)
 [Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.13.0...0.13.1)
 
@@ -56,10 +68,6 @@
 
 ## [0.11.1](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.11.1) (2021-01-13)
 [Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.11.0...0.11.1)
-
-**Closed issues:**
-
-- Upgrade Dokka Gradle plugin to 1.4.20 [\#23](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/23)
 
 **Merged pull requests:**
 
