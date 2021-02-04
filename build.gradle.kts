@@ -5,7 +5,7 @@ plugins {
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
     id("org.jetbrains.dokka") version "1.4.20"
-    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.2.3"
+    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.4.0"
     `maven-publish`
     id("com.jfrog.bintray") version "1.8.5"
     id("org.hildan.github.changelog") version "1.3.0"
