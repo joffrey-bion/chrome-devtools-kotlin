@@ -104,9 +104,9 @@ class IntegrationTests {
     fun pageSession_navigateAndAwaitPageLoad() {
         runBlocking {
             chromeDpClient().webSocket().use { browser ->
-                browser.attachToNewPageAndAwaitPageLoad("about:blank").use { page ->
+                browser.attachToNewPageAndAwaitPageLoad("https://kotlinlang.org/").use { page ->
 
-                    assertEquals("about:blank", page.getTargetInfo().title)
+                    assertEquals("Kotlin Programming Language", page.getTargetInfo().title)
 
                     page.navigateAndAwaitPageLoad("http://www.google.com")
                     assertEquals("Google", page.getTargetInfo().title)
