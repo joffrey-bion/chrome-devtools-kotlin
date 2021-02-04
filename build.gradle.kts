@@ -1,5 +1,3 @@
-import com.jfrog.bintray.gradle.BintrayExtension.*
-
 plugins {
     val kotlinVersion = "1.4.21"
     kotlin("jvm") version kotlinVersion
@@ -7,25 +5,19 @@ plugins {
     id("org.jetbrains.dokka") version "1.4.20"
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.4.0"
     `maven-publish`
-    id("com.jfrog.bintray") version "1.8.5"
+    signing
     id("org.hildan.github.changelog") version "1.3.0"
 }
 
 group = "org.hildan.chrome"
 description = "A Kotlin client for the Chrome DevTools Protocol"
 
-val Project.labels: Array<String>
-    get() = arrayOf("chrome", "devtools", "protocol", "chromedp", "kotlin", "coroutines", "async")
-
-val Project.licenses: Array<String>
-    get() = arrayOf("MIT")
-
 val githubUser = getPropOrEnv("githubUser", "GITHUB_USER")
-val githubRepoName = rootProject.name
 val githubSlug = "$githubUser/${rootProject.name}"
 val githubRepoUrl = "https://github.com/$githubSlug"
 
 repositories {
+    mavenCentral()
     jcenter()
 }
 
@@ -91,6 +83,16 @@ val dokkaJavadocJar by tasks.creating(Jar::class) {
 }
 
 publishing {
+    repositories {
+        maven {
+            name = "MavenCentral"
+            url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2")
+            credentials {
+                username = getPropOrEnv("ossrhUserToken", "OSSRH_USER_TOKEN")
+                password = getPropOrEnv("ossrhKey", "OSSRH_KEY")
+            }
+        }
+    }
     publications {
         create<MavenPublication>("maven") {
             from(components["java"])
@@ -125,39 +127,12 @@ publishing {
     }
 }
 
-bintray {
-    user = getPropOrEnv("bintrayUser", "BINTRAY_USER")
-    key = getPropOrEnv("bintrayApiKey", "BINTRAY_KEY")
-    setPublications("maven")
-    publish = true
-
-    pkg(closureOf<PackageConfig> {
-        repo = getPropOrEnv("bintrayRepo", "BINTRAY_REPO")
-        name = project.name
-        desc = project.description
-        setLabels(*project.labels)
-        setLicenses(*project.licenses)
-
-        websiteUrl = githubRepoUrl
-        issueTrackerUrl = "$githubRepoUrl/issues"
-        vcsUrl = "$githubRepoUrl.git"
-        githubRepo = githubSlug
-
-        version(closureOf<VersionConfig> {
-            desc = project.description
-            vcsTag = project.version.toString()
-            gpg(closureOf<GpgConfig> {
-                sign = true
-            })
-            mavenCentralSync(closureOf<MavenCentralSyncConfig> {
-                sync = true
-                user = getPropOrEnv("ossrhUserToken", "OSSRH_USER_TOKEN")
-                password = getPropOrEnv("ossrhKey", "OSSRH_KEY")
-            })
-        })
-    })
+signing {
+    val signingKey: String? by project
+    val signingPassword: String? by project
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    sign(publishing.publications["maven"])
 }
-tasks.bintrayUpload.get().dependsOn(tasks.build)
 
 fun Project.getPropOrEnv(propName: String, envVar: String? = null): String? =
     findProperty(propName) as String? ?: System.getenv(envVar)

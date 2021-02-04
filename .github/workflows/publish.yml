@@ -30,9 +30,11 @@ jobs:
           path: ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle-wrapper.properties') }}
 
-      - name: Build and publish to Bintray and Maven Central
+      - name: Build and publish to Maven Central
         env:
-          BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
+          # see https://docs.gradle.org/current/userguide/signing_plugin.html#sec:in-memory-keys
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_SECRET_ASCII_ARMORED }}
+          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.GPG_PASSWORD }}
           OSSRH_USER_TOKEN: ${{ secrets.OSSRH_USER_TOKEN }}
           OSSRH_KEY: ${{ secrets.OSSRH_KEY }}
-        run: ./gradlew -Pversion=${{ github.event.release.tag_name }} bintrayUpload
+        run: ./gradlew -Pversion=${{ github.event.release.tag_name }} publish
