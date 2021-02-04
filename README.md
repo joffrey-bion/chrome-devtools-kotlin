@@ -1,7 +1,6 @@
 # Chrome Devtools Kotlin
 
 [![Maven central version](https://img.shields.io/maven-central/v/org.hildan.chrome/chrome-devtools-kotlin.svg)](http://mvnrepository.com/artifact/org.hildan.chrome/chrome-devtools-kotlin)
-[![Bintray Download](https://img.shields.io/bintray/v/joffrey-bion/maven/chrome-devtools-kotlin)](https://bintray.com/joffrey-bion/maven/chrome-devtools-kotlin/_latestVersion)
 [![Github Build](https://img.shields.io/github/workflow/status/joffrey-bion/chrome-devtools-kotlin/CI%20Build?label=build&logo=github)](https://github.com/joffrey-bion/chrome-devtools-kotlin/actions?query=workflow%3A%22CI+Build%22)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/joffrey-bion/chrome-devtools-kotlin/blob/master/LICENSE)
 
