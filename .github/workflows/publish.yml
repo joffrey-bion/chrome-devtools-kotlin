@@ -30,11 +30,21 @@ jobs:
           path: ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle-wrapper.properties') }}
 
-      - name: Build and publish to Maven Central
+      - name: Build and publish to OSS Sonatype Nexus (staging)
         env:
+          # GPG keys for signing plugin (sign maven artifacts)
           # see https://docs.gradle.org/current/userguide/signing_plugin.html#sec:in-memory-keys
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_SECRET_ASCII_ARMORED }}
           ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.GPG_PASSWORD }}
+          # OSS Sonatype credentials for Maven Central publication
           OSSRH_USER_TOKEN: ${{ secrets.OSSRH_USER_TOKEN }}
           OSSRH_KEY: ${{ secrets.OSSRH_KEY }}
         run: ./gradlew -Pversion=${{ github.event.release.tag_name }} publish
+
+      - name: Close staging repo and release to Maven Central
+        env:
+          # Credentials implicitly read by the gradle-nexus-staging-plugin
+          # see https://github.com/Codearte/gradle-nexus-staging-plugin#server-credentials
+          ORG_GRADLE_PROJECT_nexusUsername: ${{ secrets.OSSRH_USER_TOKEN }}
+          ORG_GRADLE_PROJECT_nexusPassword: ${{ secrets.OSSRH_KEY }}
+        run: ./gradlew -Pversion=${{ github.event.release.tag_name }} closeAndReleaseRepository

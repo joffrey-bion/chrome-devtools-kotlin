@@ -6,6 +6,7 @@ plugins {
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.4.0"
     `maven-publish`
     signing
+    id("io.codearte.nexus-staging") version "0.22.0"
     id("org.hildan.github.changelog") version "1.3.0"
 }
 
