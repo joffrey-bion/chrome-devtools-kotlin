@@ -135,5 +135,10 @@ signing {
     sign(publishing.publications["maven"])
 }
 
+nexusStaging {
+    numberOfRetries = 30
+    delayBetweenRetriesInMillis = 5000
+}
+
 fun Project.getPropOrEnv(propName: String, envVar: String? = null): String? =
     findProperty(propName) as String? ?: System.getenv(envVar)
