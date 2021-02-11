@@ -68,12 +68,12 @@ class IntegrationTests {
             assertTrue(chrome.targets().any { it.id == targetId }, "the new target should be listed")
 
             val nodeId = withTimeoutOrNull(1.seconds) {
-                session.dom.awaitNodeBySelector("#main")
+                session.dom.awaitNodeBySelector("form[action='/search']")
             }
             assertNotNull(nodeId)
 
             val getOuterHTMLResponse = session.dom.getOuterHTML(GetOuterHTMLRequest(nodeId = nodeId))
-            assertTrue(getOuterHTMLResponse.outerHTML.contains("<div class=\"content\""))
+            assertTrue(getOuterHTMLResponse.outerHTML.contains("<input name=\"source\""))
 
             session.close()
             assertTrue(chrome.targets().none { it.id == targetId }, "the new target should be closed (not listed)")
@@ -112,7 +112,7 @@ class IntegrationTests {
                     assertEquals("Google", page.getTargetInfo().title)
 
                     val nodeId = withTimeoutOrNull(1.seconds) {
-                        page.dom.awaitNodeBySelector("#main")
+                        page.dom.awaitNodeBySelector("form[action='/search']")
                     }
                     assertNotNull(nodeId)
                 }
