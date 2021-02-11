@@ -1743,6 +1743,44 @@ public final class org/hildan/chrome/devtools/domains/audits/ContentSecurityPoli
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/audits/CorsIssueDetails {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails$Companion;
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/network/CorsErrorStatus;ZLorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/network/CorsErrorStatus;ZLorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/network/CorsErrorStatus;ZLorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/network/CorsErrorStatus;
+	public final fun component2 ()Z
+	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;
+	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;
+	public final fun component5 ()Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/network/CorsErrorStatus;ZLorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;)Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/network/CorsErrorStatus;ZLorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getClientSecurityState ()Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;
+	public final fun getCorsErrorStatus ()Lorg/hildan/chrome/devtools/domains/network/CorsErrorStatus;
+	public final fun getRequest ()Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;
+	public final fun getResourceIPAddressSpace ()Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;
+	public fun hashCode ()I
+	public final fun isWarning ()Z
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/audits/CorsIssueDetails$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/audits/CorsIssueDetails$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/audits/GetEncodedResponseRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/GetEncodedResponseRequest$Companion;
 	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/Double;Ljava/lang/Boolean;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
@@ -1928,6 +1966,7 @@ public final class org/hildan/chrome/devtools/domains/audits/InspectorIssueCode 
 	public static final field BlockedByResponseIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode$Companion;
 	public static final field ContentSecurityPolicyIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
+	public static final field CorsIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static final field HeavyAdIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static final field LowTextContrastIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static final field MixedContentIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
@@ -1956,9 +1995,9 @@ public final class org/hildan/chrome/devtools/domains/audits/InspectorIssueCode$
 public final class org/hildan/chrome/devtools/domains/audits/InspectorIssueDetails {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails$Companion;
 	public fun <init> ()V
-	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;)V
-	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;
 	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;
 	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;
@@ -1967,11 +2006,13 @@ public final class org/hildan/chrome/devtools/domains/audits/InspectorIssueDetai
 	public final fun component6 ()Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;
 	public final fun component7 ()Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;
 	public final fun component8 ()Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;
-	public final fun copy (Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;)Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails;
+	public final fun component9 ()Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;)Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBlockedByResponseIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;
 	public final fun getContentSecurityPolicyIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;
+	public final fun getCorsIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;
 	public final fun getHeavyAdIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;
 	public final fun getLowTextContrastIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;
 	public final fun getMixedContentIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;
@@ -19578,6 +19619,7 @@ public final class org/hildan/chrome/devtools/domains/network/PrivateNetworkRequ
 	public static final field Allow Lorg/hildan/chrome/devtools/domains/network/PrivateNetworkRequestPolicy;
 	public static final field BlockFromInsecureToMorePrivate Lorg/hildan/chrome/devtools/domains/network/PrivateNetworkRequestPolicy;
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/PrivateNetworkRequestPolicy$Companion;
+	public static final field WarnFromInsecureToMorePrivate Lorg/hildan/chrome/devtools/domains/network/PrivateNetworkRequestPolicy;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/PrivateNetworkRequestPolicy;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/network/PrivateNetworkRequestPolicy;
 }
