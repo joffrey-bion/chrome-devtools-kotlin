@@ -13,7 +13,11 @@ plugins {
 group = "org.hildan.chrome"
 description = "A Kotlin client for the Chrome DevTools Protocol"
 
-val githubUser = getPropOrEnv("githubUser", "GITHUB_USER")
+nexusStaging {
+    packageGroup = "org.hildan"
+}
+
+val githubUser = findProperty("githubUser") as String? ?: System.getenv("GITHUB_USER")
 val githubSlug = "$githubUser/${rootProject.name}"
 val githubRepoUrl = "https://github.com/$githubSlug"
 
@@ -89,8 +93,8 @@ publishing {
             name = "MavenCentral"
             url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2")
             credentials {
-                username = getPropOrEnv("ossrhUserToken", "OSSRH_USER_TOKEN")
-                password = getPropOrEnv("ossrhKey", "OSSRH_KEY")
+                username = System.getenv("OSSRH_USER_TOKEN")
+                password = System.getenv("OSSRH_KEY")
             }
         }
     }
@@ -134,11 +138,3 @@ signing {
     useInMemoryPgpKeys(signingKey, signingPassword)
     sign(publishing.publications["maven"])
 }
-
-nexusStaging {
-    numberOfRetries = 30
-    delayBetweenRetriesInMillis = 5000
-}
-
-fun Project.getPropOrEnv(propName: String, envVar: String? = null): String? =
-    findProperty(propName) as String? ?: System.getenv(envVar)
