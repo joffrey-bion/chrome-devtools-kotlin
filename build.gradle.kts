@@ -4,18 +4,14 @@ plugins {
     kotlin("plugin.serialization") version kotlinVersion
     id("org.jetbrains.dokka") version "1.4.20"
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.4.0"
-    `maven-publish`
     signing
     id("io.codearte.nexus-staging") version "0.22.0"
+    id("de.marcphilipp.nexus-publish") version "0.4.0"
     id("org.hildan.github.changelog") version "1.3.0"
 }
 
 group = "org.hildan.chrome"
 description = "A Kotlin client for the Chrome DevTools Protocol"
-
-nexusStaging {
-    packageGroup = "org.hildan"
-}
 
 val githubUser = findProperty("githubUser") as String? ?: System.getenv("GITHUB_USER")
 val githubSlug = "$githubUser/${rootProject.name}"
@@ -87,17 +83,21 @@ val dokkaJavadocJar by tasks.creating(Jar::class) {
     from(tasks.dokkaJavadoc)
 }
 
-publishing {
+nexusStaging {
+    packageGroup = "org.hildan"
+    numberOfRetries = 30
+}
+
+nexusPublishing {
     repositories {
-        maven {
-            name = "MavenCentral"
-            url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2")
-            credentials {
-                username = System.getenv("OSSRH_USER_TOKEN")
-                password = System.getenv("OSSRH_KEY")
-            }
+        sonatype {
+            username.set(System.getenv("OSSRH_USER_TOKEN"))
+            password.set(System.getenv("OSSRH_KEY"))
         }
     }
+}
+
+publishing {
     publications {
         create<MavenPublication>("maven") {
             from(components["java"])

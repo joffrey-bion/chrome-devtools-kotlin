@@ -36,10 +36,10 @@ jobs:
           # see https://docs.gradle.org/current/userguide/signing_plugin.html#sec:in-memory-keys
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_SECRET_ASCII_ARMORED }}
           ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.GPG_PASSWORD }}
-          # OSS Sonatype credentials for Maven Central publication
+          # OSS RH credentials for Sonatype staging publication
           OSSRH_USER_TOKEN: ${{ secrets.OSSRH_USER_TOKEN }}
           OSSRH_KEY: ${{ secrets.OSSRH_KEY }}
-        run: ./gradlew -Pversion=${{ github.event.release.tag_name }} publish
+        run: ./gradlew -Pversion=${{ github.event.release.tag_name }} publishToSonatype
 
       - name: Close staging repo and release to Maven Central
         env:
