@@ -24311,6 +24311,64 @@ public final class org/hildan/chrome/devtools/domains/page/GetNavigationHistoryR
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateRequest$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateRequest;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFrameId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateRequest$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateResponse {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateResponse$Companion;
+	public synthetic fun <init> (ILjava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateResponse;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateResponse;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateResponse;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getStates ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateResponse;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateResponse$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateResponse;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateResponse;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateResponse$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/page/GetResourceContentRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/GetResourceContentRequest$Companion;
 	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
@@ -24710,6 +24768,7 @@ public final class org/hildan/chrome/devtools/domains/page/PageDomain {
 	public final fun getLayoutMetrics (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getManifestIcons (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getNavigationHistory (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getPermissionsPolicyState (Lorg/hildan/chrome/devtools/domains/page/GetPermissionsPolicyStateRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getResourceContent (Lorg/hildan/chrome/devtools/domains/page/GetResourceContentRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getResourceTree (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun handleJavaScriptDialog (Lorg/hildan/chrome/devtools/domains/page/HandleJavaScriptDialogRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -24757,6 +24816,168 @@ public final class org/hildan/chrome/devtools/domains/page/PageExtensionsKt {
 	public static synthetic fun captureScreenshotToFile$default (Lorg/hildan/chrome/devtools/domains/page/PageDomain;Ljava/nio/file/Path;Lorg/hildan/chrome/devtools/domains/page/CaptureScreenshotRequest;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun navigateAndWaitLoading (Lorg/hildan/chrome/devtools/domains/page/PageDomain;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun navigateAndWaitLoading (Lorg/hildan/chrome/devtools/domains/page/PageDomain;Lorg/hildan/chrome/devtools/domains/page/NavigateRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockLocator {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockLocator$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason;
+	public final fun copy (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason;)Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockLocator;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockLocator;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockLocator;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBlockReason ()Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason;
+	public final fun getFrameId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockLocator;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockLocator$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockLocator$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockLocator;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockLocator;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockLocator$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason : java/lang/Enum {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason$Companion;
+	public static final field Header Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason;
+	public static final field IframeAttribute Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason;
+	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason;
+	public static fun values ()[Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature : java/lang/Enum {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature$Companion;
+	public static final field accelerometer Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ambient-light-sensor Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field autoplay Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field camera Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ch-device-memory Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ch-downlink Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ch-dpr Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ch-ect Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ch-lang Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ch-rtt Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ch-ua Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ch-ua-arch Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ch-ua-full-version Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ch-ua-mobile Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ch-ua-model Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ch-ua-platform Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ch-ua-platform-version Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ch-viewport-width Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ch-width Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field clipboard-read Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field clipboard-write Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field conversion-measurement Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field cross-origin-isolated Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field display-capture Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field document-domain Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field encrypted-media Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field execution-while-not-rendered Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field execution-while-out-of-viewport Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field focus-without-user-activation Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field frobulate Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field fullscreen Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field gamepad Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field geolocation Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field gyroscope Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field hid Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field idle-detection Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field interest-cohort Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field magnetometer Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field microphone Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field midi Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field otp-credentials Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field payment Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field picture-in-picture Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field publickey-credentials-get Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field screen-wake-lock Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field serial Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field storage-access-api Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field sync-xhr Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field trust-token-redemption Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field usb Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field vertical-scroll Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field web-share Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field xr-spatial-tracking Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static fun values ()[Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeatureState {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeatureState$Companion;
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;ZLorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockLocator;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;ZLorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockLocator;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;ZLorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockLocator;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public final fun component2 ()Z
+	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockLocator;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;ZLorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockLocator;)Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeatureState;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeatureState;Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;ZLorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockLocator;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeatureState;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAllowed ()Z
+	public final fun getFeature ()Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public final fun getLocator ()Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockLocator;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeatureState;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeatureState$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeatureState$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeatureState;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeatureState;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeatureState$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/hildan/chrome/devtools/domains/page/PrintToPDFRequest {
