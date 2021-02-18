@@ -1,5 +1,17 @@
 # Change Log
 
+## [0.14.3](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.14.3) (2021-02-18)
+[Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.14.2...0.14.3)
+
+**Closed issues:**
+
+- Stabilize deployment to maven central [\#48](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/48)
+- Prevent conflicts in deployment to maven central [\#47](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/47)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 0.0.854538 [\#49](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/49) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [0.14.2](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.14.2) (2021-02-12)
 [Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.14.1...0.14.2)
 
