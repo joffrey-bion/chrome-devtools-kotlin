@@ -1605,7 +1605,7 @@ public final class org/hildan/chrome/devtools/domains/audits/AffectedRequest$Com
 }
 
 public final class org/hildan/chrome/devtools/domains/audits/AuditsDomain {
-	public final fun checkContrast (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun checkContrast (Lorg/hildan/chrome/devtools/domains/audits/CheckContrastRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
@@ -1672,6 +1672,37 @@ public final class org/hildan/chrome/devtools/domains/audits/BlockedByResponseRe
 }
 
 public final class org/hildan/chrome/devtools/domains/audits/BlockedByResponseReason$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/audits/CheckContrastRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/CheckContrastRequest$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/Boolean;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/Boolean;
+	public final fun copy (Ljava/lang/Boolean;)Lorg/hildan/chrome/devtools/domains/audits/CheckContrastRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/audits/CheckContrastRequest;Ljava/lang/Boolean;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/audits/CheckContrastRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getReportAAA ()Ljava/lang/Boolean;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/audits/CheckContrastRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/audits/CheckContrastRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/audits/CheckContrastRequest$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/audits/CheckContrastRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/audits/CheckContrastRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/audits/CheckContrastRequest$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -6827,7 +6858,6 @@ public final class org/hildan/chrome/devtools/domains/debugger/DebuggerDomain {
 	public final fun enable (Lorg/hildan/chrome/devtools/domains/debugger/EnableRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun evaluateOnCallFrame (Lorg/hildan/chrome/devtools/domains/debugger/EvaluateOnCallFrameRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
-	public final fun executeWasmEvaluator (Lorg/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getPossibleBreakpoints (Lorg/hildan/chrome/devtools/domains/debugger/GetPossibleBreakpointsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getScriptSource (Lorg/hildan/chrome/devtools/domains/debugger/GetScriptSourceRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getStackTrace (Lorg/hildan/chrome/devtools/domains/debugger/GetStackTraceRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -6997,72 +7027,6 @@ public final class org/hildan/chrome/devtools/domains/debugger/EvaluateOnCallFra
 }
 
 public final class org/hildan/chrome/devtools/domains/debugger/EvaluateOnCallFrameResponse$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class org/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorRequest {
-	public static final field Companion Lorg/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorRequest$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/Double;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Double;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Double;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/Double;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Double;)Lorg/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorRequest;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Double;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorRequest;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getCallFrameId ()Ljava/lang/String;
-	public final fun getEvaluator ()Ljava/lang/String;
-	public final fun getTimeout ()Ljava/lang/Double;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
-}
-
-public final class org/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorRequest$$serializer;
-	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorRequest;
-	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorRequest;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
-}
-
-public final class org/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorRequest$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class org/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorResponse {
-	public static final field Companion Lorg/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorResponse$Companion;
-	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/runtime/RemoteObject;Lorg/hildan/chrome/devtools/domains/runtime/ExceptionDetails;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Lorg/hildan/chrome/devtools/domains/runtime/RemoteObject;Lorg/hildan/chrome/devtools/domains/runtime/ExceptionDetails;)V
-	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/runtime/RemoteObject;Lorg/hildan/chrome/devtools/domains/runtime/ExceptionDetails;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/runtime/RemoteObject;
-	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/runtime/ExceptionDetails;
-	public final fun copy (Lorg/hildan/chrome/devtools/domains/runtime/RemoteObject;Lorg/hildan/chrome/devtools/domains/runtime/ExceptionDetails;)Lorg/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorResponse;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorResponse;Lorg/hildan/chrome/devtools/domains/runtime/RemoteObject;Lorg/hildan/chrome/devtools/domains/runtime/ExceptionDetails;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorResponse;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getExceptionDetails ()Lorg/hildan/chrome/devtools/domains/runtime/ExceptionDetails;
-	public final fun getResult ()Lorg/hildan/chrome/devtools/domains/runtime/RemoteObject;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorResponse;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
-}
-
-public final class org/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorResponse$$serializer;
-	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorResponse;
-	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorResponse;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
-}
-
-public final class org/hildan/chrome/devtools/domains/debugger/ExecuteWasmEvaluatorResponse$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -27857,15 +27821,17 @@ public final class org/hildan/chrome/devtools/domains/profiler/events/ProfilerEv
 
 public final class org/hildan/chrome/devtools/domains/runtime/AddBindingRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/runtime/AddBindingRequest$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/Integer;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/Integer;
-	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;)Lorg/hildan/chrome/devtools/domains/runtime/AddBindingRequest;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/runtime/AddBindingRequest;Ljava/lang/String;Ljava/lang/Integer;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/runtime/AddBindingRequest;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/runtime/AddBindingRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/runtime/AddBindingRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/runtime/AddBindingRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getExecutionContextId ()Ljava/lang/Integer;
+	public final fun getExecutionContextName ()Ljava/lang/String;
 	public final fun getName ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -28240,15 +28206,16 @@ public final class org/hildan/chrome/devtools/domains/runtime/EntryPreview$Compa
 
 public final class org/hildan/chrome/devtools/domains/runtime/EvaluateRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/runtime/EvaluateRequest$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Double;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Double;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Double;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Double;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Double;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Double;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()Ljava/lang/Boolean;
 	public final fun component11 ()Ljava/lang/Double;
 	public final fun component12 ()Ljava/lang/Boolean;
 	public final fun component13 ()Ljava/lang/Boolean;
 	public final fun component14 ()Ljava/lang/Boolean;
+	public final fun component15 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/Boolean;
 	public final fun component4 ()Ljava/lang/Boolean;
@@ -28257,8 +28224,8 @@ public final class org/hildan/chrome/devtools/domains/runtime/EvaluateRequest {
 	public final fun component7 ()Ljava/lang/Boolean;
 	public final fun component8 ()Ljava/lang/Boolean;
 	public final fun component9 ()Ljava/lang/Boolean;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Double;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)Lorg/hildan/chrome/devtools/domains/runtime/EvaluateRequest;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/runtime/EvaluateRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Double;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/runtime/EvaluateRequest;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Double;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/runtime/EvaluateRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/runtime/EvaluateRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Double;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/runtime/EvaluateRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAllowUnsafeEvalBlockedByCSP ()Ljava/lang/Boolean;
 	public final fun getAwaitPromise ()Ljava/lang/Boolean;
@@ -28273,6 +28240,7 @@ public final class org/hildan/chrome/devtools/domains/runtime/EvaluateRequest {
 	public final fun getSilent ()Ljava/lang/Boolean;
 	public final fun getThrowOnSideEffect ()Ljava/lang/Boolean;
 	public final fun getTimeout ()Ljava/lang/Double;
+	public final fun getUniqueContextId ()Ljava/lang/String;
 	public final fun getUserGesture ()Ljava/lang/Boolean;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -28374,20 +28342,22 @@ public final class org/hildan/chrome/devtools/domains/runtime/ExceptionDetails$C
 
 public final class org/hildan/chrome/devtools/domains/runtime/ExecutionContextDescription {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/runtime/ExecutionContextDescription$Companion;
-	public synthetic fun <init> (IILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (ILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;)V
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (IILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()I
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Lkotlinx/serialization/json/JsonElement;
-	public final fun copy (ILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;)Lorg/hildan/chrome/devtools/domains/runtime/ExecutionContextDescription;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/runtime/ExecutionContextDescription;ILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/runtime/ExecutionContextDescription;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Lkotlinx/serialization/json/JsonElement;
+	public final fun copy (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;)Lorg/hildan/chrome/devtools/domains/runtime/ExecutionContextDescription;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/runtime/ExecutionContextDescription;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/runtime/ExecutionContextDescription;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAuxData ()Lkotlinx/serialization/json/JsonElement;
 	public final fun getId ()I
 	public final fun getName ()Ljava/lang/String;
 	public final fun getOrigin ()Ljava/lang/String;
+	public final fun getUniqueId ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/runtime/ExecutionContextDescription;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
