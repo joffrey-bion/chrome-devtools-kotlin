@@ -24247,15 +24247,21 @@ public final class org/hildan/chrome/devtools/domains/page/GetInstallabilityErro
 
 public final class org/hildan/chrome/devtools/domains/page/GetLayoutMetricsResponse {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/GetLayoutMetricsResponse$Companion;
-	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/page/LayoutViewport;Lorg/hildan/chrome/devtools/domains/page/VisualViewport;Lorg/hildan/chrome/devtools/domains/dom/Rect;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Lorg/hildan/chrome/devtools/domains/page/LayoutViewport;Lorg/hildan/chrome/devtools/domains/page/VisualViewport;Lorg/hildan/chrome/devtools/domains/dom/Rect;)V
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/page/LayoutViewport;Lorg/hildan/chrome/devtools/domains/page/VisualViewport;Lorg/hildan/chrome/devtools/domains/dom/Rect;Lorg/hildan/chrome/devtools/domains/page/LayoutViewport;Lorg/hildan/chrome/devtools/domains/page/VisualViewport;Lorg/hildan/chrome/devtools/domains/dom/Rect;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/page/LayoutViewport;Lorg/hildan/chrome/devtools/domains/page/VisualViewport;Lorg/hildan/chrome/devtools/domains/dom/Rect;Lorg/hildan/chrome/devtools/domains/page/LayoutViewport;Lorg/hildan/chrome/devtools/domains/page/VisualViewport;Lorg/hildan/chrome/devtools/domains/dom/Rect;)V
 	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/page/LayoutViewport;
 	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/page/VisualViewport;
 	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/dom/Rect;
-	public final fun copy (Lorg/hildan/chrome/devtools/domains/page/LayoutViewport;Lorg/hildan/chrome/devtools/domains/page/VisualViewport;Lorg/hildan/chrome/devtools/domains/dom/Rect;)Lorg/hildan/chrome/devtools/domains/page/GetLayoutMetricsResponse;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/GetLayoutMetricsResponse;Lorg/hildan/chrome/devtools/domains/page/LayoutViewport;Lorg/hildan/chrome/devtools/domains/page/VisualViewport;Lorg/hildan/chrome/devtools/domains/dom/Rect;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/GetLayoutMetricsResponse;
+	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/page/LayoutViewport;
+	public final fun component5 ()Lorg/hildan/chrome/devtools/domains/page/VisualViewport;
+	public final fun component6 ()Lorg/hildan/chrome/devtools/domains/dom/Rect;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/page/LayoutViewport;Lorg/hildan/chrome/devtools/domains/page/VisualViewport;Lorg/hildan/chrome/devtools/domains/dom/Rect;Lorg/hildan/chrome/devtools/domains/page/LayoutViewport;Lorg/hildan/chrome/devtools/domains/page/VisualViewport;Lorg/hildan/chrome/devtools/domains/dom/Rect;)Lorg/hildan/chrome/devtools/domains/page/GetLayoutMetricsResponse;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/GetLayoutMetricsResponse;Lorg/hildan/chrome/devtools/domains/page/LayoutViewport;Lorg/hildan/chrome/devtools/domains/page/VisualViewport;Lorg/hildan/chrome/devtools/domains/dom/Rect;Lorg/hildan/chrome/devtools/domains/page/LayoutViewport;Lorg/hildan/chrome/devtools/domains/page/VisualViewport;Lorg/hildan/chrome/devtools/domains/dom/Rect;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/GetLayoutMetricsResponse;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getContentSize ()Lorg/hildan/chrome/devtools/domains/dom/Rect;
+	public final fun getCssContentSize ()Lorg/hildan/chrome/devtools/domains/dom/Rect;
+	public final fun getCssLayoutViewport ()Lorg/hildan/chrome/devtools/domains/page/LayoutViewport;
+	public final fun getCssVisualViewport ()Lorg/hildan/chrome/devtools/domains/page/VisualViewport;
 	public final fun getLayoutViewport ()Lorg/hildan/chrome/devtools/domains/page/LayoutViewport;
 	public final fun getVisualViewport ()Lorg/hildan/chrome/devtools/domains/page/VisualViewport;
 	public fun hashCode ()I
