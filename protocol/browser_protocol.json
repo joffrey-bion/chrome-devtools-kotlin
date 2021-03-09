@@ -11094,6 +11094,7 @@
                     "type": "string",
                     "enum": [
                         "None",
+                        "CorsOrCredentialless",
                         "RequireCorp"
                     ]
                 },
@@ -17030,6 +17031,24 @@
                             "items": {
                                 "$ref": "TrustTokens"
                             }
+                        }
+                    ]
+                },
+                {
+                    "name": "clearTrustTokens",
+                    "description": "Removes all Trust Tokens issued by the provided issuerOrigin.\nLeaves other stored data, including the issuer's Redemption Records, intact.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "issuerOrigin",
+                            "type": "string"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "didDeleteTokens",
+                            "description": "True if any tokens were deleted, false otherwise.",
+                            "type": "boolean"
                         }
                     ]
                 }

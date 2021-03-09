@@ -18725,6 +18725,7 @@ public final class org/hildan/chrome/devtools/domains/network/CrossOriginEmbedde
 
 public final class org/hildan/chrome/devtools/domains/network/CrossOriginEmbedderPolicyValue : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/CrossOriginEmbedderPolicyValue$Companion;
+	public static final field CorsOrCredentialless Lorg/hildan/chrome/devtools/domains/network/CrossOriginEmbedderPolicyValue;
 	public static final field None Lorg/hildan/chrome/devtools/domains/network/CrossOriginEmbedderPolicyValue;
 	public static final field RequireCorp Lorg/hildan/chrome/devtools/domains/network/CrossOriginEmbedderPolicyValue;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/CrossOriginEmbedderPolicyValue;
@@ -30813,6 +30814,64 @@ public final class org/hildan/chrome/devtools/domains/storage/ClearDataForOrigin
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/storage/ClearTrustTokensRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/ClearTrustTokensRequest$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/storage/ClearTrustTokensRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/storage/ClearTrustTokensRequest;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/storage/ClearTrustTokensRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getIssuerOrigin ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/storage/ClearTrustTokensRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/ClearTrustTokensRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/storage/ClearTrustTokensRequest$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/storage/ClearTrustTokensRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/storage/ClearTrustTokensRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/ClearTrustTokensRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/ClearTrustTokensResponse {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/ClearTrustTokensResponse$Companion;
+	public synthetic fun <init> (IZLkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Z)V
+	public final fun component1 ()Z
+	public final fun copy (Z)Lorg/hildan/chrome/devtools/domains/storage/ClearTrustTokensResponse;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/storage/ClearTrustTokensResponse;ZILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/storage/ClearTrustTokensResponse;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDidDeleteTokens ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/storage/ClearTrustTokensResponse;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/ClearTrustTokensResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/storage/ClearTrustTokensResponse$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/storage/ClearTrustTokensResponse;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/storage/ClearTrustTokensResponse;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/ClearTrustTokensResponse$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/storage/GetCookiesRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/GetCookiesRequest$Companion;
 	public fun <init> ()V
@@ -31035,6 +31094,7 @@ public final class org/hildan/chrome/devtools/domains/storage/StorageDomain {
 	public final fun cacheStorageListUpdated ()Lkotlinx/coroutines/flow/Flow;
 	public final fun clearCookies (Lorg/hildan/chrome/devtools/domains/storage/ClearCookiesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun clearDataForOrigin (Lorg/hildan/chrome/devtools/domains/storage/ClearDataForOriginRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun clearTrustTokens (Lorg/hildan/chrome/devtools/domains/storage/ClearTrustTokensRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun getCookies (Lorg/hildan/chrome/devtools/domains/storage/GetCookiesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getTrustTokens (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
