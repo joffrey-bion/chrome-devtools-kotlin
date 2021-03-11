@@ -19,7 +19,10 @@ All the domains' commands and events defined in these protocol descriptors are t
 
 The protocol definitions are automatically updated daily, but releases of `chrome-devtools-kotlin` are still manual.
 If you're missing some APIs or updates, don't hesitate to open an issue to request a new release with updated protocol.
-You can check the latest released protocol update in the [CHANGELOG](./CHANGELOG.md).
+
+You can find the protocol version used by `chrome-devtools-kotlin` after the `-` in the version number.
+For instance, version `1.3.0-861504` of `chrome-devtools-kotlin` was built using version `861504` of the Chrome 
+DevTools Protocol (tip-of-tree version number).
 
 ## Concepts
 

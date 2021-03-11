@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "New version (and git tag)"
+        description: "New semver version without cdp suffix"
         required: true
 
 jobs:
@@ -35,8 +35,19 @@ jobs:
       - name: Test build before release
         run: ./gradlew build
 
+      - name: Read protocol version
+        uses: pCYSl5EDgo/cat@master
+        id: protocol-version
+        with:
+          path: protocol/version.txt
+          trim: true
+
+      - name: Compute release
+        run: echo "::set-output name=TAG::${{ github.event.inputs.version }}-${{ steps.protocol-version.outputs.text }}"
+        id: compute-tag
+
       - name: Generate Change Log
-        run: ./gradlew -Pversion=${{ github.event.inputs.version }} generateChangelog
+        run: ./gradlew -Pversion=${{ steps.compute-tag.outputs.TAG }} generateChangelog
 
       - name: Commit and Push Change Log
         id: changelog-commit
@@ -44,7 +55,7 @@ jobs:
           git config user.name '${{ github.actor }}'
           git config user.email '${{ github.actor }}@users.noreply.github.com'
           git add CHANGELOG.md
-          git commit -m "Version ${{ github.event.inputs.version }}"
+          git commit -m "Version ${{ steps.compute-tag.outputs.TAG }}"
           git push
           echo "::set-output name=sha::$(git rev-parse HEAD)"
 
@@ -53,6 +64,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }} # using personal token to trigger publish workflow
         with:
-          tag_name: ${{ github.event.inputs.version }}
-          release_name: ${{ github.event.inputs.version }}
+          tag_name: ${{ steps.compute-tag.outputs.TAG }}
+          release_name: ${{ steps.compute-tag.outputs.TAG }}
           commitish: ${{ steps.changelog-commit.outputs.sha }}

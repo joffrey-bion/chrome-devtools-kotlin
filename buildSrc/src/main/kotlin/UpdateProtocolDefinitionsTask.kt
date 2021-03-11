@@ -36,7 +36,7 @@ open class UpdateProtocolDefinitionsTask : DefaultTask() {
         }
 
         val newVersion = fetchProtocolNpmVersion()
-        outputDir.resolve("version.txt").toFile().writeText(newVersion)
+        outputDir.resolve("version.txt").toFile().writeText(newVersion.removePrefix("0.0."))
         println("Chrome Devtools Protocol definition updated to $newVersion")
     }
 }
