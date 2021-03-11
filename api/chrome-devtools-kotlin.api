@@ -24808,7 +24808,6 @@ public final class org/hildan/chrome/devtools/domains/page/PageDomain {
 	public final fun getResourceContent (Lorg/hildan/chrome/devtools/domains/page/GetResourceContentRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getResourceTree (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun handleJavaScriptDialog (Lorg/hildan/chrome/devtools/domains/page/HandleJavaScriptDialogRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun historyNavigationOutcomeReported ()Lkotlinx/coroutines/flow/Flow;
 	public final fun interstitialHidden ()Lkotlinx/coroutines/flow/Flow;
 	public final fun interstitialShown ()Lkotlinx/coroutines/flow/Flow;
 	public final fun javascriptDialogClosed ()Lkotlinx/coroutines/flow/Flow;
@@ -26481,39 +26480,6 @@ public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$Fram
 }
 
 public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$FrameStoppedLoadingEvent$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$HistoryNavigationOutcomeReportedEvent : org/hildan/chrome/devtools/domains/page/events/PageEvent {
-	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$HistoryNavigationOutcomeReportedEvent$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;ZLkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Z)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Z
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Z)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$HistoryNavigationOutcomeReportedEvent;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$HistoryNavigationOutcomeReportedEvent;Ljava/lang/String;Ljava/lang/String;ZILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$HistoryNavigationOutcomeReportedEvent;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getFrameId ()Ljava/lang/String;
-	public final fun getRequestId ()Ljava/lang/String;
-	public fun hashCode ()I
-	public final fun isRestoredFromBackForwardCache ()Z
-	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$HistoryNavigationOutcomeReportedEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
-}
-
-public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$HistoryNavigationOutcomeReportedEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$HistoryNavigationOutcomeReportedEvent$$serializer;
-	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$HistoryNavigationOutcomeReportedEvent;
-	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$HistoryNavigationOutcomeReportedEvent;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
-}
-
-public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$HistoryNavigationOutcomeReportedEvent$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
