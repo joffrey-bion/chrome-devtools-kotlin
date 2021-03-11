@@ -36,15 +36,16 @@ jobs:
           # see https://docs.gradle.org/current/userguide/signing_plugin.html#sec:in-memory-keys
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_SECRET_ASCII_ARMORED }}
           ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.GPG_PASSWORD }}
-          # OSS RH credentials for Sonatype staging publication
-          OSSRH_USER_TOKEN: ${{ secrets.OSSRH_USER_TOKEN }}
-          OSSRH_KEY: ${{ secrets.OSSRH_KEY }}
+          # Credentials implicitly read by the gradle-nexus-publish-plugin
+          # https://github.com/gradle-nexus/publish-plugin#publishing-to-maven-central-via-sonatype-ossrh
+          ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.OSSRH_USER_TOKEN }}
+          ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.OSSRH_KEY }}
         run: ./gradlew -Pversion=${{ github.event.release.tag_name }} publishToSonatype
 
       - name: Close staging repo and release to Maven Central
         env:
-          # Credentials implicitly read by the gradle-nexus-staging-plugin
-          # see https://github.com/Codearte/gradle-nexus-staging-plugin#server-credentials
-          ORG_GRADLE_PROJECT_nexusUsername: ${{ secrets.OSSRH_USER_TOKEN }}
-          ORG_GRADLE_PROJECT_nexusPassword: ${{ secrets.OSSRH_KEY }}
-        run: ./gradlew -Pversion=${{ github.event.release.tag_name }} closeAndReleaseRepository
+          # Credentials implicitly read by the gradle-nexus-publish-plugin
+          # https://github.com/gradle-nexus/publish-plugin#publishing-to-maven-central-via-sonatype-ossrh
+          ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.OSSRH_USER_TOKEN }}
+          ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.OSSRH_KEY }}
+        run: ./gradlew -Pversion=${{ github.event.release.tag_name }} closeAndReleaseSonatypeStagingRepository
