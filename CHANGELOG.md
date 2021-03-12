@@ -1,5 +1,12 @@
 # Change Log
 
+## [1.3.0\-861504](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/1.3.0-861504) (2021-03-12)
+[Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/1.3.0...1.3.0-861504)
+
+**Closed issues:**
+
+- Add protocol version to the version number [\#57](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/57)
+
 ## [1.3.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/1.3.0) (2021-03-11)
 [Full Changelog](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/1.2.0...1.3.0)
 
