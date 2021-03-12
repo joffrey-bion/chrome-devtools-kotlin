@@ -42,12 +42,12 @@ jobs:
           path: protocol/version.txt
           trim: true
 
-      - name: Compute release
-        run: echo "::set-output name=TAG::${{ github.event.inputs.version }}-${{ steps.protocol-version.outputs.text }}"
+      - name: Compute release tag (with protocol version)
+        run: echo "::set-output name=tag::${{ github.event.inputs.version }}-${{ steps.protocol-version.outputs.text }}"
         id: compute-tag
 
       - name: Generate Change Log
-        run: ./gradlew -Pversion=${{ steps.compute-tag.outputs.TAG }} generateChangelog
+        run: ./gradlew -Pversion=${{ steps.compute-tag.outputs.tag }} generateChangelog
 
       - name: Commit and Push Change Log
         id: changelog-commit
@@ -55,7 +55,7 @@ jobs:
           git config user.name '${{ github.actor }}'
           git config user.email '${{ github.actor }}@users.noreply.github.com'
           git add CHANGELOG.md
-          git commit -m "Version ${{ steps.compute-tag.outputs.TAG }}"
+          git commit -m "Version ${{ steps.compute-tag.outputs.tag }}"
           git push
           echo "::set-output name=sha::$(git rev-parse HEAD)"
 
@@ -64,6 +64,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }} # using personal token to trigger publish workflow
         with:
-          tag_name: ${{ steps.compute-tag.outputs.TAG }}
-          release_name: ${{ steps.compute-tag.outputs.TAG }}
+          tag_name: ${{ steps.compute-tag.outputs.tag }}
+          release_name: ${{ steps.compute-tag.outputs.tag }}
           commitish: ${{ steps.changelog-commit.outputs.sha }}
