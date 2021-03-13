@@ -18075,7 +18075,6 @@ public final class org/hildan/chrome/devtools/domains/network/BlockedCookieWithR
 public final class org/hildan/chrome/devtools/domains/network/BlockedReason : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/BlockedReason$Companion;
 	public static final field coep-frame-resource-needs-coep-header Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
-	public static final field collapsed-by-client Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
 	public static final field content-type Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
 	public static final field coop-sandboxed-iframe-cannot-navigate-to-coop-page Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
 	public static final field corp-not-same-origin Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
