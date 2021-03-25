@@ -18349,6 +18349,30 @@ public final class org/hildan/chrome/devtools/domains/network/ConnectionType$Com
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/network/ContentEncoding : java/lang/Enum {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/ContentEncoding$Companion;
+	public static final field br Lorg/hildan/chrome/devtools/domains/network/ContentEncoding;
+	public static final field deflate Lorg/hildan/chrome/devtools/domains/network/ContentEncoding;
+	public static final field gzip Lorg/hildan/chrome/devtools/domains/network/ContentEncoding;
+	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/ContentEncoding;
+	public static fun values ()[Lorg/hildan/chrome/devtools/domains/network/ContentEncoding;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/ContentEncoding$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/network/ContentEncoding$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/network/ContentEncoding;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/network/ContentEncoding;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/ContentEncoding$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/network/ContinueInterceptedRequestRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/ContinueInterceptedRequestRequest$Companion;
 	public synthetic fun <init> (ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/network/ErrorReason;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;Lorg/hildan/chrome/devtools/domains/network/AuthChallengeResponse;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
@@ -19561,6 +19585,7 @@ public final class org/hildan/chrome/devtools/domains/network/NetworkDomain {
 	public final fun canClearBrowserCache (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun canClearBrowserCookies (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun canEmulateNetworkConditions (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun clearAcceptedEncodingsOverride (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun clearBrowserCache (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun clearBrowserCookies (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun continueInterceptedRequest (Lorg/hildan/chrome/devtools/domains/network/ContinueInterceptedRequestRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -19590,6 +19615,7 @@ public final class org/hildan/chrome/devtools/domains/network/NetworkDomain {
 	public final fun responseReceived ()Lkotlinx/coroutines/flow/Flow;
 	public final fun responseReceivedExtraInfo ()Lkotlinx/coroutines/flow/Flow;
 	public final fun searchInResponseBody (Lorg/hildan/chrome/devtools/domains/network/SearchInResponseBodyRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setAcceptedEncodings (Lorg/hildan/chrome/devtools/domains/network/SetAcceptedEncodingsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setAttachDebugStack (Lorg/hildan/chrome/devtools/domains/network/SetAttachDebugStackRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setBlockedURLs (Lorg/hildan/chrome/devtools/domains/network/SetBlockedURLsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setBypassServiceWorker (Lorg/hildan/chrome/devtools/domains/network/SetBypassServiceWorkerRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -20162,6 +20188,35 @@ public final class org/hildan/chrome/devtools/domains/network/ServiceWorkerRespo
 }
 
 public final class org/hildan/chrome/devtools/domains/network/ServiceWorkerResponseSource$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/SetAcceptedEncodingsRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/SetAcceptedEncodingsRequest$Companion;
+	public synthetic fun <init> (ILjava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/network/SetAcceptedEncodingsRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/SetAcceptedEncodingsRequest;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/SetAcceptedEncodingsRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEncodings ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/network/SetAcceptedEncodingsRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/network/SetAcceptedEncodingsRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/network/SetAcceptedEncodingsRequest$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/network/SetAcceptedEncodingsRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/network/SetAcceptedEncodingsRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/SetAcceptedEncodingsRequest$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
