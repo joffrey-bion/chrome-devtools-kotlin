@@ -22737,8 +22737,77 @@ public final class org/hildan/chrome/devtools/domains/overlay/OverlayDomain {
 	public final fun setShowLayoutShiftRegions (Lorg/hildan/chrome/devtools/domains/overlay/SetShowLayoutShiftRegionsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setShowPaintRects (Lorg/hildan/chrome/devtools/domains/overlay/SetShowPaintRectsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setShowScrollBottleneckRects (Lorg/hildan/chrome/devtools/domains/overlay/SetShowScrollBottleneckRectsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setShowScrollSnapOverlays (Lorg/hildan/chrome/devtools/domains/overlay/SetShowScrollSnapOverlaysRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setShowViewportSizeOnResize (Lorg/hildan/chrome/devtools/domains/overlay/SetShowViewportSizeOnResizeRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setShowWebVitals (Lorg/hildan/chrome/devtools/domains/overlay/SetShowWebVitalsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/ScrollSnapContainerHighlightConfig {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapContainerHighlightConfig$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/overlay/LineStyle;Lorg/hildan/chrome/devtools/domains/overlay/LineStyle;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/overlay/LineStyle;Lorg/hildan/chrome/devtools/domains/overlay/LineStyle;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/overlay/LineStyle;Lorg/hildan/chrome/devtools/domains/overlay/LineStyle;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/overlay/LineStyle;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/overlay/LineStyle;
+	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/dom/RGBA;
+	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/dom/RGBA;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/overlay/LineStyle;Lorg/hildan/chrome/devtools/domains/overlay/LineStyle;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;)Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapContainerHighlightConfig;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapContainerHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/LineStyle;Lorg/hildan/chrome/devtools/domains/overlay/LineStyle;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapContainerHighlightConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getScrollMarginColor ()Lorg/hildan/chrome/devtools/domains/dom/RGBA;
+	public final fun getScrollPaddingColor ()Lorg/hildan/chrome/devtools/domains/dom/RGBA;
+	public final fun getSnapAreaBorder ()Lorg/hildan/chrome/devtools/domains/overlay/LineStyle;
+	public final fun getSnapportBorder ()Lorg/hildan/chrome/devtools/domains/overlay/LineStyle;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapContainerHighlightConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/ScrollSnapContainerHighlightConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapContainerHighlightConfig$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapContainerHighlightConfig;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapContainerHighlightConfig;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/ScrollSnapContainerHighlightConfig$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/ScrollSnapHighlightConfig {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapHighlightConfig$Companion;
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/overlay/ScrollSnapContainerHighlightConfig;ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapContainerHighlightConfig;I)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapContainerHighlightConfig;
+	public final fun component2 ()I
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapContainerHighlightConfig;I)Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapHighlightConfig;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapContainerHighlightConfig;IILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapHighlightConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getNodeId ()I
+	public final fun getScrollSnapContainerHighlightConfig ()Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapContainerHighlightConfig;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapHighlightConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/ScrollSnapHighlightConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapHighlightConfig$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapHighlightConfig;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/overlay/ScrollSnapHighlightConfig;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/ScrollSnapHighlightConfig$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
 public final class org/hildan/chrome/devtools/domains/overlay/SetInspectModeRequest {
@@ -23093,6 +23162,35 @@ public final class org/hildan/chrome/devtools/domains/overlay/SetShowScrollBottl
 }
 
 public final class org/hildan/chrome/devtools/domains/overlay/SetShowScrollBottleneckRectsRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/SetShowScrollSnapOverlaysRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/overlay/SetShowScrollSnapOverlaysRequest$Companion;
+	public synthetic fun <init> (ILjava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/overlay/SetShowScrollSnapOverlaysRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/overlay/SetShowScrollSnapOverlaysRequest;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/overlay/SetShowScrollSnapOverlaysRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getScrollSnapHighlightConfigs ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/overlay/SetShowScrollSnapOverlaysRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/SetShowScrollSnapOverlaysRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/overlay/SetShowScrollSnapOverlaysRequest$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/overlay/SetShowScrollSnapOverlaysRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/overlay/SetShowScrollSnapOverlaysRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/SetShowScrollSnapOverlaysRequest$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
