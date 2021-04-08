@@ -16233,9 +16233,12 @@ public final class org/hildan/chrome/devtools/domains/input/InputDomain {
 	public final fun dispatchKeyEvent (Lorg/hildan/chrome/devtools/domains/input/DispatchKeyEventRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun dispatchMouseEvent (Lorg/hildan/chrome/devtools/domains/input/DispatchMouseEventRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun dispatchTouchEvent (Lorg/hildan/chrome/devtools/domains/input/DispatchTouchEventRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun dragIntercepted ()Lkotlinx/coroutines/flow/Flow;
 	public final fun emulateTouchFromMouseEvent (Lorg/hildan/chrome/devtools/domains/input/EmulateTouchFromMouseEventRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun insertText (Lorg/hildan/chrome/devtools/domains/input/InsertTextRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setIgnoreInputEvents (Lorg/hildan/chrome/devtools/domains/input/SetIgnoreInputEventsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setInterceptDrags (Lorg/hildan/chrome/devtools/domains/input/SetInterceptDragsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun synthesizePinchGesture (Lorg/hildan/chrome/devtools/domains/input/SynthesizePinchGestureRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun synthesizeScrollGesture (Lorg/hildan/chrome/devtools/domains/input/SynthesizeScrollGestureRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun synthesizeTapGesture (Lorg/hildan/chrome/devtools/domains/input/SynthesizeTapGestureRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -16323,6 +16326,35 @@ public final class org/hildan/chrome/devtools/domains/input/SetIgnoreInputEvents
 }
 
 public final class org/hildan/chrome/devtools/domains/input/SetIgnoreInputEventsRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/input/SetInterceptDragsRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/input/SetInterceptDragsRequest$Companion;
+	public synthetic fun <init> (IZLkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Z)V
+	public final fun component1 ()Z
+	public final fun copy (Z)Lorg/hildan/chrome/devtools/domains/input/SetInterceptDragsRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/input/SetInterceptDragsRequest;ZILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/input/SetInterceptDragsRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEnabled ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/input/SetInterceptDragsRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/input/SetInterceptDragsRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/input/SetInterceptDragsRequest$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/input/SetInterceptDragsRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/input/SetInterceptDragsRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/input/SetInterceptDragsRequest$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -16501,6 +16533,45 @@ public final class org/hildan/chrome/devtools/domains/input/TouchPoint$$serializ
 }
 
 public final class org/hildan/chrome/devtools/domains/input/TouchPoint$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract class org/hildan/chrome/devtools/domains/input/events/InputEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/input/events/InputEvent$Companion;
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/input/events/InputEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/input/events/InputEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/input/events/InputEvent$DragInterceptedEvent : org/hildan/chrome/devtools/domains/input/events/InputEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/input/events/InputEvent$DragInterceptedEvent$Companion;
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/input/DragData;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/input/DragData;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/input/DragData;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/input/DragData;)Lorg/hildan/chrome/devtools/domains/input/events/InputEvent$DragInterceptedEvent;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/input/events/InputEvent$DragInterceptedEvent;Lorg/hildan/chrome/devtools/domains/input/DragData;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/input/events/InputEvent$DragInterceptedEvent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getData ()Lorg/hildan/chrome/devtools/domains/input/DragData;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/input/events/InputEvent$DragInterceptedEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/input/events/InputEvent$DragInterceptedEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/input/events/InputEvent$DragInterceptedEvent$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/input/events/InputEvent$DragInterceptedEvent;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/input/events/InputEvent$DragInterceptedEvent;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/input/events/InputEvent$DragInterceptedEvent$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
