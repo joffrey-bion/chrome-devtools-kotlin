@@ -13032,6 +13032,7 @@ public final class org/hildan/chrome/devtools/domains/emulation/CanEmulateRespon
 public final class org/hildan/chrome/devtools/domains/emulation/DisabledImageType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/emulation/DisabledImageType$Companion;
 	public static final field avif Lorg/hildan/chrome/devtools/domains/emulation/DisabledImageType;
+	public static final field jxl Lorg/hildan/chrome/devtools/domains/emulation/DisabledImageType;
 	public static final field webp Lorg/hildan/chrome/devtools/domains/emulation/DisabledImageType;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/emulation/DisabledImageType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/emulation/DisabledImageType;
