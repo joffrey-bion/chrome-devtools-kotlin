@@ -25249,6 +25249,29 @@ public final class org/hildan/chrome/devtools/domains/page/NavigationEntry$Compa
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/page/NavigationType : java/lang/Enum {
+	public static final field BackForwardCacheRestore Lorg/hildan/chrome/devtools/domains/page/NavigationType;
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/NavigationType$Companion;
+	public static final field Navigation Lorg/hildan/chrome/devtools/domains/page/NavigationType;
+	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/NavigationType;
+	public static fun values ()[Lorg/hildan/chrome/devtools/domains/page/NavigationType;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/NavigationType$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/NavigationType$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/page/NavigationType;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/page/NavigationType;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/NavigationType$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/page/PageDomain {
 	public final fun addCompilationCache (Lorg/hildan/chrome/devtools/domains/page/AddCompilationCacheRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun addScriptToEvaluateOnLoad (Lorg/hildan/chrome/devtools/domains/page/AddScriptToEvaluateOnLoadRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -26809,13 +26832,16 @@ public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$Fram
 
 public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$FrameNavigatedEvent : org/hildan/chrome/devtools/domains/page/events/PageEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$FrameNavigatedEvent$Companion;
-	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/page/Frame;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Lorg/hildan/chrome/devtools/domains/page/Frame;)V
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/page/Frame;Lorg/hildan/chrome/devtools/domains/page/NavigationType;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/page/Frame;Lorg/hildan/chrome/devtools/domains/page/NavigationType;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/page/Frame;Lorg/hildan/chrome/devtools/domains/page/NavigationType;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/page/Frame;
-	public final fun copy (Lorg/hildan/chrome/devtools/domains/page/Frame;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$FrameNavigatedEvent;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$FrameNavigatedEvent;Lorg/hildan/chrome/devtools/domains/page/Frame;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$FrameNavigatedEvent;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/page/NavigationType;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/page/Frame;Lorg/hildan/chrome/devtools/domains/page/NavigationType;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$FrameNavigatedEvent;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$FrameNavigatedEvent;Lorg/hildan/chrome/devtools/domains/page/Frame;Lorg/hildan/chrome/devtools/domains/page/NavigationType;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$FrameNavigatedEvent;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getFrame ()Lorg/hildan/chrome/devtools/domains/page/Frame;
+	public final fun getType ()Lorg/hildan/chrome/devtools/domains/page/NavigationType;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$FrameNavigatedEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
