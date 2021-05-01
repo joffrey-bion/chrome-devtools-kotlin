@@ -11091,7 +11091,7 @@
                     "properties": [
                         {
                             "name": "urlPattern",
-                            "description": "Wildcards ('*' -> zero or more, '?' -> exactly one) are allowed. Escape character is\nbackslash. Omitting is equivalent to \"*\".",
+                            "description": "Wildcards (`'*'` -> zero or more, `'?'` -> exactly one) are allowed. Escape character is\nbackslash. Omitting is equivalent to `\"*\"`.",
                             "optional": true,
                             "type": "string"
                         },
@@ -13937,6 +13937,7 @@
                         "publickey-credentials-get",
                         "screen-wake-lock",
                         "serial",
+                        "shared-autofill",
                         "storage-access-api",
                         "sync-xhr",
                         "trust-token-redemption",
@@ -18702,7 +18703,7 @@
                     "properties": [
                         {
                             "name": "urlPattern",
-                            "description": "Wildcards ('*' -> zero or more, '?' -> exactly one) are allowed. Escape character is\nbackslash. Omitting is equivalent to \"*\".",
+                            "description": "Wildcards (`'*'` -> zero or more, `'?'` -> exactly one) are allowed. Escape character is\nbackslash. Omitting is equivalent to `\"*\"`.",
                             "optional": true,
                             "type": "string"
                         },

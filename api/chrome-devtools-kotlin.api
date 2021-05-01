@@ -25473,6 +25473,7 @@ public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeat
 	public static final field publickey-credentials-get Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field screen-wake-lock Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field serial Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field shared-autofill Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field storage-access-api Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field sync-xhr Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field trust-token-redemption Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
