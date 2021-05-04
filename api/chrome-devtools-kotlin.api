@@ -23838,14 +23838,16 @@ public final class org/hildan/chrome/devtools/domains/page/AddScriptToEvaluateOn
 
 public final class org/hildan/chrome/devtools/domains/page/AddScriptToEvaluateOnNewDocumentRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/AddScriptToEvaluateOnNewDocumentRequest$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/AddScriptToEvaluateOnNewDocumentRequest;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/AddScriptToEvaluateOnNewDocumentRequest;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/AddScriptToEvaluateOnNewDocumentRequest;
+	public final fun component3 ()Ljava/lang/Boolean;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;)Lorg/hildan/chrome/devtools/domains/page/AddScriptToEvaluateOnNewDocumentRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/AddScriptToEvaluateOnNewDocumentRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/AddScriptToEvaluateOnNewDocumentRequest;
 	public fun equals (Ljava/lang/Object;)Z
+	public final fun getIncludeCommandLineAPI ()Ljava/lang/Boolean;
 	public final fun getSource ()Ljava/lang/String;
 	public final fun getWorldName ()Ljava/lang/String;
 	public fun hashCode ()I
