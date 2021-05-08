@@ -25452,6 +25452,7 @@ public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeat
 	public static final field clipboard-write Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field conversion-measurement Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field cross-origin-isolated Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field direct-sockets Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field display-capture Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field document-domain Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field encrypted-media Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
