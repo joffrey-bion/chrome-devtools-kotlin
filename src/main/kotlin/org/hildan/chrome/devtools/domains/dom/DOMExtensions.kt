@@ -5,7 +5,6 @@ import kotlinx.coroutines.isActive
 import kotlin.coroutines.coroutineContext
 import kotlin.time.Duration
 import kotlin.time.ExperimentalTime
-import kotlin.time.milliseconds
 
 /**
  * Retrieves the root [Node] of the current document.
@@ -39,15 +38,30 @@ suspend fun DOMDomain.findNodeBySelector(selector: String): NodeId? =
  * [by design of the DOM domain](https://github.com/ChromeDevTools/devtools-protocol/issues/20).
  * It can be used to perform other CDP commands that require a [NodeId], though.
  */
-@OptIn(ExperimentalTime::class)
-suspend fun DOMDomain.awaitNodeBySelector(selector: String, pollingPeriod: Duration = 200.milliseconds): NodeId {
+@ExperimentalTime
+suspend fun DOMDomain.awaitNodeBySelector(selector: String, pollingPeriod: Duration): NodeId =
+    awaitNodeBySelector(selector, pollingPeriod.toLongMilliseconds())
+
+/**
+ * Retrieves the ID of the node corresponding to the given [selector], and retries until there is a match using the
+ * given [pollingPeriodMillis].
+ *
+ * This method may suspend forever if the [selector] never matches any node.
+ * The caller is responsible for using [withTimeout][kotlinx.coroutines.withTimeout] or similar cancellation mechanisms
+ * around calls to this method if handling this case is necessary.
+ *
+ * Note that the returned [NodeId] cannot really be used to retrieve actual node information, and this is apparently
+ * [by design of the DOM domain](https://github.com/ChromeDevTools/devtools-protocol/issues/20).
+ * It can be used to perform other CDP commands that require a [NodeId], though.
+ */
+suspend fun DOMDomain.awaitNodeBySelector(selector: String, pollingPeriodMillis: Long = 200): NodeId {
     while (coroutineContext.isActive) {
         // it looks like we do need to get a new document at each poll otherwise we may not see the new nodes
         val nodeId = findNodeBySelector(selector)
         if (nodeId != null) {
             return nodeId
         }
-        delay(pollingPeriod)
+        delay(pollingPeriodMillis)
     }
     error("Cancelled while awaiting node by selector \"$selector\"")
 }
