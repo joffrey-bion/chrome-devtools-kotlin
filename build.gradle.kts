@@ -15,11 +15,10 @@ description = "A Kotlin client for the Chrome DevTools Protocol"
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 dependencies {
-    api("org.hildan.krossbow:krossbow-websocket-core:1.1.5")
+    api("org.hildan.krossbow:krossbow-websocket-core:1.4.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
 
     val ktorVersion = "1.5.0"

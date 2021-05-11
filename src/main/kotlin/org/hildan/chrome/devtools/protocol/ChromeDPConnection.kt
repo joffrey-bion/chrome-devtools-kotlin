@@ -5,14 +5,14 @@ import kotlinx.coroutines.flow.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import org.hildan.krossbow.websocket.WebSocketConnection
 import org.hildan.krossbow.websocket.WebSocketFrame
-import org.hildan.krossbow.websocket.WebSocketSession
 
-internal fun WebSocketSession.chromeDp(): ChromeDPConnection = ChromeDPConnection(this)
+internal fun WebSocketConnection.chromeDp(): ChromeDPConnection = ChromeDPConnection(this)
 
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class ChromeDPConnection(
-    private val webSocket: WebSocketSession
+    private val webSocket: WebSocketConnection
 ) {
     private val job = Job()
     private val coroutineScope = CoroutineScope(job)
