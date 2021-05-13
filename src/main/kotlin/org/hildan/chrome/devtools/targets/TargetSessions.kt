@@ -101,4 +101,20 @@ class ChromePageSession internal constructor(
             parent.target.disposeBrowserContext(DisposeBrowserContextRequest(metaData.browserContextId))
         }
     }
+    
+    /**
+     * Closes this page session.
+     *
+     * This only closes the corresponding tab, but preserves the underlying web socket connection (of the parent
+     * browser session), because it could be used by other page sessions.
+     * 
+     * @param[disposeBrowserContext] if true, the underlying browserSession will be closed also.
+     */
+    @OptIn(ExperimentalChromeApi::class)
+    suspend fun close(disposeBrowserContext: Boolean = false) {
+        parent.target.closeTarget(CloseTargetRequest(targetId = metaData.targetId))
+        if (!metaData.browserContextId.isNullOrEmpty() && disposeBrowserContext) {
+            parent.target.disposeBrowserContext(DisposeBrowserContextRequest(metaData.browserContextId))
+        }
+    }
 }
