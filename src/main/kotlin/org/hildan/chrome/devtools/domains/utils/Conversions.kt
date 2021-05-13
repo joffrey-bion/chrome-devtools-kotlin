@@ -1,6 +1,7 @@
 package org.hildan.chrome.devtools.domains.utils
 
 import org.hildan.chrome.devtools.domains.dom.Quad
+import org.hildan.chrome.devtools.domains.dom.Rect
 import org.hildan.chrome.devtools.domains.page.Viewport
 
 /**
@@ -13,3 +14,16 @@ fun Quad.toViewport(): Viewport = Viewport(
     height = this[5] - this[1],
     scale = 1.0,
 )
+
+internal data class Point(val x: Double, val y: Double)
+
+internal val Quad.center: Point
+    get() = Point(
+        x = middle(start = this[4], end = this[0]),
+        y = middle(start = this[5], end = this[1]),
+    )
+
+internal val Rect.center: Point
+    get() = Point(x + width / 2, y + height / 2)
+
+private fun middle(start: Double, end: Double) = start + (end - start) / 2
