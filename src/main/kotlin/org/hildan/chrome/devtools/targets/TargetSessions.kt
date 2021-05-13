@@ -91,13 +91,15 @@ class ChromePageSession internal constructor(
      *
      * This only closes the corresponding tab, but preserves the underlying web socket connection (of the parent
      * browser session), because it could be used by other page sessions.
+     *
+     * If [keepBrowserContext] is true, the browser context of this page session will be preserved, which means
+     * that other tabs that were opened from this page session will not be force-closed.
      */
     @OptIn(ExperimentalChromeApi::class)
-    suspend fun close() {
+    suspend fun close(keepBrowserContext: Boolean = false) {
         parent.target.closeTarget(CloseTargetRequest(targetId = metaData.targetId))
 
-        // FIXME do we really need this given the "disposeOnDetach=true" used at creation?
-        if (!metaData.browserContextId.isNullOrEmpty()) {
+        if (!keepBrowserContext && !metaData.browserContextId.isNullOrEmpty()) {
             parent.target.disposeBrowserContext(DisposeBrowserContextRequest(metaData.browserContextId))
         }
     }

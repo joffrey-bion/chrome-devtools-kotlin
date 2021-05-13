@@ -35765,7 +35765,8 @@ public final class org/hildan/chrome/devtools/targets/ChromePageMetaData {
 }
 
 public final class org/hildan/chrome/devtools/targets/ChromePageSession : org/hildan/chrome/devtools/targets/AbstractTargetSession, org/hildan/chrome/devtools/targets/RenderFrameTarget {
-	public final fun close (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun close (ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun close$default (Lorg/hildan/chrome/devtools/targets/ChromePageSession;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun detach (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun getAccessibility ()Lorg/hildan/chrome/devtools/domains/accessibility/AccessibilityDomain;
 	public fun getAnimation ()Lorg/hildan/chrome/devtools/domains/animation/AnimationDomain;
