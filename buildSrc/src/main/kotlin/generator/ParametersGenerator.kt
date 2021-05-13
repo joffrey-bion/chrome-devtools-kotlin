@@ -6,6 +6,7 @@ import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeSpec
 import org.hildan.chrome.devtools.build.model.ChromeDPParameter
+import org.hildan.chrome.devtools.build.model.ChromeDPType
 
 fun TypeSpec.Builder.addPrimaryConstructorProps(props: List<ChromeDPParameter>) {
     primaryConstructor(FunSpec.constructorBuilder().addParameters(props.map { it.toParameterSpec() }).build())
@@ -14,7 +15,8 @@ fun TypeSpec.Builder.addPrimaryConstructorProps(props: List<ChromeDPParameter>) 
 
 private fun ChromeDPParameter.toParameterSpec(): ParameterSpec =
     ParameterSpec.builder(name, getTypeName()).apply {
-        description?.let { addKdoc(it.escapeKDoc()) }
+        // No need to add KDoc to the constructor param, adding it to the property is sufficient
+
         // We don't handle deprecated/experimental here as it's already added on the property declaration
         // Since both the property and the constructor arg are the same declaration, it would result in double
         // annotations
@@ -28,6 +30,9 @@ private fun ChromeDPParameter.toParameterSpec(): ParameterSpec =
 private fun ChromeDPParameter.toPropertySpec(): PropertySpec =
     PropertySpec.builder(name, getTypeName()).apply {
         description?.let { addKdoc(it.escapeKDoc()) }
+        if (type is ChromeDPType.Enum) {
+            addKdoc("\n\nAllowed values: ${type.enumValues.joinToString { "`$it`"}}")
+        }
         if (deprecated) {
             addAnnotation(Annotations.deprecatedChromeApi)
         }
