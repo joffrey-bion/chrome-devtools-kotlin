@@ -72,7 +72,6 @@ suspend fun ChromeBrowserSession.attachToNewPage(
  *
  * If [background] is true, the new tab will be created in the background (Chrome only).
  */
-@OptIn(ExperimentalChromeApi::class)
 suspend fun ChromeBrowserSession.attachToNewPageAndAwaitPageLoad(
     url: String,
     incognito: Boolean = true,
@@ -97,7 +96,7 @@ suspend fun ChromePageSession.navigateAndAwaitPageLoad(url: String) {
  * Navigates the current page according to the provided [navigateRequest], and suspends until the
  * corresponding `frameStoppedLoading` event is received.
  */
-@OptIn(ExperimentalChromeApi::class, ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalChromeApi::class)
 suspend fun ChromePageSession.navigateAndAwaitPageLoad(navigateRequest: NavigateRequest) {
     page.enable()
     coroutineScope {
@@ -140,13 +139,12 @@ suspend inline fun <T> ChromePageSession.use(block: (ChromePageSession) -> T): T
 /**
  * Retrieves information about this session's page target.
  */
-@OptIn(ExperimentalChromeApi::class)
+@ExperimentalChromeApi
 suspend fun ChromePageSession.getTargetInfo(): TargetInfo = target.getTargetInfo(GetTargetInfoRequest()).targetInfo
 
 /**
  * Watches the available targets in this browser.
  */
-@OptIn(ExperimentalCoroutinesApi::class)
 suspend fun ChromeBrowserSession.watchTargetsIn(coroutineScope: CoroutineScope): StateFlow<Map<TargetID, TargetInfo>> {
     val targetsFlow = MutableStateFlow(emptyMap<TargetID, TargetInfo>())
 
