@@ -1,5 +1,19 @@
 # Change Log
 
+## [1.5.0\-882324](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/1.5.0-882324) (2021-05-13)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/1.4.0-881485...1.5.0-882324)
+
+**Implemented enhancements:**
+
+- Add helper to access "child pages" [\#92](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/92)
+- Add utility to click on DOM element by selector [\#91](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/91)
+- Allow to keep browserContext when closing a PageSession [\#89](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/89)
+
+**Merged pull requests:**
+
+- add ChromePageSession::close\(disposeBrowserContext\) [\#87](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/87) ([@cpdyj](https://github.com/cpdyj))
+- Update to Chrome DevTools Protocol version 882324 [\#88](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/88) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [1.4.0\-881485](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/1.4.0-881485) (2021-05-12)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/1.4.0-881010...1.4.0-881485)
 
