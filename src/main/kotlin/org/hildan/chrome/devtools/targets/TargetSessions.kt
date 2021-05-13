@@ -81,7 +81,6 @@ class ChromePageSession internal constructor(
      * This preserves the underlying web socket connection (of the parent browser session), because it could be used
      * by other page sessions.
      */
-    @OptIn(ExperimentalChromeApi::class)
     suspend fun detach() {
         parent.target.detachFromTarget(DetachFromTargetRequest(sessionId = session.sessionId))
     }
