@@ -35900,6 +35900,7 @@ public final class org/hildan/chrome/devtools/targets/TargetExtensionsKt {
 	public static final fun attachToNewPageAndAwaitPageLoad (Lorg/hildan/chrome/devtools/targets/ChromeBrowserSession;Ljava/lang/String;ZIIZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun attachToNewPageAndAwaitPageLoad$default (Lorg/hildan/chrome/devtools/targets/ChromeBrowserSession;Ljava/lang/String;ZIIZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun attachToPage (Lorg/hildan/chrome/devtools/targets/ChromeBrowserSession;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun childPages (Lorg/hildan/chrome/devtools/targets/ChromePageSession;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun getTargetInfo (Lorg/hildan/chrome/devtools/targets/ChromePageSession;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun navigateAndAwaitPageLoad (Lorg/hildan/chrome/devtools/targets/ChromePageSession;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun navigateAndAwaitPageLoad (Lorg/hildan/chrome/devtools/targets/ChromePageSession;Lorg/hildan/chrome/devtools/domains/page/NavigateRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;

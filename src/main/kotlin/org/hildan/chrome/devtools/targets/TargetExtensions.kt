@@ -93,7 +93,7 @@ suspend fun ChromePageSession.navigateAndAwaitPageLoad(url: String) {
 }
 
 /**
- * Navigates the current page to the provided [navigateRequest], and suspends until the corresponding
+ * Navigates the current page according to the provided [navigateRequest], and suspends until the corresponding
  * `frameStoppedLoading` event is received.
  */
 @OptIn(ExperimentalChromeApi::class)
@@ -107,6 +107,14 @@ suspend fun ChromePageSession.navigateAndAwaitPageLoad(navigateRequest: Navigate
         page.navigate(navigateRequest)
         stoppedLoadingEvent.await()
     }
+}
+
+/**
+ * Finds page targets that were opened by this page.
+ */
+suspend fun ChromePageSession.childPages(): List<TargetInfo> {
+    val thisTargetId = metaData.targetId
+    return target.getTargets().targetInfos.filter { it.type == "page" && it.openerId == thisTargetId }
 }
 
 /**
