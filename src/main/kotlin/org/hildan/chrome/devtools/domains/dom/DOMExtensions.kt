@@ -7,6 +7,11 @@ import kotlin.time.Duration
 import kotlin.time.ExperimentalTime
 
 /**
+ * A CSS selector string, as [defined by the W3C](https://www.w3schools.com/cssref/css_selectors.asp).
+ */
+typealias CssSelector = String
+
+/**
  * Retrieves the root [Node] of the current document.
  */
 suspend fun DOMDomain.getDocumentRoot(): Node = getDocument(GetDocumentRequest()).root
@@ -23,7 +28,7 @@ suspend fun DOMDomain.getDocumentRootNodeId(): NodeId = getDocumentRoot().nodeId
  * [by design of the DOM domain](https://github.com/ChromeDevTools/devtools-protocol/issues/20).
  * It can be used to perform other CDP commands that require a [NodeId], though.
  */
-suspend fun DOMDomain.findNodeBySelector(selector: String): NodeId? =
+suspend fun DOMDomain.findNodeBySelector(selector: CssSelector): NodeId? =
     querySelectorOnNode(getDocumentRootNodeId(), selector)
 
 /**
@@ -39,7 +44,7 @@ suspend fun DOMDomain.findNodeBySelector(selector: String): NodeId? =
  * It can be used to perform other CDP commands that require a [NodeId], though.
  */
 @ExperimentalTime
-suspend fun DOMDomain.awaitNodeBySelector(selector: String, pollingPeriod: Duration): NodeId =
+suspend fun DOMDomain.awaitNodeBySelector(selector: CssSelector, pollingPeriod: Duration): NodeId =
     awaitNodeBySelector(selector, pollingPeriod.toLongMilliseconds())
 
 /**
@@ -54,7 +59,7 @@ suspend fun DOMDomain.awaitNodeBySelector(selector: String, pollingPeriod: Durat
  * [by design of the DOM domain](https://github.com/ChromeDevTools/devtools-protocol/issues/20).
  * It can be used to perform other CDP commands that require a [NodeId], though.
  */
-suspend fun DOMDomain.awaitNodeBySelector(selector: String, pollingPeriodMillis: Long = 200): NodeId {
+suspend fun DOMDomain.awaitNodeBySelector(selector: CssSelector, pollingPeriodMillis: Long = 200): NodeId {
     while (coroutineContext.isActive) {
         // it looks like we do need to get a new document at each poll otherwise we may not see the new nodes
         val nodeId = findNodeBySelector(selector)
@@ -66,7 +71,7 @@ suspend fun DOMDomain.awaitNodeBySelector(selector: String, pollingPeriodMillis:
     error("Cancelled while awaiting node by selector \"$selector\"")
 }
 
-private suspend fun DOMDomain.querySelectorOnNode(nodeId: NodeId, selector: String): NodeId? {
+private suspend fun DOMDomain.querySelectorOnNode(nodeId: NodeId, selector: CssSelector): NodeId? {
     val response = querySelector(QuerySelectorRequest(nodeId, selector))
     return if (response.nodeId == 0) null else response.nodeId
 }
@@ -78,13 +83,13 @@ private suspend fun DOMDomain.querySelectorOnNode(nodeId: NodeId, selector: Stri
  * [by design of the DOM domain](https://github.com/ChromeDevTools/devtools-protocol/issues/20).
  * It can be used to perform other CDP commands that require a [NodeId], though.
  */
-suspend fun DOMDomain.getNodeBySelector(selector: String): NodeId =
+suspend fun DOMDomain.getNodeBySelector(selector: CssSelector): NodeId =
     findNodeBySelector(selector) ?: error("DOM node not found with selector: $selector")
 
 /**
  * Moves the focus to the node corresponding to the given [selector], or null if not found.
  */
-suspend fun DOMDomain.focusNodeBySelector(selector: String) {
+suspend fun DOMDomain.focusNodeBySelector(selector: CssSelector) {
     val nodeId = findNodeBySelector(selector) ?: error("Cannot focus: no node found using selector '$selector'")
     focus(FocusRequest(nodeId = nodeId))
 }
@@ -93,7 +98,7 @@ suspend fun DOMDomain.focusNodeBySelector(selector: String) {
  * Gets the attributes of the node corresponding to the given [nodeSelector], or null if the selector didn't match
  * any node.
  */
-suspend fun DOMDomain.getAttributes(nodeSelector: String): DOMAttributes? =
+suspend fun DOMDomain.getAttributes(nodeSelector: CssSelector): DOMAttributes? =
     findNodeBySelector(nodeSelector)?.let { nodeId -> getAttributes(nodeId) }
 
 /**
@@ -106,7 +111,7 @@ suspend fun DOMDomain.getAttributes(nodeId: NodeId): DOMAttributes =
  * Gets the value of the attribute [attributeName] of the node corresponding to the given [nodeSelector], or null if
  * the selector didn't match any node or if the attribute was not present on the node.
  */
-suspend fun DOMDomain.getAttributeValue(nodeSelector: String, attributeName: String): String? =
+suspend fun DOMDomain.getAttributeValue(nodeSelector: CssSelector, attributeName: String): String? =
     getAttributes(nodeSelector)?.get(attributeName)
 
 /**
@@ -120,7 +125,7 @@ suspend fun DOMDomain.getAttributeValue(nodeId: NodeId, attributeName: String): 
  * Sets the attribute of the given [name] to the given [value] on the node corresponding to the given [nodeSelector].
  * Throws an exception if the selector didn't match any node.
  */
-suspend fun DOMDomain.setAttributeValue(nodeSelector: String, name: String, value: String) {
+suspend fun DOMDomain.setAttributeValue(nodeSelector: CssSelector, name: String, value: String) {
     setAttributeValue(nodeId = getNodeBySelector(nodeSelector), name, value)
 }
 
@@ -134,7 +139,7 @@ suspend fun DOMDomain.setAttributeValue(nodeId: NodeId, name: String, value: Str
 /**
  * Returns boxes for the node corresponding to the given [selector], or null if the selector didn't match any node.
  */
-suspend fun DOMDomain.getBoxModel(selector: String): BoxModel? = findNodeBySelector(selector)?.let { getBoxModel(it) }
+suspend fun DOMDomain.getBoxModel(selector: CssSelector): BoxModel? = findNodeBySelector(selector)?.let { getBoxModel(it) }
 
 /**
  * Returns boxes for the node corresponding to the given [nodeId].
