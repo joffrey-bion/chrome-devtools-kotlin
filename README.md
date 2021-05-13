@@ -131,7 +131,9 @@ In addition to the generated domain commands and events, some extensions are pro
 Here are some of them:
 
 * `DOMDomain.findNodeBySelector(selector: String): NodeId?`: finds a node using a selector query
-* `PageDomain.navigateAndWaitLoading(url: String)`: navigates and also waits for the next `frameStoppedLoading` event
+* `ChromePageSession.clickOnElement(selector: String, clickDurationMillis, mouseButton)`: finds a node using a selector 
+  query and simulates a click on it
+* `ChromePageSession.navigateAndAwaitPageLoad(url: String)`: navigates and also waits for the next `frameStoppedLoading` event
 * `PageDomain.captureScreenshotToFile(outputFile: Path, request: CaptureScreenshotRequest = ...)`
 * `Runtime.evaluateJs(js: String): T?`: evaluates JS and returns the result
   (uses Kotlinx serialization to deserialize JS results)

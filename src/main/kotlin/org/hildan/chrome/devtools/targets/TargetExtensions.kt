@@ -2,14 +2,9 @@ package org.hildan.chrome.devtools.targets
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import org.hildan.chrome.devtools.domains.dom.CssSelector
-import org.hildan.chrome.devtools.domains.dom.getBoxModel
-import org.hildan.chrome.devtools.domains.input.DispatchMouseEventRequest
-import org.hildan.chrome.devtools.domains.input.MouseButton
 import org.hildan.chrome.devtools.domains.page.NavigateRequest
 import org.hildan.chrome.devtools.domains.target.*
 import org.hildan.chrome.devtools.domains.target.events.TargetEvent
-import org.hildan.chrome.devtools.domains.utils.center
 import org.hildan.chrome.devtools.protocol.ChromeDPSession
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
 
@@ -90,16 +85,16 @@ suspend fun ChromeBrowserSession.attachToNewPageAndAwaitPageLoad(
 }
 
 /**
- * Navigates the current page according to the provided [url], and suspends until the corresponding
- * `frameStoppedLoading` event is received.
+ * Navigates the current page to the provided [url], and suspends until the corresponding `frameStoppedLoading` event
+ * is received.
  */
 suspend fun ChromePageSession.navigateAndAwaitPageLoad(url: String) {
     navigateAndAwaitPageLoad(NavigateRequest(url = url))
 }
 
 /**
- * Navigates the current page according to the provided [navigateRequest], and suspends until the
- * corresponding `frameStoppedLoading` event is received.
+ * Navigates the current page to the provided [navigateRequest], and suspends until the corresponding
+ * `frameStoppedLoading` event is received.
  */
 @OptIn(ExperimentalChromeApi::class)
 suspend fun ChromePageSession.navigateAndAwaitPageLoad(navigateRequest: NavigateRequest) {
@@ -169,38 +164,4 @@ private fun Map<TargetID, TargetInfo>.updatedBy(event: TargetEvent): Map<TargetI
     is TargetEvent.AttachedToTargetEvent, //
     is TargetEvent.DetachedFromTargetEvent, //
     is TargetEvent.ReceivedMessageFromTargetEvent -> this // irrelevant events
-}
-
-/**
- * Finds a DOM element via the given [selector], and simulates a click event on it based on its padding box.
- * The current tab doesn't need to be focused.
- *
- * If this click opens a new tab, that new tab may become focused, but this session still targets the old tab.
- */
-suspend fun ChromePageSession.clickOnElement(
-    selector: CssSelector,
-    clickDurationMillis: Long = 100,
-    mouseButton: MouseButton = MouseButton.left
-) {
-    val box = dom.getBoxModel(selector) ?: error("Cannot click on element, no node found using selector '$selector'")
-    val elementCenter = box.padding.center
-
-    input.dispatchMouseEvent(
-        DispatchMouseEventRequest(
-            type = "mousePressed",
-            x = elementCenter.x,
-            y = elementCenter.y,
-            button = mouseButton,
-            clickCount = 1,
-        )
-    )
-    delay(clickDurationMillis)
-    input.dispatchMouseEvent(
-        DispatchMouseEventRequest(
-            type = "mouseReleased",
-            x = elementCenter.x,
-            y = elementCenter.y,
-            button = mouseButton,
-        )
-    )
 }

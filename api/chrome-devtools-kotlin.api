@@ -16361,6 +16361,11 @@ public final class org/hildan/chrome/devtools/domains/input/InputDomain {
 	public final fun synthesizeTapGesture (Lorg/hildan/chrome/devtools/domains/input/SynthesizeTapGestureRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
+public final class org/hildan/chrome/devtools/domains/input/InputExtensionsKt {
+	public static final fun dispatchMouseClick (Lorg/hildan/chrome/devtools/domains/input/InputDomain;DDJLorg/hildan/chrome/devtools/domains/input/MouseButton;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun dispatchMouseClick$default (Lorg/hildan/chrome/devtools/domains/input/InputDomain;DDJLorg/hildan/chrome/devtools/domains/input/MouseButton;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
 public final class org/hildan/chrome/devtools/domains/input/InsertTextRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/input/InsertTextRequest$Companion;
 	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
@@ -35475,6 +35480,11 @@ public final class org/hildan/chrome/devtools/domains/webauthn/WebAuthnDomain {
 	public final fun setUserVerified (Lorg/hildan/chrome/devtools/domains/webauthn/SetUserVerifiedRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
+public final class org/hildan/chrome/devtools/extensions/CrossDomainExtensionsKt {
+	public static final fun clickOnElement (Lorg/hildan/chrome/devtools/targets/ChromePageSession;Ljava/lang/String;JLorg/hildan/chrome/devtools/domains/input/MouseButton;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun clickOnElement$default (Lorg/hildan/chrome/devtools/targets/ChromePageSession;Ljava/lang/String;JLorg/hildan/chrome/devtools/domains/input/MouseButton;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
 public final class org/hildan/chrome/devtools/protocol/ChromeDPClient {
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/String;ZLorg/hildan/krossbow/websocket/WebSocketClient;Lio/ktor/client/HttpClient;)V
@@ -35890,8 +35900,6 @@ public final class org/hildan/chrome/devtools/targets/TargetExtensionsKt {
 	public static final fun attachToNewPageAndAwaitPageLoad (Lorg/hildan/chrome/devtools/targets/ChromeBrowserSession;Ljava/lang/String;ZIIZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun attachToNewPageAndAwaitPageLoad$default (Lorg/hildan/chrome/devtools/targets/ChromeBrowserSession;Ljava/lang/String;ZIIZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun attachToPage (Lorg/hildan/chrome/devtools/targets/ChromeBrowserSession;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun clickOnElement (Lorg/hildan/chrome/devtools/targets/ChromePageSession;Ljava/lang/String;JLorg/hildan/chrome/devtools/domains/input/MouseButton;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun clickOnElement$default (Lorg/hildan/chrome/devtools/targets/ChromePageSession;Ljava/lang/String;JLorg/hildan/chrome/devtools/domains/input/MouseButton;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun getTargetInfo (Lorg/hildan/chrome/devtools/targets/ChromePageSession;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun navigateAndAwaitPageLoad (Lorg/hildan/chrome/devtools/targets/ChromePageSession;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun navigateAndAwaitPageLoad (Lorg/hildan/chrome/devtools/targets/ChromePageSession;Lorg/hildan/chrome/devtools/domains/page/NavigateRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
