@@ -161,7 +161,7 @@ sealed class ChromeDPType {
 
     abstract fun toTypeName(): TypeName
 
-    object Unknown : ChromeDPType() {
+    object UnspecifiedObject : ChromeDPType() {
         override fun toTypeName(): TypeName = JsonElement::class.asClassName()
     }
 
@@ -199,10 +199,10 @@ sealed class ChromeDPType {
             "boolean" -> Primitive(Boolean::class)
             "integer" -> Primitive(Int::class)
             "number" -> Primitive(Double::class)
-            "any" -> Unknown
+            "any" -> UnspecifiedObject
             "array" -> Array(items?.toChromeDPType(domainName) ?: error("Missing 'items' property on array type"))
             "object" -> if (properties.isEmpty()) {
-                Unknown
+                UnspecifiedObject
             } else {
                 Object(properties.map { it.toParameter(domainName) }, domainName)
             }

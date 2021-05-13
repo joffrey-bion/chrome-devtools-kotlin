@@ -13,7 +13,7 @@ fun FileSpec.Builder.addDomainType(typeDeclaration: DomainTypeDeclaration) {
         is ChromeDPType.Enum -> addType(typeDeclaration.toEnumTypeSpec(type))
         is ChromeDPType.Array,
         is ChromeDPType.Primitive<*>,
-        is ChromeDPType.Unknown -> addTypeAlias(typeDeclaration.toTypeAliasSpec())
+        is ChromeDPType.UnspecifiedObject -> addTypeAlias(typeDeclaration.toTypeAliasSpec())
         is ChromeDPType.Reference -> error("Type reference not allowed in domain type declaration")
     }
 }
