@@ -9,7 +9,7 @@ import kotlin.time.ExperimentalTime
 /**
  * Retrieves the root [Node] of the current document.
  */
-suspend fun DOMDomain.getDocumentRoot() = getDocument(GetDocumentRequest()).root
+suspend fun DOMDomain.getDocumentRoot(): Node = getDocument(GetDocumentRequest()).root
 
 /**
  * Retrieves the ID of the root node of the current document.
