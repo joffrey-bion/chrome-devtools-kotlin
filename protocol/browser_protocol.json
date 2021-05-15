@@ -1470,6 +1470,11 @@
                             "$ref": "AffectedRequest"
                         },
                         {
+                            "name": "location",
+                            "optional": true,
+                            "$ref": "SourceCodeLocation"
+                        },
+                        {
                             "name": "initiatorOrigin",
                             "optional": true,
                             "type": "string"
@@ -10425,7 +10430,8 @@
                         "MethodDisallowedByPreflightResponse",
                         "HeaderDisallowedByPreflightResponse",
                         "RedirectContainsCredentials",
-                        "InsecurePrivateNetwork"
+                        "InsecurePrivateNetwork",
+                        "NoCorsRedirectModeNotFollow"
                     ]
                 },
                 {
@@ -13927,6 +13933,7 @@
                     "enum": [
                         "accelerometer",
                         "ambient-light-sensor",
+                        "attribution-reporting",
                         "autoplay",
                         "camera",
                         "ch-dpr",
@@ -13946,7 +13953,6 @@
                         "ch-width",
                         "clipboard-read",
                         "clipboard-write",
-                        "conversion-measurement",
                         "cross-origin-isolated",
                         "direct-sockets",
                         "display-capture",
