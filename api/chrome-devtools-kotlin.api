@@ -1864,21 +1864,23 @@ public final class org/hildan/chrome/devtools/domains/audits/ContentSecurityPoli
 
 public final class org/hildan/chrome/devtools/domains/audits/CorsIssueDetails {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails$Companion;
-	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/network/CorsErrorStatus;ZLorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Lorg/hildan/chrome/devtools/domains/network/CorsErrorStatus;ZLorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;)V
-	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/network/CorsErrorStatus;ZLorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/network/CorsErrorStatus;ZLorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/network/CorsErrorStatus;ZLorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/network/CorsErrorStatus;ZLorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/network/CorsErrorStatus;
 	public final fun component2 ()Z
 	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;
-	public final fun component4 ()Ljava/lang/String;
-	public final fun component5 ()Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;
-	public final fun component6 ()Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;
-	public final fun copy (Lorg/hildan/chrome/devtools/domains/network/CorsErrorStatus;ZLorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;)Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/network/CorsErrorStatus;ZLorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;
+	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;
+	public final fun component7 ()Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/network/CorsErrorStatus;ZLorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;)Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/network/CorsErrorStatus;ZLorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getClientSecurityState ()Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;
 	public final fun getCorsErrorStatus ()Lorg/hildan/chrome/devtools/domains/network/CorsErrorStatus;
 	public final fun getInitiatorOrigin ()Ljava/lang/String;
+	public final fun getLocation ()Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;
 	public final fun getRequest ()Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;
 	public final fun getResourceIPAddressSpace ()Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;
 	public fun hashCode ()I
@@ -19943,6 +19945,7 @@ public final class org/hildan/chrome/devtools/domains/network/CorsError : java/l
 	public static final field MethodDisallowedByPreflightResponse Lorg/hildan/chrome/devtools/domains/network/CorsError;
 	public static final field MissingAllowOriginHeader Lorg/hildan/chrome/devtools/domains/network/CorsError;
 	public static final field MultipleAllowOriginValues Lorg/hildan/chrome/devtools/domains/network/CorsError;
+	public static final field NoCorsRedirectModeNotFollow Lorg/hildan/chrome/devtools/domains/network/CorsError;
 	public static final field PreflightAllowOriginMismatch Lorg/hildan/chrome/devtools/domains/network/CorsError;
 	public static final field PreflightDisallowedRedirect Lorg/hildan/chrome/devtools/domains/network/CorsError;
 	public static final field PreflightInvalidAllowCredentials Lorg/hildan/chrome/devtools/domains/network/CorsError;
@@ -26801,6 +26804,7 @@ public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeat
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature$Companion;
 	public static final field accelerometer Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ambient-light-sensor Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field attribution-reporting Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field autoplay Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field camera Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-device-memory Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
@@ -26820,7 +26824,6 @@ public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeat
 	public static final field ch-width Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field clipboard-read Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field clipboard-write Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field conversion-measurement Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field cross-origin-isolated Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field direct-sockets Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field display-capture Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
