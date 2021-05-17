@@ -3,6 +3,7 @@ package org.hildan.chrome.devtools.build.model
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonObject
 import org.hildan.chrome.devtools.build.json.*
 import org.hildan.chrome.devtools.build.names.*
 import kotlin.reflect.KClass
@@ -150,8 +151,7 @@ sealed class ChromeDPType {
         }
 
         object DynamicObject : NamedRef() {
-            // TODO switch to the more specific JsonObject in another commit
-            override val typeName: TypeName = JsonElement::class.asClassName()
+            override val typeName: TypeName = JsonObject::class.asClassName()
         }
     }
 
