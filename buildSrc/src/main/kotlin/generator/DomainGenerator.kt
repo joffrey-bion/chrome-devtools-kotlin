@@ -5,8 +5,9 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import org.hildan.chrome.devtools.build.model.ChromeDPCommand
 import org.hildan.chrome.devtools.build.model.ChromeDPDomain
 import org.hildan.chrome.devtools.build.model.ChromeDPEvent
-import org.hildan.chrome.devtools.build.model.asClassName
 import kotlinx.serialization.DeserializationStrategy
+import org.hildan.chrome.devtools.build.names.Annotations
+import org.hildan.chrome.devtools.build.names.ExtClasses
 
 private const val INPUT_ARG = "input"
 private const val SESSION_ARG = "session"
@@ -21,9 +22,25 @@ private fun mapOfDeserializers(eventsSealedClassName: ClassName): ParameterizedT
     return MAP.parameterizedBy(String::class.asTypeName(), deserializerClass)
 }
 
-fun ChromeDPCommand.createInputTypeSpec(): TypeSpec =
-    TypeSpec.classBuilder(inputTypeName ?: error("trying to build input type for no-arg command")).apply {
-        addKdoc("Request object containing input parameters for the [%T.%N] command.", domainName.asClassName(), name)
+fun ChromeDPDomain.createDomainFileSpec(): FileSpec =
+    FileSpec.builder(packageName = names.packageName, fileName = names.filename).apply {
+        addAnnotation(Annotations.suppressWarnings)
+        commands.forEach { cmd ->
+            if (cmd.parameters.isNotEmpty()) {
+                addType(cmd.createInputTypeSpec())
+            }
+            if (cmd.returns.isNotEmpty()) {
+                addType(cmd.createOutputTypeSpec())
+            }
+        }
+        addType(createDomainClass())
+    }.build()
+
+private fun ChromeDPCommand.createInputTypeSpec(): TypeSpec =
+    TypeSpec.classBuilder(names.inputTypeName).apply {
+        addKdoc("Request object containing input parameters for the [%T.%N] command.",
+            names.domain.domainClassName,
+            names.methodName)
         addAnnotation(Annotations.serializable)
         if (deprecated) {
             addAnnotation(Annotations.deprecatedChromeApi)
@@ -35,9 +52,9 @@ fun ChromeDPCommand.createInputTypeSpec(): TypeSpec =
         addPrimaryConstructorProps(parameters)
     }.build()
 
-fun ChromeDPCommand.createOutputTypeSpec(): TypeSpec =
-    TypeSpec.classBuilder(outputTypeName).apply {
-        addKdoc("Response type for the [%T.%N] command.", domainName.asClassName(), name)
+private fun ChromeDPCommand.createOutputTypeSpec(): TypeSpec =
+    TypeSpec.classBuilder(names.outputTypeName).apply {
+        addKdoc("Response type for the [%T.%N] command.", names.domain.domainClassName, names.methodName)
         addAnnotation(Annotations.serializable)
         if (deprecated) {
             addAnnotation(Annotations.deprecatedChromeApi)
@@ -49,9 +66,9 @@ fun ChromeDPCommand.createOutputTypeSpec(): TypeSpec =
         addPrimaryConstructorProps(returns)
     }.build()
 
-fun ChromeDPDomain.createDomainClass(): TypeSpec = TypeSpec.classBuilder(name.asClassName()).apply {
+private fun ChromeDPDomain.createDomainClass(): TypeSpec = TypeSpec.classBuilder(names.domainClassName).apply {
     description?.let { addKdoc(it.escapeKDoc()) }
-    addKdoc(linkToDocSentence(docUrl))
+    addKdoc(linkToDoc(docUrl))
     if (deprecated) {
         addAnnotation(Annotations.deprecatedChromeApi)
     }
@@ -77,9 +94,9 @@ fun ChromeDPDomain.createDomainClass(): TypeSpec = TypeSpec.classBuilder(name.as
     }
 }.build()
 
-private fun ChromeDPCommand.toFunctionSpec(): FunSpec = FunSpec.builder(name).apply {
+private fun ChromeDPCommand.toFunctionSpec(): FunSpec = FunSpec.builder(names.methodName).apply {
     description?.let { addKdoc(it.escapeKDoc()) }
-    addKdoc(linkToDocSentence(docUrl))
+    addKdoc(linkToDoc(docUrl))
     if (deprecated) {
         addAnnotation(Annotations.deprecatedChromeApi)
     }
@@ -87,39 +104,40 @@ private fun ChromeDPCommand.toFunctionSpec(): FunSpec = FunSpec.builder(name).ap
         addAnnotation(Annotations.experimentalChromeApi)
     }
     addModifiers(KModifier.SUSPEND)
-    val inputArg = if (inputTypeName != null) {
-        addParameter(INPUT_ARG, inputTypeName)
+    val inputArg = if (this@toFunctionSpec.parameters.isNotEmpty()) {
+        addParameter(INPUT_ARG, names.inputTypeName)
         INPUT_ARG
     } else {
         "Unit"
     }
-    returns(outputTypeName)
-    addStatement("return %N.request(%S, %L)", SESSION_ARG, "$domainName.$name", inputArg)
+    val returnType = if (returns.isEmpty()) Unit::class.asTypeName() else names.outputTypeName
+    returns(returnType)
+    addStatement("return %N.request(%S, %L)", SESSION_ARG, names.fullCommandName, inputArg)
 }.build()
 
 private fun ChromeDPEvent.toSubscribeFunctionSpec(): FunSpec =
-    FunSpec.builder(name).apply {
+    FunSpec.builder(names.methodName).apply {
         description?.let { addKdoc(it.escapeKDoc()) }
-        addKdoc(linkToDocSentence(docUrl))
+        addKdoc(linkToDoc(docUrl))
         if (deprecated) {
             addAnnotation(Annotations.deprecatedChromeApi)
         }
         if (experimental) {
             addAnnotation(Annotations.experimentalChromeApi)
         }
-        returns(coroutineFlowClass.parameterizedBy(eventTypeName))
-        addStatement("return %N.events(%S)", SESSION_ARG, "$domainName.$name")
+        returns(coroutineFlowClass.parameterizedBy(names.eventTypeName))
+        addStatement("return %N.events(%S)", SESSION_ARG, names.fullEventName)
     }.build()
 
 private fun TypeSpec.Builder.addAllEventsFunction(domain: ChromeDPDomain) {
-    addProperty(PropertySpec.builder(DESERIALIZERS_PROP, mapOfDeserializers(domain.eventsParentClassName))
+    addProperty(PropertySpec.builder(DESERIALIZERS_PROP, mapOfDeserializers(domain.names.eventsParentClassName))
         .addKdoc("Mapping between events and their deserializer.")
         .addModifiers(KModifier.PRIVATE)
         .initializer(domain.deserializersMapCodeBlock())
         .build())
     addFunction(FunSpec.builder("events")
         .addKdoc("Subscribes to all events related to this domain.")
-        .returns(coroutineFlowClass.parameterizedBy(domain.eventsParentClassName))
+        .returns(coroutineFlowClass.parameterizedBy(domain.names.eventsParentClassName))
         .addCode("return %N.events(%N)", SESSION_ARG, DESERIALIZERS_PROP)
         .build())
 }
@@ -127,7 +145,7 @@ private fun TypeSpec.Builder.addAllEventsFunction(domain: ChromeDPDomain) {
 private fun ChromeDPDomain.deserializersMapCodeBlock(): CodeBlock = CodeBlock.builder().apply {
     add("mapOf(\n")
     events.forEach { e ->
-        add("%S to %M<%T>(),\n", "${e.domainName}.${e.name}", serializerFun, e.eventTypeName)
+        add("%S to %M<%T>(),\n", e.names.fullEventName, serializerFun, e.names.eventTypeName)
     }
     add(")")
 }.build()

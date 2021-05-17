@@ -6,7 +6,7 @@ import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeSpec
 import org.hildan.chrome.devtools.build.model.ChromeDPParameter
-import org.hildan.chrome.devtools.build.model.ChromeDPType
+import org.hildan.chrome.devtools.build.names.Annotations
 
 fun TypeSpec.Builder.addPrimaryConstructorProps(props: List<ChromeDPParameter>) {
     primaryConstructor(FunSpec.constructorBuilder().addParameters(props.map { it.toParameterSpec() }).build())
@@ -14,25 +14,21 @@ fun TypeSpec.Builder.addPrimaryConstructorProps(props: List<ChromeDPParameter>) 
 }
 
 private fun ChromeDPParameter.toParameterSpec(): ParameterSpec =
-    ParameterSpec.builder(name, getTypeName()).apply {
+    ParameterSpec.builder(name, type).apply {
         // No need to add KDoc to the constructor param, adding it to the property is sufficient
 
-        // We don't handle deprecated/experimental here as it's already added on the property declaration
+        // We don't add deprecated/experimental annotations here as they are already added on the property declaration.
         // Since both the property and the constructor arg are the same declaration, it would result in double
-        // annotations
+        // annotations.
 
-        // we make experimental fields nullable too because they might not be present in the JSON
-        if (optional || experimental) {
+        if (type.isNullable) {
             defaultValue("null")
         }
     }.build()
 
 private fun ChromeDPParameter.toPropertySpec(): PropertySpec =
-    PropertySpec.builder(name, getTypeName()).apply {
+    PropertySpec.builder(name, type).apply {
         description?.let { addKdoc(it.escapeKDoc()) }
-        if (type is ChromeDPType.Enum) {
-            addKdoc("\n\nAllowed values: ${type.enumValues.joinToString { "`$it`"}}")
-        }
         if (deprecated) {
             addAnnotation(Annotations.deprecatedChromeApi)
         }
@@ -42,9 +38,3 @@ private fun ChromeDPParameter.toPropertySpec(): PropertySpec =
         mutable(false)
         initializer(name) // necessary to merge primary constructor arguments and properties
     }.build()
-
-private fun ChromeDPParameter.getTypeName(): TypeName {
-    val typeName = type.toTypeName()
-    // we make experimental fields nullable too because they might not be present in the JSON
-    return if (optional || experimental) typeName.copy(nullable = true) else typeName
-}

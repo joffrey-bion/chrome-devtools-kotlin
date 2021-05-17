@@ -1,4 +1,4 @@
-package org.hildan.chrome.devtools.build.generator
+package org.hildan.chrome.devtools.build.names
 
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName

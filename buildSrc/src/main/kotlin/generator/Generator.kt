@@ -5,7 +5,9 @@ import org.hildan.chrome.devtools.build.json.ALL_DOMAINS_TARGET
 import org.hildan.chrome.devtools.build.json.ChromeProtocolDescriptor
 import org.hildan.chrome.devtools.build.json.TargetType
 import org.hildan.chrome.devtools.build.model.ChromeDPDomain
-import org.hildan.chrome.devtools.build.model.sanitize
+import org.hildan.chrome.devtools.build.model.toChromeDPDomain
+import org.hildan.chrome.devtools.build.names.Annotations
+import org.hildan.chrome.devtools.build.names.ExtClasses
 import java.nio.file.Files
 import java.nio.file.Path
 
@@ -21,9 +23,9 @@ class Generator(
         val domains = loadProtocolDomains()
         domains.forEach(::generateDomainFiles)
 
-        val targets = TargetType.parseJson(targetTypesFile) + TargetType(ALL_DOMAINS_TARGET, domains.map { it.name })
+        val targets = TargetType.parseJson(targetTypesFile) + TargetType(ALL_DOMAINS_TARGET, domains.map { it.names.domainName })
         targets.forEach { target ->
-            generateTargetInterfaceFile(targetName = target.name, domains = domains.filter { it.name in target.supportedDomains })
+            generateTargetInterfaceFile(targetName = target.name, domains = domains.filter { it.names.domainName in target.supportedDomains })
         }
         generateSimpleTargetFile(domains = domains, targetTypes = targets)
     }
@@ -33,7 +35,7 @@ class Generator(
         if (descriptors.distinctBy { it.version }.size > 1) {
             error("Some descriptors have differing versions: ${descriptors.map { it.version }}")
         }
-        return descriptors.flatMap { it.domains }.map { sanitize(it) }
+        return descriptors.flatMap { it.domains }.map { it.toChromeDPDomain() }
     }
 
     private fun generateTargetInterfaceFile(targetName: String, domains: List<ChromeDPDomain>) {
@@ -64,25 +66,3 @@ class Generator(
         domain.createDomainFileSpec().writeTo(generatedSourcesDir)
     }
 }
-
-private fun ChromeDPDomain.createDomainTypesFileSpec(): FileSpec =
-    FileSpec.builder(packageName = packageName, fileName = "${name}Types").apply {
-        addAnnotation(Annotations.suppressWarnings)
-        types.forEach { addDomainType(it) }
-    }.build()
-
-private fun ChromeDPDomain.createDomainEventTypesFileSpec(): FileSpec =
-    FileSpec.builder(packageName = eventsPackageName, fileName = "${name}Events").apply {
-        addAnnotation(Annotations.suppressWarnings)
-        addType(createEventSealedClass())
-    }.build()
-
-private fun ChromeDPDomain.createDomainFileSpec(): FileSpec =
-    FileSpec.builder(packageName = packageName, fileName = "${name}Domain").apply {
-        addAnnotation(Annotations.suppressWarnings)
-        commands.forEach {
-            if (it.parameters.isNotEmpty()) addType(it.createInputTypeSpec())
-            if (it.returns.isNotEmpty()) addType(it.createOutputTypeSpec())
-        }
-        addType(createDomainClass())
-    }.build()

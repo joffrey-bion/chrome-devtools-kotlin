@@ -12,3 +12,9 @@ dependencies {
     implementation("com.squareup:kotlinpoet:1.8.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
 }
+
+tasks {
+    compileKotlin {
+        kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes")
+    }
+}

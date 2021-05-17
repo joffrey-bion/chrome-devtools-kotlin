@@ -1,25 +1,35 @@
 package org.hildan.chrome.devtools.build.generator
 
 import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeSpec
 import org.hildan.chrome.devtools.build.model.ChromeDPDomain
 import org.hildan.chrome.devtools.build.model.ChromeDPEvent
+import org.hildan.chrome.devtools.build.names.Annotations
 
-fun ChromeDPDomain.createEventSealedClass(): TypeSpec = TypeSpec.classBuilder(eventsParentClassName).apply {
-    addAnnotation(Annotations.serializable)
-    addModifiers(KModifier.SEALED)
-    events.forEach {
-        addType(it.createEventSubTypeSpec(eventsParentClassName))
-    }
-}.build()
+fun ChromeDPDomain.createDomainEventTypesFileSpec(): FileSpec =
+    FileSpec.builder(packageName = names.eventsPackageName, fileName = names.eventsFilename).apply {
+        addAnnotation(Annotations.suppressWarnings)
+        addType(createEventSealedClass())
+    }.build()
+
+private fun ChromeDPDomain.createEventSealedClass(): TypeSpec =
+    TypeSpec.classBuilder(names.eventsParentClassName)
+        .apply {
+        addAnnotation(Annotations.serializable)
+        addModifiers(KModifier.SEALED)
+        events.forEach {
+            addType(it.createEventSubTypeSpec(names.eventsParentClassName))
+        }
+    }.build()
 
 private fun ChromeDPEvent.createEventSubTypeSpec(parentSealedClass: ClassName): TypeSpec = if (parameters.isEmpty()) {
-    TypeSpec.objectBuilder(eventTypeName).apply {
+    TypeSpec.objectBuilder(names.eventTypeName).apply {
         configureCommonSettings(this@createEventSubTypeSpec, parentSealedClass)
     }.build()
 } else {
-    TypeSpec.classBuilder(eventTypeName).apply {
+    TypeSpec.classBuilder(names.eventTypeName).apply {
         configureCommonSettings(this@createEventSubTypeSpec, parentSealedClass)
         addModifiers(KModifier.DATA)
         addPrimaryConstructorProps(parameters)
@@ -28,7 +38,7 @@ private fun ChromeDPEvent.createEventSubTypeSpec(parentSealedClass: ClassName): 
 
 private fun TypeSpec.Builder.configureCommonSettings(chromeDPEvent: ChromeDPEvent, parentSealedClass: ClassName) {
     chromeDPEvent.description?.let { addKdoc(it.escapeKDoc()) }
-    addKdoc(linkToDocSentence(chromeDPEvent.docUrl))
+    addKdoc(linkToDoc(chromeDPEvent.docUrl))
     superclass(parentSealedClass)
     if (chromeDPEvent.deprecated) {
         addAnnotation(Annotations.deprecatedChromeApi)

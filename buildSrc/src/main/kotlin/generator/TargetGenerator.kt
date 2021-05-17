@@ -4,8 +4,8 @@ import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import org.hildan.chrome.devtools.build.json.TargetType
 import org.hildan.chrome.devtools.build.model.ChromeDPDomain
-import org.hildan.chrome.devtools.build.model.asClassName
-import org.hildan.chrome.devtools.build.model.asVariableName
+import org.hildan.chrome.devtools.build.names.Annotations
+import org.hildan.chrome.devtools.build.names.ExtClasses
 
 private const val SESSION_ARG = "session"
 
@@ -25,7 +25,7 @@ private fun supportedDomainsProperty(domains: List<ChromeDPDomain>): PropertySpe
     PropertySpec.builder("supportedDomains", LIST.parameterizedBy(String::class.asTypeName())).apply {
         addModifiers(KModifier.INTERNAL)
         val format = List(domains.size) { "%S" }.joinToString(separator = ", ", prefix = "listOf(", postfix = ")")
-        initializer(format = format, *domains.map { it.name }.toTypedArray())
+        initializer(format = format, *domains.map { it.names.domainName }.toTypedArray())
     }.build()
 
 fun createSimpleAllTargetsImpl(domains: List<ChromeDPDomain>, targetTypes: List<TargetType>): TypeSpec =
@@ -45,13 +45,13 @@ fun createSimpleAllTargetsImpl(domains: List<ChromeDPDomain>, targetTypes: List<
         domains.forEach { domain ->
             addProperty(domain.toPropertySpec {
                 addModifiers(KModifier.OVERRIDE)
-                delegate("lazy { %T(%N) }", domain.name.asClassName(), SESSION_ARG)
+                delegate("lazy { %T(%N) }", domain.names.domainClassName, SESSION_ARG)
             })
         }
     }.build()
 
 private fun ChromeDPDomain.toPropertySpec(configure: PropertySpec.Builder.() -> Unit = {}): PropertySpec =
-    PropertySpec.builder(name.asVariableName(), name.asClassName()).apply {
+    PropertySpec.builder(names.targetFieldName, names.domainClassName).apply {
         description?.let { addKdoc(it.escapeKDoc()) }
         if (deprecated) {
             addAnnotation(Annotations.deprecatedChromeApi)
