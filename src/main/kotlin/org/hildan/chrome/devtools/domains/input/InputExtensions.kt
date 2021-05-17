@@ -17,7 +17,7 @@ suspend fun InputDomain.dispatchMouseClick(
 ) {
     dispatchMouseEvent(
         DispatchMouseEventRequest(
-            type = "mousePressed",
+            type = MouseEventType.mousePressed,
             x = x,
             y = y,
             button = button,
@@ -27,7 +27,7 @@ suspend fun InputDomain.dispatchMouseClick(
     delay(clickDurationMillis)
     dispatchMouseEvent(
         DispatchMouseEventRequest(
-            type = "mouseReleased",
+            type = MouseEventType.mouseReleased,
             x = x,
             y = y,
             button = button,

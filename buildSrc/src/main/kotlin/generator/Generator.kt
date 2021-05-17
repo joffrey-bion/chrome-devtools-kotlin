@@ -4,6 +4,7 @@ import com.squareup.kotlinpoet.FileSpec
 import org.hildan.chrome.devtools.build.json.ALL_DOMAINS_TARGET
 import org.hildan.chrome.devtools.build.json.ChromeProtocolDescriptor
 import org.hildan.chrome.devtools.build.json.TargetType
+import org.hildan.chrome.devtools.build.json.pullNestedEnumsToTopLevel
 import org.hildan.chrome.devtools.build.model.ChromeDPDomain
 import org.hildan.chrome.devtools.build.model.toChromeDPDomain
 import org.hildan.chrome.devtools.build.names.Annotations
@@ -35,7 +36,7 @@ class Generator(
         if (descriptors.distinctBy { it.version }.size > 1) {
             error("Some descriptors have differing versions: ${descriptors.map { it.version }}")
         }
-        return descriptors.flatMap { it.domains }.map { it.toChromeDPDomain() }
+        return descriptors.flatMap { it.domains }.map { it.pullNestedEnumsToTopLevel().toChromeDPDomain() }
     }
 
     private fun generateTargetInterfaceFile(targetName: String, domains: List<ChromeDPDomain>) {

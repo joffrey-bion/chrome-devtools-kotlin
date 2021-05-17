@@ -140,10 +140,6 @@ sealed class ChromeDPType {
             override val typeName: TypeName = LIST.parameterizedBy(itemType.typeName)
         }
 
-        data class Enum(val enumValues: List<String>) : NamedRef() {
-            override val typeName: TypeName = String::class.asClassName()
-        }
-
         data class Reference(override val typeName: TypeName) : NamedRef()
 
         object DynamicValue : NamedRef() {
@@ -154,6 +150,8 @@ sealed class ChromeDPType {
             override val typeName: TypeName = JsonObject::class.asClassName()
         }
     }
+
+    data class Enum(val enumValues: List<String>) : ChromeDPType()
 
     data class Object(val properties: List<ChromeDPParameter>) : ChromeDPType()
 
@@ -171,7 +169,7 @@ sealed class ChromeDPType {
             "integer" -> NamedRef.Primitive(Int::class)
             "number" -> NamedRef.Primitive(Double::class)
             "string" -> when {
-                enumValues != null -> NamedRef.Enum(enumValues)
+                enumValues != null -> Enum(enumValues)
                 else -> NamedRef.Primitive(String::class)
             }
             "array" -> NamedRef.Array(

@@ -18,7 +18,7 @@ fun ChromeDPDomain.createDomainTypesFileSpec(): FileSpec =
 private fun FileSpec.Builder.addDomainType(typeDeclaration: DomainTypeDeclaration) {
     when (val type = typeDeclaration.type) {
         is ChromeDPType.Object -> addType(typeDeclaration.toDataClassTypeSpec(type))
-        is ChromeDPType.NamedRef.Enum -> addType(typeDeclaration.toEnumTypeSpec(type))
+        is ChromeDPType.Enum -> addType(typeDeclaration.toEnumTypeSpec(type))
         is ChromeDPType.NamedRef -> addTypeAlias(typeDeclaration.toTypeAliasSpec(type))
     }
 }
@@ -30,7 +30,7 @@ private fun DomainTypeDeclaration.toDataClassTypeSpec(type: ChromeDPType.Object)
         addPrimaryConstructorProps(type.properties)
     }.build()
 
-private fun DomainTypeDeclaration.toEnumTypeSpec(type: ChromeDPType.NamedRef.Enum): TypeSpec =
+private fun DomainTypeDeclaration.toEnumTypeSpec(type: ChromeDPType.Enum): TypeSpec =
     TypeSpec.enumBuilder(names.declaredName).apply {
         addCommonConfig(this@toEnumTypeSpec)
         type.enumValues.forEach { addEnumConstant(it) }
