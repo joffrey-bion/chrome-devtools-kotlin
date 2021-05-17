@@ -22,7 +22,8 @@ If you're missing some APIs or updates, don't hesitate to open an issue to reque
 
 You can find the protocol version used by `chrome-devtools-kotlin` after the `-` in the version number.
 For instance, version `1.3.0-861504` of `chrome-devtools-kotlin` was built using version `861504` of the Chrome 
-DevTools Protocol (tip-of-tree version number).
+DevTools Protocol (this is technically the Chromium revision, but it gives the tip-of-tree version number of the 
+protocol).
 
 ## Concepts
 
