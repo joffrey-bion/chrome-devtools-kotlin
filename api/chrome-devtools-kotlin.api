@@ -26838,6 +26838,7 @@ public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeat
 	public static final field ch-dpr Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-ect Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-lang Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ch-prefers-color-scheme Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-rtt Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-ua Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-ua-arch Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
@@ -26882,6 +26883,7 @@ public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeat
 	public static final field usb Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field vertical-scroll Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field web-share Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field window-placement Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field xr-spatial-tracking Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
