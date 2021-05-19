@@ -1,5 +1,18 @@
 # Change Log
 
+## [2.0.0\-884179](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/2.0.0-884179) (2021-05-19)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/1.5.0-882324...2.0.0-884179)
+
+**Implemented enhancements:**
+
+- Use actual enum types for strings that have a finite set of possible values [\#90](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/90)
+- Use JSONObject for type "object" without properties [\#94](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/94)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 884179 [\#95](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/95) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Update to Chrome DevTools Protocol version 882987 [\#93](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/93) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [1.5.0\-882324](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/1.5.0-882324) (2021-05-13)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/1.4.0-881485...1.5.0-882324)
 
