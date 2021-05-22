@@ -21013,6 +21013,10 @@ public final class org/hildan/chrome/devtools/domains/network/NetworkDomain {
 	public final fun setRequestInterception (Lorg/hildan/chrome/devtools/domains/network/SetRequestInterceptionRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setUserAgentOverride (Lorg/hildan/chrome/devtools/domains/network/SetUserAgentOverrideRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun signedExchangeReceived ()Lkotlinx/coroutines/flow/Flow;
+	public final fun subresourceWebBundleInnerResponseError ()Lkotlinx/coroutines/flow/Flow;
+	public final fun subresourceWebBundleInnerResponseParsed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun subresourceWebBundleMetadataError ()Lkotlinx/coroutines/flow/Flow;
+	public final fun subresourceWebBundleMetadataReceived ()Lkotlinx/coroutines/flow/Flow;
 	public final fun takeResponseBodyForInterceptionAsStream (Lorg/hildan/chrome/devtools/domains/network/TakeResponseBodyForInterceptionAsStreamRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun trustTokenOperationDone ()Lkotlinx/coroutines/flow/Flow;
 	public final fun webSocketClosed ()Lkotlinx/coroutines/flow/Flow;
@@ -22987,6 +22991,138 @@ public final class org/hildan/chrome/devtools/domains/network/events/NetworkEven
 }
 
 public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$SignedExchangeReceivedEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseErrorEvent : org/hildan/chrome/devtools/domains/network/events/NetworkEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseErrorEvent$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseErrorEvent;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseErrorEvent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseErrorEvent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBundleRequestId ()Ljava/lang/String;
+	public final fun getErrorMessage ()Ljava/lang/String;
+	public final fun getInnerRequestId ()Ljava/lang/String;
+	public final fun getInnerRequestURL ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseErrorEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseErrorEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseErrorEvent$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseErrorEvent;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseErrorEvent;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseErrorEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseParsedEvent : org/hildan/chrome/devtools/domains/network/events/NetworkEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseParsedEvent$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseParsedEvent;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseParsedEvent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseParsedEvent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBundleRequestId ()Ljava/lang/String;
+	public final fun getInnerRequestId ()Ljava/lang/String;
+	public final fun getInnerRequestURL ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseParsedEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseParsedEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseParsedEvent$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseParsedEvent;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseParsedEvent;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleInnerResponseParsedEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataErrorEvent : org/hildan/chrome/devtools/domains/network/events/NetworkEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataErrorEvent$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataErrorEvent;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataErrorEvent;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataErrorEvent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getErrorMessage ()Ljava/lang/String;
+	public final fun getRequestId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataErrorEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataErrorEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataErrorEvent$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataErrorEvent;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataErrorEvent;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataErrorEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataReceivedEvent : org/hildan/chrome/devtools/domains/network/events/NetworkEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataReceivedEvent$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/util/List;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataReceivedEvent;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataReceivedEvent;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataReceivedEvent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getRequestId ()Ljava/lang/String;
+	public final fun getUrls ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataReceivedEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataReceivedEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataReceivedEvent$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataReceivedEvent;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataReceivedEvent;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$SubresourceWebBundleMetadataReceivedEvent$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
