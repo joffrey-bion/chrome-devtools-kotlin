@@ -45,7 +45,7 @@ suspend fun DOMDomain.findNodeBySelector(selector: CssSelector): NodeId? =
  */
 @ExperimentalTime
 suspend fun DOMDomain.awaitNodeBySelector(selector: CssSelector, pollingPeriod: Duration): NodeId =
-    awaitNodeBySelector(selector, pollingPeriod.toLongMilliseconds())
+    awaitNodeBySelector(selector, pollingPeriod.inWholeMilliseconds)
 
 /**
  * Retrieves the ID of the node corresponding to the given [selector], and retries until there is a match using the

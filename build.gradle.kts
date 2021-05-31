@@ -1,8 +1,8 @@
 plugins {
-    val kotlinVersion = "1.4.32"
+    val kotlinVersion = "1.5.10"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
-    id("org.jetbrains.dokka") version kotlinVersion
+    id("org.jetbrains.dokka") version "1.4.32"
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.5.0"
     `maven-publish`
     signing
@@ -18,15 +18,14 @@ repositories {
 }
 
 dependencies {
-    api("org.hildan.krossbow:krossbow-websocket-core:1.4.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+    api("org.hildan.krossbow:krossbow-websocket-core:2.0.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0")
 
-    val ktorVersion = "1.5.4"
+    val ktorVersion = "1.6.0"
     api("io.ktor:ktor-client-cio:$ktorVersion")
     api("io.ktor:ktor-client-serialization-jvm:$ktorVersion")
 
     testImplementation(kotlin("test"))
-    testImplementation(kotlin("test-junit5"))
     testImplementation("org.slf4j:slf4j-simple:1.7.30")
     testImplementation("org.testcontainers:testcontainers:1.15.1")
     testImplementation("org.testcontainers:junit-jupiter:1.15.1")

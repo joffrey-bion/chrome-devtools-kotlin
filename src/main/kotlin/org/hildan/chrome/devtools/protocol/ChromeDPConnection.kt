@@ -20,20 +20,22 @@ internal class ChromeDPConnection(
     private val frames = webSocket.incomingFrames.consumeAsFlow()
         .filterIsInstance<WebSocketFrame.Text>()
         .map { frame -> frame.decodeInboundFrame() }
-        .broadcastIn(coroutineScope + CoroutineName("ChromeDP-frame-decoder"))
+        .shareIn(
+            scope = coroutineScope + CoroutineName("ChromeDP-frame-decoder"),
+            started = SharingStarted.Eagerly,
+        )
 
     suspend fun request(request: RequestFrame): InboundFrame {
-        val framesSubscription = frames.openSubscription()
-        webSocket.sendText(json.encodeToString(request))
-        val response = framesSubscription.consumeAsFlow().filter { it.matchesRequest(request) }.firstOrNull()
-            ?: throw MissingResponse(request)
+        val response = frames.onSubscription { webSocket.sendText(json.encodeToString(request)) }
+            .filter { it.matchesRequest(request) }
+            .firstOrNull() ?: throw MissingResponse(request)
         if (response.error != null) {
             throw RequestFailed(request, response.error)
         }
         return response
     }
 
-    fun events() = frames.openSubscription().consumeAsFlow().filter(InboundFrame::isEvent)
+    fun events() = frames.filter(InboundFrame::isEvent)
 
     suspend fun close() {
         job.cancelAndJoin()
