@@ -201,11 +201,12 @@ class IntegrationTests {
         }
     }
 
+    @Serializable
+    data class Person(val firstName: String, val lastName: String)
+
     @Test
     fun runtime_evaluateJs() {
         runBlocking {
-            @Serializable
-            data class Person(val firstName: String, val lastName: String)
 
             val browser = chromeDpClient().webSocket()
             val page = browser.attachToNewPageAndAwaitPageLoad("http://google.com")
