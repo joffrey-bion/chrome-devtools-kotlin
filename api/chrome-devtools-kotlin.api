@@ -4924,6 +4924,40 @@ public final class org/hildan/chrome/devtools/domains/css/CSSComputedStyleProper
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/css/CSSContainerQuery {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/CSSContainerQuery$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SourceRange;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SourceRange;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SourceRange;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/css/SourceRange;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SourceRange;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/css/CSSContainerQuery;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/CSSContainerQuery;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SourceRange;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/CSSContainerQuery;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getRange ()Lorg/hildan/chrome/devtools/domains/css/SourceRange;
+	public final fun getStyleSheetId ()Ljava/lang/String;
+	public final fun getText ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/CSSContainerQuery$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/CSSContainerQuery$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/css/CSSContainerQuery;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/css/CSSContainerQuery;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/CSSContainerQuery$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/css/CSSDomain {
 	public final fun addRule (Lorg/hildan/chrome/devtools/domains/css/AddRuleRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun collectClassNames (Lorg/hildan/chrome/devtools/domains/css/CollectClassNamesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -5137,17 +5171,19 @@ public final class org/hildan/chrome/devtools/domains/css/CSSProperty$Companion 
 
 public final class org/hildan/chrome/devtools/domains/css/CSSRule {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/CSSRule$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SelectorList;Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;Ljava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SelectorList;Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;Ljava/util/List;)V
-	public synthetic fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SelectorList;Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SelectorList;Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;Ljava/util/List;Ljava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SelectorList;Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;Ljava/util/List;Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SelectorList;Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;Ljava/util/List;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/css/SelectorList;
 	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;
 	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/css/CSSStyle;
 	public final fun component5 ()Ljava/util/List;
-	public final fun copy (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SelectorList;Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/css/CSSRule;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/CSSRule;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SelectorList;Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/CSSRule;
+	public final fun component6 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SelectorList;Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;Ljava/util/List;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/css/CSSRule;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/CSSRule;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SelectorList;Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/CSSRule;
 	public fun equals (Ljava/lang/Object;)Z
+	public final fun getContainerQueries ()Ljava/util/List;
 	public final fun getMedia ()Ljava/util/List;
 	public final fun getOrigin ()Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;
 	public final fun getSelectorList ()Lorg/hildan/chrome/devtools/domains/css/SelectorList;
