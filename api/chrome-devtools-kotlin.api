@@ -4975,6 +4975,7 @@ public final class org/hildan/chrome/devtools/domains/css/CSSDomain {
 	public final fun getPlatformFontsForNode (Lorg/hildan/chrome/devtools/domains/css/GetPlatformFontsForNodeRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getStyleSheetText (Lorg/hildan/chrome/devtools/domains/css/GetStyleSheetTextRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun mediaQueryResultChanged ()Lkotlinx/coroutines/flow/Flow;
+	public final fun setContainerQueryText (Lorg/hildan/chrome/devtools/domains/css/SetContainerQueryTextRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setEffectivePropertyValueForNode (Lorg/hildan/chrome/devtools/domains/css/SetEffectivePropertyValueForNodeRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setKeyframeKey (Lorg/hildan/chrome/devtools/domains/css/SetKeyframeKeyRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setLocalFontsEnabled (Lorg/hildan/chrome/devtools/domains/css/SetLocalFontsEnabledRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -6197,6 +6198,68 @@ public final class org/hildan/chrome/devtools/domains/css/SelectorList$$serializ
 }
 
 public final class org/hildan/chrome/devtools/domains/css/SelectorList$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/SetContainerQueryTextRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/SetContainerQueryTextRequest$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SourceRange;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SourceRange;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/css/SourceRange;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SourceRange;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/css/SetContainerQueryTextRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/SetContainerQueryTextRequest;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SourceRange;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/SetContainerQueryTextRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getRange ()Lorg/hildan/chrome/devtools/domains/css/SourceRange;
+	public final fun getStyleSheetId ()Ljava/lang/String;
+	public final fun getText ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/SetContainerQueryTextRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/SetContainerQueryTextRequest$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/css/SetContainerQueryTextRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/css/SetContainerQueryTextRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/SetContainerQueryTextRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/SetContainerQueryTextResponse {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/SetContainerQueryTextResponse$Companion;
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/css/CSSContainerQuery;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/css/CSSContainerQuery;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/css/CSSContainerQuery;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/css/CSSContainerQuery;)Lorg/hildan/chrome/devtools/domains/css/SetContainerQueryTextResponse;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/SetContainerQueryTextResponse;Lorg/hildan/chrome/devtools/domains/css/CSSContainerQuery;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/SetContainerQueryTextResponse;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getContainerQuery ()Lorg/hildan/chrome/devtools/domains/css/CSSContainerQuery;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/SetContainerQueryTextResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/SetContainerQueryTextResponse$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/css/SetContainerQueryTextResponse;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/css/SetContainerQueryTextResponse;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/SetContainerQueryTextResponse$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
