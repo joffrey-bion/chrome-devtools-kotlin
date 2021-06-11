@@ -21181,7 +21181,6 @@ public final class org/hildan/chrome/devtools/domains/network/NetworkDomain {
 	public final fun setCacheDisabled (Lorg/hildan/chrome/devtools/domains/network/SetCacheDisabledRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setCookie (Lorg/hildan/chrome/devtools/domains/network/SetCookieRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setCookies (Lorg/hildan/chrome/devtools/domains/network/SetCookiesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun setDataSizeLimitsForTest (Lorg/hildan/chrome/devtools/domains/network/SetDataSizeLimitsForTestRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setExtraHTTPHeaders (Lorg/hildan/chrome/devtools/domains/network/SetExtraHTTPHeadersRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setRequestInterception (Lorg/hildan/chrome/devtools/domains/network/SetRequestInterceptionRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setUserAgentOverride (Lorg/hildan/chrome/devtools/domains/network/SetUserAgentOverrideRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -22081,37 +22080,6 @@ public final class org/hildan/chrome/devtools/domains/network/SetCookiesRequest$
 }
 
 public final class org/hildan/chrome/devtools/domains/network/SetCookiesRequest$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class org/hildan/chrome/devtools/domains/network/SetDataSizeLimitsForTestRequest {
-	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/SetDataSizeLimitsForTestRequest$Companion;
-	public fun <init> (II)V
-	public synthetic fun <init> (IIILkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public final fun component1 ()I
-	public final fun component2 ()I
-	public final fun copy (II)Lorg/hildan/chrome/devtools/domains/network/SetDataSizeLimitsForTestRequest;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/SetDataSizeLimitsForTestRequest;IIILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/SetDataSizeLimitsForTestRequest;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getMaxResourceSize ()I
-	public final fun getMaxTotalSize ()I
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class org/hildan/chrome/devtools/domains/network/SetDataSizeLimitsForTestRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/network/SetDataSizeLimitsForTestRequest$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/network/SetDataSizeLimitsForTestRequest;
-	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/network/SetDataSizeLimitsForTestRequest;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
-}
-
-public final class org/hildan/chrome/devtools/domains/network/SetDataSizeLimitsForTestRequest$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -25437,6 +25405,183 @@ public final class org/hildan/chrome/devtools/domains/page/AppManifestParsedProp
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanation {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanation$Companion;
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType;Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType;Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType;Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;)Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanation;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanation;Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType;Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanation;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getReason ()Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public final fun getType ()Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanation$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanation$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanation;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanation;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanation$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason : java/lang/Enum {
+	public static final field AppBanner Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field BackForwardCacheDisabled Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field BackForwardCacheDisabledByCommandLine Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field BackForwardCacheDisabledByLowMemory Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field BackForwardCacheDisabledForDelegate Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field BackForwardCacheDisabledForPrerender Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field BeforeUnloadEventListener Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field BroadcastChannel Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field BrowsingInstanceNotSwapped Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field CacheFlushed Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field CacheLimit Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason$Companion;
+	public static final field ConflictingBrowsingInstance Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field ContainsPlugins Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field DedicatedWorkerOrWorklet Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field DisableForRenderFrameHostCalled Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field DocumentLoaded Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field DomainNotAllowed Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field EnteredBackForwardCacheBeforeServiceWorkerHostAdded Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field ForegroundCacheLimit Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field FreezeEventListener Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field GrantedMediaStreamAccess Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field HTTPMethodNotGET Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field HTTPStatusNotOK Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field HaveInnerContents Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field IdleManager Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field IgnoreEventAndEvict Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field IndexedDBConnection Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field InjectedStyleSheet Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field IsolatedWorldScript Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field JavaScriptExecution Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field KeyboardLock Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field Loading Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field MainResourceHasCacheControlNoCache Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field MainResourceHasCacheControlNoStore Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field MediaSessionImplOnServiceCreated Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field NavigationCancelledWhileRestoring Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field NetworkExceedsBufferLimit Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field NetworkRequestDatapipeDrainedAsBytesConsumer Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field NetworkRequestRedirected Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field NetworkRequestTimeout Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field NotMainFrame Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field NotMostRecentNavigationEntry Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field OptInUnloadHeaderNotPresent Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field OutstandingIndexedDBTransaction Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field OutstandingNetworkRequestDirectSocket Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field OutstandingNetworkRequestFetch Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field OutstandingNetworkRequestOthers Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field OutstandingNetworkRequestXHR Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field PageHideEventListener Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field PageShowEventListener Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field PaymentManager Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field PictureInPicture Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field Portal Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field Printing Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field RelatedActiveContentsExist Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field RenderFrameHostReused_CrossSite Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field RenderFrameHostReused_SameSite Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field RendererProcessCrashed Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field RendererProcessKilled Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field RequestedAudioCapturePermission Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field RequestedBackForwardCacheBlockedSensors Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field RequestedBackgroundWorkPermission Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field RequestedGeolocationPermission Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field RequestedMIDIPermission Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field RequestedNotificationsPermission Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field RequestedStorageAccessGrant Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field RequestedVideoCapturePermission Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field ResumeEventListener Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field SchedulerTrackedFeatureUsed Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field SchemeNotHTTPOrHTTPS Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field ServiceWorkerClaim Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field ServiceWorkerPostMessage Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field ServiceWorkerVersionActivation Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field SessionRestored Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field SharedWorker Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field SpeechRecognizer Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field SpeechSynthesis Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field SubframeIsNavigating Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field SubresourceHasCacheControlNoCache Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field SubresourceHasCacheControlNoStore Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field Timeout Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field TimeoutPuttingInCache Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field Unknown Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field UnloadEventListener Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field UnloadHandlerExistsInMainFrame Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field UnloadHandlerExistsInSubFrame Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field UserAgentOverrideDiffers Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field WasGrantedMediaAccess Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field WebDatabase Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field WebFileSystem Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field WebHID Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field WebLocks Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field WebNfc Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field WebOTPService Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field WebRTC Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field WebShare Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field WebSocket Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field WebVR Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field WebXR Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static fun values ()[Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType : java/lang/Enum {
+	public static final field Circumstantial Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType;
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType$Companion;
+	public static final field PageSupportNeeded Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType;
+	public static final field SupportPending Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType;
+	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType;
+	public static fun values ()[Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/page/CaptureScreenshotRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/CaptureScreenshotRequest$Companion;
 	public fun <init> ()V
@@ -28469,15 +28614,17 @@ public abstract class org/hildan/chrome/devtools/domains/page/events/PageEvent {
 
 public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$BackForwardCacheNotUsedEvent : org/hildan/chrome/devtools/domains/page/events/PageEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$BackForwardCacheNotUsedEvent$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$BackForwardCacheNotUsedEvent;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$BackForwardCacheNotUsedEvent;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$BackForwardCacheNotUsedEvent;
+	public final fun component3 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$BackForwardCacheNotUsedEvent;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$BackForwardCacheNotUsedEvent;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$BackForwardCacheNotUsedEvent;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getFrameId ()Ljava/lang/String;
 	public final fun getLoaderId ()Ljava/lang/String;
+	public final fun getNotRestoredExplanations ()Ljava/util/List;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
