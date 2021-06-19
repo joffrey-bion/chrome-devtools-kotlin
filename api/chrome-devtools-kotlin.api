@@ -25500,7 +25500,6 @@ public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRe
 	public static final field BackForwardCacheDisabledByLowMemory Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field BackForwardCacheDisabledForDelegate Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field BackForwardCacheDisabledForPrerender Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
-	public static final field BeforeUnloadEventListener Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field BroadcastChannel Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field BrowsingInstanceNotSwapped Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field CacheFlushed Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
@@ -25514,7 +25513,6 @@ public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRe
 	public static final field DomainNotAllowed Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field EnteredBackForwardCacheBeforeServiceWorkerHostAdded Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field ForegroundCacheLimit Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
-	public static final field FreezeEventListener Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field GrantedMediaStreamAccess Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field HTTPMethodNotGET Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field HTTPStatusNotOK Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
@@ -25543,8 +25541,6 @@ public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRe
 	public static final field OutstandingNetworkRequestFetch Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field OutstandingNetworkRequestOthers Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field OutstandingNetworkRequestXHR Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
-	public static final field PageHideEventListener Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
-	public static final field PageShowEventListener Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field PaymentManager Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field PictureInPicture Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field Portal Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
@@ -25562,7 +25558,6 @@ public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRe
 	public static final field RequestedNotificationsPermission Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field RequestedStorageAccessGrant Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field RequestedVideoCapturePermission Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
-	public static final field ResumeEventListener Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field SchedulerTrackedFeatureUsed Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field SchemeNotHTTPOrHTTPS Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field ServiceWorkerClaim Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
@@ -25579,7 +25574,6 @@ public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRe
 	public static final field Timeout Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field TimeoutPuttingInCache Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field Unknown Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
-	public static final field UnloadEventListener Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field UnloadHandlerExistsInMainFrame Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field UnloadHandlerExistsInSubFrame Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field UserAgentOverrideDiffers Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
@@ -27415,6 +27409,7 @@ public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeat
 	public static final field ch-rtt Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-ua Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-ua-arch Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ch-ua-bitness Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-ua-full-version Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-ua-mobile Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-ua-model Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
@@ -27854,6 +27849,7 @@ public final class org/hildan/chrome/devtools/domains/page/ScreenshotFormat : ja
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/ScreenshotFormat$Companion;
 	public static final field jpeg Lorg/hildan/chrome/devtools/domains/page/ScreenshotFormat;
 	public static final field png Lorg/hildan/chrome/devtools/domains/page/ScreenshotFormat;
+	public static final field webp Lorg/hildan/chrome/devtools/domains/page/ScreenshotFormat;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/ScreenshotFormat;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/page/ScreenshotFormat;
 }
