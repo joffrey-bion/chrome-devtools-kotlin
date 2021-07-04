@@ -11,7 +11,7 @@ JVM-specific API.
 
 ## Protocol version & Code generation
 
-This client is partly generated based on information from the "latest" (a.k.a 
+Part of this client is generated based on information from the "latest" (a.k.a 
 ["tip-of-tree"](https://chromedevtools.github.io/devtools-protocol/tot/)) JSON descriptors found in the 
 [ChromeDevTools/devtools-protocol](https://github.com/ChromeDevTools/devtools-protocol/tree/master/json) repository.
 All the domains' commands and events defined in these protocol descriptors are therefore available in
@@ -73,7 +73,7 @@ which allows to issue commands and listen to DOM events.
 > 
 > Because of this, there might be some missing domains on some session types at some point in time that require
 > manual adjustment.
-> If this is the case, use the `unsafe()` method on the session object to get full access to all domains
+> If this is the case, use the `ChromePageSession.unsafe()` method on the session object to get full access to all domains
 > (also, please open an issue so I can fix the missing domain).
 
 ## Usage
