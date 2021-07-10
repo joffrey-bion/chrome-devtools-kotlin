@@ -23811,6 +23811,68 @@ public final class org/hildan/chrome/devtools/domains/overlay/ColorFormat$Compan
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/overlay/LineStyle;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/overlay/LineStyle;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/overlay/LineStyle;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/overlay/LineStyle;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/overlay/LineStyle;)Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/LineStyle;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getContainerBorder ()Lorg/hildan/chrome/devtools/domains/overlay/LineStyle;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/ContainerQueryHighlightConfig {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryHighlightConfig$Companion;
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig;ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig;I)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig;
+	public final fun component2 ()I
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig;I)Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryHighlightConfig;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig;IILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryHighlightConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getContainerQueryContainerHighlightConfig ()Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig;
+	public final fun getNodeId ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/ContainerQueryHighlightConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryHighlightConfig$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryHighlightConfig;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryHighlightConfig;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/ContainerQueryHighlightConfig$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm$Companion;
 	public static final field aa Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm;
@@ -24233,9 +24295,9 @@ public final class org/hildan/chrome/devtools/domains/overlay/GridNodeHighlightC
 public final class org/hildan/chrome/devtools/domains/overlay/HighlightConfig {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/overlay/HighlightConfig$Companion;
 	public fun <init> ()V
-	public synthetic fun <init> (ILjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/overlay/ColorFormat;Lorg/hildan/chrome/devtools/domains/overlay/GridHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexContainerHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexItemHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/overlay/ColorFormat;Lorg/hildan/chrome/devtools/domains/overlay/GridHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexContainerHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexItemHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm;)V
-	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/overlay/ColorFormat;Lorg/hildan/chrome/devtools/domains/overlay/GridHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexContainerHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexItemHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/overlay/ColorFormat;Lorg/hildan/chrome/devtools/domains/overlay/GridHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexContainerHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexItemHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm;Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/overlay/ColorFormat;Lorg/hildan/chrome/devtools/domains/overlay/GridHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexContainerHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexItemHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm;Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/overlay/ColorFormat;Lorg/hildan/chrome/devtools/domains/overlay/GridHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexContainerHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexItemHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm;Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/Boolean;
 	public final fun component10 ()Lorg/hildan/chrome/devtools/domains/dom/RGBA;
 	public final fun component11 ()Lorg/hildan/chrome/devtools/domains/dom/RGBA;
@@ -24246,6 +24308,7 @@ public final class org/hildan/chrome/devtools/domains/overlay/HighlightConfig {
 	public final fun component16 ()Lorg/hildan/chrome/devtools/domains/overlay/FlexContainerHighlightConfig;
 	public final fun component17 ()Lorg/hildan/chrome/devtools/domains/overlay/FlexItemHighlightConfig;
 	public final fun component18 ()Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm;
+	public final fun component19 ()Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig;
 	public final fun component2 ()Ljava/lang/Boolean;
 	public final fun component3 ()Ljava/lang/Boolean;
 	public final fun component4 ()Ljava/lang/Boolean;
@@ -24254,11 +24317,12 @@ public final class org/hildan/chrome/devtools/domains/overlay/HighlightConfig {
 	public final fun component7 ()Lorg/hildan/chrome/devtools/domains/dom/RGBA;
 	public final fun component8 ()Lorg/hildan/chrome/devtools/domains/dom/RGBA;
 	public final fun component9 ()Lorg/hildan/chrome/devtools/domains/dom/RGBA;
-	public final fun copy (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/overlay/ColorFormat;Lorg/hildan/chrome/devtools/domains/overlay/GridHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexContainerHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexItemHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm;)Lorg/hildan/chrome/devtools/domains/overlay/HighlightConfig;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/overlay/HighlightConfig;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/overlay/ColorFormat;Lorg/hildan/chrome/devtools/domains/overlay/GridHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexContainerHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexItemHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/overlay/HighlightConfig;
+	public final fun copy (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/overlay/ColorFormat;Lorg/hildan/chrome/devtools/domains/overlay/GridHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexContainerHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexItemHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm;Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig;)Lorg/hildan/chrome/devtools/domains/overlay/HighlightConfig;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/overlay/HighlightConfig;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/dom/RGBA;Lorg/hildan/chrome/devtools/domains/overlay/ColorFormat;Lorg/hildan/chrome/devtools/domains/overlay/GridHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexContainerHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/FlexItemHighlightConfig;Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm;Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/overlay/HighlightConfig;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBorderColor ()Lorg/hildan/chrome/devtools/domains/dom/RGBA;
 	public final fun getColorFormat ()Lorg/hildan/chrome/devtools/domains/overlay/ColorFormat;
+	public final fun getContainerQueryContainerHighlightConfig ()Lorg/hildan/chrome/devtools/domains/overlay/ContainerQueryContainerHighlightConfig;
 	public final fun getContentColor ()Lorg/hildan/chrome/devtools/domains/dom/RGBA;
 	public final fun getContrastAlgorithm ()Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm;
 	public final fun getCssGridColor ()Lorg/hildan/chrome/devtools/domains/dom/RGBA;
@@ -24615,6 +24679,7 @@ public final class org/hildan/chrome/devtools/domains/overlay/OverlayDomain {
 	public final fun setInspectMode (Lorg/hildan/chrome/devtools/domains/overlay/SetInspectModeRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setPausedInDebuggerMessage (Lorg/hildan/chrome/devtools/domains/overlay/SetPausedInDebuggerMessageRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setShowAdHighlights (Lorg/hildan/chrome/devtools/domains/overlay/SetShowAdHighlightsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setShowContainerQueryOverlays (Lorg/hildan/chrome/devtools/domains/overlay/SetShowContainerQueryOverlaysRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setShowDebugBorders (Lorg/hildan/chrome/devtools/domains/overlay/SetShowDebugBordersRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setShowFPSCounter (Lorg/hildan/chrome/devtools/domains/overlay/SetShowFPSCounterRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setShowFlexOverlays (Lorg/hildan/chrome/devtools/domains/overlay/SetShowFlexOverlaysRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -24786,6 +24851,35 @@ public final class org/hildan/chrome/devtools/domains/overlay/SetShowAdHighlight
 }
 
 public final class org/hildan/chrome/devtools/domains/overlay/SetShowAdHighlightsRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/SetShowContainerQueryOverlaysRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/overlay/SetShowContainerQueryOverlaysRequest$Companion;
+	public synthetic fun <init> (ILjava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/overlay/SetShowContainerQueryOverlaysRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/overlay/SetShowContainerQueryOverlaysRequest;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/overlay/SetShowContainerQueryOverlaysRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getContainerQueryHighlightConfigs ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/SetShowContainerQueryOverlaysRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/overlay/SetShowContainerQueryOverlaysRequest$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/overlay/SetShowContainerQueryOverlaysRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/overlay/SetShowContainerQueryOverlaysRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/overlay/SetShowContainerQueryOverlaysRequest$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
