@@ -25756,7 +25756,6 @@ public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRe
 	public static final field RequestedAudioCapturePermission Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field RequestedBackForwardCacheBlockedSensors Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field RequestedBackgroundWorkPermission Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
-	public static final field RequestedGeolocationPermission Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field RequestedMIDIPermission Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field RequestedNotificationsPermission Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field RequestedStorageAccessGrant Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
