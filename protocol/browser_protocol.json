@@ -6648,6 +6648,12 @@
                             }
                         },
                         {
+                            "name": "shadowRootType",
+                            "description": "Type of the shadow root the `Node` is in. String values are equal to the `ShadowRootType` enum.",
+                            "optional": true,
+                            "$ref": "RareStringData"
+                        },
+                        {
                             "name": "nodeName",
                             "description": "`Node`'s nodeName.",
                             "optional": true,
@@ -13530,6 +13536,12 @@
                             "description": "The contrast algorithm to use for the contrast ratio (default: aa).",
                             "optional": true,
                             "$ref": "ContrastAlgorithm"
+                        },
+                        {
+                            "name": "containerQueryContainerHighlightConfig",
+                            "description": "The container query container highlight configuration (default: all transparent).",
+                            "optional": true,
+                            "$ref": "ContainerQueryContainerHighlightConfig"
                         }
                     ]
                 },
@@ -13646,6 +13658,34 @@
                     ]
                 },
                 {
+                    "id": "ContainerQueryHighlightConfig",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "containerQueryContainerHighlightConfig",
+                            "description": "A descriptor for the highlight appearance of container query containers.",
+                            "$ref": "ContainerQueryContainerHighlightConfig"
+                        },
+                        {
+                            "name": "nodeId",
+                            "description": "Identifier of the container node to highlight.",
+                            "$ref": "DOM.NodeId"
+                        }
+                    ]
+                },
+                {
+                    "id": "ContainerQueryContainerHighlightConfig",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "containerBorder",
+                            "description": "The style of the container border",
+                            "optional": true,
+                            "$ref": "LineStyle"
+                        }
+                    ]
+                },
+                {
                     "id": "InspectMode",
                     "type": "string",
                     "enum": [
@@ -13753,7 +13793,8 @@
                 },
                 {
                     "name": "highlightFrame",
-                    "description": "Highlights owner element of the frame with given id.",
+                    "description": "Highlights owner element of the frame with given id.\nDeprecated: Doesn't work reliablity and cannot be fixed due to process\nseparatation (the owner node might be in a different process). Determine\nthe owner node in the client and use highlightNode.",
+                    "deprecated": true,
                     "parameters": [
                         {
                             "name": "frameId",
@@ -13996,6 +14037,19 @@
                             "type": "array",
                             "items": {
                                 "$ref": "ScrollSnapHighlightConfig"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setShowContainerQueryOverlays",
+                    "parameters": [
+                        {
+                            "name": "containerQueryHighlightConfigs",
+                            "description": "An array of node identifiers and descriptors for the highlight appearance.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "ContainerQueryHighlightConfig"
                             }
                         }
                     ]
@@ -15123,6 +15177,9 @@
                         "OptInUnloadHeaderNotPresent",
                         "UnloadHandlerExistsInSubFrame",
                         "ServiceWorkerUnregistration",
+                        "CacheControlNoStore",
+                        "CacheControlNoStoreCookieModified",
+                        "CacheControlNoStoreHTTPOnlyCookieModified",
                         "WebSocket",
                         "WebRTC",
                         "MainResourceHasCacheControlNoStore",
@@ -15134,7 +15191,6 @@
                         "DedicatedWorkerOrWorklet",
                         "OutstandingNetworkRequestOthers",
                         "OutstandingIndexedDBTransaction",
-                        "RequestedGeolocationPermission",
                         "RequestedNotificationsPermission",
                         "RequestedMIDIPermission",
                         "RequestedAudioCapturePermission",
