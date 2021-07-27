@@ -17107,14 +17107,17 @@ public final class org/hildan/chrome/devtools/domains/input/DispatchTouchEventRe
 
 public final class org/hildan/chrome/devtools/domains/input/DragData {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/input/DragData$Companion;
-	public synthetic fun <init> (ILjava/util/List;ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/util/List;I)V
+	public synthetic fun <init> (ILjava/util/List;Ljava/util/List;ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/util/List;Ljava/util/List;I)V
+	public synthetic fun <init> (Ljava/util/List;Ljava/util/List;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/util/List;
-	public final fun component2 ()I
-	public final fun copy (Ljava/util/List;I)Lorg/hildan/chrome/devtools/domains/input/DragData;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/input/DragData;Ljava/util/List;IILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/input/DragData;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()I
+	public final fun copy (Ljava/util/List;Ljava/util/List;I)Lorg/hildan/chrome/devtools/domains/input/DragData;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/input/DragData;Ljava/util/List;Ljava/util/List;IILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/input/DragData;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDragOperationsMask ()I
+	public final fun getFiles ()Ljava/util/List;
 	public final fun getItems ()Ljava/util/List;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -23186,22 +23189,24 @@ public final class org/hildan/chrome/devtools/domains/network/events/NetworkEven
 
 public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfoEvent : org/hildan/chrome/devtools/domains/network/events/NetworkEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfoEvent$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/util/List;
 	public final fun component3 ()Lkotlinx/serialization/json/JsonObject;
 	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;
-	public final fun component5 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfoEvent;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfoEvent;Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfoEvent;
+	public final fun component5 ()I
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfoEvent;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfoEvent;Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfoEvent;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBlockedCookies ()Ljava/util/List;
 	public final fun getHeaders ()Lkotlinx/serialization/json/JsonObject;
 	public final fun getHeadersText ()Ljava/lang/String;
 	public final fun getRequestId ()Ljava/lang/String;
 	public final fun getResourceIPAddressSpace ()Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;
+	public final fun getStatusCode ()I
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
