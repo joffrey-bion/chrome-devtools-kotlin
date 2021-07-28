@@ -25744,6 +25744,7 @@ public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRe
 	public static final field NetworkRequestDatapipeDrainedAsBytesConsumer Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field NetworkRequestRedirected Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field NetworkRequestTimeout Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field NoResponseHead Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field NotMainFrame Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field NotMostRecentNavigationEntry Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field OptInUnloadHeaderNotPresent Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
