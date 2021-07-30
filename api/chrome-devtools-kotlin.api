@@ -17272,6 +17272,44 @@ public final class org/hildan/chrome/devtools/domains/input/GestureSourceType$Co
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/input/ImeSetCompositionRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/input/ImeSetCompositionRequest$Companion;
+	public synthetic fun <init> (ILjava/lang/String;IILjava/lang/Integer;Ljava/lang/Integer;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;IILjava/lang/Integer;Ljava/lang/Integer;)V
+	public synthetic fun <init> (Ljava/lang/String;IILjava/lang/Integer;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()I
+	public final fun component3 ()I
+	public final fun component4 ()Ljava/lang/Integer;
+	public final fun component5 ()Ljava/lang/Integer;
+	public final fun copy (Ljava/lang/String;IILjava/lang/Integer;Ljava/lang/Integer;)Lorg/hildan/chrome/devtools/domains/input/ImeSetCompositionRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/input/ImeSetCompositionRequest;Ljava/lang/String;IILjava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/input/ImeSetCompositionRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getReplacementEnd ()Ljava/lang/Integer;
+	public final fun getReplacementStart ()Ljava/lang/Integer;
+	public final fun getSelectionEnd ()I
+	public final fun getSelectionStart ()I
+	public final fun getText ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/hildan/chrome/devtools/domains/input/ImeSetCompositionRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/input/ImeSetCompositionRequest$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/input/ImeSetCompositionRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/input/ImeSetCompositionRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/input/ImeSetCompositionRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/input/InputDomain {
 	public final fun dispatchDragEvent (Lorg/hildan/chrome/devtools/domains/input/DispatchDragEventRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun dispatchKeyEvent (Lorg/hildan/chrome/devtools/domains/input/DispatchKeyEventRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -17280,6 +17318,7 @@ public final class org/hildan/chrome/devtools/domains/input/InputDomain {
 	public final fun dragIntercepted ()Lkotlinx/coroutines/flow/Flow;
 	public final fun emulateTouchFromMouseEvent (Lorg/hildan/chrome/devtools/domains/input/EmulateTouchFromMouseEventRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
+	public final fun imeSetComposition (Lorg/hildan/chrome/devtools/domains/input/ImeSetCompositionRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun insertText (Lorg/hildan/chrome/devtools/domains/input/InsertTextRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setIgnoreInputEvents (Lorg/hildan/chrome/devtools/domains/input/SetIgnoreInputEventsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setInterceptDrags (Lorg/hildan/chrome/devtools/domains/input/SetInterceptDragsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
