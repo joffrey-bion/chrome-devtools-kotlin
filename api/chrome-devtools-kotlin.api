@@ -2437,6 +2437,7 @@ public final class org/hildan/chrome/devtools/domains/audits/QuirksModeIssueDeta
 public final class org/hildan/chrome/devtools/domains/audits/SameSiteCookieExclusionReason : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieExclusionReason$Companion;
 	public static final field ExcludeInvalidSameParty Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieExclusionReason;
+	public static final field ExcludeSamePartyCrossPartyContext Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieExclusionReason;
 	public static final field ExcludeSameSiteLax Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieExclusionReason;
 	public static final field ExcludeSameSiteNoneInsecure Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieExclusionReason;
 	public static final field ExcludeSameSiteStrict Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieExclusionReason;
