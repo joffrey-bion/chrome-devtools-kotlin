@@ -3,7 +3,7 @@ plugins {
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
     id("org.jetbrains.dokka") version "1.4.32"
-    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.5.0"
+    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.6.0"
     `maven-publish`
     signing
     id("io.github.gradle-nexus.publish-plugin") version "1.0.0"
