@@ -29,7 +29,6 @@ dependencies {
     testImplementation("org.slf4j:slf4j-simple:1.7.30")
     testImplementation("org.testcontainers:testcontainers:1.15.1")
     testImplementation("org.testcontainers:junit-jupiter:1.15.1")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
 }
 
 kotlin {
