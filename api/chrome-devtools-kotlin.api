@@ -1722,6 +1722,7 @@ public final class org/hildan/chrome/devtools/domains/audits/AttributionReportin
 
 public final class org/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType : java/lang/Enum {
 	public static final field AttributionSourceUntrustworthyOrigin Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
+	public static final field AttributionTriggerDataTooLarge Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field AttributionUntrustworthyOrigin Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType$Companion;
 	public static final field InvalidAttributionData Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
@@ -20596,6 +20597,36 @@ public final class org/hildan/chrome/devtools/domains/network/ClientSecurityStat
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/network/ConnectTiming {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/ConnectTiming$Companion;
+	public fun <init> (D)V
+	public synthetic fun <init> (IDLkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()D
+	public final fun copy (D)Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;DILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getRequestTime ()D
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/network/ConnectTiming$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/network/ConnectTiming$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/ConnectTiming$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/network/ConnectionType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/ConnectionType$Companion;
 	public static final field bluetooth Lorg/hildan/chrome/devtools/domains/network/ConnectionType;
@@ -23797,18 +23828,20 @@ public final class org/hildan/chrome/devtools/domains/network/events/NetworkEven
 
 public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$RequestWillBeSentExtraInfoEvent : org/hildan/chrome/devtools/domains/network/events/NetworkEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$RequestWillBeSentExtraInfoEvent$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/util/List;
 	public final fun component3 ()Lkotlinx/serialization/json/JsonObject;
-	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;
-	public final fun copy (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$RequestWillBeSentExtraInfoEvent;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$RequestWillBeSentExtraInfoEvent;Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$RequestWillBeSentExtraInfoEvent;
+	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;
+	public final fun component5 ()Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;
+	public final fun copy (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$RequestWillBeSentExtraInfoEvent;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$RequestWillBeSentExtraInfoEvent;Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$RequestWillBeSentExtraInfoEvent;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAssociatedCookies ()Ljava/util/List;
 	public final fun getClientSecurityState ()Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;
+	public final fun getConnectTiming ()Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;
 	public final fun getHeaders ()Lkotlinx/serialization/json/JsonObject;
 	public final fun getRequestId ()Ljava/lang/String;
 	public fun hashCode ()I
