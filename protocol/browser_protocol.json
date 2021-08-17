@@ -14400,6 +14400,7 @@
                         "ch-ua-full-version",
                         "ch-ua-platform-version",
                         "ch-ua-reduced",
+                        "ch-viewport-height",
                         "ch-viewport-width",
                         "ch-width",
                         "clipboard-read",
@@ -19831,6 +19832,12 @@
                             "description": "Response code if intercepted at response stage.",
                             "optional": true,
                             "type": "integer"
+                        },
+                        {
+                            "name": "responseStatusText",
+                            "description": "Response status text if intercepted at response stage.",
+                            "optional": true,
+                            "type": "string"
                         },
                         {
                             "name": "responseHeaders",
