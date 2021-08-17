@@ -15937,19 +15937,20 @@ public final class org/hildan/chrome/devtools/domains/fetch/events/FetchEvent$Co
 
 public final class org/hildan/chrome/devtools/domains/fetch/events/FetchEvent$RequestPausedEvent : org/hildan/chrome/devtools/domains/fetch/events/FetchEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/fetch/events/FetchEvent$RequestPausedEvent$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/network/Request;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/ResourceType;Lorg/hildan/chrome/devtools/domains/network/ErrorReason;Ljava/lang/Integer;Ljava/util/List;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/Request;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/ResourceType;Lorg/hildan/chrome/devtools/domains/network/ErrorReason;Ljava/lang/Integer;Ljava/util/List;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/Request;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/ResourceType;Lorg/hildan/chrome/devtools/domains/network/ErrorReason;Ljava/lang/Integer;Ljava/util/List;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/network/Request;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/ResourceType;Lorg/hildan/chrome/devtools/domains/network/ErrorReason;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/Request;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/ResourceType;Lorg/hildan/chrome/devtools/domains/network/ErrorReason;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/Request;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/ResourceType;Lorg/hildan/chrome/devtools/domains/network/ErrorReason;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/network/Request;
 	public final fun component3 ()Ljava/lang/String;
 	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/network/ResourceType;
 	public final fun component5 ()Lorg/hildan/chrome/devtools/domains/network/ErrorReason;
 	public final fun component6 ()Ljava/lang/Integer;
-	public final fun component7 ()Ljava/util/List;
-	public final fun component8 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/Request;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/ResourceType;Lorg/hildan/chrome/devtools/domains/network/ErrorReason;Ljava/lang/Integer;Ljava/util/List;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/fetch/events/FetchEvent$RequestPausedEvent;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/fetch/events/FetchEvent$RequestPausedEvent;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/Request;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/ResourceType;Lorg/hildan/chrome/devtools/domains/network/ErrorReason;Ljava/lang/Integer;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/fetch/events/FetchEvent$RequestPausedEvent;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/util/List;
+	public final fun component9 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/Request;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/ResourceType;Lorg/hildan/chrome/devtools/domains/network/ErrorReason;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/fetch/events/FetchEvent$RequestPausedEvent;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/fetch/events/FetchEvent$RequestPausedEvent;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/Request;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/ResourceType;Lorg/hildan/chrome/devtools/domains/network/ErrorReason;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/fetch/events/FetchEvent$RequestPausedEvent;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getFrameId ()Ljava/lang/String;
 	public final fun getNetworkId ()Ljava/lang/String;
@@ -15959,6 +15960,7 @@ public final class org/hildan/chrome/devtools/domains/fetch/events/FetchEvent$Re
 	public final fun getResponseErrorReason ()Lorg/hildan/chrome/devtools/domains/network/ErrorReason;
 	public final fun getResponseHeaders ()Ljava/util/List;
 	public final fun getResponseStatusCode ()Ljava/lang/Integer;
+	public final fun getResponseStatusText ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/fetch/events/FetchEvent$RequestPausedEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
@@ -28563,6 +28565,7 @@ public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeat
 	public static final field ch-ua-platform Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-ua-platform-version Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-ua-reduced Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ch-viewport-height Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-viewport-width Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-width Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field clipboard-read Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
