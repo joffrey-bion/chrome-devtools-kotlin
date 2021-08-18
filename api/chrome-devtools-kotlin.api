@@ -21233,6 +21233,36 @@ public final class org/hildan/chrome/devtools/domains/network/EmulateNetworkCond
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/network/EnableReportingApiRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/EnableReportingApiRequest$Companion;
+	public synthetic fun <init> (IZLkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Z)V
+	public final fun component1 ()Z
+	public final fun copy (Z)Lorg/hildan/chrome/devtools/domains/network/EnableReportingApiRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/EnableReportingApiRequest;ZILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/EnableReportingApiRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEnable ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/network/EnableReportingApiRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/network/EnableReportingApiRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/network/EnableReportingApiRequest$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/network/EnableReportingApiRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/network/EnableReportingApiRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/EnableReportingApiRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/network/EnableRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/EnableRequest$Companion;
 	public fun <init> ()V
@@ -21973,6 +22003,7 @@ public final class org/hildan/chrome/devtools/domains/network/NetworkDomain {
 	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun emulateNetworkConditions (Lorg/hildan/chrome/devtools/domains/network/EmulateNetworkConditionsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun enable (Lorg/hildan/chrome/devtools/domains/network/EnableRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun enableReportingApi (Lorg/hildan/chrome/devtools/domains/network/EnableReportingApiRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun eventSourceMessageReceived ()Lkotlinx/coroutines/flow/Flow;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun getAllCookies (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -21986,6 +22017,7 @@ public final class org/hildan/chrome/devtools/domains/network/NetworkDomain {
 	public final fun loadingFailed ()Lkotlinx/coroutines/flow/Flow;
 	public final fun loadingFinished ()Lkotlinx/coroutines/flow/Flow;
 	public final fun replayXHR (Lorg/hildan/chrome/devtools/domains/network/ReplayXHRRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun reportingApiReportAdded ()Lkotlinx/coroutines/flow/Flow;
 	public final fun requestIntercepted ()Lkotlinx/coroutines/flow/Flow;
 	public final fun requestServedFromCache ()Lkotlinx/coroutines/flow/Flow;
 	public final fun requestWillBeSent ()Lkotlinx/coroutines/flow/Flow;
@@ -22107,6 +22139,70 @@ public final class org/hildan/chrome/devtools/domains/network/ReplayXHRRequest$$
 }
 
 public final class org/hildan/chrome/devtools/domains/network/ReplayXHRRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/ReportStatus : java/lang/Enum {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/ReportStatus$Companion;
+	public static final field Pending Lorg/hildan/chrome/devtools/domains/network/ReportStatus;
+	public static final field Queued Lorg/hildan/chrome/devtools/domains/network/ReportStatus;
+	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/ReportStatus;
+	public static fun values ()[Lorg/hildan/chrome/devtools/domains/network/ReportStatus;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/ReportStatus$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/network/ReportStatus$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/network/ReportStatus;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/network/ReportStatus;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/ReportStatus$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/ReportingApiReport {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/ReportingApiReport$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;DILkotlinx/serialization/json/JsonObject;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;DILkotlinx/serialization/json/JsonObject;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()D
+	public final fun component5 ()I
+	public final fun component6 ()Lkotlinx/serialization/json/JsonObject;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;DILkotlinx/serialization/json/JsonObject;)Lorg/hildan/chrome/devtools/domains/network/ReportingApiReport;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/ReportingApiReport;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;DILkotlinx/serialization/json/JsonObject;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/ReportingApiReport;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBody ()Lkotlinx/serialization/json/JsonObject;
+	public final fun getDepth ()I
+	public final fun getDestination ()Ljava/lang/String;
+	public final fun getInitiatorUrl ()Ljava/lang/String;
+	public final fun getTimestamp ()D
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/network/ReportingApiReport;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/network/ReportingApiReport$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/network/ReportingApiReport$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/network/ReportingApiReport;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/network/ReportingApiReport;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/ReportingApiReport$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -23691,6 +23787,36 @@ public final class org/hildan/chrome/devtools/domains/network/events/NetworkEven
 }
 
 public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$LoadingFinishedEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiReportAddedEvent : org/hildan/chrome/devtools/domains/network/events/NetworkEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiReportAddedEvent$Companion;
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/network/ReportingApiReport;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/network/ReportingApiReport;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/network/ReportingApiReport;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/network/ReportingApiReport;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiReportAddedEvent;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiReportAddedEvent;Lorg/hildan/chrome/devtools/domains/network/ReportingApiReport;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiReportAddedEvent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getReport ()Lorg/hildan/chrome/devtools/domains/network/ReportingApiReport;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiReportAddedEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiReportAddedEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiReportAddedEvent$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiReportAddedEvent;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiReportAddedEvent;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiReportAddedEvent$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -26626,7 +26752,6 @@ public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRe
 	public static final field WebAuthenticationAPI Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field WebBluetooth Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field WebDatabase Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
-	public static final field WebFileSystem Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field WebHID Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field WebLocks Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field WebNfc Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
