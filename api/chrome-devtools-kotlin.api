@@ -15522,6 +15522,45 @@ public final class org/hildan/chrome/devtools/domains/fetch/ContinueRequestReque
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/fetch/ContinueResponseRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/fetch/ContinueResponseRequest$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/Integer;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/util/List;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/fetch/ContinueResponseRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/fetch/ContinueResponseRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/fetch/ContinueResponseRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBinaryResponseHeaders ()Ljava/lang/String;
+	public final fun getRequestId ()Ljava/lang/String;
+	public final fun getResponseCode ()Ljava/lang/Integer;
+	public final fun getResponseHeaders ()Ljava/util/List;
+	public final fun getResponsePhrase ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/fetch/ContinueResponseRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/fetch/ContinueResponseRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/fetch/ContinueResponseRequest$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/fetch/ContinueResponseRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/fetch/ContinueResponseRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/fetch/ContinueResponseRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/fetch/ContinueWithAuthRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/fetch/ContinueWithAuthRequest$Companion;
 	public synthetic fun <init> (ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/fetch/AuthChallengeResponse;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
@@ -15623,6 +15662,7 @@ public final class org/hildan/chrome/devtools/domains/fetch/FailRequestRequest$C
 public final class org/hildan/chrome/devtools/domains/fetch/FetchDomain {
 	public final fun authRequired ()Lkotlinx/coroutines/flow/Flow;
 	public final fun continueRequest (Lorg/hildan/chrome/devtools/domains/fetch/ContinueRequestRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun continueResponse (Lorg/hildan/chrome/devtools/domains/fetch/ContinueResponseRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun continueWithAuth (Lorg/hildan/chrome/devtools/domains/fetch/ContinueWithAuthRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun enable (Lorg/hildan/chrome/devtools/domains/fetch/EnableRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
