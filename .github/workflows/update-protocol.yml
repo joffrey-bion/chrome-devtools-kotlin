@@ -42,12 +42,13 @@ jobs:
           arguments: apiDump
 
       - name: Create pull-request
-        uses: gr2m/create-or-update-pull-request-action@v1.x
+        uses: peter-evans/create-pull-request@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           branch: "protocol-update"
           author: "Protocol Update Workflow <protocol-updater@users.noreply.github.com>"
+          committer: "Protocol Update Workflow <protocol-updater@users.noreply.github.com>"
           commit-message: "Update to Chrome DevTools Protocol version ${{ steps.version.outputs.text }}"
           title: "Update to Chrome DevTools Protocol version ${{ steps.version.outputs.text }}"
           body: |
