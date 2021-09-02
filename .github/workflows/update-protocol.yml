@@ -43,8 +43,6 @@ jobs:
 
       - name: Create pull-request
         uses: peter-evans/create-pull-request@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           branch: "protocol-update"
           author: "Protocol Update Workflow <protocol-updater@users.noreply.github.com>"
