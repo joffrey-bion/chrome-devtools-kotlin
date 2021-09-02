@@ -20,21 +20,12 @@ jobs:
           distribution: 'zulu'
           java-version: 11
 
-      - name: Gradle build cache
-        uses: actions/cache@v2.1.1
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-build-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: ${{ runner.os }}-gradle-build-
-
-      - name: Gradle wrapper cache
-        uses: actions/cache@v2.1.1
-        with:
-          path: ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle-wrapper.properties') }}
-
       - name: Test build before release
-        run: ./gradlew build
+        uses: burrunan/gradle-cache-action@v1
+        with:
+          # jobs with different JDK versions can't share caches
+          job-id: jdk11
+          arguments: build
 
       - name: Read protocol version
         uses: pCYSl5EDgo/cat@master
@@ -48,7 +39,14 @@ jobs:
         id: compute-tag
 
       - name: Generate Change Log
-        run: ./gradlew -Pversion=${{ steps.compute-tag.outputs.tag }} generateChangelog
+        uses: burrunan/gradle-cache-action@v1
+        with:
+          # jobs with different JDK versions can't share caches
+          job-id: jdk11
+          # We already deal with caches in a previous gradle-cache-action
+          execution-only-caches: true
+          arguments: generateChangelog
+          properties: version=${{ steps.compute-tag.outputs.tag }}
 
       - name: Commit and Push Change Log
         id: changelog-commit

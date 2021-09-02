@@ -12,28 +12,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # for Gradle, as setup-kotlin action only brings JDK 8
       - name: Set up JDK 11
         uses: actions/setup-java@v2
         with:
           distribution: 'zulu'
           java-version: 11
 
-      - name: Gradle build cache
-        uses: actions/cache@v2.1.1
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-build-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: ${{ runner.os }}-gradle-build-
-
-      - name: Gradle wrapper cache
-        uses: actions/cache@v2.1.1
-        with:
-          path: ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle-wrapper.properties') }}
-
       - name: Update protocol
-        run: ./gradlew updateProtocolDefinitions
+        uses: burrunan/gradle-cache-action@v1
+        with:
+          # jobs with different JDK versions can't share caches
+          job-id: jdk11
+          arguments: updateProtocolDefinitions
 
       - name: Read protocol version
         uses: pCYSl5EDgo/cat@master
@@ -43,7 +33,13 @@ jobs:
           trim: true
 
       - name: Update public ABI descriptors
-        run: ./gradlew apiDump
+        uses: burrunan/gradle-cache-action@v1
+        with:
+          # jobs with different JDK versions can't share caches
+          job-id: jdk11
+          # We already deal with caches in a previous gradle-cache-action
+          execution-only-caches: true
+          arguments: apiDump
 
       - name: Create pull-request
         uses: gr2m/create-or-update-pull-request-action@v1.x

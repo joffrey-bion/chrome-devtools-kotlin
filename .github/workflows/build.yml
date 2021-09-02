@@ -27,5 +27,5 @@ jobs:
         uses: burrunan/gradle-cache-action@v1
         with:
           # jobs with different JDK versions can't share caches
-          job-id: ${{ matrix.jdk-version }}
+          job-id: jdk${{ matrix.jdk-version }}
           arguments: build
