@@ -1,5 +1,5 @@
 plugins {
-    val kotlinVersion = "1.5.21"
+    val kotlinVersion = "1.5.30"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
     id("org.jetbrains.dokka") version "1.4.32"

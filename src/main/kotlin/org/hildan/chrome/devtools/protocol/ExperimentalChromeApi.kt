@@ -9,7 +9,6 @@ package org.hildan.chrome.devtools.protocol
     AnnotationTarget.FIELD,
     AnnotationTarget.FUNCTION,
     AnnotationTarget.PROPERTY,
-    AnnotationTarget.TYPE,
     AnnotationTarget.TYPEALIAS
 )
 annotation class ExperimentalChromeApi
