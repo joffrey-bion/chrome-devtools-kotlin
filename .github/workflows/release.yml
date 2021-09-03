@@ -47,7 +47,7 @@ jobs:
           job-id: jdk11
           # We already deal with caches in a previous gradle-cache-action
           execution-only-caches: true
-          arguments: generateChangelog --info
+          arguments: generateChangelog
           properties: version=${{ steps.compute-tag.outputs.tag }}
 
       - name: Commit and Push Change Log
