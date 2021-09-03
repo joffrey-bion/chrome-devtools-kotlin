@@ -40,12 +40,14 @@ jobs:
 
       - name: Generate Change Log
         uses: burrunan/gradle-cache-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           # jobs with different JDK versions can't share caches
           job-id: jdk11
           # We already deal with caches in a previous gradle-cache-action
           execution-only-caches: true
-          arguments: generateChangelog
+          arguments: generateChangelog --info
           properties: version=${{ steps.compute-tag.outputs.tag }}
 
       - name: Commit and Push Change Log
