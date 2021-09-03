@@ -1,5 +1,19 @@
 # Change Log
 
+## [3.2.0\-915197](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.2.0-915197) (2021-09-03)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.1.0-914246...3.2.0-915197)
+
+**Implemented enhancements:**
+
+- Upgrade Kotlin to 1.5.30 [\#122](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/122)
+- Upgrade Krossbow to 2.3.0 [\#121](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/121)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 917689 [\#124](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/124) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Update to Chrome DevTools Protocol version 917689 [\#123](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/123) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Update to Chrome DevTools Protocol version 915197 [\#120](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/120) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [3.1.0\-914246](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.1.0-914246) (2021-08-24)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.1.0-912044...3.1.0-914246)
 
