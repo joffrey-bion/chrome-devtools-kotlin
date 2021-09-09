@@ -1,5 +1,12 @@
 # Change Log
 
+## [3.2.0\-919376](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.2.0-919376) (2021-09-09)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.2.0-915197...3.2.0-919376)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 919376 [\#125](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/125) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [3.2.0\-915197](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.2.0-915197) (2021-09-03)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.1.0-914246...3.2.0-915197)
 
