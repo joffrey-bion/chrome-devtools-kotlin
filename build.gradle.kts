@@ -1,9 +1,9 @@
 plugins {
-    val kotlinVersion = "1.5.30"
+    val kotlinVersion = "1.5.31"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
-    id("org.jetbrains.dokka") version "1.4.32"
-    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.6.0"
+    id("org.jetbrains.dokka") version "1.5.30"
+    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.7.1"
     `maven-publish`
     signing
     id("io.github.gradle-nexus.publish-plugin") version "1.0.0"
