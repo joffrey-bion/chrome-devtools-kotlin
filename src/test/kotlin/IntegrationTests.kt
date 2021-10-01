@@ -119,6 +119,7 @@ class IntegrationTests {
         }
     }
 
+    // FIXME for some reason this test sometimes fails locally (throttled by Google?)
     @OptIn(ExperimentalChromeApi::class)
     @Test
     fun test_parallelPages() {
@@ -187,6 +188,9 @@ class IntegrationTests {
                     page.profiler.disable()
 
                     val supportedByCode = RenderFrameTarget.supportedDomains.toSet()
+                    // We can replace this schema Domain call by an HTTP call to /json/protocol
+                    // The Kotlin definitions of that JSON from the buildSrc should work for this,
+                    // but we need a way to share them between test and buildSrc
                     val supportedByServer = page.schema.getDomains().domains.map { it.name }.toSet()
 
                     val knownUnsupportedDomains = setOf(
