@@ -12,10 +12,11 @@ import org.hildan.chrome.devtools.targets.ChromeBrowserSession
 import org.hildan.chrome.devtools.targets.ChromePageSession
 import org.hildan.chrome.devtools.targets.attachToPage
 import org.hildan.krossbow.websocket.WebSocketClient
+import org.hildan.krossbow.websocket.default
 import org.hildan.krossbow.websocket.defaultWebSocketClient
 import kotlinx.serialization.json.Json as KxJson
 
-private val DEFAULT_WEBSOCKET_CLIENT by lazy { defaultWebSocketClient() }
+private val DEFAULT_WEBSOCKET_CLIENT by lazy { WebSocketClient.default() }
 
 private val DEFAULT_HTTP_CLIENT by lazy { createHttpClient(overrideHostHeader = false) }
 
