@@ -17,7 +17,6 @@ import org.testcontainers.junit.jupiter.Testcontainers
 import java.io.IOException
 import kotlin.test.*
 import kotlin.time.ExperimentalTime
-import kotlin.time.seconds
 
 // workaround for https://github.com/testcontainers/testcontainers-java/issues/318
 class KGenericContainer(imageName: String) : GenericContainer<KGenericContainer>(imageName)
@@ -53,7 +52,7 @@ class IntegrationTests {
         }
     }
 
-    @OptIn(ExperimentalTime::class)
+    @OptIn(ExperimentalChromeApi::class)
     @Test
     fun webSocket_basic() {
         runBlocking {
@@ -67,7 +66,7 @@ class IntegrationTests {
 
             assertTrue(chrome.targets().any { it.id == targetId }, "the new target should be listed")
 
-            val nodeId = withTimeoutOrNull(1.seconds) {
+            val nodeId = withTimeoutOrNull(1000) {
                 session.dom.awaitNodeBySelector("form[action='/search']")
             }
             assertNotNull(nodeId)
@@ -82,7 +81,7 @@ class IntegrationTests {
         }
     }
 
-    @OptIn(ExperimentalTime::class)
+    @OptIn(ExperimentalTime::class, ExperimentalChromeApi::class)
     @Test
     fun sessionThrowsIOExceptionIfAlreadyClosed() {
         runBlocking {
@@ -99,7 +98,7 @@ class IntegrationTests {
         }
     }
 
-    @OptIn(ExperimentalTime::class)
+    @OptIn(ExperimentalChromeApi::class)
     @Test
     fun pageSession_navigateAndAwaitPageLoad() {
         runBlocking {
@@ -111,7 +110,7 @@ class IntegrationTests {
                     page.navigateAndAwaitPageLoad("http://www.google.com")
                     assertEquals("Google", page.getTargetInfo().title)
 
-                    val nodeId = withTimeoutOrNull(1.seconds) {
+                    val nodeId = withTimeoutOrNull(1000) {
                         page.dom.awaitNodeBySelector("form[action='/search']")
                     }
                     assertNotNull(nodeId)
@@ -166,12 +165,10 @@ class IntegrationTests {
                 browser.attachToNewPage().use { page ->
 
                     // the following usages should not fail
-                    page.applicationCache.enable()
                     page.cacheStorage.requestCacheNames(RequestCacheNamesRequest("google.com"))
                     page.backgroundService.clearEvents(ClearEventsRequest(ServiceName.backgroundFetch))
                     page.browser.getVersion()
                     page.css.getMediaQueries()
-                    page.console.clearMessages()
                     page.database.enable()
                     page.debugger.disable()
                     page.deviceOrientation.clearDeviceOrientationOverride()
@@ -192,10 +189,14 @@ class IntegrationTests {
                     val supportedByCode = RenderFrameTarget.supportedDomains.toSet()
                     val supportedByServer = page.schema.getDomains().domains.map { it.name }.toSet()
 
-                    val onlyInServer = supportedByServer - supportedByCode
+                    val knownUnsupportedDomains = setOf(
+                        "ApplicationCache", // was removed in tip-of-tree, but still supported by the server
+                    )
+                    val onlyInServer = supportedByServer - knownUnsupportedDomains - supportedByCode
                     assertEquals(emptySet(),
                         onlyInServer,
-                        "The library should support all domains that the zenika/alpine-chrome container actually exposes")
+                        "The library should support all domains that the zenika/alpine-chrome container actually " +
+                            "exposes (apart from $knownUnsupportedDomains)")
                 }
             }
         }
