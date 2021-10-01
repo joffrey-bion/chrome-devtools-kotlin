@@ -10,7 +10,6 @@ import org.hildan.krossbow.websocket.WebSocketFrame
 
 internal fun WebSocketConnection.chromeDp(): ChromeDPConnection = ChromeDPConnection(this)
 
-@OptIn(ExperimentalCoroutinesApi::class)
 internal class ChromeDPConnection(
     private val webSocket: WebSocketConnection
 ) {
