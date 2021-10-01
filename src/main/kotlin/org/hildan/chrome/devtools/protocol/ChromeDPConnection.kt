@@ -2,7 +2,6 @@ package org.hildan.chrome.devtools.protocol
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.hildan.krossbow.websocket.WebSocketConnection
@@ -44,7 +43,7 @@ internal class ChromeDPConnection(
 
 private val json = Json { ignoreUnknownKeys = true }
 
-private fun WebSocketFrame.Text.decodeInboundFrame() = json.decodeFromString<InboundFrame>(text)
+private fun WebSocketFrame.Text.decodeInboundFrame() = json.decodeFromString(InboundFrame.serializer(), text)
 
 class RequestFailed(var request: RequestFrame, val error: RequestError) : Exception(error.message)
 
