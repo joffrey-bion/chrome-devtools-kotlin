@@ -58,6 +58,7 @@
                     "description": "Enum of possible native property sources (as a subtype of a particular AXValueSourceType).",
                     "type": "string",
                     "enum": [
+                        "description",
                         "figcaption",
                         "label",
                         "labelfor",
@@ -308,6 +309,12 @@
                             }
                         },
                         {
+                            "name": "parentId",
+                            "description": "ID for this node's parent.",
+                            "optional": true,
+                            "$ref": "AXNodeId"
+                        },
+                        {
                             "name": "childIds",
                             "description": "IDs for each of this node's child nodes.",
                             "optional": true,
@@ -321,6 +328,12 @@
                             "description": "The backend ID for the associated DOM node, if any.",
                             "optional": true,
                             "$ref": "DOM.BackendNodeId"
+                        },
+                        {
+                            "name": "frameId",
+                            "description": "The frame ID for the frame associated with this nodes document.",
+                            "optional": true,
+                            "$ref": "Page.FrameId"
                         }
                     ]
                 }
@@ -398,6 +411,59 @@
                             "description": "The frame for whose document the AX tree should be retrieved.\nIf omited, the root frame is used.",
                             "optional": true,
                             "$ref": "Page.FrameId"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "nodes",
+                            "type": "array",
+                            "items": {
+                                "$ref": "AXNode"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getRootAXNode",
+                    "description": "Fetches the root node.\nRequires `enable()` to have been called previously.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "frameId",
+                            "description": "The frame in whose document the node resides.\nIf omitted, the root frame is used.",
+                            "optional": true,
+                            "$ref": "Page.FrameId"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "node",
+                            "$ref": "AXNode"
+                        }
+                    ]
+                },
+                {
+                    "name": "getAXNodeAndAncestors",
+                    "description": "Fetches a node and all ancestors up to and including the root.\nRequires `enable()` to have been called previously.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "nodeId",
+                            "description": "Identifier of the node to get.",
+                            "optional": true,
+                            "$ref": "DOM.NodeId"
+                        },
+                        {
+                            "name": "backendNodeId",
+                            "description": "Identifier of the backend node to get.",
+                            "optional": true,
+                            "$ref": "DOM.BackendNodeId"
+                        },
+                        {
+                            "name": "objectId",
+                            "description": "JavaScript object id of the node wrapper to get.",
+                            "optional": true,
+                            "$ref": "Runtime.RemoteObjectId"
                         }
                     ],
                     "returns": [
@@ -1137,7 +1203,8 @@
                         "kEvalViolation",
                         "kURLViolation",
                         "kTrustedTypesSinkViolation",
-                        "kTrustedTypesPolicyViolation"
+                        "kTrustedTypesPolicyViolation",
+                        "kWasmEvalViolation"
                     ]
                 },
                 {
@@ -1478,6 +1545,29 @@
                     ]
                 },
                 {
+                    "id": "DeprecationIssueDetails",
+                    "description": "This issue tracks information needed to print a deprecation message.\nThe formatting is inherited from the old console.log version, see more at:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/core/frame/deprecation.cc\nTODO(crbug.com/1264960): Re-work format to add i18n support per:\nhttps://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/public/devtools_protocol/README.md",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "affectedFrame",
+                            "optional": true,
+                            "$ref": "AffectedFrame"
+                        },
+                        {
+                            "name": "sourceCodeLocation",
+                            "$ref": "SourceCodeLocation"
+                        },
+                        {
+                            "name": "message",
+                            "description": "The content of the deprecation issue (this won't be translated),\ne.g. \"window.inefficientLegacyStorageMethod will be removed in M97,\naround January 2022. Please use Web Storage or Indexed Database\ninstead. This standard was abandoned in January, 1970. See\nhttps://www.chromestatus.com/feature/5684870116278272 for more details.\"",
+                            "deprecated": true,
+                            "optional": true,
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
                     "id": "InspectorIssueCode",
                     "description": "A unique identifier for the type of issue. Each type may use one of the\noptional fields in InspectorIssueDetails to convey more specific\ninformation about the kind of issue.",
                     "type": "string",
@@ -1495,7 +1585,8 @@
                         "QuirksModeIssue",
                         "NavigatorUserAgentIssue",
                         "WasmCrossOriginModuleSharingIssue",
-                        "GenericIssue"
+                        "GenericIssue",
+                        "DeprecationIssue"
                     ]
                 },
                 {
@@ -1572,6 +1663,11 @@
                             "name": "genericIssueDetails",
                             "optional": true,
                             "$ref": "GenericIssueDetails"
+                        },
+                        {
+                            "name": "deprecationIssueDetails",
+                            "optional": true,
+                            "$ref": "DeprecationIssueDetails"
                         }
                     ]
                 },
@@ -6067,6 +6163,35 @@
             ]
         },
         {
+            "domain": "EventBreakpoints",
+            "description": "EventBreakpoints permits setting breakpoints on particular operations and\nevents in targets that run JavaScript but do not have a DOM.\nJavaScript execution will stop on these operations as if there was a regular\nbreakpoint set.",
+            "experimental": true,
+            "commands": [
+                {
+                    "name": "setInstrumentationBreakpoint",
+                    "description": "Sets breakpoint on particular native event.",
+                    "parameters": [
+                        {
+                            "name": "eventName",
+                            "description": "Instrumentation name to stop on.",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "name": "removeInstrumentationBreakpoint",
+                    "description": "Removes breakpoint on particular native event.",
+                    "parameters": [
+                        {
+                            "name": "eventName",
+                            "description": "Instrumentation name to stop on.",
+                            "type": "string"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "domain": "DOMSnapshot",
             "description": "This domain facilitates obtaining document snapshots with DOM, layout, and style information.",
             "experimental": true,
@@ -10423,8 +10548,8 @@
                         },
                         {
                             "name": "timestamp",
-                            "description": "Issuance date.",
-                            "$ref": "TimeSinceEpoch"
+                            "description": "Issuance date. Unlike TimeSinceEpoch, this contains the number of\nmilliseconds since January 1, 1970, UTC, not the number of seconds.",
+                            "type": "number"
                         },
                         {
                             "name": "hashAlgorithm",
@@ -12685,6 +12810,12 @@
                             "$ref": "Initiator"
                         },
                         {
+                            "name": "redirectHasExtraInfo",
+                            "description": "In the case that redirectResponse is populated, this flag indicates whether\nrequestWillBeSentExtraInfo and responseReceivedExtraInfo events will be or were emitted\nfor the request which was just redirected.",
+                            "experimental": true,
+                            "type": "boolean"
+                        },
+                        {
                             "name": "redirectResponse",
                             "description": "Redirect response data.",
                             "optional": true,
@@ -12777,6 +12908,12 @@
                             "name": "response",
                             "description": "Response data.",
                             "$ref": "Response"
+                        },
+                        {
+                            "name": "hasExtraInfo",
+                            "description": "Indicates whether requestWillBeSentExtraInfo and responseReceivedExtraInfo events will be\nor were emitted for this request.",
+                            "experimental": true,
+                            "type": "boolean"
                         },
                         {
                             "name": "frameId",
@@ -14464,6 +14601,8 @@
                         "hid",
                         "idle-detection",
                         "interest-cohort",
+                        "join-ad-interest-group",
+                        "keyboard-map",
                         "magnetometer",
                         "microphone",
                         "midi",
@@ -14471,6 +14610,7 @@
                         "payment",
                         "picture-in-picture",
                         "publickey-credentials-get",
+                        "run-ad-auction",
                         "screen-wake-lock",
                         "serial",
                         "shared-autofill",
@@ -15385,7 +15525,6 @@
                         "ContentWebUSB",
                         "ContentMediaSession",
                         "ContentMediaSessionService",
-                        "ContentMediaPlay",
                         "EmbedderPopupBlockerTabHelper",
                         "EmbedderSafeBrowsingTriggeredPopupBlocker",
                         "EmbedderSafeBrowsingThreatDetails",
@@ -16544,6 +16683,22 @@
                     "experimental": true
                 },
                 {
+                    "name": "setSPCTransactionMode",
+                    "description": "Sets the Secure Payment Confirmation transaction mode.\nhttps://w3c.github.io/secure-payment-confirmation/#sctn-automation-set-spc-transaction-mode",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "mode",
+                            "type": "string",
+                            "enum": [
+                                "none",
+                                "autoaccept",
+                                "autoreject"
+                            ]
+                        }
+                    ]
+                },
+                {
                     "name": "generateTestReport",
                     "description": "Generates a report for testing.",
                     "experimental": true,
@@ -17698,7 +17853,8 @@
                 },
                 {
                     "name": "securityStateChanged",
-                    "description": "The security state of the page changed.",
+                    "description": "The security state of the page changed. No longer being sent.",
+                    "deprecated": true,
                     "parameters": [
                         {
                             "name": "securityState",
@@ -17713,7 +17869,8 @@
                         },
                         {
                             "name": "explanations",
-                            "description": "List of explanations for the security state. If the overall security state is `insecure` or\n`warning`, at least one corresponding explanation should be included.",
+                            "description": "Previously a list of explanations for the security state. Now always\nempty.",
+                            "deprecated": true,
                             "type": "array",
                             "items": {
                                 "$ref": "SecurityStateExplanation"
@@ -17727,7 +17884,8 @@
                         },
                         {
                             "name": "summary",
-                            "description": "Overrides user-visible description of the state.",
+                            "description": "Overrides user-visible description of the state. Always omitted.",
+                            "deprecated": true,
                             "optional": true,
                             "type": "string"
                         }
@@ -18887,6 +19045,7 @@
                         {
                             "name": "browserContextId",
                             "description": "The browser context to create the page in.",
+                            "experimental": true,
                             "optional": true,
                             "$ref": "Browser.BrowserContextID"
                         },
