@@ -1,5 +1,18 @@
 # Change Log
 
+## [3.4.0\-942138](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.4.0-942138) (2021-11-17)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.3.0-940028...3.4.0-942138)
+
+**Implemented enhancements:**
+
+- Upgrade Krossbow to 2.7.0 [\#140](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/140)
+- Upgrade Ktor to 1.6.5 [\#139](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/139)
+- Upgrade Kotlin to 1.6.0 [\#138](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/138)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 942138 [\#137](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/137) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [3.3.0\-940028](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.3.0-940028) (2021-11-10)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.3.0-930289...3.3.0-940028)
 
