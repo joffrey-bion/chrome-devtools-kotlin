@@ -6,7 +6,7 @@ plugins {
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.8.0"
     `maven-publish`
     signing
-    id("io.github.gradle-nexus.publish-plugin") version "1.0.0"
+    id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
     id("org.hildan.github.changelog") version "1.8.0"
 }
 
