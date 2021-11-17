@@ -66,12 +66,12 @@ class ChromeDPClient(
     private val overrideHostHeader: Boolean = false,
     /**
      * This parameter should usually be left to its default value.
-     * Only use this to workaround an issue in the client's configuration/behaviour.
+     * Only use this to work around an issue in the client's configuration/behaviour.
      */
     private val webSocketClient: WebSocketClient = DEFAULT_WEBSOCKET_CLIENT,
     /**
      * This parameter should usually be left to its default value.
-     * Only use this to workaround an issue in the client's configuration/behaviour.
+     * Only use this to work around an issue in the client's configuration/behaviour.
      * Note that the provided [HttpClient] has to be configured to handle Kotlinx Serialization (JSON).
      */
     private val httpClient: HttpClient = if (overrideHostHeader) DEFAULT_HTTP_CLIENT_WITH_HOST_OVERRIDE else DEFAULT_HTTP_CLIENT,
