@@ -21,7 +21,7 @@ dependencies {
     api("org.hildan.krossbow:krossbow-websocket-core:2.5.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
 
-    val ktorVersion = "1.6.3"
+    val ktorVersion = "1.6.5"
     api("io.ktor:ktor-client-cio:$ktorVersion")
     api("io.ktor:ktor-client-serialization-jvm:$ktorVersion")
 
