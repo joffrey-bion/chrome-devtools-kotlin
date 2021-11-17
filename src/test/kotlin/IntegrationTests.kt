@@ -16,16 +16,12 @@ import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
 import java.io.IOException
 import kotlin.test.*
-import kotlin.time.ExperimentalTime
-
-// workaround for https://github.com/testcontainers/testcontainers-java/issues/318
-class KGenericContainer(imageName: String) : GenericContainer<KGenericContainer>(imageName)
 
 @Testcontainers
 class IntegrationTests {
 
     @Container
-    var chromeContainer: KGenericContainer = KGenericContainer("zenika/alpine-chrome")
+    var chromeContainer = GenericContainer("zenika/alpine-chrome")
         .withExposedPorts(9222)
         .withCommand("--no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 about:blank")
 
@@ -81,7 +77,7 @@ class IntegrationTests {
         }
     }
 
-    @OptIn(ExperimentalTime::class, ExperimentalChromeApi::class)
+    @OptIn(ExperimentalChromeApi::class)
     @Test
     fun sessionThrowsIOExceptionIfAlreadyClosed() {
         runBlocking {

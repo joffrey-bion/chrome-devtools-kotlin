@@ -4,7 +4,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlin.coroutines.coroutineContext
 import kotlin.time.Duration
-import kotlin.time.ExperimentalTime
 
 /**
  * A CSS selector string, as [defined by the W3C](https://www.w3schools.com/cssref/css_selectors.asp).
@@ -43,7 +42,6 @@ suspend fun DOMDomain.findNodeBySelector(selector: CssSelector): NodeId? =
  * [by design of the DOM domain](https://github.com/ChromeDevTools/devtools-protocol/issues/20).
  * It can be used to perform other CDP commands that require a [NodeId], though.
  */
-@ExperimentalTime
 suspend fun DOMDomain.awaitNodeBySelector(selector: CssSelector, pollingPeriod: Duration): NodeId =
     awaitNodeBySelector(selector, pollingPeriod.inWholeMilliseconds)
 
