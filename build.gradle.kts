@@ -27,8 +27,8 @@ dependencies {
 
     testImplementation(kotlin("test"))
     testImplementation("org.slf4j:slf4j-simple:1.7.32")
-    testImplementation("org.testcontainers:testcontainers:1.16.0")
-    testImplementation("org.testcontainers:junit-jupiter:1.16.0")
+    testImplementation("org.testcontainers:testcontainers:1.16.2")
+    testImplementation("org.testcontainers:junit-jupiter:1.16.2")
 }
 
 kotlin {
