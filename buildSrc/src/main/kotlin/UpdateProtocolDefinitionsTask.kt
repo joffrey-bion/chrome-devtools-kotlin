@@ -18,6 +18,8 @@ private val protocolDescriptorUrls = listOf(browserProtocolUrl, jsProtocolUrl)
 open class UpdateProtocolDefinitionsTask : DefaultTask() {
 
     init {
+        group = "protocol"
+
         // never consider this task up-to-date, the point is to check for updates
         outputs.upToDateWhen { false }
     }

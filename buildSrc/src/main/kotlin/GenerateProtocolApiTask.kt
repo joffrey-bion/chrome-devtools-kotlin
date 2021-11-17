@@ -11,6 +11,10 @@ import java.nio.file.Paths
 
 open class GenerateProtocolApiTask : DefaultTask() {
 
+    init {
+        group = "protocol"
+    }
+
     @InputFiles
     val protocolPaths = listOf(Paths.get("protocol/browser_protocol.json"), Paths.get("protocol/js_protocol.json"))
 
