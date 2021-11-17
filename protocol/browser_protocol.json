@@ -549,6 +549,35 @@
                         }
                     ]
                 }
+            ],
+            "events": [
+                {
+                    "name": "loadComplete",
+                    "description": "The loadComplete event mirrors the load complete event sent by the browser to assistive\ntechnology when the web page has finished loading.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "root",
+                            "description": "New document root node.",
+                            "$ref": "AXNode"
+                        }
+                    ]
+                },
+                {
+                    "name": "nodesUpdated",
+                    "description": "The nodesUpdated event is sent every time a previously requested node has changed the in tree.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "nodes",
+                            "description": "Updated node data.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "AXNode"
+                            }
+                        }
+                    ]
+                }
             ]
         },
         {
@@ -7472,7 +7501,16 @@
                             }
                         },
                         {
+                            "name": "fullVersionList",
+                            "optional": true,
+                            "type": "array",
+                            "items": {
+                                "$ref": "UserAgentBrandVersion"
+                            }
+                        },
+                        {
                             "name": "fullVersion",
+                            "deprecated": true,
                             "optional": true,
                             "type": "string"
                         },
@@ -14578,6 +14616,7 @@
                         "ch-ua-model",
                         "ch-ua-mobile",
                         "ch-ua-full-version",
+                        "ch-ua-full-version-list",
                         "ch-ua-platform-version",
                         "ch-ua-reduced",
                         "ch-viewport-height",
