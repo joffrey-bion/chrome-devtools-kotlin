@@ -6,8 +6,7 @@
 
 An asynchronous coroutine-based Kotlin client for the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
 
-Currently, this client only runs on the JVM, but this library can easily become multiplatform, as it is not tied to any 
-JVM-specific API.
+Currently, this client is a JVM library, but it can easily become multiplatform, as it is not tied to any JVM-specific API.
 
 ## Protocol version & Code generation
 
