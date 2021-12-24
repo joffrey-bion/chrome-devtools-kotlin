@@ -1598,6 +1598,11 @@ public final class org/hildan/chrome/devtools/domains/audits/AttributionReportin
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType$Companion;
 	public static final field InvalidAttributionData Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field InvalidAttributionSourceEventId Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
+	public static final field InvalidAttributionSourceExpiry Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
+	public static final field InvalidAttributionSourcePriority Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
+	public static final field InvalidEventSourceTriggerData Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
+	public static final field InvalidTriggerDedupKey Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
+	public static final field InvalidTriggerPriority Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field PermissionPolicyDisabled Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
@@ -1721,6 +1726,62 @@ public final class org/hildan/chrome/devtools/domains/audits/CheckContrastReques
 }
 
 public final class org/hildan/chrome/devtools/domains/audits/CheckContrastRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails$Companion;
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason;)Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getClientHintIssueReason ()Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason;
+	public final fun getSourceCodeLocation ()Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/audits/ClientHintIssueReason : java/lang/Enum {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason$Companion;
+	public static final field MetaTagAllowListInvalidOrigin Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason;
+	public static final field MetaTagModifiedHTML Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason;
+	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason;
+	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason;
+}
+
+public final class org/hildan/chrome/devtools/domains/audits/ClientHintIssueReason$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/audits/ClientHintIssueReason$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -2147,6 +2208,7 @@ public final class org/hildan/chrome/devtools/domains/audits/InspectorIssue$Comp
 public final class org/hildan/chrome/devtools/domains/audits/InspectorIssueCode : java/lang/Enum {
 	public static final field AttributionReportingIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static final field BlockedByResponseIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
+	public static final field ClientHintIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode$Companion;
 	public static final field ContentSecurityPolicyIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static final field CorsIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
@@ -2184,9 +2246,9 @@ public final class org/hildan/chrome/devtools/domains/audits/InspectorIssueCode$
 public final class org/hildan/chrome/devtools/domains/audits/InspectorIssueDetails {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails$Companion;
 	public fun <init> ()V
-	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/WasmCrossOriginModuleSharingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/GenericIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/WasmCrossOriginModuleSharingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/GenericIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;)V
-	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/WasmCrossOriginModuleSharingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/GenericIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/WasmCrossOriginModuleSharingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/GenericIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/WasmCrossOriginModuleSharingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/GenericIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/WasmCrossOriginModuleSharingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/GenericIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;
 	public final fun component10 ()Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;
 	public final fun component11 ()Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;
@@ -2194,6 +2256,7 @@ public final class org/hildan/chrome/devtools/domains/audits/InspectorIssueDetai
 	public final fun component13 ()Lorg/hildan/chrome/devtools/domains/audits/WasmCrossOriginModuleSharingIssueDetails;
 	public final fun component14 ()Lorg/hildan/chrome/devtools/domains/audits/GenericIssueDetails;
 	public final fun component15 ()Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;
+	public final fun component16 ()Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;
 	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;
 	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;
 	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;
@@ -2202,11 +2265,12 @@ public final class org/hildan/chrome/devtools/domains/audits/InspectorIssueDetai
 	public final fun component7 ()Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;
 	public final fun component8 ()Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;
 	public final fun component9 ()Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;
-	public final fun copy (Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/WasmCrossOriginModuleSharingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/GenericIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;)Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/WasmCrossOriginModuleSharingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/GenericIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/WasmCrossOriginModuleSharingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/GenericIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;)Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SameSiteCookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/TrustedWebActivityIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/WasmCrossOriginModuleSharingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/GenericIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAttributionReportingIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;
 	public final fun getBlockedByResponseIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;
+	public final fun getClientHintIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;
 	public final fun getContentSecurityPolicyIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;
 	public final fun getCorsIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;
 	public final fun getDeprecationIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;
@@ -4588,6 +4652,7 @@ public final class org/hildan/chrome/devtools/domains/cast/CastDomain {
 	public final fun issueUpdated ()Lkotlinx/coroutines/flow/Flow;
 	public final fun setSinkToUse (Lorg/hildan/chrome/devtools/domains/cast/SetSinkToUseRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun sinksUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun startDesktopMirroring (Lorg/hildan/chrome/devtools/domains/cast/StartDesktopMirroringRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun startTabMirroring (Lorg/hildan/chrome/devtools/domains/cast/StartTabMirroringRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun stopCasting (Lorg/hildan/chrome/devtools/domains/cast/StopCastingRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
@@ -4686,6 +4751,36 @@ public final class org/hildan/chrome/devtools/domains/cast/Sink$$serializer : ko
 }
 
 public final class org/hildan/chrome/devtools/domains/cast/Sink$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/cast/StartDesktopMirroringRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/cast/StartDesktopMirroringRequest$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/cast/StartDesktopMirroringRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/cast/StartDesktopMirroringRequest;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/cast/StartDesktopMirroringRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getSinkName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/cast/StartDesktopMirroringRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/cast/StartDesktopMirroringRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/cast/StartDesktopMirroringRequest$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/cast/StartDesktopMirroringRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/cast/StartDesktopMirroringRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/cast/StartDesktopMirroringRequest$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -11342,6 +11437,10 @@ public final class org/hildan/chrome/devtools/domains/dom/PseudoType : java/lang
 	public static final field selection Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field spelling-error Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field target-text Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field transition Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field transition-container Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field transition-new-content Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field transition-old-content Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 }
@@ -20870,15 +20969,17 @@ public final class org/hildan/chrome/devtools/domains/network/ContinueIntercepte
 
 public final class org/hildan/chrome/devtools/domains/network/Cookie {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/Cookie$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;DIZZZLorg/hildan/chrome/devtools/domains/network/CookieSameSite;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;DIZZZLorg/hildan/chrome/devtools/domains/network/CookieSameSite;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;DIZZZLorg/hildan/chrome/devtools/domains/network/CookieSameSite;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;DIZZZLorg/hildan/chrome/devtools/domains/network/CookieSameSite;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;DIZZZLorg/hildan/chrome/devtools/domains/network/CookieSameSite;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;DIZZZLorg/hildan/chrome/devtools/domains/network/CookieSameSite;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;
 	public final fun component11 ()Lorg/hildan/chrome/devtools/domains/network/CookiePriority;
 	public final fun component12 ()Ljava/lang/Boolean;
 	public final fun component13 ()Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;
 	public final fun component14 ()Ljava/lang/Integer;
+	public final fun component15 ()Ljava/lang/String;
+	public final fun component16 ()Ljava/lang/Boolean;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
 	public final fun component4 ()Ljava/lang/String;
@@ -20887,13 +20988,15 @@ public final class org/hildan/chrome/devtools/domains/network/Cookie {
 	public final fun component7 ()Z
 	public final fun component8 ()Z
 	public final fun component9 ()Z
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;DIZZZLorg/hildan/chrome/devtools/domains/network/CookieSameSite;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;)Lorg/hildan/chrome/devtools/domains/network/Cookie;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/Cookie;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;DIZZZLorg/hildan/chrome/devtools/domains/network/CookieSameSite;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/Cookie;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;DIZZZLorg/hildan/chrome/devtools/domains/network/CookieSameSite;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;)Lorg/hildan/chrome/devtools/domains/network/Cookie;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/Cookie;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;DIZZZLorg/hildan/chrome/devtools/domains/network/CookieSameSite;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/Cookie;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDomain ()Ljava/lang/String;
 	public final fun getExpires ()D
 	public final fun getHttpOnly ()Z
 	public final fun getName ()Ljava/lang/String;
+	public final fun getPartitionKey ()Ljava/lang/String;
+	public final fun getPartitionKeyOpaque ()Ljava/lang/Boolean;
 	public final fun getPath ()Ljava/lang/String;
 	public final fun getPriority ()Lorg/hildan/chrome/devtools/domains/network/CookiePriority;
 	public final fun getSameParty ()Ljava/lang/Boolean;
@@ -20963,14 +21066,15 @@ public final class org/hildan/chrome/devtools/domains/network/CookieBlockedReaso
 
 public final class org/hildan/chrome/devtools/domains/network/CookieParam {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/CookieParam$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()Lorg/hildan/chrome/devtools/domains/network/CookiePriority;
 	public final fun component11 ()Ljava/lang/Boolean;
 	public final fun component12 ()Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;
 	public final fun component13 ()Ljava/lang/Integer;
+	public final fun component14 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
 	public final fun component4 ()Ljava/lang/String;
@@ -20979,13 +21083,14 @@ public final class org/hildan/chrome/devtools/domains/network/CookieParam {
 	public final fun component7 ()Ljava/lang/Boolean;
 	public final fun component8 ()Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;
 	public final fun component9 ()Ljava/lang/Double;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;)Lorg/hildan/chrome/devtools/domains/network/CookieParam;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/CookieParam;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/CookieParam;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/CookieParam;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/CookieParam;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/CookieParam;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDomain ()Ljava/lang/String;
 	public final fun getExpires ()Ljava/lang/Double;
 	public final fun getHttpOnly ()Ljava/lang/Boolean;
 	public final fun getName ()Ljava/lang/String;
+	public final fun getPartitionKey ()Ljava/lang/String;
 	public final fun getPath ()Ljava/lang/String;
 	public final fun getPriority ()Lorg/hildan/chrome/devtools/domains/network/CookiePriority;
 	public final fun getSameParty ()Ljava/lang/Boolean;
@@ -21113,9 +21218,11 @@ public final class org/hildan/chrome/devtools/domains/network/CorsError : java/l
 	public static final field PreflightInvalidAllowCredentials Lorg/hildan/chrome/devtools/domains/network/CorsError;
 	public static final field PreflightInvalidAllowExternal Lorg/hildan/chrome/devtools/domains/network/CorsError;
 	public static final field PreflightInvalidAllowOriginValue Lorg/hildan/chrome/devtools/domains/network/CorsError;
+	public static final field PreflightInvalidAllowPrivateNetwork Lorg/hildan/chrome/devtools/domains/network/CorsError;
 	public static final field PreflightInvalidStatus Lorg/hildan/chrome/devtools/domains/network/CorsError;
 	public static final field PreflightMissingAllowExternal Lorg/hildan/chrome/devtools/domains/network/CorsError;
 	public static final field PreflightMissingAllowOriginHeader Lorg/hildan/chrome/devtools/domains/network/CorsError;
+	public static final field PreflightMissingAllowPrivateNetwork Lorg/hildan/chrome/devtools/domains/network/CorsError;
 	public static final field PreflightMultipleAllowOriginValues Lorg/hildan/chrome/devtools/domains/network/CorsError;
 	public static final field PreflightWildcardOriginNotAllowed Lorg/hildan/chrome/devtools/domains/network/CorsError;
 	public static final field RedirectContainsCredentials Lorg/hildan/chrome/devtools/domains/network/CorsError;
@@ -22158,6 +22265,7 @@ public final class org/hildan/chrome/devtools/domains/network/NetworkDomain {
 	public final fun loadingFailed ()Lkotlinx/coroutines/flow/Flow;
 	public final fun loadingFinished ()Lkotlinx/coroutines/flow/Flow;
 	public final fun replayXHR (Lorg/hildan/chrome/devtools/domains/network/ReplayXHRRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun reportingApiEndpointsChangedForOrigin ()Lkotlinx/coroutines/flow/Flow;
 	public final fun reportingApiReportAdded ()Lkotlinx/coroutines/flow/Flow;
 	public final fun reportingApiReportUpdated ()Lkotlinx/coroutines/flow/Flow;
 	public final fun requestIntercepted ()Lkotlinx/coroutines/flow/Flow;
@@ -22309,6 +22417,38 @@ public final class org/hildan/chrome/devtools/domains/network/ReportStatus$$seri
 }
 
 public final class org/hildan/chrome/devtools/domains/network/ReportStatus$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/ReportingApiEndpoint {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/ReportingApiEndpoint$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/ReportingApiEndpoint;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/ReportingApiEndpoint;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/ReportingApiEndpoint;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getGroupName ()Ljava/lang/String;
+	public final fun getUrl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/network/ReportingApiEndpoint;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/network/ReportingApiEndpoint$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/network/ReportingApiEndpoint$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/network/ReportingApiEndpoint;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/network/ReportingApiEndpoint;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/ReportingApiEndpoint$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -23059,14 +23199,15 @@ public final class org/hildan/chrome/devtools/domains/network/SetCookieBlockedRe
 
 public final class org/hildan/chrome/devtools/domains/network/SetCookieRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/SetCookieRequest$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()Lorg/hildan/chrome/devtools/domains/network/CookiePriority;
 	public final fun component11 ()Ljava/lang/Boolean;
 	public final fun component12 ()Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;
 	public final fun component13 ()Ljava/lang/Integer;
+	public final fun component14 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
 	public final fun component4 ()Ljava/lang/String;
@@ -23075,13 +23216,14 @@ public final class org/hildan/chrome/devtools/domains/network/SetCookieRequest {
 	public final fun component7 ()Ljava/lang/Boolean;
 	public final fun component8 ()Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;
 	public final fun component9 ()Ljava/lang/Double;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;)Lorg/hildan/chrome/devtools/domains/network/SetCookieRequest;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/SetCookieRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/SetCookieRequest;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/SetCookieRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/SetCookieRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/SetCookieRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDomain ()Ljava/lang/String;
 	public final fun getExpires ()Ljava/lang/Double;
 	public final fun getHttpOnly ()Ljava/lang/Boolean;
 	public final fun getName ()Ljava/lang/String;
+	public final fun getPartitionKey ()Ljava/lang/String;
 	public final fun getPath ()Ljava/lang/String;
 	public final fun getPriority ()Lorg/hildan/chrome/devtools/domains/network/CookiePriority;
 	public final fun getSameParty ()Ljava/lang/Boolean;
@@ -23940,6 +24082,38 @@ public final class org/hildan/chrome/devtools/domains/network/events/NetworkEven
 }
 
 public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$LoadingFinishedEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiEndpointsChangedForOriginEvent : org/hildan/chrome/devtools/domains/network/events/NetworkEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiEndpointsChangedForOriginEvent$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/util/List;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiEndpointsChangedForOriginEvent;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiEndpointsChangedForOriginEvent;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiEndpointsChangedForOriginEvent;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEndpoints ()Ljava/util/List;
+	public final fun getOrigin ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiEndpointsChangedForOriginEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiEndpointsChangedForOriginEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiEndpointsChangedForOriginEvent$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiEndpointsChangedForOriginEvent;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiEndpointsChangedForOriginEvent;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$ReportingApiEndpointsChangedForOriginEvent$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -26941,6 +27115,40 @@ public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRe
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanationTree {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanationTree$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/util/List;Ljava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/util/List;Ljava/util/List;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Ljava/util/List;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanationTree;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanationTree;Ljava/lang/String;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanationTree;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getChildren ()Ljava/util/List;
+	public final fun getExplanations ()Ljava/util/List;
+	public final fun getUrl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanationTree;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanationTree$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanationTree$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanationTree;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanationTree;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanationTree$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason : java/lang/Enum {
 	public static final field ActivationNavigationsDisallowedForBug1234857 Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field AppBanner Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
@@ -26964,6 +27172,7 @@ public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRe
 	public static final field ContentMediaDevicesDispatcherHost Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field ContentMediaSession Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field ContentMediaSessionService Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field ContentScreenReader Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field ContentSecurityHandler Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field ContentSerial Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field ContentWebAuthenticationAPI Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
@@ -30337,17 +30546,20 @@ public abstract class org/hildan/chrome/devtools/domains/page/events/PageEvent {
 
 public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$BackForwardCacheNotUsedEvent : org/hildan/chrome/devtools/domains/page/events/PageEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$BackForwardCacheNotUsedEvent$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanationTree;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanationTree;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanationTree;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/util/List;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$BackForwardCacheNotUsedEvent;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$BackForwardCacheNotUsedEvent;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$BackForwardCacheNotUsedEvent;
+	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanationTree;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanationTree;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$BackForwardCacheNotUsedEvent;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$BackForwardCacheNotUsedEvent;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanationTree;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$BackForwardCacheNotUsedEvent;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getFrameId ()Ljava/lang/String;
 	public final fun getLoaderId ()Ljava/lang/String;
 	public final fun getNotRestoredExplanations ()Ljava/util/List;
+	public final fun getNotRestoredExplanationsTree ()Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanationTree;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$BackForwardCacheNotUsedEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
@@ -36707,16 +36919,18 @@ public final class org/hildan/chrome/devtools/domains/target/CloseTargetResponse
 public final class org/hildan/chrome/devtools/domains/target/CreateBrowserContextRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/target/CreateBrowserContextRequest$Companion;
 	public fun <init> ()V
-	public synthetic fun <init> (ILjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/Boolean;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/target/CreateBrowserContextRequest;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/target/CreateBrowserContextRequest;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/target/CreateBrowserContextRequest;
+	public final fun component4 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/target/CreateBrowserContextRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/target/CreateBrowserContextRequest;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/target/CreateBrowserContextRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDisposeOnDetach ()Ljava/lang/Boolean;
+	public final fun getOriginsWithUniversalNetworkAccess ()Ljava/util/List;
 	public final fun getProxyBypassList ()Ljava/lang/String;
 	public final fun getProxyServer ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -39472,10 +39686,11 @@ public final class org/hildan/chrome/devtools/domains/webauthn/SetUserVerifiedRe
 
 public final class org/hildan/chrome/devtools/domains/webauthn/VirtualAuthenticatorOptions {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/webauthn/VirtualAuthenticatorOptions$Companion;
-	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorProtocol;Lorg/hildan/chrome/devtools/domains/webauthn/Ctap2Version;Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorTransport;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorProtocol;Lorg/hildan/chrome/devtools/domains/webauthn/Ctap2Version;Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorTransport;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)V
-	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorProtocol;Lorg/hildan/chrome/devtools/domains/webauthn/Ctap2Version;Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorTransport;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorProtocol;Lorg/hildan/chrome/devtools/domains/webauthn/Ctap2Version;Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorTransport;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorProtocol;Lorg/hildan/chrome/devtools/domains/webauthn/Ctap2Version;Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorTransport;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorProtocol;Lorg/hildan/chrome/devtools/domains/webauthn/Ctap2Version;Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorTransport;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorProtocol;
+	public final fun component10 ()Ljava/lang/Boolean;
 	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/webauthn/Ctap2Version;
 	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorTransport;
 	public final fun component4 ()Ljava/lang/Boolean;
@@ -39484,13 +39699,14 @@ public final class org/hildan/chrome/devtools/domains/webauthn/VirtualAuthentica
 	public final fun component7 ()Ljava/lang/Boolean;
 	public final fun component8 ()Ljava/lang/Boolean;
 	public final fun component9 ()Ljava/lang/Boolean;
-	public final fun copy (Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorProtocol;Lorg/hildan/chrome/devtools/domains/webauthn/Ctap2Version;Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorTransport;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)Lorg/hildan/chrome/devtools/domains/webauthn/VirtualAuthenticatorOptions;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/webauthn/VirtualAuthenticatorOptions;Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorProtocol;Lorg/hildan/chrome/devtools/domains/webauthn/Ctap2Version;Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorTransport;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/webauthn/VirtualAuthenticatorOptions;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorProtocol;Lorg/hildan/chrome/devtools/domains/webauthn/Ctap2Version;Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorTransport;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)Lorg/hildan/chrome/devtools/domains/webauthn/VirtualAuthenticatorOptions;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/webauthn/VirtualAuthenticatorOptions;Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorProtocol;Lorg/hildan/chrome/devtools/domains/webauthn/Ctap2Version;Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorTransport;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/webauthn/VirtualAuthenticatorOptions;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAutomaticPresenceSimulation ()Ljava/lang/Boolean;
 	public final fun getCtap2Version ()Lorg/hildan/chrome/devtools/domains/webauthn/Ctap2Version;
 	public final fun getHasCredBlob ()Ljava/lang/Boolean;
 	public final fun getHasLargeBlob ()Ljava/lang/Boolean;
+	public final fun getHasMinPinLength ()Ljava/lang/Boolean;
 	public final fun getHasResidentKey ()Ljava/lang/Boolean;
 	public final fun getHasUserVerification ()Ljava/lang/Boolean;
 	public final fun getProtocol ()Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorProtocol;
