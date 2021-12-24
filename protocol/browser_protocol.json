@@ -1450,7 +1450,12 @@
                         "AttributionSourceUntrustworthyOrigin",
                         "AttributionUntrustworthyOrigin",
                         "AttributionTriggerDataTooLarge",
-                        "AttributionEventSourceTriggerDataTooLarge"
+                        "AttributionEventSourceTriggerDataTooLarge",
+                        "InvalidAttributionSourceExpiry",
+                        "InvalidAttributionSourcePriority",
+                        "InvalidEventSourceTriggerData",
+                        "InvalidTriggerPriority",
+                        "InvalidTriggerDedupKey"
                     ]
                 },
                 {
@@ -1597,6 +1602,29 @@
                     ]
                 },
                 {
+                    "id": "ClientHintIssueReason",
+                    "type": "string",
+                    "enum": [
+                        "MetaTagAllowListInvalidOrigin",
+                        "MetaTagModifiedHTML"
+                    ]
+                },
+                {
+                    "id": "ClientHintIssueDetails",
+                    "description": "This issue tracks client hints related issues. It's used to deprecate old\nfeatures, encourage the use of new ones, and provide general guidance.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "sourceCodeLocation",
+                            "$ref": "SourceCodeLocation"
+                        },
+                        {
+                            "name": "clientHintIssueReason",
+                            "$ref": "ClientHintIssueReason"
+                        }
+                    ]
+                },
+                {
                     "id": "InspectorIssueCode",
                     "description": "A unique identifier for the type of issue. Each type may use one of the\noptional fields in InspectorIssueDetails to convey more specific\ninformation about the kind of issue.",
                     "type": "string",
@@ -1615,7 +1643,8 @@
                         "NavigatorUserAgentIssue",
                         "WasmCrossOriginModuleSharingIssue",
                         "GenericIssue",
-                        "DeprecationIssue"
+                        "DeprecationIssue",
+                        "ClientHintIssue"
                     ]
                 },
                 {
@@ -1697,6 +1726,11 @@
                             "name": "deprecationIssueDetails",
                             "optional": true,
                             "$ref": "DeprecationIssueDetails"
+                        },
+                        {
+                            "name": "clientHintIssueDetails",
+                            "optional": true,
+                            "$ref": "ClientHintIssueDetails"
                         }
                     ]
                 },
@@ -4203,6 +4237,16 @@
                     ]
                 },
                 {
+                    "name": "startDesktopMirroring",
+                    "description": "Starts mirroring the desktop to the sink.",
+                    "parameters": [
+                        {
+                            "name": "sinkName",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
                     "name": "startTabMirroring",
                     "description": "Starts mirroring the tab to the sink.",
                     "parameters": [
@@ -4311,7 +4355,11 @@
                         "scrollbar-track-piece",
                         "scrollbar-corner",
                         "resizer",
-                        "input-list-button"
+                        "input-list-button",
+                        "transition",
+                        "transition-container",
+                        "transition-old-content",
+                        "transition-new-content"
                     ]
                 },
                 {
@@ -10739,6 +10787,8 @@
                         "PreflightInvalidAllowCredentials",
                         "PreflightMissingAllowExternal",
                         "PreflightInvalidAllowExternal",
+                        "PreflightMissingAllowPrivateNetwork",
+                        "PreflightInvalidAllowPrivateNetwork",
                         "InvalidAllowMethodsPreflightResponse",
                         "InvalidAllowHeadersPreflightResponse",
                         "MethodDisallowedByPreflightResponse",
@@ -11184,6 +11234,20 @@
                             "description": "Cookie source port. Valid values are {-1, [1, 65535]}, -1 indicates an unspecified port.\nAn unspecified port value allows protocol clients to emulate legacy cookie scope for the port.\nThis is a temporary ability and it will be removed in the future.",
                             "experimental": true,
                             "type": "integer"
+                        },
+                        {
+                            "name": "partitionKey",
+                            "description": "Cookie partition key. The site of the top-level URL the browser was visiting at the start\nof the request to the endpoint that set the cookie.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "partitionKeyOpaque",
+                            "description": "True if cookie partition key is opaque.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ]
                 },
@@ -11367,6 +11431,13 @@
                             "experimental": true,
                             "optional": true,
                             "type": "integer"
+                        },
+                        {
+                            "name": "partitionKey",
+                            "description": "Cookie partition key. The site of the top-level URL the browser was visiting at the start\nof the request to the endpoint that set the cookie.\nIf not set, the cookie will be set as not partitioned.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "string"
                         }
                     ]
                 },
@@ -11854,6 +11925,23 @@
                         {
                             "name": "status",
                             "$ref": "ReportStatus"
+                        }
+                    ]
+                },
+                {
+                    "id": "ReportingApiEndpoint",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "url",
+                            "description": "The URL of the endpoint to which reports may be delivered.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "groupName",
+                            "description": "Name of the endpoint group.",
+                            "type": "string"
                         }
                     ]
                 },
@@ -12438,6 +12526,13 @@
                             "experimental": true,
                             "optional": true,
                             "type": "integer"
+                        },
+                        {
+                            "name": "partitionKey",
+                            "description": "Cookie partition key. The site of the top-level URL the browser was visiting at the start\nof the request to the endpoint that set the cookie.\nIf not set, the cookie will be set as not partitioned.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "string"
                         }
                     ],
                     "returns": [
@@ -13402,6 +13497,24 @@
                         {
                             "name": "report",
                             "$ref": "ReportingApiReport"
+                        }
+                    ]
+                },
+                {
+                    "name": "reportingApiEndpointsChangedForOrigin",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "origin",
+                            "description": "Origin of the document(s) which configured the endpoints.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "endpoints",
+                            "type": "array",
+                            "items": {
+                                "$ref": "ReportingApiEndpoint"
+                            }
                         }
                     ]
                 }
@@ -15564,6 +15677,7 @@
                         "ContentWebUSB",
                         "ContentMediaSession",
                         "ContentMediaSessionService",
+                        "ContentScreenReader",
                         "EmbedderPopupBlockerTabHelper",
                         "EmbedderSafeBrowsingTriggeredPopupBlocker",
                         "EmbedderSafeBrowsingThreatDetails",
@@ -15606,6 +15720,34 @@
                             "name": "reason",
                             "description": "Not restored reason",
                             "$ref": "BackForwardCacheNotRestoredReason"
+                        }
+                    ]
+                },
+                {
+                    "id": "BackForwardCacheNotRestoredExplanationTree",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "url",
+                            "description": "URL of each frame",
+                            "type": "string"
+                        },
+                        {
+                            "name": "explanations",
+                            "description": "Not restored reasons of each frame",
+                            "type": "array",
+                            "items": {
+                                "$ref": "BackForwardCacheNotRestoredExplanation"
+                            }
+                        },
+                        {
+                            "name": "children",
+                            "description": "Array of children frame",
+                            "type": "array",
+                            "items": {
+                                "$ref": "BackForwardCacheNotRestoredExplanationTree"
+                            }
                         }
                     ]
                 }
@@ -17136,6 +17278,12 @@
                             "items": {
                                 "$ref": "BackForwardCacheNotRestoredExplanation"
                             }
+                        },
+                        {
+                            "name": "notRestoredExplanationsTree",
+                            "description": "Tree structure of reasons why the page could not be cached for each frame.",
+                            "optional": true,
+                            "$ref": "BackForwardCacheNotRestoredExplanationTree"
                         }
                     ]
                 },
@@ -19035,6 +19183,15 @@
                             "description": "Proxy bypass list, similar to the one passed to --proxy-bypass-list",
                             "optional": true,
                             "type": "string"
+                        },
+                        {
+                            "name": "originsWithUniversalNetworkAccess",
+                            "description": "An optional list of origins to grant unlimited cross-origin access to.\nParts of the URL other than those constituting origin are ignored.",
+                            "optional": true,
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
                         }
                     ],
                     "returns": [
@@ -20724,6 +20881,12 @@
                         {
                             "name": "hasCredBlob",
                             "description": "If set to true, the authenticator will support the credBlob extension.\nhttps://fidoalliance.org/specs/fido-v2.1-rd-20201208/fido-client-to-authenticator-protocol-v2.1-rd-20201208.html#sctn-credBlob-extension\nDefaults to false.",
+                            "optional": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "hasMinPinLength",
+                            "description": "If set to true, the authenticator will support the minPinLength extension.\nhttps://fidoalliance.org/specs/fido-v2.1-ps-20210615/fido-client-to-authenticator-protocol-v2.1-ps-20210615.html#sctn-minpinlength-extension\nDefaults to false.",
                             "optional": true,
                             "type": "boolean"
                         },
