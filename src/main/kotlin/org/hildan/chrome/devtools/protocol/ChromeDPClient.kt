@@ -13,7 +13,6 @@ import org.hildan.chrome.devtools.targets.ChromePageSession
 import org.hildan.chrome.devtools.targets.attachToPage
 import org.hildan.krossbow.websocket.WebSocketClient
 import org.hildan.krossbow.websocket.default
-import org.hildan.krossbow.websocket.defaultWebSocketClient
 import kotlinx.serialization.json.Json as KxJson
 
 private val DEFAULT_WEBSOCKET_CLIENT by lazy { WebSocketClient.default() }
@@ -41,7 +40,7 @@ private fun createHttpClient(overrideHostHeader: Boolean) = HttpClient {
  *
  * **Note:** if you already know the browser target's web socket URL, you don't need to create a `ChromeDPClient`.
  * Instead, use a [WebSocketClient] and [WebSocketClient.connectToChrome][connectToChrome] instead.
- * A default web socket client can be created using [defaultWebSocketClient].
+ * A default web socket client can be created using [WebSocketClient.default()][WebSocketClient.Companion.default].
  *
  * ## Host override
  *
