@@ -122,8 +122,8 @@ class IntegrationTests {
             chromeDpClient().webSocket().use { browser ->
                 // we want all coroutines to finish before we close the browser session
                 coroutineScope {
-                    repeat(8) {
-                        launch(Dispatchers.Default) {
+                    repeat(16) {
+                        launch(Dispatchers.IO) {
                             browser.attachToNewPageAndAwaitPageLoad("http://www.google.com").use { page ->
                                 page.runtime.getHeapUsage()
                                 val docRoot = page.dom.getDocumentRootNodeId()
