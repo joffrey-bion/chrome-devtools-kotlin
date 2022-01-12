@@ -115,7 +115,6 @@ class IntegrationTests {
         }
     }
 
-    // FIXME for some reason this test sometimes fails locally (throttled by Google?)
     @OptIn(ExperimentalChromeApi::class)
     @Test
     fun test_parallelPages() {
@@ -125,7 +124,7 @@ class IntegrationTests {
                 coroutineScope {
                     repeat(8) {
                         launch(Dispatchers.Default) {
-                            browser.attachToNewPage("http://www.google.com").use { page ->
+                            browser.attachToNewPageAndAwaitPageLoad("http://www.google.com").use { page ->
                                 page.runtime.getHeapUsage()
                                 val docRoot = page.dom.getDocumentRootNodeId()
                                 page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
