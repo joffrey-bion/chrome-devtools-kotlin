@@ -1,5 +1,14 @@
 # Change Log
 
+## [3.5.0\-972468](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.5.0-972468) (2022-02-18)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.5.0-960912...3.5.0-972468)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 972468 [\#155](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/155) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Update to Chrome DevTools Protocol version 970707 [\#153](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/153) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Upgrade Gradle Wrapper to 7.4 [\#154](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/154) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [3.5.0\-960912](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.5.0-960912) (2022-01-20)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.5.0-957544...3.5.0-960912)
 
