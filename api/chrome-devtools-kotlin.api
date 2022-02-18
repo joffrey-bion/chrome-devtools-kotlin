@@ -2487,6 +2487,7 @@ public final class org/hildan/chrome/devtools/domains/audits/MixedContentResolut
 }
 
 public final class org/hildan/chrome/devtools/domains/audits/MixedContentResourceType : java/lang/Enum {
+	public static final field AttributionSrc Lorg/hildan/chrome/devtools/domains/audits/MixedContentResourceType;
 	public static final field Audio Lorg/hildan/chrome/devtools/domains/audits/MixedContentResourceType;
 	public static final field Beacon Lorg/hildan/chrome/devtools/domains/audits/MixedContentResourceType;
 	public static final field CSPReport Lorg/hildan/chrome/devtools/domains/audits/MixedContentResourceType;
@@ -5258,6 +5259,7 @@ public final class org/hildan/chrome/devtools/domains/css/CSSDomain {
 	public final fun setRuleSelector (Lorg/hildan/chrome/devtools/domains/css/SetRuleSelectorRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setStyleSheetText (Lorg/hildan/chrome/devtools/domains/css/SetStyleSheetTextRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setStyleTexts (Lorg/hildan/chrome/devtools/domains/css/SetStyleTextsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setSupportsText (Lorg/hildan/chrome/devtools/domains/css/SetSupportsTextRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun startRuleUsageTracking (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun stopRuleUsageTracking (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun styleSheetAdded ()Lkotlinx/coroutines/flow/Flow;
@@ -6989,6 +6991,70 @@ public final class org/hildan/chrome/devtools/domains/css/SetStyleTextsResponse$
 }
 
 public final class org/hildan/chrome/devtools/domains/css/SetStyleTextsResponse$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/SetSupportsTextRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/SetSupportsTextRequest$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SourceRange;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SourceRange;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/css/SourceRange;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SourceRange;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/css/SetSupportsTextRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/SetSupportsTextRequest;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SourceRange;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/SetSupportsTextRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getRange ()Lorg/hildan/chrome/devtools/domains/css/SourceRange;
+	public final fun getStyleSheetId ()Ljava/lang/String;
+	public final fun getText ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/css/SetSupportsTextRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/css/SetSupportsTextRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/SetSupportsTextRequest$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/css/SetSupportsTextRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/css/SetSupportsTextRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/SetSupportsTextRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/SetSupportsTextResponse {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/SetSupportsTextResponse$Companion;
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/css/CSSSupports;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/css/CSSSupports;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/css/CSSSupports;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/css/CSSSupports;)Lorg/hildan/chrome/devtools/domains/css/SetSupportsTextResponse;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/SetSupportsTextResponse;Lorg/hildan/chrome/devtools/domains/css/CSSSupports;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/SetSupportsTextResponse;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getSupports ()Lorg/hildan/chrome/devtools/domains/css/CSSSupports;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/css/SetSupportsTextResponse;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/css/SetSupportsTextResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/SetSupportsTextResponse$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/css/SetSupportsTextResponse;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/css/SetSupportsTextResponse;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/SetSupportsTextResponse$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
