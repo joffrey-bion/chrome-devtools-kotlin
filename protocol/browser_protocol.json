@@ -400,13 +400,6 @@
                             "type": "integer"
                         },
                         {
-                            "name": "max_depth",
-                            "description": "Deprecated. This parameter has been renamed to `depth`. If depth is not provided, max_depth will be used.",
-                            "deprecated": true,
-                            "optional": true,
-                            "type": "integer"
-                        },
-                        {
                             "name": "frameId",
                             "description": "The frame for whose document the AX tree should be retrieved.\nIf omited, the root frame is used.",
                             "optional": true,
@@ -4436,10 +4429,11 @@
                         "scrollbar-corner",
                         "resizer",
                         "input-list-button",
-                        "transition",
-                        "transition-container",
-                        "transition-old-content",
-                        "transition-new-content"
+                        "page-transition",
+                        "page-transition-container",
+                        "page-transition-image-wrapper",
+                        "page-transition-outgoing-image",
+                        "page-transition-incoming-image"
                     ]
                 },
                 {

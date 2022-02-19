@@ -508,18 +508,16 @@ public final class org/hildan/chrome/devtools/domains/accessibility/GetChildAXNo
 public final class org/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest$Companion;
 	public fun <init> ()V
-	public synthetic fun <init> (ILjava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/Integer;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/Integer;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/Integer;
-	public final fun component2 ()Ljava/lang/Integer;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/Integer;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest;Ljava/lang/Integer;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDepth ()Ljava/lang/Integer;
 	public final fun getFrameId ()Ljava/lang/String;
-	public final fun getMax_depth ()Ljava/lang/Integer;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/accessibility/GetFullAXTreeRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
@@ -11623,6 +11621,11 @@ public final class org/hildan/chrome/devtools/domains/dom/PseudoType : java/lang
 	public static final field highlight Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field input-list-button Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field marker Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field page-transition Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field page-transition-container Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field page-transition-image-wrapper Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field page-transition-incoming-image Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field page-transition-outgoing-image Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field resizer Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollbar Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollbar-button Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
@@ -11633,10 +11636,6 @@ public final class org/hildan/chrome/devtools/domains/dom/PseudoType : java/lang
 	public static final field selection Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field spelling-error Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field target-text Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field transition Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field transition-container Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field transition-new-content Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field transition-old-content Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 }
