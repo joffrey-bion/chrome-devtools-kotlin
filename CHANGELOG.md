@@ -1,13 +1,18 @@
 # Change Log
 
+## [3.5.0\-973088](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.5.0-973088) (2022-02-20)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.5.0-972468...3.5.0-973088)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 973088 [\#156](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/156) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [3.5.0\-972468](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.5.0-972468) (2022-02-18)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.5.0-960912...3.5.0-972468)
 
 **Merged pull requests:**
 
 - Update to Chrome DevTools Protocol version 972468 [\#155](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/155) ([@github-actions[bot]](https://github.com/apps/github-actions))
-- Update to Chrome DevTools Protocol version 970707 [\#153](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/153) ([@github-actions[bot]](https://github.com/apps/github-actions))
-- Upgrade Gradle Wrapper to 7.4 [\#154](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/154) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [3.5.0\-960912](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.5.0-960912) (2022-01-20)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.5.0-957544...3.5.0-960912)
@@ -22,7 +27,6 @@
 **Merged pull requests:**
 
 - Update to Chrome DevTools Protocol version 957947 [\#151](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/151) ([@github-actions[bot]](https://github.com/apps/github-actions))
-- Update to Chrome DevTools Protocol version 957544 [\#150](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/150) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [3.5.0\-957163](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.5.0-957163) (2022-01-11)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.5.0-955664...3.5.0-957163)
@@ -30,7 +34,6 @@
 **Merged pull requests:**
 
 - Update to Chrome DevTools Protocol version 957163 [\#148](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/148) ([@github-actions[bot]](https://github.com/apps/github-actions))
-- Upgrade Gradle Wrapper to 7.3.3 [\#149](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/149) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [3.5.0\-955664](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.5.0-955664) (2022-01-06)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.5.0-955313...3.5.0-955664)
@@ -103,7 +106,6 @@
 **Merged pull requests:**
 
 - Update to Chrome DevTools Protocol version 927069 [\#129](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/129) ([@github-actions[bot]](https://github.com/apps/github-actions))
-- Update to Chrome DevTools Protocol version 922637 [\#127](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/127) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [3.2.0\-921910](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.2.0-921910) (2021-09-16)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.2.0-919376...3.2.0-921910)
@@ -126,12 +128,6 @@
 
 - Upgrade Kotlin to 1.5.30 [\#122](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/122)
 - Upgrade Krossbow to 2.3.0 [\#121](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/121)
-
-**Merged pull requests:**
-
-- Update to Chrome DevTools Protocol version 917689 [\#124](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/124) ([@github-actions[bot]](https://github.com/apps/github-actions))
-- Update to Chrome DevTools Protocol version 917689 [\#123](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/123) ([@github-actions[bot]](https://github.com/apps/github-actions))
-- Update to Chrome DevTools Protocol version 915197 [\#120](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/120) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [3.1.0\-914246](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.1.0-914246) (2021-08-24)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.1.0-912044...3.1.0-914246)
@@ -237,8 +233,6 @@
 **Merged pull requests:**
 
 - Update to Chrome DevTools Protocol version 887064 [\#98](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/98) ([@github-actions[bot]](https://github.com/apps/github-actions))
-- Update to Chrome DevTools Protocol version 885657 [\#97](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/97) ([@github-actions[bot]](https://github.com/apps/github-actions))
-- Update to Chrome DevTools Protocol version 884712 [\#96](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/96) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [2.0.0\-884179](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/2.0.0-884179) (2021-05-19)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/1.5.0-882324...2.0.0-884179)
@@ -251,7 +245,6 @@
 **Merged pull requests:**
 
 - Update to Chrome DevTools Protocol version 884179 [\#95](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/95) ([@github-actions[bot]](https://github.com/apps/github-actions))
-- Update to Chrome DevTools Protocol version 882987 [\#93](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/93) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [1.5.0\-882324](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/1.5.0-882324) (2021-05-13)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/1.4.0-881485...1.5.0-882324)
@@ -312,8 +305,6 @@
 **Merged pull requests:**
 
 - Update to Chrome DevTools Protocol version 876958 [\#75](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/75) ([@github-actions[bot]](https://github.com/apps/github-actions))
-- Update to Chrome DevTools Protocol version 876535 [\#74](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/74) ([@github-actions[bot]](https://github.com/apps/github-actions))
-- Update to Chrome DevTools Protocol version 876073 [\#73](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/73) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [1.3.0\-873728](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/1.3.0-873728) (2021-04-20)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/1.3.0-872298...1.3.0-873728)
@@ -321,7 +312,6 @@
 **Merged pull requests:**
 
 - Update to Chrome DevTools Protocol version 873728 [\#72](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/72) ([@github-actions[bot]](https://github.com/apps/github-actions))
-- Update to Chrome DevTools Protocol version 873348 [\#71](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/71) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [1.3.0\-872298](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/1.3.0-872298) (2021-04-15)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/1.3.0-871615...1.3.0-872298)
@@ -329,7 +319,6 @@
 **Merged pull requests:**
 
 - Update to Chrome DevTools Protocol version 872298 [\#70](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/70) ([@github-actions[bot]](https://github.com/apps/github-actions))
-- Update to Chrome DevTools Protocol version 871838 [\#69](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/69) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [1.3.0\-871615](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/1.3.0-871615) (2021-04-13)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/1.3.0-871249...1.3.0-871615)
@@ -419,11 +408,6 @@
 ## [0.14.3](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.14.3) (2021-02-18)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.14.2...0.14.3)
 
-**Closed issues:**
-
-- Stabilize deployment to maven central [\#48](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/48)
-- Prevent conflicts in deployment to maven central [\#47](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/47)
-
 **Merged pull requests:**
 
 - Update to Chrome DevTools Protocol version 0.0.854538 [\#49](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/49) ([@github-actions[bot]](https://github.com/apps/github-actions))
@@ -457,10 +441,6 @@
 ## [0.13.1](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.13.1) (2021-01-29)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.13.0...0.13.1)
 
-**Closed issues:**
-
-- Suppress warnings for generated classes [\#39](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/39)
-
 **Implemented enhancements:**
 
 - Upgrade Krossbow to 1.1.5 [\#41](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/41)
@@ -471,10 +451,6 @@
 
 ## [0.13.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.13.0) (2021-01-27)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.12.2...0.13.0)
-
-**Closed issues:**
-
-- Flaky tests [\#35](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/35)
 
 **Implemented enhancements:**
 
@@ -613,7 +589,7 @@
 
 **Merged pull requests:**
 
-- Expose \`ktor\` dependencies as "api" transitive [\#5](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/5) ([@ArchangelX360](https://github.com/ArchangelX360))
+- Expose `ktor` dependencies as "api" transitive [\#5](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/5) ([@ArchangelX360](https://github.com/ArchangelX360))
 
 ## [0.6.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.6.0) (2020-11-14)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.5.0...0.6.0)
