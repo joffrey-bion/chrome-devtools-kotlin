@@ -8,17 +8,19 @@ import org.hildan.chrome.devtools.domains.target.events.TargetEvent
 import org.hildan.chrome.devtools.protocol.ChromeDPSession
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
 
+private val pageLikeTargetTypes = listOf("page", "iframe")
+
 /**
- * Creates a new [ChromePageSession] attached to the page target with the given [targetId].
+ * Creates a new [ChromePageSession] attached to the `page` or `iframe` target with the given [targetId].
  * The new session shares the same underlying web socket connection as this [ChromeBrowserSession].
  *
- * If the given ID corresponds to a target that is not a page, an exception is thrown.
+ * If the given ID corresponds to a target that is not a `page` or `iframe`, an exception is thrown.
  */
 @OptIn(ExperimentalChromeApi::class)
 suspend fun ChromeBrowserSession.attachToPage(targetId: TargetID): ChromePageSession {
     val sessionId = target.attachToTarget(AttachToTargetRequest(targetId = targetId, flatten = true)).sessionId
     val targetInfo = target.getTargetInfo(GetTargetInfoRequest(targetId = targetId)).targetInfo
-    if (targetInfo.type != "page") {
+    if (targetInfo.type !in pageLikeTargetTypes) {
         error("Cannot initiate a page session with target of type ${targetInfo.type} (target ID: $targetId)")
     }
     val metaData = ChromePageMetaData(targetId, targetInfo.browserContextId)
