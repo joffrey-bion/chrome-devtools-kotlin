@@ -1,5 +1,12 @@
 # Change Log
 
+## [3.6.0\-973088](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.6.0-973088) (2022-02-25)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.5.0-973088...3.6.0-973088)
+
+**Implemented enhancements:**
+
+- Support iframe target sessions [\#158](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/158)
+
 ## [3.5.0\-973088](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.5.0-973088) (2022-02-20)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.5.0-972468...3.5.0-973088)
 
@@ -257,7 +264,7 @@
 
 **Merged pull requests:**
 
-- add ChromePageSession::close\(disposeBrowserContext\) [\#87](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/87) ([@cpdyj](https://github.com/cpdyj))
+- add ChromePageSession::close\(disposeBrowserContext\) [\#87](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/87) ([@iseki0](https://github.com/iseki0))
 - Update to Chrome DevTools Protocol version 882324 [\#88](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/88) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [1.4.0\-881485](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/1.4.0-881485) (2021-05-12)
