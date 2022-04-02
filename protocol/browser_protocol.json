@@ -3243,6 +3243,11 @@
                             "type": "string"
                         },
                         {
+                            "name": "active",
+                            "description": "Whether the supports condition is satisfied.",
+                            "type": "boolean"
+                        },
+                        {
                             "name": "range",
                             "description": "The associated rule header range in the enclosing stylesheet (if\navailable).",
                             "optional": true,
@@ -14919,6 +14924,7 @@
                         "ambient-light-sensor",
                         "attribution-reporting",
                         "autoplay",
+                        "browsing-topics",
                         "camera",
                         "ch-dpr",
                         "ch-device-memory",
@@ -14959,6 +14965,7 @@
                         "gyroscope",
                         "hid",
                         "idle-detection",
+                        "interest-cohort",
                         "join-ad-interest-group",
                         "keyboard-map",
                         "magnetometer",
