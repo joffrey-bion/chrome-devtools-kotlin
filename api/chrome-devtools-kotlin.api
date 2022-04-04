@@ -10265,7 +10265,7 @@ public final class org/hildan/chrome/devtools/domains/dom/DOMAttributes : java/u
 	public final fun containsValue (Ljava/lang/Object;)Z
 	public fun containsValue (Ljava/lang/String;)Z
 	public final fun entrySet ()Ljava/util/Set;
-	public synthetic fun get (Ljava/lang/Object;)Ljava/lang/Object;
+	public final synthetic fun get (Ljava/lang/Object;)Ljava/lang/Object;
 	public final fun get (Ljava/lang/Object;)Ljava/lang/String;
 	public fun get (Ljava/lang/String;)Ljava/lang/String;
 	public final fun getAction ()Ljava/lang/String;
