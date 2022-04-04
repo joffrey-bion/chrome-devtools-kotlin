@@ -26,9 +26,9 @@ dependencies {
     api("io.ktor:ktor-client-serialization-jvm:$ktorVersion")
 
     testImplementation(kotlin("test"))
-    testImplementation("org.slf4j:slf4j-simple:1.7.32")
-    testImplementation("org.testcontainers:testcontainers:1.16.2")
-    testImplementation("org.testcontainers:junit-jupiter:1.16.2")
+    testImplementation("org.slf4j:slf4j-simple:1.7.36")
+    testImplementation("org.testcontainers:testcontainers:1.16.3")
+    testImplementation("org.testcontainers:junit-jupiter:1.16.3")
 }
 
 kotlin {
