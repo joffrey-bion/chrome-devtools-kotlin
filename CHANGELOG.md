@@ -1,5 +1,14 @@
 # Change Log
 
+## [3.7.0\-982423](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.7.0-982423) (2022-04-04)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.6.0-982423...3.7.0-982423)
+
+**Upgraded dependencies:**
+
+- Upgrade Ktor client to version 1.6.8 [\#166](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/166)
+- Upgrade Krossbow to version 3.3.1 [\#165](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/165)
+- Upgrade Kotlin to 1.6.20 [\#163](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/163)
+
 ## [3.6.0\-982423](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.6.0-982423) (2022-04-02)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.6.0-981744...3.6.0-982423)
 
@@ -80,7 +89,7 @@
 ## [3.5.0\-953906](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.5.0-953906) (2021-12-27)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.4.0-953906...3.5.0-953906)
 
-**Implemented enhancements:**
+**Upgraded dependencies:**
 
 - Upgrade Krossbow to 3.0.0 [\#145](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/145)
 - Upgrade Ktor to 1.6.7 [\#144](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/144)
@@ -97,15 +106,15 @@
 ## [3.4.0\-942138](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.4.0-942138) (2021-11-17)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.3.0-940028...3.4.0-942138)
 
-**Implemented enhancements:**
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 942138 [\#137](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/137) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+**Upgraded dependencies:**
 
 - Upgrade Krossbow to 2.7.0 [\#140](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/140)
 - Upgrade Ktor to 1.6.5 [\#139](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/139)
 - Upgrade Kotlin to 1.6.0 [\#138](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/138)
-
-**Merged pull requests:**
-
-- Update to Chrome DevTools Protocol version 942138 [\#137](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/137) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [3.3.0\-940028](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.3.0-940028) (2021-11-10)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.3.0-930289...3.3.0-940028)
@@ -124,16 +133,16 @@
 ## [3.3.0\-927069](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.3.0-927069) (2021-10-01)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.2.0-921910...3.3.0-927069)
 
-**Implemented enhancements:**
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 927069 [\#129](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/129) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+**Upgraded dependencies:**
 
 - Upgrade Ktor client to 1.6.3 [\#133](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/133)
 - Upgrade Kotlinx Serialization to 1.3.0 [\#132](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/132)
 - Upgrade Krossbow to 2.5.0 [\#131](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/131)
 - Upgrade Kotlin to 1.5.31 [\#128](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/128)
-
-**Merged pull requests:**
-
-- Update to Chrome DevTools Protocol version 927069 [\#129](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/129) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [3.2.0\-921910](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.2.0-921910) (2021-09-16)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.2.0-919376...3.2.0-921910)
@@ -152,7 +161,7 @@
 ## [3.2.0\-915197](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.2.0-915197) (2021-09-03)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.1.0-914246...3.2.0-915197)
 
-**Implemented enhancements:**
+**Upgraded dependencies:**
 
 - Upgrade Kotlin to 1.5.30 [\#122](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/122)
 - Upgrade Krossbow to 2.3.0 [\#121](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/121)
@@ -181,16 +190,16 @@
 ## [3.1.0\-909734](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.1.0-909734) (2021-08-09)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.0.0-905252...3.1.0-909734)
 
-**Implemented enhancements:**
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 909734 [\#112](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/112) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+**Upgraded dependencies:**
 
 - Upgrade Krossbow to 2.2.0 [\#115](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/115)
 - Upgrade Ktor client to 1.6.2 [\#114](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/114)
 - Upgrade Kotlinx Serialization to 1.2.2 [\#113](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/113)
 - Upgrade to Kotlin 1.5.21 [\#109](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/109)
-
-**Merged pull requests:**
-
-- Update to Chrome DevTools Protocol version 909734 [\#112](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/112) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [3.0.0\-905252](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.0.0-905252) (2021-07-27)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.0.0-898382...3.0.0-905252)
@@ -244,16 +253,16 @@
 ## [3.0.0\-887728](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.0.0-887728) (2021-06-01)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/2.0.0-887064...3.0.0-887728)
 
-**Implemented enhancements:**
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 887728 [\#103](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/103) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+**Upgraded dependencies:**
 
 - Upgrade to Kotlinx Serialization 1.2.0 [\#102](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/102)
 - Upgrade to Ktor 1.6.0 [\#101](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/101)
 - Upgrade to Krossbow 2.0 [\#100](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/100)
 - Upgrade to Kotlin 1.5.10 [\#99](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/99)
-
-**Merged pull requests:**
-
-- Update to Chrome DevTools Protocol version 887728 [\#103](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/103) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [2.0.0\-887064](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/2.0.0-887064) (2021-05-28)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/2.0.0-884179...2.0.0-887064)
@@ -304,14 +313,17 @@
 
 **Implemented enhancements:**
 
-- Upgrade Krossbow to 1.4.0 [\#84](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/84)
-- Upgrade Ktor to 1.5.4 [\#83](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/83)
-- Upgrade to Kotlin 1.4.32 [\#80](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/80)
 - Mark awaitNodeBySelector\(\) as @ExperimentalTime [\#81](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/81)
 
 **Merged pull requests:**
 
 - Update to Chrome DevTools Protocol version 881010 [\#79](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/79) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+**Upgraded dependencies:**
+
+- Upgrade Krossbow to 1.4.0 [\#84](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/84)
+- Upgrade Ktor to 1.5.4 [\#83](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/83)
+- Upgrade to Kotlin 1.4.32 [\#80](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/80)
 
 ## [1.3.0\-880455](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/1.3.0-880455) (2021-05-08)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/1.3.0-878340...1.3.0-880455)
@@ -469,13 +481,13 @@
 ## [0.13.1](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.13.1) (2021-01-29)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.13.0...0.13.1)
 
-**Implemented enhancements:**
-
-- Upgrade Krossbow to 1.1.5 [\#41](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/41)
-
 **Merged pull requests:**
 
 - Update to Chrome DevTools Protocol version 0.0.848227 [\#40](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/40) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+**Upgraded dependencies:**
+
+- Upgrade Krossbow to 1.1.5 [\#41](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/41)
 
 ## [0.13.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.13.0) (2021-01-27)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.12.2...0.13.0)
@@ -529,11 +541,14 @@
 **Implemented enhancements:**
 
 - Add getTargetInfo convenience method [\#27](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/27)
-- Upgrade Ktor to 1.5 [\#24](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/24)
 
 **Merged pull requests:**
 
 - Update to Chrome DevTools Protocol version 0.0.841965 [\#28](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/28) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+**Upgraded dependencies:**
+
+- Upgrade Ktor to 1.5 [\#24](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/24)
 
 ## [0.10.1](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.10.1) (2021-01-09)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.10.0...0.10.1)
@@ -583,7 +598,7 @@
 
 - Error: Host header is specified and is not an IP address or localhost. [\#13](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/13)
 
-**Implemented enhancements:**
+**Upgraded dependencies:**
 
 - Upgrade to Krossbow 1.1.2 to fix UTF\-8 issues [\#14](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/14)
 
