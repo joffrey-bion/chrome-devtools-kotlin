@@ -22,9 +22,11 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 
-    val ktorVersion = "1.6.8"
+    val ktorVersion = "2.0.0"
     api("io.ktor:ktor-client-cio:$ktorVersion")
+    api("io.ktor:ktor-client-content-negotiation:$ktorVersion")
     api("io.ktor:ktor-client-serialization-jvm:$ktorVersion")
+    api("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
 
     testImplementation(kotlin("test"))
     testImplementation("org.slf4j:slf4j-simple:1.7.36")
