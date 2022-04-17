@@ -1,9 +1,10 @@
 package org.hildan.chrome.devtools.protocol
 
 import io.ktor.client.*
-import io.ktor.client.features.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
+import io.ktor.client.call.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.serialization.kotlinx.json.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import kotlinx.serialization.SerialName
@@ -22,8 +23,8 @@ private val DEFAULT_HTTP_CLIENT by lazy { createHttpClient(overrideHostHeader = 
 private val DEFAULT_HTTP_CLIENT_WITH_HOST_OVERRIDE by lazy { createHttpClient(overrideHostHeader = true) }
 
 private fun createHttpClient(overrideHostHeader: Boolean) = HttpClient {
-    install(JsonFeature) {
-        serializer = KotlinxSerializer(KxJson { ignoreUnknownKeys = true })
+    install(ContentNegotiation) {
+        json(KxJson { ignoreUnknownKeys = true })
     }
     if (overrideHostHeader) {
         install(DefaultRequest) {
@@ -76,14 +77,15 @@ class ChromeDPClient(
     private val httpClient: HttpClient = if (overrideHostHeader) DEFAULT_HTTP_CLIENT_WITH_HOST_OVERRIDE else DEFAULT_HTTP_CLIENT,
 ) {
     /** Browser version metadata. */
-    suspend fun version(): ChromeVersion = httpClient.get<ChromeVersion>("$remoteDebugUrl/json/version").fixHost()
+    suspend fun version(): ChromeVersion =
+        httpClient.get("$remoteDebugUrl/json/version").body<ChromeVersion>().fixHost()
 
     /** The current devtools protocol definition, as a JSON string. */
-    suspend fun protocolJson(): String = httpClient.get("$remoteDebugUrl/json/protocol")
+    suspend fun protocolJson(): String = httpClient.get("$remoteDebugUrl/json/protocol").body()
 
     /** A list of all available websocket targets (e.g. browser tabs). */
     suspend fun targets(): List<ChromeDPTarget> =
-        httpClient.get<List<ChromeDPTarget>>("$remoteDebugUrl/json/list").map { it.fixHost() }
+        httpClient.get("$remoteDebugUrl/json/list").body<List<ChromeDPTarget>>().map { it.fixHost() }
 
     /** Opens a new tab. Responds with the websocket target data for the new tab. */
     @Deprecated(
@@ -91,13 +93,13 @@ class ChromeDPClient(
         replaceWith = ReplaceWith("webSocket().attachToNewPage(url)"),
     )
     suspend fun newTab(url: String = "about:blank"): ChromeDPTarget =
-        httpClient.get<ChromeDPTarget>("$remoteDebugUrl/json/new?$url").fixHost()
+        httpClient.get("$remoteDebugUrl/json/new?$url").body<ChromeDPTarget>().fixHost()
 
     /** Brings a page into the foreground (activates a tab). */
-    suspend fun activateTab(targetId: String): String = httpClient.get("$remoteDebugUrl/json/activate/$targetId")
+    suspend fun activateTab(targetId: String): String = httpClient.get("$remoteDebugUrl/json/activate/$targetId").body()
 
     /** Closes the target page identified by [targetId]. */
-    suspend fun closeTab(targetId: String): String = httpClient.get("$remoteDebugUrl/json/close/$targetId")
+    suspend fun closeTab(targetId: String): String = httpClient.get("$remoteDebugUrl/json/close/$targetId").body()
 
     /** Closes all targets. */
     suspend fun closeAllTargets() {
