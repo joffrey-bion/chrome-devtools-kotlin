@@ -1,5 +1,16 @@
 # Change Log
 
+## [3.8.0\-982423](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.8.0-982423) (2022-04-17)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.7.0-982423...3.8.0-982423)
+
+**Merged pull requests:**
+
+- Upgrade Ktor to 2.0.0 [\#167](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/167) ([@ArchangelX360](https://github.com/ArchangelX360))
+
+**Upgraded dependencies:**
+
+- Upgrade Kotlin coroutines to 1.6.1 [\#164](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/164)
+
 ## [3.7.0\-982423](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.7.0-982423) (2022-04-04)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.6.0-982423...3.7.0-982423)
 
