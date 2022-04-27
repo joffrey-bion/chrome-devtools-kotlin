@@ -1,5 +1,16 @@
 # Change Log
 
+## [3.10.0\-996398](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.10.0-996398) (2022-04-27)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.8.0-982423...3.10.0-996398)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 996398 [\#168](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/168) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+**Upgraded dependencies:**
+
+- Upgrade Krossbow to version 3.4.0 [\#169](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/169)
+
 ## [3.8.0\-982423](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.8.0-982423) (2022-04-17)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.7.0-982423...3.8.0-982423)
 
