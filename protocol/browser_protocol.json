@@ -1591,7 +1591,6 @@
                         "RTCPeerConnectionComplexPlanBSdpUsingDefaultSdpSemantics",
                         "RTCPeerConnectionSdpSemanticsPlanB",
                         "RtcpMuxPolicyNegotiate",
-                        "RTPDataChannel",
                         "SharedArrayBufferConstructedWithoutIsolation",
                         "TextToSpeech_DisallowedByAutoplay",
                         "V8SharedArrayBufferConstructedInExtensionWithoutIsolation",
@@ -8306,6 +8305,17 @@
                     ]
                 },
                 {
+                    "name": "setHardwareConcurrencyOverride",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "hardwareConcurrency",
+                            "description": "Hardware concurrency to report",
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
                     "name": "setUserAgentOverride",
                     "description": "Allows overriding user agent with the given string.",
                     "parameters": [
@@ -15002,7 +15012,6 @@
                         "ch-device-memory",
                         "ch-downlink",
                         "ch-ect",
-                        "ch-partitioned-cookies",
                         "ch-prefers-color-scheme",
                         "ch-rtt",
                         "ch-save-data",

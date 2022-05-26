@@ -2095,7 +2095,6 @@ public final class org/hildan/chrome/devtools/domains/audits/DeprecationIssueTyp
 	public static final field RTCConstraintEnableDtlsSrtpTrue Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
 	public static final field RTCPeerConnectionComplexPlanBSdpUsingDefaultSdpSemantics Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
 	public static final field RTCPeerConnectionSdpSemanticsPlanB Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field RTPDataChannel Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
 	public static final field RangeExpand Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
 	public static final field RequestedSubresourceWithEmbeddedCredentials Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
 	public static final field RtcpMuxPolicyNegotiate Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
@@ -14900,6 +14899,7 @@ public final class org/hildan/chrome/devtools/domains/emulation/EmulationDomain 
 	public final fun setEmulatedVisionDeficiency (Lorg/hildan/chrome/devtools/domains/emulation/SetEmulatedVisionDeficiencyRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setFocusEmulationEnabled (Lorg/hildan/chrome/devtools/domains/emulation/SetFocusEmulationEnabledRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setGeolocationOverride (Lorg/hildan/chrome/devtools/domains/emulation/SetGeolocationOverrideRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setHardwareConcurrencyOverride (Lorg/hildan/chrome/devtools/domains/emulation/SetHardwareConcurrencyOverrideRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setIdleOverride (Lorg/hildan/chrome/devtools/domains/emulation/SetIdleOverrideRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setLocaleOverride (Lorg/hildan/chrome/devtools/domains/emulation/SetLocaleOverrideRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setNavigatorOverrides (Lorg/hildan/chrome/devtools/domains/emulation/SetNavigatorOverridesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -15403,6 +15403,36 @@ public final class org/hildan/chrome/devtools/domains/emulation/SetGeolocationOv
 }
 
 public final class org/hildan/chrome/devtools/domains/emulation/SetGeolocationOverrideRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/emulation/SetHardwareConcurrencyOverrideRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/emulation/SetHardwareConcurrencyOverrideRequest$Companion;
+	public fun <init> (I)V
+	public synthetic fun <init> (IILkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()I
+	public final fun copy (I)Lorg/hildan/chrome/devtools/domains/emulation/SetHardwareConcurrencyOverrideRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/emulation/SetHardwareConcurrencyOverrideRequest;IILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/emulation/SetHardwareConcurrencyOverrideRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getHardwareConcurrency ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/emulation/SetHardwareConcurrencyOverrideRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/emulation/SetHardwareConcurrencyOverrideRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/emulation/SetHardwareConcurrencyOverrideRequest$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/emulation/SetHardwareConcurrencyOverrideRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/emulation/SetHardwareConcurrencyOverrideRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/emulation/SetHardwareConcurrencyOverrideRequest$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -29720,7 +29750,6 @@ public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeat
 	public static final field ch-downlink Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-dpr Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-ect Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-partitioned-cookies Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-prefers-color-scheme Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-rtt Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ch-save-data Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
