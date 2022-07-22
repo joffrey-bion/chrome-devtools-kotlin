@@ -333,6 +333,29 @@
                     ]
                 },
                 {
+                    "id": "WasmDisassemblyChunk",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "lines",
+                            "description": "The next chunk of disassembled lines.",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "name": "bytecodeOffsets",
+                            "description": "The bytecode offsets describing the start of each line.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    ]
+                },
+                {
                     "id": "ScriptLanguage",
                     "description": "Enum of possible script languages.",
                     "type": "string",
@@ -543,6 +566,61 @@
                     ]
                 },
                 {
+                    "name": "disassembleWasmModule",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "scriptId",
+                            "description": "Id of the script to disassemble",
+                            "$ref": "Runtime.ScriptId"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "streamId",
+                            "description": "For large modules, return a stream from which additional chunks of\ndisassembly can be read successively.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "totalNumberOfLines",
+                            "description": "The total number of lines in the disassembly text.",
+                            "type": "integer"
+                        },
+                        {
+                            "name": "functionBodyOffsets",
+                            "description": "The offsets of all function bodies plus one additional entry pointing\none by past the end of the last function.",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        },
+                        {
+                            "name": "chunk",
+                            "description": "The first chunk of disassembly.",
+                            "$ref": "WasmDisassemblyChunk"
+                        }
+                    ]
+                },
+                {
+                    "name": "nextWasmDisassemblyChunk",
+                    "description": "Disassemble the next chunk of lines for the module corresponding to the\nstream. If disassembly is complete, this API will invalidate the streamId\nand return an empty chunk. Any subsequent calls for the now invalid stream\nwill return errors.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "streamId",
+                            "type": "string"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "chunk",
+                            "description": "The next chunk of disassembly.",
+                            "$ref": "WasmDisassemblyChunk"
+                        }
+                    ]
+                },
+                {
                     "name": "getWasmBytecode",
                     "description": "This command is deprecated. Use getScriptSource instead.",
                     "deprecated": true,
@@ -606,19 +684,29 @@
                 },
                 {
                     "name": "restartFrame",
-                    "description": "Restarts particular call frame from the beginning.",
-                    "deprecated": true,
+                    "description": "Restarts particular call frame from the beginning. The old, deprecated\nbehavior of `restartFrame` is to stay paused and allow further CDP commands\nafter a restart was scheduled. This can cause problems with restarting, so\nwe now continue execution immediatly after it has been scheduled until we\nreach the beginning of the restarted frame.\n\nTo stay back-wards compatible, `restartFrame` now expects a `mode`\nparameter to be present. If the `mode` parameter is missing, `restartFrame`\nerrors out.\n\nThe various return values are deprecated and `callFrames` is always empty.\nUse the call frames from the `Debugger#paused` events instead, that fires\nonce V8 pauses at the beginning of the restarted function.",
                     "parameters": [
                         {
                             "name": "callFrameId",
                             "description": "Call frame identifier to evaluate on.",
                             "$ref": "CallFrameId"
+                        },
+                        {
+                            "name": "mode",
+                            "description": "The `mode` parameter must be present and set to 'StepInto', otherwise\n`restartFrame` will error out.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "string",
+                            "enum": [
+                                "StepInto"
+                            ]
                         }
                     ],
                     "returns": [
                         {
                             "name": "callFrames",
                             "description": "New stack trace.",
+                            "deprecated": true,
                             "type": "array",
                             "items": {
                                 "$ref": "CallFrame"
@@ -627,13 +715,14 @@
                         {
                             "name": "asyncStackTrace",
                             "description": "Async stack trace, if any.",
+                            "deprecated": true,
                             "optional": true,
                             "$ref": "Runtime.StackTrace"
                         },
                         {
                             "name": "asyncStackTraceId",
                             "description": "Async stack trace, if any.",
-                            "experimental": true,
+                            "deprecated": true,
                             "optional": true,
                             "$ref": "Runtime.StackTraceId"
                         }
@@ -907,7 +996,7 @@
                 },
                 {
                     "name": "setScriptSource",
-                    "description": "Edits JavaScript source live.",
+                    "description": "Edits JavaScript source live.\n\nIn general, functions that are currently on the stack can not be edited with\na single exception: If the edited function is the top-most stack frame and\nthat is the only activation of that function on the stack. In this case\nthe live edit will be successful and a `Debugger.restartFrame` for the\ntop-most function is automatically triggered.",
                     "parameters": [
                         {
                             "name": "scriptId",
@@ -924,12 +1013,20 @@
                             "description": "If true the change will not actually be applied. Dry run may be used to get result\ndescription without actually modifying the code.",
                             "optional": true,
                             "type": "boolean"
+                        },
+                        {
+                            "name": "allowTopFrameEditing",
+                            "description": "If true, then `scriptSource` is allowed to change the function on top of the stack\nas long as the top-most stack frame is the only activation of that function.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ],
                     "returns": [
                         {
                             "name": "callFrames",
                             "description": "New stack trace in case editing has happened while VM was stopped.",
+                            "deprecated": true,
                             "optional": true,
                             "type": "array",
                             "items": {
@@ -939,25 +1036,39 @@
                         {
                             "name": "stackChanged",
                             "description": "Whether current call stack  was modified after applying the changes.",
+                            "deprecated": true,
                             "optional": true,
                             "type": "boolean"
                         },
                         {
                             "name": "asyncStackTrace",
                             "description": "Async stack trace, if any.",
+                            "deprecated": true,
                             "optional": true,
                             "$ref": "Runtime.StackTrace"
                         },
                         {
                             "name": "asyncStackTraceId",
                             "description": "Async stack trace, if any.",
-                            "experimental": true,
+                            "deprecated": true,
                             "optional": true,
                             "$ref": "Runtime.StackTraceId"
                         },
                         {
+                            "name": "status",
+                            "description": "Whether the operation was successful or not. Only `Ok` denotes a\nsuccessful live edit while the other enum variants denote why\nthe live edit failed.",
+                            "experimental": true,
+                            "type": "string",
+                            "enum": [
+                                "Ok",
+                                "CompileError",
+                                "BlockedByActiveGenerator",
+                                "BlockedByActiveFunction"
+                            ]
+                        },
+                        {
                             "name": "exceptionDetails",
-                            "description": "Exception details if any.",
+                            "description": "Exception details if any. Only present when `status` is `CompileError`.",
                             "optional": true,
                             "$ref": "Runtime.ExceptionDetails"
                         }
@@ -1553,12 +1664,21 @@
                         },
                         {
                             "name": "treatGlobalObjectsAsRoots",
+                            "description": "Deprecated in favor of `exposeInternals`.",
+                            "deprecated": true,
                             "optional": true,
                             "type": "boolean"
                         },
                         {
                             "name": "captureNumericValue",
                             "description": "If true, numerical values are included in the snapshot",
+                            "optional": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "exposeInternals",
+                            "description": "If true, exposes internals of the snapshot.",
+                            "experimental": true,
                             "optional": true,
                             "type": "boolean"
                         }
@@ -1575,13 +1695,21 @@
                         },
                         {
                             "name": "treatGlobalObjectsAsRoots",
-                            "description": "If true, a raw snapshot without artificial roots will be generated",
+                            "description": "If true, a raw snapshot without artificial roots will be generated.\nDeprecated in favor of `exposeInternals`.",
+                            "deprecated": true,
                             "optional": true,
                             "type": "boolean"
                         },
                         {
                             "name": "captureNumericValue",
                             "description": "If true, numerical values are included in the snapshot",
+                            "optional": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "exposeInternals",
+                            "description": "If true, exposes internals of the snapshot.",
+                            "experimental": true,
                             "optional": true,
                             "type": "boolean"
                         }
