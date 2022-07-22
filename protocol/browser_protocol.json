@@ -282,6 +282,12 @@
                             "$ref": "AXValue"
                         },
                         {
+                            "name": "chromeRole",
+                            "description": "This `Node`'s Chrome raw role.",
+                            "optional": true,
+                            "$ref": "AXValue"
+                        },
+                        {
                             "name": "name",
                             "description": "The accessible name for this `Node`.",
                             "optional": true,
@@ -1447,7 +1453,7 @@
                 },
                 {
                     "id": "AttributionReportingIssueDetails",
-                    "description": "Details for issues around \"Attribution Reporting API\" usage.\nExplainer: https://github.com/WICG/conversion-measurement-api",
+                    "description": "Details for issues around \"Attribution Reporting API\" usage.\nExplainer: https://github.com/WICG/attribution-reporting-api",
                     "type": "object",
                     "properties": [
                         {
@@ -1560,20 +1566,25 @@
                         "DeprecationExample",
                         "DocumentDomainSettingWithoutOriginAgentClusterHeader",
                         "EventPath",
+                        "ExpectCTHeader",
                         "GeolocationInsecureOrigin",
                         "GeolocationInsecureOriginDeprecatedNotRemoved",
                         "GetUserMediaInsecureOrigin",
                         "HostCandidateAttributeGetter",
+                        "IdentityInCanMakePaymentEvent",
                         "InsecurePrivateNetworkSubresourceRequest",
                         "LegacyConstraintGoogIPv6",
                         "LocalCSSFileExtensionRejected",
                         "MediaSourceAbortRemove",
                         "MediaSourceDurationTruncatingBuffered",
+                        "NavigateEventRestoreScroll",
+                        "NavigateEventTransitionWhile",
                         "NoSysexWebMIDIWithoutPermission",
                         "NotificationInsecureOrigin",
                         "NotificationPermissionRequestedIframe",
                         "ObsoleteWebRtcCipherSuite",
-                        "PaymentRequestBasicCard",
+                        "OpenWebDatabaseInsecureContext",
+                        "OverflowVisibleOnReplacedElement",
                         "PictureSourceSrc",
                         "PrefixedCancelAnimationFrame",
                         "PrefixedRequestAnimationFrame",
@@ -2689,6 +2700,12 @@
                             "$ref": "DOM.PseudoType"
                         },
                         {
+                            "name": "pseudoIdentifier",
+                            "description": "Pseudo element custom ident.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
                             "name": "matches",
                             "description": "Matches of CSS rules applicable to the pseudo style.",
                             "type": "array",
@@ -2950,6 +2967,16 @@
                             "type": "array",
                             "items": {
                                 "$ref": "CSSLayer"
+                            }
+                        },
+                        {
+                            "name": "scopes",
+                            "description": "@scope CSS at-rule array.\nThe array enumerates @scope at-rules starting with the innermost one, going outwards.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "array",
+                            "items": {
+                                "$ref": "CSSScope"
                             }
                         }
                     ]
@@ -3306,6 +3333,31 @@
                     ]
                 },
                 {
+                    "id": "CSSScope",
+                    "description": "CSS Scope at-rule descriptor.",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "text",
+                            "description": "Scope rule text.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "range",
+                            "description": "The associated rule header range in the enclosing stylesheet (if\navailable).",
+                            "optional": true,
+                            "$ref": "SourceRange"
+                        },
+                        {
+                            "name": "styleSheetId",
+                            "description": "Identifier of the stylesheet containing this object (if exists).",
+                            "optional": true,
+                            "$ref": "StyleSheetId"
+                        }
+                    ]
+                },
+                {
                     "id": "CSSLayer",
                     "description": "CSS Layer at-rule descriptor.",
                     "experimental": true,
@@ -3439,6 +3491,11 @@
                         {
                             "name": "fontStretch",
                             "description": "The font-stretch.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "fontDisplay",
+                            "description": "The font-display.",
                             "type": "string"
                         },
                         {
@@ -3775,6 +3832,13 @@
                             "items": {
                                 "$ref": "CSSKeyframesRule"
                             }
+                        },
+                        {
+                            "name": "parentLayoutNodeId",
+                            "description": "Id of the first parent element that does not have display: contents.",
+                            "experimental": true,
+                            "optional": true,
+                            "$ref": "DOM.NodeId"
                         }
                     ]
                 },
@@ -3992,6 +4056,32 @@
                             "name": "supports",
                             "description": "The resulting CSS Supports rule after modification.",
                             "$ref": "CSSSupports"
+                        }
+                    ]
+                },
+                {
+                    "name": "setScopeText",
+                    "description": "Modifies the expression of a scope at-rule.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "styleSheetId",
+                            "$ref": "StyleSheetId"
+                        },
+                        {
+                            "name": "range",
+                            "$ref": "SourceRange"
+                        },
+                        {
+                            "name": "text",
+                            "type": "string"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "scope",
+                            "description": "The resulting CSS Scope rule after modification.",
+                            "$ref": "CSSScope"
                         }
                     ]
                 },
@@ -4731,6 +4821,12 @@
                             "description": "Pseudo element type for this node.",
                             "optional": true,
                             "$ref": "PseudoType"
+                        },
+                        {
+                            "name": "pseudoIdentifier",
+                            "description": "Pseudo element identifier for this node. Only present if there is a\nvalid pseudoType.",
+                            "optional": true,
+                            "type": "string"
                         },
                         {
                             "name": "shadowRootType",
@@ -5621,6 +5717,21 @@
                     ]
                 },
                 {
+                    "name": "getTopLayerElements",
+                    "description": "Returns NodeIds of current top layer elements.\nTop layer is rendered closest to the user within a viewport, therefore its elements always\nappear on top of all other content.",
+                    "experimental": true,
+                    "returns": [
+                        {
+                            "name": "nodeIds",
+                            "description": "NodeIds of top layer elements",
+                            "type": "array",
+                            "items": {
+                                "$ref": "NodeId"
+                            }
+                        }
+                    ]
+                },
+                {
                     "name": "redo",
                     "description": "Re-does the last undone action.",
                     "experimental": true
@@ -6160,6 +6271,11 @@
                             "$ref": "Node"
                         }
                     ]
+                },
+                {
+                    "name": "topLayerElementsUpdated",
+                    "description": "Called when top layer elements are changed.",
+                    "experimental": true
                 },
                 {
                     "name": "pseudoElementRemoved",
@@ -7072,6 +7188,12 @@
                         {
                             "name": "pseudoType",
                             "description": "Type of a pseudo element node.",
+                            "optional": true,
+                            "$ref": "RareStringData"
+                        },
+                        {
+                            "name": "pseudoIdentifier",
+                            "description": "Pseudo element identifier for this node. Only present if there is a\nvalid pseudoType.",
                             "optional": true,
                             "$ref": "RareStringData"
                         },
@@ -10562,6 +10684,7 @@
                         "TextTrack",
                         "XHR",
                         "Fetch",
+                        "Prefetch",
                         "EventSource",
                         "WebSocket",
                         "Manifest",
@@ -11018,6 +11141,17 @@
                             "name": "certificateTransparencyCompliance",
                             "description": "Whether the request complied with Certificate Transparency policy",
                             "$ref": "CertificateTransparencyCompliance"
+                        },
+                        {
+                            "name": "serverSignatureAlgorithm",
+                            "description": "The signature algorithm used by the server in the TLS server signature,\nrepresented as a TLS SignatureScheme code point. Omitted if not\napplicable or not known.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "encryptedClientHello",
+                            "description": "Whether the connection used Encrypted ClientHello",
+                            "type": "boolean"
                         }
                     ]
                 },
@@ -12067,9 +12201,10 @@
                     "enum": [
                         "SameOrigin",
                         "SameOriginAllowPopups",
+                        "RestrictProperties",
                         "UnsafeNone",
                         "SameOriginPlusCoep",
-                        "SameOriginAllowPopupsPlusCoep"
+                        "RestrictPropertiesPlusCoep"
                     ]
                 },
                 {
@@ -14962,6 +15097,24 @@
                     ]
                 },
                 {
+                    "id": "AdScriptId",
+                    "description": "Identifies the bottom-most script which caused the frame to be labelled\nas an ad.",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "scriptId",
+                            "description": "Script Id of the bottom-most script which caused the frame to be labelled\nas an ad.",
+                            "$ref": "Runtime.ScriptId"
+                        },
+                        {
+                            "name": "debuggerId",
+                            "description": "Id of adScriptId's debugger.",
+                            "$ref": "Runtime.UniqueDebuggerId"
+                        }
+                    ]
+                },
+                {
                     "id": "SecureContextType",
                     "description": "Indicates whether the frame is a secure context and why it is the case.",
                     "experimental": true,
@@ -15039,6 +15192,7 @@
                         "encrypted-media",
                         "execution-while-out-of-viewport",
                         "execution-while-not-rendered",
+                        "federated-credentials",
                         "focus-without-user-activation",
                         "fullscreen",
                         "frobulate",
@@ -15062,6 +15216,7 @@
                         "screen-wake-lock",
                         "serial",
                         "shared-autofill",
+                        "shared-storage",
                         "storage-access-api",
                         "sync-xhr",
                         "trust-token-redemption",
@@ -15080,7 +15235,8 @@
                     "enum": [
                         "Header",
                         "IframeAttribute",
-                        "InFencedFrameTree"
+                        "InFencedFrameTree",
+                        "InIsolatedApp"
                     ]
                 },
                 {
@@ -15990,7 +16146,6 @@
                         "ContentMediaDevicesDispatcherHost",
                         "ContentWebBluetooth",
                         "ContentWebUSB",
-                        "ContentMediaSession",
                         "ContentMediaSessionService",
                         "ContentScreenReader",
                         "EmbedderPopupBlockerTabHelper",
@@ -17299,12 +17454,6 @@
                             "$ref": "FrameId"
                         },
                         {
-                            "name": "backendNodeId",
-                            "description": "Input node id.",
-                            "experimental": true,
-                            "$ref": "DOM.BackendNodeId"
-                        },
-                        {
                             "name": "mode",
                             "description": "Input mode.",
                             "type": "string",
@@ -17312,6 +17461,13 @@
                                 "selectSingle",
                                 "selectMultiple"
                             ]
+                        },
+                        {
+                            "name": "backendNodeId",
+                            "description": "Input node id. Only present for file choosers opened via an <input type=\"file\"> element.",
+                            "experimental": true,
+                            "optional": true,
+                            "$ref": "DOM.BackendNodeId"
                         }
                     ]
                 },
@@ -17334,6 +17490,13 @@
                             "description": "JavaScript stack trace of when frame was attached, only set if frame initiated from script.",
                             "optional": true,
                             "$ref": "Runtime.StackTrace"
+                        },
+                        {
+                            "name": "adScriptId",
+                            "description": "Identifies the bottom-most script which caused the frame to be labelled\nas an ad. Only sent if frame is labelled as an ad and id is available.",
+                            "experimental": true,
+                            "optional": true,
+                            "$ref": "AdScriptId"
                         }
                     ]
                 },
@@ -18960,6 +19123,22 @@
                     ]
                 },
                 {
+                    "name": "clearDataForStorageKey",
+                    "description": "Clears storage for storage key.",
+                    "parameters": [
+                        {
+                            "name": "storageKey",
+                            "description": "Storage key.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "storageTypes",
+                            "description": "Comma separated list of StorageType to clear.",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
                     "name": "getCookies",
                     "description": "Returns all browser cookies.",
                     "parameters": [
@@ -20168,6 +20347,12 @@
                                 "recordAsMuchAsPossible",
                                 "echoToConsole"
                             ]
+                        },
+                        {
+                            "name": "traceBufferSizeInKb",
+                            "description": "Size of the trace buffer in kilobytes. If not specified or zero is passed, a default value\nof 200 MB would be used.",
+                            "optional": true,
+                            "type": "number"
                         },
                         {
                             "name": "enableSampling",
