@@ -1553,18 +1553,16 @@ public final class org/hildan/chrome/devtools/domains/audits/AffectedRequest$Com
 
 public final class org/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails$Companion;
-	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;Lorg/hildan/chrome/devtools/domains/audits/AffectedFrame;Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Ljava/lang/Integer;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;Lorg/hildan/chrome/devtools/domains/audits/AffectedFrame;Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Ljava/lang/Integer;Ljava/lang/String;)V
-	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;Lorg/hildan/chrome/devtools/domains/audits/AffectedFrame;Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Ljava/lang/Integer;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Ljava/lang/Integer;Ljava/lang/String;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Ljava/lang/Integer;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
-	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/audits/AffectedFrame;
-	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;
-	public final fun component4 ()Ljava/lang/Integer;
-	public final fun component5 ()Ljava/lang/String;
-	public final fun copy (Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;Lorg/hildan/chrome/devtools/domains/audits/AffectedFrame;Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Ljava/lang/Integer;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;Lorg/hildan/chrome/devtools/domains/audits/AffectedFrame;Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Ljava/lang/Integer;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;
+	public final fun component3 ()Ljava/lang/Integer;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Ljava/lang/Integer;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Ljava/lang/Integer;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getFrame ()Lorg/hildan/chrome/devtools/domains/audits/AffectedFrame;
 	public final fun getInvalidParameter ()Ljava/lang/String;
 	public final fun getRequest ()Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;
 	public final fun getViolatingNodeId ()Ljava/lang/Integer;
@@ -1591,11 +1589,13 @@ public final class org/hildan/chrome/devtools/domains/audits/AttributionReportin
 }
 
 public final class org/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType : java/lang/Enum {
-	public static final field AttributionSourceUntrustworthyOrigin Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
-	public static final field AttributionUntrustworthyOrigin Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType$Companion;
+	public static final field InsecureContext Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
+	public static final field InvalidEligibleHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field InvalidHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
+	public static final field InvalidRegisterTriggerHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field PermissionPolicyDisabled Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
+	public static final field UntrustworthyReportingOrigin Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 }
@@ -2088,6 +2088,7 @@ public final class org/hildan/chrome/devtools/domains/audits/DeprecationIssueTyp
 	public static final field ObsoleteWebRtcCipherSuite Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
 	public static final field OpenWebDatabaseInsecureContext Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
 	public static final field OverflowVisibleOnReplacedElement Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
+	public static final field PersistentQuotaType Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
 	public static final field PictureSourceSrc Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
 	public static final field PrefixedCancelAnimationFrame Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
 	public static final field PrefixedRequestAnimationFrame Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
@@ -17864,17 +17865,20 @@ public final class org/hildan/chrome/devtools/domains/heapprofiler/events/HeapPr
 
 public final class org/hildan/chrome/devtools/domains/indexeddb/ClearObjectStoreRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/indexeddb/ClearObjectStoreRequest$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/indexeddb/ClearObjectStoreRequest;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/indexeddb/ClearObjectStoreRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/indexeddb/ClearObjectStoreRequest;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/indexeddb/ClearObjectStoreRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/indexeddb/ClearObjectStoreRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/indexeddb/ClearObjectStoreRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDatabaseName ()Ljava/lang/String;
 	public final fun getObjectStoreName ()Ljava/lang/String;
 	public final fun getSecurityOrigin ()Ljava/lang/String;
+	public final fun getStorageKey ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/indexeddb/ClearObjectStoreRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
@@ -17966,15 +17970,18 @@ public final class org/hildan/chrome/devtools/domains/indexeddb/DatabaseWithObje
 
 public final class org/hildan/chrome/devtools/domains/indexeddb/DeleteDatabaseRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/indexeddb/DeleteDatabaseRequest$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/indexeddb/DeleteDatabaseRequest;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/indexeddb/DeleteDatabaseRequest;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/indexeddb/DeleteDatabaseRequest;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/indexeddb/DeleteDatabaseRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/indexeddb/DeleteDatabaseRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/indexeddb/DeleteDatabaseRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDatabaseName ()Ljava/lang/String;
 	public final fun getSecurityOrigin ()Ljava/lang/String;
+	public final fun getStorageKey ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/indexeddb/DeleteDatabaseRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
@@ -17998,19 +18005,22 @@ public final class org/hildan/chrome/devtools/domains/indexeddb/DeleteDatabaseRe
 
 public final class org/hildan/chrome/devtools/domains/indexeddb/DeleteObjectStoreEntriesRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/indexeddb/DeleteObjectStoreEntriesRequest$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;)Lorg/hildan/chrome/devtools/domains/indexeddb/DeleteObjectStoreEntriesRequest;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/indexeddb/DeleteObjectStoreEntriesRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/indexeddb/DeleteObjectStoreEntriesRequest;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Lorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;)Lorg/hildan/chrome/devtools/domains/indexeddb/DeleteObjectStoreEntriesRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/indexeddb/DeleteObjectStoreEntriesRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/indexeddb/DeleteObjectStoreEntriesRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDatabaseName ()Ljava/lang/String;
 	public final fun getKeyRange ()Lorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;
 	public final fun getObjectStoreName ()Ljava/lang/String;
 	public final fun getSecurityOrigin ()Ljava/lang/String;
+	public final fun getStorageKey ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/indexeddb/DeleteObjectStoreEntriesRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
@@ -18034,17 +18044,20 @@ public final class org/hildan/chrome/devtools/domains/indexeddb/DeleteObjectStor
 
 public final class org/hildan/chrome/devtools/domains/indexeddb/GetMetadataRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/indexeddb/GetMetadataRequest$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/indexeddb/GetMetadataRequest;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/indexeddb/GetMetadataRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/indexeddb/GetMetadataRequest;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/indexeddb/GetMetadataRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/indexeddb/GetMetadataRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/indexeddb/GetMetadataRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDatabaseName ()Ljava/lang/String;
 	public final fun getObjectStoreName ()Ljava/lang/String;
 	public final fun getSecurityOrigin ()Ljava/lang/String;
+	public final fun getStorageKey ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/indexeddb/GetMetadataRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
@@ -18346,18 +18359,19 @@ public final class org/hildan/chrome/devtools/domains/indexeddb/ObjectStoreIndex
 
 public final class org/hildan/chrome/devtools/domains/indexeddb/RequestDataRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/indexeddb/RequestDataRequest$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IILorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IILorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IILorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IILorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IILorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IILorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
 	public final fun component4 ()Ljava/lang/String;
-	public final fun component5 ()I
+	public final fun component5 ()Ljava/lang/String;
 	public final fun component6 ()I
-	public final fun component7 ()Lorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IILorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;)Lorg/hildan/chrome/devtools/domains/indexeddb/RequestDataRequest;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/indexeddb/RequestDataRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IILorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/indexeddb/RequestDataRequest;
+	public final fun component7 ()I
+	public final fun component8 ()Lorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IILorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;)Lorg/hildan/chrome/devtools/domains/indexeddb/RequestDataRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/indexeddb/RequestDataRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IILorg/hildan/chrome/devtools/domains/indexeddb/KeyRange;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/indexeddb/RequestDataRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDatabaseName ()Ljava/lang/String;
 	public final fun getIndexName ()Ljava/lang/String;
@@ -18366,6 +18380,7 @@ public final class org/hildan/chrome/devtools/domains/indexeddb/RequestDataReque
 	public final fun getPageSize ()I
 	public final fun getSecurityOrigin ()Ljava/lang/String;
 	public final fun getSkipCount ()I
+	public final fun getStorageKey ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/indexeddb/RequestDataRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
@@ -18481,15 +18496,18 @@ public final class org/hildan/chrome/devtools/domains/indexeddb/RequestDatabaseN
 
 public final class org/hildan/chrome/devtools/domains/indexeddb/RequestDatabaseRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/indexeddb/RequestDatabaseRequest$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/indexeddb/RequestDatabaseRequest;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/indexeddb/RequestDatabaseRequest;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/indexeddb/RequestDatabaseRequest;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/indexeddb/RequestDatabaseRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/indexeddb/RequestDatabaseRequest;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/indexeddb/RequestDatabaseRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDatabaseName ()Ljava/lang/String;
 	public final fun getSecurityOrigin ()Ljava/lang/String;
+	public final fun getStorageKey ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/indexeddb/RequestDatabaseRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
@@ -30296,6 +30314,7 @@ public final class org/hildan/chrome/devtools/domains/page/PrerenderFinalStatus 
 	public static final field EmbedderTriggeredAndCrossOriginRedirected Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
 	public static final field EmbedderTriggeredAndDestroyed Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
 	public static final field EmbedderTriggeredAndSameOriginRedirected Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
+	public static final field FailToGetMemoryUsage Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
 	public static final field InProgressNavigation Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
 	public static final field InvalidSchemeNavigation Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
 	public static final field InvalidSchemeRedirect Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
@@ -30303,6 +30322,7 @@ public final class org/hildan/chrome/devtools/domains/page/PrerenderFinalStatus 
 	public static final field LowEndDevice Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
 	public static final field MainFrameNavigation Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
 	public static final field MaxNumOfRunningPrerendersExceeded Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
+	public static final field MemoryLimitExceeded Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
 	public static final field MixedContent Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
 	public static final field MojoBinderPolicy Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
 	public static final field NavigationBadHttpStatus Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;

@@ -1446,9 +1446,11 @@
                     "type": "string",
                     "enum": [
                         "PermissionPolicyDisabled",
-                        "AttributionSourceUntrustworthyOrigin",
-                        "AttributionUntrustworthyOrigin",
-                        "InvalidHeader"
+                        "UntrustworthyReportingOrigin",
+                        "InsecureContext",
+                        "InvalidHeader",
+                        "InvalidRegisterTriggerHeader",
+                        "InvalidEligibleHeader"
                     ]
                 },
                 {
@@ -1459,11 +1461,6 @@
                         {
                             "name": "violationType",
                             "$ref": "AttributionReportingIssueType"
-                        },
-                        {
-                            "name": "frame",
-                            "optional": true,
-                            "$ref": "AffectedFrame"
                         },
                         {
                             "name": "request",
@@ -1585,6 +1582,7 @@
                         "ObsoleteWebRtcCipherSuite",
                         "OpenWebDatabaseInsecureContext",
                         "OverflowVisibleOnReplacedElement",
+                        "PersistentQuotaType",
                         "PictureSourceSrc",
                         "PrefixedCancelAnimationFrame",
                         "PrefixedRequestAnimationFrame",
@@ -8897,7 +8895,14 @@
                     "parameters": [
                         {
                             "name": "securityOrigin",
-                            "description": "Security origin.",
+                            "description": "At least and at most one of securityOrigin, storageKey must be specified.\nSecurity origin.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "storageKey",
+                            "description": "Storage key.",
+                            "optional": true,
                             "type": "string"
                         },
                         {
@@ -8918,7 +8923,14 @@
                     "parameters": [
                         {
                             "name": "securityOrigin",
-                            "description": "Security origin.",
+                            "description": "At least and at most one of securityOrigin, storageKey must be specified.\nSecurity origin.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "storageKey",
+                            "description": "Storage key.",
+                            "optional": true,
                             "type": "string"
                         },
                         {
@@ -8934,6 +8946,14 @@
                     "parameters": [
                         {
                             "name": "securityOrigin",
+                            "description": "At least and at most one of securityOrigin, storageKey must be specified.\nSecurity origin.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "storageKey",
+                            "description": "Storage key.",
+                            "optional": true,
                             "type": "string"
                         },
                         {
@@ -8965,7 +8985,14 @@
                     "parameters": [
                         {
                             "name": "securityOrigin",
-                            "description": "Security origin.",
+                            "description": "At least and at most one of securityOrigin, storageKey must be specified.\nSecurity origin.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "storageKey",
+                            "description": "Storage key.",
+                            "optional": true,
                             "type": "string"
                         },
                         {
@@ -9022,7 +9049,14 @@
                     "parameters": [
                         {
                             "name": "securityOrigin",
-                            "description": "Security origin.",
+                            "description": "At least and at most one of securityOrigin, storageKey must be specified.\nSecurity origin.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "storageKey",
+                            "description": "Storage key.",
+                            "optional": true,
                             "type": "string"
                         },
                         {
@@ -9055,7 +9089,14 @@
                     "parameters": [
                         {
                             "name": "securityOrigin",
-                            "description": "Security origin.",
+                            "description": "At least and at most one of securityOrigin, storageKey must be specified.\nSecurity origin.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "storageKey",
+                            "description": "Storage key.",
+                            "optional": true,
                             "type": "string"
                         },
                         {
@@ -16264,7 +16305,9 @@
                         "TriggerBackgrounded",
                         "EmbedderTriggeredAndSameOriginRedirected",
                         "EmbedderTriggeredAndCrossOriginRedirected",
-                        "EmbedderTriggeredAndDestroyed"
+                        "EmbedderTriggeredAndDestroyed",
+                        "MemoryLimitExceeded",
+                        "FailToGetMemoryUsage"
                     ]
                 }
             ],
