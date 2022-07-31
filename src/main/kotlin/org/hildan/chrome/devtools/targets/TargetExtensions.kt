@@ -116,7 +116,9 @@ suspend fun ChromePageSession.navigateAndAwaitPageLoad(navigateRequest: Navigate
  */
 suspend fun ChromePageSession.childPages(): List<TargetInfo> {
     val thisTargetId = metaData.targetId
-    return target.getTargets().targetInfos.filter { it.type == "page" && it.openerId == thisTargetId }
+    return target.getTargets(GetTargetsRequest())
+        .targetInfos
+        .filter { it.type == "page" && it.openerId == thisTargetId }
 }
 
 /**
