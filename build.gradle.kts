@@ -1,9 +1,9 @@
 plugins {
-    val kotlinVersion = "1.6.20"
+    val kotlinVersion = "1.7.10"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
-    id("org.jetbrains.dokka") version "1.6.10"
-    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.8.0"
+    id("org.jetbrains.dokka") version "1.7.10"
+    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.11.0"
     `maven-publish`
     signing
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
@@ -46,11 +46,7 @@ val generateProtocolApi by tasks.registering(org.hildan.chrome.devtools.build.Ge
 
 tasks {
     compileKotlin {
-        kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
         dependsOn(generateProtocolApi)
-    }
-    compileTestKotlin {
-        kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
     }
     test {
         useJUnitPlatform()
