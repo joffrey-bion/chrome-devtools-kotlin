@@ -1,5 +1,6 @@
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
+import org.hildan.chrome.devtools.domains.target.GetTargetsRequest
 import org.hildan.chrome.devtools.extensions.clickOnElement
 import org.hildan.chrome.devtools.protocol.ChromeDPClient
 import org.hildan.chrome.devtools.targets.attachToNewPageAndAwaitPageLoad
@@ -25,7 +26,7 @@ private suspend fun testCrossOriginIFrame() {
     val page = browserSession.attachToNewPageAndAwaitPageLoad(url = "file://C:\\Projects\\chrome-devtools-kotlin\\src\\test\\resources\\page-with-cross-origin-iframe.html")
     println("Navigated to page")
 
-    val targets = browserSession.target.getTargets()
+    val targets = browserSession.target.getTargets(GetTargetsRequest())
     println("Targets:\n${targets.targetInfos}")
     delay(1000)
 

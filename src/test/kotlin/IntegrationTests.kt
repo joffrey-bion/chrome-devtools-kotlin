@@ -8,6 +8,7 @@ import org.hildan.chrome.devtools.domains.domdebugger.DOMBreakpointType
 import org.hildan.chrome.devtools.domains.domdebugger.SetDOMBreakpointRequest
 import org.hildan.chrome.devtools.domains.runtime.evaluateJs
 import org.hildan.chrome.devtools.domains.storage.GetCookiesRequest
+import org.hildan.chrome.devtools.domains.target.GetTargetsRequest
 import org.hildan.chrome.devtools.protocol.ChromeDPClient
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
 import org.hildan.chrome.devtools.targets.*
@@ -143,7 +144,7 @@ class IntegrationTests {
         runBlocking {
             chromeDpClient().webSocket().use { browser ->
                 browser.attachToNewPageAndAwaitPageLoad("http://google.com").use { page ->
-                    val targets = page.target.getTargets().targetInfos
+                    val targets = page.target.getTargets(GetTargetsRequest()).targetInfos
                     val targetInfo = targets.first { it.targetId == page.metaData.targetId }
                     assertEquals("page", targetInfo.type)
                     assertTrue(targetInfo.attached)
