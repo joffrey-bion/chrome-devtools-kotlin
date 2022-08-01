@@ -1,5 +1,22 @@
 # Change Log
 
+## [3.11.0\-1030018](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.11.0-1030018) (2022-08-01)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.10.0-1007616...3.11.0-1030018)
+
+**Implemented enhancements:**
+
+- Upgrade Kotlinx Serialization to version 1.3.3 [\#183](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/183)
+- Update to Chrome DevTools Protocol version 1030018 [\#180](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/180)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 1029085 [\#179](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/179) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+**Upgraded dependencies:**
+
+- Upgrade Dokka to version 1.7.10 [\#177](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/177)
+- Upgrade Kotlin to version 1.7.10 [\#176](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/176)
+
 ## [3.10.0\-1007616](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.10.0-1007616) (2022-05-26)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.10.0-1005560...3.10.0-1007616)
 
