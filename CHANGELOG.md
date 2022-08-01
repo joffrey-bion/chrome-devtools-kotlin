@@ -1,11 +1,23 @@
 # Change Log
 
+## [3.11.1\-1030018](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.11.1-1030018) (2022-08-01)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.11.0-1030018...3.11.1-1030018)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 1030018 [\#181](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/181) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+**Upgraded dependencies:**
+
+- Upgrade Ktor to version 2.0.3 [\#187](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/187)
+- Upgrade Kotlin Coroutines to version 1.6.4 [\#186](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/186)
+- Upgrade Krossbow to version 4.1.0 [\#185](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/185)
+
 ## [3.11.0\-1030018](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.11.0-1030018) (2022-08-01)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.10.0-1007616...3.11.0-1030018)
 
 **Implemented enhancements:**
 
-- Upgrade Kotlinx Serialization to version 1.3.3 [\#183](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/183)
 - Update to Chrome DevTools Protocol version 1030018 [\#180](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/180)
 
 **Merged pull requests:**
@@ -14,6 +26,7 @@
 
 **Upgraded dependencies:**
 
+- Upgrade Kotlinx Serialization to version 1.3.3 [\#183](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/183)
 - Upgrade Dokka to version 1.7.10 [\#177](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/177)
 - Upgrade Kotlin to version 1.7.10 [\#176](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/176)
 
