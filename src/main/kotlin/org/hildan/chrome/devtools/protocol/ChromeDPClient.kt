@@ -6,6 +6,7 @@ import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.client.request.*
+import io.ktor.client.statement.*
 import io.ktor.http.*
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -82,7 +83,7 @@ class ChromeDPClient(
         httpClient.get("$remoteDebugUrl/json/version").body<ChromeVersion>().fixHost()
 
     /** The current devtools protocol definition, as a JSON string. */
-    suspend fun protocolJson(): String = httpClient.get("$remoteDebugUrl/json/protocol").body()
+    suspend fun protocolJson(): String = httpClient.get("$remoteDebugUrl/json/protocol").bodyAsText()
 
     /** A list of all available websocket targets (e.g. browser tabs). */
     suspend fun targets(): List<ChromeDPTarget> =
