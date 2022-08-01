@@ -1,6 +1,6 @@
 plugins {
-    `kotlin-dsl` // uses 1.4.31 as of Gradle 7.0
-    kotlin("plugin.serialization") version "1.4.31"
+    `kotlin-dsl` // uses 1.6.10 as of Gradle 7.5
+    kotlin("plugin.serialization") version "1.6.10"
 }
 
 repositories {
@@ -10,7 +10,7 @@ repositories {
 dependencies {
     implementation(gradleApi())
     implementation("com.squareup:kotlinpoet:1.8.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
 }
 
 tasks {
