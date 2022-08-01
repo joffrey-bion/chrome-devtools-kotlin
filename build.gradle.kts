@@ -18,7 +18,8 @@ repositories {
 }
 
 dependencies {
-    api("org.hildan.krossbow:krossbow-websocket-core:3.4.0")
+    api("org.hildan.krossbow:krossbow-websocket-core:4.1.0")
+    implementation("org.hildan.krossbow:krossbow-websocket-builtin:4.1.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 
