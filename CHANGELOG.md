@@ -3,10 +3,6 @@
 ## [3.11.1\-1030018](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.11.1-1030018) (2022-08-01)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.11.0-1030018...3.11.1-1030018)
 
-**Merged pull requests:**
-
-- Update to Chrome DevTools Protocol version 1030018 [\#181](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/181) ([@github-actions[bot]](https://github.com/apps/github-actions))
-
 **Upgraded dependencies:**
 
 - Upgrade Ktor to version 2.0.3 [\#187](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/187)
@@ -19,10 +15,6 @@
 **Implemented enhancements:**
 
 - Update to Chrome DevTools Protocol version 1030018 [\#180](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/180)
-
-**Merged pull requests:**
-
-- Update to Chrome DevTools Protocol version 1029085 [\#179](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/179) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 **Upgraded dependencies:**
 
