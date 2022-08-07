@@ -43,7 +43,6 @@ private fun createHttpClient(overrideHostHeader: Boolean) = HttpClient {
  *
  * **Note:** if you already know the browser target's web socket URL, you don't need to create a `ChromeDPClient`.
  * Instead, use a [WebSocketClient] and [WebSocketClient.connectToChrome][connectToChrome] instead.
- * A default web socket client can be created using [WebSocketClient.default()][WebSocketClient.Companion.default].
  *
  * ## Host override
  *
