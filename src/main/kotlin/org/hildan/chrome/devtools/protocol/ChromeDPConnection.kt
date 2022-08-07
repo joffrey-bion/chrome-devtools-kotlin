@@ -12,14 +12,13 @@ internal fun WebSocketConnection.chromeDp(): ChromeDPConnection = ChromeDPConnec
 internal class ChromeDPConnection(
     private val webSocket: WebSocketConnection
 ) {
-    private val job = Job()
-    private val coroutineScope = CoroutineScope(job)
+    private val coroutineScope = CoroutineScope(CoroutineName("ChromeDP-frame-decoder"))
 
     private val frames = webSocket.incomingFrames
         .filterIsInstance<WebSocketFrame.Text>()
         .map { frame -> frame.decodeInboundFrame() }
         .shareIn(
-            scope = coroutineScope + CoroutineName("ChromeDP-frame-decoder"),
+            scope = coroutineScope,
             started = SharingStarted.Eagerly,
         )
 
@@ -36,7 +35,7 @@ internal class ChromeDPConnection(
     fun events() = frames.filter(InboundFrame::isEvent)
 
     suspend fun close() {
-        job.cancelAndJoin()
+        coroutineScope.cancel()
         webSocket.close()
     }
 }
