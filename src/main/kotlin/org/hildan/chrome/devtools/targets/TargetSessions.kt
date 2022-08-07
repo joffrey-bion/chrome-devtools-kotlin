@@ -28,7 +28,7 @@ sealed class AbstractTargetSession(
      * connection.
      */
     suspend fun closeWebSocket() {
-        session.close()
+        session.closeWebSocket()
     }
 }
 

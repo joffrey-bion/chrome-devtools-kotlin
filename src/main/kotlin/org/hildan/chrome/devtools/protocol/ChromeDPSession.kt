@@ -11,8 +11,13 @@ import kotlinx.serialization.serializer
 import org.hildan.chrome.devtools.domains.target.SessionID
 import java.util.concurrent.atomic.AtomicLong
 
-internal class ChromeDPSession internal constructor(
-    internal val connection: ChromeDPConnection,
+/**
+ * A wrapper around a [ChromeDPConnection] to handle session-scoped request IDs and filter events of a specific session.
+ *
+ * It also provides helpers to serialize/deserialize typed payloads from the dynamic parts of the ChromeDP frames.
+ */
+internal class ChromeDPSession(
+    val connection: ChromeDPConnection,
     val sessionId: SessionID?,
 ) {
     private val nextRequestId = AtomicLong(0)
@@ -61,9 +66,10 @@ internal class ChromeDPSession internal constructor(
         .mapNotNull { f -> deserializers[f.method]?.let { f.decodeEventPayload(it) } }
 
     /**
-     * Closes the web socket connection.
+     * Closes the underlying web socket connection, effectively closing every session based on the same web socket
+     * connection.
      */
-    suspend fun close() {
+    suspend fun closeWebSocket() {
         connection.close()
     }
 }
