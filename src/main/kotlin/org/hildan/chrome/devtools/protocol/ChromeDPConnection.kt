@@ -28,10 +28,11 @@ internal class ChromeDPConnection(
         )
 
     /**
-     * Sends the given ChromeDP [request], and returns the corresponding [InboundFrame].
+     * Sends the given ChromeDP [request], and returns the corresponding [ResponseFrame].
      */
-    suspend fun request(request: RequestFrame): InboundFrame {
+    suspend fun request(request: RequestFrame): ResponseFrame {
         val response = frames.onSubscription { webSocket.sendText(json.encodeToString(request)) }
+            .filterIsInstance<ResponseFrame>()
             .filter { it.matchesRequest(request) }
             .firstOrNull() ?: throw MissingResponse(request)
         if (response.error != null) {
@@ -43,7 +44,7 @@ internal class ChromeDPConnection(
     /**
      * A flow of incoming events.
      */
-    fun events() = frames.filter(InboundFrame::isEvent)
+    fun events() = frames.filterIsInstance<EventFrame>()
 
     /**
      * Stops listening to incoming events and closes the underlying web socket connection.
@@ -56,7 +57,7 @@ internal class ChromeDPConnection(
 
 private val json = Json { ignoreUnknownKeys = true }
 
-private fun WebSocketFrame.Text.decodeInboundFrame() = json.decodeFromString(InboundFrame.serializer(), text)
+private fun WebSocketFrame.Text.decodeInboundFrame() = json.decodeFromString(InboundFrameSerializer, text)
 
 class RequestFailed(var request: RequestFrame, val error: RequestError) : Exception(error.message)
 

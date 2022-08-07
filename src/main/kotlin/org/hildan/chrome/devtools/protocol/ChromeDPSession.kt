@@ -54,8 +54,8 @@ internal class ChromeDPSession(
      */
     fun <E> events(eventName: String, deserializer: DeserializationStrategy<E>): Flow<E> = connection.events()
         .filter { it.sessionId == sessionId }
-        .filter { it.method == eventName }
-        .map { it.decodeEventPayload(deserializer) }
+        .filter { it.eventName == eventName }
+        .map { it.decodePayload(deserializer) }
 
     /**
      * Subscribes to events whose names are in the provided [deserializers] map, converting their payload to subclasses
@@ -63,7 +63,7 @@ internal class ChromeDPSession(
      */
     fun <E> events(deserializers: Map<String, DeserializationStrategy<out E>>): Flow<E> = connection.events()
         .filter { it.sessionId == sessionId }
-        .mapNotNull { f -> deserializers[f.method]?.let { f.decodeEventPayload(it) } }
+        .mapNotNull { f -> deserializers[f.eventName]?.let { f.decodePayload(it) } }
 
     /**
      * Closes the underlying web socket connection, effectively closing every session based on the same web socket
@@ -76,8 +76,8 @@ internal class ChromeDPSession(
 
 private val json = Json { ignoreUnknownKeys = true }
 
-private fun <T> InboundFrame.decodeResponsePayload(deserializer: DeserializationStrategy<T>): T =
+private fun <T> ResponseFrame.decodeResponsePayload(deserializer: DeserializationStrategy<T>): T =
     json.decodeFromJsonElement(deserializer, result ?: error("Missing result in response"))
 
-private fun <T> InboundFrame.decodeEventPayload(deserializer: DeserializationStrategy<T>): T =
-    json.decodeFromJsonElement(deserializer, params ?: error("Missing params field in event"))
+private fun <T> EventFrame.decodePayload(deserializer: DeserializationStrategy<T>): T =
+    json.decodeFromJsonElement(deserializer, payload)
