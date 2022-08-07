@@ -9,6 +9,11 @@ import org.hildan.krossbow.websocket.WebSocketFrame
 
 internal fun WebSocketConnection.chromeDp(): ChromeDPConnection = ChromeDPConnection(this)
 
+/**
+ * A connection to Chrome, providing communication primitives for the Chrome DevTools protocol.
+ *
+ * It encodes/decodes ChromeDP frames, and handles sharing of incoming events.
+ */
 internal class ChromeDPConnection(
     private val webSocket: WebSocketConnection
 ) {
@@ -22,6 +27,9 @@ internal class ChromeDPConnection(
             started = SharingStarted.Eagerly,
         )
 
+    /**
+     * Sends the given ChromeDP [request], and returns the corresponding [InboundFrame].
+     */
     suspend fun request(request: RequestFrame): InboundFrame {
         val response = frames.onSubscription { webSocket.sendText(json.encodeToString(request)) }
             .filter { it.matchesRequest(request) }
@@ -32,8 +40,14 @@ internal class ChromeDPConnection(
         return response
     }
 
+    /**
+     * A flow of incoming events.
+     */
     fun events() = frames.filter(InboundFrame::isEvent)
 
+    /**
+     * Stops listening to incoming events and closes the underlying web socket connection.
+     */
     suspend fun close() {
         coroutineScope.cancel()
         webSocket.close()
