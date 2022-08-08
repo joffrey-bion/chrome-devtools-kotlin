@@ -41611,12 +41611,6 @@ public final class org/hildan/chrome/devtools/protocol/ChromeVersion$Companion {
 public abstract interface annotation class org/hildan/chrome/devtools/protocol/ExperimentalChromeApi : java/lang/annotation/Annotation {
 }
 
-public final class org/hildan/chrome/devtools/protocol/MissingResponse : java/lang/Exception {
-	public fun <init> (Lorg/hildan/chrome/devtools/protocol/RequestFrame;)V
-	public final fun getRequest ()Lorg/hildan/chrome/devtools/protocol/RequestFrame;
-	public final fun setRequest (Lorg/hildan/chrome/devtools/protocol/RequestFrame;)V
-}
-
 public final class org/hildan/chrome/devtools/protocol/RequestError {
 	public static final field Companion Lorg/hildan/chrome/devtools/protocol/RequestError$Companion;
 	public synthetic fun <init> (IJLjava/lang/String;Lkotlinx/serialization/json/JsonElement;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V

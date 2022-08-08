@@ -34,7 +34,8 @@ internal class ChromeDPConnection(
         val response = frames.onSubscription { webSocket.sendText(json.encodeToString(request)) }
             .filterIsInstance<ResponseFrame>()
             .filter { it.matchesRequest(request) }
-            .firstOrNull() ?: throw MissingResponse(request)
+            .first() // a shared flow never completes anyway, so we either hang forever or get the response
+
         if (response.error != null) {
             throw RequestFailed(request, response.error)
         }
@@ -60,6 +61,3 @@ private val json = Json { ignoreUnknownKeys = true }
 private fun WebSocketFrame.Text.decodeInboundFrame() = json.decodeFromString(InboundFrameSerializer, text)
 
 class RequestFailed(var request: RequestFrame, val error: RequestError) : Exception(error.message)
-
-class MissingResponse(var request: RequestFrame) :
-    Exception("Missing response for request ${request.method} #${request.id}")
