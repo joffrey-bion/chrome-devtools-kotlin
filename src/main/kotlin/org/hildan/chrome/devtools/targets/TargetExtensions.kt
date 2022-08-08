@@ -18,6 +18,8 @@ private val pageLikeTargetTypes = listOf("page", "iframe")
  */
 @OptIn(ExperimentalChromeApi::class)
 suspend fun ChromeBrowserSession.attachToPage(targetId: TargetID): ChromePageSession {
+    // We use the "flatten" mode because it's required by our implementation of the protocol
+    // (namely, we specify sessionId as part of the request frames directly, see RequestFrame)
     val sessionId = target.attachToTarget(AttachToTargetRequest(targetId = targetId, flatten = true)).sessionId
     val targetInfo = target.getTargetInfo(GetTargetInfoRequest(targetId = targetId)).targetInfo
     if (targetInfo.type !in pageLikeTargetTypes) {
