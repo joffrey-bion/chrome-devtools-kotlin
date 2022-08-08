@@ -41650,7 +41650,6 @@ public final class org/hildan/chrome/devtools/protocol/RequestFailed : java/lang
 	public fun <init> (Lorg/hildan/chrome/devtools/protocol/RequestFrame;Lorg/hildan/chrome/devtools/protocol/RequestError;)V
 	public final fun getError ()Lorg/hildan/chrome/devtools/protocol/RequestError;
 	public final fun getRequest ()Lorg/hildan/chrome/devtools/protocol/RequestFrame;
-	public final fun setRequest (Lorg/hildan/chrome/devtools/protocol/RequestFrame;)V
 }
 
 public final class org/hildan/chrome/devtools/protocol/RequestFrame {

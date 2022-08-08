@@ -31,18 +31,28 @@ data class RequestFrame(
 /**
  * A generic inbound frame received from the server. It can represent responses to requests, or server-initiated events.
  */
-internal sealed class InboundFrame
+internal sealed class InboundFrame {
+    /** The session ID of the target concerned by this event. */
+    abstract val sessionId: SessionID?
+}
 
 /**
  * A polymorphic deserializer that picks the correct deserializer for the specific response or event frames based on
- * the presence of the `id` field in the JSON.
+ * the JSON structure.
  */
 internal object InboundFrameSerializer : JsonContentPolymorphicSerializer<InboundFrame>(InboundFrame::class) {
-    // Implementation as defined by:
+    // Events are distinguished from responses to requests by the absence of the 'id' field, as defined by:
     // https://github.com/aslushnikov/getting-started-with-cdp/blob/master/README.md#protocol-fundamentals
+    // Successful and error responses are distinguished by the presence of either the 'result' or 'error' field.
+    // Exactly one of these 2 fields must be present, see https://www.jsonrpc.org/specification#response_object
     override fun selectDeserializer(element: JsonElement): KSerializer<out InboundFrame> {
         val id = element.jsonObject["id"]
-        return if (id != null && id !is JsonNull) ResponseFrame.serializer() else EventFrame.serializer()
+        val error = element.jsonObject["error"]
+        return when {
+            id == null || id is JsonNull -> EventFrame.serializer()
+            error != null && error !is JsonNull -> ErrorFrame.serializer()
+            else -> ResponseFrame.serializer()
+        }
     }
 }
 
@@ -51,42 +61,46 @@ internal object InboundFrameSerializer : JsonContentPolymorphicSerializer<Inboun
  */
 @Serializable
 internal data class EventFrame(
-    /** The event name. */
-    @SerialName("method")
-    val eventName: String,
+    /** The event name of this event (e.g. "DOM.documentUpdated"). */
+    @SerialName("method") val eventName: String,
 
     /** The payload of this event. */
-    @SerialName("params")
-    val payload: JsonElement,
+    @SerialName("params") val payload: JsonElement,
 
-    /** Session ID of the target concerned by this event. */
-    val sessionId: SessionID? = null,
+    override val sessionId: SessionID? = null,
 ) : InboundFrame()
 
 /**
  * A frame received as a response to a request.
  */
 @Serializable
-internal data class ResponseFrame(
+internal sealed class ResultFrame : InboundFrame() {
     /** The ID of the request that triggered this response. */
-    val id: Long,
-
-    /** Response payload. */
-    val result: JsonElement? = null,
-
-    /** Error data. Only non-null if an error occurred during request processing. */
-    val error: RequestError? = null,
-
-    /** Session ID of the target concerned by this event. */
-    val sessionId: SessionID? = null,
-) : InboundFrame() {
-
-    /** Checks if this frame is a response to the given request. */
-    fun matchesRequest(request: RequestFrame): Boolean = id == request.id && sessionId == request.sessionId
+    abstract val id: Long
 }
 
 /**
- * Represents protocol error.
+ * A successful response to a request.
+ */
+@Serializable
+internal data class ResponseFrame(
+    override val id: Long,
+    override val sessionId: SessionID? = null,
+    @SerialName("result") val payload: JsonElement,
+) : ResultFrame()
+
+/**
+ * A frame received when there was an error processing the corresponding request.
+ */
+@Serializable
+internal data class ErrorFrame(
+    override val id: Long,
+    override val sessionId: SessionID? = null,
+    val error: RequestError,
+) : ResultFrame()
+
+/**
+ * Data about an error that occurred when processing a request.
  */
 @Serializable
 data class RequestError(

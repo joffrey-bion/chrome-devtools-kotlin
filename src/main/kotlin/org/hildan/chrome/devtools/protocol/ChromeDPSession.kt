@@ -77,7 +77,7 @@ internal class ChromeDPSession(
 private val json = Json { ignoreUnknownKeys = true }
 
 private fun <T> ResponseFrame.decodeResponsePayload(deserializer: DeserializationStrategy<T>): T =
-    json.decodeFromJsonElement(deserializer, result ?: error("Missing result in response"))
+    json.decodeFromJsonElement(deserializer, payload)
 
 private fun <T> EventFrame.decodePayload(deserializer: DeserializationStrategy<T>): T =
     json.decodeFromJsonElement(deserializer, payload)

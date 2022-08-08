@@ -7,6 +7,8 @@ import kotlinx.serialization.json.Json
 import org.hildan.krossbow.websocket.WebSocketConnection
 import org.hildan.krossbow.websocket.WebSocketFrame
 
+private val json = Json { ignoreUnknownKeys = true }
+
 internal fun WebSocketConnection.chromeDp(): ChromeDPConnection = ChromeDPConnection(this)
 
 /**
@@ -21,7 +23,7 @@ internal class ChromeDPConnection(
 
     private val frames = webSocket.incomingFrames
         .filterIsInstance<WebSocketFrame.Text>()
-        .map { frame -> frame.decodeInboundFrame() }
+        .map { frame -> json.decodeFromString(InboundFrameSerializer, frame.text) }
         .shareIn(
             scope = coroutineScope,
             started = SharingStarted.Eagerly,
@@ -31,16 +33,20 @@ internal class ChromeDPConnection(
      * Sends the given ChromeDP [request], and returns the corresponding [ResponseFrame].
      */
     suspend fun request(request: RequestFrame): ResponseFrame {
-        val response = frames.onSubscription { webSocket.sendText(json.encodeToString(request)) }
-            .filterIsInstance<ResponseFrame>()
+        val resultFrame = frames.onSubscription { webSocket.sendText(json.encodeToString(request)) }
+            .filterIsInstance<ResultFrame>()
             .filter { it.matchesRequest(request) }
-            .first() // a shared flow never completes anyway, so we either hang forever or get the response
+            .first() // a shared flow never completes anyway, so this will never throw (but can hang forever)
 
-        if (response.error != null) {
-            throw RequestFailed(request, response.error)
+        when (resultFrame) {
+            is ResponseFrame -> return resultFrame
+            is ErrorFrame -> throw RequestFailed(request, resultFrame.error)
         }
-        return response
     }
+
+    private fun ResultFrame.matchesRequest(request: RequestFrame): Boolean =
+        // id is only unique within a session, so we need to check sessionId too
+        id == request.id && sessionId == request.sessionId
 
     /**
      * A flow of incoming events.
@@ -56,8 +62,7 @@ internal class ChromeDPConnection(
     }
 }
 
-private val json = Json { ignoreUnknownKeys = true }
-
-private fun WebSocketFrame.Text.decodeInboundFrame() = json.decodeFromString(InboundFrameSerializer, text)
-
-class RequestFailed(var request: RequestFrame, val error: RequestError) : Exception(error.message)
+/**
+ * An exception thrown when an error occurred during the processing of a request on server side.
+ */
+class RequestFailed(val request: RequestFrame, val error: RequestError) : Exception(error.message)
