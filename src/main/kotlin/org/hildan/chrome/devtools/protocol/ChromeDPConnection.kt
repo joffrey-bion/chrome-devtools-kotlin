@@ -9,6 +9,11 @@ import org.hildan.krossbow.websocket.WebSocketFrame
 
 private val json = Json { ignoreUnknownKeys = true }
 
+/**
+ * Wraps this [WebSocketConnection] to provide Chrome DevTools Protocol capabilities.
+ *
+ * The returned [ChromeDPConnection] can be used to send requests and listen to events.
+ */
 internal fun WebSocketConnection.chromeDp(): ChromeDPConnection = ChromeDPConnection(this)
 
 /**
