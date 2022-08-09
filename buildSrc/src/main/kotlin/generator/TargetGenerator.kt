@@ -5,12 +5,12 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import org.hildan.chrome.devtools.build.json.TargetType
 import org.hildan.chrome.devtools.build.model.ChromeDPDomain
 import org.hildan.chrome.devtools.build.names.Annotations
-import org.hildan.chrome.devtools.build.names.ExtClasses
+import org.hildan.chrome.devtools.build.names.ExtDeclarations
 
 private const val SESSION_ARG = "session"
 
 fun createTargetInterface(targetName: String, domains: List<ChromeDPDomain>): TypeSpec =
-    TypeSpec.interfaceBuilder(ExtClasses.targetInterface(targetName)).apply {
+    TypeSpec.interfaceBuilder(ExtDeclarations.targetInterface(targetName)).apply {
         addKdoc("Represents the available domain APIs in $targetName targets")
         domains.forEach {
             addProperty(it.toPropertySpec())
@@ -29,16 +29,16 @@ private fun supportedDomainsProperty(domains: List<ChromeDPDomain>): PropertySpe
     }.build()
 
 fun createSimpleAllTargetsImpl(domains: List<ChromeDPDomain>, targetTypes: List<TargetType>): TypeSpec =
-    TypeSpec.classBuilder(ExtClasses.targetImplementation).apply {
+    TypeSpec.classBuilder(ExtDeclarations.targetImplementation).apply {
         addKdoc("Implementation of all target interfaces by exposing all domain APIs")
         addModifiers(KModifier.INTERNAL)
         targetTypes.forEach {
-            addSuperinterface(ExtClasses.targetInterface(it.name))
+            addSuperinterface(ExtDeclarations.targetInterface(it.name))
         }
 
         primaryConstructor(
             FunSpec.constructorBuilder()
-                .addParameter(SESSION_ARG, ExtClasses.chromeDPSession)
+                .addParameter(SESSION_ARG, ExtDeclarations.chromeDPSession)
                 .build()
         )
 

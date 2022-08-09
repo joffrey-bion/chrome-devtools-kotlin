@@ -8,7 +8,7 @@ import org.hildan.chrome.devtools.build.json.pullNestedEnumsToTopLevel
 import org.hildan.chrome.devtools.build.model.ChromeDPDomain
 import org.hildan.chrome.devtools.build.model.toChromeDPDomain
 import org.hildan.chrome.devtools.build.names.Annotations
-import org.hildan.chrome.devtools.build.names.ExtClasses
+import org.hildan.chrome.devtools.build.names.ExtDeclarations
 import java.nio.file.Files
 import java.nio.file.Path
 
@@ -40,7 +40,7 @@ class Generator(
     }
 
     private fun generateTargetInterfaceFile(targetName: String, domains: List<ChromeDPDomain>) {
-        val targetInterface = ExtClasses.targetInterface(targetName)
+        val targetInterface = ExtDeclarations.targetInterface(targetName)
         FileSpec.builder(targetInterface.packageName, targetInterface.simpleName)
             .addAnnotation(Annotations.suppressWarnings)
             .addType(createTargetInterface(targetName, domains))
@@ -49,7 +49,7 @@ class Generator(
     }
 
     private fun generateSimpleTargetFile(domains: List<ChromeDPDomain>, targetTypes: List<TargetType>) {
-        val targetClass = ExtClasses.targetImplementation
+        val targetClass = ExtDeclarations.targetImplementation
         FileSpec.builder(targetClass.packageName, targetClass.simpleName)
             .addAnnotation(Annotations.suppressWarnings)
             .addType(createSimpleAllTargetsImpl(domains, targetTypes))

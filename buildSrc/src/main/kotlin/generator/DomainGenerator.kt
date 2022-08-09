@@ -2,12 +2,12 @@ package org.hildan.chrome.devtools.build.generator
 
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
+import kotlinx.serialization.DeserializationStrategy
 import org.hildan.chrome.devtools.build.model.ChromeDPCommand
 import org.hildan.chrome.devtools.build.model.ChromeDPDomain
 import org.hildan.chrome.devtools.build.model.ChromeDPEvent
-import kotlinx.serialization.DeserializationStrategy
 import org.hildan.chrome.devtools.build.names.Annotations
-import org.hildan.chrome.devtools.build.names.ExtClasses
+import org.hildan.chrome.devtools.build.names.ExtDeclarations
 
 private const val INPUT_ARG = "input"
 private const val SESSION_ARG = "session"
@@ -77,9 +77,9 @@ private fun ChromeDPDomain.createDomainClass(): TypeSpec = TypeSpec.classBuilder
     }
     primaryConstructor(FunSpec.constructorBuilder()
         .addModifiers(KModifier.INTERNAL)
-        .addParameter(SESSION_ARG, ExtClasses.chromeDPSession)
+        .addParameter(SESSION_ARG, ExtDeclarations.chromeDPSession)
         .build())
-    addProperty(PropertySpec.builder(SESSION_ARG, ExtClasses.chromeDPSession)
+    addProperty(PropertySpec.builder(SESSION_ARG, ExtDeclarations.chromeDPSession)
         .addModifiers(KModifier.PRIVATE)
         .initializer(SESSION_ARG)
         .build())
@@ -112,7 +112,7 @@ private fun ChromeDPCommand.toFunctionSpec(): FunSpec = FunSpec.builder(names.me
     }
     val returnType = if (returns.isEmpty()) Unit::class.asTypeName() else names.outputTypeName
     returns(returnType)
-    addStatement("return %N.request(%S, %L)", SESSION_ARG, names.fullCommandName, inputArg)
+    addStatement("return %N.%M(%S, %L)", SESSION_ARG, ExtDeclarations.sessionRequestExtension, names.fullCommandName, inputArg)
 }.build()
 
 private fun ChromeDPEvent.toSubscribeFunctionSpec(): FunSpec =
@@ -126,7 +126,7 @@ private fun ChromeDPEvent.toSubscribeFunctionSpec(): FunSpec =
             addAnnotation(Annotations.experimentalChromeApi)
         }
         returns(coroutineFlowClass.parameterizedBy(names.eventTypeName))
-        addStatement("return %N.events(%S)", SESSION_ARG, names.fullEventName)
+        addStatement("return %N.%M(%S)", SESSION_ARG, ExtDeclarations.sessionTypedEventsExtension, names.fullEventName)
     }.build()
 
 private fun TypeSpec.Builder.addAllEventsFunction(domain: ChromeDPDomain) {
@@ -138,7 +138,7 @@ private fun TypeSpec.Builder.addAllEventsFunction(domain: ChromeDPDomain) {
     addFunction(FunSpec.builder("events")
         .addKdoc("Subscribes to all events related to this domain.")
         .returns(coroutineFlowClass.parameterizedBy(domain.names.eventsParentClassName))
-        .addCode("return %N.events(%N)", SESSION_ARG, DESERIALIZERS_PROP)
+        .addCode("return %N.%M(%N)", SESSION_ARG, ExtDeclarations.sessionTypedEventsExtension, DESERIALIZERS_PROP)
         .build())
 }
 

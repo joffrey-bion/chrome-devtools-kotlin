@@ -1,69 +1,39 @@
 package org.hildan.chrome.devtools.protocol
 
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.mapNotNull
-import kotlinx.serialization.DeserializationStrategy
-import kotlinx.serialization.SerializationStrategy
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.serializer
+import kotlinx.serialization.json.JsonElement
 import org.hildan.chrome.devtools.domains.target.SessionID
 import java.util.concurrent.atomic.AtomicLong
 
 /**
  * A wrapper around a [ChromeDPConnection] to handle session-scoped request IDs and filter events of a specific session.
- *
- * It also provides helpers to serialize/deserialize typed payloads from the dynamic parts of the ChromeDP frames.
  */
 internal class ChromeDPSession(
     val connection: ChromeDPConnection,
     val sessionId: SessionID?,
 ) {
+    /**
+     * Ids must be unique at least within a session.
+     */
     private val nextRequestId = AtomicLong(0)
 
-    suspend inline fun <reified I, reified O> request(methodName: String, requestParams: I?): O =
-        request(methodName, requestParams, serializer = serializer(), deserializer = serializer())
-
     /**
-     * Sends request and captures response from the stream.
+     * Sends a request with the given [methodName] and [params], and suspends until the response is received.
      */
-    suspend fun <I, O> request(
-        methodName: String,
-        requestParams: I?,
-        serializer: SerializationStrategy<I>,
-        deserializer: DeserializationStrategy<O>,
-    ): O {
-        val params = requestParams?.let { json.encodeToJsonElement(serializer, it) }
+    suspend fun request(methodName: String, params: JsonElement?): ResponseFrame {
         val request = RequestFrame(
             id = nextRequestId.incrementAndGet(),
             method = methodName,
             params = params,
             sessionId = sessionId,
         )
-        return connection.request(request).decodeResponsePayload(deserializer)
+        return connection.request(request)
     }
 
     /**
-     * Subscribes to events of the given [eventName], converting their payload to instances of [E].
+     * Subscribes to all events tied to this session.
      */
-    inline fun <reified E> events(eventName: String): Flow<E> = events(eventName, serializer())
-
-    /**
-     * Subscribes to events of the given [eventName], converting their payload to instances of [E] using [deserializer].
-     */
-    fun <E> events(eventName: String, deserializer: DeserializationStrategy<E>): Flow<E> = connection.events()
-        .filter { it.sessionId == sessionId }
-        .filter { it.eventName == eventName }
-        .map { it.decodePayload(deserializer) }
-
-    /**
-     * Subscribes to events whose names are in the provided [deserializers] map, converting their payload to subclasses
-     * of [E] using the corresponding deserializer in the map.
-     */
-    fun <E> events(deserializers: Map<String, DeserializationStrategy<out E>>): Flow<E> = connection.events()
-        .filter { it.sessionId == sessionId }
-        .mapNotNull { f -> deserializers[f.eventName]?.let { f.decodePayload(it) } }
+    fun events() = connection.events().filter { it.sessionId == sessionId }
 
     /**
      * Closes the underlying web socket connection, effectively closing every session based on the same web socket
@@ -73,11 +43,3 @@ internal class ChromeDPSession(
         connection.close()
     }
 }
-
-private val json = Json { ignoreUnknownKeys = true }
-
-private fun <T> ResponseFrame.decodeResponsePayload(deserializer: DeserializationStrategy<T>): T =
-    json.decodeFromJsonElement(deserializer, payload)
-
-private fun <T> EventFrame.decodePayload(deserializer: DeserializationStrategy<T>): T =
-    json.decodeFromJsonElement(deserializer, payload)

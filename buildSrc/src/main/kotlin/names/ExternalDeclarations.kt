@@ -2,17 +2,19 @@ package org.hildan.chrome.devtools.build.names
 
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.MemberName
 import kotlinx.serialization.Serializable
 
 const val ROOT_PACKAGE_NAME = "org.hildan.chrome.devtools"
 
-object ExtClasses {
+object ExtDeclarations {
 
     private const val targetsPackage = "$ROOT_PACKAGE_NAME.targets"
-
     private const val protocolPackage = "$ROOT_PACKAGE_NAME.protocol"
 
     val chromeDPSession = ClassName(protocolPackage, "ChromeDPSession")
+    val sessionRequestExtension = MemberName(protocolPackage, "request")
+    val sessionTypedEventsExtension = MemberName(protocolPackage, "typedEvents")
 
     val experimentalChromeApi = ClassName(protocolPackage, "ExperimentalChromeApi")
 
@@ -29,7 +31,7 @@ object Annotations {
             .addMember("message = \"Deprecated in the Chrome DevTools protocol\"")
             .build()
 
-    val experimentalChromeApi = AnnotationSpec.builder(ExtClasses.experimentalChromeApi).build()
+    val experimentalChromeApi = AnnotationSpec.builder(ExtDeclarations.experimentalChromeApi).build()
 
     /**
      * Suppress common warnings in generated files:
