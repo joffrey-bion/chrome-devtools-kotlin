@@ -164,8 +164,9 @@ data class ChromeVersion(
  * Targets are the parts of the browser that the Chrome DevTools Protocol can interact with.
  * This includes for instance pages, serviceworkers and extensions (and also the browser itself).
  *
- * When a client wants to interact with a target using CDP, it has to first attach to the target using
- * [ChromeDPTarget.attach]. This will establish a protocol session to the given target.
+ * When a client wants to interact with a target using CDP, it has to first attach to the target.
+ * One way to do it is to connect to chrome via web socket using [ChromeDPClient.webSocket] and then
+ * using [ChromeBrowserSession.attachToPage] or other attach- methods.
  * The client can then interact with the target using the [ChromePageSession].
  */
 @Serializable
