@@ -36,6 +36,8 @@ internal class ChromeDPConnection(
 
     /**
      * Sends the given ChromeDP [request], and returns the corresponding [ResponseFrame].
+     *
+     * Throws [RequestFailed] in case of error.
      */
     suspend fun request(request: RequestFrame): ResponseFrame {
         val resultFrame = frames.onSubscription { webSocket.sendText(json.encodeToString(request)) }

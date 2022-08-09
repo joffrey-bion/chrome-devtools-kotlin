@@ -11,4 +11,5 @@ package org.hildan.chrome.devtools.protocol
     AnnotationTarget.PROPERTY,
     AnnotationTarget.TYPEALIAS
 )
+// This is used in generated code by fully qualified name, be careful when renaming or moving to another package
 annotation class ExperimentalChromeApi
