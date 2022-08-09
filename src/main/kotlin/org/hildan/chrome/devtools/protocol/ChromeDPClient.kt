@@ -4,19 +4,18 @@ import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.serialization.kotlinx.json.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 import org.hildan.chrome.devtools.targets.ChromeBrowserSession
 import org.hildan.chrome.devtools.targets.ChromePageSession
 import org.hildan.chrome.devtools.targets.attachToPage
 import org.hildan.krossbow.websocket.WebSocketClient
 import org.hildan.krossbow.websocket.builtin.builtIn
-import org.hildan.krossbow.websocket.default
-import kotlinx.serialization.json.Json as KxJson
 
 private val DEFAULT_WEBSOCKET_CLIENT by lazy { WebSocketClient.builtIn() }
 
@@ -26,7 +25,7 @@ private val DEFAULT_HTTP_CLIENT_WITH_HOST_OVERRIDE by lazy { createHttpClient(ov
 
 private fun createHttpClient(overrideHostHeader: Boolean) = HttpClient {
     install(ContentNegotiation) {
-        json(KxJson { ignoreUnknownKeys = true })
+        json(Json { ignoreUnknownKeys = true })
     }
     if (overrideHostHeader) {
         install(DefaultRequest) {
