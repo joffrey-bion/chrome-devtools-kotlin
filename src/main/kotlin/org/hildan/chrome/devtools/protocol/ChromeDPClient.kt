@@ -199,5 +199,5 @@ data class ChromeDPTarget(
  */
 suspend fun WebSocketClient.connectToChrome(webSocketDebuggerUrl: String): ChromeBrowserSession {
     val connection = connect(webSocketDebuggerUrl).chromeDp()
-    return ChromeBrowserSession(ChromeDPSession(connection, null))
+    return ChromeBrowserSession(connection.withSession(sessionId = null))
 }

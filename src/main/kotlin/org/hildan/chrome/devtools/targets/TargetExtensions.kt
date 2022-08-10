@@ -5,8 +5,8 @@ import kotlinx.coroutines.flow.*
 import org.hildan.chrome.devtools.domains.page.NavigateRequest
 import org.hildan.chrome.devtools.domains.target.*
 import org.hildan.chrome.devtools.domains.target.events.TargetEvent
-import org.hildan.chrome.devtools.protocol.ChromeDPSession
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
+import org.hildan.chrome.devtools.protocol.withSession
 
 private val pageLikeTargetTypes = listOf("page", "iframe")
 
@@ -26,7 +26,7 @@ suspend fun ChromeBrowserSession.attachToPage(targetId: TargetID): ChromePageSes
         error("Cannot initiate a page session with target of type ${targetInfo.type} (target ID: $targetId)")
     }
     val metaData = ChromePageMetaData(targetId, targetInfo.browserContextId)
-    return ChromePageSession(ChromeDPSession(session.connection, sessionId), this, metaData)
+    return ChromePageSession(session.connection.withSession(sessionId), this, metaData)
 }
 
 /**

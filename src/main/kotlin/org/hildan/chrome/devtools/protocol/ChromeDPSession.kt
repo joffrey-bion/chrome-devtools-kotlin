@@ -6,6 +6,12 @@ import org.hildan.chrome.devtools.domains.target.SessionID
 import java.util.concurrent.atomic.AtomicLong
 
 /**
+ * Creates a [ChromeDPSession] backed by this connection to handle session-scoped request IDs and filter events of
+ * the session with the given [sessionId]. The session ID may be null to represent the root browser sessions.
+ */
+internal fun ChromeDPConnection.withSession(sessionId: SessionID?) = ChromeDPSession(this, sessionId)
+
+/**
  * A wrapper around a [ChromeDPConnection] to handle session-scoped request IDs and filter events of a specific session.
  */
 internal class ChromeDPSession(
