@@ -4,6 +4,7 @@ import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.websocket.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
@@ -14,10 +15,6 @@ import kotlinx.serialization.json.Json
 import org.hildan.chrome.devtools.targets.ChromeBrowserSession
 import org.hildan.chrome.devtools.targets.ChromePageSession
 import org.hildan.chrome.devtools.targets.attachToPage
-import org.hildan.krossbow.websocket.WebSocketClient
-import org.hildan.krossbow.websocket.builtin.builtIn
-
-private val DEFAULT_WEBSOCKET_CLIENT by lazy { WebSocketClient.builtIn() }
 
 private val DEFAULT_HTTP_CLIENT by lazy { createHttpClient(overrideHostHeader = false) }
 
@@ -27,6 +24,7 @@ private fun createHttpClient(overrideHostHeader: Boolean) = HttpClient {
     install(ContentNegotiation) {
         json(Json { ignoreUnknownKeys = true })
     }
+    install(WebSockets)
     if (overrideHostHeader) {
         install(DefaultRequest) {
             headers["Host"] = "localhost"
@@ -41,7 +39,7 @@ private fun createHttpClient(overrideHostHeader: Boolean) = HttpClient {
  * the browser and its targets to make use of the full Chrome Devtools Protocol API.
  *
  * **Note:** if you already know the browser target's web socket URL, you don't need to create a `ChromeDPClient`.
- * Instead, use a [WebSocketClient] and [WebSocketClient.connectToChrome][connectToChrome] instead.
+ * Instead, you can directly use [HttpClient.chromeWebSocket].
  *
  * ## Host override
  *
@@ -64,11 +62,6 @@ class ChromeDPClient(
      * Enables override of the `Host` header to `localhost` (see section about Host override in [ChromeDPClient] doc).
      */
     private val overrideHostHeader: Boolean = false,
-    /**
-     * This parameter should usually be left to its default value.
-     * Only use this to work around an issue in the client's configuration/behaviour.
-     */
-    private val webSocketClient: WebSocketClient = DEFAULT_WEBSOCKET_CLIENT,
     /**
      * This parameter should usually be left to its default value.
      * Only use this to work around an issue in the client's configuration/behaviour.
@@ -124,7 +117,7 @@ class ChromeDPClient(
      */
     suspend fun webSocket(): ChromeBrowserSession {
         val browserDebuggerUrl = version().webSocketDebuggerUrl
-        return webSocketClient.connectToChrome(browserDebuggerUrl)
+        return httpClient.chromeWebSocket(browserDebuggerUrl)
     }
 
     private fun ChromeVersion.fixHost() = when {
@@ -188,7 +181,7 @@ data class ChromeDPTarget(
  * [ChromeBrowserSession.attachToPage] or
  * [ChromeBrowserSession.attachToNewPage][org.hildan.chrome.devtools.targets.attachToNewPage].
  */
-suspend fun WebSocketClient.connectToChrome(webSocketDebuggerUrl: String): ChromeBrowserSession {
-    val connection = connect(webSocketDebuggerUrl).chromeDp()
+suspend fun HttpClient.chromeWebSocket(webSocketDebuggerUrl: String): ChromeBrowserSession {
+    val connection = webSocketSession(webSocketDebuggerUrl).chromeDp()
     return ChromeBrowserSession(connection.withSession(sessionId = null))
 }

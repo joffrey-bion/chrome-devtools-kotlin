@@ -1,20 +1,20 @@
 package org.hildan.chrome.devtools.protocol
 
+import io.ktor.websocket.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.hildan.krossbow.websocket.WebSocketConnection
-import org.hildan.krossbow.websocket.WebSocketFrame
+import java.io.IOException
 
 private val json = Json { ignoreUnknownKeys = true }
 
 /**
- * Wraps this [WebSocketConnection] to provide Chrome DevTools Protocol capabilities.
+ * Wraps this [WebSocketSession] to provide Chrome DevTools Protocol capabilities.
  *
  * The returned [ChromeDPConnection] can be used to send requests and listen to events.
  */
-internal fun WebSocketConnection.chromeDp(): ChromeDPConnection = ChromeDPConnection(this)
+internal fun WebSocketSession.chromeDp(): ChromeDPConnection = ChromeDPConnection(this)
 
 /**
  * A connection to Chrome, providing communication primitives for the Chrome DevTools protocol.
@@ -22,13 +22,13 @@ internal fun WebSocketConnection.chromeDp(): ChromeDPConnection = ChromeDPConnec
  * It encodes/decodes ChromeDP frames, and handles sharing of incoming events.
  */
 internal class ChromeDPConnection(
-    private val webSocket: WebSocketConnection
+    private val webSocket: WebSocketSession,
 ) {
     private val coroutineScope = CoroutineScope(CoroutineName("ChromeDP-frame-decoder"))
 
-    private val frames = webSocket.incomingFrames
-        .filterIsInstance<WebSocketFrame.Text>()
-        .map { frame -> json.decodeFromString(InboundFrameSerializer, frame.text) }
+    private val frames = webSocket.incoming.receiveAsFlow()
+        .filterIsInstance<Frame.Text>()
+        .map { frame -> json.decodeFromString(InboundFrameSerializer, frame.readText()) }
         .shareIn(
             scope = coroutineScope,
             started = SharingStarted.Eagerly,
@@ -39,8 +39,12 @@ internal class ChromeDPConnection(
      *
      * Throws [RequestFailed] in case of error.
      */
+    @OptIn(ExperimentalCoroutinesApi::class)
     suspend fun request(request: RequestFrame): ResponseFrame {
-        val resultFrame = frames.onSubscription { webSocket.sendText(json.encodeToString(request)) }
+        if (webSocket.outgoing.isClosedForSend) {
+            throw IOException("Cannot perform Chrome DevTools request ${request.method}, the web socket is closed.")
+        }
+        val resultFrame = frames.onSubscription { webSocket.send(json.encodeToString(request)) }
             .filterIsInstance<ResultFrame>()
             .filter { it.matchesRequest(request) }
             .first() // a shared flow never completes anyway, so this will never throw (but can hang forever)
