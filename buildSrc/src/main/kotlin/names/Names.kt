@@ -65,5 +65,5 @@ data class EventNaming(
 ) : NamingConvention() {
     val fullEventName = "${domain.domainName}.${eventName}"
     val methodName = eventName
-    val eventTypeName = domain.eventsParentClassName.nestedClass("${eventName.capitalize()}Event")
+    val eventTypeName = domain.eventsParentClassName.nestedClass(eventName.capitalize())
 }

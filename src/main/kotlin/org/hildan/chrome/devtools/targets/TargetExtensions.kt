@@ -171,11 +171,11 @@ suspend fun ChromeBrowserSession.watchTargetsIn(coroutineScope: CoroutineScope):
 
 @OptIn(ExperimentalChromeApi::class)
 private fun Map<TargetID, TargetInfo>.updatedBy(event: TargetEvent): Map<TargetID, TargetInfo> = when (event) {
-    is TargetEvent.TargetCreatedEvent -> this + (event.targetInfo.targetId to event.targetInfo)
-    is TargetEvent.TargetInfoChangedEvent -> this + (event.targetInfo.targetId to event.targetInfo)
-    is TargetEvent.TargetDestroyedEvent -> this - event.targetId
-    is TargetEvent.TargetCrashedEvent -> this - event.targetId
-    is TargetEvent.AttachedToTargetEvent, //
-    is TargetEvent.DetachedFromTargetEvent, //
-    is TargetEvent.ReceivedMessageFromTargetEvent -> this // irrelevant events
+    is TargetEvent.TargetCreated -> this + (event.targetInfo.targetId to event.targetInfo)
+    is TargetEvent.TargetInfoChanged -> this + (event.targetInfo.targetId to event.targetInfo)
+    is TargetEvent.TargetDestroyed -> this - event.targetId
+    is TargetEvent.TargetCrashed -> this - event.targetId
+    is TargetEvent.AttachedToTarget, //
+    is TargetEvent.DetachedFromTarget, //
+    is TargetEvent.ReceivedMessageFromTarget -> this // irrelevant events
 }
