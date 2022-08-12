@@ -20,8 +20,8 @@ private val pageLikeTargetTypes = listOf("page", "iframe")
 suspend fun ChromeBrowserSession.attachToPage(targetId: TargetID): ChromePageSession {
     // We use the "flatten" mode because it's required by our implementation of the protocol
     // (namely, we specify sessionId as part of the request frames directly, see RequestFrame)
-    val sessionId = target.attachToTarget(AttachToTargetRequest(targetId = targetId, flatten = true)).sessionId
-    val targetInfo = target.getTargetInfo(GetTargetInfoRequest(targetId = targetId)).targetInfo
+    val sessionId = target.attachToTarget(targetId = targetId) { flatten = true }.sessionId
+    val targetInfo = target.getTargetInfo { this.targetId = targetId }.targetInfo
     if (targetInfo.type !in pageLikeTargetTypes) {
         error("Cannot initiate a page session with target of type ${targetInfo.type} (target ID: $targetId)")
     }
@@ -48,19 +48,16 @@ suspend fun ChromeBrowserSession.attachToNewPage(
     background: Boolean = false,
 ): ChromePageSession {
     val browserContextId = when (incognito) {
-        true -> target.createBrowserContext(CreateBrowserContextRequest(disposeOnDetach = true)).browserContextId
+        true -> target.createBrowserContext { disposeOnDetach = true }.browserContextId
         false -> null
     }
 
-    val targetId = target.createTarget(
-        CreateTargetRequest(
-            url = url,
-            browserContextId = browserContextId,
-            height = height,
-            width = width,
-            background = background,
-        )
-    ).targetId
+    val targetId = target.createTarget(url) {
+        this.browserContextId = browserContextId
+        this.height = height
+        this.width = width
+        this.background = background
+    }.targetId
 
     return attachToPage(targetId)
 }
@@ -118,9 +115,7 @@ suspend fun ChromePageSession.navigateAndAwaitPageLoad(navigateRequest: Navigate
  */
 suspend fun ChromePageSession.childPages(): List<TargetInfo> {
     val thisTargetId = metaData.targetId
-    return target.getTargets(GetTargetsRequest())
-        .targetInfos
-        .filter { it.type == "page" && it.openerId == thisTargetId }
+    return target.getTargets().targetInfos.filter { it.type == "page" && it.openerId == thisTargetId }
 }
 
 /**
@@ -154,7 +149,7 @@ suspend inline fun <T> ChromePageSession.use(block: (ChromePageSession) -> T): T
  * Retrieves information about this session's page target.
  */
 @ExperimentalChromeApi
-suspend fun ChromePageSession.getTargetInfo(): TargetInfo = target.getTargetInfo(GetTargetInfoRequest()).targetInfo
+suspend fun ChromePageSession.getTargetInfo(): TargetInfo = target.getTargetInfo().targetInfo
 
 /**
  * Watches the available targets in this browser.
@@ -165,7 +160,7 @@ suspend fun ChromeBrowserSession.watchTargetsIn(coroutineScope: CoroutineScope):
     target.events().onEach { targetsFlow.value = targetsFlow.value.updatedBy(it) }.launchIn(coroutineScope)
 
     // triggers target info events
-    target.setDiscoverTargets(SetDiscoverTargetsRequest(discover = true))
+    target.setDiscoverTargets(discover = true)
     return targetsFlow
 }
 

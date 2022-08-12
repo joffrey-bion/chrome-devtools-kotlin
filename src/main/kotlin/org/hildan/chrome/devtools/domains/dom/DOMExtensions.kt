@@ -13,7 +13,7 @@ typealias CssSelector = String
 /**
  * Retrieves the root [Node] of the current document.
  */
-suspend fun DOMDomain.getDocumentRoot(): Node = getDocument(GetDocumentRequest()).root
+suspend fun DOMDomain.getDocumentRoot(): Node = getDocument().root
 
 /**
  * Retrieves the ID of the root node of the current document.
@@ -70,7 +70,7 @@ suspend fun DOMDomain.awaitNodeBySelector(selector: CssSelector, pollingPeriodMi
 }
 
 private suspend fun DOMDomain.querySelectorOnNode(nodeId: NodeId, selector: CssSelector): NodeId? {
-    val response = querySelector(QuerySelectorRequest(nodeId, selector))
+    val response = querySelector(nodeId, selector)
     return if (response.nodeId == 0) null else response.nodeId
 }
 
@@ -88,36 +88,37 @@ suspend fun DOMDomain.getNodeBySelector(selector: CssSelector): NodeId =
  * Moves the focus to the node corresponding to the given [selector], or null if not found.
  */
 suspend fun DOMDomain.focusNodeBySelector(selector: CssSelector) {
-    val nodeId = findNodeBySelector(selector) ?: error("Cannot focus: no node found using selector '$selector'")
-    focus(FocusRequest(nodeId = nodeId))
+    focus {
+        nodeId = findNodeBySelector(selector) ?: error("Cannot focus: no node found using selector '$selector'")
+    }
 }
 
 /**
  * Gets the attributes of the node corresponding to the given [nodeSelector], or null if the selector didn't match
  * any node.
  */
-suspend fun DOMDomain.getAttributes(nodeSelector: CssSelector): DOMAttributes? =
-    findNodeBySelector(nodeSelector)?.let { nodeId -> getAttributes(nodeId) }
+suspend fun DOMDomain.getTypedAttributes(nodeSelector: CssSelector): DOMAttributes? =
+    findNodeBySelector(nodeSelector)?.let { nodeId -> getTypedAttributes(nodeId) }
 
 /**
  * Gets the attributes of the node corresponding to the given [nodeId].
  */
-suspend fun DOMDomain.getAttributes(nodeId: NodeId): DOMAttributes =
-    getAttributes(GetAttributesRequest(nodeId)).attributes.asDOMAttributes()
+suspend fun DOMDomain.getTypedAttributes(nodeId: NodeId): DOMAttributes =
+    getAttributes(nodeId).attributes.asDOMAttributes()
 
 /**
  * Gets the value of the attribute [attributeName] of the node corresponding to the given [nodeSelector], or null if
  * the selector didn't match any node or if the attribute was not present on the node.
  */
 suspend fun DOMDomain.getAttributeValue(nodeSelector: CssSelector, attributeName: String): String? =
-    getAttributes(nodeSelector)?.get(attributeName)
+    getTypedAttributes(nodeSelector)?.get(attributeName)
 
 /**
  * Gets the value of the attribute [attributeName] of the node corresponding to the given [nodeId], or null if
  * the attribute was not present on the node.
  */
 suspend fun DOMDomain.getAttributeValue(nodeId: NodeId, attributeName: String): String? =
-    getAttributes(nodeId)[attributeName]
+    getTypedAttributes(nodeId)[attributeName]
 
 /**
  * Sets the attribute of the given [name] to the given [value] on the node corresponding to the given [nodeSelector].
@@ -125,13 +126,6 @@ suspend fun DOMDomain.getAttributeValue(nodeId: NodeId, attributeName: String): 
  */
 suspend fun DOMDomain.setAttributeValue(nodeSelector: CssSelector, name: String, value: String) {
     setAttributeValue(nodeId = getNodeBySelector(nodeSelector), name, value)
-}
-
-/**
- * Sets the attribute of the given [name] to the given [value] on the node corresponding to the given [nodeId].
- */
-suspend fun DOMDomain.setAttributeValue(nodeId: NodeId, name: String, value: String) {
-    setAttributeValue(SetAttributeValueRequest(nodeId, name, value))
 }
 
 /**
@@ -144,4 +138,4 @@ suspend fun DOMDomain.getBoxModel(selector: CssSelector): BoxModel? = findNodeBy
  *
  * [Official doc](https://chromedevtools.github.io/devtools-protocol/tot/DOM/#method-getBoxModel)
  */
-suspend fun DOMDomain.getBoxModel(nodeId: NodeId): BoxModel = getBoxModel(GetBoxModelRequest(nodeId)).model
+suspend fun DOMDomain.getBoxModel(nodeId: NodeId): BoxModel = getBoxModel { this.nodeId = nodeId }.model

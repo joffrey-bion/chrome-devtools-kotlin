@@ -16,21 +16,19 @@ suspend fun InputDomain.dispatchMouseClick(
     button: MouseButton = MouseButton.left
 ) {
     dispatchMouseEvent(
-        DispatchMouseEventRequest(
-            type = MouseEventType.mousePressed,
-            x = x,
-            y = y,
-            button = button,
-            clickCount = 1,
-        )
-    )
+        type = MouseEventType.mousePressed,
+        x = x,
+        y = y,
+    ) {
+        this.button = button
+        this.clickCount = 1
+    }
     delay(clickDurationMillis)
     dispatchMouseEvent(
-        DispatchMouseEventRequest(
-            type = MouseEventType.mouseReleased,
-            x = x,
-            y = y,
-            button = button,
-        )
-    )
+        type = MouseEventType.mouseReleased,
+        x = x,
+        y = y,
+    ) {
+        this.button = button
+    }
 }

@@ -231,10 +231,10 @@ class IntegrationTests {
                 browser.attachToNewPageAndAwaitPageLoad("https://www.htmlquick.com/reference/tags/select.html").use { page ->
 
                     val nodeId = page.dom.findNodeBySelector("select[name=carbrand] option[selected]")
-                    val attributes1 = page.dom.getAttributes(nodeId!!)
+                    val attributes1 = page.dom.getTypedAttributes(nodeId!!)
                     assertEquals(true, attributes1.selected)
 
-                    val attributes2 = page.dom.getAttributes("select[name=carbrand] option[selected]")!!
+                    val attributes2 = page.dom.getTypedAttributes("select[name=carbrand] option[selected]")!!
                     assertEquals(true, attributes2.selected)
 
                     // Attributes without value (e.g. "selected" in <option selected />) are returned as empty strings by the protocol.

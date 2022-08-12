@@ -57,6 +57,7 @@ data class ChromeDPParameter(
     val name: String,
     val description: String? = null,
     val deprecated: Boolean = false,
+    val optional: Boolean = false,
     val experimental: Boolean = false,
     val type: TypeName,
 )
@@ -122,6 +123,7 @@ private fun JsonDomainParameter.toParameter(domain: DomainNaming): ChromeDPParam
         name = name,
         description = description,
         deprecated = deprecated,
+        optional = optional,
         experimental = experimental,
         type = typeName,
     )

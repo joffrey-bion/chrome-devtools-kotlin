@@ -82,7 +82,7 @@ class ChromePageSession internal constructor(
      * by other page sessions.
      */
     suspend fun detach() {
-        parent.target.detachFromTarget(DetachFromTargetRequest(sessionId = session.sessionId))
+        parent.target.detachFromTarget { sessionId = session.sessionId }
     }
 
     /**
@@ -96,10 +96,10 @@ class ChromePageSession internal constructor(
      */
     @OptIn(ExperimentalChromeApi::class)
     suspend fun close(keepBrowserContext: Boolean = false) {
-        parent.target.closeTarget(CloseTargetRequest(targetId = metaData.targetId))
+        parent.target.closeTarget(targetId = metaData.targetId)
 
         if (!keepBrowserContext && !metaData.browserContextId.isNullOrEmpty()) {
-            parent.target.disposeBrowserContext(DisposeBrowserContextRequest(metaData.browserContextId))
+            parent.target.disposeBrowserContext(metaData.browserContextId)
         }
     }
 }

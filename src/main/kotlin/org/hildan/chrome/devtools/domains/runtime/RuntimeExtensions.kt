@@ -21,7 +21,7 @@ suspend inline fun <reified T> RuntimeDomain.evaluateJs(js: String): T? = evalua
  * [@Serializable][kotlinx.serialization.Serializable].
  */
 suspend fun <T> RuntimeDomain.evaluateJs(js: String, deserializer: DeserializationStrategy<T>): T? {
-    val response = evaluate(EvaluateRequest(js, returnByValue = true))
+    val response = evaluate(js) { returnByValue = true }
     if (response.exceptionDetails != null) {
         throw RuntimeJSEvaluationException(js, response.exceptionDetails)
     }

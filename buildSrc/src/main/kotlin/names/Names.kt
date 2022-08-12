@@ -56,6 +56,7 @@ data class CommandNaming(
     val fullCommandName = "${domain.domainName}.$commandName"
     val methodName = commandName
     val inputTypeName = ClassName(domain.packageName, "${commandName.capitalize()}Request")
+    val inputTypeBuilderName = inputTypeName.nestedClass("Builder")
     val outputTypeName = ClassName(domain.packageName, "${commandName.capitalize()}Response")
 }
 

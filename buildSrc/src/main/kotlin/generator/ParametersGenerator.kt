@@ -1,32 +1,55 @@
 package org.hildan.chrome.devtools.build.generator
 
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.ParameterSpec
-import com.squareup.kotlinpoet.PropertySpec
-import com.squareup.kotlinpoet.TypeName
-import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.*
 import org.hildan.chrome.devtools.build.model.ChromeDPParameter
 import org.hildan.chrome.devtools.build.names.Annotations
 
-fun TypeSpec.Builder.addPrimaryConstructorProps(props: List<ChromeDPParameter>) {
-    primaryConstructor(FunSpec.constructorBuilder().addParameters(props.map { it.toParameterSpec() }).build())
-    addProperties(props.map { it.toPropertySpec() })
+internal fun TypeSpec.Builder.addPrimaryConstructorProps(props: List<ChromeDPParameter>) {
+    val parameterSpecs = props.map {
+        it.toParameterSpec(
+            // No need to add KDoc to the constructor param, adding it to the property is sufficient
+            includeDoc = false,
+            // We don't add deprecated/experimental annotations here as they are already added on the property declaration.
+            // Since both the property and the constructor arg are the same declaration, it would result in double
+            // annotations.
+            includeAnnotations = false,
+        )
+    }
+    val propertySpecs = props.map {
+        it.toPropertySpec {
+            initializer(it.name) // necessary to merge primary constructor arguments and properties
+        }
+    }
+    primaryConstructor(FunSpec.constructorBuilder().addParameters(parameterSpecs).build())
+    addProperties(propertySpecs)
 }
 
-private fun ChromeDPParameter.toParameterSpec(): ParameterSpec =
-    ParameterSpec.builder(name, type).apply {
-        // No need to add KDoc to the constructor param, adding it to the property is sufficient
+internal fun lambdaTypeWithBuilderReceiver(builderTypeName: TypeName) = LambdaTypeName.get(
+    receiver = builderTypeName,
+    parameters = emptyList(),
+    returnType = Unit::class.asTypeName(),
+)
 
-        // We don't add deprecated/experimental annotations here as they are already added on the property declaration.
-        // Since both the property and the constructor arg are the same declaration, it would result in double
-        // annotations.
+internal fun ChromeDPParameter.toParameterSpec(includeDoc: Boolean, includeAnnotations: Boolean): ParameterSpec =
+    ParameterSpec.builder(name, type).apply {
+        if (includeDoc) {
+            description?.let { addKdoc(it.escapeKDoc()) }
+        }
+        if (includeAnnotations) {
+            if (deprecated) {
+                addAnnotation(Annotations.deprecatedChromeApi)
+            }
+            if (experimental) {
+                addAnnotation(Annotations.experimentalChromeApi)
+            }
+        }
 
         if (type.isNullable) {
             defaultValue("null")
         }
     }.build()
 
-private fun ChromeDPParameter.toPropertySpec(): PropertySpec =
+internal fun ChromeDPParameter.toPropertySpec(configure: PropertySpec.Builder.() -> Unit = {}): PropertySpec =
     PropertySpec.builder(name, type).apply {
         description?.let { addKdoc(it.escapeKDoc()) }
         if (deprecated) {
@@ -35,6 +58,5 @@ private fun ChromeDPParameter.toPropertySpec(): PropertySpec =
         if (experimental) {
             addAnnotation(Annotations.experimentalChromeApi)
         }
-        mutable(false)
-        initializer(name) // necessary to merge primary constructor arguments and properties
+        configure()
     }.build()

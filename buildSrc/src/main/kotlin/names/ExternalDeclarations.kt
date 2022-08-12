@@ -27,6 +27,8 @@ object Annotations {
 
     val serializable = AnnotationSpec.builder(Serializable::class).build()
 
+    val jvmOverloads = AnnotationSpec.builder(JvmOverloads::class).build()
+
     val deprecatedChromeApi = AnnotationSpec.builder(Deprecated::class)
             .addMember("message = \"Deprecated in the Chrome DevTools protocol\"")
             .build()
