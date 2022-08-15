@@ -1,3 +1,6 @@
+import java.time.LocalDate
+import org.hildan.chrome.devtools.build.MilestoneRef
+
 plugins {
     val kotlinVersion = "1.7.10"
     kotlin("jvm") version kotlinVersion
@@ -44,6 +47,8 @@ kotlin {
 val updateProtocolDefinitions by tasks.registering(org.hildan.chrome.devtools.build.UpdateProtocolDefinitionsTask::class)
 
 val generateProtocolApi by tasks.registering(org.hildan.chrome.devtools.build.GenerateProtocolApiTask::class)
+
+val printProtocolStats by tasks.registering(org.hildan.chrome.devtools.build.PrintProtocolStatsTask::class)
 
 tasks {
     compileKotlin {

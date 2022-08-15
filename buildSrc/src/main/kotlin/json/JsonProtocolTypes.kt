@@ -2,7 +2,6 @@ package org.hildan.chrome.devtools.build.json
 
 import kotlinx.serialization.*
 import kotlinx.serialization.json.*
-import java.nio.file.Path
 
 @Serializable
 data class ChromeProtocolDescriptor(
@@ -10,7 +9,7 @@ data class ChromeProtocolDescriptor(
     val domains: List<JsonDomain>
 ) {
     companion object {
-        fun parseJson(path: Path): ChromeProtocolDescriptor = Json.decodeFromString(path.toFile().readText())
+        fun fromJson(json: String): ChromeProtocolDescriptor = Json.decodeFromString(json)
     }
 }
 

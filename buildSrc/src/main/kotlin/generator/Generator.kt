@@ -32,7 +32,7 @@ class Generator(
     }
 
     private fun loadProtocolDomains(): List<ChromeDPDomain> {
-        val descriptors = protocolFiles.map { ChromeProtocolDescriptor.parseJson(it) }
+        val descriptors = protocolFiles.map { ChromeProtocolDescriptor.fromJson(it.toFile().readText()) }
         if (descriptors.distinctBy { it.version }.size > 1) {
             error("Some descriptors have differing versions: ${descriptors.map { it.version }}")
         }
