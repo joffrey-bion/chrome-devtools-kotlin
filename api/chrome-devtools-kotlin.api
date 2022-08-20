@@ -41529,8 +41529,6 @@ public final class org/hildan/chrome/devtools/protocol/ChromeDPTarget {
 	public static final field Companion Lorg/hildan/chrome/devtools/protocol/ChromeDPTarget$Companion;
 	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public final fun attach (Lorg/hildan/krossbow/websocket/WebSocketClient;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun attach$default (Lorg/hildan/chrome/devtools/protocol/ChromeDPTarget;Lorg/hildan/krossbow/websocket/WebSocketClient;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
