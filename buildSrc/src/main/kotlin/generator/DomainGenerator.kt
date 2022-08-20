@@ -59,6 +59,7 @@ private fun ChromeDPDomain.createDomainClass(): TypeSpec = TypeSpec.classBuilder
         addAllEventsFunction(this@createDomainClass)
         events.forEach { event ->
             addFunction(event.toSubscribeFunctionSpec())
+            addFunction(event.toLegacySubscribeFunctionSpec())
         }
     }
     commands.forEach { cmd ->
@@ -72,7 +73,7 @@ private fun ChromeDPDomain.createDomainClass(): TypeSpec = TypeSpec.classBuilder
 }.build()
 
 private fun ChromeDPEvent.toSubscribeFunctionSpec(): FunSpec =
-    FunSpec.builder(names.methodName).apply {
+    FunSpec.builder(names.flowMethodName).apply {
         description?.let { addKdoc(it.escapeKDoc()) }
         addKdoc(linkToDoc(docUrl))
         if (deprecated) {
@@ -83,6 +84,16 @@ private fun ChromeDPEvent.toSubscribeFunctionSpec(): FunSpec =
         }
         returns(coroutineFlowClass.parameterizedBy(names.eventTypeName))
         addStatement("return %N.%M(%S)", SESSION_PROP, ExtDeclarations.sessionTypedEventsExtension, names.fullEventName)
+    }.build()
+
+private fun ChromeDPEvent.toLegacySubscribeFunctionSpec(): FunSpec =
+    FunSpec.builder(names.legacyMethodName).apply {
+        addAnnotation(AnnotationSpec.builder(Deprecated::class)
+            .addMember("message = \"Events subscription methods were renamed with the -Events suffix.\"")
+            .addMember("replaceWith = ReplaceWith(\"%N()\")", names.flowMethodName)
+            .build())
+        returns(coroutineFlowClass.parameterizedBy(names.eventTypeName))
+        addStatement("return %N()", names.flowMethodName)
     }.build()
 
 private fun TypeSpec.Builder.addAllEventsFunction(domain: ChromeDPDomain) {

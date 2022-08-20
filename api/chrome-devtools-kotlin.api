@@ -389,7 +389,9 @@ public final class org/hildan/chrome/devtools/domains/accessibility/Accessibilit
 	public final fun getRootAXNode (Lorg/hildan/chrome/devtools/domains/accessibility/GetRootAXNodeRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getRootAXNode$default (Lorg/hildan/chrome/devtools/domains/accessibility/AccessibilityDomain;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun loadComplete ()Lkotlinx/coroutines/flow/Flow;
+	public final fun loadCompleteEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun nodesUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun nodesUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun queryAXTree (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun queryAXTree (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun queryAXTree (Lorg/hildan/chrome/devtools/domains/accessibility/QueryAXTreeRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -983,8 +985,11 @@ public final class org/hildan/chrome/devtools/domains/animation/Animation$Compan
 
 public final class org/hildan/chrome/devtools/domains/animation/AnimationDomain {
 	public final fun animationCanceled ()Lkotlinx/coroutines/flow/Flow;
+	public final fun animationCanceledEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun animationCreated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun animationCreatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun animationStarted ()Lkotlinx/coroutines/flow/Flow;
+	public final fun animationStartedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
@@ -1762,6 +1767,7 @@ public final class org/hildan/chrome/devtools/domains/audits/AuditsDomain {
 	public final fun getEncodedResponse (Lorg/hildan/chrome/devtools/domains/audits/GetEncodedResponseRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getEncodedResponse$default (Lorg/hildan/chrome/devtools/domains/audits/AuditsDomain;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/audits/EncodedResponseEncoding;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun issueAdded ()Lkotlinx/coroutines/flow/Flow;
+	public final fun issueAddedEvents ()Lkotlinx/coroutines/flow/Flow;
 }
 
 public final class org/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails {
@@ -3182,10 +3188,12 @@ public final class org/hildan/chrome/devtools/domains/audits/events/AuditsEvent$
 
 public final class org/hildan/chrome/devtools/domains/backgroundservice/BackgroundServiceDomain {
 	public final fun backgroundServiceEventReceived ()Lkotlinx/coroutines/flow/Flow;
+	public final fun backgroundServiceEventReceivedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun clearEvents (Lorg/hildan/chrome/devtools/domains/backgroundservice/ClearEventsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun clearEvents (Lorg/hildan/chrome/devtools/domains/backgroundservice/ServiceName;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun recordingStateChanged ()Lkotlinx/coroutines/flow/Flow;
+	public final fun recordingStateChangedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun setRecording (Lorg/hildan/chrome/devtools/domains/backgroundservice/SetRecordingRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setRecording (ZLorg/hildan/chrome/devtools/domains/backgroundservice/ServiceName;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun startObserving (Lorg/hildan/chrome/devtools/domains/backgroundservice/ServiceName;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -3583,7 +3591,9 @@ public final class org/hildan/chrome/devtools/domains/browser/BrowserDomain {
 	public final fun crash (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun crashGpuProcess (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun downloadProgress ()Lkotlinx/coroutines/flow/Flow;
+	public final fun downloadProgressEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun downloadWillBegin ()Lkotlinx/coroutines/flow/Flow;
+	public final fun downloadWillBeginEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun executeBrowserCommand (Lorg/hildan/chrome/devtools/domains/browser/BrowserCommandId;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun executeBrowserCommand (Lorg/hildan/chrome/devtools/domains/browser/ExecuteBrowserCommandRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -5158,9 +5168,11 @@ public final class org/hildan/chrome/devtools/domains/cast/CastDomain {
 	public static synthetic fun enable$default (Lorg/hildan/chrome/devtools/domains/cast/CastDomain;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun issueUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun issueUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun setSinkToUse (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setSinkToUse (Lorg/hildan/chrome/devtools/domains/cast/SetSinkToUseRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun sinksUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun sinksUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun startDesktopMirroring (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun startDesktopMirroring (Lorg/hildan/chrome/devtools/domains/cast/StartDesktopMirroringRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun startTabMirroring (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -5474,6 +5486,7 @@ public final class org/hildan/chrome/devtools/domains/console/ConsoleDomain {
 	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun messageAdded ()Lkotlinx/coroutines/flow/Flow;
+	public final fun messageAddedEvents ()Lkotlinx/coroutines/flow/Flow;
 }
 
 public final class org/hildan/chrome/devtools/domains/console/ConsoleMessage {
@@ -5771,6 +5784,7 @@ public final class org/hildan/chrome/devtools/domains/css/CSSDomain {
 	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun fontsUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun fontsUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun forcePseudoState (ILjava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun forcePseudoState (Lorg/hildan/chrome/devtools/domains/css/ForcePseudoStateRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getBackgroundColors (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -5789,6 +5803,7 @@ public final class org/hildan/chrome/devtools/domains/css/CSSDomain {
 	public final fun getStyleSheetText (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getStyleSheetText (Lorg/hildan/chrome/devtools/domains/css/GetStyleSheetTextRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun mediaQueryResultChanged ()Lkotlinx/coroutines/flow/Flow;
+	public final fun mediaQueryResultChangedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun setContainerQueryText (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SourceRange;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setContainerQueryText (Lorg/hildan/chrome/devtools/domains/css/SetContainerQueryTextRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setEffectivePropertyValueForNode (ILjava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -5812,8 +5827,11 @@ public final class org/hildan/chrome/devtools/domains/css/CSSDomain {
 	public final fun startRuleUsageTracking (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun stopRuleUsageTracking (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun styleSheetAdded ()Lkotlinx/coroutines/flow/Flow;
+	public final fun styleSheetAddedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun styleSheetChanged ()Lkotlinx/coroutines/flow/Flow;
+	public final fun styleSheetChangedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun styleSheetRemoved ()Lkotlinx/coroutines/flow/Flow;
+	public final fun styleSheetRemovedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun takeComputedStyleUpdates (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun takeCoverageDelta (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun trackComputedStyleUpdates (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -8378,6 +8396,7 @@ public final class org/hildan/chrome/devtools/domains/database/Database$Companio
 
 public final class org/hildan/chrome/devtools/domains/database/DatabaseDomain {
 	public final fun addDatabase ()Lkotlinx/coroutines/flow/Flow;
+	public final fun addDatabaseEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
@@ -8837,6 +8856,7 @@ public final class org/hildan/chrome/devtools/domains/debugger/DebugSymbolsType$
 
 public final class org/hildan/chrome/devtools/domains/debugger/DebuggerDomain {
 	public final fun breakpointResolved ()Lkotlinx/coroutines/flow/Flow;
+	public final fun breakpointResolvedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun continueToLocation (Lorg/hildan/chrome/devtools/domains/debugger/ContinueToLocationRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun continueToLocation (Lorg/hildan/chrome/devtools/domains/debugger/Location;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun continueToLocation (Lorg/hildan/chrome/devtools/domains/debugger/Location;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -8869,6 +8889,7 @@ public final class org/hildan/chrome/devtools/domains/debugger/DebuggerDomain {
 	public final fun pauseOnAsyncCall (Lorg/hildan/chrome/devtools/domains/debugger/PauseOnAsyncCallRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun pauseOnAsyncCall (Lorg/hildan/chrome/devtools/domains/runtime/StackTraceId;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun paused ()Lkotlinx/coroutines/flow/Flow;
+	public final fun pausedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun removeBreakpoint (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun removeBreakpoint (Lorg/hildan/chrome/devtools/domains/debugger/RemoveBreakpointRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun restartFrame (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -8880,8 +8901,11 @@ public final class org/hildan/chrome/devtools/domains/debugger/DebuggerDomain {
 	public final fun resume (Lorg/hildan/chrome/devtools/domains/debugger/ResumeRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun resume$default (Lorg/hildan/chrome/devtools/domains/debugger/DebuggerDomain;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun resumed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun resumedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun scriptFailedToParse ()Lkotlinx/coroutines/flow/Flow;
+	public final fun scriptFailedToParseEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun scriptParsed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun scriptParsedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun searchInContent (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun searchInContent (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun searchInContent (Lorg/hildan/chrome/devtools/domains/debugger/SearchInContentRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -11543,11 +11567,17 @@ public final class org/hildan/chrome/devtools/domains/dom/DOMAttributes : java/u
 
 public final class org/hildan/chrome/devtools/domains/dom/DOMDomain {
 	public final fun attributeModified ()Lkotlinx/coroutines/flow/Flow;
+	public final fun attributeModifiedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun attributeRemoved ()Lkotlinx/coroutines/flow/Flow;
+	public final fun attributeRemovedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun characterDataModified ()Lkotlinx/coroutines/flow/Flow;
+	public final fun characterDataModifiedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun childNodeCountUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun childNodeCountUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun childNodeInserted ()Lkotlinx/coroutines/flow/Flow;
+	public final fun childNodeInsertedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun childNodeRemoved ()Lkotlinx/coroutines/flow/Flow;
+	public final fun childNodeRemovedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun collectClassNamesFromSubtree (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun collectClassNamesFromSubtree (Lorg/hildan/chrome/devtools/domains/dom/CollectClassNamesFromSubtreeRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun copyTo (IILkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -11562,7 +11592,9 @@ public final class org/hildan/chrome/devtools/domains/dom/DOMDomain {
 	public final fun discardSearchResults (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun discardSearchResults (Lorg/hildan/chrome/devtools/domains/dom/DiscardSearchResultsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun distributedNodesUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun distributedNodesUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun documentUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun documentUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun enable (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun enable (Lorg/hildan/chrome/devtools/domains/dom/EnableRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -11623,6 +11655,7 @@ public final class org/hildan/chrome/devtools/domains/dom/DOMDomain {
 	public final fun highlightNode (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun highlightRect (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun inlineStyleInvalidated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun inlineStyleInvalidatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun markUndoableState (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun moveTo (IILkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun moveTo (IILkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -11633,7 +11666,9 @@ public final class org/hildan/chrome/devtools/domains/dom/DOMDomain {
 	public final fun performSearch (Lorg/hildan/chrome/devtools/domains/dom/PerformSearchRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun performSearch$default (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun pseudoElementAdded ()Lkotlinx/coroutines/flow/Flow;
+	public final fun pseudoElementAddedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun pseudoElementRemoved ()Lkotlinx/coroutines/flow/Flow;
+	public final fun pseudoElementRemovedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun pushNodeByPathToFrontend (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun pushNodeByPathToFrontend (Lorg/hildan/chrome/devtools/domains/dom/PushNodeByPathToFrontendRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun pushNodesByBackendIdsToFrontend (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -11668,6 +11703,7 @@ public final class org/hildan/chrome/devtools/domains/dom/DOMDomain {
 	public final fun setAttributesAsText (Lorg/hildan/chrome/devtools/domains/dom/SetAttributesAsTextRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun setAttributesAsText$default (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;ILjava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun setChildNodes ()Lkotlinx/coroutines/flow/Flow;
+	public final fun setChildNodesEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun setFileInputFiles (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setFileInputFiles (Ljava/util/List;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setFileInputFiles (Lorg/hildan/chrome/devtools/domains/dom/SetFileInputFilesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -11683,8 +11719,11 @@ public final class org/hildan/chrome/devtools/domains/dom/DOMDomain {
 	public final fun setOuterHTML (ILjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setOuterHTML (Lorg/hildan/chrome/devtools/domains/dom/SetOuterHTMLRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun shadowRootPopped ()Lkotlinx/coroutines/flow/Flow;
+	public final fun shadowRootPoppedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun shadowRootPushed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun shadowRootPushedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun topLayerElementsUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun topLayerElementsUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun undo (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
@@ -16115,9 +16154,13 @@ public final class org/hildan/chrome/devtools/domains/domstorage/DOMStorageDomai
 	public final fun clear (Lorg/hildan/chrome/devtools/domains/domstorage/StorageId;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun domStorageItemAdded ()Lkotlinx/coroutines/flow/Flow;
+	public final fun domStorageItemAddedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun domStorageItemRemoved ()Lkotlinx/coroutines/flow/Flow;
+	public final fun domStorageItemRemovedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun domStorageItemUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun domStorageItemUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun domStorageItemsCleared ()Lkotlinx/coroutines/flow/Flow;
+	public final fun domStorageItemsClearedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun getDOMStorageItems (Lorg/hildan/chrome/devtools/domains/domstorage/GetDOMStorageItemsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -16683,6 +16726,7 @@ public final class org/hildan/chrome/devtools/domains/emulation/EmulationDomain 
 	public final fun setVisibleSize (IILkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setVisibleSize (Lorg/hildan/chrome/devtools/domains/emulation/SetVisibleSizeRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun virtualTimeBudgetExpired ()Lkotlinx/coroutines/flow/Flow;
+	public final fun virtualTimeBudgetExpiredEvents ()Lkotlinx/coroutines/flow/Flow;
 }
 
 public final class org/hildan/chrome/devtools/domains/emulation/MediaFeature {
@@ -18410,6 +18454,7 @@ public final class org/hildan/chrome/devtools/domains/fetch/FailRequestResponse 
 
 public final class org/hildan/chrome/devtools/domains/fetch/FetchDomain {
 	public final fun authRequired ()Lkotlinx/coroutines/flow/Flow;
+	public final fun authRequiredEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun continueRequest (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun continueRequest (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun continueRequest (Lorg/hildan/chrome/devtools/domains/fetch/ContinueRequestRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -18435,6 +18480,7 @@ public final class org/hildan/chrome/devtools/domains/fetch/FetchDomain {
 	public final fun getResponseBody (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getResponseBody (Lorg/hildan/chrome/devtools/domains/fetch/GetResponseBodyRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun requestPaused ()Lkotlinx/coroutines/flow/Flow;
+	public final fun requestPausedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun takeResponseBodyAsStream (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun takeResponseBodyAsStream (Lorg/hildan/chrome/devtools/domains/fetch/TakeResponseBodyAsStreamRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
@@ -18912,6 +18958,7 @@ public final class org/hildan/chrome/devtools/domains/headlessexperimental/Headl
 	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun needsBeginFramesChanged ()Lkotlinx/coroutines/flow/Flow;
+	public final fun needsBeginFramesChangedEvents ()Lkotlinx/coroutines/flow/Flow;
 }
 
 public final class org/hildan/chrome/devtools/domains/headlessexperimental/ImageFormat : java/lang/Enum {
@@ -19225,6 +19272,7 @@ public final class org/hildan/chrome/devtools/domains/heapprofiler/GetSamplingPr
 
 public final class org/hildan/chrome/devtools/domains/heapprofiler/HeapProfilerDomain {
 	public final fun addHeapSnapshotChunk ()Lkotlinx/coroutines/flow/Flow;
+	public final fun addHeapSnapshotChunkEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun addInspectedHeapObject (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun addInspectedHeapObject (Lorg/hildan/chrome/devtools/domains/heapprofiler/AddInspectedHeapObjectRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun collectGarbage (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -19239,9 +19287,13 @@ public final class org/hildan/chrome/devtools/domains/heapprofiler/HeapProfilerD
 	public static synthetic fun getObjectByHeapObjectId$default (Lorg/hildan/chrome/devtools/domains/heapprofiler/HeapProfilerDomain;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun getSamplingProfile (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun heapStatsUpdate ()Lkotlinx/coroutines/flow/Flow;
+	public final fun heapStatsUpdateEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun lastSeenObjectId ()Lkotlinx/coroutines/flow/Flow;
+	public final fun lastSeenObjectIdEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun reportHeapSnapshotProgress ()Lkotlinx/coroutines/flow/Flow;
+	public final fun reportHeapSnapshotProgressEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun resetProfiles ()Lkotlinx/coroutines/flow/Flow;
+	public final fun resetProfilesEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun startSampling (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun startSampling (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun startSampling (Lorg/hildan/chrome/devtools/domains/heapprofiler/StartSamplingRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -21119,6 +21171,7 @@ public final class org/hildan/chrome/devtools/domains/input/InputDomain {
 	public final fun dispatchTouchEvent (Lorg/hildan/chrome/devtools/domains/input/TouchEventType;Ljava/util/List;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun dispatchTouchEvent$default (Lorg/hildan/chrome/devtools/domains/input/InputDomain;Lorg/hildan/chrome/devtools/domains/input/TouchEventType;Ljava/util/List;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun dragIntercepted ()Lkotlinx/coroutines/flow/Flow;
+	public final fun dragInterceptedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun emulateTouchFromMouseEvent (Lorg/hildan/chrome/devtools/domains/input/EmulateTouchFromMouseEventRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun emulateTouchFromMouseEvent (Lorg/hildan/chrome/devtools/domains/input/MouseEventType;IILorg/hildan/chrome/devtools/domains/input/MouseButton;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun emulateTouchFromMouseEvent (Lorg/hildan/chrome/devtools/domains/input/MouseEventType;IILorg/hildan/chrome/devtools/domains/input/MouseButton;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -21689,11 +21742,14 @@ public final class org/hildan/chrome/devtools/domains/inspector/EnableResponse {
 
 public final class org/hildan/chrome/devtools/domains/inspector/InspectorDomain {
 	public final fun detached ()Lkotlinx/coroutines/flow/Flow;
+	public final fun detachedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun targetCrashed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun targetCrashedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun targetReloadedAfterCrash ()Lkotlinx/coroutines/flow/Flow;
+	public final fun targetReloadedAfterCrashEvents ()Lkotlinx/coroutines/flow/Flow;
 }
 
 public abstract class org/hildan/chrome/devtools/domains/inspector/events/InspectorEvent {
@@ -22072,7 +22128,9 @@ public final class org/hildan/chrome/devtools/domains/layertree/LayerTreeDomain 
 	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun layerPainted ()Lkotlinx/coroutines/flow/Flow;
+	public final fun layerPaintedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun layerTreeDidChange ()Lkotlinx/coroutines/flow/Flow;
+	public final fun layerTreeDidChangeEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun loadSnapshot (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun loadSnapshot (Lorg/hildan/chrome/devtools/domains/layertree/LoadSnapshotRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun makeSnapshot (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -22686,6 +22744,7 @@ public final class org/hildan/chrome/devtools/domains/log/LogDomain {
 	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun entryAdded ()Lkotlinx/coroutines/flow/Flow;
+	public final fun entryAddedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun startViolationsReport (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun startViolationsReport (Lorg/hildan/chrome/devtools/domains/log/StartViolationsReportRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -22983,10 +23042,15 @@ public final class org/hildan/chrome/devtools/domains/media/MediaDomain {
 	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun playerErrorsRaised ()Lkotlinx/coroutines/flow/Flow;
+	public final fun playerErrorsRaisedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun playerEventsAdded ()Lkotlinx/coroutines/flow/Flow;
+	public final fun playerEventsAddedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun playerMessagesLogged ()Lkotlinx/coroutines/flow/Flow;
+	public final fun playerMessagesLoggedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun playerPropertiesChanged ()Lkotlinx/coroutines/flow/Flow;
+	public final fun playerPropertiesChangedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun playersCreated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun playersCreatedEvents ()Lkotlinx/coroutines/flow/Flow;
 }
 
 public final class org/hildan/chrome/devtools/domains/media/PlayerError {
@@ -25696,6 +25760,7 @@ public final class org/hildan/chrome/devtools/domains/network/NetworkDomain {
 	public final fun continueInterceptedRequest (Lorg/hildan/chrome/devtools/domains/network/ContinueInterceptedRequestRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun continueInterceptedRequest$default (Lorg/hildan/chrome/devtools/domains/network/NetworkDomain;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun dataReceived ()Lkotlinx/coroutines/flow/Flow;
+	public final fun dataReceivedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun deleteCookies (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun deleteCookies (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun deleteCookies (Lorg/hildan/chrome/devtools/domains/network/DeleteCookiesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -25712,6 +25777,7 @@ public final class org/hildan/chrome/devtools/domains/network/NetworkDomain {
 	public final fun enableReportingApi (Lorg/hildan/chrome/devtools/domains/network/EnableReportingApiRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun enableReportingApi (ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun eventSourceMessageReceived ()Lkotlinx/coroutines/flow/Flow;
+	public final fun eventSourceMessageReceivedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun getAllCookies (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getCertificate (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -25735,19 +25801,31 @@ public final class org/hildan/chrome/devtools/domains/network/NetworkDomain {
 	public final fun loadNetworkResource (Lorg/hildan/chrome/devtools/domains/network/LoadNetworkResourceRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun loadNetworkResource$default (Lorg/hildan/chrome/devtools/domains/network/NetworkDomain;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/network/LoadNetworkResourceOptions;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun loadingFailed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun loadingFailedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun loadingFinished ()Lkotlinx/coroutines/flow/Flow;
+	public final fun loadingFinishedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun replayXHR (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun replayXHR (Lorg/hildan/chrome/devtools/domains/network/ReplayXHRRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun reportingApiEndpointsChangedForOrigin ()Lkotlinx/coroutines/flow/Flow;
+	public final fun reportingApiEndpointsChangedForOriginEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun reportingApiReportAdded ()Lkotlinx/coroutines/flow/Flow;
+	public final fun reportingApiReportAddedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun reportingApiReportUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun reportingApiReportUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun requestIntercepted ()Lkotlinx/coroutines/flow/Flow;
+	public final fun requestInterceptedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun requestServedFromCache ()Lkotlinx/coroutines/flow/Flow;
+	public final fun requestServedFromCacheEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun requestWillBeSent ()Lkotlinx/coroutines/flow/Flow;
+	public final fun requestWillBeSentEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun requestWillBeSentExtraInfo ()Lkotlinx/coroutines/flow/Flow;
+	public final fun requestWillBeSentExtraInfoEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun resourceChangedPriority ()Lkotlinx/coroutines/flow/Flow;
+	public final fun resourceChangedPriorityEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun responseReceived ()Lkotlinx/coroutines/flow/Flow;
+	public final fun responseReceivedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun responseReceivedExtraInfo ()Lkotlinx/coroutines/flow/Flow;
+	public final fun responseReceivedExtraInfoEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun searchInResponseBody (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun searchInResponseBody (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun searchInResponseBody (Lorg/hildan/chrome/devtools/domains/network/SearchInResponseBodyRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -25777,23 +25855,39 @@ public final class org/hildan/chrome/devtools/domains/network/NetworkDomain {
 	public final fun setUserAgentOverride (Lorg/hildan/chrome/devtools/domains/network/SetUserAgentOverrideRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun setUserAgentOverride$default (Lorg/hildan/chrome/devtools/domains/network/NetworkDomain;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun signedExchangeReceived ()Lkotlinx/coroutines/flow/Flow;
+	public final fun signedExchangeReceivedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun subresourceWebBundleInnerResponseError ()Lkotlinx/coroutines/flow/Flow;
+	public final fun subresourceWebBundleInnerResponseErrorEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun subresourceWebBundleInnerResponseParsed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun subresourceWebBundleInnerResponseParsedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun subresourceWebBundleMetadataError ()Lkotlinx/coroutines/flow/Flow;
+	public final fun subresourceWebBundleMetadataErrorEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun subresourceWebBundleMetadataReceived ()Lkotlinx/coroutines/flow/Flow;
+	public final fun subresourceWebBundleMetadataReceivedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun takeResponseBodyForInterceptionAsStream (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun takeResponseBodyForInterceptionAsStream (Lorg/hildan/chrome/devtools/domains/network/TakeResponseBodyForInterceptionAsStreamRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun trustTokenOperationDone ()Lkotlinx/coroutines/flow/Flow;
+	public final fun trustTokenOperationDoneEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun webSocketClosed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun webSocketClosedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun webSocketCreated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun webSocketCreatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun webSocketFrameError ()Lkotlinx/coroutines/flow/Flow;
+	public final fun webSocketFrameErrorEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun webSocketFrameReceived ()Lkotlinx/coroutines/flow/Flow;
+	public final fun webSocketFrameReceivedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun webSocketFrameSent ()Lkotlinx/coroutines/flow/Flow;
+	public final fun webSocketFrameSentEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun webSocketHandshakeResponseReceived ()Lkotlinx/coroutines/flow/Flow;
+	public final fun webSocketHandshakeResponseReceivedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun webSocketWillSendHandshakeRequest ()Lkotlinx/coroutines/flow/Flow;
+	public final fun webSocketWillSendHandshakeRequestEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun webTransportClosed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun webTransportClosedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun webTransportConnectionEstablished ()Lkotlinx/coroutines/flow/Flow;
+	public final fun webTransportConnectionEstablishedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun webTransportCreated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun webTransportCreatedEvents ()Lkotlinx/coroutines/flow/Flow;
 }
 
 public final class org/hildan/chrome/devtools/domains/network/PostDataEntry {
@@ -29765,9 +29859,13 @@ public final class org/hildan/chrome/devtools/domains/overlay/OverlayDomain {
 	public final fun highlightSourceOrder (Lorg/hildan/chrome/devtools/domains/overlay/SourceOrderConfig;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun highlightSourceOrder$default (Lorg/hildan/chrome/devtools/domains/overlay/OverlayDomain;Lorg/hildan/chrome/devtools/domains/overlay/SourceOrderConfig;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun inspectModeCanceled ()Lkotlinx/coroutines/flow/Flow;
+	public final fun inspectModeCanceledEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun inspectNodeRequested ()Lkotlinx/coroutines/flow/Flow;
+	public final fun inspectNodeRequestedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun nodeHighlightRequested ()Lkotlinx/coroutines/flow/Flow;
+	public final fun nodeHighlightRequestedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun screenshotRequested ()Lkotlinx/coroutines/flow/Flow;
+	public final fun screenshotRequestedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun setInspectMode (Lorg/hildan/chrome/devtools/domains/overlay/InspectMode;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setInspectMode (Lorg/hildan/chrome/devtools/domains/overlay/InspectMode;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setInspectMode (Lorg/hildan/chrome/devtools/domains/overlay/SetInspectModeRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -33112,6 +33210,7 @@ public final class org/hildan/chrome/devtools/domains/page/PageDomain {
 	public final fun addScriptToEvaluateOnNewDocument (Lorg/hildan/chrome/devtools/domains/page/AddScriptToEvaluateOnNewDocumentRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun addScriptToEvaluateOnNewDocument$default (Lorg/hildan/chrome/devtools/domains/page/PageDomain;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun backForwardCacheNotUsed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun backForwardCacheNotUsedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun bringToFront (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun captureScreenshot (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun captureScreenshot (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -33127,6 +33226,7 @@ public final class org/hildan/chrome/devtools/domains/page/PageDomain {
 	public final fun clearGeolocationOverride (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun close (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun compilationCacheProduced ()Lkotlinx/coroutines/flow/Flow;
+	public final fun compilationCacheProducedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun crash (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun createIsolatedWorld (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun createIsolatedWorld (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -33136,21 +33236,35 @@ public final class org/hildan/chrome/devtools/domains/page/PageDomain {
 	public final fun deleteCookie (Lorg/hildan/chrome/devtools/domains/page/DeleteCookieRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun documentOpened ()Lkotlinx/coroutines/flow/Flow;
+	public final fun documentOpenedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun domContentEventFired ()Lkotlinx/coroutines/flow/Flow;
+	public final fun domContentEventFiredEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun downloadProgress ()Lkotlinx/coroutines/flow/Flow;
+	public final fun downloadProgressEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun downloadWillBegin ()Lkotlinx/coroutines/flow/Flow;
+	public final fun downloadWillBeginEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun fileChooserOpened ()Lkotlinx/coroutines/flow/Flow;
+	public final fun fileChooserOpenedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun frameAttached ()Lkotlinx/coroutines/flow/Flow;
+	public final fun frameAttachedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun frameClearedScheduledNavigation ()Lkotlinx/coroutines/flow/Flow;
+	public final fun frameClearedScheduledNavigationEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun frameDetached ()Lkotlinx/coroutines/flow/Flow;
+	public final fun frameDetachedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun frameNavigated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun frameNavigatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun frameRequestedNavigation ()Lkotlinx/coroutines/flow/Flow;
+	public final fun frameRequestedNavigationEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun frameResized ()Lkotlinx/coroutines/flow/Flow;
+	public final fun frameResizedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun frameScheduledNavigation ()Lkotlinx/coroutines/flow/Flow;
+	public final fun frameScheduledNavigationEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun frameStartedLoading ()Lkotlinx/coroutines/flow/Flow;
+	public final fun frameStartedLoadingEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun frameStoppedLoading ()Lkotlinx/coroutines/flow/Flow;
+	public final fun frameStoppedLoadingEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun generateTestReport (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun generateTestReport (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun generateTestReport (Lorg/hildan/chrome/devtools/domains/page/GenerateTestReportRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -33175,11 +33289,17 @@ public final class org/hildan/chrome/devtools/domains/page/PageDomain {
 	public final fun handleJavaScriptDialog (ZLkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun handleJavaScriptDialog$default (Lorg/hildan/chrome/devtools/domains/page/PageDomain;ZLkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun interstitialHidden ()Lkotlinx/coroutines/flow/Flow;
+	public final fun interstitialHiddenEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun interstitialShown ()Lkotlinx/coroutines/flow/Flow;
+	public final fun interstitialShownEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun javascriptDialogClosed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun javascriptDialogClosedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun javascriptDialogOpening ()Lkotlinx/coroutines/flow/Flow;
+	public final fun javascriptDialogOpeningEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun lifecycleEvent ()Lkotlinx/coroutines/flow/Flow;
+	public final fun lifecycleEventEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun loadEventFired ()Lkotlinx/coroutines/flow/Flow;
+	public final fun loadEventFiredEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun navigate (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun navigate (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun navigate (Lorg/hildan/chrome/devtools/domains/page/NavigateRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -33187,7 +33307,9 @@ public final class org/hildan/chrome/devtools/domains/page/PageDomain {
 	public final fun navigateToHistoryEntry (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun navigateToHistoryEntry (Lorg/hildan/chrome/devtools/domains/page/NavigateToHistoryEntryRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun navigatedWithinDocument ()Lkotlinx/coroutines/flow/Flow;
+	public final fun navigatedWithinDocumentEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun prerenderAttemptCompleted ()Lkotlinx/coroutines/flow/Flow;
+	public final fun prerenderAttemptCompletedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun printToPDF (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun printToPDF (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun printToPDF (Lorg/hildan/chrome/devtools/domains/page/PrintToPDFRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -33206,7 +33328,9 @@ public final class org/hildan/chrome/devtools/domains/page/PageDomain {
 	public final fun screencastFrame ()Lkotlinx/coroutines/flow/Flow;
 	public final fun screencastFrameAck (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun screencastFrameAck (Lorg/hildan/chrome/devtools/domains/page/ScreencastFrameAckRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun screencastFrameEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun screencastVisibilityChanged ()Lkotlinx/coroutines/flow/Flow;
+	public final fun screencastVisibilityChangedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun searchInResource (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun searchInResource (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun searchInResource (Lorg/hildan/chrome/devtools/domains/page/SearchInResourceRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -33257,6 +33381,7 @@ public final class org/hildan/chrome/devtools/domains/page/PageDomain {
 	public final fun stopScreencast (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun waitForDebugger (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun windowOpen ()Lkotlinx/coroutines/flow/Flow;
+	public final fun windowOpenEvents ()Lkotlinx/coroutines/flow/Flow;
 }
 
 public final class org/hildan/chrome/devtools/domains/page/PageExtensionsKt {
@@ -35948,6 +36073,7 @@ public final class org/hildan/chrome/devtools/domains/performance/PerformanceDom
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun getMetrics (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun metrics ()Lkotlinx/coroutines/flow/Flow;
+	public final fun metricsEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun setTimeDomain (Lorg/hildan/chrome/devtools/domains/performance/SetTimeDomainRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setTimeDomain (Lorg/hildan/chrome/devtools/domains/performance/TimeDomain;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
@@ -36205,6 +36331,7 @@ public final class org/hildan/chrome/devtools/domains/performancetimeline/Perfor
 	public final fun enable (Lorg/hildan/chrome/devtools/domains/performancetimeline/EnableRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun timelineEventAdded ()Lkotlinx/coroutines/flow/Flow;
+	public final fun timelineEventAddedEvents ()Lkotlinx/coroutines/flow/Flow;
 }
 
 public final class org/hildan/chrome/devtools/domains/performancetimeline/TimelineEvent {
@@ -36512,12 +36639,15 @@ public final class org/hildan/chrome/devtools/domains/profiler/ProfileNode$Compa
 
 public final class org/hildan/chrome/devtools/domains/profiler/ProfilerDomain {
 	public final fun consoleProfileFinished ()Lkotlinx/coroutines/flow/Flow;
+	public final fun consoleProfileFinishedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun consoleProfileStarted ()Lkotlinx/coroutines/flow/Flow;
+	public final fun consoleProfileStartedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun getBestEffortCoverage (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun preciseCoverageDeltaUpdate ()Lkotlinx/coroutines/flow/Flow;
+	public final fun preciseCoverageDeltaUpdateEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun setSamplingInterval (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setSamplingInterval (Lorg/hildan/chrome/devtools/domains/profiler/SetSamplingIntervalRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun start (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -38773,6 +38903,7 @@ public final class org/hildan/chrome/devtools/domains/runtime/RuntimeDomain {
 	public final fun awaitPromise (Lorg/hildan/chrome/devtools/domains/runtime/AwaitPromiseRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun awaitPromise$default (Lorg/hildan/chrome/devtools/domains/runtime/RuntimeDomain;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun bindingCalled ()Lkotlinx/coroutines/flow/Flow;
+	public final fun bindingCalledEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun callFunctionOn (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun callFunctionOn (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun callFunctionOn (Lorg/hildan/chrome/devtools/domains/runtime/CallFunctionOnRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -38782,6 +38913,7 @@ public final class org/hildan/chrome/devtools/domains/runtime/RuntimeDomain {
 	public final fun compileScript (Lorg/hildan/chrome/devtools/domains/runtime/CompileScriptRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun compileScript$default (Lorg/hildan/chrome/devtools/domains/runtime/RuntimeDomain;Ljava/lang/String;Ljava/lang/String;ZLkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun consoleAPICalled ()Lkotlinx/coroutines/flow/Flow;
+	public final fun consoleAPICalledEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun discardConsoleEntries (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -38791,10 +38923,15 @@ public final class org/hildan/chrome/devtools/domains/runtime/RuntimeDomain {
 	public static synthetic fun evaluate$default (Lorg/hildan/chrome/devtools/domains/runtime/RuntimeDomain;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun exceptionRevoked ()Lkotlinx/coroutines/flow/Flow;
+	public final fun exceptionRevokedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun exceptionThrown ()Lkotlinx/coroutines/flow/Flow;
+	public final fun exceptionThrownEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun executionContextCreated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun executionContextCreatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun executionContextDestroyed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun executionContextDestroyedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun executionContextsCleared ()Lkotlinx/coroutines/flow/Flow;
+	public final fun executionContextsClearedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun getExceptionDetails (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getExceptionDetails (Lorg/hildan/chrome/devtools/domains/runtime/GetExceptionDetailsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getHeapUsage (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -38808,6 +38945,7 @@ public final class org/hildan/chrome/devtools/domains/runtime/RuntimeDomain {
 	public final fun globalLexicalScopeNames (Lorg/hildan/chrome/devtools/domains/runtime/GlobalLexicalScopeNamesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun globalLexicalScopeNames$default (Lorg/hildan/chrome/devtools/domains/runtime/RuntimeDomain;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun inspectRequested ()Lkotlinx/coroutines/flow/Flow;
+	public final fun inspectRequestedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun queryObjects (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun queryObjects (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun queryObjects (Lorg/hildan/chrome/devtools/domains/runtime/QueryObjectsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -39679,17 +39817,20 @@ public final class org/hildan/chrome/devtools/domains/security/SafetyTipStatus$C
 
 public final class org/hildan/chrome/devtools/domains/security/SecurityDomain {
 	public final fun certificateError ()Lkotlinx/coroutines/flow/Flow;
+	public final fun certificateErrorEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun handleCertificateError (ILorg/hildan/chrome/devtools/domains/security/CertificateErrorAction;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun handleCertificateError (Lorg/hildan/chrome/devtools/domains/security/HandleCertificateErrorRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun securityStateChanged ()Lkotlinx/coroutines/flow/Flow;
+	public final fun securityStateChangedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun setIgnoreCertificateErrors (Lorg/hildan/chrome/devtools/domains/security/SetIgnoreCertificateErrorsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setIgnoreCertificateErrors (ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setOverrideCertificateErrors (Lorg/hildan/chrome/devtools/domains/security/SetOverrideCertificateErrorsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setOverrideCertificateErrors (ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun visibleSecurityStateChanged ()Lkotlinx/coroutines/flow/Flow;
+	public final fun visibleSecurityStateChangedEvents ()Lkotlinx/coroutines/flow/Flow;
 }
 
 public final class org/hildan/chrome/devtools/domains/security/SecurityState : java/lang/Enum {
@@ -40173,8 +40314,11 @@ public final class org/hildan/chrome/devtools/domains/serviceworker/ServiceWorke
 	public final fun updateRegistration (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun updateRegistration (Lorg/hildan/chrome/devtools/domains/serviceworker/UpdateRegistrationRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun workerErrorReported ()Lkotlinx/coroutines/flow/Flow;
+	public final fun workerErrorReportedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun workerRegistrationUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun workerRegistrationUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun workerVersionUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun workerVersionUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
 }
 
 public final class org/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerErrorMessage {
@@ -41374,7 +41518,9 @@ public final class org/hildan/chrome/devtools/domains/storage/SetInterestGroupTr
 
 public final class org/hildan/chrome/devtools/domains/storage/StorageDomain {
 	public final fun cacheStorageContentUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun cacheStorageContentUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun cacheStorageListUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun cacheStorageListUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun clearCookies (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun clearCookies (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun clearCookies (Lorg/hildan/chrome/devtools/domains/storage/ClearCookiesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -41398,8 +41544,11 @@ public final class org/hildan/chrome/devtools/domains/storage/StorageDomain {
 	public final fun getUsageAndQuota (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getUsageAndQuota (Lorg/hildan/chrome/devtools/domains/storage/GetUsageAndQuotaRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun indexedDBContentUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun indexedDBContentUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun indexedDBListUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun indexedDBListUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun interestGroupAccessed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun interestGroupAccessedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun overrideQuotaForOrigin (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun overrideQuotaForOrigin (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun overrideQuotaForOrigin (Lorg/hildan/chrome/devtools/domains/storage/OverrideQuotaForOriginRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -43262,6 +43411,7 @@ public final class org/hildan/chrome/devtools/domains/target/TargetDomain {
 	public final fun attachToTarget (Lorg/hildan/chrome/devtools/domains/target/AttachToTargetRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun attachToTarget$default (Lorg/hildan/chrome/devtools/domains/target/TargetDomain;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun attachedToTarget ()Lkotlinx/coroutines/flow/Flow;
+	public final fun attachedToTargetEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun autoAttachRelated (Ljava/lang/String;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun autoAttachRelated (Ljava/lang/String;ZLkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun autoAttachRelated (Lorg/hildan/chrome/devtools/domains/target/AutoAttachRelatedRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -43281,6 +43431,7 @@ public final class org/hildan/chrome/devtools/domains/target/TargetDomain {
 	public final fun detachFromTarget (Lorg/hildan/chrome/devtools/domains/target/DetachFromTargetRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun detachFromTarget$default (Lorg/hildan/chrome/devtools/domains/target/TargetDomain;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun detachedFromTarget ()Lkotlinx/coroutines/flow/Flow;
+	public final fun detachedFromTargetEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun disposeBrowserContext (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun disposeBrowserContext (Lorg/hildan/chrome/devtools/domains/target/DisposeBrowserContextRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
@@ -43298,6 +43449,7 @@ public final class org/hildan/chrome/devtools/domains/target/TargetDomain {
 	public final fun getTargets (Lorg/hildan/chrome/devtools/domains/target/GetTargetsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getTargets$default (Lorg/hildan/chrome/devtools/domains/target/TargetDomain;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun receivedMessageFromTarget ()Lkotlinx/coroutines/flow/Flow;
+	public final fun receivedMessageFromTargetEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun sendMessageToTarget (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun sendMessageToTarget (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun sendMessageToTarget (Lorg/hildan/chrome/devtools/domains/target/SendMessageToTargetRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -43313,9 +43465,13 @@ public final class org/hildan/chrome/devtools/domains/target/TargetDomain {
 	public final fun setRemoteLocations (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setRemoteLocations (Lorg/hildan/chrome/devtools/domains/target/SetRemoteLocationsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun targetCrashed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun targetCrashedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun targetCreated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun targetCreatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun targetDestroyed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun targetDestroyedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun targetInfoChanged ()Lkotlinx/coroutines/flow/Flow;
+	public final fun targetInfoChangedEvents ()Lkotlinx/coroutines/flow/Flow;
 }
 
 public final class org/hildan/chrome/devtools/domains/target/TargetInfo {
@@ -43638,6 +43794,7 @@ public final class org/hildan/chrome/devtools/domains/tethering/BindResponse {
 
 public final class org/hildan/chrome/devtools/domains/tethering/TetheringDomain {
 	public final fun accepted ()Lkotlinx/coroutines/flow/Flow;
+	public final fun acceptedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun bind (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun bind (Lorg/hildan/chrome/devtools/domains/tethering/BindRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
@@ -44117,7 +44274,9 @@ public final class org/hildan/chrome/devtools/domains/tracing/TracingBackend$Com
 
 public final class org/hildan/chrome/devtools/domains/tracing/TracingDomain {
 	public final fun bufferUsage ()Lkotlinx/coroutines/flow/Flow;
+	public final fun bufferUsageEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun dataCollected ()Lkotlinx/coroutines/flow/Flow;
+	public final fun dataCollectedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun end (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun getCategories (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -44132,6 +44291,7 @@ public final class org/hildan/chrome/devtools/domains/tracing/TracingDomain {
 	public final fun start (Lorg/hildan/chrome/devtools/domains/tracing/StartRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun start$default (Lorg/hildan/chrome/devtools/domains/tracing/TracingDomain;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun tracingComplete ()Lkotlinx/coroutines/flow/Flow;
+	public final fun tracingCompleteEvents ()Lkotlinx/coroutines/flow/Flow;
 }
 
 public final class org/hildan/chrome/devtools/domains/tracing/TransferMode : java/lang/Enum {
@@ -44668,23 +44828,36 @@ public final class org/hildan/chrome/devtools/domains/webaudio/GetRealtimeDataRe
 
 public final class org/hildan/chrome/devtools/domains/webaudio/WebAudioDomain {
 	public final fun audioListenerCreated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun audioListenerCreatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun audioListenerWillBeDestroyed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun audioListenerWillBeDestroyedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun audioNodeCreated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun audioNodeCreatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun audioNodeWillBeDestroyed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun audioNodeWillBeDestroyedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun audioParamCreated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun audioParamCreatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun audioParamWillBeDestroyed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun audioParamWillBeDestroyedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun contextChanged ()Lkotlinx/coroutines/flow/Flow;
+	public final fun contextChangedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun contextCreated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun contextCreatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun contextWillBeDestroyed ()Lkotlinx/coroutines/flow/Flow;
+	public final fun contextWillBeDestroyedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun getRealtimeData (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getRealtimeData (Lorg/hildan/chrome/devtools/domains/webaudio/GetRealtimeDataRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun nodeParamConnected ()Lkotlinx/coroutines/flow/Flow;
+	public final fun nodeParamConnectedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun nodeParamDisconnected ()Lkotlinx/coroutines/flow/Flow;
+	public final fun nodeParamDisconnectedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun nodesConnected ()Lkotlinx/coroutines/flow/Flow;
+	public final fun nodesConnectedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun nodesDisconnected ()Lkotlinx/coroutines/flow/Flow;
+	public final fun nodesDisconnectedEvents ()Lkotlinx/coroutines/flow/Flow;
 }
 
 public abstract class org/hildan/chrome/devtools/domains/webaudio/events/WebAudioEvent {

@@ -101,7 +101,7 @@ suspend fun ChromePageSession.navigateAndAwaitPageLoad(url: String) {
 suspend fun ChromePageSession.navigateAndAwaitPageLoad(navigateRequest: NavigateRequest) {
     page.enable()
     coroutineScope {
-        val events = page.frameStoppedLoading()
+        val events = page.frameStoppedLoadingEvents()
         val stoppedLoadingEvent = async(start = CoroutineStart.UNDISPATCHED) {
             events.first { it.frameId == metaData.targetId }
         }

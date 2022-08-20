@@ -23,7 +23,7 @@ suspend fun PageDomain.navigateAndWaitLoading(url: String) {
 @OptIn(ExperimentalChromeApi::class)
 suspend fun PageDomain.navigateAndWaitLoading(navigateRequest: NavigateRequest) {
     enable()
-    val frameStoppedLoadingEvents = frameStoppedLoading()
+    val frameStoppedLoadingEvents = frameStoppedLoadingEvents()
     val frameId = navigate(navigateRequest).frameId
     // FIXME if we're too slow here, we can miss the frame event
     frameStoppedLoadingEvents.first { it.frameId == frameId }
