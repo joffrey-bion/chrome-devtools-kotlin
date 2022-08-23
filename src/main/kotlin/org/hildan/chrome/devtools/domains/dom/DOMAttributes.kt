@@ -10,15 +10,7 @@ import kotlin.reflect.KProperty
  * Attributes that are present on an HTML element without a value (e.g. `selected` in `<option selected />`) are
  * expected to have an empty string as value (which is what the chrome devtools protocol returns).
  */
-internal fun List<String>.asDOMAttributes(): DOMAttributes {
-    val list = this
-    val attrsMap = buildMap<String, String> {
-        for (i in indices step 2) {
-            put(list[i], list[i+1])
-        }
-    }
-    return DOMAttributes(attrsMap)
-}
+internal fun List<String>.asDOMAttributes(): DOMAttributes = DOMAttributes(chunked(2).associate { it[0] to it[1] })
 
 /**
  * Represents [HTML attributes](https://www.w3schools.com/tags/ref_attributes.asp) of a DOM element.
