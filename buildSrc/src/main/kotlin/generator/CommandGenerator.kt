@@ -92,7 +92,7 @@ internal fun ChromeDPCommand.toFunctionSpecWithParams(sessionPropertyName: Strin
         commonCommandFunction(command = this@toFunctionSpecWithParams)
         addKdoc(
             "\n\nNote: this function uses an input class, and constructing this class manually may lead to " +
-                "incompatibilities if the class's contructor arguments change in the future. For maximum " +
+                "incompatibilities if the class's constructor arguments change in the future. For maximum " +
                 "compatibility, it is advised to use the overload of this function that directly takes the mandatory " +
                 "parameters as arguments, and the optional ones from a configuration lambda."
         )
