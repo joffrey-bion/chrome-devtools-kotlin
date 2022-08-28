@@ -16,18 +16,18 @@ open class GenerateProtocolApiTask : DefaultTask() {
     }
 
     @InputFiles
-    val protocolPaths = listOf(Paths.get("protocol/browser_protocol.json"), Paths.get("protocol/js_protocol.json"))
+    val protocolPaths = project.files("protocol/browser_protocol.json", "protocol/js_protocol.json")
 
     @InputFile
-    val targetTypesPath: Path = Paths.get("protocol/target_types.json")
+    val targetTypesPath = project.file("protocol/target_types.json")
 
     @OutputDirectory
-    val outputDirPath: Path = project.rootDir.resolve("src/main/generated").toPath()
+    val outputDirPath = project.file("src/main/generated")
 
     @TaskAction
     fun generate() {
         println("Generating Chrome DevTools Protocol API...")
-        Generator(protocolPaths, targetTypesPath, outputDirPath).generate()
+        Generator(protocolPaths.map { it.toPath() }, targetTypesPath.toPath(), outputDirPath.toPath()).generate()
         println("Done.")
     }
 }
