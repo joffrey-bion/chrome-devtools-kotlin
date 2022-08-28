@@ -8,7 +8,7 @@ import org.hildan.chrome.devtools.domains.target.events.TargetEvent
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
 import org.hildan.chrome.devtools.protocol.withSession
 
-private val pageLikeTargetTypes = listOf("page", "iframe")
+private val pageLikeTargetTypes = listOf(TargetTypeNames.page, TargetTypeNames.iFrame)
 
 /**
  * Creates a new [ChromePageSession] attached to the `page` or `iframe` target with the given [targetId].
@@ -115,7 +115,7 @@ suspend fun ChromePageSession.navigateAndAwaitPageLoad(navigateRequest: Navigate
  */
 suspend fun ChromePageSession.childPages(): List<TargetInfo> {
     val thisTargetId = metaData.targetId
-    return target.getTargets().targetInfos.filter { it.type == "page" && it.openerId == thisTargetId }
+    return target.getTargets().targetInfos.filter { it.type == TargetTypeNames.page && it.openerId == thisTargetId }
 }
 
 /**
