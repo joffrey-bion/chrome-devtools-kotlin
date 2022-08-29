@@ -991,7 +991,8 @@
                         "ExcludeSameSiteLax",
                         "ExcludeSameSiteStrict",
                         "ExcludeInvalidSameParty",
-                        "ExcludeSamePartyCrossPartyContext"
+                        "ExcludeSamePartyCrossPartyContext",
+                        "ExcludeDomainNonASCII"
                     ]
                 },
                 {
@@ -1006,7 +1007,8 @@
                         "WarnSameSiteStrictCrossDowngradeLax",
                         "WarnSameSiteLaxCrossDowngradeStrict",
                         "WarnSameSiteLaxCrossDowngradeLax",
-                        "WarnAttributeValueExceedsMaxSize"
+                        "WarnAttributeValueExceedsMaxSize",
+                        "WarnDomainNonASCII"
                     ]
                 },
                 {
@@ -1450,7 +1452,11 @@
                         "InsecureContext",
                         "InvalidHeader",
                         "InvalidRegisterTriggerHeader",
-                        "InvalidEligibleHeader"
+                        "InvalidEligibleHeader",
+                        "TooManyConcurrentRequests",
+                        "SourceAndTriggerHeaders",
+                        "SourceIgnored",
+                        "TriggerIgnored"
                     ]
                 },
                 {
@@ -1651,7 +1657,7 @@
                     "description": "Represents the failure reason when a federated authentication reason fails.\nShould be updated alongside RequestIdTokenStatus in\nthird_party/blink/public/mojom/devtools/inspector_issue.mojom to include\nall cases except for success.",
                     "type": "string",
                     "enum": [
-                        "ApprovalDeclined",
+                        "ShouldEmbargo",
                         "TooManyRequests",
                         "ManifestListHttpNotFound",
                         "ManifestListNoResponse",
@@ -1664,7 +1670,6 @@
                         "ClientMetadataHttpNotFound",
                         "ClientMetadataNoResponse",
                         "ClientMetadataInvalidResponse",
-                        "ClientMetadataMissingPrivacyPolicyUrl",
                         "DisabledInSettings",
                         "ErrorFetchingSignin",
                         "InvalidSigninResponse",
@@ -1676,7 +1681,8 @@
                         "IdTokenInvalidResponse",
                         "IdTokenInvalidRequest",
                         "ErrorIdToken",
-                        "Canceled"
+                        "Canceled",
+                        "RpPageNotVisible"
                     ]
                 },
                 {
@@ -3162,6 +3168,16 @@
                             "description": "The entire property range in the enclosing style declaration (if available).",
                             "optional": true,
                             "$ref": "SourceRange"
+                        },
+                        {
+                            "name": "longhandProperties",
+                            "description": "Parsed longhand components of this property if it is a shorthand.\nThis field will be empty if the given property is not a shorthand.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "array",
+                            "items": {
+                                "$ref": "CSSProperty"
+                            }
                         }
                     ]
                 },
@@ -9119,7 +9135,14 @@
                     "parameters": [
                         {
                             "name": "securityOrigin",
-                            "description": "Security origin.",
+                            "description": "At least and at most one of securityOrigin, storageKey must be specified.\nSecurity origin.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "storageKey",
+                            "description": "Storage key.",
+                            "optional": true,
                             "type": "string"
                         }
                     ],
@@ -15258,9 +15281,10 @@
                         "serial",
                         "shared-autofill",
                         "shared-storage",
-                        "storage-access-api",
+                        "storage-access",
                         "sync-xhr",
                         "trust-token-redemption",
+                        "unload",
                         "usb",
                         "vertical-scroll",
                         "web-share",
@@ -16305,9 +16329,10 @@
                         "TriggerBackgrounded",
                         "EmbedderTriggeredAndSameOriginRedirected",
                         "EmbedderTriggeredAndCrossOriginRedirected",
-                        "EmbedderTriggeredAndDestroyed",
                         "MemoryLimitExceeded",
-                        "FailToGetMemoryUsage"
+                        "FailToGetMemoryUsage",
+                        "DataSaverEnabled",
+                        "HasEffectiveUrl"
                     ]
                 }
             ],
@@ -17860,6 +17885,7 @@
                 {
                     "name": "prerenderAttemptCompleted",
                     "description": "Fired when a prerender attempt is completed.",
+                    "experimental": true,
                     "parameters": [
                         {
                             "name": "initiatingFrameId",
@@ -17873,6 +17899,12 @@
                         {
                             "name": "finalStatus",
                             "$ref": "PrerenderFinalStatus"
+                        },
+                        {
+                            "name": "reasonDetails",
+                            "description": "This is used to give users more information about the cancellation details,\nand this will be formatted for display.",
+                            "optional": true,
+                            "type": "string"
                         }
                     ]
                 },
