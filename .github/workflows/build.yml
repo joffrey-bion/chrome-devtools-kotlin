@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        jdk-version: [11, 16]
+        jdk-version: [11, 17]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
