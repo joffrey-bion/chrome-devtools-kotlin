@@ -1,5 +1,25 @@
 # Change Log
 
+## [4.0.0\-1040073](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/4.0.0-1040073) (2022-08-29)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.11.1-1030018...4.0.0-1040073)
+
+**Implemented enhancements:**
+
+- Add `\-Events` suffix to methods returning events flow [\#193](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/193)
+- Remove `\-Event` suffix in event type names [\#191](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/191)
+- Rework generated APIs for better compatibility [\#182](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/182)
+- Remove unnecessary Krossbow dependency [\#190](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/190)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 1040073 [\#195](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/195) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Update to Chrome DevTools Protocol version 1040073 [\#188](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/188) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+**Removals:**
+
+- Remove deprecated `navigateAndWaitLoading` functions [\#194](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/194)
+- Remove the deprecated `ChromeDPTarget.attach\(\)` method [\#192](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/192)
+
 ## [3.11.1\-1030018](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.11.1-1030018) (2022-08-01)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.11.0-1030018...3.11.1-1030018)
 
