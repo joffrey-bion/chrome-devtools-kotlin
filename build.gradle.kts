@@ -1,6 +1,3 @@
-import java.time.LocalDate
-import org.hildan.chrome.devtools.build.MilestoneRef
-
 plugins {
     val kotlinVersion = "1.7.10"
     kotlin("jvm") version kotlinVersion
@@ -11,10 +8,16 @@ plugins {
     signing
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
     id("org.hildan.github.changelog") version "1.11.1"
+    id("ru.vyarus.github-info") version "1.4.0"
 }
 
 group = "org.hildan.chrome"
 description = "A Kotlin client for the Chrome DevTools Protocol"
+
+github {
+    user = "joffrey-bion"
+    license = "MIT"
+}
 
 repositories {
     mavenCentral()
@@ -63,6 +66,7 @@ tasks {
 }
 
 changelog {
+    githubUser = github.user
     futureVersionTag = project.version.toString()
     sinceTag = "0.5.0"
 }
@@ -94,31 +98,15 @@ publishing {
             artifact(sourcesJar)
             artifact(dokkaJavadocJar)
 
-            val githubUser = findProperty("githubUser") as String? ?: System.getenv("GITHUB_USER")
-            val githubSlug = "$githubUser/${rootProject.name}"
-            val githubRepoUrl = "https://github.com/$githubSlug"
-
             pom {
                 name.set(project.name)
                 description.set(project.description)
-                url.set(githubRepoUrl)
-                licenses {
-                    license {
-                        name.set("The MIT License")
-                        url.set("https://opensource.org/licenses/MIT")
-                    }
-                }
                 developers {
                     developer {
                         id.set("joffrey-bion")
                         name.set("Joffrey Bion")
                         email.set("joffrey.bion@gmail.com")
                     }
-                }
-                scm {
-                    connection.set("scm:git:$githubRepoUrl.git")
-                    developerConnection.set("scm:git:git@github.com:$githubSlug.git")
-                    url.set(githubRepoUrl)
                 }
             }
         }
