@@ -1,5 +1,18 @@
 # Change Log
 
+## [4.1.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/4.1.0) (2022-10-15)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/4.0.0-1040073...4.1.0)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 1059612 [\#196](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/196) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+**Upgraded dependencies:**
+
+- Upgrade Kotlin to 1.7.20 [\#199](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/199)
+- Upgrade Ktor to 2.1.2 [\#200](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/200)
+- Upgrade kotlinx\-serialization to 1.4.0 [\#198](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/198)
+
 ## [4.0.0\-1040073](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/4.0.0-1040073) (2022-08-29)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.11.1-1030018...4.0.0-1040073)
 
@@ -13,7 +26,6 @@
 **Merged pull requests:**
 
 - Update to Chrome DevTools Protocol version 1040073 [\#195](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/195) ([@github-actions[bot]](https://github.com/apps/github-actions))
-- Update to Chrome DevTools Protocol version 1040073 [\#188](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/188) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 **Removals:**
 
