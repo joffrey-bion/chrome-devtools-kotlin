@@ -1448,6 +1448,7 @@
                     "type": "string",
                     "enum": [
                         "PermissionPolicyDisabled",
+                        "PermissionPolicyNotDelegated",
                         "UntrustworthyReportingOrigin",
                         "InsecureContext",
                         "InvalidHeader",
@@ -1576,18 +1577,17 @@
                         "HostCandidateAttributeGetter",
                         "IdentityInCanMakePaymentEvent",
                         "InsecurePrivateNetworkSubresourceRequest",
-                        "LegacyConstraintGoogIPv6",
                         "LocalCSSFileExtensionRejected",
                         "MediaSourceAbortRemove",
                         "MediaSourceDurationTruncatingBuffered",
-                        "NavigateEventRestoreScroll",
-                        "NavigateEventTransitionWhile",
                         "NoSysexWebMIDIWithoutPermission",
                         "NotificationInsecureOrigin",
                         "NotificationPermissionRequestedIframe",
                         "ObsoleteWebRtcCipherSuite",
                         "OpenWebDatabaseInsecureContext",
                         "OverflowVisibleOnReplacedElement",
+                        "PaymentInstruments",
+                        "PaymentRequestCSPViolation",
                         "PersistentQuotaType",
                         "PictureSourceSrc",
                         "PrefixedCancelAnimationFrame",
@@ -6204,7 +6204,7 @@
                         },
                         {
                             "name": "previousNodeId",
-                            "description": "If of the previous siblint.",
+                            "description": "Id of the previous sibling.",
                             "$ref": "NodeId"
                         },
                         {
@@ -11351,6 +11351,22 @@
                     ]
                 },
                 {
+                    "id": "AlternateProtocolUsage",
+                    "description": "The reason why Chrome uses a specific transport protocol for HTTP semantics.",
+                    "experimental": true,
+                    "type": "string",
+                    "enum": [
+                        "alternativeJobWonWithoutRace",
+                        "alternativeJobWonRace",
+                        "mainJobWonRace",
+                        "mappingMissing",
+                        "broken",
+                        "dnsAlpnH3JobWonWithoutRace",
+                        "dnsAlpnH3JobWonRace",
+                        "unspecifiedReason"
+                    ]
+                },
+                {
                     "id": "Response",
                     "description": "HTTP response data.",
                     "type": "object",
@@ -11474,6 +11490,13 @@
                             "description": "Protocol used to fetch this request.",
                             "optional": true,
                             "type": "string"
+                        },
+                        {
+                            "name": "alternateProtocolUsage",
+                            "description": "The reason why Chrome uses a specific transport protocol for HTTP semantics.",
+                            "experimental": true,
+                            "optional": true,
+                            "$ref": "AlternateProtocolUsage"
                         },
                         {
                             "name": "securityState",
@@ -15230,6 +15253,7 @@
                         "ch-downlink",
                         "ch-ect",
                         "ch-prefers-color-scheme",
+                        "ch-prefers-reduced-motion",
                         "ch-rtt",
                         "ch-save-data",
                         "ch-ua",
@@ -15256,7 +15280,6 @@
                         "encrypted-media",
                         "execution-while-out-of-viewport",
                         "execution-while-not-rendered",
-                        "federated-credentials",
                         "focus-without-user-activation",
                         "fullscreen",
                         "frobulate",
@@ -15264,6 +15287,7 @@
                         "geolocation",
                         "gyroscope",
                         "hid",
+                        "identity-credentials-get",
                         "idle-detection",
                         "interest-cohort",
                         "join-ad-interest-group",
@@ -16327,12 +16351,15 @@
                         "AudioOutputDeviceRequested",
                         "MixedContent",
                         "TriggerBackgrounded",
-                        "EmbedderTriggeredAndSameOriginRedirected",
                         "EmbedderTriggeredAndCrossOriginRedirected",
                         "MemoryLimitExceeded",
                         "FailToGetMemoryUsage",
                         "DataSaverEnabled",
-                        "HasEffectiveUrl"
+                        "HasEffectiveUrl",
+                        "ActivatedBeforeStarted",
+                        "InactivePageRestriction",
+                        "StartFailed",
+                        "TimeoutBackgrounded"
                     ]
                 }
             ],
@@ -16615,8 +16642,26 @@
                     ]
                 },
                 {
+                    "name": "getAdScriptId",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "frameId",
+                            "$ref": "FrameId"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "adScriptId",
+                            "description": "Identifies the bottom-most script which caused the frame to be labelled\nas an ad. Only sent if frame is labelled as an ad and id is available.",
+                            "optional": true,
+                            "$ref": "AdScriptId"
+                        }
+                    ]
+                },
+                {
                     "name": "getCookies",
-                    "description": "Returns all browser cookies. Depending on the backend support, will return detailed cookie\ninformation in the `cookies` field.",
+                    "description": "Returns all browser cookies for the page and all of its subframes. Depending\non the backend support, will return detailed cookie information in the\n`cookies` field.",
                     "experimental": true,
                     "deprecated": true,
                     "redirect": "Network",
@@ -17561,8 +17606,9 @@
                         },
                         {
                             "name": "adScriptId",
-                            "description": "Identifies the bottom-most script which caused the frame to be labelled\nas an ad. Only sent if frame is labelled as an ad and id is available.",
+                            "description": "Identifies the bottom-most script which caused the frame to be labelled\nas an ad. Only sent if frame is labelled as an ad and id is available.\nDeprecated: use Page.getAdScriptId instead.",
                             "experimental": true,
+                            "deprecated": true,
                             "optional": true,
                             "$ref": "AdScriptId"
                         }
@@ -17901,8 +17947,8 @@
                             "$ref": "PrerenderFinalStatus"
                         },
                         {
-                            "name": "reasonDetails",
-                            "description": "This is used to give users more information about the cancellation details,\nand this will be formatted for display.",
+                            "name": "disallowedApiMethod",
+                            "description": "This is used to give users more information about the name of the API call\nthat is incompatible with prerender and has caused the cancellation of the attempt",
                             "optional": true,
                             "type": "string"
                         }
@@ -19902,6 +19948,13 @@
                             "experimental": true,
                             "optional": true,
                             "$ref": "Browser.BrowserContextID"
+                        },
+                        {
+                            "name": "subtype",
+                            "description": "Provides additional details for specific target types. For example, for\nthe type of \"page\", this may be set to \"portal\" or \"prerender\".",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "string"
                         }
                     ]
                 },
@@ -21044,7 +21097,7 @@
                         },
                         {
                             "name": "headers",
-                            "description": "If set, overrides the request headers.",
+                            "description": "If set, overrides the request headers. Note that the overrides do not\nextend to subsequent redirect hops, if a redirect happens. Another override\nmay be applied to a different request produced by a redirect.",
                             "optional": true,
                             "type": "array",
                             "items": {
@@ -21210,6 +21263,13 @@
                         {
                             "name": "networkId",
                             "description": "If the intercepted request had a corresponding Network.requestWillBeSent event fired for it,\nthen this networkId will be the same as the requestId present in the requestWillBeSent event.",
+                            "optional": true,
+                            "$ref": "Network.RequestId"
+                        },
+                        {
+                            "name": "redirectedRequestId",
+                            "description": "If the request is due to a redirect response from the server, the id of the request that\nhas caused the redirect.",
+                            "experimental": true,
                             "optional": true,
                             "$ref": "RequestId"
                         }
