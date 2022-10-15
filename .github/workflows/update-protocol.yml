@@ -15,14 +15,12 @@ jobs:
       - name: Set up JDK 11
         uses: actions/setup-java@v2
         with:
-          distribution: 'zulu'
+          distribution: 'temurin'
           java-version: 11
 
       - name: Update protocol
-        uses: burrunan/gradle-cache-action@v1
+        uses: gradle/gradle-build-action@v2
         with:
-          # jobs with different JDK versions can't share caches
-          job-id: jdk11
           arguments: updateProtocolDefinitions
 
       - name: Read protocol version
@@ -33,12 +31,8 @@ jobs:
           trim: true
 
       - name: Update public ABI descriptors
-        uses: burrunan/gradle-cache-action@v1
+        uses: gradle/gradle-build-action@v2
         with:
-          # jobs with different JDK versions can't share caches
-          job-id: jdk11
-          # We already deal with caches in a previous gradle-cache-action
-          execution-only-caches: true
           arguments: apiDump
 
       - name: Create pull-request

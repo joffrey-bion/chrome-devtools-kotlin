@@ -15,7 +15,7 @@ jobs:
       - name: Set up JDK 11
         uses: actions/setup-java@v2
         with:
-          distribution: 'zulu'
+          distribution: 'temurin'
           java-version: 11
 
       # The publishToSonatype task and the repository release need to be in the same Gradle call

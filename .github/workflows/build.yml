@@ -16,7 +16,7 @@ jobs:
       - name: Set up JDK ${{ matrix.jdk-version }}
         uses: actions/setup-java@v2
         with:
-          distribution: 'zulu'
+          distribution: 'temurin'
           java-version: ${{ matrix.jdk-version }}
 
       - name: Build with Gradle
