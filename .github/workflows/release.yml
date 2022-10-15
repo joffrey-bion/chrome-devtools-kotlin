@@ -21,10 +21,8 @@ jobs:
           java-version: 17
 
       - name: Test build before release
-        uses: burrunan/gradle-cache-action@v1
+        uses: gradle/gradle-build-action@v2
         with:
-          # jobs with different JDK versions can't share caches
-          job-id: jdk11
           arguments: build
 
       - name: Read protocol version
