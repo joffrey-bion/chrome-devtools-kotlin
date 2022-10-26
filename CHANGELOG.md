@@ -1,7 +1,14 @@
 # Change Log
 
-## [4.1.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/4.1.0) (2022-10-15)
-[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/4.0.0-1040073...4.1.0)
+## [4.2.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/4.2.0) (2022-10-26)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/4.1.0-1059612...4.2.0)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 1063652 [\#201](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/201) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+## [4.1.0\-1059612](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/4.1.0-1059612) (2022-10-15)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/4.0.0-1040073...4.1.0-1059612)
 
 **Merged pull requests:**
 
@@ -21,7 +28,6 @@
 - Add `\-Events` suffix to methods returning events flow [\#193](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/193)
 - Remove `\-Event` suffix in event type names [\#191](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/191)
 - Rework generated APIs for better compatibility [\#182](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/182)
-- Remove unnecessary Krossbow dependency [\#190](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/190)
 
 **Merged pull requests:**
 
@@ -31,6 +37,7 @@
 
 - Remove deprecated `navigateAndWaitLoading` functions [\#194](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/194)
 - Remove the deprecated `ChromeDPTarget.attach\(\)` method [\#192](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/192)
+- Remove unnecessary Krossbow dependency [\#190](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/190)
 
 ## [3.11.1\-1030018](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.11.1-1030018) (2022-08-01)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.11.0-1030018...3.11.1-1030018)
