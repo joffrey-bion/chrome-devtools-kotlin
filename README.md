@@ -107,7 +107,7 @@ val targets = browserSession.target.getTargets()
 ```
 
 ```kotlin
-browserSession.storage.clearCookies(ClearCookiesRequest())
+browserSession.storage.clearCookies()
 ```
 
 ### Connecting to targets
@@ -121,8 +121,11 @@ val browserSession = ChromeDPClient("http://localhost:9222").webSocket()
 val pageSession = browserSession.attachToNewPage("http://example.com")
 
 // This page session has access to many useful protocol domains (e.g. dom, page...)
-val doc = pageSession.dom.getDocument(GetDocumentRequest()).root
-val base64Img = pageSession.page.captureScreenshot(CaptureScreenshotRequest(format = ScreenshotFormat.jpeg, quality = 80))
+val doc = pageSession.dom.getDocument().root
+val base64Img = pageSession.page.captureScreenshot {
+    format = ScreenshotFormat.jpeg
+    quality = 80
+}
 ```
 
 ### High level extensions
