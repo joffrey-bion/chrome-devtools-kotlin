@@ -1,7 +1,5 @@
 package org.hildan.chrome.devtools.targets
 
-// See target type constants in Chromium's code here:
-//
 /**
  * The name of the possible target types, as defined in
  * [Chromium's code](https://source.chromium.org/chromium/chromium/src/+/main:content/browser/devtools/devtools_agent_host_impl.cc;l=65-74).
