@@ -122,7 +122,7 @@ val pageSession = browserSession.attachToNewPage("http://example.com")
 
 // This page session has access to many useful protocol domains (e.g. dom, page...)
 val doc = pageSession.dom.getDocument(GetDocumentRequest()).root
-val base64Img = pageSession.page.captureScreenshot(CaptureScreenshotRequest(format = "jpg", quality = 80))
+val base64Img = pageSession.page.captureScreenshot(CaptureScreenshotRequest(format = ScreenshotFormat.jpeg, quality = 80))
 ```
 
 ### High level extensions
