@@ -151,10 +151,10 @@ data class Person(val firstName: String, val lastName: String)
 
 val pageSession = ChromeDPClient().webSocket().attachToNewPage("http://google.com")
 
-val evaluatedInt = page.runtime.evaluateJs<Int>("42")
+val evaluatedInt = pageSession.runtime.evaluateJs<Int>("42")
 assertEquals(42, evaluatedInt)
 
-val evaluatedPerson = page.runtime.evaluateJs<Person>("""eval({firstName: "Bob", lastName: "Lee Swagger"})""")
+val evaluatedPerson = pageSession.runtime.evaluateJs<Person>("""eval({firstName: "Bob", lastName: "Lee Swagger"})""")
 assertEquals(Person("Bob", "Lee Swagger"), evaluatedPerson)
 ```
 
