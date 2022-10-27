@@ -179,12 +179,11 @@ This is necessary because Chrome uses the `Host` header to build these URLs, and
 ## Add the dependency
 
 This library is available on Maven Central.
-New versions will no longer be published to JCenter, as it will be shutdown on May 1st 2021.
 
 Using Gradle:
 
 ```
-compile("org.hildan.chrome:chrome-devtools-kotlin:$version")
+implementation("org.hildan.chrome:chrome-devtools-kotlin:$version")
 ```
 
 Using Maven:
