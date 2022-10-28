@@ -41,7 +41,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          arguments: generateChangelog -Pversion=${{ github.event.inputs.version }}
+          arguments: generateChangelog -Pversion=${{ steps.compute-tag.outputs.tag }}
 
       - name: Commit and Push Change Log
         id: changelog-commit
