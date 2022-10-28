@@ -1,7 +1,7 @@
 # Change Log
 
-## [4.2.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/4.2.0) (2022-10-26)
-[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/4.1.0-1059612...4.2.0)
+## [4.2.0-1063652](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/4.2.0-1063652) (2022-10-26)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/4.1.0-1059612...4.2.0-1063652)
 
 **Merged pull requests:**
 
