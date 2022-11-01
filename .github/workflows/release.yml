@@ -61,3 +61,4 @@ jobs:
           tag_name: ${{ steps.compute-tag.outputs.tag }}
           release_name: ${{ steps.compute-tag.outputs.tag }}
           commitish: ${{ steps.changelog-commit.outputs.sha }}
+          body_path: build/reports/changelog/latest-release-body.md
