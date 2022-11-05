@@ -4296,7 +4296,6 @@ public final class org/hildan/chrome/devtools/domains/browser/PermissionSetting 
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/browser/PermissionSetting$Companion;
 	public static final field denied Lorg/hildan/chrome/devtools/domains/browser/PermissionSetting;
 	public static final field granted Lorg/hildan/chrome/devtools/domains/browser/PermissionSetting;
-	public static final field prompt Lorg/hildan/chrome/devtools/domains/browser/PermissionSetting;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/browser/PermissionSetting;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/browser/PermissionSetting;
 }
@@ -18966,9 +18965,6 @@ public final class org/hildan/chrome/devtools/domains/headlessexperimental/Headl
 	public static synthetic fun beginFrame$default (Lorg/hildan/chrome/devtools/domains/headlessexperimental/HeadlessExperimentalDomain;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun events ()Lkotlinx/coroutines/flow/Flow;
-	public final fun needsBeginFramesChanged ()Lkotlinx/coroutines/flow/Flow;
-	public final fun needsBeginFramesChangedEvents ()Lkotlinx/coroutines/flow/Flow;
 }
 
 public final class org/hildan/chrome/devtools/domains/headlessexperimental/ImageFormat : java/lang/Enum {
@@ -19029,46 +19025,6 @@ public final class org/hildan/chrome/devtools/domains/headlessexperimental/Scree
 }
 
 public final class org/hildan/chrome/devtools/domains/headlessexperimental/ScreenshotParams$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public abstract class org/hildan/chrome/devtools/domains/headlessexperimental/events/HeadlessExperimentalEvent {
-	public static final field Companion Lorg/hildan/chrome/devtools/domains/headlessexperimental/events/HeadlessExperimentalEvent$Companion;
-	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/headlessexperimental/events/HeadlessExperimentalEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
-}
-
-public final class org/hildan/chrome/devtools/domains/headlessexperimental/events/HeadlessExperimentalEvent$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class org/hildan/chrome/devtools/domains/headlessexperimental/events/HeadlessExperimentalEvent$NeedsBeginFramesChanged : org/hildan/chrome/devtools/domains/headlessexperimental/events/HeadlessExperimentalEvent {
-	public static final field Companion Lorg/hildan/chrome/devtools/domains/headlessexperimental/events/HeadlessExperimentalEvent$NeedsBeginFramesChanged$Companion;
-	public synthetic fun <init> (IZLkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Z)V
-	public final fun component1 ()Z
-	public final fun copy (Z)Lorg/hildan/chrome/devtools/domains/headlessexperimental/events/HeadlessExperimentalEvent$NeedsBeginFramesChanged;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/headlessexperimental/events/HeadlessExperimentalEvent$NeedsBeginFramesChanged;ZILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/headlessexperimental/events/HeadlessExperimentalEvent$NeedsBeginFramesChanged;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getNeedsBeginFrames ()Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/headlessexperimental/events/HeadlessExperimentalEvent$NeedsBeginFramesChanged;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
-}
-
-public final class org/hildan/chrome/devtools/domains/headlessexperimental/events/HeadlessExperimentalEvent$NeedsBeginFramesChanged$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/headlessexperimental/events/HeadlessExperimentalEvent$NeedsBeginFramesChanged$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/headlessexperimental/events/HeadlessExperimentalEvent$NeedsBeginFramesChanged;
-	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/headlessexperimental/events/HeadlessExperimentalEvent$NeedsBeginFramesChanged;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
-}
-
-public final class org/hildan/chrome/devtools/domains/headlessexperimental/events/HeadlessExperimentalEvent$NeedsBeginFramesChanged$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -28077,22 +28033,24 @@ public final class org/hildan/chrome/devtools/domains/network/events/NetworkEven
 
 public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$RequestWillBeSentExtraInfo : org/hildan/chrome/devtools/domains/network/events/NetworkEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$RequestWillBeSentExtraInfo$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;Ljava/lang/Boolean;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/util/List;
 	public final fun component3 ()Lkotlinx/serialization/json/JsonObject;
 	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;
 	public final fun component5 ()Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;
-	public final fun copy (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$RequestWillBeSentExtraInfo;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$RequestWillBeSentExtraInfo;Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$RequestWillBeSentExtraInfo;
+	public final fun component6 ()Ljava/lang/Boolean;
+	public final fun copy (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;Ljava/lang/Boolean;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$RequestWillBeSentExtraInfo;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$RequestWillBeSentExtraInfo;Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;Ljava/lang/Boolean;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$RequestWillBeSentExtraInfo;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAssociatedCookies ()Ljava/util/List;
 	public final fun getClientSecurityState ()Lorg/hildan/chrome/devtools/domains/network/ClientSecurityState;
 	public final fun getConnectTiming ()Lorg/hildan/chrome/devtools/domains/network/ConnectTiming;
 	public final fun getHeaders ()Lkotlinx/serialization/json/JsonObject;
 	public final fun getRequestId ()Ljava/lang/String;
+	public final fun getSiteHasCookieInOtherPartition ()Ljava/lang/Boolean;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$RequestWillBeSentExtraInfo;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
@@ -40937,6 +40895,41 @@ public final class org/hildan/chrome/devtools/domains/storage/ClearDataForStorag
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/storage/ClearSharedStorageEntriesRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/ClearSharedStorageEntriesRequest$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/storage/ClearSharedStorageEntriesRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/storage/ClearSharedStorageEntriesRequest;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/storage/ClearSharedStorageEntriesRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getOwnerOrigin ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/storage/ClearSharedStorageEntriesRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/ClearSharedStorageEntriesRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/storage/ClearSharedStorageEntriesRequest$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/storage/ClearSharedStorageEntriesRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/storage/ClearSharedStorageEntriesRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/ClearSharedStorageEntriesRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/ClearSharedStorageEntriesResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/storage/ClearSharedStorageEntriesResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/storage/ClearTrustTokensRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/ClearTrustTokensRequest$Companion;
 	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
@@ -40994,6 +40987,43 @@ public final class org/hildan/chrome/devtools/domains/storage/ClearTrustTokensRe
 }
 
 public final class org/hildan/chrome/devtools/domains/storage/ClearTrustTokensResponse$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/DeleteSharedStorageEntryRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/DeleteSharedStorageEntryRequest$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/storage/DeleteSharedStorageEntryRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/storage/DeleteSharedStorageEntryRequest;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/storage/DeleteSharedStorageEntryRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getKey ()Ljava/lang/String;
+	public final fun getOwnerOrigin ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/storage/DeleteSharedStorageEntryRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/DeleteSharedStorageEntryRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/storage/DeleteSharedStorageEntryRequest$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/storage/DeleteSharedStorageEntryRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/storage/DeleteSharedStorageEntryRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/DeleteSharedStorageEntryRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/DeleteSharedStorageEntryResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/storage/DeleteSharedStorageEntryResponse;
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -41904,8 +41934,12 @@ public final class org/hildan/chrome/devtools/domains/storage/StorageDomain {
 	public final fun clearDataForOrigin (Lorg/hildan/chrome/devtools/domains/storage/ClearDataForOriginRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun clearDataForStorageKey (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun clearDataForStorageKey (Lorg/hildan/chrome/devtools/domains/storage/ClearDataForStorageKeyRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun clearSharedStorageEntries (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun clearSharedStorageEntries (Lorg/hildan/chrome/devtools/domains/storage/ClearSharedStorageEntriesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun clearTrustTokens (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun clearTrustTokens (Lorg/hildan/chrome/devtools/domains/storage/ClearTrustTokensRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun deleteSharedStorageEntry (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun deleteSharedStorageEntry (Lorg/hildan/chrome/devtools/domains/storage/DeleteSharedStorageEntryRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun events ()Lkotlinx/coroutines/flow/Flow;
 	public final fun getCookies (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getCookies (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -46254,6 +46288,60 @@ public final class org/hildan/chrome/devtools/domains/webauthn/SetAutomaticPrese
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/webauthn/SetResponseOverrideBitsRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/webauthn/SetResponseOverrideBitsRequest$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/Boolean;
+	public final fun component3 ()Ljava/lang/Boolean;
+	public final fun component4 ()Ljava/lang/Boolean;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)Lorg/hildan/chrome/devtools/domains/webauthn/SetResponseOverrideBitsRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/webauthn/SetResponseOverrideBitsRequest;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/webauthn/SetResponseOverrideBitsRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAuthenticatorId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun isBadUP ()Ljava/lang/Boolean;
+	public final fun isBadUV ()Ljava/lang/Boolean;
+	public final fun isBogusSignature ()Ljava/lang/Boolean;
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/webauthn/SetResponseOverrideBitsRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/webauthn/SetResponseOverrideBitsRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/webauthn/SetResponseOverrideBitsRequest$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/webauthn/SetResponseOverrideBitsRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/webauthn/SetResponseOverrideBitsRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/webauthn/SetResponseOverrideBitsRequest$Builder {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun build ()Lorg/hildan/chrome/devtools/domains/webauthn/SetResponseOverrideBitsRequest;
+	public final fun getAuthenticatorId ()Ljava/lang/String;
+	public final fun isBadUP ()Ljava/lang/Boolean;
+	public final fun isBadUV ()Ljava/lang/Boolean;
+	public final fun isBogusSignature ()Ljava/lang/Boolean;
+	public final fun setBadUP (Ljava/lang/Boolean;)V
+	public final fun setBadUV (Ljava/lang/Boolean;)V
+	public final fun setBogusSignature (Ljava/lang/Boolean;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/webauthn/SetResponseOverrideBitsRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/webauthn/SetResponseOverrideBitsResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/webauthn/SetResponseOverrideBitsResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/webauthn/SetUserVerifiedRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/webauthn/SetUserVerifiedRequest$Companion;
 	public synthetic fun <init> (ILjava/lang/String;ZLkotlinx/serialization/internal/SerializationConstructorMarker;)V
@@ -46362,6 +46450,10 @@ public final class org/hildan/chrome/devtools/domains/webauthn/WebAuthnDomain {
 	public final fun removeVirtualAuthenticator (Lorg/hildan/chrome/devtools/domains/webauthn/RemoveVirtualAuthenticatorRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setAutomaticPresenceSimulation (Ljava/lang/String;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setAutomaticPresenceSimulation (Lorg/hildan/chrome/devtools/domains/webauthn/SetAutomaticPresenceSimulationRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setResponseOverrideBits (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setResponseOverrideBits (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setResponseOverrideBits (Lorg/hildan/chrome/devtools/domains/webauthn/SetResponseOverrideBitsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun setResponseOverrideBits$default (Lorg/hildan/chrome/devtools/domains/webauthn/WebAuthnDomain;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun setUserVerified (Ljava/lang/String;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setUserVerified (Lorg/hildan/chrome/devtools/domains/webauthn/SetUserVerifiedRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
