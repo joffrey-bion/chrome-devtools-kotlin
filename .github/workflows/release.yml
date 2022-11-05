@@ -33,7 +33,7 @@ jobs:
           trim: true
 
       - name: Compute release tag (with protocol version)
-        run: echo "tag=${{ github.event.inputs.version }}-${{ steps.protocol-version.outputs.text }}" >> $GITHUB_OUTPUT
+        run: echo "tag=${{ inputs.version }}-${{ steps.protocol-version.outputs.text }}" >> $GITHUB_OUTPUT
         id: compute-tag
 
       - name: Generate Change Log
@@ -54,11 +54,9 @@ jobs:
           echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
       - name: Create Release and Tag
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }} # using personal token to trigger publish workflow
+        uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ steps.compute-tag.outputs.tag }}
-          release_name: ${{ steps.compute-tag.outputs.tag }}
-          commitish: ${{ steps.changelog-commit.outputs.sha }}
+          token: ${{ secrets.GH_PAT }} # using personal token to trigger publish workflow
+          tag_name: ${{ inputs.version }}
+          target_commitish: ${{ steps.changelog-commit.outputs.sha }}
           body_path: build/reports/changelog/latest-release-body.md
