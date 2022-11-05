@@ -24,11 +24,8 @@ jobs:
           arguments: updateProtocolDefinitions
 
       - name: Read protocol version
-        uses: pCYSl5EDgo/cat@master
-        id: version
-        with:
-          path: protocol/version.txt
-          trim: true
+        id: protocol-version
+        run: echo "version=$(cat protocol/version.txt)" >> $GITHUB_OUTPUT
 
       - name: Update public ABI descriptors
         uses: gradle/gradle-build-action@v2
@@ -43,8 +40,8 @@ jobs:
           branch: "protocol-update"
           author: "Protocol Update Workflow <protocol-updater@users.noreply.github.com>"
           committer: "Protocol Update Workflow <protocol-updater@users.noreply.github.com>"
-          commit-message: "Update to Chrome DevTools Protocol version ${{ steps.version.outputs.text }}"
-          title: "Update to Chrome DevTools Protocol version ${{ steps.version.outputs.text }}"
+          commit-message: "Update to Chrome DevTools Protocol version ${{ steps.protocol-version.outputs.version }}"
+          title: "Update to Chrome DevTools Protocol version ${{ steps.protocol-version.outputs.version }}"
           body: |
             This PR updates the protocol definitions (under `protocol/`) to the latest version found in
             [the `devtools-protocol` github repo](https://github.com/ChromeDevTools/devtools-protocol/tree/master/json).

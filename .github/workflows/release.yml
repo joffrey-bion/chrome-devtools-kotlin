@@ -25,15 +25,8 @@ jobs:
         with:
           arguments: build
 
-      - name: Read protocol version
-        uses: pCYSl5EDgo/cat@master
-        id: protocol-version
-        with:
-          path: protocol/version.txt
-          trim: true
-
       - name: Compute release tag (with protocol version)
-        run: echo "tag=${{ inputs.version }}-${{ steps.protocol-version.outputs.text }}" >> $GITHUB_OUTPUT
+        run: echo "tag=${{ inputs.version }}-$(cat protocol/version.txt)" >> $GITHUB_OUTPUT
         id: compute-tag
 
       - name: Generate Change Log
