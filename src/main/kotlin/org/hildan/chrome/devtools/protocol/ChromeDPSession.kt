@@ -15,7 +15,13 @@ internal fun ChromeDPConnection.withSession(sessionId: SessionID?) = ChromeDPSes
  * A wrapper around a [ChromeDPConnection] to handle session-scoped request IDs and filter events of a specific session.
  */
 internal class ChromeDPSession(
+    /**
+     * The underlying connection to Chrome.
+     */
     val connection: ChromeDPConnection,
+    /**
+     * The ID of this session, or null if this is the root browser session.
+     */
     val sessionId: SessionID?,
 ) {
     /**

@@ -33,10 +33,11 @@ private fun createHttpClient(overrideHostHeader: Boolean) = HttpClient {
 }
 
 /**
- * A Chrome Devtools Protocol client.
+ * A client using the Chrome Devtools Protocol to communicate with a running Chrome browser via the debugger API.
  *
- * It provides access to the basic HTTP endpoints exposed by the Chrome browser, as well as web socket connections to
- * the browser and its targets to make use of the full Chrome Devtools Protocol API.
+ * It provides access to the [HTTP endpoints](https://chromedevtools.github.io/devtools-protocol/#endpoints) exposed
+ * by the Chrome browser, as well as web socket connections to the browser and its targets to make use of the full
+ * Chrome Devtools Protocol API.
  *
  * **Note:** if you already know the browser target's web socket URL, you don't need to create a `ChromeDPClient`.
  * Instead, you can directly use [HttpClient.chromeWebSocket].
@@ -56,6 +57,10 @@ class ChromeDPClient(
     /**
      * The Chrome debugger HTTP URL. This will be used to access metadata via HTTP, in order to ultimately get a web
      * socket URL and connect via web socket for a richer API.
+     *
+     * If you already have the browser's *web socket* debugger URL (which looks like
+     * `ws://127.0.0.1:36775/devtools/browser/a292f96c-7332-4ce8-82a9-7411f3bd280a`), use [HttpClient.chromeWebSocket]
+     * directly instead of creating a [ChromeDPClient].
      */
     private val remoteDebugUrl: String = "http://localhost:9222",
     /**
@@ -63,24 +68,36 @@ class ChromeDPClient(
      */
     private val overrideHostHeader: Boolean = false,
     /**
-     * This parameter should usually be left to its default value.
-     * Only use this to work around an issue in the client's configuration/behaviour.
-     * Note that the provided [HttpClient] has to be configured to handle Kotlinx Serialization (JSON).
+     * The underlying Ktor [HttpClient] to use, which must have the [WebSockets] plugin installed, as well as the
+     * [ContentNegotiation] plugin with Kotlinx Serialization JSON.
+     *
+     * This parameter should usually be left to its default value, which is a pre-configured client that is reused
+     * between instances of [ChromeDPClient].
+     * You should only need to override it to work around an issue in the client's configuration/behaviour, or if you
+     * want to also reuse your own client here.
      */
     private val httpClient: HttpClient = if (overrideHostHeader) DEFAULT_HTTP_CLIENT_WITH_HOST_OVERRIDE else DEFAULT_HTTP_CLIENT,
 ) {
-    /** Browser version metadata. */
+    /**
+     * Fetches the browser version metadata via the debugger's HTTP API.
+     */
     suspend fun version(): ChromeVersion =
         httpClient.get("$remoteDebugUrl/json/version").body<ChromeVersion>().fixHost()
 
-    /** The current devtools protocol definition, as a JSON string. */
+    /**
+     * Fetches the current Chrome DevTools Protocol definition, as a JSON string.
+     */
     suspend fun protocolJson(): String = httpClient.get("$remoteDebugUrl/json/protocol").bodyAsText()
 
-    /** A list of all available websocket targets (e.g. browser tabs). */
+    /**
+     * Fetches the list of all available web socket targets (e.g. browser tabs).
+     */
     suspend fun targets(): List<ChromeDPTarget> =
         httpClient.get("$remoteDebugUrl/json/list").body<List<ChromeDPTarget>>().map { it.fixHost() }
 
-    /** Opens a new tab. Responds with the websocket target data for the new tab. */
+    /**
+     * Opens a new tab, and returns the websocket target data for the new tab.
+     */
     @Deprecated(
         message = "Prefer richer API via web socket",
         replaceWith = ReplaceWith("webSocket().attachToNewPage(url)"),
@@ -88,13 +105,19 @@ class ChromeDPClient(
     suspend fun newTab(url: String = "about:blank"): ChromeDPTarget =
         httpClient.get("$remoteDebugUrl/json/new?$url").body<ChromeDPTarget>().fixHost()
 
-    /** Brings a page into the foreground (activates a tab). */
+    /**
+     * Brings the page identified by the given [targetId] into the foreground (activates a tab).
+     */
     suspend fun activateTab(targetId: String): String = httpClient.get("$remoteDebugUrl/json/activate/$targetId").body()
 
-    /** Closes the target page identified by [targetId]. */
+    /**
+     * Closes the page identified by [targetId].
+     */
     suspend fun closeTab(targetId: String): String = httpClient.get("$remoteDebugUrl/json/close/$targetId").body()
 
-    /** Closes all targets. */
+    /**
+     * Closes all targets.
+     */
     suspend fun closeAllTargets() {
         targets().forEach {
             closeTab(it.id)
@@ -102,18 +125,22 @@ class ChromeDPClient(
     }
 
     /**
-     * Opens a web socket connection to interact with the browser target (root session, without session ID).
+     * Opens a web socket connection to interact with the browser.
      *
-     * The returned [ChromeBrowserSession] only provides a limited subset of the possible operations, because it is
-     * attached to the default *browser* target, not a *page* target.
-     * To attach to a specific target using the same underlying web socket connection, call
-     * [ChromeBrowserSession.attachToPage] or
-     * [ChromeBrowserSession.attachToNewPage][org.hildan.chrome.devtools.targets.attachToNewPage].
+     * This method attaches to the default browser target, which creates a root session without session ID.
+     * The returned [ChromeBrowserSession] thus only provides a limited subset of the possible operations (only the
+     * ones applicable to the browser itself).
      *
-     * Note that you're responsible for closing the web socket by calling [ChromeBrowserSession.close], or indirectly
-     * by calling (`use()`).
-     * Note that calling [close()][ChromePageSession.close] or `use()` on a derived [ChromePageSession] doesn't close
-     * the underlying web socket connection.
+     * To attach to a specific target (such as a web page), call [ChromeBrowserSession.attachToPage],
+     * [ChromeBrowserSession.attachToNewPage][org.hildan.chrome.devtools.targets.attachToNewPage], or similar
+     * functions. This creates a nested session with a type corresponding to the target type, which provides access to
+     * another set of domains. Such nested sessions use the same underlying web socket connection as the initial
+     * browser session returned here.
+     *
+     * Note that the caller of this method is responsible for closing the web socket after use by calling
+     * [ChromeBrowserSession.close], or indirectly by calling `use()` on the browser session.
+     * Calling [close()][ChromePageSession.close] or `use()` on a derived [ChromePageSession] doesn't close the
+     * underlying web socket connection, to avoid undesirable interactions between nested sessions.
      */
     suspend fun webSocket(): ChromeBrowserSession {
         val browserDebuggerUrl = version().webSocketDebuggerUrl
@@ -150,15 +177,22 @@ data class ChromeVersion(
     @SerialName("User-Agent") val userAgent: String,
     @SerialName("V8-Version") val v8Version: String? = null,
     @SerialName("WebKit-Version") val webKitVersion: String,
+    /**
+     * The web socket URL to use to attach to the browser target.
+     * It is sort of the "root" target that can then be used to connect to pages and other types of targets.
+     *
+     * The URL contains a unique ID for the browser target, such as:
+     * `ws://localhost:9222/devtools/browser/b0b8a4fb-bb17-4359-9533-a8d9f3908bd8`
+     */
     @SerialName("webSocketDebuggerUrl") val webSocketDebuggerUrl: String,
 )
 
 /**
  * Targets are the parts of the browser that the Chrome DevTools Protocol can interact with.
- * This includes for instance pages, serviceworkers and extensions (and also the browser itself).
+ * This includes pages, service workers, extensions, and also the browser itself.
  *
  * When a client wants to interact with a target using CDP, it has to first attach to the target.
- * One way to do it is to connect to chrome via web socket using [ChromeDPClient.webSocket] and then
+ * One way to do it is to connect to Chrome via web socket using [ChromeDPClient.webSocket] and then
  * using [ChromeBrowserSession.attachToPage] or other attach- methods.
  * The client can then interact with the target using the [ChromePageSession].
  */
@@ -169,11 +203,20 @@ data class ChromeDPTarget(
     val type: String,
     val description: String,
     val devtoolsFrontendUrl: String,
+    /**
+     * The web socket URL to use with [HttpClient.chromeWebSocket] to connect via the debugger to this target.
+     */
     val webSocketDebuggerUrl: String,
 )
 
 /**
  * Connects to the Chrome debugger at the given [webSocketDebuggerUrl].
+ *
+ * This function expects a *web socket* URL (not HTTP). If you only have the debugger's HTTP URL at hand, use a
+ * [ChromeDPClient] and then connect to the web socket using [ChromeDPClient.webSocket].
+ *
+ * This [HttpClient] must have the [WebSockets] plugin installed, as well as the [ContentNegotiation] plugin
+ * with Kotlinx Serialization JSON.
  *
  * The returned [ChromeBrowserSession] only provides a limited subset of the possible operations, because it is
  * attached to the default *browser* target, not a *page* target.
