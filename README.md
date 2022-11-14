@@ -37,6 +37,7 @@ This library defines a type for each domain (e.g. `PageDomain`, `StorageDomain`.
 
 * a `suspend` method for each command, accepting a *request* type and returning a *response* type,
   respectively containing the input and output parameters defined in the protocol for that command.
+* additional `suspend` functions for each command with a more convenient signature.
 * a method for each type of event, returning a `Flow` of this particular event type
 * an `events()` method, returning a `Flow` of all events of the domain
 
@@ -45,11 +46,11 @@ Without calling it, you will receive no events in the `Flow` subscriptions.
 
 ### Targets
 
-Clients can interact with different parts of Chrome such as pages (tabs), serviceworkers, and extensions. 
+Clients can interact with different parts of Chrome such as pages (tabs), service workers, and extensions. 
 These parts are called **_targets_**.
 The browser itself is also a target.
 
-Each type of target supports only a subset of the available domains.
+Each type of target supports a different subset of the domains defined in the protocol.
 
 ### Sessions
 
@@ -67,7 +68,7 @@ which allows to issue commands and listen to DOM events.
 
 > Note: The supported set of domains for each target type is not clearly defined by the protocol, so I had to
 > extract this information from
-> [Chromium's source code itself](https://source.chromium.org/search?q=%22session-%3EAddHandler%22%20f:devtools&ss=chromium)
+> [Chromium's source code itself](https://source.chromium.org/search?q=%22session-%3ECreateAndAddHandler%22%20f:devtools&ss=chromium)
 > and define my own extra definition file: [target_types.json](./protocol/target_types.json).
 > 
 > Because of this, there might be some missing domains on some session types at some point in time that require
