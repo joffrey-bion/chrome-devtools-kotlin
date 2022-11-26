@@ -992,7 +992,8 @@
                         "ExcludeSameSiteStrict",
                         "ExcludeInvalidSameParty",
                         "ExcludeSamePartyCrossPartyContext",
-                        "ExcludeDomainNonASCII"
+                        "ExcludeDomainNonASCII",
+                        "ExcludeThirdPartyCookieBlockedInFirstPartySet"
                     ]
                 },
                 {
@@ -1996,6 +1997,11 @@
                             "items": {
                                 "$ref": "EventMetadata"
                             }
+                        },
+                        {
+                            "name": "storageKey",
+                            "description": "Storage key this event belongs to.",
+                            "type": "string"
                         }
                     ]
                 }
@@ -4373,6 +4379,11 @@
                             "type": "string"
                         },
                         {
+                            "name": "storageKey",
+                            "description": "Storage key of the cache.",
+                            "type": "string"
+                        },
+                        {
                             "name": "cacheName",
                             "description": "The name of the cache.",
                             "type": "string"
@@ -4440,7 +4451,14 @@
                     "parameters": [
                         {
                             "name": "securityOrigin",
-                            "description": "Security origin.",
+                            "description": "At least and at most one of securityOrigin, storageKey must be specified.\nSecurity origin.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "storageKey",
+                            "description": "Storage key.",
+                            "optional": true,
                             "type": "string"
                         }
                     ],
@@ -11810,6 +11828,7 @@
                         "SameSiteUnspecifiedTreatedAsLax",
                         "SameSiteNoneInsecure",
                         "UserPreferences",
+                        "ThirdPartyBlockedInFirstPartySet",
                         "SyntaxError",
                         "SchemeNotSupported",
                         "OverwriteSecure",
@@ -11838,6 +11857,7 @@
                         "SameSiteUnspecifiedTreatedAsLax",
                         "SameSiteNoneInsecure",
                         "UserPreferences",
+                        "ThirdPartyBlockedInFirstPartySet",
                         "UnknownError",
                         "SchemefulSameSiteStrict",
                         "SchemefulSameSiteLax",
@@ -17563,8 +17583,9 @@
                             "type": "string",
                             "enum": [
                                 "none",
-                                "autoaccept",
-                                "autoreject"
+                                "autoAccept",
+                                "autoReject",
+                                "autoOptOut"
                             ]
                         }
                     ]
@@ -19574,6 +19595,17 @@
                     ]
                 },
                 {
+                    "name": "trackCacheStorageForStorageKey",
+                    "description": "Registers storage key to be notified when an update occurs to its cache storage list.",
+                    "parameters": [
+                        {
+                            "name": "storageKey",
+                            "description": "Storage key.",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
                     "name": "trackIndexedDBForOrigin",
                     "description": "Registers origin to be notified when an update occurs to its IndexedDB.",
                     "parameters": [
@@ -19602,6 +19634,17 @@
                         {
                             "name": "origin",
                             "description": "Security origin.",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "name": "untrackCacheStorageForStorageKey",
+                    "description": "Unregisters storage key from receiving notifications for cache storage.",
+                    "parameters": [
+                        {
+                            "name": "storageKey",
+                            "description": "Storage key.",
                             "type": "string"
                         }
                     ]
@@ -19803,6 +19846,11 @@
                             "type": "string"
                         },
                         {
+                            "name": "storageKey",
+                            "description": "Storage key to update.",
+                            "type": "string"
+                        },
+                        {
                             "name": "cacheName",
                             "description": "Name of cache in origin.",
                             "type": "string"
@@ -19816,6 +19864,11 @@
                         {
                             "name": "origin",
                             "description": "Origin to update.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "storageKey",
+                            "description": "Storage key to update.",
                             "type": "string"
                         }
                     ]

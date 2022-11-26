@@ -1911,6 +1911,7 @@ public final class org/hildan/chrome/devtools/domains/audits/CookieExclusionReas
 	public static final field ExcludeSameSiteNoneInsecure Lorg/hildan/chrome/devtools/domains/audits/CookieExclusionReason;
 	public static final field ExcludeSameSiteStrict Lorg/hildan/chrome/devtools/domains/audits/CookieExclusionReason;
 	public static final field ExcludeSameSiteUnspecifiedTreatedAsLax Lorg/hildan/chrome/devtools/domains/audits/CookieExclusionReason;
+	public static final field ExcludeThirdPartyCookieBlockedInFirstPartySet Lorg/hildan/chrome/devtools/domains/audits/CookieExclusionReason;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/CookieExclusionReason;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/CookieExclusionReason;
 }
@@ -2934,8 +2935,8 @@ public final class org/hildan/chrome/devtools/domains/backgroundservice/Backgrou
 
 public final class org/hildan/chrome/devtools/domains/backgroundservice/BackgroundServiceEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/backgroundservice/BackgroundServiceEvent$Companion;
-	public fun <init> (DLjava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/backgroundservice/ServiceName;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
-	public synthetic fun <init> (IDLjava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/backgroundservice/ServiceName;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (DLjava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/backgroundservice/ServiceName;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;)V
+	public synthetic fun <init> (IDLjava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/backgroundservice/ServiceName;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public final fun component1 ()D
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
@@ -2943,8 +2944,9 @@ public final class org/hildan/chrome/devtools/domains/backgroundservice/Backgrou
 	public final fun component5 ()Ljava/lang/String;
 	public final fun component6 ()Ljava/lang/String;
 	public final fun component7 ()Ljava/util/List;
-	public final fun copy (DLjava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/backgroundservice/ServiceName;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/backgroundservice/BackgroundServiceEvent;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/backgroundservice/BackgroundServiceEvent;DLjava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/backgroundservice/ServiceName;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/backgroundservice/BackgroundServiceEvent;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun copy (DLjava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/backgroundservice/ServiceName;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/backgroundservice/BackgroundServiceEvent;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/backgroundservice/BackgroundServiceEvent;DLjava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/backgroundservice/ServiceName;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/backgroundservice/BackgroundServiceEvent;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getEventMetadata ()Ljava/util/List;
 	public final fun getEventName ()Ljava/lang/String;
@@ -2952,6 +2954,7 @@ public final class org/hildan/chrome/devtools/domains/backgroundservice/Backgrou
 	public final fun getOrigin ()Ljava/lang/String;
 	public final fun getService ()Lorg/hildan/chrome/devtools/domains/backgroundservice/ServiceName;
 	public final fun getServiceWorkerRegistrationId ()Ljava/lang/String;
+	public final fun getStorageKey ()Ljava/lang/String;
 	public final fun getTimestamp ()D
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -4350,17 +4353,19 @@ public final class org/hildan/chrome/devtools/domains/browser/events/BrowserEven
 
 public final class org/hildan/chrome/devtools/domains/cachestorage/Cache {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/cachestorage/Cache$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/cachestorage/Cache;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/cachestorage/Cache;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/cachestorage/Cache;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/cachestorage/Cache;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/cachestorage/Cache;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/cachestorage/Cache;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getCacheId ()Ljava/lang/String;
 	public final fun getCacheName ()Ljava/lang/String;
 	public final fun getSecurityOrigin ()Ljava/lang/String;
+	public final fun getStorageKey ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/cachestorage/Cache;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
@@ -4387,8 +4392,10 @@ public final class org/hildan/chrome/devtools/domains/cachestorage/CacheStorageD
 	public final fun deleteCache (Lorg/hildan/chrome/devtools/domains/cachestorage/DeleteCacheRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun deleteEntry (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun deleteEntry (Lorg/hildan/chrome/devtools/domains/cachestorage/DeleteEntryRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun requestCacheNames (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun requestCacheNames (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun requestCacheNames (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun requestCacheNames (Lorg/hildan/chrome/devtools/domains/cachestorage/RequestCacheNamesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun requestCacheNames$default (Lorg/hildan/chrome/devtools/domains/cachestorage/CacheStorageDomain;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun requestCachedResponse (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun requestCachedResponse (Lorg/hildan/chrome/devtools/domains/cachestorage/RequestCachedResponseRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun requestEntries (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -4593,13 +4600,17 @@ public final class org/hildan/chrome/devtools/domains/cachestorage/Header$Compan
 
 public final class org/hildan/chrome/devtools/domains/cachestorage/RequestCacheNamesRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/cachestorage/RequestCacheNamesRequest$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;)V
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/cachestorage/RequestCacheNamesRequest;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/cachestorage/RequestCacheNamesRequest;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/cachestorage/RequestCacheNamesRequest;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/cachestorage/RequestCacheNamesRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/cachestorage/RequestCacheNamesRequest;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/cachestorage/RequestCacheNamesRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getSecurityOrigin ()Ljava/lang/String;
+	public final fun getStorageKey ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/cachestorage/RequestCacheNamesRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
@@ -4615,6 +4626,15 @@ public final class org/hildan/chrome/devtools/domains/cachestorage/RequestCacheN
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
 	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/cachestorage/RequestCacheNamesRequest;)V
 	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/cachestorage/RequestCacheNamesRequest$Builder {
+	public fun <init> ()V
+	public final fun build ()Lorg/hildan/chrome/devtools/domains/cachestorage/RequestCacheNamesRequest;
+	public final fun getSecurityOrigin ()Ljava/lang/String;
+	public final fun getStorageKey ()Ljava/lang/String;
+	public final fun setSecurityOrigin (Ljava/lang/String;)V
+	public final fun setStorageKey (Ljava/lang/String;)V
 }
 
 public final class org/hildan/chrome/devtools/domains/cachestorage/RequestCacheNamesRequest$Companion {
@@ -23524,6 +23544,7 @@ public final class org/hildan/chrome/devtools/domains/network/CookieBlockedReaso
 	public static final field SchemefulSameSiteStrict Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason;
 	public static final field SchemefulSameSiteUnspecifiedTreatedAsLax Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason;
 	public static final field SecureOnly Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason;
+	public static final field ThirdPartyBlockedInFirstPartySet Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason;
 	public static final field UnknownError Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason;
 	public static final field UserPreferences Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason;
@@ -25660,6 +25681,7 @@ public final class org/hildan/chrome/devtools/domains/network/SetCookieBlockedRe
 	public static final field SchemefulSameSiteUnspecifiedTreatedAsLax Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
 	public static final field SecureOnly Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
 	public static final field SyntaxError Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
+	public static final field ThirdPartyBlockedInFirstPartySet Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
 	public static final field UnknownError Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
 	public static final field UserPreferences Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
@@ -32527,8 +32549,9 @@ public final class org/hildan/chrome/devtools/domains/page/ResetNavigationHistor
 
 public final class org/hildan/chrome/devtools/domains/page/SPCTransactionMode : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode$Companion;
-	public static final field autoaccept Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;
-	public static final field autoreject Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;
+	public static final field autoAccept Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;
+	public static final field autoOptOut Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;
+	public static final field autoReject Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;
 	public static final field none Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;
@@ -40192,12 +40215,16 @@ public final class org/hildan/chrome/devtools/domains/storage/StorageDomain {
 	public final fun sharedStorageAccessedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun trackCacheStorageForOrigin (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun trackCacheStorageForOrigin (Lorg/hildan/chrome/devtools/domains/storage/TrackCacheStorageForOriginRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun trackCacheStorageForStorageKey (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun trackCacheStorageForStorageKey (Lorg/hildan/chrome/devtools/domains/storage/TrackCacheStorageForStorageKeyRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun trackIndexedDBForOrigin (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun trackIndexedDBForOrigin (Lorg/hildan/chrome/devtools/domains/storage/TrackIndexedDBForOriginRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun trackIndexedDBForStorageKey (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun trackIndexedDBForStorageKey (Lorg/hildan/chrome/devtools/domains/storage/TrackIndexedDBForStorageKeyRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun untrackCacheStorageForOrigin (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun untrackCacheStorageForOrigin (Lorg/hildan/chrome/devtools/domains/storage/UntrackCacheStorageForOriginRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun untrackCacheStorageForStorageKey (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun untrackCacheStorageForStorageKey (Lorg/hildan/chrome/devtools/domains/storage/UntrackCacheStorageForStorageKeyRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun untrackIndexedDBForOrigin (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun untrackIndexedDBForOrigin (Lorg/hildan/chrome/devtools/domains/storage/UntrackIndexedDBForOriginRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun untrackIndexedDBForStorageKey (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -40259,6 +40286,41 @@ public final class org/hildan/chrome/devtools/domains/storage/TrackCacheStorageF
 
 public final class org/hildan/chrome/devtools/domains/storage/TrackCacheStorageForOriginResponse {
 	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/storage/TrackCacheStorageForOriginResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/TrackCacheStorageForStorageKeyRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/TrackCacheStorageForStorageKeyRequest$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/storage/TrackCacheStorageForStorageKeyRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/storage/TrackCacheStorageForStorageKeyRequest;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/storage/TrackCacheStorageForStorageKeyRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getStorageKey ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/storage/TrackCacheStorageForStorageKeyRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/TrackCacheStorageForStorageKeyRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/storage/TrackCacheStorageForStorageKeyRequest$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/storage/TrackCacheStorageForStorageKeyRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/storage/TrackCacheStorageForStorageKeyRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/TrackCacheStorageForStorageKeyRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/TrackCacheStorageForStorageKeyResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/storage/TrackCacheStorageForStorageKeyResponse;
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -40399,6 +40461,41 @@ public final class org/hildan/chrome/devtools/domains/storage/UntrackCacheStorag
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/storage/UntrackCacheStorageForStorageKeyRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/UntrackCacheStorageForStorageKeyRequest$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/storage/UntrackCacheStorageForStorageKeyRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/storage/UntrackCacheStorageForStorageKeyRequest;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/storage/UntrackCacheStorageForStorageKeyRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getStorageKey ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/storage/UntrackCacheStorageForStorageKeyRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/UntrackCacheStorageForStorageKeyRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/storage/UntrackCacheStorageForStorageKeyRequest$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/storage/UntrackCacheStorageForStorageKeyRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/storage/UntrackCacheStorageForStorageKeyRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/UntrackCacheStorageForStorageKeyRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/UntrackCacheStorageForStorageKeyResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/storage/UntrackCacheStorageForStorageKeyResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/storage/UntrackIndexedDBForOriginRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/UntrackIndexedDBForOriginRequest$Companion;
 	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
@@ -40509,15 +40606,17 @@ public abstract class org/hildan/chrome/devtools/domains/storage/events/StorageE
 
 public final class org/hildan/chrome/devtools/domains/storage/events/StorageEvent$CacheStorageContentUpdated : org/hildan/chrome/devtools/domains/storage/events/StorageEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/events/StorageEvent$CacheStorageContentUpdated$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/storage/events/StorageEvent$CacheStorageContentUpdated;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/storage/events/StorageEvent$CacheStorageContentUpdated;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/storage/events/StorageEvent$CacheStorageContentUpdated;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/storage/events/StorageEvent$CacheStorageContentUpdated;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/storage/events/StorageEvent$CacheStorageContentUpdated;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/storage/events/StorageEvent$CacheStorageContentUpdated;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getCacheName ()Ljava/lang/String;
 	public final fun getOrigin ()Ljava/lang/String;
+	public final fun getStorageKey ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/storage/events/StorageEvent$CacheStorageContentUpdated;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
@@ -40541,13 +40640,15 @@ public final class org/hildan/chrome/devtools/domains/storage/events/StorageEven
 
 public final class org/hildan/chrome/devtools/domains/storage/events/StorageEvent$CacheStorageListUpdated : org/hildan/chrome/devtools/domains/storage/events/StorageEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/events/StorageEvent$CacheStorageListUpdated$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/storage/events/StorageEvent$CacheStorageListUpdated;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/storage/events/StorageEvent$CacheStorageListUpdated;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/storage/events/StorageEvent$CacheStorageListUpdated;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/storage/events/StorageEvent$CacheStorageListUpdated;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/storage/events/StorageEvent$CacheStorageListUpdated;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/storage/events/StorageEvent$CacheStorageListUpdated;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getOrigin ()Ljava/lang/String;
+	public final fun getStorageKey ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/storage/events/StorageEvent$CacheStorageListUpdated;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
