@@ -44968,6 +44968,7 @@ public final class org/hildan/chrome/devtools/targets/ServiceWorkerTarget$Compan
 
 public abstract interface class org/hildan/chrome/devtools/targets/SharedWorkerTarget {
 	public static final field Companion Lorg/hildan/chrome/devtools/targets/SharedWorkerTarget$Companion;
+	public abstract fun getFetch ()Lorg/hildan/chrome/devtools/domains/fetch/FetchDomain;
 	public abstract fun getInspector ()Lorg/hildan/chrome/devtools/domains/inspector/InspectorDomain;
 	public abstract fun getIo ()Lorg/hildan/chrome/devtools/domains/io/IODomain;
 	public abstract fun getNetwork ()Lorg/hildan/chrome/devtools/domains/network/NetworkDomain;
