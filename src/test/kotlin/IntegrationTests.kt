@@ -22,7 +22,7 @@ import kotlin.test.*
 class IntegrationTests {
 
     @Container
-    var chromeContainer = GenericContainer("zenika/alpine-chrome")
+    var chromeContainer: GenericContainer<*> = GenericContainer("zenika/alpine-chrome")
         .withExposedPorts(9222)
         .withCommand("--no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 about:blank")
 
