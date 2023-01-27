@@ -1534,7 +1534,12 @@
                     "id": "GenericIssueErrorType",
                     "type": "string",
                     "enum": [
-                        "CrossOriginPortalPostMessageError"
+                        "CrossOriginPortalPostMessageError",
+                        "FormLabelForNameError",
+                        "FormDuplicateIdForInputError",
+                        "FormInputWithNoLabelError",
+                        "FormAutocompleteAttributeEmptyError",
+                        "FormEmptyIdAndNameAttributesForInputError"
                     ]
                 },
                 {
@@ -1551,6 +1556,11 @@
                             "name": "frameId",
                             "optional": true,
                             "$ref": "Page.FrameId"
+                        },
+                        {
+                            "name": "violatingNodeId",
+                            "optional": true,
+                            "$ref": "DOM.BackendNodeId"
                         }
                     ]
                 },
@@ -1584,6 +1594,7 @@
                         "NoSysexWebMIDIWithoutPermission",
                         "NotificationInsecureOrigin",
                         "NotificationPermissionRequestedIframe",
+                        "ObsoleteCreateImageBitmapImageOrientationNone",
                         "ObsoleteWebRtcCipherSuite",
                         "OpenWebDatabaseInsecureContext",
                         "OverflowVisibleOnReplacedElement",
@@ -1660,14 +1671,15 @@
                     "enum": [
                         "ShouldEmbargo",
                         "TooManyRequests",
-                        "ManifestListHttpNotFound",
-                        "ManifestListNoResponse",
-                        "ManifestListInvalidResponse",
-                        "ManifestNotInManifestList",
-                        "ManifestListTooBig",
-                        "ManifestHttpNotFound",
-                        "ManifestNoResponse",
-                        "ManifestInvalidResponse",
+                        "WellKnownHttpNotFound",
+                        "WellKnownNoResponse",
+                        "WellKnownInvalidResponse",
+                        "WellKnownListEmpty",
+                        "ConfigNotInWellKnown",
+                        "WellKnownTooBig",
+                        "ConfigHttpNotFound",
+                        "ConfigNoResponse",
+                        "ConfigInvalidResponse",
                         "ClientMetadataHttpNotFound",
                         "ClientMetadataNoResponse",
                         "ClientMetadataInvalidResponse",
@@ -1677,6 +1689,7 @@
                         "AccountsHttpNotFound",
                         "AccountsNoResponse",
                         "AccountsInvalidResponse",
+                        "AccountsListEmpty",
                         "IdTokenHttpNotFound",
                         "IdTokenNoResponse",
                         "IdTokenInvalidResponse",
@@ -2169,6 +2182,7 @@
                         "protectedMediaIdentifier",
                         "sensors",
                         "storageAccess",
+                        "topLevelStorageAccess",
                         "videoCapture",
                         "videoCapturePanTiltZoom",
                         "wakeLockScreen",
@@ -2182,7 +2196,8 @@
                     "type": "string",
                     "enum": [
                         "granted",
-                        "denied"
+                        "denied",
+                        "prompt"
                     ]
                 },
                 {
@@ -2483,7 +2498,7 @@
                         },
                         {
                             "name": "delta",
-                            "description": "If true, retrieve delta since last call.",
+                            "description": "If true, retrieve delta since last delta call.",
                             "optional": true,
                             "type": "boolean"
                         }
@@ -2511,7 +2526,7 @@
                         },
                         {
                             "name": "delta",
-                            "description": "If true, retrieve delta since last call.",
+                            "description": "If true, retrieve delta since last delta call.",
                             "optional": true,
                             "type": "boolean"
                         }
@@ -8000,6 +8015,7 @@
                     "properties": [
                         {
                             "name": "brands",
+                            "description": "Brands appearing in Sec-CH-UA.",
                             "optional": true,
                             "type": "array",
                             "items": {
@@ -8008,6 +8024,7 @@
                         },
                         {
                             "name": "fullVersionList",
+                            "description": "Brands appearing in Sec-CH-UA-Full-Version-List.",
                             "optional": true,
                             "type": "array",
                             "items": {
@@ -8059,7 +8076,6 @@
                     "type": "string",
                     "enum": [
                         "avif",
-                        "jxl",
                         "webp"
                     ]
                 }
@@ -11374,12 +11390,12 @@
                     "type": "object",
                     "properties": [
                         {
-                            "name": "type",
+                            "name": "operation",
                             "$ref": "TrustTokenOperationType"
                         },
                         {
                             "name": "refreshPolicy",
-                            "description": "Only set for \"token-redemption\" type and determine whether\nto request a fresh SRR or use a still valid cached SRR.",
+                            "description": "Only set for \"token-redemption\" operation and determine whether\nto request a fresh SRR or use a still valid cached SRR.",
                             "type": "string",
                             "enum": [
                                 "UseCached",
@@ -12783,7 +12799,8 @@
                 },
                 {
                     "name": "getAllCookies",
-                    "description": "Returns all browser cookies. Depending on the backend support, will return detailed cookie\ninformation in the `cookies` field.",
+                    "description": "Returns all browser cookies. Depending on the backend support, will return detailed cookie\ninformation in the `cookies` field.\nDeprecated. Use Storage.getCookies instead.",
+                    "deprecated": true,
                     "returns": [
                         {
                             "name": "cookies",
@@ -13932,6 +13949,7 @@
                                 "ResourceExhausted",
                                 "AlreadyExists",
                                 "Unavailable",
+                                "Unauthorized",
                                 "BadResponse",
                                 "InternalError",
                                 "UnknownError",
@@ -15365,12 +15383,15 @@
                         "otp-credentials",
                         "payment",
                         "picture-in-picture",
+                        "private-aggregation",
                         "publickey-credentials-get",
                         "run-ad-auction",
                         "screen-wake-lock",
                         "serial",
                         "shared-autofill",
                         "shared-storage",
+                        "shared-storage-select-url",
+                        "smart-card",
                         "storage-access",
                         "sync-xhr",
                         "trust-token-redemption",
@@ -15378,6 +15399,7 @@
                         "usb",
                         "vertical-scroll",
                         "web-share",
+                        "window-management",
                         "window-placement",
                         "xr-spatial-tracking"
                     ]
@@ -16292,7 +16314,9 @@
                         "InjectedJavascript",
                         "InjectedStyleSheet",
                         "KeepaliveRequest",
+                        "IndexedDBEvent",
                         "Dummy",
+                        "AuthorizationHeader",
                         "ContentSecurityHandler",
                         "ContentWebAuthenticationAPI",
                         "ContentFileChooser",
@@ -16430,7 +16454,15 @@
                         "SameSiteCrossOriginNavigation",
                         "SameSiteCrossOriginRedirectNotOptIn",
                         "SameSiteCrossOriginNavigationNotOptIn",
-                        "ActivationNavigationParameterMismatch"
+                        "ActivationNavigationParameterMismatch",
+                        "ActivatedInBackground",
+                        "EmbedderHostDisallowed",
+                        "ActivationNavigationDestroyedBeforeSuccess",
+                        "TabClosedByUserGesture",
+                        "TabClosedWithoutUserGesture",
+                        "PrimaryMainFrameRendererProcessCrashed",
+                        "PrimaryMainFrameRendererProcessKilled",
+                        "ActivationFramePolicyNotCompatible"
                     ]
                 }
             ],
@@ -19192,6 +19224,7 @@
                         "join",
                         "leave",
                         "update",
+                        "loaded",
                         "bid",
                         "win"
                     ]
@@ -19824,6 +19857,17 @@
                     ]
                 },
                 {
+                    "name": "resetSharedStorageBudget",
+                    "description": "Resets the budget for `ownerOrigin` by clearing all budget withdrawals.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "ownerOrigin",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
                     "name": "setSharedStorageTracking",
                     "description": "Enables/disables issuing of sharedStorageAccessed events.",
                     "experimental": true,
@@ -20249,6 +20293,22 @@
                     ]
                 },
                 {
+                    "name": "getFeatureState",
+                    "description": "Returns information about the feature state.",
+                    "parameters": [
+                        {
+                            "name": "featureState",
+                            "type": "string"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "featureEnabled",
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                {
                     "name": "getProcessInfo",
                     "description": "Returns information about all running processes.",
                     "returns": [
@@ -20562,6 +20622,13 @@
                         {
                             "name": "background",
                             "description": "Whether to create the target in background or foreground (chrome-only,\nfalse by default).",
+                            "optional": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "forTab",
+                            "description": "Whether to create the target of type \"tab\".",
+                            "experimental": true,
                             "optional": true,
                             "type": "boolean"
                         }
@@ -21195,7 +21262,7 @@
                 },
                 {
                     "name": "dataCollected",
-                    "description": "Contains an bucket of collected trace events. When tracing is stopped collected events will be\nsend as a sequence of dataCollected events followed by tracingComplete event.",
+                    "description": "Contains a bucket of collected trace events. When tracing is stopped collected events will be\nsent as a sequence of dataCollected events followed by tracingComplete event.",
                     "parameters": [
                         {
                             "name": "value",
@@ -22235,6 +22302,12 @@
                             "type": "boolean"
                         },
                         {
+                            "name": "hasPrf",
+                            "description": "If set to true, the authenticator will support the prf extension.\nhttps://w3c.github.io/webauthn/#prf-extension\nDefaults to false.",
+                            "optional": true,
+                            "type": "boolean"
+                        },
+                        {
                             "name": "automaticPresenceSimulation",
                             "description": "If set to true, tests of user presence will succeed immediately.\nOtherwise, they will not be resolved. Defaults to true.",
                             "optional": true,
@@ -22464,6 +22537,36 @@
                         {
                             "name": "enabled",
                             "type": "boolean"
+                        }
+                    ]
+                }
+            ],
+            "events": [
+                {
+                    "name": "credentialAdded",
+                    "description": "Triggered when a credential is added to an authenticator.",
+                    "parameters": [
+                        {
+                            "name": "authenticatorId",
+                            "$ref": "AuthenticatorId"
+                        },
+                        {
+                            "name": "credential",
+                            "$ref": "Credential"
+                        }
+                    ]
+                },
+                {
+                    "name": "credentialAsserted",
+                    "description": "Triggered when a credential is used in a webauthn assertion.",
+                    "parameters": [
+                        {
+                            "name": "authenticatorId",
+                            "$ref": "AuthenticatorId"
+                        },
+                        {
+                            "name": "credential",
+                            "$ref": "Credential"
                         }
                     ]
                 }
