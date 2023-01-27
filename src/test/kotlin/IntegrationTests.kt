@@ -1,5 +1,6 @@
 import kotlinx.coroutines.*
-import kotlinx.serialization.Serializable
+import kotlinx.serialization.*
+import kotlinx.serialization.json.*
 import org.hildan.chrome.devtools.domains.backgroundservice.ClearEventsRequest
 import org.hildan.chrome.devtools.domains.backgroundservice.ServiceName
 import org.hildan.chrome.devtools.domains.cachestorage.RequestCacheNamesRequest
@@ -29,6 +30,63 @@ class IntegrationTests {
     private fun chromeDpClient(): ChromeDPClient {
         val chromeDebuggerPort = chromeContainer.firstMappedPort
         return ChromeDPClient("http://localhost:$chromeDebuggerPort")
+    }
+
+    private val json = Json { ignoreUnknownKeys = true }
+
+    @Test
+    fun checkTargetDomains() {
+        runBlocking {
+            val chrome = chromeDpClient()
+
+            val version = chrome.version()
+            println("=== VERSION ===")
+            println(version)
+            println()
+
+            val targets = chrome.targets()
+            println("=== TARGETS ===")
+            println(targets)
+            println()
+
+            val protocolJson = chrome.protocolJson()
+            println("=== PROTOCOL DEFINITIONS ===")
+            val domains = json.decodeFromString<ProtocolDef>(protocolJson).domains.map { it.domain }.toSet()
+            println(domains)
+            println()
+
+            println("=== TARGET INFO ===")
+            chrome.webSocket().use { browser ->
+                val browserTargetInfo = browser.target.getTargetInfo().targetInfo
+                println(browserTargetInfo)
+
+                browser.attachToNewPage().use { page ->
+                    val pageTargetInfo = page.target.getTargetInfo().targetInfo
+                    println(pageTargetInfo)
+                    println()
+
+                    println("Page domains:")
+                    val pageDomains = page.schema.getDomains().domains.map { it.name }.toSet()
+                    println(pageDomains)
+
+                    println()
+                    println("All - page = ${domains - pageDomains}")
+                    println("Page - All = ${pageDomains - domains}")
+                }
+            }
+        }
+    }
+
+    @Serializable
+    data class ProtocolDef(
+        val domains: List<DomainDef>
+    )
+
+    @Serializable
+    data class DomainDef(
+        val domain: String
+    ) {
+        override fun toString(): String = domain
     }
 
     @Test

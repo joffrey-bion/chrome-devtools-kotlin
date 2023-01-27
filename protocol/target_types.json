@@ -7,11 +7,13 @@
       "IO",
       "Fetch",
       "Memory",
+      "NativeProfiling",
       "Security",
       "Storage",
       "SystemInfo",
       "Tethering",
-      "Tracing"
+      "Tracing",
+      "VisualDebugger"
     ]
   },
   {
