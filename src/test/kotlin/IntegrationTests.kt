@@ -17,6 +17,7 @@ import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
 import java.io.IOException
 import kotlin.test.*
+import kotlin.time.Duration.Companion.seconds
 
 @Testcontainers
 class IntegrationTests {
@@ -33,7 +34,7 @@ class IntegrationTests {
 
     @Test
     fun httpEndpoints_meta() {
-        runBlocking {
+        runBlockingWithTimeout {
             val chrome = chromeDpClient()
 
             val version = chrome.version()
@@ -52,7 +53,7 @@ class IntegrationTests {
     @OptIn(ExperimentalChromeApi::class)
     @Test
     fun webSocket_basic() {
-        runBlocking {
+        runBlockingWithTimeout {
             val chrome = chromeDpClient()
 
             val browser = chrome.webSocket()
@@ -81,7 +82,7 @@ class IntegrationTests {
     @OptIn(ExperimentalChromeApi::class)
     @Test
     fun sessionThrowsIOExceptionIfAlreadyClosed() {
-        runBlocking {
+        runBlockingWithTimeout {
             val chrome = chromeDpClient()
 
             val browser = chrome.webSocket()
@@ -98,7 +99,7 @@ class IntegrationTests {
     @OptIn(ExperimentalChromeApi::class)
     @Test
     fun pageSession_navigateAndAwaitPageLoad() {
-        runBlocking {
+        runBlockingWithTimeout {
             chromeDpClient().webSocket().use { browser ->
                 browser.attachToNewPageAndAwaitPageLoad("https://kotlinlang.org/").use { page ->
 
@@ -119,7 +120,7 @@ class IntegrationTests {
     @OptIn(ExperimentalChromeApi::class)
     @Test
     fun test_parallelPages() {
-        runBlocking {
+        runBlockingWithTimeout {
             chromeDpClient().webSocket().use { browser ->
                 // we want all coroutines to finish before we close the browser session
                 coroutineScope {
@@ -141,7 +142,7 @@ class IntegrationTests {
     @OptIn(ExperimentalChromeApi::class)
     @Test
     fun page_getTargets() {
-        runBlocking {
+        runBlockingWithTimeout {
             chromeDpClient().webSocket().use { browser ->
                 browser.attachToNewPageAndAwaitPageLoad("http://google.com").use { page ->
                     val targets = page.target.getTargets(GetTargetsRequest()).targetInfos
@@ -157,7 +158,7 @@ class IntegrationTests {
     @OptIn(ExperimentalChromeApi::class)
     @Test
     fun supportedDomains() {
-        runBlocking {
+        runBlockingWithTimeout {
             chromeDpClient().webSocket().use { browser ->
                 browser.attachToNewPage().use { page ->
 
@@ -207,7 +208,7 @@ class IntegrationTests {
 
     @Test
     fun runtime_evaluateJs() {
-        runBlocking {
+        runBlockingWithTimeout {
 
             val browser = chromeDpClient().webSocket()
             val page = browser.attachToNewPageAndAwaitPageLoad("http://google.com")
@@ -226,7 +227,7 @@ class IntegrationTests {
 
     @Test
     fun getAttributes_selectedWithoutValue() {
-        runBlocking {
+        runBlockingWithTimeout {
             chromeDpClient().webSocket().use { browser ->
                 browser.attachToNewPageAndAwaitPageLoad("https://www.htmlquick.com/reference/tags/select.html").use { page ->
 
@@ -244,4 +245,8 @@ class IntegrationTests {
             }
         }
     }
+}
+
+private fun runBlockingWithTimeout(block: suspend CoroutineScope.() -> Unit) = runBlocking {
+    withTimeout(20.seconds, block)
 }
