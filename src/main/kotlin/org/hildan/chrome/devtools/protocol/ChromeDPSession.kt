@@ -1,7 +1,9 @@
 package org.hildan.chrome.devtools.protocol
 
-import kotlinx.coroutines.flow.filter
-import kotlinx.serialization.json.JsonElement
+import kotlinx.coroutines.flow.*
+import kotlinx.serialization.json.*
+import org.hildan.chrome.devtools.domains.inspector.events.*
+import org.hildan.chrome.devtools.domains.target.events.*
 import org.hildan.chrome.devtools.domains.target.SessionID
 import java.util.concurrent.atomic.AtomicLong
 
@@ -45,7 +47,15 @@ internal class ChromeDPSession(
     /**
      * Subscribes to all events tied to this session.
      */
-    fun events() = connection.events().filter { it.sessionId == sessionId }
+    fun events() = connection.events()
+        .filter { it.sessionId == sessionId }
+        .onEach {
+            // We throw to immediately stop collectors when a target will not respond (instead of hanging).
+            // Note that Inspector.targetCrashed events are received even without InspectorDomain.enable() call.
+            if (it.eventName in crashEventNames) {
+                throw TargetCrashedException(it.sessionId, it.eventName, it.payload)
+            }
+        }
 
     /**
      * Closes the underlying web socket connection, effectively closing every session based on the same web socket
@@ -53,5 +63,42 @@ internal class ChromeDPSession(
      */
     suspend fun closeWebSocket() {
         connection.close()
+    }
+}
+
+private val crashEventNames = setOf("Inspector.targetCrashed", "Target.targetCrashed")
+
+/**
+ * An exception thrown when an [InspectorEvent.TargetCrashed] or [TargetEvent.TargetCrashed] is received.
+ */
+@Suppress("CanBeParameter", "MemberVisibilityCanBePrivate")
+class TargetCrashedException(
+    /**
+     * The session ID of the target that crashed, or null if it is the root browser target.
+     */
+    val sessionId: SessionID?,
+    /**
+     * The name of the event that triggered this exception.
+     */
+    val crashEventName: String,
+    /**
+     * The payload of the crash event that triggered this exception
+     */
+    val crashEventPayload: JsonElement,
+) : Exception(buildTargetCrashedMessage(sessionId, crashEventName, crashEventPayload))
+
+private fun buildTargetCrashedMessage(sessionId: SessionID?, crashEventName: String, payload: JsonElement): String {
+    val payloadText = when (payload) {
+        is JsonNull -> null
+        is JsonPrimitive -> if (payload.isString) "\"${payload.content}\"" else payload.content
+        is JsonObject -> if (payload.size > 0) payload.toString() else null
+        is JsonArray -> if (payload.size > 0) payload.toString() else null
+    }
+    val payloadInfo = if (payloadText == null) "without payload." else "with payload: $payloadText"
+    val eventInfo = "Received event '$crashEventName' $payloadInfo"
+    return if (sessionId == null) {
+        "The browser target has crashed. $eventInfo"
+    } else {
+        "The target with session ID $sessionId has crashed. $eventInfo"
     }
 }
