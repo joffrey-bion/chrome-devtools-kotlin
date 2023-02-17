@@ -45125,6 +45125,12 @@ public final class org/hildan/chrome/devtools/targets/ChromePageSession : org/hi
 	public fun getWebAuthn ()Lorg/hildan/chrome/devtools/domains/webauthn/WebAuthnDomain;
 }
 
+public final class org/hildan/chrome/devtools/targets/NavigationFailed : java/lang/Exception {
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/page/NavigateRequest;Lorg/hildan/chrome/devtools/domains/page/NavigateResponse;)V
+	public final fun getRequest ()Lorg/hildan/chrome/devtools/domains/page/NavigateRequest;
+	public final fun getResponse ()Lorg/hildan/chrome/devtools/domains/page/NavigateResponse;
+}
+
 public abstract interface class org/hildan/chrome/devtools/targets/RenderFrameTarget {
 	public static final field Companion Lorg/hildan/chrome/devtools/targets/RenderFrameTarget$Companion;
 	public abstract fun getAccessibility ()Lorg/hildan/chrome/devtools/domains/accessibility/AccessibilityDomain;

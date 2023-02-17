@@ -3,6 +3,7 @@ package org.hildan.chrome.devtools.targets
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import org.hildan.chrome.devtools.domains.page.NavigateRequest
+import org.hildan.chrome.devtools.domains.page.NavigateResponse
 import org.hildan.chrome.devtools.domains.target.*
 import org.hildan.chrome.devtools.domains.target.events.TargetEvent
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
@@ -72,6 +73,9 @@ suspend fun ChromeBrowserSession.attachToNewPage(
  * You can use [width] and [height] to specify the viewport dimensions in DIP (Chrome Headless only).
  *
  * If [background] is true, the new tab will be created in the background (Chrome only).
+ *
+ * This function throws [NavigationFailed] if the navigation response has an error, instead of waiting forever for an
+ * event that will never come.
  */
 suspend fun ChromeBrowserSession.attachToNewPageAndAwaitPageLoad(
     url: String,
@@ -88,6 +92,9 @@ suspend fun ChromeBrowserSession.attachToNewPageAndAwaitPageLoad(
 /**
  * Navigates the current page to the provided [url], and suspends until the corresponding `frameStoppedLoading` event
  * is received.
+ *
+ * This function throws [NavigationFailed] if the navigation response has an error, instead of waiting forever for an
+ * event that will never come.
  */
 suspend fun ChromePageSession.navigateAndAwaitPageLoad(url: String) {
     navigateAndAwaitPageLoad(NavigateRequest(url = url))
@@ -96,6 +103,9 @@ suspend fun ChromePageSession.navigateAndAwaitPageLoad(url: String) {
 /**
  * Navigates the current page according to the provided [navigateRequest], and suspends until the corresponding
  * `frameStoppedLoading` event is received.
+ *
+ * This function throws [NavigationFailed] if the navigation response has an error, instead of waiting forever for an
+ * event that will never come.
  */
 @OptIn(ExperimentalChromeApi::class)
 suspend fun ChromePageSession.navigateAndAwaitPageLoad(navigateRequest: NavigateRequest) {
@@ -105,10 +115,21 @@ suspend fun ChromePageSession.navigateAndAwaitPageLoad(navigateRequest: Navigate
         val stoppedLoadingEvent = async(start = CoroutineStart.UNDISPATCHED) {
             events.first { it.frameId == metaData.targetId }
         }
-        page.navigate(navigateRequest)
+        val response = page.navigate(navigateRequest)
+        if (response.errorText != null) {
+            throw NavigationFailed(navigateRequest, response)
+        }
         stoppedLoadingEvent.await()
     }
 }
+
+/**
+ * Thrown to indicate that the navigation to a page has failed.
+ */
+class NavigationFailed(
+    val request: NavigateRequest,
+    val response: NavigateResponse,
+) : Exception("Navigation to ${request.url} has failed: ${response.errorText}")
 
 /**
  * Finds page targets that were opened by this page.
