@@ -74,6 +74,11 @@ changelog {
 val sourcesJar by tasks.creating(Jar::class) {
     archiveClassifier.set("sources")
     from(sourceSets.main.get().allSource)
+    dependsOn(generateProtocolApi)
+}
+
+tasks.dokkaJavadoc {
+    dependsOn(generateProtocolApi)
 }
 
 val dokkaJavadocJar by tasks.creating(Jar::class) {
