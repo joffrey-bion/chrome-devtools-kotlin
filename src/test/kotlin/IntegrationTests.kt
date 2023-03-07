@@ -123,15 +123,13 @@ class IntegrationTests {
         runBlockingWithTimeout {
             chromeDpClient().webSocket().use { browser ->
                 // we want all coroutines to finish before we close the browser session
-                coroutineScope {
+                withContext(Dispatchers.IO) {
                     repeat(4) {
-                        launch(Dispatchers.IO) {
-                            browser.attachToNewPageAndAwaitPageLoad("http://www.google.com").use { page ->
-                                page.runtime.getHeapUsage()
-                                val docRoot = page.dom.getDocumentRootNodeId()
-                                page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
-                                page.storage.getCookies(GetCookiesRequest())
-                            }
+                        browser.attachToNewPageAndAwaitPageLoad("http://www.google.com").use { page ->
+                            page.runtime.getHeapUsage()
+                            val docRoot = page.dom.getDocumentRootNodeId()
+                            page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
+                            page.storage.getCookies()
                         }
                     }
                 }
