@@ -1,5 +1,28 @@
 # Change Log
 
+## [4.4.0\-1115542](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/4.4.0-1115542) (2023-03-11)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/4.3.0-1075693...4.4.0-1115542)
+
+**Fixed bugs:**
+
+- HTTP endpoint `/json/new?\{url\}` uses wrong GET method instead of PUT [\#225](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/225)
+- Event subscription flows hang if the target crashes [\#222](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/222)
+- `navigateAndAwaitPageLoad` hangs if the navigation fails [\#221](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/221)
+
+**Implemented enhancements:**
+
+- Add `Fetch` domain to `SharedWorker` target [\#214](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/214)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 1115542 [\#216](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/216) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+**Upgraded dependencies:**
+
+- Upgrade Kotlin to version 1.8.10 [\#224](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/224)
+- Upgrade Kotlinx Serialization to 1.5.0 [\#223](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/223)
+- Upgrade Ktor to version 2.2.4 [\#218](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/218)
+
 ## [4.3.0\-1075693](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/4.3.0-1075693) (2022-11-26)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/4.3.0-1069585...4.3.0-1075693)
 
@@ -25,7 +48,6 @@
 **Merged pull requests:**
 
 - Update to Chrome DevTools Protocol version 1067399 [\#207](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/207) ([@github-actions[bot]](https://github.com/apps/github-actions))
-- Update to Chrome DevTools Protocol version 1067399 [\#205](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/205) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [4.2.0\-1067399](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/4.2.0-1067399) (2022-11-06)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/4.2.0...4.2.0-1067399)
@@ -196,9 +218,6 @@
 ## [3.5.0\-957544](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.5.0-957544) (2022-01-13)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.5.0-957163...3.5.0-957544)
 
-**Merged pull requests:**
-
-- Update to Chrome DevTools Protocol version 957947 [\#151](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/151) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [3.5.0\-957163](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/3.5.0-957163) (2022-01-11)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/3.5.0-955664...3.5.0-957163)
@@ -429,7 +448,6 @@
 
 **Merged pull requests:**
 
-- add ChromePageSession::close\(disposeBrowserContext\) [\#87](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/87) ([@iseki0](https://github.com/iseki0))
 - Update to Chrome DevTools Protocol version 882324 [\#88](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/88) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [1.4.0\-881485](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/1.4.0-881485) (2021-05-12)
