@@ -103,7 +103,7 @@ class ChromeDPClient(
         replaceWith = ReplaceWith("webSocket().attachToNewPage(url)"),
     )
     suspend fun newTab(url: String = "about:blank"): ChromeDPTarget =
-        httpClient.get("$remoteDebugUrl/json/new?$url").body<ChromeDPTarget>().fixHost()
+        httpClient.put("$remoteDebugUrl/json/new?$url").body<ChromeDPTarget>().fixHost()
 
     /**
      * Brings the page identified by the given [targetId] into the foreground (activates a tab).
