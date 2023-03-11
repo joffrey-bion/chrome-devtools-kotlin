@@ -1673,7 +1673,6 @@ public final class org/hildan/chrome/devtools/domains/audits/AttributionReportin
 	public static final field InvalidHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field InvalidRegisterTriggerHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field PermissionPolicyDisabled Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
-	public static final field PermissionPolicyNotDelegated Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field SourceAndTriggerHeaders Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field SourceIgnored Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field TooManyConcurrentRequests Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
@@ -2042,18 +2041,18 @@ public final class org/hildan/chrome/devtools/domains/audits/CorsIssueDetails$Co
 
 public final class org/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails$Companion;
-	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/audits/AffectedFrame;Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Lorg/hildan/chrome/devtools/domains/audits/AffectedFrame;Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;)V
-	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/audits/AffectedFrame;Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/audits/AffectedFrame;Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/audits/AffectedFrame;Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;Ljava/lang/String;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/audits/AffectedFrame;Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/audits/AffectedFrame;
 	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;
-	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public final fun copy (Lorg/hildan/chrome/devtools/domains/audits/AffectedFrame;Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;)Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AffectedFrame;Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/audits/AffectedFrame;Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AffectedFrame;Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAffectedFrame ()Lorg/hildan/chrome/devtools/domains/audits/AffectedFrame;
 	public final fun getSourceCodeLocation ()Lorg/hildan/chrome/devtools/domains/audits/SourceCodeLocation;
-	public final fun getType ()Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
+	public final fun getType ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
@@ -2072,72 +2071,6 @@ public final class org/hildan/chrome/devtools/domains/audits/DeprecationIssueDet
 }
 
 public final class org/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class org/hildan/chrome/devtools/domains/audits/DeprecationIssueType : java/lang/Enum {
-	public static final field AuthorizationCoveredByWildcard Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field CSSSelectorInternalMediaControlsOverlayCastButton Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field CanRequestURLHTTPContainingNewline Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field ChromeLoadTimesConnectionInfo Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field ChromeLoadTimesFirstPaintAfterLoadTime Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field ChromeLoadTimesWasAlternateProtocolAvailable Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType$Companion;
-	public static final field CookieWithTruncatingChar Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field CrossOriginAccessBasedOnDocumentDomain Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field CrossOriginWindowAlert Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field CrossOriginWindowConfirm Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field DeprecationExample Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field DocumentDomainSettingWithoutOriginAgentClusterHeader Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field EventPath Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field ExpectCTHeader Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field GeolocationInsecureOrigin Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field GeolocationInsecureOriginDeprecatedNotRemoved Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field GetUserMediaInsecureOrigin Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field HostCandidateAttributeGetter Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field IdentityInCanMakePaymentEvent Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field InsecurePrivateNetworkSubresourceRequest Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field LocalCSSFileExtensionRejected Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field MediaSourceAbortRemove Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field MediaSourceDurationTruncatingBuffered Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field NoSysexWebMIDIWithoutPermission Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field NotificationInsecureOrigin Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field NotificationPermissionRequestedIframe Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field ObsoleteCreateImageBitmapImageOrientationNone Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field ObsoleteWebRtcCipherSuite Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field OpenWebDatabaseInsecureContext Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field OverflowVisibleOnReplacedElement Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field PaymentInstruments Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field PaymentRequestCSPViolation Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field PersistentQuotaType Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field PictureSourceSrc Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field PrefixedCancelAnimationFrame Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field PrefixedRequestAnimationFrame Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field PrefixedStorageInfo Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field PrefixedVideoDisplayingFullscreen Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field PrefixedVideoEnterFullScreen Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field PrefixedVideoEnterFullscreen Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field PrefixedVideoExitFullScreen Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field PrefixedVideoExitFullscreen Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field PrefixedVideoSupportsFullscreen Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field RTCConstraintEnableDtlsSrtpFalse Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field RTCConstraintEnableDtlsSrtpTrue Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field RTCPeerConnectionComplexPlanBSdpUsingDefaultSdpSemantics Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field RTCPeerConnectionSdpSemanticsPlanB Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field RangeExpand Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field RequestedSubresourceWithEmbeddedCredentials Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field RtcpMuxPolicyNegotiate Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field SharedArrayBufferConstructedWithoutIsolation Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field TextToSpeech_DisallowedByAutoplay Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field V8SharedArrayBufferConstructedInExtensionWithoutIsolation Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field XHRJSONEncodingDetection Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field XMLHttpRequestSynchronousInNonWorkerOutsideBeforeUnload Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static final field XRSupportsSession Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueType;
-}
-
-public final class org/hildan/chrome/devtools/domains/audits/DeprecationIssueType$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -2270,11 +2203,15 @@ public final class org/hildan/chrome/devtools/domains/audits/GenericIssueDetails
 public final class org/hildan/chrome/devtools/domains/audits/GenericIssueErrorType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType$Companion;
 	public static final field CrossOriginPortalPostMessageError Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
+	public static final field FormAriaLabelledByToNonExistingId Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
 	public static final field FormAutocompleteAttributeEmptyError Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
 	public static final field FormDuplicateIdForInputError Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
 	public static final field FormEmptyIdAndNameAttributesForInputError Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
+	public static final field FormInputAssignedAutocompleteValueToIdOrNameAttributeError Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
 	public static final field FormInputWithNoLabelError Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
+	public static final field FormLabelForMatchesNonExistingIdError Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
 	public static final field FormLabelForNameError Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
+	public static final field FormLabelHasNeitherForNorNestedInput Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
 }
@@ -9524,6 +9461,7 @@ public final class org/hildan/chrome/devtools/domains/debugger/ScriptPosition$Co
 public final class org/hildan/chrome/devtools/domains/debugger/ScriptSourceStatus : java/lang/Enum {
 	public static final field BlockedByActiveFunction Lorg/hildan/chrome/devtools/domains/debugger/ScriptSourceStatus;
 	public static final field BlockedByActiveGenerator Lorg/hildan/chrome/devtools/domains/debugger/ScriptSourceStatus;
+	public static final field BlockedByTopLevelEsModuleChange Lorg/hildan/chrome/devtools/domains/debugger/ScriptSourceStatus;
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/debugger/ScriptSourceStatus$Companion;
 	public static final field CompileError Lorg/hildan/chrome/devtools/domains/debugger/ScriptSourceStatus;
 	public static final field Ok Lorg/hildan/chrome/devtools/domains/debugger/ScriptSourceStatus;
@@ -10674,6 +10612,174 @@ public final class org/hildan/chrome/devtools/domains/debugger/events/DebuggerEv
 }
 
 public final class org/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptParsed$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/deviceaccess/CancelPromptRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/deviceaccess/CancelPromptRequest$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/deviceaccess/CancelPromptRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/deviceaccess/CancelPromptRequest;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/deviceaccess/CancelPromptRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/deviceaccess/CancelPromptRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/deviceaccess/CancelPromptRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/deviceaccess/CancelPromptRequest$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/deviceaccess/CancelPromptRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/deviceaccess/CancelPromptRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/deviceaccess/CancelPromptRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/deviceaccess/CancelPromptResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/deviceaccess/CancelPromptResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/deviceaccess/DeviceAccessDomain {
+	public final fun cancelPrompt (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun cancelPrompt (Lorg/hildan/chrome/devtools/domains/deviceaccess/CancelPromptRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun deviceRequestPrompted ()Lkotlinx/coroutines/flow/Flow;
+	public final fun deviceRequestPromptedEvents ()Lkotlinx/coroutines/flow/Flow;
+	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun events ()Lkotlinx/coroutines/flow/Flow;
+	public final fun selectPrompt (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun selectPrompt (Lorg/hildan/chrome/devtools/domains/deviceaccess/SelectPromptRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/hildan/chrome/devtools/domains/deviceaccess/DisableResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/deviceaccess/DisableResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/deviceaccess/EnableResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/deviceaccess/EnableResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/deviceaccess/PromptDevice {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/deviceaccess/PromptDevice$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/deviceaccess/PromptDevice;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/deviceaccess/PromptDevice;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/deviceaccess/PromptDevice;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/deviceaccess/PromptDevice;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/deviceaccess/PromptDevice$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/deviceaccess/PromptDevice$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/deviceaccess/PromptDevice;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/deviceaccess/PromptDevice;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/deviceaccess/PromptDevice$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/deviceaccess/SelectPromptRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/deviceaccess/SelectPromptRequest$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/deviceaccess/SelectPromptRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/deviceaccess/SelectPromptRequest;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/deviceaccess/SelectPromptRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDeviceId ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/deviceaccess/SelectPromptRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/deviceaccess/SelectPromptRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/deviceaccess/SelectPromptRequest$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/deviceaccess/SelectPromptRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/deviceaccess/SelectPromptRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/deviceaccess/SelectPromptRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/deviceaccess/SelectPromptResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/deviceaccess/SelectPromptResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract class org/hildan/chrome/devtools/domains/deviceaccess/events/DeviceAccessEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/deviceaccess/events/DeviceAccessEvent$Companion;
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/deviceaccess/events/DeviceAccessEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/deviceaccess/events/DeviceAccessEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/deviceaccess/events/DeviceAccessEvent$DeviceRequestPrompted : org/hildan/chrome/devtools/domains/deviceaccess/events/DeviceAccessEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/deviceaccess/events/DeviceAccessEvent$DeviceRequestPrompted$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/util/List;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/deviceaccess/events/DeviceAccessEvent$DeviceRequestPrompted;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/deviceaccess/events/DeviceAccessEvent$DeviceRequestPrompted;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/deviceaccess/events/DeviceAccessEvent$DeviceRequestPrompted;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDevices ()Ljava/util/List;
+	public final fun getId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/deviceaccess/events/DeviceAccessEvent$DeviceRequestPrompted;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/deviceaccess/events/DeviceAccessEvent$DeviceRequestPrompted$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/deviceaccess/events/DeviceAccessEvent$DeviceRequestPrompted$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/deviceaccess/events/DeviceAccessEvent$DeviceRequestPrompted;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/deviceaccess/events/DeviceAccessEvent$DeviceRequestPrompted;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/deviceaccess/events/DeviceAccessEvent$DeviceRequestPrompted$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -16073,6 +16179,7 @@ public final class org/hildan/chrome/devtools/domains/emulation/EmulatedVisionDe
 	public static final field deuteranopia Lorg/hildan/chrome/devtools/domains/emulation/EmulatedVisionDeficiencyType;
 	public static final field none Lorg/hildan/chrome/devtools/domains/emulation/EmulatedVisionDeficiencyType;
 	public static final field protanopia Lorg/hildan/chrome/devtools/domains/emulation/EmulatedVisionDeficiencyType;
+	public static final field reducedContrast Lorg/hildan/chrome/devtools/domains/emulation/EmulatedVisionDeficiencyType;
 	public static final field tritanopia Lorg/hildan/chrome/devtools/domains/emulation/EmulatedVisionDeficiencyType;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/emulation/EmulatedVisionDeficiencyType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/emulation/EmulatedVisionDeficiencyType;
@@ -17477,6 +17584,104 @@ public final class org/hildan/chrome/devtools/domains/eventbreakpoints/SetInstru
 
 public final class org/hildan/chrome/devtools/domains/eventbreakpoints/SetInstrumentationBreakpointResponse {
 	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/eventbreakpoints/SetInstrumentationBreakpointResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/fedcm/Account {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/fedcm/Account$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/fedcm/Account;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/fedcm/Account;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/fedcm/Account;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAccountId ()Ljava/lang/String;
+	public final fun getEmail ()Ljava/lang/String;
+	public final fun getGivenName ()Ljava/lang/String;
+	public final fun getIdpConfigUrl ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getPictureUrl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/fedcm/Account;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/fedcm/Account$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/fedcm/Account$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/fedcm/Account;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/fedcm/Account;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/fedcm/Account$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/fedcm/DisableResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/fedcm/DisableResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/fedcm/EnableResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/fedcm/EnableResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/fedcm/FedCmDomain {
+	public final fun dialogShown ()Lkotlinx/coroutines/flow/Flow;
+	public final fun dialogShownEvents ()Lkotlinx/coroutines/flow/Flow;
+	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun events ()Lkotlinx/coroutines/flow/Flow;
+}
+
+public abstract class org/hildan/chrome/devtools/domains/fedcm/events/FedCmEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/fedcm/events/FedCmEvent$Companion;
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/fedcm/events/FedCmEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/fedcm/events/FedCmEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/fedcm/events/FedCmEvent$DialogShown : org/hildan/chrome/devtools/domains/fedcm/events/FedCmEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/fedcm/events/FedCmEvent$DialogShown$Companion;
+	public synthetic fun <init> (ILjava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/fedcm/events/FedCmEvent$DialogShown;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/fedcm/events/FedCmEvent$DialogShown;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/fedcm/events/FedCmEvent$DialogShown;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAccounts ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/fedcm/events/FedCmEvent$DialogShown;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/fedcm/events/FedCmEvent$DialogShown$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/fedcm/events/FedCmEvent$DialogShown$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/fedcm/events/FedCmEvent$DialogShown;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/fedcm/events/FedCmEvent$DialogShown;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/fedcm/events/FedCmEvent$DialogShown$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -26955,19 +27160,23 @@ public final class org/hildan/chrome/devtools/domains/network/events/NetworkEven
 
 public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfo : org/hildan/chrome/devtools/domains/network/events/NetworkEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfo$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/util/List;
 	public final fun component3 ()Lkotlinx/serialization/json/JsonObject;
 	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;
 	public final fun component5 ()I
 	public final fun component6 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfo;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfo;Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfo;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/Boolean;
+	public final fun copy (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfo;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfo;Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfo;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBlockedCookies ()Ljava/util/List;
+	public final fun getCookiePartitionKey ()Ljava/lang/String;
+	public final fun getCookiePartitionKeyOpaque ()Ljava/lang/Boolean;
 	public final fun getHeaders ()Lkotlinx/serialization/json/JsonObject;
 	public final fun getHeadersText ()Ljava/lang/String;
 	public final fun getRequestId ()Ljava/lang/String;
@@ -29850,6 +30059,20 @@ public final class org/hildan/chrome/devtools/domains/page/AppManifestParsedProp
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/page/AutoResponseMode : java/lang/Enum {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode$Companion;
+	public static final field autoAccept Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;
+	public static final field autoOptOut Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;
+	public static final field autoReject Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;
+	public static final field none Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;
+	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;
+	public static fun values ()[Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/AutoResponseMode$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanation {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredExplanation$Companion;
 	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType;Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
@@ -31956,8 +32179,6 @@ public final class org/hildan/chrome/devtools/domains/page/PageDomain {
 	public final fun navigateToHistoryEntry (Lorg/hildan/chrome/devtools/domains/page/NavigateToHistoryEntryRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun navigatedWithinDocument ()Lkotlinx/coroutines/flow/Flow;
 	public final fun navigatedWithinDocumentEvents ()Lkotlinx/coroutines/flow/Flow;
-	public final fun prerenderAttemptCompleted ()Lkotlinx/coroutines/flow/Flow;
-	public final fun prerenderAttemptCompletedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun printToPDF (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun printToPDF (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun printToPDF (Lorg/hildan/chrome/devtools/domains/page/PrintToPDFRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -32013,7 +32234,9 @@ public final class org/hildan/chrome/devtools/domains/page/PageDomain {
 	public final fun setInterceptFileChooserDialog (ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setLifecycleEventsEnabled (Lorg/hildan/chrome/devtools/domains/page/SetLifecycleEventsEnabledRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setLifecycleEventsEnabled (ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun setSPCTransactionMode (Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setRPHRegistrationMode (Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setRPHRegistrationMode (Lorg/hildan/chrome/devtools/domains/page/SetRPHRegistrationModeRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun setSPCTransactionMode (Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setSPCTransactionMode (Lorg/hildan/chrome/devtools/domains/page/SetSPCTransactionModeRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setTouchEmulationEnabled (Lorg/hildan/chrome/devtools/domains/page/SetTouchEmulationEnabledRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setTouchEmulationEnabled (ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -32204,68 +32427,6 @@ public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeat
 }
 
 public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeatureState$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class org/hildan/chrome/devtools/domains/page/PrerenderFinalStatus : java/lang/Enum {
-	public static final field Activated Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field ActivatedBeforeStarted Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field ActivatedInBackground Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field ActivationFramePolicyNotCompatible Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field ActivationNavigationDestroyedBeforeSuccess Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field ActivationNavigationParameterMismatch Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field AudioOutputDeviceRequested Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field BlockedByClient Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field CancelAllHostsForTesting Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field ClientCertRequested Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus$Companion;
-	public static final field CrossSiteNavigation Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field CrossSiteRedirect Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field DataSaverEnabled Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field Destroyed Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field DidFailLoad Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field Download Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field EmbedderHostDisallowed Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field EmbedderTriggeredAndCrossOriginRedirected Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field FailToGetMemoryUsage Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field HasEffectiveUrl Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field InProgressNavigation Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field InactivePageRestriction Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field InvalidSchemeNavigation Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field InvalidSchemeRedirect Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field LoginAuthRequested Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field LowEndDevice Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field MainFrameNavigation Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field MaxNumOfRunningPrerendersExceeded Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field MemoryLimitExceeded Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field MixedContent Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field MojoBinderPolicy Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field NavigationBadHttpStatus Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field NavigationNotCommitted Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field NavigationRequestBlockedByCsp Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field NavigationRequestNetworkError Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field PrimaryMainFrameRendererProcessCrashed Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field PrimaryMainFrameRendererProcessKilled Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field RendererProcessCrashed Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field RendererProcessKilled Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field SameSiteCrossOriginNavigation Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field SameSiteCrossOriginNavigationNotOptIn Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field SameSiteCrossOriginRedirect Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field SameSiteCrossOriginRedirectNotOptIn Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field SslCertificateError Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field StartFailed Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field Stop Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field TabClosedByUserGesture Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field TabClosedWithoutUserGesture Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field TimeoutBackgrounded Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field TriggerBackgrounded Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field TriggerDestroyed Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static final field UaChangeRequiresReload Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public static fun values ()[Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-}
-
-public final class org/hildan/chrome/devtools/domains/page/PrerenderFinalStatus$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -32570,20 +32731,6 @@ public final class org/hildan/chrome/devtools/domains/page/RemoveScriptToEvaluat
 
 public final class org/hildan/chrome/devtools/domains/page/ResetNavigationHistoryResponse {
 	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/ResetNavigationHistoryResponse;
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class org/hildan/chrome/devtools/domains/page/SPCTransactionMode : java/lang/Enum {
-	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode$Companion;
-	public static final field autoAccept Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;
-	public static final field autoOptOut Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;
-	public static final field autoReject Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;
-	public static final field none Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;
-	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;
-	public static fun values ()[Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;
-}
-
-public final class org/hildan/chrome/devtools/domains/page/SPCTransactionMode$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -33295,15 +33442,50 @@ public final class org/hildan/chrome/devtools/domains/page/SetLifecycleEventsEna
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/page/SetRPHRegistrationModeRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/SetRPHRegistrationModeRequest$Companion;
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/page/AutoResponseMode;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;)Lorg/hildan/chrome/devtools/domains/page/SetRPHRegistrationModeRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/SetRPHRegistrationModeRequest;Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/SetRPHRegistrationModeRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMode ()Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/page/SetRPHRegistrationModeRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/page/SetRPHRegistrationModeRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/SetRPHRegistrationModeRequest$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/page/SetRPHRegistrationModeRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/page/SetRPHRegistrationModeRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/SetRPHRegistrationModeRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/SetRPHRegistrationModeResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/SetRPHRegistrationModeResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/page/SetSPCTransactionModeRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/SetSPCTransactionModeRequest$Companion;
-	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;)V
-	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;
-	public final fun copy (Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;)Lorg/hildan/chrome/devtools/domains/page/SetSPCTransactionModeRequest;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/SetSPCTransactionModeRequest;Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/SetSPCTransactionModeRequest;
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/page/AutoResponseMode;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;)Lorg/hildan/chrome/devtools/domains/page/SetSPCTransactionModeRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/SetSPCTransactionModeRequest;Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/SetSPCTransactionModeRequest;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getMode ()Lorg/hildan/chrome/devtools/domains/page/SPCTransactionMode;
+	public final fun getMode ()Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/page/SetSPCTransactionModeRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
@@ -34332,43 +34514,6 @@ public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$Navi
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$PrerenderAttemptCompleted : org/hildan/chrome/devtools/domains/page/events/PageEvent {
-	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$PrerenderAttemptCompleted$Companion;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public final fun component4 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$PrerenderAttemptCompleted;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$PrerenderAttemptCompleted;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$PrerenderAttemptCompleted;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getDisallowedApiMethod ()Ljava/lang/String;
-	public final fun getFinalStatus ()Lorg/hildan/chrome/devtools/domains/page/PrerenderFinalStatus;
-	public final fun getInitiatingFrameId ()Ljava/lang/String;
-	public final fun getPrerenderingUrl ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$PrerenderAttemptCompleted;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
-}
-
-public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$PrerenderAttemptCompleted$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$PrerenderAttemptCompleted$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$PrerenderAttemptCompleted;
-	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$PrerenderAttemptCompleted;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
-}
-
-public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$PrerenderAttemptCompleted$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
 public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$ScreencastFrame : org/hildan/chrome/devtools/domains/page/events/PageEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$ScreencastFrame$Companion;
 	public synthetic fun <init> (ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/page/ScreencastFrameMetadata;ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
@@ -34918,6 +35063,449 @@ public final class org/hildan/chrome/devtools/domains/performancetimeline/events
 }
 
 public final class org/hildan/chrome/devtools/domains/performancetimeline/events/PerformanceTimelineEvent$TimelineEventAdded$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/DisableResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/preload/DisableResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/EnableResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/preload/EnableResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/PreloadDomain {
+	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun enable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun events ()Lkotlinx/coroutines/flow/Flow;
+	public final fun prefetchStatusUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun prefetchStatusUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
+	public final fun preloadingAttemptSourcesUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun preloadingAttemptSourcesUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
+	public final fun prerenderAttemptCompleted ()Lkotlinx/coroutines/flow/Flow;
+	public final fun prerenderAttemptCompletedEvents ()Lkotlinx/coroutines/flow/Flow;
+	public final fun prerenderStatusUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun prerenderStatusUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
+	public final fun ruleSetRemoved ()Lkotlinx/coroutines/flow/Flow;
+	public final fun ruleSetRemovedEvents ()Lkotlinx/coroutines/flow/Flow;
+	public final fun ruleSetUpdated ()Lkotlinx/coroutines/flow/Flow;
+	public final fun ruleSetUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/SpeculationAction;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/SpeculationTargetHint;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/SpeculationAction;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/SpeculationTargetHint;)V
+	public synthetic fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/SpeculationAction;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/SpeculationTargetHint;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/preload/SpeculationAction;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/preload/SpeculationTargetHint;
+	public final fun copy (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/SpeculationAction;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/SpeculationTargetHint;)Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/SpeculationAction;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/SpeculationTargetHint;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAction ()Lorg/hildan/chrome/devtools/domains/preload/SpeculationAction;
+	public final fun getLoaderId ()Ljava/lang/String;
+	public final fun getTargetHint ()Lorg/hildan/chrome/devtools/domains/preload/SpeculationTargetHint;
+	public final fun getUrl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/PreloadingAttemptSource {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptSource$Companion;
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/util/List;Ljava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/util/List;Ljava/util/List;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Ljava/util/List;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/util/List;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptSource;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptSource;Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptSource;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getKey ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;
+	public final fun getNodeIds ()Ljava/util/List;
+	public final fun getRuleSetIds ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptSource;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/PreloadingAttemptSource$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptSource$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptSource;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptSource;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/PreloadingAttemptSource$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/PreloadingStatus : java/lang/Enum {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus$Companion;
+	public static final field Failure Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
+	public static final field NotSupported Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
+	public static final field Pending Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
+	public static final field Ready Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
+	public static final field Running Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
+	public static final field Success Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
+	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
+	public static fun values ()[Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/PreloadingStatus$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus : java/lang/Enum {
+	public static final field Activated Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field ActivatedBeforeStarted Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field ActivatedDuringMainFrameNavigation Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field ActivatedInBackground Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field ActivationFramePolicyNotCompatible Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field ActivationNavigationDestroyedBeforeSuccess Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field ActivationNavigationParameterMismatch Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field AudioOutputDeviceRequested Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field BatterySaverEnabled Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field BlockedByClient Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field CancelAllHostsForTesting Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field ClientCertRequested Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus$Companion;
+	public static final field CrossSiteNavigation Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field CrossSiteRedirect Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field DataSaverEnabled Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field Destroyed Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field DidFailLoad Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field Download Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field EmbedderHostDisallowed Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field EmbedderTriggeredAndCrossOriginRedirected Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field FailToGetMemoryUsage Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field HasEffectiveUrl Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field InProgressNavigation Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field InactivePageRestriction Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field InvalidSchemeNavigation Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field InvalidSchemeRedirect Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field LoginAuthRequested Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field LowEndDevice Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field MainFrameNavigation Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field MaxNumOfRunningPrerendersExceeded Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field MemoryLimitExceeded Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field MixedContent Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field MojoBinderPolicy Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field NavigationBadHttpStatus Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field NavigationNotCommitted Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field NavigationRequestBlockedByCsp Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field NavigationRequestNetworkError Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field PreloadingDisabled Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field PreloadingUnsupportedByWebContents Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field PrimaryMainFrameRendererProcessCrashed Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field PrimaryMainFrameRendererProcessKilled Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field RendererProcessCrashed Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field RendererProcessKilled Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field SameSiteCrossOriginNavigationNotOptIn Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field SameSiteCrossOriginRedirect Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field SameSiteCrossOriginRedirectNotOptIn Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field SslCertificateError Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field StartFailed Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field Stop Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field TabClosedByUserGesture Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field TabClosedWithoutUserGesture Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field TimeoutBackgrounded Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field TriggerBackgrounded Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field TriggerDestroyed Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field UaChangeRequiresReload Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static fun values ()[Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/RuleSet {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/RuleSet$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/preload/RuleSet;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/RuleSet;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/RuleSet;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getId ()Ljava/lang/String;
+	public final fun getLoaderId ()Ljava/lang/String;
+	public final fun getSourceText ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/preload/RuleSet;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/RuleSet$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/preload/RuleSet$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/preload/RuleSet;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/preload/RuleSet;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/RuleSet$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/SpeculationAction : java/lang/Enum {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/SpeculationAction$Companion;
+	public static final field Prefetch Lorg/hildan/chrome/devtools/domains/preload/SpeculationAction;
+	public static final field Prerender Lorg/hildan/chrome/devtools/domains/preload/SpeculationAction;
+	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/preload/SpeculationAction;
+	public static fun values ()[Lorg/hildan/chrome/devtools/domains/preload/SpeculationAction;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/SpeculationAction$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/SpeculationTargetHint : java/lang/Enum {
+	public static final field Blank Lorg/hildan/chrome/devtools/domains/preload/SpeculationTargetHint;
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/SpeculationTargetHint$Companion;
+	public static final field Self Lorg/hildan/chrome/devtools/domains/preload/SpeculationTargetHint;
+	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/preload/SpeculationTargetHint;
+	public static fun values ()[Lorg/hildan/chrome/devtools/domains/preload/SpeculationTargetHint;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/SpeculationTargetHint$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$Companion;
+	public synthetic fun <init> (ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated : org/hildan/chrome/devtools/domains/preload/events/PreloadEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getInitiatingFrameId ()Ljava/lang/String;
+	public final fun getPrefetchUrl ()Ljava/lang/String;
+	public final fun getStatus ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PreloadingAttemptSourcesUpdated : org/hildan/chrome/devtools/domains/preload/events/PreloadEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PreloadingAttemptSourcesUpdated$Companion;
+	public synthetic fun <init> (ILjava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PreloadingAttemptSourcesUpdated;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PreloadingAttemptSourcesUpdated;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PreloadingAttemptSourcesUpdated;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getPreloadingAttemptSources ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PreloadingAttemptSourcesUpdated;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PreloadingAttemptSourcesUpdated$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PreloadingAttemptSourcesUpdated$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PreloadingAttemptSourcesUpdated;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PreloadingAttemptSourcesUpdated;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PreloadingAttemptSourcesUpdated$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderAttemptCompleted : org/hildan/chrome/devtools/domains/preload/events/PreloadEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderAttemptCompleted$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderAttemptCompleted;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderAttemptCompleted;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderAttemptCompleted;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDisallowedApiMethod ()Ljava/lang/String;
+	public final fun getFinalStatus ()Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public final fun getInitiatingFrameId ()Ljava/lang/String;
+	public final fun getPrerenderingUrl ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderAttemptCompleted;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderAttemptCompleted$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderAttemptCompleted$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderAttemptCompleted;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderAttemptCompleted;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderAttemptCompleted$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated : org/hildan/chrome/devtools/domains/preload/events/PreloadEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getInitiatingFrameId ()Ljava/lang/String;
+	public final fun getPrerenderingUrl ()Ljava/lang/String;
+	public final fun getStatus ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetRemoved : org/hildan/chrome/devtools/domains/preload/events/PreloadEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetRemoved$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetRemoved;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetRemoved;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetRemoved;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetRemoved;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetRemoved$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetRemoved$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetRemoved;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetRemoved;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetRemoved$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetUpdated : org/hildan/chrome/devtools/domains/preload/events/PreloadEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetUpdated$Companion;
+	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/preload/RuleSet;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/preload/RuleSet;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/preload/RuleSet;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/preload/RuleSet;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetUpdated;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetUpdated;Lorg/hildan/chrome/devtools/domains/preload/RuleSet;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetUpdated;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getRuleSet ()Lorg/hildan/chrome/devtools/domains/preload/RuleSet;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetUpdated;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetUpdated$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetUpdated$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetUpdated;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetUpdated;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$RuleSetUpdated$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -45000,6 +45588,7 @@ public abstract interface class org/hildan/chrome/devtools/targets/AllDomainsTar
 	public abstract fun getCss ()Lorg/hildan/chrome/devtools/domains/css/CSSDomain;
 	public abstract fun getDatabase ()Lorg/hildan/chrome/devtools/domains/database/DatabaseDomain;
 	public abstract fun getDebugger ()Lorg/hildan/chrome/devtools/domains/debugger/DebuggerDomain;
+	public abstract fun getDeviceAccess ()Lorg/hildan/chrome/devtools/domains/deviceaccess/DeviceAccessDomain;
 	public abstract fun getDeviceOrientation ()Lorg/hildan/chrome/devtools/domains/deviceorientation/DeviceOrientationDomain;
 	public abstract fun getDom ()Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;
 	public abstract fun getDomDebugger ()Lorg/hildan/chrome/devtools/domains/domdebugger/DOMDebuggerDomain;
@@ -45007,6 +45596,7 @@ public abstract interface class org/hildan/chrome/devtools/targets/AllDomainsTar
 	public abstract fun getDomStorage ()Lorg/hildan/chrome/devtools/domains/domstorage/DOMStorageDomain;
 	public abstract fun getEmulation ()Lorg/hildan/chrome/devtools/domains/emulation/EmulationDomain;
 	public abstract fun getEventBreakpoints ()Lorg/hildan/chrome/devtools/domains/eventbreakpoints/EventBreakpointsDomain;
+	public abstract fun getFedCm ()Lorg/hildan/chrome/devtools/domains/fedcm/FedCmDomain;
 	public abstract fun getFetch ()Lorg/hildan/chrome/devtools/domains/fetch/FetchDomain;
 	public abstract fun getHeadlessExperimental ()Lorg/hildan/chrome/devtools/domains/headlessexperimental/HeadlessExperimentalDomain;
 	public abstract fun getHeapProfiler ()Lorg/hildan/chrome/devtools/domains/heapprofiler/HeapProfilerDomain;
@@ -45023,6 +45613,7 @@ public abstract interface class org/hildan/chrome/devtools/targets/AllDomainsTar
 	public abstract fun getPage ()Lorg/hildan/chrome/devtools/domains/page/PageDomain;
 	public abstract fun getPerformance ()Lorg/hildan/chrome/devtools/domains/performance/PerformanceDomain;
 	public abstract fun getPerformanceTimeline ()Lorg/hildan/chrome/devtools/domains/performancetimeline/PerformanceTimelineDomain;
+	public abstract fun getPreload ()Lorg/hildan/chrome/devtools/domains/preload/PreloadDomain;
 	public abstract fun getProfiler ()Lorg/hildan/chrome/devtools/domains/profiler/ProfilerDomain;
 	public abstract fun getRuntime ()Lorg/hildan/chrome/devtools/domains/runtime/RuntimeDomain;
 	public abstract fun getSchema ()Lorg/hildan/chrome/devtools/domains/schema/SchemaDomain;
