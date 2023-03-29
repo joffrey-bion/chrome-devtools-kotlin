@@ -1457,7 +1457,12 @@
                         "TooManyConcurrentRequests",
                         "SourceAndTriggerHeaders",
                         "SourceIgnored",
-                        "TriggerIgnored"
+                        "TriggerIgnored",
+                        "OsSourceIgnored",
+                        "OsTriggerIgnored",
+                        "InvalidRegisterOsSourceHeader",
+                        "InvalidRegisterOsTriggerHeader",
+                        "WebAndOsHeaders"
                     ]
                 },
                 {
@@ -1542,7 +1547,8 @@
                         "FormAriaLabelledByToNonExistingId",
                         "FormInputAssignedAutocompleteValueToIdOrNameAttributeError",
                         "FormLabelHasNeitherForNorNestedInput",
-                        "FormLabelForMatchesNonExistingIdError"
+                        "FormLabelForMatchesNonExistingIdError",
+                        "FormInputHasWrongButWellIntendedAutocompleteValueError"
                     ]
                 },
                 {
@@ -2890,6 +2896,16 @@
                             "$ref": "SelectorList"
                         },
                         {
+                            "name": "nestingSelectors",
+                            "description": "Array of selectors from ancestor style rules, sorted by distance from the current rule.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
                             "name": "origin",
                             "description": "Parent stylesheet's origin.",
                             "$ref": "StyleSheetOrigin"
@@ -3516,6 +3532,49 @@
                     ]
                 },
                 {
+                    "id": "CSSTryRule",
+                    "description": "CSS try rule representation.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "styleSheetId",
+                            "description": "The css style sheet identifier (absent for user agent stylesheet and user-specified\nstylesheet rules) this rule came from.",
+                            "optional": true,
+                            "$ref": "StyleSheetId"
+                        },
+                        {
+                            "name": "origin",
+                            "description": "Parent stylesheet's origin.",
+                            "$ref": "StyleSheetOrigin"
+                        },
+                        {
+                            "name": "style",
+                            "description": "Associated style declaration.",
+                            "optional": true,
+                            "$ref": "CSSStyle"
+                        }
+                    ]
+                },
+                {
+                    "id": "CSSPositionFallbackRule",
+                    "description": "CSS position-fallback rule representation.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "name",
+                            "$ref": "Value"
+                        },
+                        {
+                            "name": "tryRules",
+                            "description": "List of keyframes.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "CSSTryRule"
+                            }
+                        }
+                    ]
+                },
+                {
                     "id": "CSSKeyframesRule",
                     "description": "CSS keyframes rule representation.",
                     "type": "object",
@@ -3822,6 +3881,15 @@
                             "type": "array",
                             "items": {
                                 "$ref": "CSSKeyframesRule"
+                            }
+                        },
+                        {
+                            "name": "cssPositionFallbackRules",
+                            "description": "A list of CSS position fallbacks matching this node.",
+                            "optional": true,
+                            "type": "array",
+                            "items": {
+                                "$ref": "CSSPositionFallbackRule"
                             }
                         },
                         {
@@ -19068,6 +19136,7 @@
                         "cache_storage",
                         "interest_groups",
                         "shared_storage",
+                        "storage_buckets",
                         "all",
                         "other"
                     ]
@@ -19344,6 +19413,53 @@
                             "description": "Whether or not to set an entry for a key if that key is already present.\nPresent only for SharedStorageAccessType.documentSet and\nSharedStorageAccessType.workletSet.",
                             "optional": true,
                             "type": "boolean"
+                        }
+                    ]
+                },
+                {
+                    "id": "StorageBucketsDurability",
+                    "type": "string",
+                    "enum": [
+                        "relaxed",
+                        "strict"
+                    ]
+                },
+                {
+                    "id": "StorageBucketInfo",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "storageKey",
+                            "$ref": "SerializedStorageKey"
+                        },
+                        {
+                            "name": "id",
+                            "type": "string"
+                        },
+                        {
+                            "name": "name",
+                            "type": "string"
+                        },
+                        {
+                            "name": "isDefault",
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "expiration",
+                            "$ref": "Network.TimeSinceEpoch"
+                        },
+                        {
+                            "name": "quota",
+                            "description": "Storage quota (bytes).",
+                            "type": "number"
+                        },
+                        {
+                            "name": "persistent",
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "durability",
+                            "$ref": "StorageBucketsDurability"
                         }
                     ]
                 }
@@ -19766,6 +19882,36 @@
                             "type": "boolean"
                         }
                     ]
+                },
+                {
+                    "name": "setStorageBucketTracking",
+                    "description": "Set tracking for a storage key's buckets.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "storageKey",
+                            "type": "string"
+                        },
+                        {
+                            "name": "enable",
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                {
+                    "name": "deleteStorageBucket",
+                    "description": "Deletes the Storage Bucket with the given storage key and bucket name.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "storageKey",
+                            "type": "string"
+                        },
+                        {
+                            "name": "bucketName",
+                            "type": "string"
+                        }
+                    ]
                 }
             ],
             "events": [
@@ -19898,6 +20044,24 @@
                             "name": "params",
                             "description": "The sub-parameters warapped by `params` are all optional and their\npresence/absence depends on `type`.",
                             "$ref": "SharedStorageAccessParams"
+                        }
+                    ]
+                },
+                {
+                    "name": "storageBucketCreatedOrUpdated",
+                    "parameters": [
+                        {
+                            "name": "bucket",
+                            "$ref": "StorageBucketInfo"
+                        }
+                    ]
+                },
+                {
+                    "name": "storageBucketDeleted",
+                    "parameters": [
+                        {
+                            "name": "bucketId",
+                            "type": "string"
                         }
                     ]
                 }
@@ -22786,7 +22950,28 @@
                             "name": "sourceText",
                             "description": "Source text of JSON representing the rule set. If it comes from\n<script> tag, it is the textContent of the node. Note that it is\na JSON for valid case.\n\nSee also:\n- https://wicg.github.io/nav-speculation/speculation-rules.html\n- https://github.com/WICG/nav-speculation/blob/main/triggers.md",
                             "type": "string"
+                        },
+                        {
+                            "name": "errorType",
+                            "description": "Error information\n`errorMessage` is null iff `errorType` is null.",
+                            "optional": true,
+                            "$ref": "RuleSetErrorType"
+                        },
+                        {
+                            "name": "errorMessage",
+                            "description": "TODO(https://crbug.com/1425354): Replace this property with structured error.",
+                            "deprecated": true,
+                            "optional": true,
+                            "type": "string"
                         }
+                    ]
+                },
+                {
+                    "id": "RuleSetErrorType",
+                    "type": "string",
+                    "enum": [
+                        "SourceIsNotJsonObject",
+                        "InvalidRulesSkipped"
                     ]
                 },
                 {
@@ -22898,11 +23083,10 @@
                         "InactivePageRestriction",
                         "StartFailed",
                         "TimeoutBackgrounded",
-                        "CrossSiteRedirect",
-                        "CrossSiteNavigation",
-                        "SameSiteCrossOriginRedirect",
-                        "SameSiteCrossOriginRedirectNotOptIn",
-                        "SameSiteCrossOriginNavigationNotOptIn",
+                        "CrossSiteRedirectInInitialNavigation",
+                        "CrossSiteNavigationInInitialNavigation",
+                        "SameSiteCrossOriginRedirectNotOptInInInitialNavigation",
+                        "SameSiteCrossOriginNavigationNotOptInInInitialNavigation",
                         "ActivationNavigationParameterMismatch",
                         "ActivatedInBackground",
                         "EmbedderHostDisallowed",
@@ -22915,7 +23099,11 @@
                         "PreloadingDisabled",
                         "BatterySaverEnabled",
                         "ActivatedDuringMainFrameNavigation",
-                        "PreloadingUnsupportedByWebContents"
+                        "PreloadingUnsupportedByWebContents",
+                        "CrossSiteRedirectInMainFrameNavigation",
+                        "CrossSiteNavigationInMainFrameNavigation",
+                        "SameSiteCrossOriginRedirectNotOptInInMainFrameNavigation",
+                        "SameSiteCrossOriginNavigationNotOptInInMainFrameNavigation"
                     ]
                 },
                 {
@@ -22965,6 +23153,10 @@
                     "description": "Fired when a prerender attempt is completed.",
                     "parameters": [
                         {
+                            "name": "key",
+                            "$ref": "PreloadingAttemptKey"
+                        },
+                        {
                             "name": "initiatingFrameId",
                             "description": "The frame id of the frame initiating prerendering.",
                             "$ref": "Page.FrameId"
@@ -22990,6 +23182,10 @@
                     "description": "Fired when a prefetch attempt is updated.",
                     "parameters": [
                         {
+                            "name": "key",
+                            "$ref": "PreloadingAttemptKey"
+                        },
+                        {
                             "name": "initiatingFrameId",
                             "description": "The frame id of the frame initiating prefetch.",
                             "$ref": "Page.FrameId"
@@ -23009,6 +23205,10 @@
                     "description": "Fired when a prerender attempt is updated.",
                     "parameters": [
                         {
+                            "name": "key",
+                            "$ref": "PreloadingAttemptKey"
+                        },
+                        {
                             "name": "initiatingFrameId",
                             "description": "The frame id of the frame initiating prerender.",
                             "$ref": "Page.FrameId"
@@ -23025,8 +23225,12 @@
                 },
                 {
                     "name": "preloadingAttemptSourcesUpdated",
-                    "description": "Send a list of sources for all preloading attempts.",
+                    "description": "Send a list of sources for all preloading attempts in a document.",
                     "parameters": [
+                        {
+                            "name": "loaderId",
+                            "$ref": "Network.LoaderId"
+                        },
                         {
                             "name": "preloadingAttemptSources",
                             "type": "array",
@@ -23043,6 +23247,15 @@
             "description": "This domain allows interacting with the FedCM dialog.",
             "experimental": true,
             "types": [
+                {
+                    "id": "LoginState",
+                    "description": "Whether this is a sign-up or sign-in action for this account, i.e.\nwhether this account has ever been used to sign in to this RP before.",
+                    "type": "string",
+                    "enum": [
+                        "SignIn",
+                        "SignUp"
+                    ]
+                },
                 {
                     "id": "Account",
                     "description": "Corresponds to IdentityRequestAccount",
@@ -23071,6 +23284,25 @@
                         {
                             "name": "idpConfigUrl",
                             "type": "string"
+                        },
+                        {
+                            "name": "idpSigninUrl",
+                            "type": "string"
+                        },
+                        {
+                            "name": "loginState",
+                            "$ref": "LoginState"
+                        },
+                        {
+                            "name": "termsOfServiceUrl",
+                            "description": "These two are only set if the loginState is signUp",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "privacyPolicyUrl",
+                            "optional": true,
+                            "type": "string"
                         }
                     ]
                 }
@@ -23080,21 +23312,74 @@
                     "name": "dialogShown",
                     "parameters": [
                         {
+                            "name": "dialogId",
+                            "type": "string"
+                        },
+                        {
                             "name": "accounts",
                             "type": "array",
                             "items": {
                                 "$ref": "Account"
                             }
+                        },
+                        {
+                            "name": "title",
+                            "description": "These exist primarily so that the caller can verify the\nRP context was used appropriately.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "subtitle",
+                            "optional": true,
+                            "type": "string"
                         }
                     ]
                 }
             ],
             "commands": [
                 {
-                    "name": "enable"
+                    "name": "enable",
+                    "parameters": [
+                        {
+                            "name": "disableRejectionDelay",
+                            "description": "Allows callers to disable the promise rejection delay that would\nnormally happen, if this is unimportant to what's being tested.\n(step 4 of https://fedidcg.github.io/FedCM/#browser-api-rp-sign-in)",
+                            "optional": true,
+                            "type": "boolean"
+                        }
+                    ]
                 },
                 {
                     "name": "disable"
+                },
+                {
+                    "name": "selectAccount",
+                    "parameters": [
+                        {
+                            "name": "dialogId",
+                            "type": "string"
+                        },
+                        {
+                            "name": "accountIndex",
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
+                    "name": "dismissDialog",
+                    "parameters": [
+                        {
+                            "name": "dialogId",
+                            "type": "string"
+                        },
+                        {
+                            "name": "triggerCooldown",
+                            "optional": true,
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                {
+                    "name": "resetCooldown",
+                    "description": "Resets the cooldown time, if any, to allow the next FedCM call to show\na dialog even if one was recently dismissed by the user."
                 }
             ]
         }
