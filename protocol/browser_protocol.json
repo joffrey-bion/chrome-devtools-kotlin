@@ -1454,7 +1454,6 @@
                         "InvalidHeader",
                         "InvalidRegisterTriggerHeader",
                         "InvalidEligibleHeader",
-                        "TooManyConcurrentRequests",
                         "SourceAndTriggerHeaders",
                         "SourceIgnored",
                         "TriggerIgnored",
@@ -1570,6 +1569,11 @@
                             "name": "violatingNodeId",
                             "optional": true,
                             "$ref": "DOM.BackendNodeId"
+                        },
+                        {
+                            "name": "violatingNodeAttribute",
+                            "optional": true,
+                            "type": "string"
                         }
                     ]
                 },
@@ -1591,6 +1595,20 @@
                             "name": "type",
                             "description": "One of the deprecation names from third_party/blink/renderer/core/frame/deprecation/deprecation.json5",
                             "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "id": "BounceTrackingIssueDetails",
+                    "description": "This issue warns about sites in the redirect chain of a finished navigation\nthat may be flagged as trackers and have their state cleared if they don't\nreceive a user interaction. Note that in this context 'site' means eTLD+1.\nFor example, if the URL `https://example.test:80/bounce` was in the\nredirect chain, the site reported would be `example.test`.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "trackingSites",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
                         }
                     ]
                 },
@@ -1623,14 +1641,17 @@
                         "WellKnownNoResponse",
                         "WellKnownInvalidResponse",
                         "WellKnownListEmpty",
+                        "WellKnownInvalidContentType",
                         "ConfigNotInWellKnown",
                         "WellKnownTooBig",
                         "ConfigHttpNotFound",
                         "ConfigNoResponse",
                         "ConfigInvalidResponse",
+                        "ConfigInvalidContentType",
                         "ClientMetadataHttpNotFound",
                         "ClientMetadataNoResponse",
                         "ClientMetadataInvalidResponse",
+                        "ClientMetadataInvalidContentType",
                         "DisabledInSettings",
                         "ErrorFetchingSignin",
                         "InvalidSigninResponse",
@@ -1638,10 +1659,12 @@
                         "AccountsNoResponse",
                         "AccountsInvalidResponse",
                         "AccountsListEmpty",
+                        "AccountsInvalidContentType",
                         "IdTokenHttpNotFound",
                         "IdTokenNoResponse",
                         "IdTokenInvalidResponse",
                         "IdTokenInvalidRequest",
+                        "IdTokenInvalidContentType",
                         "ErrorIdToken",
                         "Canceled",
                         "RpPageNotVisible"
@@ -1682,7 +1705,8 @@
                         "GenericIssue",
                         "DeprecationIssue",
                         "ClientHintIssue",
-                        "FederatedAuthRequestIssue"
+                        "FederatedAuthRequestIssue",
+                        "BounceTrackingIssue"
                     ]
                 },
                 {
@@ -1769,6 +1793,11 @@
                             "name": "federatedAuthRequestIssueDetails",
                             "optional": true,
                             "$ref": "FederatedAuthRequestIssueDetails"
+                        },
+                        {
+                            "name": "bounceTrackingIssueDetails",
+                            "optional": true,
+                            "$ref": "BounceTrackingIssueDetails"
                         }
                     ]
                 },
@@ -2876,6 +2905,13 @@
                             "name": "endColumn",
                             "description": "Column offset of the end of the stylesheet within the resource (zero based).",
                             "type": "number"
+                        },
+                        {
+                            "name": "loadingFailed",
+                            "description": "If the style sheet was loaded from a network resource, this indicates when the resource failed to load",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ]
                 },
@@ -3550,7 +3586,6 @@
                         {
                             "name": "style",
                             "description": "Associated style declaration.",
-                            "optional": true,
                             "$ref": "CSSStyle"
                         }
                     ]
@@ -23103,7 +23138,20 @@
                         "CrossSiteRedirectInMainFrameNavigation",
                         "CrossSiteNavigationInMainFrameNavigation",
                         "SameSiteCrossOriginRedirectNotOptInInMainFrameNavigation",
-                        "SameSiteCrossOriginNavigationNotOptInInMainFrameNavigation"
+                        "SameSiteCrossOriginNavigationNotOptInInMainFrameNavigation",
+                        "MemoryPressureOnTrigger",
+                        "MemoryPressureAfterTriggered"
+                    ]
+                },
+                {
+                    "id": "PreloadEnabledState",
+                    "type": "string",
+                    "enum": [
+                        "Enabled",
+                        "DisabledByDataSaver",
+                        "DisabledByBatterySaver",
+                        "DisabledByPreference",
+                        "NotSupported"
                     ]
                 },
                 {
@@ -23174,6 +23222,16 @@
                             "description": "This is used to give users more information about the name of the API call\nthat is incompatible with prerender and has caused the cancellation of the attempt",
                             "optional": true,
                             "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "name": "preloadEnabledStateUpdated",
+                    "description": "Fired when a preload enabled state is updated.",
+                    "parameters": [
+                        {
+                            "name": "state",
+                            "$ref": "PreloadEnabledState"
                         }
                     ]
                 },
