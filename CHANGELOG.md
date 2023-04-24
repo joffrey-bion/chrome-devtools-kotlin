@@ -1,5 +1,17 @@
 # Change Log
 
+## [4.5.0\-1134181](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/4.5.0-1134181) (2023-04-24)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/4.4.0-1122837...4.5.0-1134181)
+
+**Merged pull requests:**
+
+- Update to Chrome DevTools Protocol version 1134181 [\#227](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/227) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+**Upgraded dependencies:**
+
+- Upgrade Ktor to 2.3.0 [\#232](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/232)
+- Upgrade Kotlin to 1.8.20 [\#231](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/231)
+
 ## [4.4.0\-1122837](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/4.4.0-1122837) (2023-03-30)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/4.4.0-1115542...4.4.0-1122837)
 
