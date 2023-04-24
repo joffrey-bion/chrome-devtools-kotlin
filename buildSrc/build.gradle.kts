@@ -1,6 +1,6 @@
 plugins {
-    `kotlin-dsl` // uses 1.6.10 as of Gradle 7.5
-    kotlin("plugin.serialization") version "1.6.10"
+    `kotlin-dsl` // uses Kotlin API level 1.8 as of Gradle 8.0
+    kotlin("plugin.serialization") version "1.8.20"
 }
 
 repositories {
