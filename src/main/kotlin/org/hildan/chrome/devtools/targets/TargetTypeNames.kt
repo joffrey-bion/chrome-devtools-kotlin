@@ -2,7 +2,7 @@ package org.hildan.chrome.devtools.targets
 
 /**
  * The name of the possible target types, as defined in
- * [Chromium's code](https://source.chromium.org/chromium/chromium/src/+/main:content/browser/devtools/devtools_agent_host_impl.cc;l=65-74).
+ * [Chromium's code](https://source.chromium.org/chromium/chromium/src/+/main:content/browser/devtools/devtools_agent_host_impl.cc;l=64-73).
  */
 internal object TargetTypeNames {
     const val tab = "tab"
