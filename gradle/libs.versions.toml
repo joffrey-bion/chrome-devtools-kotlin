@@ -1,0 +1,23 @@
+[versions]
+
+kotlinx-coroutines = "1.6.4"
+kotlinx-serialization = "1.5.0"
+ktor = "2.3.0"
+
+slf4j = "2.0.3"
+testcontainers = "1.17.4"
+
+[libraries]
+
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-client-contentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+
+slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j"}
+
+testcontainers-base = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers" }
+testcontainers-junit-jupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }

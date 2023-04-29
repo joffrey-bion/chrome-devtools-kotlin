@@ -24,19 +24,17 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.serialization.json)
 
-    val ktorVersion = "2.3.0"
-    api("io.ktor:ktor-client-cio:$ktorVersion")
-    api("io.ktor:ktor-client-content-negotiation:$ktorVersion")
-    api("io.ktor:ktor-client-serialization-jvm:$ktorVersion")
-    api("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+    api(libs.ktor.client.cio)
+    api(libs.ktor.client.contentNegotiation)
+    api(libs.ktor.serialization.kotlinx.json)
 
     testImplementation(kotlin("test"))
-    testImplementation("org.slf4j:slf4j-simple:2.0.3")
-    testImplementation("org.testcontainers:testcontainers:1.17.4")
-    testImplementation("org.testcontainers:junit-jupiter:1.17.4")
+    testImplementation(libs.slf4j.simple)
+    testImplementation(libs.testcontainers.base)
+    testImplementation(libs.testcontainers.junit.jupiter)
 }
 
 kotlin {
