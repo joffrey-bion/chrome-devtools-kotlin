@@ -15,20 +15,3 @@ suspend fun PageDomain.captureScreenshotToFile(
     val imageBytes = Base64.getDecoder().decode(capture.data)
     outputImagePath.toFile().writeBytes(imageBytes)
 }
-
-/**
- * Captures a screenshot of the current page based on the given [request], and store the resulting image into a new file
- * at the given [outputImagePath].
- */
-@Deprecated(
-    message = "Creating CaptureScreenshotRequest instances is not binary-forward-compatible, prefer the overload with" +
-        " builder lambda"
-)
-suspend fun PageDomain.captureScreenshotToFile(
-    outputImagePath: Path,
-    request: CaptureScreenshotRequest,
-) {
-    val capture = captureScreenshot(request)
-    val imageBytes = Base64.getDecoder().decode(capture.data)
-    outputImagePath.toFile().writeBytes(imageBytes)
-}
