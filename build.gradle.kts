@@ -1,13 +1,16 @@
+import org.jetbrains.kotlin.gradle.targets.jvm.tasks.*
+
 plugins {
     val kotlinVersion = "1.8.21"
-    kotlin("jvm") version kotlinVersion
+    kotlin("multiplatform") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
+    kotlin("plugin.atomicfu") version kotlinVersion
     id("org.jetbrains.dokka") version "1.8.10"
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.13.1"
-    `maven-publish`
     signing
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
     id("org.hildan.github.changelog") version "1.13.1"
+    id("org.hildan.kotlin-publish") version "1.1.0"
     id("ru.vyarus.github-info") version "1.4.0"
 }
 
@@ -23,24 +26,58 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.kotlinx.serialization.json)
-
-    api(libs.ktor.client.core)
-    implementation(libs.ktor.client.contentNegotiation)
-    implementation(libs.ktor.serialization.kotlinx.json)
-
-    testImplementation(kotlin("test"))
-    testImplementation(libs.ktor.client.cio)
-    testImplementation(libs.slf4j.simple)
-    testImplementation(libs.testcontainers.base)
-    testImplementation(libs.testcontainers.junit.jupiter)
-}
-
 kotlin {
-    sourceSets.main {
-        kotlin.srcDirs(kotlin.srcDirs + file("src/main/generated"))
+    jvm()
+    // JS target requires dealing with enum values containing hyphens
+//    js {
+//        browser()
+//        nodejs()
+//    }
+    mingwX64()
+    linuxX64()
+    macosX64()
+    macosArm64()
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+    watchosX64()
+    watchosArm32()
+    watchosArm64()
+    watchosSimulatorArm64()
+    tvosX64()
+    tvosArm64()
+
+    // Not supported yet by all dependencies
+    // linuxArm64()         missing in Ktor, coroutines
+    // watchosDeviceArm64() missing in Ktor, coroutines, serialization
+    // androidNativeArm32() missing in Ktor, coroutines, serialization
+    // androidNativeArm64() missing in Ktor, coroutines, serialization
+    // androidNativeX64()   missing in Ktor, coroutines, serialization
+    // androidNativeX86()   missing in Ktor, coroutines, serialization
+
+    sourceSets {
+        commonMain {
+            kotlin.srcDirs("src/commonMain/generated")
+
+            dependencies {
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.kotlinx.serialization.json)
+                implementation("org.jetbrains.kotlinx:atomicfu:0.20.2")
+
+                api(libs.ktor.client.core)
+                implementation(libs.ktor.client.contentNegotiation)
+                implementation(libs.ktor.serialization.kotlinx.json)
+            }
+        }
+        val jvmTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(libs.ktor.client.cio)
+                implementation(libs.slf4j.simple)
+                implementation(libs.testcontainers.base)
+                implementation(libs.testcontainers.junit.jupiter)
+            }
+        }
     }
 }
 
@@ -50,16 +87,16 @@ val generateProtocolApi by tasks.registering(org.hildan.chrome.devtools.build.Ge
 
 val printProtocolStats by tasks.registering(org.hildan.chrome.devtools.build.PrintProtocolStatsTask::class)
 
-tasks {
-    compileKotlin {
-        dependsOn(generateProtocolApi)
-    }
-    test {
-        useJUnitPlatform()
-        testLogging {
-            events("failed", "standardOut", "standardError")
-            exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
-            showStackTraces = true
+tasks.named<KotlinJvmTest>("jvmTest") {
+    useJUnitPlatform()
+}
+
+kotlin {
+    targets.all {
+        compilations.all {
+            tasks.named(compileKotlinTaskName).configure {
+                dependsOn(generateProtocolApi)
+            }
         }
     }
 }
@@ -68,12 +105,6 @@ changelog {
     githubUser = github.user
     futureVersionTag = project.version.toString()
     sinceTag = "0.5.0"
-}
-
-val sourcesJar by tasks.creating(Jar::class) {
-    archiveClassifier.set("sources")
-    from(sourceSets.main.get().allSource)
-    dependsOn(generateProtocolApi)
 }
 
 tasks.dokkaJavadoc {
@@ -95,16 +126,10 @@ nexusPublishing {
 }
 
 publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            from(components["java"])
-
-            artifact(sourcesJar)
-            artifact(dokkaJavadocJar)
-
+    // configureEach reacts on new publications being registered and configures them too
+    publications.configureEach {
+        if (this is MavenPublication) {
             pom {
-                name.set(project.name)
-                description.set(project.description)
                 developers {
                     developer {
                         id.set("joffrey-bion")
@@ -121,5 +146,5 @@ signing {
     val signingKey: String? by project
     val signingPassword: String? by project
     useInMemoryPgpKeys(signingKey, signingPassword)
-    sign(publishing.publications["maven"])
+    sign(extensions.getByType<PublishingExtension>().publications)
 }

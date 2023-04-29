@@ -22,7 +22,7 @@ open class GenerateProtocolApiTask : DefaultTask() {
     val targetTypesPath = project.file("protocol/target_types.json")
 
     @OutputDirectory
-    val outputDirPath = project.file("src/main/generated")
+    val outputDirPath = project.file("src/commonMain/generated")
 
     @TaskAction
     fun generate() {

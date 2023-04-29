@@ -3,4 +3,4 @@
 .gradle
 build
 
-src/main/generated
+src/commonMain/generated

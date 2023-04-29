@@ -1,6 +1,6 @@
 package org.hildan.chrome.devtools.domains.dom
 
-import java.nio.charset.Charset
+import io.ktor.utils.io.charsets.*
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
@@ -70,7 +70,7 @@ class DOMAttributes(attributesMap: Map<String, String>): Map<String, String> by 
      *
      * Belongs to: `<meta>`, `<script>`
      */
-    val charset: Charset? by attribute { Charset.forName(it) }
+    val charset: Charset? by attribute { it?.toCharset() }
 
     /**
      * Specifies that an <input> element should be pre-selected when the page loads (for type="checkbox" or
@@ -261,6 +261,8 @@ class DOMAttributes(attributesMap: Map<String, String>): Map<String, String> by 
      */
     val width: Int? by intAttribute()
 }
+
+private fun String.toCharset(): Charset = Charset.forName(this)
 
 private fun attribute(name: String? = null) = attribute(name) { it }
 

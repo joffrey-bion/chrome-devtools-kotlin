@@ -1,10 +1,10 @@
 package org.hildan.chrome.devtools.protocol
 
+import io.ktor.utils.io.errors.*
 import io.ktor.websocket.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlinx.serialization.encodeToString
-import java.io.IOException
 
 /**
  * Wraps this [WebSocketSession] to provide Chrome DevTools Protocol capabilities.

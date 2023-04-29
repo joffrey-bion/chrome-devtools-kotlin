@@ -1,11 +1,11 @@
 package org.hildan.chrome.devtools.protocol
 
+import kotlinx.atomicfu.*
 import kotlinx.coroutines.flow.*
 import kotlinx.serialization.json.*
 import org.hildan.chrome.devtools.domains.inspector.events.*
 import org.hildan.chrome.devtools.domains.target.events.*
 import org.hildan.chrome.devtools.domains.target.SessionID
-import java.util.concurrent.atomic.AtomicLong
 
 /**
  * Creates a [ChromeDPSession] backed by this connection to handle session-scoped request IDs and filter events of
@@ -29,7 +29,7 @@ internal class ChromeDPSession(
     /**
      * Ids must be unique at least within a session.
      */
-    private val nextRequestId = AtomicLong(0)
+    private val nextRequestId = atomic(0L)
 
     /**
      * Sends a request with the given [methodName] and [params], and suspends until the response is received.
