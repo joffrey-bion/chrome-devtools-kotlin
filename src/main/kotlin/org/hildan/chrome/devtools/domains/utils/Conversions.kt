@@ -23,7 +23,4 @@ internal val Quad.center: Point
         y = middle(start = this[5], end = this[1]),
     )
 
-internal val Rect.center: Point
-    get() = Point(x + width / 2, y + height / 2)
-
 private fun middle(start: Double, end: Double) = start + (end - start) / 2
