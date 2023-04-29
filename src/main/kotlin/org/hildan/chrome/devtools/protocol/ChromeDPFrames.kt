@@ -3,11 +3,16 @@ package org.hildan.chrome.devtools.protocol
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonContentPolymorphicSerializer
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.JsonNull
-import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.*
 import org.hildan.chrome.devtools.domains.target.SessionID
+
+/**
+ * [Json] serializer to use for Chrome DP frames.
+ */
+internal val chromeDpJson = Json {
+    // frame payloads can evolve, and we shouldn't fail hard on deserialization when this happens
+    ignoreUnknownKeys = true
+}
 
 /**
  * A request frame which can be sent to the server, as defined

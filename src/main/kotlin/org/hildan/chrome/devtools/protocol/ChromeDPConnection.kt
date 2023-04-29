@@ -4,10 +4,7 @@ import io.ktor.websocket.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 import java.io.IOException
-
-private val json = Json { ignoreUnknownKeys = true }
 
 /**
  * Wraps this [WebSocketSession] to provide Chrome DevTools Protocol capabilities.
@@ -28,7 +25,7 @@ internal class ChromeDPConnection(
 
     private val frames = webSocket.incoming.receiveAsFlow()
         .filterIsInstance<Frame.Text>()
-        .map { frame -> json.decodeFromString(InboundFrameSerializer, frame.readText()) }
+        .map { frame -> chromeDpJson.decodeFromString(InboundFrameSerializer, frame.readText()) }
         .shareIn(
             scope = coroutineScope,
             started = SharingStarted.Eagerly,
@@ -44,7 +41,7 @@ internal class ChromeDPConnection(
         if (webSocket.outgoing.isClosedForSend) {
             throw IOException("Cannot perform Chrome DevTools request ${request.method}, the web socket is closed.")
         }
-        val resultFrame = frames.onSubscription { webSocket.send(json.encodeToString(request)) }
+        val resultFrame = frames.onSubscription { webSocket.send(chromeDpJson.encodeToString(request)) }
             .filterIsInstance<ResultFrame>()
             .filter { it.matchesRequest(request) }
             .first() // a shared flow never completes anyway, so this will never throw (but can hang forever)

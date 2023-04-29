@@ -6,10 +6,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.SerializationStrategy
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
-
-private val json = Json { ignoreUnknownKeys = true }
 
 /**
  * Sends a request with the given [methodName] and [requestParams] object, and suspends until the response is received.
@@ -31,9 +28,9 @@ internal suspend fun <I, O> ChromeDPSession.request(
     serializer: SerializationStrategy<I>,
     deserializer: DeserializationStrategy<O>,
 ): O {
-    val jsonParams = requestParams?.let { json.encodeToJsonElement(serializer, it) }
+    val jsonParams = requestParams?.let { chromeDpJson.encodeToJsonElement(serializer, it) }
     val response = request(methodName, jsonParams)
-    return json.decodeFromJsonElement(deserializer, response.payload)
+    return chromeDpJson.decodeFromJsonElement(deserializer, response.payload)
 }
 
 /**
@@ -53,8 +50,8 @@ internal fun <E> ChromeDPSession.typedEvents(eventName: String, deserializer: De
  * Subscribes to events whose names are in the provided [deserializers] map, converting their payload to subclasses
  * of [E] using the corresponding deserializer in the map.
  */
-internal fun <E> ChromeDPSession.typedEvents(deserializers: Map<String, DeserializationStrategy<out E>>): Flow<E> = events()
+internal fun <E> ChromeDPSession.typedEvents(deserializers: Map<String, DeserializationStrategy<E>>): Flow<E> = events()
     .mapNotNull { f -> deserializers[f.eventName]?.let { f.decodePayload(it) } }
 
 private fun <T> EventFrame.decodePayload(deserializer: DeserializationStrategy<T>): T =
-    json.decodeFromJsonElement(deserializer, payload)
+    chromeDpJson.decodeFromJsonElement(deserializer, payload)
