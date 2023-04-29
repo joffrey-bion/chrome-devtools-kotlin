@@ -27,9 +27,10 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.serialization.json)
 
-    api(libs.ktor.client.cio)
-    api(libs.ktor.client.contentNegotiation)
-    api(libs.ktor.serialization.kotlinx.json)
+    api(libs.ktor.client.core)
+    implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.client.contentNegotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
 
     testImplementation(kotlin("test"))
     testImplementation(libs.slf4j.simple)
