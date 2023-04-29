@@ -28,11 +28,11 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     api(libs.ktor.client.core)
-    implementation(libs.ktor.client.cio)
     implementation(libs.ktor.client.contentNegotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
 
     testImplementation(kotlin("test"))
+    testImplementation(libs.ktor.client.cio)
     testImplementation(libs.slf4j.simple)
     testImplementation(libs.testcontainers.base)
     testImplementation(libs.testcontainers.junit.jupiter)
