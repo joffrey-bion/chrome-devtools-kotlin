@@ -16,7 +16,7 @@ private val serializerFun = MemberName("kotlinx.serialization", "serializer")
 private val coroutineFlowClass = ClassName("kotlinx.coroutines.flow", "Flow")
 
 private fun mapOfDeserializers(eventsSealedClassName: ClassName): ParameterizedTypeName {
-    val deserializerClass = deserializerClassName.parameterizedBy(WildcardTypeName.producerOf(eventsSealedClassName))
+    val deserializerClass = deserializerClassName.parameterizedBy(eventsSealedClassName)
     return MAP.parameterizedBy(String::class.asTypeName(), deserializerClass)
 }
 

@@ -10,7 +10,7 @@ repositories {
 dependencies {
     implementation(gradleApi())
     implementation("com.squareup:kotlinpoet:1.12.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 }
 
 tasks {
