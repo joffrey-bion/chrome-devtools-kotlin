@@ -4,7 +4,7 @@ kotlinx-coroutines = "1.7.0"
 kotlinx-serialization = "1.5.0"
 ktor = "2.3.0"
 
-slf4j = "2.0.3"
+slf4j = "2.0.7"
 testcontainers = "1.18.0"
 
 [libraries]
