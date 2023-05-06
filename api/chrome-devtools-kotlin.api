@@ -11178,8 +11178,8 @@ public final class org/hildan/chrome/devtools/domains/dom/DOMDomain {
 
 public final class org/hildan/chrome/devtools/domains/dom/DOMExtensionsKt {
 	public static final fun awaitNodeBySelector (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun awaitNodeBySelector$default (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Ljava/lang/String;JLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun awaitNodeBySelector-exY8QGI (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun awaitNodeBySelector-exY8QGI$default (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Ljava/lang/String;JLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun findNodeBySelector (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun focusNodeBySelector (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun getAttributeValue (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;ILjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
