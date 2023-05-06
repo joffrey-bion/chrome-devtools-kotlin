@@ -68,6 +68,21 @@ suspend fun DOMDomain.awaitNodeBySelector(selector: CssSelector, pollingPeriodMi
     awaitNodeBySelector(selector, pollingPeriodMillis.milliseconds)
 
 /**
+ * Waits until the given [selector] matches no node in the DOM. Inspects the DOM every [pollingPeriod].
+ *
+ * This method may suspend forever if the [selector] keeps matching at least one node.
+ * The caller is responsible for using [withTimeout][kotlinx.coroutines.withTimeout] or similar cancellation mechanisms
+ * around calls to this method if handling this case is necessary.
+ */
+suspend fun DOMDomain.awaitNodeAbsentBySelector(selector: CssSelector, pollingPeriod: Duration = 200.milliseconds) {
+    while (true) {
+        // it looks like we do need to get a new document at each poll otherwise we may not see the new nodes
+        findNodeBySelector(selector) ?: return
+        delay(pollingPeriod)
+    }
+}
+
+/**
  * Retrieves the ID of the node corresponding to the given [selector], or throw an exception if not found.
  *
  * Note that the returned [NodeId] cannot really be used to retrieve actual node information, and this is apparently
