@@ -42,6 +42,7 @@ jobs:
           committer: "Protocol Update Workflow <protocol-updater@users.noreply.github.com>"
           commit-message: "Update to Chrome DevTools Protocol version ${{ steps.protocol-version.outputs.version }}"
           title: "Update to Chrome DevTools Protocol version ${{ steps.protocol-version.outputs.version }}"
+          labels: dependencies
           body: |
             This PR updates the protocol definitions (under `protocol/`) to the latest version found in
             [the `devtools-protocol` github repo](https://github.com/ChromeDevTools/devtools-protocol/tree/master/json).
