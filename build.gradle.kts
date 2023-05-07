@@ -119,7 +119,7 @@ val dokkaJavadocJar by tasks.creating(Jar::class) {
 
 nexusPublishing {
     packageGroup.set("org.hildan")
-    repositories {
+    this.repositories {
         sonatype()
     }
 }
