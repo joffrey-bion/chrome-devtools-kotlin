@@ -45230,6 +45230,11 @@ public final class org/hildan/chrome/devtools/protocol/RequestFrame$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/protocol/RequestNotSentException : java/lang/Exception {
+	public fun <init> (Lorg/hildan/chrome/devtools/protocol/RequestFrame;Ljava/lang/Throwable;)V
+	public final fun getRequest ()Lorg/hildan/chrome/devtools/protocol/RequestFrame;
+}
+
 public final class org/hildan/chrome/devtools/protocol/TargetCrashedException : java/lang/Exception {
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;)V
 	public final fun getCrashEventName ()Ljava/lang/String;

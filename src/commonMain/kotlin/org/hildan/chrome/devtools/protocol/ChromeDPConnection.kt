@@ -1,8 +1,8 @@
 package org.hildan.chrome.devtools.protocol
 
-import io.ktor.utils.io.errors.*
 import io.ktor.websocket.*
 import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.ClosedSendChannelException
 import kotlinx.coroutines.flow.*
 import kotlinx.serialization.encodeToString
 
@@ -34,21 +34,30 @@ internal class ChromeDPConnection(
     /**
      * Sends the given ChromeDP [request], and returns the corresponding [ResponseFrame].
      *
-     * Throws [RequestFailed] in case of error.
+     * @throws RequestNotSentException if the socket is already closed and the request cannot be sent
+     * @throws RequestFailed if the Chrome debugger returns an error frame
      */
-    @OptIn(ExperimentalCoroutinesApi::class)
     suspend fun request(request: RequestFrame): ResponseFrame {
-        if (webSocket.outgoing.isClosedForSend) {
-            throw IOException("Cannot perform Chrome DevTools request ${request.method}, the web socket is closed.")
-        }
-        val resultFrame = frames.onSubscription { webSocket.send(chromeDpJson.encodeToString(request)) }
+        val resultFrame = frames.onSubscription { sendOrFailUniformly(request) }
             .filterIsInstance<ResultFrame>()
             .filter { it.matchesRequest(request) }
-            .first() // a shared flow never completes anyway, so this will never throw (but can hang forever)
+            .first() // a shared flow never completes, so this will never throw NoSuchElementException (but can hang forever)
 
         when (resultFrame) {
             is ResponseFrame -> return resultFrame
             is ErrorFrame -> throw RequestFailed(request, resultFrame.error)
+        }
+    }
+
+    private suspend fun sendOrFailUniformly(request: RequestFrame) {
+        try {
+            webSocket.send(chromeDpJson.encodeToString(request))
+        } catch (e: Exception) {
+            // It's possible to get CancellationException without being cancelled, for example
+            // when ChromeDPConnection.close() was called before calling request().
+            // Not sure why we don't get ClosedSendChannelException in that case - requires further investigation.
+            currentCoroutineContext().ensureActive()
+            throw RequestNotSentException(request, e)
         }
     }
 
@@ -71,6 +80,14 @@ internal class ChromeDPConnection(
 }
 
 /**
- * An exception thrown when an error occurred during the processing of a request on server side.
+ * An exception thrown when an error occurred during the processing of a request on Chrome side.
  */
 class RequestFailed(val request: RequestFrame, val error: RequestError) : Exception(error.message)
+
+/**
+ * An exception thrown when an error prevented sending a request via the Chrome web socket.
+ */
+class RequestNotSentException(
+    val request: RequestFrame,
+    cause: Throwable?,
+) : Exception("Could not send request '${request.method}': $cause", cause)

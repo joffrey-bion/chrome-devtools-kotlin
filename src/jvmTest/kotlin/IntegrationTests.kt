@@ -1,19 +1,18 @@
 import kotlinx.coroutines.*
 import kotlinx.serialization.Serializable
-import org.hildan.chrome.devtools.domains.backgroundservice.*
+import org.hildan.chrome.devtools.domains.backgroundservice.ServiceName
 import org.hildan.chrome.devtools.domains.dom.*
-import org.hildan.chrome.devtools.domains.domdebugger.*
-import org.hildan.chrome.devtools.domains.runtime.*
-import org.hildan.chrome.devtools.protocol.*
+import org.hildan.chrome.devtools.domains.domdebugger.DOMBreakpointType
+import org.hildan.chrome.devtools.domains.runtime.evaluateJs
+import org.hildan.chrome.devtools.protocol.ChromeDPClient
+import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
+import org.hildan.chrome.devtools.protocol.RequestNotSentException
 import org.hildan.chrome.devtools.targets.*
-import org.testcontainers.containers.*
-import org.testcontainers.junit.jupiter.*
+import org.testcontainers.containers.GenericContainer
 import org.testcontainers.junit.jupiter.Container
-import java.io.*
+import org.testcontainers.junit.jupiter.Testcontainers
 import kotlin.test.*
-import kotlin.time.Duration
 import kotlin.time.Duration.Companion.minutes
-import kotlin.time.Duration.Companion.seconds
 
 @Testcontainers
 class IntegrationTests {
@@ -86,7 +85,7 @@ class IntegrationTests {
 
             browser.close()
 
-            assertFailsWith<IOException> {
+            assertFailsWith<RequestNotSentException> {
                 session.getTargetInfo()
             }
         }
