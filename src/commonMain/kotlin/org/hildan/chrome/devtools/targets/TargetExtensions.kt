@@ -96,8 +96,11 @@ suspend fun ChromeBrowserSession.attachToNewPageAndAwaitPageLoad(
  * This function throws [NavigationFailed] if the navigation response has an error, instead of waiting forever for an
  * event that will never come.
  */
-suspend fun ChromePageSession.navigateAndAwaitPageLoad(url: String) {
-    navigateAndAwaitPageLoad(NavigateRequest(url = url))
+suspend fun ChromePageSession.navigateAndAwaitPageLoad(
+    url: String,
+    optionalArgs: NavigateRequest.Builder.() -> Unit = {},
+) {
+    navigateAndAwaitPageLoad(NavigateRequest.Builder(url = url).apply(optionalArgs).build())
 }
 
 /**
