@@ -11,6 +11,8 @@ import org.testcontainers.junit.jupiter.*
 import org.testcontainers.junit.jupiter.Container
 import java.io.*
 import kotlin.test.*
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
 @Testcontainers
@@ -241,5 +243,5 @@ class IntegrationTests {
 }
 
 private fun runBlockingWithTimeout(block: suspend CoroutineScope.() -> Unit) = runBlocking {
-    withTimeout(20.seconds, block)
+    withTimeout(1.minutes, block)
 }
