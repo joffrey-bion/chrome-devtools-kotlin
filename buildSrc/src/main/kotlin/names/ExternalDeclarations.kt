@@ -36,16 +36,22 @@ object Annotations {
     val experimentalChromeApi = AnnotationSpec.builder(ExtDeclarations.experimentalChromeApi).build()
 
     /**
-     * Suppress common warnings in generated files:
-     *
-     * - RedundantVisibilityModifier: necessary because public keyword cannot be removed
-     * - DEPRECATION: the warning still occurs if a deprecated function uses a deprecated type as parameter type
-     * - EXPERIMENTAL_API_USAGE: for data classes with params of experimental types, the warning doesn't go away by
-     * annotating the relevant property/constructor-arg with experimental annotation. The whole class/constructor
-     * would need to be annotated as experimental, which is not desirable.
+     * Annotation to suppress common warnings in generated files.
      */
-    val suppressWarnings = suppress("RedundantVisibilityModifier", "DEPRECATION", "EXPERIMENTAL_API_USAGE")
+    val suppressWarnings = suppress(
+        // because not all files need all these suppressions
+        "KotlinRedundantDiagnosticSuppress",
+        // necessary because public keyword cannot be removed
+        "RedundantVisibilityModifier",
+        // the warning occurs if a deprecated function uses a deprecated type as parameter type
+        "DEPRECATION",
+        // for data classes with params of experimental types, the warning doesn't go away by
+        // annotating the relevant property/constructor-arg with experimental annotation. The whole class/constructor
+        // would need to be annotated as experimental, which is not desirable
+        "OPT_IN_USAGE",
+    )
 
+    @Suppress("SameParameterValue")
     private fun suppress(vararg warningTypes: String) = AnnotationSpec.builder(Suppress::class)
         .addMember(format = warningTypes.joinToString { "%S" }, *warningTypes)
         .build()
