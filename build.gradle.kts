@@ -110,13 +110,6 @@ tasks.dokkaJavadoc {
     dependsOn(generateProtocolApi)
 }
 
-val dokkaJavadocJar by tasks.creating(Jar::class) {
-    group = JavaBasePlugin.DOCUMENTATION_GROUP
-    description = "Assembles Kotlin docs with Dokka into a Javadoc jar"
-    archiveClassifier.set("javadoc")
-    from(tasks.dokkaJavadoc)
-}
-
 nexusPublishing {
     packageGroup.set("org.hildan")
     this.repositories {
