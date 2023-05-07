@@ -1331,47 +1331,6 @@
                     ]
                 },
                 {
-                    "id": "TwaQualityEnforcementViolationType",
-                    "type": "string",
-                    "enum": [
-                        "kHttpError",
-                        "kUnavailableOffline",
-                        "kDigitalAssetLinks"
-                    ]
-                },
-                {
-                    "id": "TrustedWebActivityIssueDetails",
-                    "type": "object",
-                    "properties": [
-                        {
-                            "name": "url",
-                            "description": "The url that triggers the violation.",
-                            "type": "string"
-                        },
-                        {
-                            "name": "violationType",
-                            "$ref": "TwaQualityEnforcementViolationType"
-                        },
-                        {
-                            "name": "httpStatusCode",
-                            "optional": true,
-                            "type": "integer"
-                        },
-                        {
-                            "name": "packageName",
-                            "description": "The package name of the Trusted Web Activity client app. This field is\nonly used when violation type is kDigitalAssetLinks.",
-                            "optional": true,
-                            "type": "string"
-                        },
-                        {
-                            "name": "signature",
-                            "description": "The signature of the Trusted Web Activity client app. This field is only\nused when violation type is kDigitalAssetLinks.",
-                            "optional": true,
-                            "type": "string"
-                        }
-                    ]
-                },
-                {
                     "id": "LowTextContrastIssueDetails",
                     "type": "object",
                     "properties": [
@@ -1453,7 +1412,6 @@
                         "InsecureContext",
                         "InvalidHeader",
                         "InvalidRegisterTriggerHeader",
-                        "InvalidEligibleHeader",
                         "SourceAndTriggerHeaders",
                         "SourceIgnored",
                         "TriggerIgnored",
@@ -1461,7 +1419,8 @@
                         "OsTriggerIgnored",
                         "InvalidRegisterOsSourceHeader",
                         "InvalidRegisterOsTriggerHeader",
-                        "WebAndOsHeaders"
+                        "WebAndOsHeaders",
+                        "NoWebOrOsSupport"
                     ]
                 },
                 {
@@ -1696,7 +1655,6 @@
                         "HeavyAdIssue",
                         "ContentSecurityPolicyIssue",
                         "SharedArrayBufferIssue",
-                        "TrustedWebActivityIssue",
                         "LowTextContrastIssue",
                         "CorsIssue",
                         "AttributionReportingIssue",
@@ -1743,11 +1701,6 @@
                             "name": "sharedArrayBufferIssueDetails",
                             "optional": true,
                             "$ref": "SharedArrayBufferIssueDetails"
-                        },
-                        {
-                            "name": "twaQualityEnforcementDetails",
-                            "optional": true,
-                            "$ref": "TrustedWebActivityIssueDetails"
                         },
                         {
                             "name": "lowTextContrastIssueDetails",
@@ -1908,6 +1861,62 @@
                         {
                             "name": "issue",
                             "$ref": "InspectorIssue"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "domain": "Autofill",
+            "description": "Defines commands and events for Autofill.",
+            "experimental": true,
+            "types": [
+                {
+                    "id": "CreditCard",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "number",
+                            "description": "16-digit credit card number.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "name",
+                            "description": "Name of the credit card owner.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "expiryMonth",
+                            "description": "2-digit expiry month.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "expiryYear",
+                            "description": "4-digit expiry year.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "cvc",
+                            "description": "3-digit card verification code.",
+                            "type": "string"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "trigger",
+                    "description": "Trigger autofill on a form identified by the fieldId.\nIf the field and related form cannot be autofilled, returns an error.",
+                    "parameters": [
+                        {
+                            "name": "fieldId",
+                            "description": "Identifies a field that serves as an anchor for autofill.",
+                            "$ref": "DOM.BackendNodeId"
+                        },
+                        {
+                            "name": "card",
+                            "description": "Credit card information to fill out the form. Credit card data is not saved.",
+                            "$ref": "CreditCard"
                         }
                     ]
                 }
@@ -8809,7 +8818,8 @@
             "domain": "IndexedDB",
             "experimental": true,
             "dependencies": [
-                "Runtime"
+                "Runtime",
+                "Storage"
             ],
             "types": [
                 {
@@ -9030,7 +9040,7 @@
                     "parameters": [
                         {
                             "name": "securityOrigin",
-                            "description": "At least and at most one of securityOrigin, storageKey must be specified.\nSecurity origin.",
+                            "description": "At least and at most one of securityOrigin, storageKey, or storageBucket must be specified.\nSecurity origin.",
                             "optional": true,
                             "type": "string"
                         },
@@ -9039,6 +9049,12 @@
                             "description": "Storage key.",
                             "optional": true,
                             "type": "string"
+                        },
+                        {
+                            "name": "storageBucket",
+                            "description": "Storage bucket. If not specified, it uses the default bucket.",
+                            "optional": true,
+                            "$ref": "Storage.StorageBucket"
                         },
                         {
                             "name": "databaseName",
@@ -9058,7 +9074,7 @@
                     "parameters": [
                         {
                             "name": "securityOrigin",
-                            "description": "At least and at most one of securityOrigin, storageKey must be specified.\nSecurity origin.",
+                            "description": "At least and at most one of securityOrigin, storageKey, or storageBucket must be specified.\nSecurity origin.",
                             "optional": true,
                             "type": "string"
                         },
@@ -9067,6 +9083,12 @@
                             "description": "Storage key.",
                             "optional": true,
                             "type": "string"
+                        },
+                        {
+                            "name": "storageBucket",
+                            "description": "Storage bucket. If not specified, it uses the default bucket.",
+                            "optional": true,
+                            "$ref": "Storage.StorageBucket"
                         },
                         {
                             "name": "databaseName",
@@ -9081,7 +9103,7 @@
                     "parameters": [
                         {
                             "name": "securityOrigin",
-                            "description": "At least and at most one of securityOrigin, storageKey must be specified.\nSecurity origin.",
+                            "description": "At least and at most one of securityOrigin, storageKey, or storageBucket must be specified.\nSecurity origin.",
                             "optional": true,
                             "type": "string"
                         },
@@ -9090,6 +9112,12 @@
                             "description": "Storage key.",
                             "optional": true,
                             "type": "string"
+                        },
+                        {
+                            "name": "storageBucket",
+                            "description": "Storage bucket. If not specified, it uses the default bucket.",
+                            "optional": true,
+                            "$ref": "Storage.StorageBucket"
                         },
                         {
                             "name": "databaseName",
@@ -9120,7 +9148,7 @@
                     "parameters": [
                         {
                             "name": "securityOrigin",
-                            "description": "At least and at most one of securityOrigin, storageKey must be specified.\nSecurity origin.",
+                            "description": "At least and at most one of securityOrigin, storageKey, or storageBucket must be specified.\nSecurity origin.",
                             "optional": true,
                             "type": "string"
                         },
@@ -9129,6 +9157,12 @@
                             "description": "Storage key.",
                             "optional": true,
                             "type": "string"
+                        },
+                        {
+                            "name": "storageBucket",
+                            "description": "Storage bucket. If not specified, it uses the default bucket.",
+                            "optional": true,
+                            "$ref": "Storage.StorageBucket"
                         },
                         {
                             "name": "databaseName",
@@ -9184,7 +9218,7 @@
                     "parameters": [
                         {
                             "name": "securityOrigin",
-                            "description": "At least and at most one of securityOrigin, storageKey must be specified.\nSecurity origin.",
+                            "description": "At least and at most one of securityOrigin, storageKey, or storageBucket must be specified.\nSecurity origin.",
                             "optional": true,
                             "type": "string"
                         },
@@ -9193,6 +9227,12 @@
                             "description": "Storage key.",
                             "optional": true,
                             "type": "string"
+                        },
+                        {
+                            "name": "storageBucket",
+                            "description": "Storage bucket. If not specified, it uses the default bucket.",
+                            "optional": true,
+                            "$ref": "Storage.StorageBucket"
                         },
                         {
                             "name": "databaseName",
@@ -9224,7 +9264,7 @@
                     "parameters": [
                         {
                             "name": "securityOrigin",
-                            "description": "At least and at most one of securityOrigin, storageKey must be specified.\nSecurity origin.",
+                            "description": "At least and at most one of securityOrigin, storageKey, or storageBucket must be specified.\nSecurity origin.",
                             "optional": true,
                             "type": "string"
                         },
@@ -9233,6 +9273,12 @@
                             "description": "Storage key.",
                             "optional": true,
                             "type": "string"
+                        },
+                        {
+                            "name": "storageBucket",
+                            "description": "Storage bucket. If not specified, it uses the default bucket.",
+                            "optional": true,
+                            "$ref": "Storage.StorageBucket"
                         },
                         {
                             "name": "databaseName",
@@ -9254,7 +9300,7 @@
                     "parameters": [
                         {
                             "name": "securityOrigin",
-                            "description": "At least and at most one of securityOrigin, storageKey must be specified.\nSecurity origin.",
+                            "description": "At least and at most one of securityOrigin, storageKey, or storageBucket must be specified.\nSecurity origin.",
                             "optional": true,
                             "type": "string"
                         },
@@ -9263,6 +9309,12 @@
                             "description": "Storage key.",
                             "optional": true,
                             "type": "string"
+                        },
+                        {
+                            "name": "storageBucket",
+                            "description": "Storage bucket. If not specified, it uses the default bucket.",
+                            "optional": true,
+                            "$ref": "Storage.StorageBucket"
                         }
                     ],
                     "returns": [
@@ -10278,7 +10330,6 @@
                         {
                             "name": "compositingReasons",
                             "description": "A list of strings specifying reasons for the given layer to become composited.",
-                            "deprecated": true,
                             "type": "array",
                             "items": {
                                 "type": "string"
@@ -15442,6 +15493,8 @@
                         "payment",
                         "picture-in-picture",
                         "private-aggregation",
+                        "private-state-token-issuance",
+                        "private-state-token-redemption",
                         "publickey-credentials-get",
                         "run-ad-auction",
                         "screen-wake-lock",
@@ -15452,7 +15505,6 @@
                         "smart-card",
                         "storage-access",
                         "sync-xhr",
-                        "trust-token-redemption",
                         "unload",
                         "usb",
                         "vertical-scroll",
@@ -19460,7 +19512,7 @@
                     ]
                 },
                 {
-                    "id": "StorageBucketInfo",
+                    "id": "StorageBucket",
                     "type": "object",
                     "properties": [
                         {
@@ -19468,16 +19520,24 @@
                             "$ref": "SerializedStorageKey"
                         },
                         {
+                            "name": "name",
+                            "description": "If not specified, it is the default bucket of the storageKey.",
+                            "optional": true,
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "id": "StorageBucketInfo",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "bucket",
+                            "$ref": "StorageBucket"
+                        },
+                        {
                             "name": "id",
                             "type": "string"
-                        },
-                        {
-                            "name": "name",
-                            "type": "string"
-                        },
-                        {
-                            "name": "isDefault",
-                            "type": "boolean"
                         },
                         {
                             "name": "expiration",
@@ -19939,12 +19999,22 @@
                     "experimental": true,
                     "parameters": [
                         {
-                            "name": "storageKey",
-                            "type": "string"
-                        },
+                            "name": "bucket",
+                            "$ref": "StorageBucket"
+                        }
+                    ]
+                },
+                {
+                    "name": "runBounceTrackingMitigations",
+                    "description": "Deletes state for sites identified as potential bounce trackers, immediately.",
+                    "experimental": true,
+                    "returns": [
                         {
-                            "name": "bucketName",
-                            "type": "string"
+                            "name": "deletedSites",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
                         }
                     ]
                 }
@@ -20002,6 +20072,11 @@
                             "type": "string"
                         },
                         {
+                            "name": "bucketId",
+                            "description": "Storage bucket to update.",
+                            "type": "string"
+                        },
+                        {
                             "name": "databaseName",
                             "description": "Database to update.",
                             "type": "string"
@@ -20025,6 +20100,11 @@
                         {
                             "name": "storageKey",
                             "description": "Storage key to update.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "bucketId",
+                            "description": "Storage bucket to update.",
                             "type": "string"
                         }
                     ]
@@ -20086,7 +20166,7 @@
                     "name": "storageBucketCreatedOrUpdated",
                     "parameters": [
                         {
-                            "name": "bucket",
+                            "name": "bucketInfo",
                             "$ref": "StorageBucketInfo"
                         }
                     ]
@@ -22985,6 +23065,22 @@
                             "name": "sourceText",
                             "description": "Source text of JSON representing the rule set. If it comes from\n<script> tag, it is the textContent of the node. Note that it is\na JSON for valid case.\n\nSee also:\n- https://wicg.github.io/nav-speculation/speculation-rules.html\n- https://github.com/WICG/nav-speculation/blob/main/triggers.md",
                             "type": "string"
+                        },
+                        {
+                            "name": "backendNodeId",
+                            "description": "A speculation rule set is either added through an inline\n<script> tag or through an external resource via the\n'Speculation-Rules' HTTP header. For the first case, we include\nthe BackendNodeId of the relevant <script> tag. For the second\ncase, we include the external URL where the rule set was loaded\nfrom, and also RequestId if Network domain is enabled.\n\nSee also:\n- https://wicg.github.io/nav-speculation/speculation-rules.html#speculation-rules-script\n- https://wicg.github.io/nav-speculation/speculation-rules.html#speculation-rules-header",
+                            "optional": true,
+                            "$ref": "DOM.BackendNodeId"
+                        },
+                        {
+                            "name": "url",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "requestId",
+                            "optional": true,
+                            "$ref": "Network.RequestId"
                         },
                         {
                             "name": "errorType",
