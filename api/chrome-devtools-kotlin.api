@@ -5082,7 +5082,7 @@ public final class org/hildan/chrome/devtools/domains/console/ConsoleMessageLeve
 public final class org/hildan/chrome/devtools/domains/console/ConsoleMessageSource : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/console/ConsoleMessageSource$Companion;
 	public static final field appcache Lorg/hildan/chrome/devtools/domains/console/ConsoleMessageSource;
-	public static final field console-api Lorg/hildan/chrome/devtools/domains/console/ConsoleMessageSource;
+	public static final field consoleApi Lorg/hildan/chrome/devtools/domains/console/ConsoleMessageSource;
 	public static final field deprecation Lorg/hildan/chrome/devtools/domains/console/ConsoleMessageSource;
 	public static final field javascript Lorg/hildan/chrome/devtools/domains/console/ConsoleMessageSource;
 	public static final field network Lorg/hildan/chrome/devtools/domains/console/ConsoleMessageSource;
@@ -7576,7 +7576,7 @@ public final class org/hildan/chrome/devtools/domains/css/StyleSheetOrigin : jav
 	public static final field injected Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;
 	public static final field inspector Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;
 	public static final field regular Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;
-	public static final field user-agent Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;
+	public static final field userAgent Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;
 }
@@ -9293,7 +9293,7 @@ public final class org/hildan/chrome/devtools/domains/debugger/ScopeType : java/
 	public static final field local Lorg/hildan/chrome/devtools/domains/debugger/ScopeType;
 	public static final field module Lorg/hildan/chrome/devtools/domains/debugger/ScopeType;
 	public static final field script Lorg/hildan/chrome/devtools/domains/debugger/ScopeType;
-	public static final field wasm-expression-stack Lorg/hildan/chrome/devtools/domains/debugger/ScopeType;
+	public static final field wasmExpressionStack Lorg/hildan/chrome/devtools/domains/debugger/ScopeType;
 	public static final field with Lorg/hildan/chrome/devtools/domains/debugger/ScopeType;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/debugger/ScopeType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/debugger/ScopeType;
@@ -12751,28 +12751,28 @@ public final class org/hildan/chrome/devtools/domains/dom/PseudoType : java/lang
 	public static final field after Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field backdrop Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field before Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field first-letter Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field first-line Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field first-line-inherited Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field grammar-error Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field firstLetter Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field firstLine Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field firstLineInherited Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field grammarError Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field highlight Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field input-list-button Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field inputListButton Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field marker Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field resizer Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollbar Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field scrollbar-button Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field scrollbar-corner Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field scrollbar-thumb Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field scrollbar-track Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field scrollbar-track-piece Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field scrollbarButton Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field scrollbarCorner Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field scrollbarThumb Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field scrollbarTrack Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field scrollbarTrackPiece Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field selection Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field spelling-error Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field target-text Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field view-transition Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field view-transition-group Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field view-transition-image-pair Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field view-transition-new Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field view-transition-old Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field spellingError Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field targetText Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field viewTransition Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field viewTransitionGroup Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field viewTransitionImagePair Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field viewTransitionNew Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field viewTransitionOld Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 }
@@ -13747,7 +13747,7 @@ public final class org/hildan/chrome/devtools/domains/dom/ShadowRootType : java/
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/dom/ShadowRootType$Companion;
 	public static final field closed Lorg/hildan/chrome/devtools/domains/dom/ShadowRootType;
 	public static final field open Lorg/hildan/chrome/devtools/domains/dom/ShadowRootType;
-	public static final field user-agent Lorg/hildan/chrome/devtools/domains/dom/ShadowRootType;
+	public static final field userAgent Lorg/hildan/chrome/devtools/domains/dom/ShadowRootType;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/dom/ShadowRootType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/dom/ShadowRootType;
 }
@@ -14221,8 +14221,8 @@ public final class org/hildan/chrome/devtools/domains/dom/events/DOMEvent$TopLay
 
 public final class org/hildan/chrome/devtools/domains/domdebugger/CSPViolationType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/domdebugger/CSPViolationType$Companion;
-	public static final field trustedtype-policy-violation Lorg/hildan/chrome/devtools/domains/domdebugger/CSPViolationType;
-	public static final field trustedtype-sink-violation Lorg/hildan/chrome/devtools/domains/domdebugger/CSPViolationType;
+	public static final field trustedtypePolicyViolation Lorg/hildan/chrome/devtools/domains/domdebugger/CSPViolationType;
+	public static final field trustedtypeSinkViolation Lorg/hildan/chrome/devtools/domains/domdebugger/CSPViolationType;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/domdebugger/CSPViolationType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/domdebugger/CSPViolationType;
 }
@@ -14233,9 +14233,9 @@ public final class org/hildan/chrome/devtools/domains/domdebugger/CSPViolationTy
 
 public final class org/hildan/chrome/devtools/domains/domdebugger/DOMBreakpointType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/domdebugger/DOMBreakpointType$Companion;
-	public static final field attribute-modified Lorg/hildan/chrome/devtools/domains/domdebugger/DOMBreakpointType;
-	public static final field node-removed Lorg/hildan/chrome/devtools/domains/domdebugger/DOMBreakpointType;
-	public static final field subtree-modified Lorg/hildan/chrome/devtools/domains/domdebugger/DOMBreakpointType;
+	public static final field attributeModified Lorg/hildan/chrome/devtools/domains/domdebugger/DOMBreakpointType;
+	public static final field nodeRemoved Lorg/hildan/chrome/devtools/domains/domdebugger/DOMBreakpointType;
+	public static final field subtreeModified Lorg/hildan/chrome/devtools/domains/domdebugger/DOMBreakpointType;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/domdebugger/DOMBreakpointType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/domdebugger/DOMBreakpointType;
 }
@@ -23043,18 +23043,18 @@ public final class org/hildan/chrome/devtools/domains/network/BlockedCookieWithR
 
 public final class org/hildan/chrome/devtools/domains/network/BlockedReason : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/BlockedReason$Companion;
-	public static final field coep-frame-resource-needs-coep-header Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
-	public static final field content-type Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
-	public static final field coop-sandboxed-iframe-cannot-navigate-to-coop-page Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
-	public static final field corp-not-same-origin Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
-	public static final field corp-not-same-origin-after-defaulted-to-same-origin-by-coep Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
-	public static final field corp-not-same-site Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
+	public static final field coepFrameResourceNeedsCoepHeader Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
+	public static final field contentType Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
+	public static final field coopSandboxedIframeCannotNavigateToCoopPage Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
+	public static final field corpNotSameOrigin Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
+	public static final field corpNotSameOriginAfterDefaultedToSameOriginByCoep Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
+	public static final field corpNotSameSite Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
 	public static final field csp Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
 	public static final field inspector Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
-	public static final field mixed-content Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
+	public static final field mixedContent Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
 	public static final field origin Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
 	public static final field other Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
-	public static final field subresource-filter Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
+	public static final field subresourceFilter Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
 }
@@ -23223,7 +23223,7 @@ public final class org/hildan/chrome/devtools/domains/network/CanEmulateNetworkC
 public final class org/hildan/chrome/devtools/domains/network/CertificateTransparencyCompliance : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/CertificateTransparencyCompliance$Companion;
 	public static final field compliant Lorg/hildan/chrome/devtools/domains/network/CertificateTransparencyCompliance;
-	public static final field not-compliant Lorg/hildan/chrome/devtools/domains/network/CertificateTransparencyCompliance;
+	public static final field notCompliant Lorg/hildan/chrome/devtools/domains/network/CertificateTransparencyCompliance;
 	public static final field unknown Lorg/hildan/chrome/devtools/domains/network/CertificateTransparencyCompliance;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/CertificateTransparencyCompliance;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/network/CertificateTransparencyCompliance;
@@ -25011,14 +25011,14 @@ public final class org/hildan/chrome/devtools/domains/network/RequestPattern$Com
 
 public final class org/hildan/chrome/devtools/domains/network/RequestReferrerPolicy : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/RequestReferrerPolicy$Companion;
-	public static final field no-referrer Lorg/hildan/chrome/devtools/domains/network/RequestReferrerPolicy;
-	public static final field no-referrer-when-downgrade Lorg/hildan/chrome/devtools/domains/network/RequestReferrerPolicy;
+	public static final field noReferrer Lorg/hildan/chrome/devtools/domains/network/RequestReferrerPolicy;
+	public static final field noReferrerWhenDowngrade Lorg/hildan/chrome/devtools/domains/network/RequestReferrerPolicy;
 	public static final field origin Lorg/hildan/chrome/devtools/domains/network/RequestReferrerPolicy;
-	public static final field origin-when-cross-origin Lorg/hildan/chrome/devtools/domains/network/RequestReferrerPolicy;
-	public static final field same-origin Lorg/hildan/chrome/devtools/domains/network/RequestReferrerPolicy;
-	public static final field strict-origin Lorg/hildan/chrome/devtools/domains/network/RequestReferrerPolicy;
-	public static final field strict-origin-when-cross-origin Lorg/hildan/chrome/devtools/domains/network/RequestReferrerPolicy;
-	public static final field unsafe-url Lorg/hildan/chrome/devtools/domains/network/RequestReferrerPolicy;
+	public static final field originWhenCrossOrigin Lorg/hildan/chrome/devtools/domains/network/RequestReferrerPolicy;
+	public static final field sameOrigin Lorg/hildan/chrome/devtools/domains/network/RequestReferrerPolicy;
+	public static final field strictOrigin Lorg/hildan/chrome/devtools/domains/network/RequestReferrerPolicy;
+	public static final field strictOriginWhenCrossOrigin Lorg/hildan/chrome/devtools/domains/network/RequestReferrerPolicy;
+	public static final field unsafeUrl Lorg/hildan/chrome/devtools/domains/network/RequestReferrerPolicy;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/RequestReferrerPolicy;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/network/RequestReferrerPolicy;
 }
@@ -25379,9 +25379,9 @@ public final class org/hildan/chrome/devtools/domains/network/SecurityIsolationS
 
 public final class org/hildan/chrome/devtools/domains/network/ServiceWorkerResponseSource : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/ServiceWorkerResponseSource$Companion;
-	public static final field cache-storage Lorg/hildan/chrome/devtools/domains/network/ServiceWorkerResponseSource;
-	public static final field fallback-code Lorg/hildan/chrome/devtools/domains/network/ServiceWorkerResponseSource;
-	public static final field http-cache Lorg/hildan/chrome/devtools/domains/network/ServiceWorkerResponseSource;
+	public static final field cacheStorage Lorg/hildan/chrome/devtools/domains/network/ServiceWorkerResponseSource;
+	public static final field fallbackCode Lorg/hildan/chrome/devtools/domains/network/ServiceWorkerResponseSource;
+	public static final field httpCache Lorg/hildan/chrome/devtools/domains/network/ServiceWorkerResponseSource;
 	public static final field network Lorg/hildan/chrome/devtools/domains/network/ServiceWorkerResponseSource;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/ServiceWorkerResponseSource;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/network/ServiceWorkerResponseSource;
@@ -31846,83 +31846,83 @@ public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyBloc
 public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature$Companion;
 	public static final field accelerometer Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ambient-light-sensor Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field attribution-reporting Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field ambientLightSensor Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field attributionReporting Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field autoplay Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field bluetooth Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field browsing-topics Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field browsingTopics Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field camera Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-device-memory Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-downlink Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-dpr Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-ect Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-prefers-color-scheme Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-prefers-reduced-motion Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-rtt Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-save-data Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-ua Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-ua-arch Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-ua-bitness Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-ua-full Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-ua-full-version Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-ua-full-version-list Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-ua-mobile Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-ua-model Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-ua-platform Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-ua-platform-version Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-ua-reduced Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-ua-wow64 Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-viewport-height Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-viewport-width Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field ch-width Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field clipboard-read Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field clipboard-write Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field compute-pressure Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field cross-origin-isolated Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field direct-sockets Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field display-capture Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field document-domain Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field encrypted-media Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field execution-while-not-rendered Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field execution-while-out-of-viewport Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field focus-without-user-activation Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chDeviceMemory Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chDownlink Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chDpr Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chEct Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chPrefersColorScheme Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chPrefersReducedMotion Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chRtt Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chSaveData Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chUa Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chUaArch Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chUaBitness Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chUaFull Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chUaFullVersion Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chUaFullVersionList Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chUaMobile Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chUaModel Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chUaPlatform Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chUaPlatformVersion Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chUaReduced Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chUaWow64 Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chViewportHeight Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chViewportWidth Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field chWidth Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field clipboardRead Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field clipboardWrite Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field computePressure Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field crossOriginIsolated Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field directSockets Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field displayCapture Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field documentDomain Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field encryptedMedia Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field executionWhileNotRendered Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field executionWhileOutOfViewport Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field focusWithoutUserActivation Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field frobulate Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field fullscreen Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field gamepad Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field geolocation Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field gyroscope Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field hid Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field identity-credentials-get Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field idle-detection Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field interest-cohort Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field join-ad-interest-group Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field keyboard-map Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field local-fonts Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field identityCredentialsGet Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field idleDetection Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field interestCohort Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field joinAdInterestGroup Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field keyboardMap Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field localFonts Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field magnetometer Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field microphone Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field midi Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field otp-credentials Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field otpCredentials Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field payment Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field picture-in-picture Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field private-aggregation Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field publickey-credentials-get Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field run-ad-auction Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field screen-wake-lock Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field pictureInPicture Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field privateAggregation Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field publickeyCredentialsGet Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field runAdAuction Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field screenWakeLock Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field serial Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field shared-autofill Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field shared-storage Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field shared-storage-select-url Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field smart-card Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field storage-access Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field sync-xhr Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field trust-token-redemption Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field sharedAutofill Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field sharedStorage Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field sharedStorageSelectUrl Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field smartCard Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field storageAccess Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field syncXhr Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field trustTokenRedemption Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field unload Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field usb Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field vertical-scroll Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field web-share Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field window-management Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field window-placement Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
-	public static final field xr-spatial-tracking Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field verticalScroll Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field webShare Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field windowManagement Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field windowPlacement Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field xrSpatialTracking Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 }
@@ -38059,7 +38059,7 @@ public final class org/hildan/chrome/devtools/domains/security/MixedContentType 
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/security/MixedContentType$Companion;
 	public static final field blockable Lorg/hildan/chrome/devtools/domains/security/MixedContentType;
 	public static final field none Lorg/hildan/chrome/devtools/domains/security/MixedContentType;
-	public static final field optionally-blockable Lorg/hildan/chrome/devtools/domains/security/MixedContentType;
+	public static final field optionallyBlockable Lorg/hildan/chrome/devtools/domains/security/MixedContentType;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/security/MixedContentType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/security/MixedContentType;
 }
@@ -38134,7 +38134,7 @@ public final class org/hildan/chrome/devtools/domains/security/SecurityState : j
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/security/SecurityState$Companion;
 	public static final field info Lorg/hildan/chrome/devtools/domains/security/SecurityState;
 	public static final field insecure Lorg/hildan/chrome/devtools/domains/security/SecurityState;
-	public static final field insecure-broken Lorg/hildan/chrome/devtools/domains/security/SecurityState;
+	public static final field insecureBroken Lorg/hildan/chrome/devtools/domains/security/SecurityState;
 	public static final field neutral Lorg/hildan/chrome/devtools/domains/security/SecurityState;
 	public static final field secure Lorg/hildan/chrome/devtools/domains/security/SecurityState;
 	public static final field unknown Lorg/hildan/chrome/devtools/domains/security/SecurityState;
@@ -43479,8 +43479,8 @@ public final class org/hildan/chrome/devtools/domains/webaudio/AudioParam$Compan
 
 public final class org/hildan/chrome/devtools/domains/webaudio/AutomationRate : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/webaudio/AutomationRate$Companion;
-	public static final field a-rate Lorg/hildan/chrome/devtools/domains/webaudio/AutomationRate;
-	public static final field k-rate Lorg/hildan/chrome/devtools/domains/webaudio/AutomationRate;
+	public static final field aRate Lorg/hildan/chrome/devtools/domains/webaudio/AutomationRate;
+	public static final field kRate Lorg/hildan/chrome/devtools/domains/webaudio/AutomationRate;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/webaudio/AutomationRate;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/webaudio/AutomationRate;
 }
@@ -43533,7 +43533,7 @@ public final class org/hildan/chrome/devtools/domains/webaudio/BaseAudioContext$
 
 public final class org/hildan/chrome/devtools/domains/webaudio/ChannelCountMode : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/webaudio/ChannelCountMode$Companion;
-	public static final field clamped-max Lorg/hildan/chrome/devtools/domains/webaudio/ChannelCountMode;
+	public static final field clampedMax Lorg/hildan/chrome/devtools/domains/webaudio/ChannelCountMode;
 	public static final field explicit Lorg/hildan/chrome/devtools/domains/webaudio/ChannelCountMode;
 	public static final field max Lorg/hildan/chrome/devtools/domains/webaudio/ChannelCountMode;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/webaudio/ChannelCountMode;

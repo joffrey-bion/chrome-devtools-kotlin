@@ -1,9 +1,7 @@
 package org.hildan.chrome.devtools.build.generator
 
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.TypeAliasSpec
-import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.*
+import kotlinx.serialization.*
 import org.hildan.chrome.devtools.build.model.ChromeDPDomain
 import org.hildan.chrome.devtools.build.model.ChromeDPType
 import org.hildan.chrome.devtools.build.model.DomainTypeDeclaration
@@ -33,8 +31,14 @@ private fun DomainTypeDeclaration.toDataClassTypeSpec(type: ChromeDPType.Object)
 private fun DomainTypeDeclaration.toEnumTypeSpec(type: ChromeDPType.Enum): TypeSpec =
     TypeSpec.enumBuilder(names.declaredName).apply {
         addCommonConfig(this@toEnumTypeSpec)
-        type.enumValues.forEach { addEnumConstant(it) }
+        type.enumValues.forEach {
+            val enumValueKotlinName = it.dashesToCamelCase()
+            val serialNameAnnotation = AnnotationSpec.builder(SerialName::class).addMember("%S", it).build()
+            addEnumConstant(enumValueKotlinName, TypeSpec.anonymousClassBuilder().addAnnotation(serialNameAnnotation).build())
+        }
     }.build()
+
+private fun String.dashesToCamelCase(): String = replace(Regex("""-(\w)""")) { it.groupValues[1].uppercase() }
 
 private fun TypeSpec.Builder.addCommonConfig(domainTypeDeclaration: DomainTypeDeclaration) {
     domainTypeDeclaration.description?.let { addKdoc(it.escapeKDoc()) }

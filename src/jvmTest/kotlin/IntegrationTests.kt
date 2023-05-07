@@ -171,7 +171,7 @@ class IntegrationTests {
                     page.domDebugger.setDOMBreakpoint(
                         SetDOMBreakpointRequest(
                             nodeId = page.dom.getDocumentRootNodeId(),
-                            type = DOMBreakpointType.`attribute-modified`,
+                            type = DOMBreakpointType.attributeModified,
                         )
                     )
                     page.domSnapshot.enable()
