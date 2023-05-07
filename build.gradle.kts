@@ -68,9 +68,13 @@ kotlin {
                 implementation(libs.ktor.serialization.kotlinx.json)
             }
         }
-        val jvmTest by getting {
+        commonTest {
             dependencies {
                 implementation(kotlin("test"))
+            }
+        }
+        val jvmTest by getting {
+            dependencies {
                 implementation(libs.ktor.client.cio)
                 implementation(libs.slf4j.simple)
                 implementation(libs.testcontainers.base)

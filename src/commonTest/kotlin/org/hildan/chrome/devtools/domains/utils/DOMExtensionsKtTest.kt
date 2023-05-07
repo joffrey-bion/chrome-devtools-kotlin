@@ -1,13 +1,12 @@
-package org.hildan.chrome.devtools.domains.dom
+package org.hildan.chrome.devtools.domains.utils
 
-import org.hildan.chrome.devtools.domains.utils.toViewport
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class DOMExtensionsKtTest {
 
     @Test
-    fun asViewport() {
+    fun toViewport() {
         val quad = listOf(
             1.0, 2.0, // top left
             4.0, 2.0, // top right
