@@ -28,11 +28,10 @@ repositories {
 
 kotlin {
     jvm()
-    // JS target requires dealing with enum values containing hyphens
-//    js {
-//        browser()
-//        nodejs()
-//    }
+    js {
+        browser()
+        nodejs()
+    }
     mingwX64()
     linuxX64()
     macosX64()
