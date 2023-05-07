@@ -1,21 +1,15 @@
 import kotlinx.coroutines.*
 import kotlinx.serialization.Serializable
-import org.hildan.chrome.devtools.domains.backgroundservice.ClearEventsRequest
-import org.hildan.chrome.devtools.domains.backgroundservice.ServiceName
-import org.hildan.chrome.devtools.domains.cachestorage.RequestCacheNamesRequest
+import org.hildan.chrome.devtools.domains.backgroundservice.*
 import org.hildan.chrome.devtools.domains.dom.*
-import org.hildan.chrome.devtools.domains.domdebugger.DOMBreakpointType
-import org.hildan.chrome.devtools.domains.domdebugger.SetDOMBreakpointRequest
-import org.hildan.chrome.devtools.domains.runtime.evaluateJs
-import org.hildan.chrome.devtools.domains.target.GetTargetsRequest
-import org.hildan.chrome.devtools.protocol.ChromeDPClient
-import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
-import org.hildan.chrome.devtools.protocol.RequestFailed
+import org.hildan.chrome.devtools.domains.domdebugger.*
+import org.hildan.chrome.devtools.domains.runtime.*
+import org.hildan.chrome.devtools.protocol.*
 import org.hildan.chrome.devtools.targets.*
-import org.testcontainers.containers.GenericContainer
+import org.testcontainers.containers.*
+import org.testcontainers.junit.jupiter.*
 import org.testcontainers.junit.jupiter.Container
-import org.testcontainers.junit.jupiter.Testcontainers
-import java.io.IOException
+import java.io.*
 import kotlin.test.*
 import kotlin.time.Duration.Companion.seconds
 
@@ -137,13 +131,12 @@ class IntegrationTests {
         }
     }
 
-    @OptIn(ExperimentalChromeApi::class)
     @Test
     fun page_getTargets() {
         runBlockingWithTimeout {
             chromeDpClient().webSocket().use { browser ->
                 browser.attachToNewPageAndAwaitPageLoad("http://google.com").use { page ->
-                    val targets = page.target.getTargets(GetTargetsRequest()).targetInfos
+                    val targets = page.target.getTargets().targetInfos
                     val targetInfo = targets.first { it.targetId == page.metaData.targetId }
                     assertEquals("page", targetInfo.type)
                     assertTrue(targetInfo.attached)
@@ -162,22 +155,19 @@ class IntegrationTests {
                     // Commenting this one out until the issue is better understood
                     // https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/233
                     //page.cacheStorage.requestCacheNames(RequestCacheNamesRequest("google.com"))
-                    page.backgroundService.clearEvents(ClearEventsRequest(ServiceName.backgroundFetch))
+                    page.backgroundService.clearEvents(ServiceName.backgroundFetch)
                     page.browser.getVersion()
                     page.css.getMediaQueries()
                     page.database.enable()
                     page.debugger.disable()
                     page.deviceOrientation.clearDeviceOrientationOverride()
                     page.domDebugger.setDOMBreakpoint(
-                        SetDOMBreakpointRequest(
-                            nodeId = page.dom.getDocumentRootNodeId(),
-                            type = DOMBreakpointType.attributeModified,
-                        )
+                        nodeId = page.dom.getDocumentRootNodeId(),
+                        type = DOMBreakpointType.attributeModified,
                     )
                     page.domSnapshot.enable()
                     page.domStorage.enable()
                     page.fetch.disable()
-                    page.headlessExperimental.enable()
                     page.heapProfiler.enable()
                     page.indexedDB.enable()
                     page.layerTree.enable()
