@@ -106,7 +106,7 @@ changelog {
     sinceTag = "0.5.0"
 }
 
-tasks.dokkaJavadoc {
+tasks.dokkaHtml {
     dependsOn(generateProtocolApi)
 }
 
