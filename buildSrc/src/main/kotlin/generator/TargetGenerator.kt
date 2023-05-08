@@ -53,6 +53,7 @@ fun createSimpleAllTargetsImpl(domains: List<ChromeDPDomain>, targetTypes: List<
 private fun ChromeDPDomain.toPropertySpec(configure: PropertySpec.Builder.() -> Unit = {}): PropertySpec =
     PropertySpec.builder(names.targetFieldName, names.domainClassName).apply {
         description?.let { addKdoc(it.escapeKDoc()) }
+        addKdoc(linkToDoc(docUrl))
         if (deprecated) {
             addAnnotation(Annotations.deprecatedChromeApi)
         }
