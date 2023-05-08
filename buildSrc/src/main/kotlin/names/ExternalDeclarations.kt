@@ -19,7 +19,7 @@ object ExtDeclarations {
     val experimentalChromeApi = ClassName(protocolPackage, "ExperimentalChromeApi")
 
     val allDomainsTargetInterface = ClassName(targetsPackage, "AllDomainsTarget")
-    val allDomainsTargetImplementation = ClassName(targetsPackage, "SimpleTarget")
+    val allDomainsTargetImplementation = ClassName(targetsPackage, "UberTarget")
 
     fun targetInterface(targetName: String): ClassName = ClassName(targetsPackage, "${targetName}Target")
 }

@@ -10,7 +10,7 @@ import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
  */
 sealed class AbstractTargetSession(
     internal val session: ChromeDPSession,
-    internal open val targetImplementation: SimpleTarget = SimpleTarget(session),
+    internal open val targetImplementation: UberTarget = UberTarget(session),
 ) {
     /**
      * Gives access to all domains of the protocol, regardless of the type of this session.
@@ -37,7 +37,7 @@ sealed class AbstractTargetSession(
  */
 class ChromeBrowserSession internal constructor(
     session: ChromeDPSession,
-    override val targetImplementation: SimpleTarget = SimpleTarget(session),
+    override val targetImplementation: UberTarget = UberTarget(session),
 ) : AbstractTargetSession(session), BrowserTarget by targetImplementation {
 
     /**
@@ -72,7 +72,7 @@ class ChromePageSession internal constructor(
      * Info about the underlying page target.
      */
     val metaData: ChromePageMetaData,
-    override val targetImplementation: SimpleTarget = SimpleTarget(session),
+    override val targetImplementation: UberTarget = UberTarget(session),
 ) : AbstractTargetSession(session), RenderFrameTarget by targetImplementation {
 
     /**
