@@ -8,8 +8,6 @@ import java.nio.file.Path
 // Data for this is read from protocol/target_types.json, which is manually extracted from:
 // https://source.chromium.org/search?q=%22session-%3EAddHandler%22%20f:devtools&ss=chromium
 
-const val ALL_DOMAINS_TARGET = "AllDomains"
-
 @Serializable
 data class TargetType(
     val name: String,

@@ -1,7 +1,6 @@
 package org.hildan.chrome.devtools.build.generator
 
 import com.squareup.kotlinpoet.FileSpec
-import org.hildan.chrome.devtools.build.json.ALL_DOMAINS_TARGET
 import org.hildan.chrome.devtools.build.json.ChromeProtocolDescriptor
 import org.hildan.chrome.devtools.build.json.TargetType
 import org.hildan.chrome.devtools.build.json.pullNestedEnumsToTopLevel
@@ -24,11 +23,12 @@ class Generator(
         val domains = loadProtocolDomains()
         domains.forEach(::generateDomainFiles)
 
-        val targets = TargetType.parseJson(targetTypesFile) + TargetType(ALL_DOMAINS_TARGET, domains.map { it.names.domainName })
+        val targets = TargetType.parseJson(targetTypesFile)
         targets.forEach { target ->
             generateTargetInterfaceFile(targetName = target.name, domains = domains.filter { it.names.domainName in target.supportedDomains })
         }
-        generateSimpleTargetFile(domains = domains, targetTypes = targets)
+        generateAllDomainsTargetInterfaceFile(allTargets = targets, allDomains = domains)
+        generateAllDomainsTargetImplFile(allTargets = targets, allDomains = domains)
     }
 
     private fun loadProtocolDomains(): List<ChromeDPDomain> {
@@ -48,11 +48,20 @@ class Generator(
             .writeTo(generatedSourcesDir)
     }
 
-    private fun generateSimpleTargetFile(domains: List<ChromeDPDomain>, targetTypes: List<TargetType>) {
-        val targetClass = ExtDeclarations.targetImplementation
+    private fun generateAllDomainsTargetInterfaceFile(allTargets: List<TargetType>, allDomains: List<ChromeDPDomain>) {
+        val targetInterface = ExtDeclarations.allDomainsTargetInterface
+        FileSpec.builder(targetInterface.packageName, targetInterface.simpleName)
+            .addAnnotation(Annotations.suppressWarnings)
+            .addType(createAllDomainsTargetInterface(allTargets, allDomains))
+            .build()
+            .writeTo(generatedSourcesDir)
+    }
+
+    private fun generateAllDomainsTargetImplFile(allTargets: List<TargetType>, allDomains: List<ChromeDPDomain>) {
+        val targetClass = ExtDeclarations.allDomainsTargetImplementation
         FileSpec.builder(targetClass.packageName, targetClass.simpleName)
             .addAnnotation(Annotations.suppressWarnings)
-            .addType(createSimpleAllTargetsImpl(domains, targetTypes))
+            .addType(createAllDomainsTargetImpl(allTargets, allDomains))
             .build()
             .writeTo(generatedSourcesDir)
     }

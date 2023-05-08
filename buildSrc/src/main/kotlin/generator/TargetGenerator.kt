@@ -18,6 +18,26 @@ fun createTargetInterface(targetName: String, domains: List<ChromeDPDomain>): Ty
         addType(companionObjectWithSupportedDomains(domains))
     }.build()
 
+fun createAllDomainsTargetInterface(allTargets: List<TargetType>, allDomains: List<ChromeDPDomain>): TypeSpec =
+    TypeSpec.interfaceBuilder(ExtDeclarations.allDomainsTargetInterface).apply {
+        addKdoc(
+            "Represents a fictional (unsafe) target with access to all possible domain APIs in all targets. " +
+                    "The domains in this target type are not guaranteed to be supported by the debugger server, " +
+                    "and runtime errors could occur."
+        )
+        allTargets.forEach { target ->
+            addSuperinterface(ExtDeclarations.targetInterface(target.name))
+        }
+
+        // we want to add properties for all domains, including those who are technically not supported by any target
+        val domainsPresentInATarget = allTargets.flatMapTo(mutableSetOf()) { it.supportedDomains }
+        val danglingDomains = allDomains.filterNot { it.names.domainName in domainsPresentInATarget }
+        danglingDomains.forEach {
+            addProperty(it.toPropertySpec())
+        }
+        addType(companionObjectWithSupportedDomains(allDomains))
+    }.build()
+
 private fun companionObjectWithSupportedDomains(domains: List<ChromeDPDomain>): TypeSpec =
     TypeSpec.companionObjectBuilder().addProperty(supportedDomainsProperty(domains)).build()
 
@@ -28,10 +48,11 @@ private fun supportedDomainsProperty(domains: List<ChromeDPDomain>): PropertySpe
         initializer(format = format, *domains.map { it.names.domainName }.toTypedArray())
     }.build()
 
-fun createSimpleAllTargetsImpl(domains: List<ChromeDPDomain>, targetTypes: List<TargetType>): TypeSpec =
-    TypeSpec.classBuilder(ExtDeclarations.targetImplementation).apply {
+fun createAllDomainsTargetImpl(targetTypes: List<TargetType>, domains: List<ChromeDPDomain>): TypeSpec =
+    TypeSpec.classBuilder(ExtDeclarations.allDomainsTargetImplementation).apply {
         addKdoc("Implementation of all target interfaces by exposing all domain APIs")
         addModifiers(KModifier.INTERNAL)
+        addSuperinterface(ExtDeclarations.allDomainsTargetInterface)
         targetTypes.forEach {
             addSuperinterface(ExtDeclarations.targetInterface(it.name))
         }
