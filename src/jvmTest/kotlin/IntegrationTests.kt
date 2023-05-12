@@ -175,8 +175,6 @@ class IntegrationTests {
                     page.performance.disable()
                     page.profiler.disable()
 
-                    val supportedByCode = RenderFrameTarget.supportedDomains.toSet()
-
                     // We can replace this schema Domain call by an HTTP call to /json/protocol
                     // The Kotlin definitions of that JSON from the buildSrc should work for this,
                     // but we need a way to share them between test and buildSrc
@@ -185,7 +183,7 @@ class IntegrationTests {
                     val knownUnsupportedDomains = setOf(
                         "ApplicationCache", // was removed in tip-of-tree, but still supported by the server
                     )
-                    val onlyInServer = supportedByServer - knownUnsupportedDomains - supportedByCode
+                    val onlyInServer = supportedByServer - knownUnsupportedDomains - RenderFrameTarget.supportedDomains
                     assertEquals(
                         emptySet(),
                         onlyInServer,

@@ -25,7 +25,10 @@ class Generator(
 
         val targets = TargetType.parseJson(targetTypesFile)
         targets.forEach { target ->
-            generateTargetInterfaceFile(targetName = target.name, domains = domains.filter { it.names.domainName in target.supportedDomains })
+            generateTargetInterfaceFile(
+                target = target,
+                domains = domains.filter { it.names.domainName in target.supportedDomains },
+            )
         }
         generateAllDomainsTargetInterfaceFile(allTargets = targets, allDomains = domains)
         generateAllDomainsTargetImplFile(allTargets = targets, allDomains = domains)
@@ -39,11 +42,11 @@ class Generator(
         return descriptors.flatMap { it.domains }.map { it.pullNestedEnumsToTopLevel().toChromeDPDomain() }
     }
 
-    private fun generateTargetInterfaceFile(targetName: String, domains: List<ChromeDPDomain>) {
-        val targetInterface = ExtDeclarations.targetInterface(targetName)
+    private fun generateTargetInterfaceFile(target: TargetType, domains: List<ChromeDPDomain>) {
+        val targetInterface = ExtDeclarations.targetInterface(target.name)
         FileSpec.builder(targetInterface.packageName, targetInterface.simpleName)
             .addAnnotation(Annotations.suppressWarnings)
-            .addType(createTargetInterface(targetName, domains))
+            .addType(createTargetInterface(target, domains))
             .build()
             .writeTo(generatedSourcesDir)
     }

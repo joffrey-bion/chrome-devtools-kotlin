@@ -9,13 +9,18 @@ import org.hildan.chrome.devtools.build.names.ExtDeclarations
 
 private const val SESSION_ARG = "session"
 
-fun createTargetInterface(targetName: String, domains: List<ChromeDPDomain>): TypeSpec =
-    TypeSpec.interfaceBuilder(ExtDeclarations.targetInterface(targetName)).apply {
-        addKdoc("Represents the available domain APIs in $targetName targets")
+fun createTargetInterface(target: TargetType, domains: List<ChromeDPDomain>): TypeSpec =
+    TypeSpec.interfaceBuilder(ExtDeclarations.targetInterface(target.name)).apply {
+        addKdoc("Represents the available domain APIs in ${target.name} targets")
         domains.forEach {
             addProperty(it.toPropertySpec())
         }
-        addType(companionObjectWithSupportedDomains(domains))
+        addType(
+            TypeSpec.companionObjectBuilder()
+                .addProperty(supportedDomainsProperty(domains))
+                .addProperty(supportedCdpTargetsProperty(target.supportedCdpTargets))
+                .build()
+        )
     }.build()
 
 fun createAllDomainsTargetInterface(allTargets: List<TargetType>, allDomains: List<ChromeDPDomain>): TypeSpec =
@@ -35,17 +40,25 @@ fun createAllDomainsTargetInterface(allTargets: List<TargetType>, allDomains: Li
         danglingDomains.forEach {
             addProperty(it.toPropertySpec())
         }
-        addType(companionObjectWithSupportedDomains(allDomains))
+        addType(
+            TypeSpec.companionObjectBuilder()
+                .addProperty(supportedDomainsProperty(allDomains))
+                .build()
+        )
     }.build()
 
-private fun companionObjectWithSupportedDomains(domains: List<ChromeDPDomain>): TypeSpec =
-    TypeSpec.companionObjectBuilder().addProperty(supportedDomainsProperty(domains)).build()
-
 private fun supportedDomainsProperty(domains: List<ChromeDPDomain>): PropertySpec =
-    PropertySpec.builder("supportedDomains", LIST.parameterizedBy(String::class.asTypeName())).apply {
+    PropertySpec.builder("supportedDomains", SET.parameterizedBy(String::class.asTypeName())).apply {
         addModifiers(KModifier.INTERNAL)
-        val format = List(domains.size) { "%S" }.joinToString(separator = ", ", prefix = "listOf(", postfix = ")")
+        val format = List(domains.size) { "%S" }.joinToString(separator = ", ", prefix = "setOf(", postfix = ")")
         initializer(format = format, *domains.map { it.names.domainName }.toTypedArray())
+    }.build()
+
+private fun supportedCdpTargetsProperty(cdpTargets: List<String>): PropertySpec =
+    PropertySpec.builder("supportedCdpTargets", SET.parameterizedBy(String::class.asTypeName())).apply {
+        addModifiers(KModifier.INTERNAL)
+        val format = List(cdpTargets.size) { "%S" }.joinToString(separator = ", ", prefix = "setOf(", postfix = ")")
+        initializer(format = format, *cdpTargets.toTypedArray())
     }.build()
 
 fun createAllDomainsTargetImpl(targetTypes: List<TargetType>, domains: List<ChromeDPDomain>): TypeSpec =
