@@ -12,9 +12,7 @@ import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-import org.hildan.chrome.devtools.targets.ChromeBrowserSession
-import org.hildan.chrome.devtools.targets.ChromePageSession
-import org.hildan.chrome.devtools.targets.attachToPage
+import org.hildan.chrome.devtools.targets.*
 
 private val DEFAULT_HTTP_CLIENT by lazy { createHttpClient(overrideHostHeader = false) }
 
@@ -224,7 +222,5 @@ data class ChromeDPTarget(
  * [ChromeBrowserSession.attachToPage] or
  * [ChromeBrowserSession.attachToNewPage][org.hildan.chrome.devtools.targets.attachToNewPage].
  */
-suspend fun HttpClient.chromeWebSocket(webSocketDebuggerUrl: String): ChromeBrowserSession {
-    val connection = webSocketSession(webSocketDebuggerUrl).chromeDp()
-    return ChromeBrowserSession(connection.withSession(sessionId = null))
-}
+suspend fun HttpClient.chromeWebSocket(webSocketDebuggerUrl: String): ChromeBrowserSession =
+    webSocketSession(webSocketDebuggerUrl).chromeDp().withSession(sessionId = null).toBrowserSession()

@@ -45242,13 +45242,6 @@ public final class org/hildan/chrome/devtools/protocol/TargetCrashedException : 
 	public final fun getSessionId ()Ljava/lang/String;
 }
 
-public abstract class org/hildan/chrome/devtools/targets/AbstractTargetSession {
-	public synthetic fun <init> (Lorg/hildan/chrome/devtools/protocol/ChromeDPSession;Lorg/hildan/chrome/devtools/targets/UberTarget;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public synthetic fun <init> (Lorg/hildan/chrome/devtools/protocol/ChromeDPSession;Lorg/hildan/chrome/devtools/targets/UberTarget;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun closeWebSocket (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun unsafe ()Lorg/hildan/chrome/devtools/targets/AllDomainsTarget;
-}
-
 public abstract interface class org/hildan/chrome/devtools/targets/AllDomainsTarget : org/hildan/chrome/devtools/targets/BrowserTarget, org/hildan/chrome/devtools/targets/RenderFrameTarget, org/hildan/chrome/devtools/targets/ServiceWorkerTarget, org/hildan/chrome/devtools/targets/SharedWorkerTarget, org/hildan/chrome/devtools/targets/WorkerTarget {
 	public static final field Companion Lorg/hildan/chrome/devtools/targets/AllDomainsTarget$Companion;
 	public abstract fun getAutofill ()Lorg/hildan/chrome/devtools/domains/autofill/AutofillDomain;
@@ -45282,79 +45275,28 @@ public abstract interface class org/hildan/chrome/devtools/targets/BrowserTarget
 public final class org/hildan/chrome/devtools/targets/BrowserTarget$Companion {
 }
 
-public final class org/hildan/chrome/devtools/targets/ChromeBrowserSession : org/hildan/chrome/devtools/targets/AbstractTargetSession, org/hildan/chrome/devtools/targets/BrowserTarget {
-	public final fun close (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getBrowser ()Lorg/hildan/chrome/devtools/domains/browser/BrowserDomain;
-	public fun getFetch ()Lorg/hildan/chrome/devtools/domains/fetch/FetchDomain;
-	public fun getIo ()Lorg/hildan/chrome/devtools/domains/io/IODomain;
-	public fun getMemory ()Lorg/hildan/chrome/devtools/domains/memory/MemoryDomain;
-	public fun getSecurity ()Lorg/hildan/chrome/devtools/domains/security/SecurityDomain;
-	public fun getStorage ()Lorg/hildan/chrome/devtools/domains/storage/StorageDomain;
-	public fun getSystemInfo ()Lorg/hildan/chrome/devtools/domains/systeminfo/SystemInfoDomain;
-	public fun getTarget ()Lorg/hildan/chrome/devtools/domains/target/TargetDomain;
-	public fun getTethering ()Lorg/hildan/chrome/devtools/domains/tethering/TetheringDomain;
-	public fun getTracing ()Lorg/hildan/chrome/devtools/domains/tracing/TracingDomain;
+public abstract interface class org/hildan/chrome/devtools/targets/ChildSession : org/hildan/chrome/devtools/targets/ChromeSession {
+	public abstract fun close (ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun detach (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getMetaData ()Lorg/hildan/chrome/devtools/targets/SessionMetaData;
+	public abstract fun getParent ()Lorg/hildan/chrome/devtools/targets/ChromeBrowserSession;
 }
 
-public final class org/hildan/chrome/devtools/targets/ChromePageMetaData {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/targets/ChromePageMetaData;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/targets/ChromePageMetaData;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/targets/ChromePageMetaData;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getBrowserContextId ()Ljava/lang/String;
-	public final fun getTargetId ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
+public final class org/hildan/chrome/devtools/targets/ChildSession$DefaultImpls {
+	public static synthetic fun close$default (Lorg/hildan/chrome/devtools/targets/ChildSession;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
-public final class org/hildan/chrome/devtools/targets/ChromePageSession : org/hildan/chrome/devtools/targets/AbstractTargetSession, org/hildan/chrome/devtools/targets/RenderFrameTarget {
-	public final fun close (ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun close$default (Lorg/hildan/chrome/devtools/targets/ChromePageSession;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public final fun detach (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getAccessibility ()Lorg/hildan/chrome/devtools/domains/accessibility/AccessibilityDomain;
-	public fun getAnimation ()Lorg/hildan/chrome/devtools/domains/animation/AnimationDomain;
-	public fun getAudits ()Lorg/hildan/chrome/devtools/domains/audits/AuditsDomain;
-	public fun getBackgroundService ()Lorg/hildan/chrome/devtools/domains/backgroundservice/BackgroundServiceDomain;
-	public fun getBrowser ()Lorg/hildan/chrome/devtools/domains/browser/BrowserDomain;
-	public fun getCacheStorage ()Lorg/hildan/chrome/devtools/domains/cachestorage/CacheStorageDomain;
-	public fun getConsole ()Lorg/hildan/chrome/devtools/domains/console/ConsoleDomain;
-	public fun getCss ()Lorg/hildan/chrome/devtools/domains/css/CSSDomain;
-	public fun getDatabase ()Lorg/hildan/chrome/devtools/domains/database/DatabaseDomain;
-	public fun getDebugger ()Lorg/hildan/chrome/devtools/domains/debugger/DebuggerDomain;
-	public fun getDeviceOrientation ()Lorg/hildan/chrome/devtools/domains/deviceorientation/DeviceOrientationDomain;
-	public fun getDom ()Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;
-	public fun getDomDebugger ()Lorg/hildan/chrome/devtools/domains/domdebugger/DOMDebuggerDomain;
-	public fun getDomSnapshot ()Lorg/hildan/chrome/devtools/domains/domsnapshot/DOMSnapshotDomain;
-	public fun getDomStorage ()Lorg/hildan/chrome/devtools/domains/domstorage/DOMStorageDomain;
-	public fun getEmulation ()Lorg/hildan/chrome/devtools/domains/emulation/EmulationDomain;
-	public fun getFetch ()Lorg/hildan/chrome/devtools/domains/fetch/FetchDomain;
-	public fun getHeadlessExperimental ()Lorg/hildan/chrome/devtools/domains/headlessexperimental/HeadlessExperimentalDomain;
-	public fun getHeapProfiler ()Lorg/hildan/chrome/devtools/domains/heapprofiler/HeapProfilerDomain;
-	public fun getIndexedDB ()Lorg/hildan/chrome/devtools/domains/indexeddb/IndexedDBDomain;
-	public fun getInput ()Lorg/hildan/chrome/devtools/domains/input/InputDomain;
-	public fun getInspector ()Lorg/hildan/chrome/devtools/domains/inspector/InspectorDomain;
-	public fun getIo ()Lorg/hildan/chrome/devtools/domains/io/IODomain;
-	public fun getLayerTree ()Lorg/hildan/chrome/devtools/domains/layertree/LayerTreeDomain;
-	public fun getLog ()Lorg/hildan/chrome/devtools/domains/log/LogDomain;
-	public fun getMemory ()Lorg/hildan/chrome/devtools/domains/memory/MemoryDomain;
-	public final fun getMetaData ()Lorg/hildan/chrome/devtools/targets/ChromePageMetaData;
-	public fun getNetwork ()Lorg/hildan/chrome/devtools/domains/network/NetworkDomain;
-	public fun getOverlay ()Lorg/hildan/chrome/devtools/domains/overlay/OverlayDomain;
-	public fun getPage ()Lorg/hildan/chrome/devtools/domains/page/PageDomain;
-	public final fun getParent ()Lorg/hildan/chrome/devtools/targets/ChromeBrowserSession;
-	public fun getPerformance ()Lorg/hildan/chrome/devtools/domains/performance/PerformanceDomain;
-	public fun getProfiler ()Lorg/hildan/chrome/devtools/domains/profiler/ProfilerDomain;
-	public fun getRuntime ()Lorg/hildan/chrome/devtools/domains/runtime/RuntimeDomain;
-	public fun getSchema ()Lorg/hildan/chrome/devtools/domains/schema/SchemaDomain;
-	public fun getSecurity ()Lorg/hildan/chrome/devtools/domains/security/SecurityDomain;
-	public fun getServiceWorker ()Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerDomain;
-	public fun getStorage ()Lorg/hildan/chrome/devtools/domains/storage/StorageDomain;
-	public fun getTarget ()Lorg/hildan/chrome/devtools/domains/target/TargetDomain;
-	public fun getTracing ()Lorg/hildan/chrome/devtools/domains/tracing/TracingDomain;
-	public fun getWebAuthn ()Lorg/hildan/chrome/devtools/domains/webauthn/WebAuthnDomain;
+public abstract interface class org/hildan/chrome/devtools/targets/ChromeBrowserSession : org/hildan/chrome/devtools/targets/BrowserTarget, org/hildan/chrome/devtools/targets/ChromeSession {
+	public abstract fun attachToPage (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun close (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class org/hildan/chrome/devtools/targets/ChromePageSession : org/hildan/chrome/devtools/targets/ChildSession, org/hildan/chrome/devtools/targets/RenderFrameTarget {
+}
+
+public abstract interface class org/hildan/chrome/devtools/targets/ChromeSession {
+	public abstract fun closeWebSocket (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun unsafe ()Lorg/hildan/chrome/devtools/targets/AllDomainsTarget;
 }
 
 public final class org/hildan/chrome/devtools/targets/NavigationFailed : java/lang/Exception {
@@ -45420,6 +45362,12 @@ public abstract interface class org/hildan/chrome/devtools/targets/ServiceWorker
 }
 
 public final class org/hildan/chrome/devtools/targets/ServiceWorkerTarget$Companion {
+}
+
+public abstract interface class org/hildan/chrome/devtools/targets/SessionMetaData {
+	public abstract fun getSessionId ()Ljava/lang/String;
+	public abstract fun getTargetId ()Ljava/lang/String;
+	public abstract fun getTargetType ()Ljava/lang/String;
 }
 
 public abstract interface class org/hildan/chrome/devtools/targets/SharedWorkerTarget {

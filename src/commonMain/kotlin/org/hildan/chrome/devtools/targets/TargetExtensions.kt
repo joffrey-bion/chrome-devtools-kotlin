@@ -7,27 +7,26 @@ import org.hildan.chrome.devtools.domains.page.NavigateResponse
 import org.hildan.chrome.devtools.domains.target.*
 import org.hildan.chrome.devtools.domains.target.events.TargetEvent
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
-import org.hildan.chrome.devtools.protocol.withSession
-
-private val pageLikeTargetTypes = listOf(TargetTypeNames.page, TargetTypeNames.iFrame)
 
 /**
- * Creates a new [ChromePageSession] attached to the `page` or `iframe` target with the given [targetId].
+ * Creates a new [ChromePageSession] attached to the render-frame target with the given [targetId].
  * The new session shares the same underlying web socket connection as this [ChromeBrowserSession].
  *
  * If the given ID corresponds to a target that is not a `page` or `iframe`, an exception is thrown.
  */
-@OptIn(ExperimentalChromeApi::class)
-suspend fun ChromeBrowserSession.attachToPage(targetId: TargetID): ChromePageSession {
-    // We use the "flatten" mode because it's required by our implementation of the protocol
-    // (namely, we specify sessionId as part of the request frames directly, see RequestFrame)
-    val sessionId = target.attachToTarget(targetId = targetId) { flatten = true }.sessionId
-    val targetInfo = target.getTargetInfo { this.targetId = targetId }.targetInfo
-    if (targetInfo.type !in pageLikeTargetTypes) {
-        error("Cannot initiate a page session with target of type ${targetInfo.type} (target ID: $targetId)")
+suspend fun ChromeBrowserSession.attachToPage(targetId: TargetID): ChromePageSession =
+    attachToTarget(targetId).asPageSession()
+
+private fun ChildSession.asPageSession() = PageSessionAdapter(this)
+
+private class PageSessionAdapter(child: ChildSession) : ChromePageSession, ChildSession by child,
+    RenderFrameTarget by child.unsafe() {
+    init {
+        val targetType = child.metaData.targetType
+        require(targetType in RenderFrameTarget.supportedCdpTargets) {
+            "Cannot initiate a page session with a target of type $targetType (target ID: ${child.metaData.targetId})"
+        }
     }
-    val metaData = ChromePageMetaData(targetId, targetInfo.browserContextId)
-    return ChromePageSession(session.connection.withSession(sessionId), this, metaData)
 }
 
 /**
