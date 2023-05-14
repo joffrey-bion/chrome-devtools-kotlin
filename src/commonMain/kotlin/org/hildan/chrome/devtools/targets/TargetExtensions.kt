@@ -131,11 +131,13 @@ suspend fun PageSession.childPages(): List<TargetInfo> {
     return target.getTargets().targetInfos.filter { it.type == TargetTypeNames.page && it.openerId == thisTargetId }
 }
 
-/**
- * Performs the given operation in this session and closes the web socket connection.
- *
- * Note: This effectively closes every session based on the same web socket connection.
- */
+@Deprecated(
+    message = "This extension moved to the sessions package",
+    replaceWith = ReplaceWith(
+        expression = "this.use(block)",
+        imports = ["org.hildan.chrome.devtools.sessions.use"],
+    ),
+)
 suspend inline fun <T> BrowserSession.use(block: (BrowserSession) -> T): T {
     try {
         return block(this)
@@ -144,12 +146,13 @@ suspend inline fun <T> BrowserSession.use(block: (BrowserSession) -> T): T {
     }
 }
 
-/**
- * Performs the given operation in this session and closes the target.
- *
- * This preserves the underlying web socket connection (of the parent browser session), because it could be used by
- * other page sessions.
- */
+@Deprecated(
+    message = "This extension moved to the sessions package",
+    replaceWith = ReplaceWith(
+        expression = "this.use(block)",
+        imports = ["org.hildan.chrome.devtools.sessions.use"],
+    ),
+)
 suspend inline fun <T> PageSession.use(block: (PageSession) -> T): T {
     try {
         return block(this)

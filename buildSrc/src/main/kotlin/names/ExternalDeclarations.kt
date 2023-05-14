@@ -25,7 +25,7 @@ object ExtDeclarations {
 
     val sessionsFileName = "ChildSessions"
     val sessionAdaptersFileName = "ChildSessionAdapters"
-    val childSessionInterface = ClassName(targetsPackage, "ChildSession") // TODO change package
+    val childSessionInterface = ClassName(sessionsPackage, "ChildSession")
 
     fun targetInterface(target: TargetType): ClassName = ClassName(targetsPackage, "${target.name}Target")
     fun sessionInterface(target: TargetType): ClassName = ClassName(sessionsPackage, "${target.name}Session")

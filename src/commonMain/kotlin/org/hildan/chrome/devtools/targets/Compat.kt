@@ -26,7 +26,7 @@ typealias RenderFrameTarget = PageTarget
     message = "Renamed ChromeSessionMetaData",
     replaceWith = ReplaceWith(
         expression = "SessionMetaData",
-        imports = ["org.hildan.chrome.devtools.targets.SessionMetaData"],
+        imports = ["org.hildan.chrome.devtools.sessions.SessionMetaData"],
     ),
 )
 typealias ChromePageMetaData = SessionMetaData
@@ -35,7 +35,7 @@ typealias ChromePageMetaData = SessionMetaData
     message = "Renamed BrowserSession",
     replaceWith = ReplaceWith(
         expression = "BrowserSession",
-        imports = ["org.hildan.chrome.devtools.targets.BrowserSession"],
+        imports = ["org.hildan.chrome.devtools.sessions.BrowserSession"],
     ),
 )
 typealias ChromeBrowserSession = BrowserSession

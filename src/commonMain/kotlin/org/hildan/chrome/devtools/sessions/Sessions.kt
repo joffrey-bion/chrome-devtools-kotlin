@@ -1,6 +1,7 @@
-package org.hildan.chrome.devtools.targets
+package org.hildan.chrome.devtools.sessions
 
 import org.hildan.chrome.devtools.domains.target.*
+import org.hildan.chrome.devtools.targets.*
 
 /**
  * A Chrome DevTools debugging session, created when attaching to a target.
@@ -40,9 +41,22 @@ interface BrowserSession : ChromeSession, BrowserTarget {
 
     /**
      * Closes this session and the underlying web socket connection.
-     * This effectively closes every session based on the same web socket connection.
+     * This effectively **closes all child sessions**, because they're based on the same web socket connection.
      */
     suspend fun close()
+}
+
+/**
+ * Performs the given operation in this session and closes the web socket connection.
+ *
+ * Note: This effectively closes all child sessions, because they're based on the same web socket connection.
+ */
+suspend inline fun <T> BrowserSession.use(block: (BrowserSession) -> T): T {
+    try {
+        return block(this)
+    } finally {
+        close()
+    }
 }
 
 /**
@@ -105,4 +119,22 @@ interface ChildSession : ChromeSession {
      * that other tabs that were opened from this page session will not be force-closed.
      */
     suspend fun close(keepBrowserContext: Boolean = false)
+}
+
+/**
+ * Performs the given operation in this [ChildSession] and closes this session and its children, as well as the
+ * corresponding targets.
+ *
+ * This preserves the underlying web socket connection (of the parent [BrowserSession]), because it could be used by
+ * other sessions that are children of the same browser session, but not children of this [ChildSession].
+ *
+ * If you don't want to close child targets created during this session, use [ChildSession.close] with
+ * `keepBrowserContext=true` instead of this helper.
+ */
+suspend inline fun <S : ChildSession, T> S.use(block: (S) -> T): T {
+    try {
+        return block(this)
+    } finally {
+        close()
+    }
 }
