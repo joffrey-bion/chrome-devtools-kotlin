@@ -32,6 +32,7 @@ class Generator(
         }
         generateAllDomainsTargetInterfaceFile(allTargets = targets, allDomains = domains)
         generateAllDomainsTargetImplFile(allTargets = targets, allDomains = domains)
+        generateChildSessionsFiles(childTargets = targets.filterNot { it.name == "Browser" })
     }
 
     private fun loadProtocolDomains(): List<ChromeDPDomain> {
@@ -43,7 +44,7 @@ class Generator(
     }
 
     private fun generateTargetInterfaceFile(target: TargetType, domains: List<ChromeDPDomain>) {
-        val targetInterface = ExtDeclarations.targetInterface(target.name)
+        val targetInterface = ExtDeclarations.targetInterface(target)
         FileSpec.builder(targetInterface.packageName, targetInterface.simpleName)
             .addAnnotation(Annotations.suppressWarnings)
             .addType(createTargetInterface(target, domains))
@@ -67,6 +68,11 @@ class Generator(
             .addType(createAllDomainsTargetImpl(allTargets, allDomains))
             .build()
             .writeTo(generatedSourcesDir)
+    }
+
+    private fun generateChildSessionsFiles(childTargets: List<TargetType>) {
+        createSessionInterfacesFileSpec(childTargets).writeTo(generatedSourcesDir)
+        createSessionAdaptersFileSpec(childTargets).writeTo(generatedSourcesDir)
     }
 
     private fun generateDomainFiles(domain: ChromeDPDomain) {

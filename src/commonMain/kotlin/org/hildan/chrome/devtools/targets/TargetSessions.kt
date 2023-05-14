@@ -106,8 +106,3 @@ interface ChildSession : ChromeSession {
      */
     suspend fun close(keepBrowserContext: Boolean = false)
 }
-
-/**
- * A page session, usually created when attaching to a page from the root browser session.
- */
-interface ChromePageSession : ChildSession, RenderFrameTarget

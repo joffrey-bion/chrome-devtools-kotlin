@@ -4,11 +4,13 @@ import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.MemberName
 import kotlinx.serialization.Serializable
+import org.hildan.chrome.devtools.build.json.*
 
 const val ROOT_PACKAGE_NAME = "org.hildan.chrome.devtools"
 
 object ExtDeclarations {
 
+    const val sessionsPackage = "$ROOT_PACKAGE_NAME.sessions"
     private const val targetsPackage = "$ROOT_PACKAGE_NAME.targets"
     private const val protocolPackage = "$ROOT_PACKAGE_NAME.protocol"
 
@@ -21,7 +23,13 @@ object ExtDeclarations {
     val allDomainsTargetInterface = ClassName(targetsPackage, "AllDomainsTarget")
     val allDomainsTargetImplementation = ClassName(targetsPackage, "UberTarget")
 
-    fun targetInterface(targetName: String): ClassName = ClassName(targetsPackage, "${targetName}Target")
+    val sessionsFileName = "ChildSessions"
+    val sessionAdaptersFileName = "ChildSessionAdapters"
+    val childSessionInterface = ClassName(targetsPackage, "ChildSession") // TODO change package
+
+    fun targetInterface(target: TargetType): ClassName = ClassName(targetsPackage, "${target.name}Target")
+    fun sessionInterface(target: TargetType): ClassName = ClassName(sessionsPackage, "${target.name}Session")
+    fun sessionAdapter(target: TargetType): ClassName = ClassName(sessionsPackage, "${target.name}SessionAdapter")
 }
 
 object Annotations {

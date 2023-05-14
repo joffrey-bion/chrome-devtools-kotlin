@@ -10,7 +10,7 @@ import org.hildan.chrome.devtools.build.names.ExtDeclarations
 private const val SESSION_ARG = "session"
 
 fun createTargetInterface(target: TargetType, domains: List<ChromeDPDomain>): TypeSpec =
-    TypeSpec.interfaceBuilder(ExtDeclarations.targetInterface(target.name)).apply {
+    TypeSpec.interfaceBuilder(ExtDeclarations.targetInterface(target)).apply {
         addKdoc("Represents the available domain APIs in ${target.name} targets")
         domains.forEach {
             addProperty(it.toPropertySpec())
@@ -31,7 +31,7 @@ fun createAllDomainsTargetInterface(allTargets: List<TargetType>, allDomains: Li
                     "and runtime errors could occur."
         )
         allTargets.forEach { target ->
-            addSuperinterface(ExtDeclarations.targetInterface(target.name))
+            addSuperinterface(ExtDeclarations.targetInterface(target))
         }
 
         // we want to add properties for all domains, including those who are technically not supported by any target
@@ -67,7 +67,7 @@ fun createAllDomainsTargetImpl(targetTypes: List<TargetType>, domains: List<Chro
         addModifiers(KModifier.INTERNAL)
         addSuperinterface(ExtDeclarations.allDomainsTargetInterface)
         targetTypes.forEach {
-            addSuperinterface(ExtDeclarations.targetInterface(it.name))
+            addSuperinterface(ExtDeclarations.targetInterface(it))
         }
 
         primaryConstructor(

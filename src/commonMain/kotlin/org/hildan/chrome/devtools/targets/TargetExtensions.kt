@@ -7,31 +7,21 @@ import org.hildan.chrome.devtools.domains.page.NavigateResponse
 import org.hildan.chrome.devtools.domains.target.*
 import org.hildan.chrome.devtools.domains.target.events.TargetEvent
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
+import org.hildan.chrome.devtools.sessions.*
 
-/**
- * Creates a new [ChromePageSession] attached to the render-frame target with the given [targetId].
- * The new session shares the same underlying web socket connection as this [ChromeBrowserSession].
- *
- * If the given ID corresponds to a target that is not a `page` or `iframe`, an exception is thrown.
- */
-suspend fun ChromeBrowserSession.attachToPage(targetId: TargetID): ChromePageSession =
+@Deprecated(
+    message = "This function will be removed in a future release",
+    replaceWith = ReplaceWith(
+        expression = "attachToTarget(targetId).asPageSession()",
+        imports = ["org.hildan.chrome.devtools.sessions.asPageSession"],
+    ),
+)
+suspend fun ChromeBrowserSession.attachToPage(targetId: TargetID): PageSession =
     attachToTarget(targetId).asPageSession()
-
-private fun ChildSession.asPageSession() = PageSessionAdapter(this)
-
-private class PageSessionAdapter(child: ChildSession) : ChromePageSession, ChildSession by child,
-    RenderFrameTarget by child.unsafe() {
-    init {
-        val targetType = child.metaData.targetType
-        require(targetType in RenderFrameTarget.supportedCdpTargets) {
-            "Cannot initiate a page session with a target of type $targetType (target ID: ${child.metaData.targetId})"
-        }
-    }
-}
 
 /**
  * Creates and attaches to a new page (tab) initially navigated to the given [url].
- * The underlying web socket connection of this [ChromeBrowserSession] is reused for the new [ChromePageSession].
+ * The underlying web socket connection of this [ChromeBrowserSession] is reused for the new [PageSession].
  *
  * If [incognito] is true, the new target is created in a separate browser context (think of it as incognito window).
  *
@@ -46,7 +36,7 @@ suspend fun ChromeBrowserSession.attachToNewPage(
     width: Int = 1024,
     height: Int = 768,
     background: Boolean = false,
-): ChromePageSession {
+): PageSession {
     val browserContextId = when (incognito) {
         true -> target.createBrowserContext { disposeOnDetach = true }.browserContextId
         false -> null
@@ -65,7 +55,7 @@ suspend fun ChromeBrowserSession.attachToNewPage(
 /**
  * Creates and attaches to a new page (tab) initially navigated to the given [url].
  * Suspends until the `frameStoppedLoading` event is fired.
- * The underlying web socket connection of this [ChromeBrowserSession] is reused for the new [ChromePageSession].
+ * The underlying web socket connection of this [ChromeBrowserSession] is reused for the new [PageSession].
  *
  * If [incognito] is true, the new target is created in a separate browser context (think of it as incognito window).
  *
@@ -82,7 +72,7 @@ suspend fun ChromeBrowserSession.attachToNewPageAndAwaitPageLoad(
     width: Int = 1024,
     height: Int = 768,
     background: Boolean = false,
-): ChromePageSession {
+): PageSession {
     val session = attachToNewPage("about:blank", incognito, width, height, background)
     session.navigateAndAwaitPageLoad(url)
     return session
@@ -95,7 +85,7 @@ suspend fun ChromeBrowserSession.attachToNewPageAndAwaitPageLoad(
  * This function throws [NavigationFailed] if the navigation response has an error, instead of waiting forever for an
  * event that will never come.
  */
-suspend fun ChromePageSession.navigateAndAwaitPageLoad(
+suspend fun PageSession.navigateAndAwaitPageLoad(
     url: String,
     optionalArgs: NavigateRequest.Builder.() -> Unit = {},
 ) {
@@ -110,7 +100,7 @@ suspend fun ChromePageSession.navigateAndAwaitPageLoad(
  * event that will never come.
  */
 @OptIn(ExperimentalChromeApi::class)
-suspend fun ChromePageSession.navigateAndAwaitPageLoad(navigateRequest: NavigateRequest) {
+suspend fun PageSession.navigateAndAwaitPageLoad(navigateRequest: NavigateRequest) {
     page.enable()
     coroutineScope {
         val events = page.frameStoppedLoadingEvents()
@@ -136,7 +126,7 @@ class NavigationFailed(
 /**
  * Finds page targets that were opened by this page.
  */
-suspend fun ChromePageSession.childPages(): List<TargetInfo> {
+suspend fun PageSession.childPages(): List<TargetInfo> {
     val thisTargetId = metaData.targetId
     return target.getTargets().targetInfos.filter { it.type == TargetTypeNames.page && it.openerId == thisTargetId }
 }
@@ -160,7 +150,7 @@ suspend inline fun <T> ChromeBrowserSession.use(block: (ChromeBrowserSession) ->
  * This preserves the underlying web socket connection (of the parent browser session), because it could be used by
  * other page sessions.
  */
-suspend inline fun <T> ChromePageSession.use(block: (ChromePageSession) -> T): T {
+suspend inline fun <T> PageSession.use(block: (PageSession) -> T): T {
     try {
         return block(this)
     } finally {
@@ -172,7 +162,7 @@ suspend inline fun <T> ChromePageSession.use(block: (ChromePageSession) -> T): T
  * Retrieves information about this session's page target.
  */
 @ExperimentalChromeApi
-suspend fun ChromePageSession.getTargetInfo(): TargetInfo = target.getTargetInfo().targetInfo
+suspend fun PageSession.getTargetInfo(): TargetInfo = target.getTargetInfo().targetInfo
 
 /**
  * Watches the available targets in this browser.

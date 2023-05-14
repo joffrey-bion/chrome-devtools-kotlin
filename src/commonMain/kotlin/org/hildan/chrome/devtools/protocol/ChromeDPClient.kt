@@ -13,6 +13,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import org.hildan.chrome.devtools.targets.*
+import org.hildan.chrome.devtools.sessions.*
 
 private val DEFAULT_HTTP_CLIENT by lazy { createHttpClient(overrideHostHeader = false) }
 
@@ -137,7 +138,7 @@ class ChromeDPClient(
      *
      * Note that the caller of this method is responsible for closing the web socket after use by calling
      * [ChromeBrowserSession.close], or indirectly by calling `use()` on the browser session.
-     * Calling [close()][ChromePageSession.close] or `use()` on a derived [ChromePageSession] doesn't close the
+     * Calling [close()][PageSession.close] or `use()` on a derived [PageSession] doesn't close the
      * underlying web socket connection, to avoid undesirable interactions between nested sessions.
      */
     suspend fun webSocket(): ChromeBrowserSession {
@@ -191,7 +192,7 @@ data class ChromeVersion(
  *
  * When a client wants to interact with a target using CDP, it has to first attach to the target.
  * One way to do it is to connect to Chrome via web socket using [ChromeDPClient.webSocket] and then
- * using [ChromeBrowserSession.attachToPage] or other attach- methods.
+ * using [BrowserSession.attachToPage] or other attach- methods.
  * The client can then interact with the target using the [ChromePageSession].
  */
 @Serializable
