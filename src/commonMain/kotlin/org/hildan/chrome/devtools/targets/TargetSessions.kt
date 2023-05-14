@@ -30,11 +30,11 @@ interface ChromeSession {
  *
  * The root browser session doesn't have a session ID.
  */
-interface ChromeBrowserSession : ChromeSession, BrowserTarget {
+interface BrowserSession : ChromeSession, BrowserTarget {
 
     /**
      * Creates a new [ChildSession] attached to the target with the given [targetId].
-     * The new session shares the same underlying web socket connection as this [ChromeBrowserSession].
+     * The new session shares the same underlying web socket connection as this [BrowserSession].
      */
     suspend fun attachToTarget(targetId: TargetID): ChildSession
 
@@ -79,7 +79,7 @@ interface ChildSession : ChromeSession {
      * [session hierarchy section](https://github.com/aslushnikov/getting-started-with-cdp/blob/master/README.md#session-hierarchy)
      * in the "getting started" guide.
      */
-    val parent: ChromeBrowserSession
+    val parent: BrowserSession
 
     /**
      * Info about this session and its underlying target.

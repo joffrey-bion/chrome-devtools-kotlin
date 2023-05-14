@@ -30,3 +30,12 @@ typealias RenderFrameTarget = PageTarget
     ),
 )
 typealias ChromePageMetaData = SessionMetaData
+
+@Deprecated(
+    message = "Renamed BrowserSession",
+    replaceWith = ReplaceWith(
+        expression = "BrowserSession",
+        imports = ["org.hildan.chrome.devtools.targets.BrowserSession"],
+    ),
+)
+typealias ChromeBrowserSession = BrowserSession

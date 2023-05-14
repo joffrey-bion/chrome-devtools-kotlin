@@ -16,12 +16,12 @@ import org.hildan.chrome.devtools.sessions.*
         imports = ["org.hildan.chrome.devtools.sessions.asPageSession"],
     ),
 )
-suspend fun ChromeBrowserSession.attachToPage(targetId: TargetID): PageSession =
+suspend fun BrowserSession.attachToPage(targetId: TargetID): PageSession =
     attachToTarget(targetId).asPageSession()
 
 /**
  * Creates and attaches to a new page (tab) initially navigated to the given [url].
- * The underlying web socket connection of this [ChromeBrowserSession] is reused for the new [PageSession].
+ * The underlying web socket connection of this [BrowserSession] is reused for the new [PageSession].
  *
  * If [incognito] is true, the new target is created in a separate browser context (think of it as incognito window).
  *
@@ -30,7 +30,7 @@ suspend fun ChromeBrowserSession.attachToPage(targetId: TargetID): PageSession =
  * If [background] is true, the new tab will be created in the background (Chrome only).
  */
 @OptIn(ExperimentalChromeApi::class)
-suspend fun ChromeBrowserSession.attachToNewPage(
+suspend fun BrowserSession.attachToNewPage(
     url: String = "about:blank",
     incognito: Boolean = true,
     width: Int = 1024,
@@ -55,7 +55,7 @@ suspend fun ChromeBrowserSession.attachToNewPage(
 /**
  * Creates and attaches to a new page (tab) initially navigated to the given [url].
  * Suspends until the `frameStoppedLoading` event is fired.
- * The underlying web socket connection of this [ChromeBrowserSession] is reused for the new [PageSession].
+ * The underlying web socket connection of this [BrowserSession] is reused for the new [PageSession].
  *
  * If [incognito] is true, the new target is created in a separate browser context (think of it as incognito window).
  *
@@ -66,7 +66,7 @@ suspend fun ChromeBrowserSession.attachToNewPage(
  * This function throws [NavigationFailed] if the navigation response has an error, instead of waiting forever for an
  * event that will never come.
  */
-suspend fun ChromeBrowserSession.attachToNewPageAndAwaitPageLoad(
+suspend fun BrowserSession.attachToNewPageAndAwaitPageLoad(
     url: String,
     incognito: Boolean = true,
     width: Int = 1024,
@@ -136,7 +136,7 @@ suspend fun PageSession.childPages(): List<TargetInfo> {
  *
  * Note: This effectively closes every session based on the same web socket connection.
  */
-suspend inline fun <T> ChromeBrowserSession.use(block: (ChromeBrowserSession) -> T): T {
+suspend inline fun <T> BrowserSession.use(block: (BrowserSession) -> T): T {
     try {
         return block(this)
     } finally {
@@ -167,7 +167,7 @@ suspend fun PageSession.getTargetInfo(): TargetInfo = target.getTargetInfo().tar
 /**
  * Watches the available targets in this browser.
  */
-suspend fun ChromeBrowserSession.watchTargetsIn(coroutineScope: CoroutineScope): StateFlow<Map<TargetID, TargetInfo>> {
+suspend fun BrowserSession.watchTargetsIn(coroutineScope: CoroutineScope): StateFlow<Map<TargetID, TargetInfo>> {
     val targetsFlow = MutableStateFlow(emptyMap<TargetID, TargetInfo>())
 
     target.events().onEach { targetsFlow.value = targetsFlow.value.updatedBy(it) }.launchIn(coroutineScope)

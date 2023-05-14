@@ -127,21 +127,21 @@ class ChromeDPClient(
      * Opens a web socket connection to interact with the browser.
      *
      * This method attaches to the default browser target, which creates a root session without session ID.
-     * The returned [ChromeBrowserSession] thus only provides a limited subset of the possible operations (only the
+     * The returned [BrowserSession] thus only provides a limited subset of the possible operations (only the
      * ones applicable to the browser itself).
      *
-     * To attach to a specific target (such as a web page), call [ChromeBrowserSession.attachToPage],
-     * [ChromeBrowserSession.attachToNewPage][org.hildan.chrome.devtools.targets.attachToNewPage], or similar
+     * To attach to a specific target (such as a web page), call [BrowserSession.attachToPage],
+     * [BrowserSession.attachToNewPage][org.hildan.chrome.devtools.targets.attachToNewPage], or similar
      * functions. This creates a nested session with a type corresponding to the target type, which provides access to
      * another set of domains. Such nested sessions use the same underlying web socket connection as the initial
      * browser session returned here.
      *
      * Note that the caller of this method is responsible for closing the web socket after use by calling
-     * [ChromeBrowserSession.close], or indirectly by calling `use()` on the browser session.
+     * [BrowserSession.close], or indirectly by calling `use()` on the browser session.
      * Calling [close()][PageSession.close] or `use()` on a derived [PageSession] doesn't close the
      * underlying web socket connection, to avoid undesirable interactions between nested sessions.
      */
-    suspend fun webSocket(): ChromeBrowserSession {
+    suspend fun webSocket(): BrowserSession {
         val browserDebuggerUrl = version().webSocketDebuggerUrl
         return httpClient.chromeWebSocket(browserDebuggerUrl)
     }
@@ -217,11 +217,11 @@ data class ChromeDPTarget(
  * This [HttpClient] must have the [WebSockets] plugin installed, as well as the [ContentNegotiation] plugin
  * with Kotlinx Serialization JSON.
  *
- * The returned [ChromeBrowserSession] only provides a limited subset of the possible operations, because it is
+ * The returned [BrowserSession] only provides a limited subset of the possible operations, because it is
  * attached to the default *browser* target, not a *page* target.
  * To attach to a specific target using the same underlying web socket connection, call
- * [ChromeBrowserSession.attachToPage] or
- * [ChromeBrowserSession.attachToNewPage][org.hildan.chrome.devtools.targets.attachToNewPage].
+ * [BrowserSession.attachToPage] or
+ * [BrowserSession.attachToNewPage][org.hildan.chrome.devtools.targets.attachToNewPage].
  */
-suspend fun HttpClient.chromeWebSocket(webSocketDebuggerUrl: String): ChromeBrowserSession =
+suspend fun HttpClient.chromeWebSocket(webSocketDebuggerUrl: String): BrowserSession =
     webSocketSession(webSocketDebuggerUrl).chromeDp().withSession(sessionId = null).toBrowserSession()

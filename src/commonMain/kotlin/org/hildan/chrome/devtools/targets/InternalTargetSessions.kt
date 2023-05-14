@@ -6,7 +6,7 @@ import org.hildan.chrome.devtools.protocol.ChromeDPSession
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
 import org.hildan.chrome.devtools.protocol.withSession
 
-internal fun ChromeDPSession.toBrowserSession(): ChromeBrowserSession = BrowserSessionImpl(this)
+internal fun ChromeDPSession.toBrowserSession(): BrowserSession = BrowserSessionImpl(this)
 
 private sealed class AbstractTargetSession(
     protected val session: ChromeDPSession,
@@ -23,7 +23,7 @@ private sealed class AbstractTargetSession(
 private class BrowserSessionImpl(
     session: ChromeDPSession,
     targetImplementation: UberTarget = UberTarget(session),
-) : AbstractTargetSession(session, targetImplementation), ChromeBrowserSession, BrowserTarget by targetImplementation {
+) : AbstractTargetSession(session, targetImplementation), BrowserSession, BrowserTarget by targetImplementation {
 
     @OptIn(ExperimentalChromeApi::class)
     override suspend fun attachToTarget(targetId: TargetID): ChildSession {
@@ -45,7 +45,7 @@ private class BrowserSessionImpl(
 
 private class ChildSessionImpl(
     session: ChromeDPSession,
-    override val parent: ChromeBrowserSession,
+    override val parent: BrowserSession,
     override val metaData: MetaData,
     targetImplementation: UberTarget = UberTarget(session),
 ) : AbstractTargetSession(session, targetImplementation),
