@@ -42665,6 +42665,10 @@ public final class org/hildan/chrome/devtools/domains/target/TargetDomain {
 	public final fun targetInfoChangedEvents ()Lkotlinx/coroutines/flow/Flow;
 }
 
+public final class org/hildan/chrome/devtools/domains/target/TargetExtensionsKt {
+	public static final fun allTargetsFlow (Lorg/hildan/chrome/devtools/domains/target/TargetDomain;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
 public final class org/hildan/chrome/devtools/domains/target/TargetInfo {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/target/TargetInfo$Companion;
 	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
@@ -45242,23 +45246,116 @@ public final class org/hildan/chrome/devtools/protocol/TargetCrashedException : 
 	public final fun getSessionId ()Ljava/lang/String;
 }
 
-public abstract interface class org/hildan/chrome/devtools/sessions/PageSession : org/hildan/chrome/devtools/targets/ChildSession, org/hildan/chrome/devtools/targets/PageTarget {
+public abstract interface class org/hildan/chrome/devtools/sessions/BrowserSession : org/hildan/chrome/devtools/sessions/ChromeSession, org/hildan/chrome/devtools/targets/BrowserTarget {
+	public abstract fun attachToTarget (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun close (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public abstract interface class org/hildan/chrome/devtools/sessions/ServiceWorkerSession : org/hildan/chrome/devtools/targets/ChildSession, org/hildan/chrome/devtools/targets/ServiceWorkerTarget {
+public abstract interface class org/hildan/chrome/devtools/sessions/ChildSession : org/hildan/chrome/devtools/sessions/ChromeSession {
+	public abstract fun close (ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun detach (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getMetaData ()Lorg/hildan/chrome/devtools/sessions/SessionMetaData;
+	public abstract fun getParent ()Lorg/hildan/chrome/devtools/sessions/BrowserSession;
 }
 
-public final class org/hildan/chrome/devtools/sessions/SessionAdaptersKt {
-	public static final fun asPageSession (Lorg/hildan/chrome/devtools/targets/ChildSession;)Lorg/hildan/chrome/devtools/sessions/PageSession;
-	public static final fun asServiceWorkerSession (Lorg/hildan/chrome/devtools/targets/ChildSession;)Lorg/hildan/chrome/devtools/sessions/ServiceWorkerSession;
-	public static final fun asSharedWorkerSession (Lorg/hildan/chrome/devtools/targets/ChildSession;)Lorg/hildan/chrome/devtools/sessions/SharedWorkerSession;
-	public static final fun asWorkerSession (Lorg/hildan/chrome/devtools/targets/ChildSession;)Lorg/hildan/chrome/devtools/sessions/WorkerSession;
+public final class org/hildan/chrome/devtools/sessions/ChildSession$DefaultImpls {
+	public static synthetic fun close$default (Lorg/hildan/chrome/devtools/sessions/ChildSession;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
-public abstract interface class org/hildan/chrome/devtools/sessions/SharedWorkerSession : org/hildan/chrome/devtools/targets/ChildSession, org/hildan/chrome/devtools/targets/SharedWorkerTarget {
+public final class org/hildan/chrome/devtools/sessions/ChildSessionAdaptersKt {
+	public static final fun asPageSession (Lorg/hildan/chrome/devtools/sessions/ChildSession;)Lorg/hildan/chrome/devtools/sessions/PageSession;
+	public static final fun asServiceWorkerSession (Lorg/hildan/chrome/devtools/sessions/ChildSession;)Lorg/hildan/chrome/devtools/sessions/ServiceWorkerSession;
+	public static final fun asSharedWorkerSession (Lorg/hildan/chrome/devtools/sessions/ChildSession;)Lorg/hildan/chrome/devtools/sessions/SharedWorkerSession;
+	public static final fun asWorkerSession (Lorg/hildan/chrome/devtools/sessions/ChildSession;)Lorg/hildan/chrome/devtools/sessions/WorkerSession;
 }
 
-public abstract interface class org/hildan/chrome/devtools/sessions/WorkerSession : org/hildan/chrome/devtools/targets/ChildSession, org/hildan/chrome/devtools/targets/WorkerTarget {
+public abstract interface class org/hildan/chrome/devtools/sessions/ChromeSession {
+	public abstract fun closeWebSocket (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun unsafe ()Lorg/hildan/chrome/devtools/targets/AllDomainsTarget;
+}
+
+public abstract class org/hildan/chrome/devtools/sessions/GotoCompletionEvent {
+	public fun <init> ()V
+}
+
+public final class org/hildan/chrome/devtools/sessions/GotoCompletionEvent$DomContentLoaded : org/hildan/chrome/devtools/sessions/GotoCompletionEvent {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/sessions/GotoCompletionEvent$DomContentLoaded;
+}
+
+public final class org/hildan/chrome/devtools/sessions/GotoCompletionEvent$FrameStoppedLoading : org/hildan/chrome/devtools/sessions/GotoCompletionEvent {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/sessions/GotoCompletionEvent$FrameStoppedLoading;
+}
+
+public final class org/hildan/chrome/devtools/sessions/GotoCompletionEvent$Load : org/hildan/chrome/devtools/sessions/GotoCompletionEvent {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/sessions/GotoCompletionEvent$Load;
+}
+
+public final class org/hildan/chrome/devtools/sessions/GotoConfigBuilder {
+	public final fun getFrameId ()Ljava/lang/String;
+	public final fun getReferrer ()Ljava/lang/String;
+	public final fun getReferrerPolicy ()Lorg/hildan/chrome/devtools/domains/page/ReferrerPolicy;
+	public final fun getTransitionType ()Lorg/hildan/chrome/devtools/domains/page/TransitionType;
+	public final fun setFrameId (Ljava/lang/String;)V
+	public final fun setReferrer (Ljava/lang/String;)V
+	public final fun setReferrerPolicy (Lorg/hildan/chrome/devtools/domains/page/ReferrerPolicy;)V
+	public final fun setTransitionType (Lorg/hildan/chrome/devtools/domains/page/TransitionType;)V
+	public final fun waitFor ([Lorg/hildan/chrome/devtools/sessions/GotoCompletionEvent;)V
+}
+
+public final class org/hildan/chrome/devtools/sessions/GotoExtensionKt {
+	public static final fun goto (Lorg/hildan/chrome/devtools/sessions/PageSession;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun goto$default (Lorg/hildan/chrome/devtools/sessions/PageSession;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class org/hildan/chrome/devtools/sessions/NavigationFailed : java/lang/Exception {
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/page/NavigateRequest;Lorg/hildan/chrome/devtools/domains/page/NavigateResponse;)V
+	public final fun getRequest ()Lorg/hildan/chrome/devtools/domains/page/NavigateRequest;
+	public final fun getResponse ()Lorg/hildan/chrome/devtools/domains/page/NavigateResponse;
+}
+
+public final class org/hildan/chrome/devtools/sessions/NewPageConfigBuilder {
+	public final fun getBackground ()Ljava/lang/Boolean;
+	public final fun getHeight ()Ljava/lang/Integer;
+	public final fun getIncognito ()Z
+	public final fun getNewWindow ()Ljava/lang/Boolean;
+	public final fun getWidth ()Ljava/lang/Integer;
+	public final fun setBackground (Ljava/lang/Boolean;)V
+	public final fun setHeight (Ljava/lang/Integer;)V
+	public final fun setIncognito (Z)V
+	public final fun setNewWindow (Ljava/lang/Boolean;)V
+	public final fun setWidth (Ljava/lang/Integer;)V
+}
+
+public final class org/hildan/chrome/devtools/sessions/NewPageExtensionKt {
+	public static final fun newPage (Lorg/hildan/chrome/devtools/sessions/BrowserSession;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun newPage$default (Lorg/hildan/chrome/devtools/sessions/BrowserSession;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public abstract interface class org/hildan/chrome/devtools/sessions/PageSession : org/hildan/chrome/devtools/sessions/ChildSession, org/hildan/chrome/devtools/targets/PageTarget {
+}
+
+public abstract interface class org/hildan/chrome/devtools/sessions/ServiceWorkerSession : org/hildan/chrome/devtools/sessions/ChildSession, org/hildan/chrome/devtools/targets/ServiceWorkerTarget {
+}
+
+public final class org/hildan/chrome/devtools/sessions/SessionExtensionsKt {
+	public static final fun childPages (Lorg/hildan/chrome/devtools/sessions/PageSession;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class org/hildan/chrome/devtools/sessions/SessionMetaData {
+	public abstract fun getSessionId ()Ljava/lang/String;
+	public abstract fun getTargetId ()Ljava/lang/String;
+	public abstract fun getTargetType ()Ljava/lang/String;
+}
+
+public final class org/hildan/chrome/devtools/sessions/SessionsKt {
+	public static final fun use (Lorg/hildan/chrome/devtools/sessions/BrowserSession;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun use (Lorg/hildan/chrome/devtools/sessions/ChildSession;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class org/hildan/chrome/devtools/sessions/SharedWorkerSession : org/hildan/chrome/devtools/sessions/ChildSession, org/hildan/chrome/devtools/targets/SharedWorkerTarget {
+}
+
+public abstract interface class org/hildan/chrome/devtools/sessions/WorkerSession : org/hildan/chrome/devtools/sessions/ChildSession, org/hildan/chrome/devtools/targets/WorkerTarget {
 }
 
 public abstract interface class org/hildan/chrome/devtools/targets/AllDomainsTarget : org/hildan/chrome/devtools/targets/BrowserTarget, org/hildan/chrome/devtools/targets/PageTarget, org/hildan/chrome/devtools/targets/ServiceWorkerTarget, org/hildan/chrome/devtools/targets/SharedWorkerTarget, org/hildan/chrome/devtools/targets/WorkerTarget {
@@ -45294,34 +45391,7 @@ public abstract interface class org/hildan/chrome/devtools/targets/BrowserTarget
 public final class org/hildan/chrome/devtools/targets/BrowserTarget$Companion {
 }
 
-public abstract interface class org/hildan/chrome/devtools/targets/ChildSession : org/hildan/chrome/devtools/targets/ChromeSession {
-	public abstract fun close (ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun detach (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun getMetaData ()Lorg/hildan/chrome/devtools/targets/SessionMetaData;
-	public abstract fun getParent ()Lorg/hildan/chrome/devtools/targets/BrowserSession;
-}
-
-public final class org/hildan/chrome/devtools/targets/ChildSession$DefaultImpls {
-	public static synthetic fun close$default (Lorg/hildan/chrome/devtools/targets/ChildSession;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-}
-
-public abstract interface class org/hildan/chrome/devtools/targets/BrowserSession : org/hildan/chrome/devtools/targets/BrowserTarget, org/hildan/chrome/devtools/targets/ChromeSession {
-	public abstract fun attachToTarget (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun close (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public abstract interface class org/hildan/chrome/devtools/targets/ChromeSession {
-	public abstract fun closeWebSocket (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun unsafe ()Lorg/hildan/chrome/devtools/targets/AllDomainsTarget;
-}
-
-public final class org/hildan/chrome/devtools/targets/NavigationFailed : java/lang/Exception {
-	public fun <init> (Lorg/hildan/chrome/devtools/domains/page/NavigateRequest;Lorg/hildan/chrome/devtools/domains/page/NavigateResponse;)V
-	public final fun getRequest ()Lorg/hildan/chrome/devtools/domains/page/NavigateRequest;
-	public final fun getResponse ()Lorg/hildan/chrome/devtools/domains/page/NavigateResponse;
-}
-
-public abstract interface class org/hildan/chrome/devtools/targets/PageTarget : org/hildan/chrome/devtools/targets/ChromeDevToolsTarget {
+public abstract interface class org/hildan/chrome/devtools/targets/PageTarget {
 	public static final field Companion Lorg/hildan/chrome/devtools/targets/PageTarget$Companion;
 	public abstract fun getAccessibility ()Lorg/hildan/chrome/devtools/domains/accessibility/AccessibilityDomain;
 	public abstract fun getAnimation ()Lorg/hildan/chrome/devtools/domains/animation/AnimationDomain;
@@ -45380,12 +45450,6 @@ public abstract interface class org/hildan/chrome/devtools/targets/ServiceWorker
 public final class org/hildan/chrome/devtools/targets/ServiceWorkerTarget$Companion {
 }
 
-public abstract interface class org/hildan/chrome/devtools/targets/SessionMetaData {
-	public abstract fun getSessionId ()Ljava/lang/String;
-	public abstract fun getTargetId ()Ljava/lang/String;
-	public abstract fun getTargetType ()Ljava/lang/String;
-}
-
 public abstract interface class org/hildan/chrome/devtools/targets/SharedWorkerTarget {
 	public static final field Companion Lorg/hildan/chrome/devtools/targets/SharedWorkerTarget$Companion;
 	public abstract fun getFetch ()Lorg/hildan/chrome/devtools/domains/fetch/FetchDomain;
@@ -45400,19 +45464,19 @@ public final class org/hildan/chrome/devtools/targets/SharedWorkerTarget$Compani
 }
 
 public final class org/hildan/chrome/devtools/targets/TargetExtensionsKt {
-	public static final fun attachToNewPage (Lorg/hildan/chrome/devtools/targets/BrowserSession;Ljava/lang/String;ZIIZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun attachToNewPage$default (Lorg/hildan/chrome/devtools/targets/BrowserSession;Ljava/lang/String;ZIIZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public static final fun attachToNewPageAndAwaitPageLoad (Lorg/hildan/chrome/devtools/targets/BrowserSession;Ljava/lang/String;ZIIZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun attachToNewPageAndAwaitPageLoad$default (Lorg/hildan/chrome/devtools/targets/BrowserSession;Ljava/lang/String;ZIIZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public static final fun attachToPage (Lorg/hildan/chrome/devtools/targets/BrowserSession;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun attachToNewPage (Lorg/hildan/chrome/devtools/sessions/BrowserSession;Ljava/lang/String;ZIIZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun attachToNewPage$default (Lorg/hildan/chrome/devtools/sessions/BrowserSession;Ljava/lang/String;ZIIZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun attachToNewPageAndAwaitPageLoad (Lorg/hildan/chrome/devtools/sessions/BrowserSession;Ljava/lang/String;ZIIZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun attachToNewPageAndAwaitPageLoad$default (Lorg/hildan/chrome/devtools/sessions/BrowserSession;Ljava/lang/String;ZIIZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun attachToPage (Lorg/hildan/chrome/devtools/sessions/BrowserSession;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun childPages (Lorg/hildan/chrome/devtools/sessions/PageSession;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun getTargetInfo (Lorg/hildan/chrome/devtools/sessions/PageSession;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun navigateAndAwaitPageLoad (Lorg/hildan/chrome/devtools/sessions/PageSession;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun navigateAndAwaitPageLoad (Lorg/hildan/chrome/devtools/sessions/PageSession;Lorg/hildan/chrome/devtools/domains/page/NavigateRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun navigateAndAwaitPageLoad$default (Lorg/hildan/chrome/devtools/sessions/PageSession;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun use (Lorg/hildan/chrome/devtools/sessions/BrowserSession;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun use (Lorg/hildan/chrome/devtools/sessions/PageSession;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun use (Lorg/hildan/chrome/devtools/targets/BrowserSession;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun watchTargetsIn (Lorg/hildan/chrome/devtools/targets/BrowserSession;Lkotlinx/coroutines/CoroutineScope;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun watchTargetsIn (Lorg/hildan/chrome/devtools/sessions/BrowserSession;Lkotlinx/coroutines/CoroutineScope;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public abstract interface class org/hildan/chrome/devtools/targets/WorkerTarget {
