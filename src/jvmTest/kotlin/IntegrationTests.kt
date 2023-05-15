@@ -7,6 +7,8 @@ import org.hildan.chrome.devtools.domains.runtime.evaluateJs
 import org.hildan.chrome.devtools.protocol.ChromeDPClient
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
 import org.hildan.chrome.devtools.protocol.RequestNotSentException
+import org.hildan.chrome.devtools.sessions.*
+import org.hildan.chrome.devtools.sessions.use
 import org.hildan.chrome.devtools.targets.*
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.junit.jupiter.Container
@@ -51,26 +53,27 @@ class IntegrationTests {
         runBlockingWithTimeout {
             val chrome = chromeDpClient()
 
-            val browser = chrome.webSocket()
-            val session = browser.attachToNewPageAndAwaitPageLoad("http://www.google.com")
-            val targetId = session.metaData.targetId
+            chrome.webSocket().use { browser ->
+                val pageSession = browser.newPage()
+                val targetId = pageSession.metaData.targetId
 
-            assertEquals("Google", session.getTargetInfo().title)
+                pageSession.use { page ->
+                    page.goto("http://www.google.com")
 
-            assertTrue(chrome.targets().any { it.id == targetId }, "the new target should be listed")
+                    assertEquals("Google", page.target.getTargetInfo().targetInfo.title)
 
-            val nodeId = withTimeoutOrNull(1000) {
-                session.dom.awaitNodeBySelector("form[action='/search']")
+                    assertTrue(chrome.targets().any { it.id == targetId }, "the new target should be listed")
+
+                    val nodeId = withTimeoutOrNull(1000) {
+                        page.dom.awaitNodeBySelector("form[action='/search']")
+                    }
+                    assertNotNull(nodeId)
+
+                    val getOuterHTMLResponse = page.dom.getOuterHTML(GetOuterHTMLRequest(nodeId = nodeId))
+                    assertTrue(getOuterHTMLResponse.outerHTML.contains("<input name=\"source\""))
+                }
+                assertTrue(chrome.targets().none { it.id == targetId }, "the new target should be closed (not listed)")
             }
-            assertNotNull(nodeId)
-
-            val getOuterHTMLResponse = session.dom.getOuterHTML(GetOuterHTMLRequest(nodeId = nodeId))
-            assertTrue(getOuterHTMLResponse.outerHTML.contains("<input name=\"source\""))
-
-            session.close()
-            assertTrue(chrome.targets().none { it.id == targetId }, "the new target should be closed (not listed)")
-
-            browser.close()
         }
     }
 
@@ -81,27 +84,28 @@ class IntegrationTests {
             val chrome = chromeDpClient()
 
             val browser = chrome.webSocket()
-            val session = browser.attachToNewPageAndAwaitPageLoad("http://www.google.com")
+            val session = browser.newPage()
+            session.goto("http://www.google.com")
 
             browser.close()
 
             assertFailsWith<RequestNotSentException> {
-                session.getTargetInfo()
+                session.target.getTargetInfo().targetInfo
             }
         }
     }
 
     @OptIn(ExperimentalChromeApi::class)
     @Test
-    fun pageSession_navigateAndAwaitPageLoad() {
+    fun pageSession_goto() {
         runBlockingWithTimeout {
             chromeDpClient().webSocket().use { browser ->
-                browser.attachToNewPageAndAwaitPageLoad("https://kotlinlang.org/").use { page ->
+                browser.newPage().use { page ->
+                    page.goto("https://kotlinlang.org/")
+                    assertEquals("Kotlin Programming Language", page.target.getTargetInfo().targetInfo.title)
 
-                    assertEquals("Kotlin Programming Language", page.getTargetInfo().title)
-
-                    page.navigateAndAwaitPageLoad("http://www.google.com")
-                    assertEquals("Google", page.getTargetInfo().title)
+                    page.goto("http://www.google.com")
+                    assertEquals("Google", page.target.getTargetInfo().targetInfo.title)
 
                     val nodeId = withTimeoutOrNull(1000) {
                         page.dom.awaitNodeBySelector("form[action='/search']")
@@ -120,7 +124,8 @@ class IntegrationTests {
                 // we want all coroutines to finish before we close the browser session
                 withContext(Dispatchers.IO) {
                     repeat(4) {
-                        browser.attachToNewPageAndAwaitPageLoad("http://www.google.com").use { page ->
+                        browser.newPage().use { page ->
+                            page.goto("http://www.google.com")
                             page.runtime.getHeapUsage()
                             val docRoot = page.dom.getDocumentRootNodeId()
                             page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
@@ -136,7 +141,8 @@ class IntegrationTests {
     fun page_getTargets() {
         runBlockingWithTimeout {
             chromeDpClient().webSocket().use { browser ->
-                browser.attachToNewPageAndAwaitPageLoad("http://google.com").use { page ->
+                browser.newPage().use { page ->
+                    page.goto("http://www.google.com")
                     val targets = page.target.getTargets().targetInfos
                     val targetInfo = targets.first { it.targetId == page.metaData.targetId }
                     assertEquals("page", targetInfo.type)
@@ -152,7 +158,7 @@ class IntegrationTests {
     fun supportedDomains() {
         runBlockingWithTimeout {
             chromeDpClient().webSocket().use { browser ->
-                browser.attachToNewPage().use { page ->
+                browser.newPage().use { page ->
                     // Commenting this one out until the issue is better understood
                     // https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/233
                     //page.cacheStorage.requestCacheNames(RequestCacheNamesRequest("google.com"))
@@ -183,7 +189,7 @@ class IntegrationTests {
                     val knownUnsupportedDomains = setOf(
                         "ApplicationCache", // was removed in tip-of-tree, but still supported by the server
                     )
-                    val onlyInServer = supportedByServer - knownUnsupportedDomains - RenderFrameTarget.supportedDomains
+                    val onlyInServer = supportedByServer - knownUnsupportedDomains - PageTarget.supportedDomains
                     assertEquals(
                         emptySet(),
                         onlyInServer,
@@ -201,19 +207,20 @@ class IntegrationTests {
     @Test
     fun runtime_evaluateJs() {
         runBlockingWithTimeout {
-
-            val browser = chromeDpClient().webSocket()
-            val page = browser.attachToNewPageAndAwaitPageLoad("http://google.com")
-            assertEquals(42, page.runtime.evaluateJs<Int>("42"))
-            assertEquals(
-                42 to "test", page.runtime.evaluateJs<Pair<Int, String>>("""eval({first: 42, second: "test"})""")
-            )
-            assertEquals(
-                Person("Bob", "Lee Swagger"),
-                page.runtime.evaluateJs<Person>("""eval({firstName: "Bob", lastName: "Lee Swagger"})""")
-            )
-            page.close()
-            browser.close()
+            chromeDpClient().webSocket().use { browser ->
+                browser.newPage().use { page ->
+                    page.goto("http://www.google.com")
+                    assertEquals(42, page.runtime.evaluateJs<Int>("42"))
+                    assertEquals(
+                        42 to "test",
+                        page.runtime.evaluateJs<Pair<Int, String>>("""eval({first: 42, second: "test"})""")
+                    )
+                    assertEquals(
+                        Person("Bob", "Lee Swagger"),
+                        page.runtime.evaluateJs<Person>("""eval({firstName: "Bob", lastName: "Lee Swagger"})""")
+                    )
+                }
+            }
         }
     }
 
@@ -221,8 +228,8 @@ class IntegrationTests {
     fun getAttributes_selectedWithoutValue() {
         runBlockingWithTimeout {
             chromeDpClient().webSocket().use { browser ->
-                browser.attachToNewPageAndAwaitPageLoad("https://www.htmlquick.com/reference/tags/select.html").use { page ->
-
+                browser.newPage().use { page ->
+                    page.goto("https://www.htmlquick.com/reference/tags/select.html")
                     val nodeId = page.dom.findNodeBySelector("select[name=carbrand] option[selected]")
                     val attributes1 = page.dom.getTypedAttributes(nodeId!!)
                     assertEquals(true, attributes1.selected)
