@@ -224,4 +224,4 @@ data class ChromeDPTarget(
  * [BrowserSession.attachToNewPage][org.hildan.chrome.devtools.targets.attachToNewPage].
  */
 suspend fun HttpClient.chromeWebSocket(webSocketDebuggerUrl: String): BrowserSession =
-    webSocketSession(webSocketDebuggerUrl).chromeDp().withSession(sessionId = null).toBrowserSession()
+    webSocketSession(webSocketDebuggerUrl).chromeDp().withSession(sessionId = null).asBrowserSession()

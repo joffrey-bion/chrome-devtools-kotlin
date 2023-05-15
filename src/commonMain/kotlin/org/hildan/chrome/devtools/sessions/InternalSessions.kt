@@ -7,7 +7,7 @@ import org.hildan.chrome.devtools.protocol.withSession
 import org.hildan.chrome.devtools.targets.*
 import org.hildan.chrome.devtools.targets.UberTarget
 
-internal fun ChromeDPSession.toBrowserSession(): BrowserSession = BrowserSessionImpl(this)
+internal fun ChromeDPSession.asBrowserSession(): BrowserSession = BrowserSessionImpl(this)
 
 private sealed class AbstractSession(
     protected val session: ChromeDPSession,
