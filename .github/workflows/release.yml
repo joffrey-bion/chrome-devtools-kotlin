@@ -31,10 +31,16 @@ jobs:
           # https://github.com/abiosoft/colima/blob/main/docs/FAQ.md#cannot-connect-to-the-docker-daemon-at-unixvarrundockersock-is-the-docker-daemon-running
           sudo ln -sf $HOME/.colima/default/docker.sock /var/run/docker.sock
 
-      - name: Test build before release
+      # We don't just 'build' here because we want to test KDoc generation and publication mechanism too
+      - name: Test local publish before release
         uses: gradle/gradle-build-action@v2
+        env:
+          # GPG keys for signing plugin (sign maven artifacts)
+          # see https://docs.gradle.org/current/userguide/signing_plugin.html#sec:in-memory-keys
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_SECRET_ASCII_ARMORED }}
+          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.GPG_PASSWORD }}
         with:
-          arguments: build
+          arguments: publishToMavenLocal
 
       - name: Compute release tag (with protocol version)
         run: echo "tag=${{ inputs.version }}-$(cat protocol/version.txt)" >> $GITHUB_OUTPUT
