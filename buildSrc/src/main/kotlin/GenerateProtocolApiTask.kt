@@ -1,23 +1,21 @@
 package org.hildan.chrome.devtools.build
 
-import org.gradle.api.DefaultTask
-import org.gradle.api.tasks.InputFile
-import org.gradle.api.tasks.InputFiles
-import org.gradle.api.tasks.OutputDirectory
-import org.gradle.api.tasks.TaskAction
-import org.hildan.chrome.devtools.build.generator.Generator
-import java.nio.file.Path
-import java.nio.file.Paths
+import org.gradle.api.*
+import org.gradle.api.tasks.*
+import org.hildan.chrome.devtools.build.generator.*
 
-open class GenerateProtocolApiTask : DefaultTask() {
+@CacheableTask
+abstract class GenerateProtocolApiTask : DefaultTask() {
 
     init {
         group = "protocol"
     }
 
+    @PathSensitive(PathSensitivity.RELATIVE)
     @InputFiles
     val protocolPaths = project.files("protocol/browser_protocol.json", "protocol/js_protocol.json")
 
+    @PathSensitive(PathSensitivity.RELATIVE)
     @InputFile
     val targetTypesPath = project.file("protocol/target_types.json")
 
