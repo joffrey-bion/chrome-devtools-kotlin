@@ -1,11 +1,10 @@
 import org.jetbrains.kotlin.gradle.targets.jvm.tasks.*
 
 plugins {
-    val kotlinVersion = "1.8.21"
-    kotlin("multiplatform") version kotlinVersion
-    kotlin("plugin.serialization") version kotlinVersion
-    kotlin("plugin.atomicfu") version kotlinVersion
-    id("org.jetbrains.dokka") version "1.8.10"
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.atomicfu)
+    alias(libs.plugins.dokka)
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.13.1"
     signing
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0"

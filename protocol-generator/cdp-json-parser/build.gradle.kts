@@ -1,7 +1,6 @@
 plugins {
-    val kotlinVersion = "1.8.21"
-    kotlin("jvm") version kotlinVersion
-    kotlin("plugin.serialization") version kotlinVersion
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 group = "org.hildan.chrome"

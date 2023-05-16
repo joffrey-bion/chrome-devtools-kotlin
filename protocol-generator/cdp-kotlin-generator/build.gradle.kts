@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.8.21"
+    alias(libs.plugins.kotlin.jvm)
 }
 
 group = "org.hildan.chrome"
