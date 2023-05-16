@@ -11,5 +11,5 @@ dependencies {
     implementation(gradleApi())
     implementation("org.hildan.chrome:cdp-kotlin-generator")
     implementation("org.hildan.chrome:cdp-json-parser")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+    implementation(libs.kotlinx.serialization.json)
 }

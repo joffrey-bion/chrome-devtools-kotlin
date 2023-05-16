@@ -1,5 +1,3 @@
-rootProject.name = "protocol-generator"
-
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
@@ -7,6 +5,3 @@ dependencyResolutionManagement {
         }
     }
 }
-
-include(":cdp-kotlin-generator")
-include(":cdp-json-parser")

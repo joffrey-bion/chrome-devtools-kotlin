@@ -4,6 +4,8 @@ kotlinx-coroutines = "1.7.0"
 kotlinx-serialization = "1.5.0"
 ktor = "2.3.0"
 
+kotlinpoet = "1.12.0"
+
 slf4j = "2.0.7"
 testcontainers = "1.18.0"
 
@@ -17,6 +19,8 @@ ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-contentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+
+kotlinpoet = { module = "com.squareup:kotlinpoet", version.ref = "kotlinpoet"}
 
 slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j"}
 
