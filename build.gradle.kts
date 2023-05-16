@@ -97,21 +97,31 @@ tasks.named<KotlinJvmTest>("jvmTest") {
 kotlin {
     targets.all {
         compilations.all {
-            tasks.named(compileKotlinTaskName).configure {
+            compileTaskProvider.configure {
+                dependsOn(generateProtocolApi)
+            }
+        }
+        val target = this
+        afterEvaluate {
+            tasks.named("${target.name}SourcesJar").configure {
                 dependsOn(generateProtocolApi)
             }
         }
     }
 }
 
-changelog {
-    githubUser = github.user
-    futureVersionTag = project.version.toString()
-    sinceTag = "0.5.0"
+tasks.sourcesJar {
+    dependsOn(generateProtocolApi)
 }
 
 tasks.dokkaHtml {
     dependsOn(generateProtocolApi)
+}
+
+changelog {
+    githubUser = github.user
+    futureVersionTag = project.version.toString()
+    sinceTag = "0.5.0"
 }
 
 nexusPublishing {
