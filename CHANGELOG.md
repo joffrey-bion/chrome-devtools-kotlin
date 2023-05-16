@@ -3,6 +3,17 @@
 ## [5.0.0\-1140464](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.0.0-1140464) (2023-05-16)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/4.5.0-1134181...5.0.0-1140464)
 
+This version is a big milestone for Chrome DevTools Kotlin!
+
+The library became multiplatform, with support for most Kotlin targets (JVM, JS, native desktop, iOS, watchOS, tvOS, etc.).
+
+The page creation and navigation was reworked! You can now use `newPage()` and `goto()` more intuitively, and with some resemblance to the well known Puppeteer. A bunch of old helpers were deprecated in favor of just these 2, which simplifies the API surface and makes it easier to grasp.
+
+The main session classes were also reworked by extracting and renaming their core interface. New session interfaces were generated for all types of target, and you can use the checked conversion functions from `ChildSession` to each of those target-specific sessions: `asPageSession`, `asWorkerSession`, `asSharedWorker`, etc.
+
+Check out the updated README if the automated migrations aren't working or the deprecation messages aren't clear enough.
+
+
 **Breaking changes:**
 
 - Use camelCase for enum values to make them compatible with Kotlin/JS [\#241](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/241)
