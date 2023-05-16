@@ -58,13 +58,12 @@ suspend fun BrowserSession.attachToNewPageAndAwaitPageLoad(
     }
 }
 
-@Suppress("DeprecatedCallableAddReplaceWith", "DEPRECATION")
+@Suppress("DeprecatedCallableAddReplaceWith")
 @Deprecated("This function will be removed in a future release, please use goto() instead.")
-suspend fun PageSession.navigateAndAwaitPageLoad(
-    url: String,
-    optionalArgs: NavigateRequest.Builder.() -> Unit = {},
-) {
-    navigateAndAwaitPageLoad(NavigateRequest.Builder(url = url).apply(optionalArgs).build())
+suspend fun PageSession.navigateAndAwaitPageLoad(url: String) {
+    goto(url) {
+        waitFor(GotoCompletionEvent.FrameStoppedLoading)
+    }
 }
 
 @Deprecated("This function will be removed in a future release, please use goto() instead.")

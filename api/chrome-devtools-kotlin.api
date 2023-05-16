@@ -45471,9 +45471,8 @@ public final class org/hildan/chrome/devtools/targets/TargetExtensionsKt {
 	public static final fun attachToPage (Lorg/hildan/chrome/devtools/sessions/BrowserSession;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun childPages (Lorg/hildan/chrome/devtools/sessions/PageSession;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun getTargetInfo (Lorg/hildan/chrome/devtools/sessions/PageSession;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun navigateAndAwaitPageLoad (Lorg/hildan/chrome/devtools/sessions/PageSession;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun navigateAndAwaitPageLoad (Lorg/hildan/chrome/devtools/sessions/PageSession;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun navigateAndAwaitPageLoad (Lorg/hildan/chrome/devtools/sessions/PageSession;Lorg/hildan/chrome/devtools/domains/page/NavigateRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun navigateAndAwaitPageLoad$default (Lorg/hildan/chrome/devtools/sessions/PageSession;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static final fun use (Lorg/hildan/chrome/devtools/sessions/BrowserSession;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun use (Lorg/hildan/chrome/devtools/sessions/PageSession;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun watchTargetsIn (Lorg/hildan/chrome/devtools/sessions/BrowserSession;Lkotlinx/coroutines/CoroutineScope;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
