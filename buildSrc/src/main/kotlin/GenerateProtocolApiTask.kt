@@ -2,7 +2,7 @@ package org.hildan.chrome.devtools.build
 
 import org.gradle.api.*
 import org.gradle.api.tasks.*
-import org.hildan.chrome.devtools.build.generator.*
+import org.hildan.chrome.devtools.protocol.generator.*
 
 @CacheableTask
 abstract class GenerateProtocolApiTask : DefaultTask() {

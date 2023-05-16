@@ -1,6 +1,6 @@
-package org.hildan.chrome.devtools.build.json
+package org.hildan.chrome.devtools.protocol.json
 
-import org.hildan.chrome.devtools.build.names.*
+import org.hildan.chrome.devtools.protocol.names.*
 
 // Workaround for https://github.com/ChromeDevTools/devtools-protocol/issues/244
 fun JsonDomain.pullNestedEnumsToTopLevel(): JsonDomain = with(EnumFixer()) {
@@ -43,13 +43,13 @@ private class EnumFixer {
     }
 
     private fun JsonDomainParameter.replaceNestedEnumsWithReferences(containingType: NamingConvention): JsonDomainParameter {
-        if (type == "string" && enum != null && enum.isNotEmpty()) {
+        if (type == "string" && enum != null && enum!!.isNotEmpty()) {
             val inferredName = containingType.inferParamClass(name) // TODO add domain?
             extraEnums.add(
                 InferredExtraEnumType(
                     inferredName = inferredName,
                     sources = listOf(InferenceSource(name, containingType)),
-                    enumValues = enum,
+                    enumValues = enum!!,
                 )
             )
             return copy(

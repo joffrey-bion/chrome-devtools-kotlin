@@ -1,12 +1,12 @@
-package org.hildan.chrome.devtools.build.generator
+package org.hildan.chrome.devtools.protocol.generator
 
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeSpec
-import org.hildan.chrome.devtools.build.model.ChromeDPDomain
-import org.hildan.chrome.devtools.build.model.ChromeDPEvent
-import org.hildan.chrome.devtools.build.names.Annotations
+import org.hildan.chrome.devtools.protocol.model.ChromeDPDomain
+import org.hildan.chrome.devtools.protocol.model.ChromeDPEvent
+import org.hildan.chrome.devtools.protocol.names.Annotations
 
 fun ChromeDPDomain.createDomainEventTypesFileSpec(): FileSpec =
     FileSpec.builder(packageName = names.eventsPackageName, fileName = names.eventsFilename).apply {

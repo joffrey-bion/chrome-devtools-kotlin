@@ -38,3 +38,5 @@ fun BuildScanExtension.addGithubActionsData() {
         value("Branch", ref.removePrefix("refs/heads/"))
     }
 }
+
+includeBuild("protocol-generator")

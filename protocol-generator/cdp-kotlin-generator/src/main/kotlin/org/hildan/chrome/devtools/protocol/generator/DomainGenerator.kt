@@ -1,12 +1,12 @@
-package org.hildan.chrome.devtools.build.generator
+package org.hildan.chrome.devtools.protocol.generator
 
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import kotlinx.serialization.DeserializationStrategy
-import org.hildan.chrome.devtools.build.model.ChromeDPDomain
-import org.hildan.chrome.devtools.build.model.ChromeDPEvent
-import org.hildan.chrome.devtools.build.names.Annotations
-import org.hildan.chrome.devtools.build.names.ExtDeclarations
+import org.hildan.chrome.devtools.protocol.model.ChromeDPDomain
+import org.hildan.chrome.devtools.protocol.model.ChromeDPEvent
+import org.hildan.chrome.devtools.protocol.names.Annotations
+import org.hildan.chrome.devtools.protocol.names.ExtDeclarations
 
 private const val SESSION_PROP = "session"
 private const val DESERIALIZERS_PROP = "deserializersByEventName"

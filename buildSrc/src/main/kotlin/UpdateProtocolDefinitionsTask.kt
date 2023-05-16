@@ -4,7 +4,7 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
-import org.hildan.chrome.devtools.build.json.ChromeJsonRepository
+import org.hildan.chrome.devtools.protocol.json.ChromeJsonRepository
 import java.net.URL
 import java.nio.file.Files
 import java.nio.file.Path

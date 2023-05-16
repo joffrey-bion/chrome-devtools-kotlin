@@ -79,6 +79,7 @@ kotlin {
                 implementation(libs.slf4j.simple)
                 implementation(libs.testcontainers.base)
                 implementation(libs.testcontainers.junit.jupiter)
+                implementation("org.hildan.chrome:cdp-json-parser")
             }
         }
     }

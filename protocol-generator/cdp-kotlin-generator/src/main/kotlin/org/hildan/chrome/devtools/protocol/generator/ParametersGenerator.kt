@@ -1,8 +1,8 @@
-package org.hildan.chrome.devtools.build.generator
+package org.hildan.chrome.devtools.protocol.generator
 
 import com.squareup.kotlinpoet.*
-import org.hildan.chrome.devtools.build.model.ChromeDPParameter
-import org.hildan.chrome.devtools.build.names.Annotations
+import org.hildan.chrome.devtools.protocol.model.ChromeDPParameter
+import org.hildan.chrome.devtools.protocol.names.Annotations
 
 internal fun TypeSpec.Builder.addPrimaryConstructorProps(props: List<ChromeDPParameter>) {
     val parameterSpecs = props.map {

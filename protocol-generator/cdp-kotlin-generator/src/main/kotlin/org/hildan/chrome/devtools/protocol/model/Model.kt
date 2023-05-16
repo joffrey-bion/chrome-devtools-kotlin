@@ -1,11 +1,11 @@
-package org.hildan.chrome.devtools.build.model
+package org.hildan.chrome.devtools.protocol.model
 
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
-import org.hildan.chrome.devtools.build.json.*
-import org.hildan.chrome.devtools.build.names.*
+import org.hildan.chrome.devtools.protocol.json.*
+import org.hildan.chrome.devtools.protocol.names.*
 import kotlin.reflect.KClass
 
 data class ChromeDPDomain(

@@ -1,10 +1,10 @@
-package org.hildan.chrome.devtools.build.names
+package org.hildan.chrome.devtools.protocol.names
 
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.MemberName
 import kotlinx.serialization.Serializable
-import org.hildan.chrome.devtools.build.json.*
+import org.hildan.chrome.devtools.protocol.json.*
 
 const val ROOT_PACKAGE_NAME = "org.hildan.chrome.devtools"
 

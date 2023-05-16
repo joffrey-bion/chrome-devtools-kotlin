@@ -1,9 +1,9 @@
-package org.hildan.chrome.devtools.build.generator
+package org.hildan.chrome.devtools.protocol.generator
 
 import com.squareup.kotlinpoet.*
-import org.hildan.chrome.devtools.build.model.ChromeDPCommand
-import org.hildan.chrome.devtools.build.names.Annotations
-import org.hildan.chrome.devtools.build.names.ExtDeclarations
+import org.hildan.chrome.devtools.protocol.model.ChromeDPCommand
+import org.hildan.chrome.devtools.protocol.names.Annotations
+import org.hildan.chrome.devtools.protocol.names.ExtDeclarations
 
 internal fun ChromeDPCommand.createInputTypeSpec(): TypeSpec {
     return TypeSpec.classBuilder(names.inputTypeName).apply {

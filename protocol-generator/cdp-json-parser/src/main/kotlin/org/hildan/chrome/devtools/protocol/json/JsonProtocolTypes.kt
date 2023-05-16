@@ -1,4 +1,4 @@
-package org.hildan.chrome.devtools.build.json
+package org.hildan.chrome.devtools.protocol.json
 
 import kotlinx.serialization.*
 import kotlinx.serialization.json.*

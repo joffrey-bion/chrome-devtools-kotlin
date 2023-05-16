@@ -1,8 +1,8 @@
-package org.hildan.chrome.devtools.build.json
+package org.hildan.chrome.devtools.protocol.json
 
 import java.net.URL
 
-internal object ChromeJsonRepository {
+object ChromeJsonRepository {
 
     private const val rawFilesBaseUrl = "https://raw.githubusercontent.com/ChromeDevTools/devtools-protocol"
 

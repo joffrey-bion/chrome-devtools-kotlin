@@ -1,4 +1,4 @@
-package org.hildan.chrome.devtools.build.names
+package org.hildan.chrome.devtools.protocol.names
 
 import com.squareup.kotlinpoet.ClassName
 

@@ -1,4 +1,4 @@
-package org.hildan.chrome.devtools.build.generator
+package org.hildan.chrome.devtools.protocol.generator
 
 import com.squareup.kotlinpoet.TypeName
 

@@ -9,12 +9,7 @@ repositories {
 
 dependencies {
     implementation(gradleApi())
-    implementation("com.squareup:kotlinpoet:1.12.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
-}
-
-tasks {
-    compileKotlin {
-        kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes")
-    }
+    implementation("org.hildan.chrome:cdp-kotlin-generator")
+    implementation("org.hildan.chrome:cdp-json-parser")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 }

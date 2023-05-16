@@ -6,8 +6,8 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 import org.hildan.chrome.devtools.build.diff.*
-import org.hildan.chrome.devtools.build.json.*
-import org.hildan.chrome.devtools.build.json.ChromeJsonRepository
+import org.hildan.chrome.devtools.protocol.json.*
+import org.hildan.chrome.devtools.protocol.json.ChromeJsonRepository
 import java.time.LocalDate
 
 private val json = Json { prettyPrint = true }

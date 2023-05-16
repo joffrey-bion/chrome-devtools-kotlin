@@ -1,11 +1,11 @@
-package org.hildan.chrome.devtools.build.generator
+package org.hildan.chrome.devtools.protocol.generator
 
 import com.squareup.kotlinpoet.*
 import kotlinx.serialization.*
-import org.hildan.chrome.devtools.build.model.ChromeDPDomain
-import org.hildan.chrome.devtools.build.model.ChromeDPType
-import org.hildan.chrome.devtools.build.model.DomainTypeDeclaration
-import org.hildan.chrome.devtools.build.names.Annotations
+import org.hildan.chrome.devtools.protocol.model.ChromeDPDomain
+import org.hildan.chrome.devtools.protocol.model.ChromeDPType
+import org.hildan.chrome.devtools.protocol.model.DomainTypeDeclaration
+import org.hildan.chrome.devtools.protocol.names.Annotations
 
 fun ChromeDPDomain.createDomainTypesFileSpec(): FileSpec =
     FileSpec.builder(packageName = names.packageName, fileName = names.typesFilename).apply {

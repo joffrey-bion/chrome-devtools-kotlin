@@ -1,15 +1,16 @@
-package org.hildan.chrome.devtools.build.generator
+package org.hildan.chrome.devtools.protocol.generator
 
 import com.squareup.kotlinpoet.FileSpec
-import org.hildan.chrome.devtools.build.json.ChromeProtocolDescriptor
-import org.hildan.chrome.devtools.build.json.TargetType
-import org.hildan.chrome.devtools.build.json.pullNestedEnumsToTopLevel
-import org.hildan.chrome.devtools.build.model.ChromeDPDomain
-import org.hildan.chrome.devtools.build.model.toChromeDPDomain
-import org.hildan.chrome.devtools.build.names.Annotations
-import org.hildan.chrome.devtools.build.names.ExtDeclarations
+import org.hildan.chrome.devtools.protocol.json.ChromeProtocolDescriptor
+import org.hildan.chrome.devtools.protocol.json.TargetType
+import org.hildan.chrome.devtools.protocol.json.pullNestedEnumsToTopLevel
+import org.hildan.chrome.devtools.protocol.model.ChromeDPDomain
+import org.hildan.chrome.devtools.protocol.model.toChromeDPDomain
+import org.hildan.chrome.devtools.protocol.names.Annotations
+import org.hildan.chrome.devtools.protocol.names.ExtDeclarations
 import java.nio.file.Files
 import java.nio.file.Path
+import kotlin.io.path.*
 
 class Generator(
     private val protocolFiles: List<Path>,
@@ -36,7 +37,7 @@ class Generator(
     }
 
     private fun loadProtocolDomains(): List<ChromeDPDomain> {
-        val descriptors = protocolFiles.map { ChromeProtocolDescriptor.fromJson(it.toFile().readText()) }
+        val descriptors = protocolFiles.map { ChromeProtocolDescriptor.fromJson(it.readText()) }
         if (descriptors.distinctBy { it.version }.size > 1) {
             error("Some descriptors have differing versions: ${descriptors.map { it.version }}")
         }

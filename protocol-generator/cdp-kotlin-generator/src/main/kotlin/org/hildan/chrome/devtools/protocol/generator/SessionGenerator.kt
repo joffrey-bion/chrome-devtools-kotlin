@@ -1,8 +1,8 @@
-package org.hildan.chrome.devtools.build.generator
+package org.hildan.chrome.devtools.protocol.generator
 
 import com.squareup.kotlinpoet.*
-import org.hildan.chrome.devtools.build.json.TargetType
-import org.hildan.chrome.devtools.build.names.ExtDeclarations
+import org.hildan.chrome.devtools.protocol.json.TargetType
+import org.hildan.chrome.devtools.protocol.names.ExtDeclarations
 
 fun createSessionInterfacesFileSpec(allTargets: List<TargetType>): FileSpec =
     FileSpec.builder(ExtDeclarations.sessionsPackage, ExtDeclarations.sessionsFileName).apply {

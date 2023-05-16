@@ -1,6 +1,6 @@
 package org.hildan.chrome.devtools.build.diff
 
-import org.hildan.chrome.devtools.build.json.*
+import org.hildan.chrome.devtools.protocol.json.*
 
 internal fun diffDomains(oldDomains: List<JsonDomain>, newDomains: List<JsonDomain>): DomainDiffStats {
     val domainsDiff = diffBy(oldDomains, newDomains) { it.domain }
