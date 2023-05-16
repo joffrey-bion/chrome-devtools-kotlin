@@ -4,9 +4,8 @@
 [![Github Build](https://img.shields.io/github/actions/workflow/status/joffrey-bion/chrome-devtools-kotlin/build.yml?branch=main)](https://github.com/joffrey-bion/chrome-devtools-kotlin/actions/workflows/build.yml)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/joffrey-bion/chrome-devtools-kotlin/blob/master/LICENSE)
 
-An asynchronous coroutine-based Kotlin client for the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
-
-Currently, this client is a JVM library, but it can easily become multiplatform, as it is not tied to any JVM-specific API.
+An asynchronous coroutine-based multiplatform Kotlin client for the
+[Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
 
 ## Protocol version & Code generation
 
@@ -55,38 +54,58 @@ Each type of target supports a different subset of the domains defined in the pr
 ### Sessions
 
 The protocol requires you to attach to a target in order to interact with it.
-Attaching to a target opens a target **_session_** of the relevant type, such as `ChromeBrowserSession` or 
-`ChromePageSession`.
+Attaching to a target opens a target **_session_** of the relevant type, such as `BrowserSession` or 
+`PageSession`.
 
-When connecting to Chrome, a browser target is automatically attached, thus you obtain a `ChromeBrowserSession`.
-You can then use this session to attach to other targets (child targets), such as pages (tabs).
+When connecting to Chrome, a browser target is automatically attached, thus you obtain a `BrowserSession`.
+You can then use this session to attach to other targets (child targets), such as pages.
 
 Each of the supported domains are defined as properties of the session type, which provides a type-safe way to know
 if the attached target supports a given domain.
-For instance, `ChromePageSession.dom` gives access to the DOM domain in `this` page session,
-which allows to issue commands and listen to DOM events.
+For instance, `PageSession.dom` gives access to the DOM domain in this page session, which allows to issue commands 
+and listen to DOM events.
 
-> Note: The supported set of domains for each target type is not clearly defined by the protocol, so I had to
-> extract this information from
+> Note: The supported set of domains for each target type is not clearly defined by the protocol, so I have to
+> regularly extract this information from
 > [Chromium's source code itself](https://source.chromium.org/search?q=%22session-%3ECreateAndAddHandler%22%20f:devtools&ss=chromium)
-> and define my own extra definition file: [target_types.json](./protocol/target_types.json).
+> and update my own extra definition file: [target_types.json](./protocol/target_types.json).
 > 
 > Because of this, there might be some missing domains on some session types at some point in time that require
 > manual adjustment.
-> If this is the case, use the `ChromePageSession.unsafe()` method on the session object to get full access to all domains
+> If this is the case, use the `PageSession.unsafe()` method on the session object to get full access to all domains
 > (also, please open an issue so I can fix the missing domain).
 
-## Usage
+## Quick Start
 
-### Connecting to the browser
+### Add the dependency
 
-You first need to have a browser running, exposing a debugger server.
-For instance, you can start a headless chrome with the following docker command, 
+This library is available on Maven Central.
+
+It requires a [Ktor engine](https://ktor.io/docs/http-client-engines.html) to work, so make sure to add one that
+supports the web sockets feature (check the
+[compatibility table](https://ktor.io/docs/http-client-engines.html#limitations)).
+For example, you can pick the CIO engine by adding this engine to your dependencies next to `chrome-devtools-kotlin`:
+
+```
+dependencies {
+    implementation("org.hildan.chrome:chrome-devtools-kotlin:$version")
+    implementation("io.ktor:ktor-client-cio:$ktorVersion")
+}
+```
+
+### Get a browser running
+
+This library doesn't provide a way to start a browser programmatically.
+It assumes a browser was started externally and exposes a debugger server.
+
+For instance, you can start a Headless Chrome browser with the following docker command, 
 which exposes the debugger server at `http://localhost:9222`:
 
 ```
 docker container run -d -p 9222:9222 zenika/alpine-chrome --no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 about:blank
 ```
+
+### Connecting to the browser
 
 The starting point of this library is the `ChromeDPClient`, which is created using the 
 "remote-debugging" URL that was passed to Chrome.
@@ -95,38 +114,33 @@ starts a "browser session":
 
 ```kotlin
 val client = ChromeDPClient("http://localhost:9222")
-val browserSession: ChromeBrowserSession = client.webSocket()
+val browserSession: BrowserSession = client.webSocket()
 ```
 
-The `ChromeBrowserSession` is not attached to a page target (tab), so you can only interact with 
-a subset of the protocol's API.
-All the supported domains for the browser sessions are available as properties.
-Here are a couple examples using the `target` and `storage` domains:
-
-```kotlin
-val targets = browserSession.target.getTargets()
-```
-
-```kotlin
-browserSession.storage.clearCookies()
-```
+When you're done with the session, don't forget to `close()` it in order to close the underlying web socket.
+You can also use the familiar `use { ... }` extension, which automatically closes the session in every code path
+leaving the lambda (even in case of exception).
 
 ### Connecting to targets
 
-The browser is a target in itself, but we're usually interested in more useful targets, such as pages (tabs).
-Once you have your browser session, you can use it to create targets and attach to them.
+The `BrowserSession` is attached to a browser target, but we're usually interested in more useful targets, such as pages.
+Once you have your browser session, you can use it to create child page targets and attach to them.
 Here is an example to create a new page target and attach to it:
 
 ```kotlin
-val browserSession = ChromeDPClient("http://localhost:9222").webSocket()
-val pageSession = browserSession.attachToNewPage("http://example.com")
+ChromeDPClient("http://localhost:9222").webSocket().use { browserSession ->
+    browserSession.newPage().use { pageSession ->
+        // goto() navigates the current page to the URL and awaits the 'load' event by default
+        pageSession.goto("http://example.com")
 
-// This page session has access to many useful protocol domains (e.g. dom, page...)
-val doc = pageSession.dom.getDocument().root
-val base64Img = pageSession.page.captureScreenshot {
-    format = ScreenshotFormat.jpeg
-    quality = 80
-}
+        // This page session has access to many useful protocol domains (e.g. dom, page...)
+        val doc = pageSession.dom.getDocument().root
+        val base64Img = pageSession.page.captureScreenshot {
+            format = ScreenshotFormat.jpeg
+            quality = 80
+        }
+    } // automatically closes the pageSession
+} // automatically closes the browserSession
 ```
 
 ### High level extensions
@@ -135,10 +149,10 @@ In addition to the generated domain commands and events, some extensions are pro
 Here are some of them:
 
 * `DOMDomain.findNodeBySelector(selector: String): NodeId?`: finds a node using a selector query
-* `ChromePageSession.clickOnElement(selector: String, clickDurationMillis, mouseButton)`: finds a node using a selector 
+* `PageSession.clickOnElement(selector: String, clickDurationMillis, mouseButton)`: finds a node using a selector 
   query and simulates a click on it
-* `ChromePageSession.navigateAndAwaitPageLoad(url: String)`: navigates and also waits for the next `frameStoppedLoading` event
-* `PageDomain.captureScreenshotToFile(outputFile: Path, request: CaptureScreenshotRequest = ...)`
+* `PageSession.goto(url: String)`: navigates to a URL and also waits for the next `load` event, or other events 
+* `PageDomain.captureScreenshotToFile(outputFile: Path, request: CaptureScreenshotRequest = ...)` (JVM-only)
 * `Runtime.evaluateJs(js: String): T?`: evaluates JS and returns the result
   (uses Kotlinx serialization to deserialize JS results)
 
@@ -149,8 +163,6 @@ Example usage of `Runtime.evaluateJs(js: String)`:
 ```kotlin
 @Serializable
 data class Person(val firstName: String, val lastName: String)
-
-val pageSession = ChromeDPClient().webSocket().attachToNewPage("http://google.com")
 
 val evaluatedInt = pageSession.runtime.evaluateJs<Int>("42")
 assertEquals(42, evaluatedInt)
@@ -177,26 +189,6 @@ also replaces the host in subsequent web socket URLs (returned by Chrome) by the
 `remoteDebugUrl`.
 This is necessary because Chrome uses the `Host` header to build these URLs, and it would be incorrect to keep this.
 
-## Add the dependency
-
-This library is available on Maven Central.
-
-Using Gradle:
-
-```
-implementation("org.hildan.chrome:chrome-devtools-kotlin:$version")
-```
-
-Using Maven:
-
-```
-<dependency>
-  <groupId>org.hildan.chrome</groupId>
-  <artifactId>chrome-devtools-kotlin</artifactId>
-  <version>$VERSION</version>
-</dependency>
-```
-
 ## License
 
 This project is distributed under the MIT license.
@@ -208,6 +200,7 @@ If you're looking for Chrome Devtools Protocol clients _in Kotlin_, I have only 
 This is the reactive equivalent of this project.
 The main differences are the following:
 
+* it only supports the JVM platform
 * it uses a _reactive_ API (as opposed to coroutines and suspend functions)
 * it doesn't distinguish target types, and thus doesn't restrict the available domains at compile time
   (it's the equivalent of always using `unsafe()` in `chrome-devtools-kotlin`)
