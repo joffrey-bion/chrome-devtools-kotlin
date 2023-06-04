@@ -1626,7 +1626,9 @@
                         "IdTokenInvalidContentType",
                         "ErrorIdToken",
                         "Canceled",
-                        "RpPageNotVisible"
+                        "RpPageNotVisible",
+                        "SilentMediationFailure",
+                        "ThirdPartyCookiesBlocked"
                     ]
                 },
                 {
@@ -1852,6 +1854,19 @@
                             "type": "boolean"
                         }
                     ]
+                },
+                {
+                    "name": "checkFormsIssues",
+                    "description": "Runs the form issues check for the target page. Found issues are reported\nusing Audits.issueAdded event.",
+                    "returns": [
+                        {
+                            "name": "formIssues",
+                            "type": "array",
+                            "items": {
+                                "$ref": "GenericIssueDetails"
+                            }
+                        }
+                    ]
                 }
             ],
             "events": [
@@ -1912,6 +1927,12 @@
                             "name": "fieldId",
                             "description": "Identifies a field that serves as an anchor for autofill.",
                             "$ref": "DOM.BackendNodeId"
+                        },
+                        {
+                            "name": "frameId",
+                            "description": "Identifies the frame that field belongs to.",
+                            "optional": true,
+                            "$ref": "Page.FrameId"
                         },
                         {
                             "name": "card",
@@ -2614,6 +2635,16 @@
                             "$ref": "BrowserCommandId"
                         }
                     ]
+                },
+                {
+                    "name": "addPrivacySandboxEnrollmentOverride",
+                    "description": "Allows a site to use privacy sandbox features that require enrollment\nwithout the site actually being enrolled. Only supported on page targets.",
+                    "parameters": [
+                        {
+                            "name": "url",
+                            "type": "string"
+                        }
+                    ]
                 }
             ],
             "events": [
@@ -2799,6 +2830,36 @@
                             "description": "Value range in the underlying resource (if available).",
                             "optional": true,
                             "$ref": "SourceRange"
+                        },
+                        {
+                            "name": "specificity",
+                            "description": "Specificity of the selector.",
+                            "experimental": true,
+                            "optional": true,
+                            "$ref": "Specificity"
+                        }
+                    ]
+                },
+                {
+                    "id": "Specificity",
+                    "description": "Specificity:\nhttps://drafts.csswg.org/selectors/#specificity-rules",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "a",
+                            "description": "The a component, which represents the number of ID selectors.",
+                            "type": "integer"
+                        },
+                        {
+                            "name": "b",
+                            "description": "The b component, which represents the number of class selectors, attributes selectors, and\npseudo-classes.",
+                            "type": "integer"
+                        },
+                        {
+                            "name": "c",
+                            "description": "The c component, which represents the number of type selectors and pseudo-elements.",
+                            "type": "integer"
                         }
                     ]
                 },
@@ -4360,6 +4421,9 @@
         {
             "domain": "CacheStorage",
             "experimental": true,
+            "dependencies": [
+                "Storage"
+            ],
             "types": [
                 {
                     "id": "CacheId",
@@ -4453,6 +4517,12 @@
                             "type": "string"
                         },
                         {
+                            "name": "storageBucket",
+                            "description": "Storage bucket of the cache.",
+                            "optional": true,
+                            "$ref": "Storage.StorageBucket"
+                        },
+                        {
                             "name": "cacheName",
                             "description": "The name of the cache.",
                             "type": "string"
@@ -4520,7 +4590,7 @@
                     "parameters": [
                         {
                             "name": "securityOrigin",
-                            "description": "At least and at most one of securityOrigin, storageKey must be specified.\nSecurity origin.",
+                            "description": "At least and at most one of securityOrigin, storageKey, storageBucket must be specified.\nSecurity origin.",
                             "optional": true,
                             "type": "string"
                         },
@@ -4529,6 +4599,12 @@
                             "description": "Storage key.",
                             "optional": true,
                             "type": "string"
+                        },
+                        {
+                            "name": "storageBucket",
+                            "description": "Storage bucket. If not specified, it uses the default bucket.",
+                            "optional": true,
+                            "$ref": "Storage.StorageBucket"
                         }
                     ],
                     "returns": [
@@ -8662,7 +8738,7 @@
                         },
                         {
                             "name": "quality",
-                            "description": "Compression quality from range [0..100] (jpeg only).",
+                            "description": "Compression quality from range [0..100] (jpeg and webp only).",
                             "optional": true,
                             "type": "integer"
                         },
@@ -11125,6 +11201,12 @@
                             "type": "number"
                         },
                         {
+                            "name": "receiveHeadersStart",
+                            "description": "Started receiving response headers.",
+                            "experimental": true,
+                            "type": "number"
+                        },
+                        {
                             "name": "receiveHeadersEnd",
                             "description": "Finished receiving response headers.",
                             "type": "number"
@@ -12527,6 +12609,34 @@
                     ]
                 },
                 {
+                    "id": "ContentSecurityPolicySource",
+                    "experimental": true,
+                    "type": "string",
+                    "enum": [
+                        "HTTP",
+                        "Meta"
+                    ]
+                },
+                {
+                    "id": "ContentSecurityPolicyStatus",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "effectiveDirectives",
+                            "type": "string"
+                        },
+                        {
+                            "name": "isEnforced",
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "source",
+                            "$ref": "ContentSecurityPolicySource"
+                        }
+                    ]
+                },
+                {
                     "id": "SecurityIsolationStatus",
                     "experimental": true,
                     "type": "object",
@@ -12540,6 +12650,14 @@
                             "name": "coep",
                             "optional": true,
                             "$ref": "CrossOriginEmbedderPolicyStatus"
+                        },
+                        {
+                            "name": "csp",
+                            "optional": true,
+                            "type": "array",
+                            "items": {
+                                "$ref": "ContentSecurityPolicyStatus"
+                            }
                         }
                     ]
                 },
@@ -16393,6 +16511,7 @@
                         "ActivationNavigationsDisallowedForBug1234857",
                         "ErrorDocument",
                         "FencedFramesEmbedder",
+                        "CookieDisabled",
                         "WebSocket",
                         "WebTransport",
                         "WebRTC",
@@ -16439,6 +16558,7 @@
                         "IndexedDBEvent",
                         "Dummy",
                         "AuthorizationHeader",
+                        "WebSerial",
                         "ContentSecurityHandler",
                         "ContentWebAuthenticationAPI",
                         "ContentFileChooser",
@@ -17722,6 +17842,17 @@
                     "parameters": [
                         {
                             "name": "enabled",
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                {
+                    "name": "setPrerenderingAllowed",
+                    "description": "Enable/disable prerendering manually.\n\nThis command is a short-term solution for https://crbug.com/1440085.\nSee https://docs.google.com/document/d/12HVmFxYj5Jc-eJr5OmWsa2bqTJsbgGLKI6ZIyx0_wpA\nfor more details.\n\nTODO(https://crbug.com/1440085): Remove this once Puppeteer supports tab targets.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "isAllowed",
                             "type": "boolean"
                         }
                     ]
@@ -20035,6 +20166,11 @@
                             "type": "string"
                         },
                         {
+                            "name": "bucketId",
+                            "description": "Storage bucket to update.",
+                            "type": "string"
+                        },
+                        {
                             "name": "cacheName",
                             "description": "Name of cache in origin.",
                             "type": "string"
@@ -20053,6 +20189,11 @@
                         {
                             "name": "storageKey",
                             "description": "Storage key to update.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "bucketId",
+                            "description": "Storage bucket to update.",
                             "type": "string"
                         }
                     ]
@@ -23236,18 +23377,8 @@
                         "SameSiteCrossOriginRedirectNotOptInInMainFrameNavigation",
                         "SameSiteCrossOriginNavigationNotOptInInMainFrameNavigation",
                         "MemoryPressureOnTrigger",
-                        "MemoryPressureAfterTriggered"
-                    ]
-                },
-                {
-                    "id": "PreloadEnabledState",
-                    "type": "string",
-                    "enum": [
-                        "Enabled",
-                        "DisabledByDataSaver",
-                        "DisabledByBatterySaver",
-                        "DisabledByPreference",
-                        "NotSupported"
+                        "MemoryPressureAfterTriggered",
+                        "PrerenderingDisabledByDevTools"
                     ]
                 },
                 {
@@ -23261,6 +23392,43 @@
                         "Success",
                         "Failure",
                         "NotSupported"
+                    ]
+                },
+                {
+                    "id": "PrefetchStatus",
+                    "description": "TODO(https://crbug.com/1384419): revisit the list of PrefetchStatus and\nfilter out the ones that aren't necessary to the developers.",
+                    "type": "string",
+                    "enum": [
+                        "PrefetchAllowed",
+                        "PrefetchFailedIneligibleRedirect",
+                        "PrefetchFailedInvalidRedirect",
+                        "PrefetchFailedMIMENotSupported",
+                        "PrefetchFailedNetError",
+                        "PrefetchFailedNon2XX",
+                        "PrefetchFailedPerPageLimitExceeded",
+                        "PrefetchEvicted",
+                        "PrefetchHeldback",
+                        "PrefetchIneligibleRetryAfter",
+                        "PrefetchIsPrivacyDecoy",
+                        "PrefetchIsStale",
+                        "PrefetchNotEligibleBrowserContextOffTheRecord",
+                        "PrefetchNotEligibleDataSaverEnabled",
+                        "PrefetchNotEligibleExistingProxy",
+                        "PrefetchNotEligibleHostIsNonUnique",
+                        "PrefetchNotEligibleNonDefaultStoragePartition",
+                        "PrefetchNotEligibleSameSiteCrossOriginPrefetchRequiredProxy",
+                        "PrefetchNotEligibleSchemeIsNotHttps",
+                        "PrefetchNotEligibleUserHasCookies",
+                        "PrefetchNotEligibleUserHasServiceWorker",
+                        "PrefetchNotEligibleBatterySaverEnabled",
+                        "PrefetchNotEligiblePreloadingDisabled",
+                        "PrefetchNotFinishedInTime",
+                        "PrefetchNotStarted",
+                        "PrefetchNotUsedCookiesChanged",
+                        "PrefetchProxyNotAvailable",
+                        "PrefetchResponseUsed",
+                        "PrefetchSuccessfulButNotUsed",
+                        "PrefetchNotUsedProbeFailed"
                     ]
                 }
             ],
@@ -23326,8 +23494,16 @@
                     "description": "Fired when a preload enabled state is updated.",
                     "parameters": [
                         {
-                            "name": "state",
-                            "$ref": "PreloadEnabledState"
+                            "name": "disabledByPreference",
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "disabledByDataSaver",
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "disabledByBatterySaver",
+                            "type": "boolean"
                         }
                     ]
                 },
@@ -23351,6 +23527,10 @@
                         {
                             "name": "status",
                             "$ref": "PreloadingStatus"
+                        },
+                        {
+                            "name": "prefetchStatus",
+                            "$ref": "PrefetchStatus"
                         }
                     ]
                 },
@@ -23363,17 +23543,13 @@
                             "$ref": "PreloadingAttemptKey"
                         },
                         {
-                            "name": "initiatingFrameId",
-                            "description": "The frame id of the frame initiating prerender.",
-                            "$ref": "Page.FrameId"
-                        },
-                        {
-                            "name": "prerenderingUrl",
-                            "type": "string"
-                        },
-                        {
                             "name": "status",
                             "$ref": "PreloadingStatus"
+                        },
+                        {
+                            "name": "prerenderStatus",
+                            "optional": true,
+                            "$ref": "PrerenderFinalStatus"
                         }
                     ]
                 },
@@ -23408,6 +23584,15 @@
                     "enum": [
                         "SignIn",
                         "SignUp"
+                    ]
+                },
+                {
+                    "id": "DialogType",
+                    "description": "Whether the dialog shown is an account chooser or an auto re-authentication dialog.",
+                    "type": "string",
+                    "enum": [
+                        "AccountChooser",
+                        "AutoReauthn"
                     ]
                 },
                 {
@@ -23468,6 +23653,10 @@
                         {
                             "name": "dialogId",
                             "type": "string"
+                        },
+                        {
+                            "name": "dialogType",
+                            "$ref": "DialogType"
                         },
                         {
                             "name": "accounts",
