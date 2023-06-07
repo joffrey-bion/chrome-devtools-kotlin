@@ -139,3 +139,5 @@ private fun InferredExtraEnumType.toTypeDeclaration(): JsonDomainType = JsonDoma
     enum = enumValues,
     items = null,
 )
+
+private fun String.capitalize() = replaceFirstChar { it.titlecase() }

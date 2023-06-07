@@ -2,14 +2,15 @@ package org.hildan.chrome.devtools.protocol.names
 
 import com.squareup.kotlinpoet.ClassName
 
-inline class DomainNaming(
+@JvmInline
+value class DomainNaming(
     val domainName: String,
 ) {
     val filename
         get() = "${domainName}Domain"
 
     val packageName
-        get() = "$ROOT_PACKAGE_NAME.domains.${domainName.toLowerCase()}"
+        get() = "$ROOT_PACKAGE_NAME.domains.${domainName.lowercase()}"
 
     val domainClassName
         get() = ClassName(packageName, "${domainName}Domain")
@@ -29,12 +30,12 @@ inline class DomainNaming(
 
     val targetFieldName
         get() = when {
-            domainName[1].isLowerCase() -> domainName.decapitalize()
-            domainName.all { it.isUpperCase() } -> domainName.toLowerCase()
+            domainName[1].isLowerCase() -> domainName.replaceFirstChar { it.lowercase() }
+            domainName.all { it.isUpperCase() } -> domainName.lowercase()
             else -> {
                 // This handles domains starting with acronyms (DOM, CSS...) by lowercasing the whole acronym
                 val firstLowercaseIndex = domainName.indexOfFirst { it.isLowerCase() }
-                domainName.substring(0, firstLowercaseIndex - 1).toLowerCase() + domainName.substring(
+                domainName.substring(0, firstLowercaseIndex - 1).lowercase() + domainName.substring(
                     firstLowercaseIndex - 1)
             }
         }
@@ -69,3 +70,5 @@ data class EventNaming(
     val legacyMethodName = eventName
     val eventTypeName = domain.eventsParentClassName.nestedClass(eventName.capitalize())
 }
+
+private fun String.capitalize() = replaceFirstChar { it.titlecase() }

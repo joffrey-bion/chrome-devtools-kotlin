@@ -2,9 +2,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import org.hildan.chrome.devtools.extensions.clickOnElement
 import org.hildan.chrome.devtools.protocol.ChromeDPClient
-import org.hildan.chrome.devtools.targets.attachToNewPageAndAwaitPageLoad
-import org.hildan.chrome.devtools.targets.attachToPage
-import org.hildan.chrome.devtools.targets.childPages
+import org.hildan.chrome.devtools.sessions.asPageSession
+import org.hildan.chrome.devtools.sessions.childPages
+import org.hildan.chrome.devtools.sessions.goto
+import org.hildan.chrome.devtools.sessions.newPage
 import java.nio.file.Paths
 
 // Run an actual browser first:
@@ -22,7 +23,8 @@ private suspend fun testCrossOriginIFrame() {
     println("Connected to browser")
     delay(1000)
 
-    val page = browserSession.attachToNewPageAndAwaitPageLoad(url = "file://C:\\Projects\\chrome-devtools-kotlin\\src\\test\\resources\\page-with-cross-origin-iframe.html")
+    val page = browserSession.newPage()
+    page.goto(url = "file://C:\\Projects\\chrome-devtools-kotlin\\src\\test\\resources\\page-with-cross-origin-iframe.html")
     println("Navigated to page")
 
     val targets = browserSession.target.getTargets()
@@ -30,7 +32,7 @@ private suspend fun testCrossOriginIFrame() {
     delay(1000)
 
     val iFrameTarget = targets.targetInfos.first { it.type == "iframe" }
-    val iFrameSession = browserSession.attachToPage(iFrameTarget.targetId)
+    val iFrameSession = browserSession.attachToTarget(iFrameTarget.targetId).asPageSession()
 
     delay(3000)
 
@@ -57,7 +59,8 @@ private suspend fun testChildPage() {
     println("Connected to browser")
     delay(1000)
 
-    val page = browserSession.attachToNewPageAndAwaitPageLoad(url = "file://C:\\Projects\\chrome-devtools-kotlin\\src\\test\\resources\\page.html")
+    val page = browserSession.newPage()
+    page.goto(url = "file://C:\\Projects\\chrome-devtools-kotlin\\src\\test\\resources\\page.html")
     println("Navigated to Google")
     delay(5000)
 
@@ -69,7 +72,7 @@ private suspend fun testChildPage() {
     println(newTarget)
 
     delay(2000)
-    val page2 = browserSession.attachToPage(newTarget.targetId)
+    val page2 = browserSession.attachToTarget(newTarget.targetId).asPageSession()
     println("Attached to child page")
 
     delay(1000)
