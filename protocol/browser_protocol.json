@@ -1479,6 +1479,7 @@
                 },
                 {
                     "id": "NavigatorUserAgentIssueDetails",
+                    "deprecated": true,
                     "type": "object",
                     "properties": [
                         {
@@ -1506,7 +1507,8 @@
                         "FormInputAssignedAutocompleteValueToIdOrNameAttributeError",
                         "FormLabelHasNeitherForNorNestedInput",
                         "FormLabelForMatchesNonExistingIdError",
-                        "FormInputHasWrongButWellIntendedAutocompleteValueError"
+                        "FormInputHasWrongButWellIntendedAutocompleteValueError",
+                        "ResponseWasBlockedByORB"
                     ]
                 },
                 {
@@ -1533,6 +1535,11 @@
                             "name": "violatingNodeAttribute",
                             "optional": true,
                             "type": "string"
+                        },
+                        {
+                            "name": "request",
+                            "optional": true,
+                            "$ref": "AffectedRequest"
                         }
                     ]
                 },
@@ -1632,6 +1639,32 @@
                     ]
                 },
                 {
+                    "id": "FederatedAuthUserInfoRequestIssueDetails",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "federatedAuthUserInfoRequestIssueReason",
+                            "$ref": "FederatedAuthUserInfoRequestIssueReason"
+                        }
+                    ]
+                },
+                {
+                    "id": "FederatedAuthUserInfoRequestIssueReason",
+                    "description": "Represents the failure reason when a getUserInfo() call fails.\nShould be updated alongside FederatedAuthUserInfoRequestResult in\nthird_party/blink/public/mojom/devtools/inspector_issue.mojom.",
+                    "type": "string",
+                    "enum": [
+                        "NotSameOrigin",
+                        "NotIframe",
+                        "NotPotentiallyTrustworthy",
+                        "NoApiPermission",
+                        "NotSignedInWithIdp",
+                        "NoAccountSharingPermission",
+                        "InvalidConfigOrWellKnown",
+                        "InvalidAccountsResponse",
+                        "NoReturningUserFromFetchedAccounts"
+                    ]
+                },
+                {
                     "id": "ClientHintIssueDetails",
                     "description": "This issue tracks client hints related issues. It's used to deprecate old\nfeatures, encourage the use of new ones, and provide general guidance.",
                     "type": "object",
@@ -1643,6 +1676,58 @@
                         {
                             "name": "clientHintIssueReason",
                             "$ref": "ClientHintIssueReason"
+                        }
+                    ]
+                },
+                {
+                    "id": "FailedRequestInfo",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "url",
+                            "description": "The URL that failed to load.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "failureMessage",
+                            "description": "The failure message for the failed request.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "requestId",
+                            "optional": true,
+                            "$ref": "Network.RequestId"
+                        }
+                    ]
+                },
+                {
+                    "id": "StyleSheetLoadingIssueReason",
+                    "type": "string",
+                    "enum": [
+                        "LateImportRule",
+                        "RequestFailed"
+                    ]
+                },
+                {
+                    "id": "StylesheetLoadingIssueDetails",
+                    "description": "This issue warns when a referenced stylesheet couldn't be loaded.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "sourceCodeLocation",
+                            "description": "Source code position that referenced the failing stylesheet.",
+                            "$ref": "SourceCodeLocation"
+                        },
+                        {
+                            "name": "styleSheetLoadingIssueReason",
+                            "description": "Reason why the stylesheet couldn't be loaded.",
+                            "$ref": "StyleSheetLoadingIssueReason"
+                        },
+                        {
+                            "name": "failedRequestInfo",
+                            "description": "Contains additional info when the failure was due to a request.",
+                            "optional": true,
+                            "$ref": "FailedRequestInfo"
                         }
                     ]
                 },
@@ -1666,7 +1751,9 @@
                         "DeprecationIssue",
                         "ClientHintIssue",
                         "FederatedAuthRequestIssue",
-                        "BounceTrackingIssue"
+                        "BounceTrackingIssue",
+                        "StylesheetLoadingIssue",
+                        "FederatedAuthUserInfoRequestIssue"
                     ]
                 },
                 {
@@ -1726,6 +1813,7 @@
                         },
                         {
                             "name": "navigatorUserAgentIssueDetails",
+                            "deprecated": true,
                             "optional": true,
                             "$ref": "NavigatorUserAgentIssueDetails"
                         },
@@ -1753,6 +1841,16 @@
                             "name": "bounceTrackingIssueDetails",
                             "optional": true,
                             "$ref": "BounceTrackingIssueDetails"
+                        },
+                        {
+                            "name": "stylesheetLoadingIssueDetails",
+                            "optional": true,
+                            "$ref": "StylesheetLoadingIssueDetails"
+                        },
+                        {
+                            "name": "federatedAuthUserInfoRequestIssueDetails",
+                            "optional": true,
+                            "$ref": "FederatedAuthUserInfoRequestIssueDetails"
                         }
                     ]
                 },
@@ -1916,6 +2014,36 @@
                             "type": "string"
                         }
                     ]
+                },
+                {
+                    "id": "AddressField",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "name",
+                            "description": "address field name, for example GIVEN_NAME.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "value",
+                            "description": "address field name, for example Jon Doe.",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "id": "Address",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "fields",
+                            "description": "fields and values defining a test address.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "AddressField"
+                            }
+                        }
+                    ]
                 }
             ],
             "commands": [
@@ -1938,6 +2066,19 @@
                             "name": "card",
                             "description": "Credit card information to fill out the form. Credit card data is not saved.",
                             "$ref": "CreditCard"
+                        }
+                    ]
+                },
+                {
+                    "name": "setAddresses",
+                    "description": "Set addresses so that developers can verify their forms implementation.",
+                    "parameters": [
+                        {
+                            "name": "addresses",
+                            "type": "array",
+                            "items": {
+                                "$ref": "Address"
+                            }
                         }
                     ]
                 }
@@ -11534,7 +11675,11 @@
                         "InsecurePrivateNetwork",
                         "InvalidPrivateNetworkAccess",
                         "UnexpectedPrivateNetworkAccess",
-                        "NoCorsRedirectModeNotFollow"
+                        "NoCorsRedirectModeNotFollow",
+                        "PreflightMissingPrivateNetworkAccessId",
+                        "PreflightMissingPrivateNetworkAccessName",
+                        "PrivateNetworkAccessPermissionUnavailable",
+                        "PrivateNetworkAccessPermissionDenied"
                     ]
                 },
                 {
@@ -14172,6 +14317,7 @@
                             "enum": [
                                 "Ok",
                                 "InvalidArgument",
+                                "MissingIssuerKeys",
                                 "FailedPrecondition",
                                 "ResourceExhausted",
                                 "AlreadyExists",
@@ -15572,11 +15718,10 @@
                         "ch-ua-platform",
                         "ch-ua-model",
                         "ch-ua-mobile",
-                        "ch-ua-full",
+                        "ch-ua-form-factor",
                         "ch-ua-full-version",
                         "ch-ua-full-version-list",
                         "ch-ua-platform-version",
-                        "ch-ua-reduced",
                         "ch-ua-wow64",
                         "ch-viewport-height",
                         "ch-viewport-width",
@@ -16512,6 +16657,7 @@
                         "ErrorDocument",
                         "FencedFramesEmbedder",
                         "CookieDisabled",
+                        "HTTPAuthRequired",
                         "WebSocket",
                         "WebTransport",
                         "WebRTC",
@@ -16523,14 +16669,12 @@
                         "DocumentLoaded",
                         "DedicatedWorkerOrWorklet",
                         "OutstandingNetworkRequestOthers",
-                        "OutstandingIndexedDBTransaction",
                         "RequestedMIDIPermission",
                         "RequestedAudioCapturePermission",
                         "RequestedVideoCapturePermission",
                         "RequestedBackForwardCacheBlockedSensors",
                         "RequestedBackgroundWorkPermission",
                         "BroadcastChannel",
-                        "IndexedDBConnection",
                         "WebXR",
                         "SharedWorker",
                         "WebLocks",
@@ -16557,8 +16701,10 @@
                         "KeepaliveRequest",
                         "IndexedDBEvent",
                         "Dummy",
-                        "AuthorizationHeader",
-                        "WebSerial",
+                        "JsNetworkRequestReceivedCacheControlNoStoreResource",
+                        "WebRTCSticky",
+                        "WebTransportSticky",
+                        "WebSocketSticky",
                         "ContentSecurityHandler",
                         "ContentWebAuthenticationAPI",
                         "ContentFileChooser",
@@ -16687,6 +16833,13 @@
                         {
                             "name": "includeCommandLineAPI",
                             "description": "Specifies whether command line API should be available to the script, defaults\nto false.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "runImmediately",
+                            "description": "If true, runs the script immediately on existing execution contexts or worlds.\nDefault: false.",
                             "experimental": true,
                             "optional": true,
                             "type": "boolean"
@@ -20148,6 +20301,18 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "setAttributionReportingLocalTestingMode",
+                    "description": "https://wicg.github.io/attribution-reporting-api/",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "enabled",
+                            "description": "If enabled, noise is suppressed and reports are sent immediately.",
+                            "type": "boolean"
+                        }
+                    ]
                 }
             ],
             "events": [
@@ -23378,7 +23543,8 @@
                         "SameSiteCrossOriginNavigationNotOptInInMainFrameNavigation",
                         "MemoryPressureOnTrigger",
                         "MemoryPressureAfterTriggered",
-                        "PrerenderingDisabledByDevTools"
+                        "PrerenderingDisabledByDevTools",
+                        "ResourceLoadBlockedByClient"
                     ]
                 },
                 {
@@ -23504,6 +23670,14 @@
                         {
                             "name": "disabledByBatterySaver",
                             "type": "boolean"
+                        },
+                        {
+                            "name": "disabledByHoldbackPrefetchSpeculationRules",
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "disabledByHoldbackPrerenderSpeculationRules",
+                            "type": "boolean"
                         }
                     ]
                 },
@@ -23531,6 +23705,10 @@
                         {
                             "name": "prefetchStatus",
                             "$ref": "PrefetchStatus"
+                        },
+                        {
+                            "name": "requestId",
+                            "$ref": "Network.RequestId"
                         }
                     ]
                 },
@@ -23550,6 +23728,12 @@
                             "name": "prerenderStatus",
                             "optional": true,
                             "$ref": "PrerenderFinalStatus"
+                        },
+                        {
+                            "name": "disallowedMojoInterface",
+                            "description": "This is used to give users more information about the name of Mojo interface\nthat is incompatible with prerender and has caused the cancellation of the attempt.",
+                            "optional": true,
+                            "type": "string"
                         }
                     ]
                 },
