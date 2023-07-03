@@ -1,7 +1,9 @@
 import com.gradle.scan.plugin.BuildScanExtension
+import de.fayard.refreshVersions.core.StabilityLevel
 
 plugins {
     id("com.gradle.enterprise") version "3.12.4"
+    id("de.fayard.refreshVersions") version "0.51.0"
 }
 
 rootProject.name = "chrome-devtools-kotlin"
@@ -36,6 +38,13 @@ fun BuildScanExtension.addGithubActionsData() {
         value("Tag", ref.removePrefix("refs/tags/"))
     } else {
         value("Branch", ref.removePrefix("refs/heads/"))
+    }
+}
+
+refreshVersions {
+    versionsPropertiesFile = file("build/tmp/refreshVersions/versions.properties").apply { parentFile.mkdirs() }
+    rejectVersionIf {
+        candidate.stabilityLevel != StabilityLevel.Stable
     }
 }
 
