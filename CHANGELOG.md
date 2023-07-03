@@ -1,5 +1,27 @@
 # Change Log
 
+## [5.1.0\-1165014](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.1.0-1165014) (2023-07-03)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.0.0-1152884...5.1.0-1165014)
+
+**Implemented enhancements:**
+
+- Add support for `tvosSimulatorArm64` target [\#261](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/261)
+
+**Merged pull requests:**
+
+- Update Gradle Wrapper from 8.1.1 to 8.2 [\#260](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/260) ([@joffrey-bion](https://github.com/joffrey-bion))
+
+**Upgraded dependencies:**
+
+- Update to Chrome DevTools Protocol version 1165014 [\#258](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/258) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Upgrade atomicfu to version 0.21.0 [\#267](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/267)
+- Upgrade Ktor to version 2.3.2 [\#266](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/266)
+- Upgrade Kotlinx Serialization to version 1.5.1 [\#265](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/265)
+- Upgrade Kotlinx Coroutines to version 1.7.2 [\#264](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/264)
+- Upgrade Dokka to version 1.8.20 [\#263](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/263)
+- Upgrade Kotlin to version 1.8.22 [\#262](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/262)
+- Upgrade Ktor to 2.3.1 [\#259](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/259)
+
 ## [5.0.0\-1152884](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.0.0-1152884) (2023-06-07)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.0.0-1140464...5.0.0-1152884)
 
