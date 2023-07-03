@@ -61,7 +61,7 @@ kotlin {
             dependencies {
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.serialization.json)
-                implementation("org.jetbrains.kotlinx:atomicfu:0.20.2")
+                implementation(libs.kotlinx.atomicfu)
 
                 api(libs.ktor.client.core)
                 implementation(libs.ktor.client.contentNegotiation)
