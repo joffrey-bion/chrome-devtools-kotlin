@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.atomicfu)
     alias(libs.plugins.dokka)
-    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.13.1"
+    alias(libs.plugins.binary.compatibility.validator)
     signing
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
     id("org.hildan.github.changelog") version "1.13.1"
