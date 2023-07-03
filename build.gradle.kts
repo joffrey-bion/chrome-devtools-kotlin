@@ -44,6 +44,7 @@ kotlin {
     watchosSimulatorArm64()
     tvosX64()
     tvosArm64()
+    tvosSimulatorArm64()
 
     // Not supported yet by all dependencies
     // linuxArm64()         missing in Ktor, coroutines
