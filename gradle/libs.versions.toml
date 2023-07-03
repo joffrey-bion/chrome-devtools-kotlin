@@ -10,8 +10,7 @@ kotlin-atomicfu = { id = "org.jetbrains.kotlin.plugin.atomicfu", version.ref = "
 
 [versions]
 
-dokka = "1.8.10"
-## ⬆ = "1.8.20"
+dokka = "1.8.20"
 kotlin = "1.8.22"
 kotlinpoet = "1.12.0"
 kotlinx-coroutines = "1.7.0"
