@@ -1,5 +1,13 @@
 # Change Log
 
+## [5.2.0\-1167732](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.2.0-1167732) (2023-07-09)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.1.0-1165014...5.2.0-1167732)
+
+**Upgraded dependencies:**
+
+- Upgrade Kotlin to version 1.9.0 [\#269](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/269)
+- Update to Chrome DevTools Protocol version 1167732 [\#268](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/268) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [5.1.0\-1165014](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.1.0-1165014) (2023-07-03)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.0.0-1152884...5.1.0-1165014)
 
