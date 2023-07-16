@@ -1638,6 +1638,7 @@ public final class org/hildan/chrome/devtools/domains/audits/AttributionReportin
 	public static final field InvalidRegisterOsSourceHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field InvalidRegisterOsTriggerHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field InvalidRegisterTriggerHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
+	public static final field NavigationRegistrationWithoutTransientUserActivation Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field NoWebOrOsSupport Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field OsSourceIgnored Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field OsTriggerIgnored Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
@@ -20422,6 +20423,11 @@ public final class org/hildan/chrome/devtools/domains/indexeddb/RequestDatabaseR
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/input/CancelDraggingResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/input/CancelDraggingResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/input/DispatchDragEventRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/input/DispatchDragEventRequest$Companion;
 	public synthetic fun <init> (ILorg/hildan/chrome/devtools/domains/input/DragEventType;DDLorg/hildan/chrome/devtools/domains/input/DragData;Ljava/lang/Integer;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
@@ -20949,6 +20955,7 @@ public final class org/hildan/chrome/devtools/domains/input/ImeSetCompositionRes
 }
 
 public final class org/hildan/chrome/devtools/domains/input/InputDomain {
+	public final fun cancelDragging (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun dispatchDragEvent (Lorg/hildan/chrome/devtools/domains/input/DispatchDragEventRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun dispatchDragEvent (Lorg/hildan/chrome/devtools/domains/input/DragEventType;DDLorg/hildan/chrome/devtools/domains/input/DragData;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun dispatchDragEvent (Lorg/hildan/chrome/devtools/domains/input/DragEventType;DDLorg/hildan/chrome/devtools/domains/input/DragData;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -23863,6 +23870,7 @@ public final class org/hildan/chrome/devtools/domains/network/ContentEncoding : 
 	public static final field br Lorg/hildan/chrome/devtools/domains/network/ContentEncoding;
 	public static final field deflate Lorg/hildan/chrome/devtools/domains/network/ContentEncoding;
 	public static final field gzip Lorg/hildan/chrome/devtools/domains/network/ContentEncoding;
+	public static final field zstd Lorg/hildan/chrome/devtools/domains/network/ContentEncoding;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/ContentEncoding;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/network/ContentEncoding;
@@ -27046,19 +27054,16 @@ public final class org/hildan/chrome/devtools/domains/network/events/NetworkEven
 
 public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$LoadingFinished : org/hildan/chrome/devtools/domains/network/events/NetworkEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$LoadingFinished$Companion;
-	public synthetic fun <init> (ILjava/lang/String;DDLjava/lang/Boolean;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;DDLjava/lang/Boolean;)V
-	public synthetic fun <init> (Ljava/lang/String;DDLjava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/String;DDLkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;DD)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()D
 	public final fun component3 ()D
-	public final fun component4 ()Ljava/lang/Boolean;
-	public final fun copy (Ljava/lang/String;DDLjava/lang/Boolean;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$LoadingFinished;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$LoadingFinished;Ljava/lang/String;DDLjava/lang/Boolean;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$LoadingFinished;
+	public final fun copy (Ljava/lang/String;DD)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$LoadingFinished;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$LoadingFinished;Ljava/lang/String;DDILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$LoadingFinished;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getEncodedDataLength ()D
 	public final fun getRequestId ()Ljava/lang/String;
-	public final fun getShouldReportCorbBlocking ()Ljava/lang/Boolean;
 	public final fun getTimestamp ()D
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -30366,6 +30371,7 @@ public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRe
 	public static final field ContentWebBluetooth Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field ContentWebUSB Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field CookieDisabled Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field CookieFlushed Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field DedicatedWorkerOrWorklet Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field DisableForRenderFrameHostCalled Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field DocumentLoaded Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
@@ -35434,6 +35440,7 @@ public final class org/hildan/chrome/devtools/domains/preload/PrerenderFinalStat
 	public static final field SameSiteCrossOriginNavigationNotOptInInMainFrameNavigation Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field SameSiteCrossOriginRedirectNotOptInInInitialNavigation Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field SameSiteCrossOriginRedirectNotOptInInMainFrameNavigation Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field SpeculationRuleRemoved Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field SslCertificateError Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field StartFailed Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field Stop Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
