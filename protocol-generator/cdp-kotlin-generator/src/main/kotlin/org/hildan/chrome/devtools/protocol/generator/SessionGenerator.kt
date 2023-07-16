@@ -52,7 +52,7 @@ private fun createSessionAdapterClass(target: TargetType): TypeSpec =
                 """
                 val targetType = %N.metaData.targetType
                 require(targetType in %T.supportedCdpTargets) {
-                    %S
+                    %P
                 }
                 """.trimIndent(),
                 sessionArg,
