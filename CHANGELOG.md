@@ -1,5 +1,20 @@
 # Change Log
 
+## [5.3.0\-1170846](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.3.0-1170846) (2023-07-16)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.2.0-1167732...5.3.0-1170846)
+
+**Fixed bugs:**
+
+- The error message in session adapters contains escaped variables [\#272](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/272)
+
+**Merged pull requests:**
+
+- Update Gradle Wrapper from 8.2 to 8.2.1 [\#270](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/270) ([@joffrey-bion](https://github.com/joffrey-bion))
+
+**Upgraded dependencies:**
+
+- Update to Chrome DevTools Protocol version 1170846 [\#271](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/271) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [5.2.0\-1167732](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.2.0-1167732) (2023-07-09)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.1.0-1165014...5.2.0-1167732)
 
