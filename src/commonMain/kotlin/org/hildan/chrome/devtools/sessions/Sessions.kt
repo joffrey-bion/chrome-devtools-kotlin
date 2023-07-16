@@ -51,13 +51,7 @@ interface BrowserSession : ChromeSession, BrowserTarget {
  *
  * Note: This effectively closes all child sessions, because they're based on the same web socket connection.
  */
-suspend inline fun <T> BrowserSession.use(block: (BrowserSession) -> T): T {
-    try {
-        return block(this)
-    } finally {
-        close()
-    }
-}
+suspend inline fun <T> BrowserSession.use(block: (BrowserSession) -> T): T = use(block) { close() }
 
 /**
  * Info about a session and its underlying target.
@@ -131,10 +125,27 @@ interface ChildSession : ChromeSession {
  * If you don't want to close child targets created during this session, use [ChildSession.close] with
  * `keepBrowserContext=true` instead of this helper.
  */
-suspend inline fun <S : ChildSession, T> S.use(block: (S) -> T): T {
+suspend inline fun <S : ChildSession, T> S.use(block: (S) -> T): T = use(block) { close() }
+
+@PublishedApi
+internal inline fun <R, T> R.use(block: (R) -> T, close: R.() -> Unit): T {
+    var userFailure: Throwable? = null
     try {
         return block(this)
+    } catch (t: Throwable) {
+        userFailure = t
+        throw t
     } finally {
-        close()
+        try {
+            close()
+        } catch (t: Throwable) {
+            // Errors in close() shouldn't hide errors from the user's block, so we throw the user error instead,
+            // and add the close error as suppressed.
+            if (userFailure != null) {
+                userFailure.addSuppressed(t)
+                throw userFailure
+            }
+            throw t
+        }
     }
 }
