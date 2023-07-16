@@ -1,5 +1,12 @@
 # Change Log
 
+## [5.3.1\-1170846](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.3.1-1170846) (2023-07-16)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.3.0-1170846...5.3.1-1170846)
+
+**Fixed bugs:**
+
+- `BrowserSession.use\(\)` and `PageSession.use\(\)` swallow user exceptions when `close\(\)` throws [\#273](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/273)
+
 ## [5.3.0\-1170846](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.3.0-1170846) (2023-07-16)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.2.0-1167732...5.3.0-1170846)
 
