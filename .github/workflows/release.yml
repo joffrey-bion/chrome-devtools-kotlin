@@ -1,4 +1,4 @@
-name: Manual release
+name: release
 
 on:
   workflow_dispatch:
@@ -35,44 +35,13 @@ jobs:
         run: echo "fullVersion=${{ inputs.version }}-$(cat protocol/version.txt)" >> $GITHUB_OUTPUT
         id: compute-version
 
-      # We don't just 'build' here because we want to test KDoc generation and publication mechanism too
-      - name: Test local publish before release
-        uses: gradle/gradle-build-action@v2
-        env:
-          # GPG keys for signing plugin (sign maven artifacts)
-          # see https://docs.gradle.org/current/userguide/signing_plugin.html#sec:in-memory-keys
-          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_SECRET_ASCII_ARMORED }}
-          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.GPG_PASSWORD }}
-        with:
-          arguments: publishToMavenLocal
-
-      - name: Generate Change Log
-        uses: gradle/gradle-build-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          arguments: generateChangelog -Pversion=${{ steps.compute-version.outputs.fullVersion }}
-
-      - name: Commit and Push Change Log
-        id: changelog-commit
-        run: |
-          git add CHANGELOG.md
-          git commit -m "Version ${{ steps.compute-version.outputs.fullVersion }}"
-          git push
-          echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
-
-      - name: Create Release and Tag
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ steps.compute-version.outputs.fullVersion }}
-          target_commitish: ${{ steps.changelog-commit.outputs.sha }}
-          body_path: build/reports/changelog/latest-release-body.md
-
       # The publishToSonatype task and the repository release need to be in the same Gradle call
       # so that the closeAndRelease task knows which staging repository was created by publishToSonatype
       - name: Build and publish to OSS Sonatype and then Maven Central
         uses: gradle/gradle-build-action@v2
         env:
+          # For changelog generation
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # GPG keys for signing plugin (sign maven artifacts)
           # see https://docs.gradle.org/current/userguide/signing_plugin.html#sec:in-memory-keys
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_SECRET_ASCII_ARMORED }}
@@ -83,6 +52,23 @@ jobs:
           ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.OSSRH_KEY }}
         with:
           arguments: |
+            check
+            generateChangelog
             publishToSonatype
             closeAndReleaseSonatypeStagingRepository
             -Pversion=${{ steps.compute-version.outputs.fullVersion }}
+
+      - name: Commit and push change log
+        id: changelog-commit
+        run: |
+          git add CHANGELOG.md
+          git commit -m "Version ${{ steps.compute-version.outputs.fullVersion }}"
+          git push
+          echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Create release and tag
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.compute-version.outputs.fullVersion }}
+          target_commitish: ${{ steps.changelog-commit.outputs.sha }}
+          body_path: build/reports/changelog/latest-release-body.md
