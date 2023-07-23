@@ -2018,6 +2018,7 @@ public final class org/hildan/chrome/devtools/domains/audits/CookieWarningReason
 	public static final field WarnSameSiteStrictLaxDowngradeStrict Lorg/hildan/chrome/devtools/domains/audits/CookieWarningReason;
 	public static final field WarnSameSiteUnspecifiedCrossSiteContext Lorg/hildan/chrome/devtools/domains/audits/CookieWarningReason;
 	public static final field WarnSameSiteUnspecifiedLaxAllowUnsafe Lorg/hildan/chrome/devtools/domains/audits/CookieWarningReason;
+	public static final field WarnThirdPartyPhaseout Lorg/hildan/chrome/devtools/domains/audits/CookieWarningReason;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/CookieWarningReason;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/CookieWarningReason;
@@ -35390,6 +35391,7 @@ public final class org/hildan/chrome/devtools/domains/preload/PrerenderFinalStat
 	public static final field ActivatedBeforeStarted Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field ActivatedDuringMainFrameNavigation Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field ActivatedInBackground Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field ActivatedWithAuxiliaryBrowsingContexts Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field ActivationFramePolicyNotCompatible Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field ActivationNavigationDestroyedBeforeSuccess Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field ActivationNavigationParameterMismatch Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
@@ -35408,7 +35410,6 @@ public final class org/hildan/chrome/devtools/domains/preload/PrerenderFinalStat
 	public static final field DidFailLoad Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field Download Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field EmbedderHostDisallowed Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
-	public static final field EmbedderTriggeredAndCrossOriginRedirected Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field FailToGetMemoryUsage Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field HasEffectiveUrl Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field InProgressNavigation Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
