@@ -155,3 +155,12 @@ signing {
     useInMemoryPgpKeys(signingKey, signingPassword)
     sign(extensions.getByType<PublishingExtension>().publications)
 }
+
+tasks.withType<Sign>().configureEach {
+    if ("Ios" in name) {
+        val target = name.removePrefix("sign").removeSuffix("Publication")
+        val linkDebugTestTaskName = "linkDebugTest$target"
+        val compileTestKotlinTaskName = "compileTestKotlin$target"
+        mustRunAfter(linkDebugTestTaskName, compileTestKotlinTaskName)
+    }
+}
