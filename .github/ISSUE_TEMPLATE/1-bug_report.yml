@@ -1,0 +1,37 @@
+name: Bug report
+description: File a bug report
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to fill out this bug report!
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: What version of Chrome DevTools Kotlin are you running?
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      placeholder: Incorrect behaviour, error message, stacktrace...
+      description: Please describe what you see and what you expected to happen instead
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction and additional details
+      placeholder: Snippet of code, contextual information...
+      description: Please provide information that could help reproduce the problem.
+    validations:
+      required: false
+  - type: input
+    id: platforms
+    attributes:
+      label: Kotlin target platforms
+      description: The Kotlin target platform(s) where you noticed the bug - Android, JVM (non-Android), JS (browser), JS (node), Native (which one?), etc.
+    validations:
+      required: false

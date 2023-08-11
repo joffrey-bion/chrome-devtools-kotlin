@@ -1,0 +1,31 @@
+name: Feature request or enhancement
+description: Suggest an idea for this project, be it a big feature or a small UX improvement
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to suggest ideas!
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / use case
+      placeholder: Describe your problem or use-case
+      description: Why do we need this? Don't hesitate to describe what you're trying to achieve on a larger scale.
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Feature (solution)
+      placeholder: Describe the solution you'd like
+      description: How would it look like?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Current alternatives
+      placeholder: Describe alternatives/workarounds you've considered
+      description: Is there a way -maybe inconvenient- to achieve your goal at the moment, or a workaround?
+    validations:
+      required: false
