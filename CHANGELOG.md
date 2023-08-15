@@ -1,5 +1,18 @@
 # Change Log
 
+## [5.4.0\-1182435](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.4.0-1182435) (2023-08-15)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.3.1-1170846...5.4.0-1182435)
+
+**Upgraded dependencies:**
+
+- Bump org.jetbrains.kotlinx:atomicfu from 0.21.0 to 0.22.0 [\#283](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/283) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Update to Chrome DevTools Protocol version 1182435 [\#276](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/276) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Bump com.squareup:kotlinpoet from 1.12.0 to 1.14.2 [\#281](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/281) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.jetbrains.kotlinx:kotlinx\-coroutines\-core from 1.7.2 to 1.7.3 [\#280](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/280) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump com.gradle.enterprise from 3.12.4 to 3.14.1 [\#279](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/279) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump io.github.gradle\-nexus.publish\-plugin from 1.2.0 to 1.3.0 [\#278](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/278) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ktor from 2.3.2 to 2.3.3 [\#277](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/277) ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [5.3.1\-1170846](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.3.1-1170846) (2023-07-16)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.3.0-1170846...5.3.1-1170846)
 
@@ -10,10 +23,6 @@
 ## [5.3.0\-1170846](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.3.0-1170846) (2023-07-16)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.2.0-1167732...5.3.0-1170846)
 
-**Fixed bugs:**
-
-- The error message in session adapters contains escaped variables [\#272](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/272)
-
 **Merged pull requests:**
 
 - Update Gradle Wrapper from 8.2 to 8.2.1 [\#270](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/270) ([@joffrey-bion](https://github.com/joffrey-bion))
@@ -21,6 +30,10 @@
 **Upgraded dependencies:**
 
 - Update to Chrome DevTools Protocol version 1170846 [\#271](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/271) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+**Fixed bugs:**
+
+- The error message in session adapters contains escaped variables [\#272](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/272)
 
 ## [5.2.0\-1167732](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.2.0-1167732) (2023-07-09)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.1.0-1165014...5.2.0-1167732)
@@ -77,15 +90,6 @@ Check out the updated README if the automated migrations aren't working or the d
 
 - Use camelCase for enum values to make them compatible with Kotlin/JS [\#241](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/241)
 
-**Deprecations:**
-
-- Deprecate overload of `awaitNodeBySelector` using milliseconds [\#243](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/243)
-
-**Fixed bugs:**
-
-- Make CDP request consistently fail with the same exception if the WS is closed concurrently [\#247](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/247)
-- `awaitNodeBySelector` can potentially throw IAE when cancelled [\#239](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/239)
-
 **Implemented enhancements:**
 
 - Rework page creation / navigation API [\#255](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/255)
@@ -98,6 +102,10 @@ Check out the updated README if the automated migrations aren't working or the d
 - Multiplatform support: JVM, JS, linux, windows, macOS, iOS, tvOS, watchOS [\#197](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/197)
 - Add helper `awaitNodeAbsentBySelector` [\#240](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/240)
 
+**Deprecations:**
+
+- Deprecate overload of `awaitNodeBySelector` using milliseconds [\#243](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/243)
+
 **Removals:**
 
 - Remove deprecated `captureScreenshotToFile` with Request object [\#237](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/237)
@@ -109,6 +117,11 @@ Check out the updated README if the automated migrations aren't working or the d
 - Update to Chrome DevTools Protocol version 1140464 [\#234](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/234) ([@github-actions[bot]](https://github.com/apps/github-actions))
 - Upgrade kotlinx\-coroutines to version 1.7.0 [\#242](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/242)
 - Upgrade Kotlin to 1.8.21 [\#238](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/238)
+
+**Fixed bugs:**
+
+- Make CDP request consistently fail with the same exception if the WS is closed concurrently [\#247](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/247)
+- `awaitNodeBySelector` can potentially throw IAE when cancelled [\#239](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/239)
 
 ## [4.5.0\-1134181](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/4.5.0-1134181) (2023-04-24)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/4.4.0-1122837...4.5.0-1134181)
@@ -129,12 +142,6 @@ Check out the updated README if the automated migrations aren't working or the d
 ## [4.4.0\-1115542](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/4.4.0-1115542) (2023-03-11)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/4.3.0-1075693...4.4.0-1115542)
 
-**Fixed bugs:**
-
-- HTTP endpoint `/json/new?\{url\}` uses wrong GET method instead of PUT [\#225](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/225)
-- Event subscription flows hang if the target crashes [\#222](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/222)
-- `navigateAndAwaitPageLoad` hangs if the navigation fails [\#221](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/221)
-
 **Implemented enhancements:**
 
 - Add `Fetch` domain to `SharedWorker` target [\#214](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/214)
@@ -145,6 +152,12 @@ Check out the updated README if the automated migrations aren't working or the d
 - Upgrade Kotlinx Serialization to 1.5.0 [\#223](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/223)
 - Update to Chrome DevTools Protocol version 1115542 [\#216](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/216) ([@github-actions[bot]](https://github.com/apps/github-actions))
 - Upgrade Ktor to version 2.2.4 [\#218](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/218)
+
+**Fixed bugs:**
+
+- HTTP endpoint `/json/new?\{url\}` uses wrong GET method instead of PUT [\#225](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/225)
+- Event subscription flows hang if the target crashes [\#222](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/222)
+- `navigateAndAwaitPageLoad` hangs if the navigation fails [\#221](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/221)
 
 ## [4.3.0\-1075693](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/4.3.0-1075693) (2022-11-26)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/4.3.0-1069585...4.3.0-1075693)
@@ -562,13 +575,13 @@ Check out the updated README if the automated migrations aren't working or the d
 ## [1.4.0\-881010](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/1.4.0-881010) (2021-05-11)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/1.3.0-880455...1.4.0-881010)
 
-**Closed issues:**
-
-- Provide stable alternative of awaitNodeBySelector\(\) with long millis [\#82](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/82)
-
 **Implemented enhancements:**
 
 - Mark awaitNodeBySelector\(\) as @ExperimentalTime [\#81](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/81)
+
+**Closed issues:**
+
+- Provide stable alternative of awaitNodeBySelector\(\) with long millis [\#82](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/82)
 
 **Upgraded dependencies:**
 
@@ -783,10 +796,6 @@ Check out the updated README if the automated migrations aren't working or the d
 ## [0.11.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.11.0) (2021-01-13)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.10.1...0.11.0)
 
-**Fixed bugs:**
-
-- Race condition in navigateAndWaitLoading [\#25](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/25)
-
 **Implemented enhancements:**
 
 - Add getTargetInfo convenience method [\#27](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/27)
@@ -795,6 +804,10 @@ Check out the updated README if the automated migrations aren't working or the d
 
 - Update to Chrome DevTools Protocol version 0.0.841965 [\#28](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/28) ([@github-actions[bot]](https://github.com/apps/github-actions))
 - Upgrade Ktor to 1.5 [\#24](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/24)
+
+**Fixed bugs:**
+
+- Race condition in navigateAndWaitLoading [\#25](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/25)
 
 ## [0.10.1](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.10.1) (2021-01-09)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.10.0...0.10.1)
@@ -814,13 +827,13 @@ Check out the updated README if the automated migrations aren't working or the d
 ## [0.9.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.9.0) (2021-01-05)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.8.2...0.9.0)
 
-**Fixed bugs:**
-
-- ChromeDPClient instances leak open Ktor Apache HTTP client [\#19](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/19)
-
 **Upgraded dependencies:**
 
 - Update to Chrome DevTools Protocol version 0.0.839267 [\#18](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/18) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+**Fixed bugs:**
+
+- ChromeDPClient instances leak open Ktor Apache HTTP client [\#19](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/19)
 
 ## [0.8.2](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.8.2) (2020-12-17)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.8.1...0.8.2)
@@ -883,13 +896,13 @@ Check out the updated README if the automated migrations aren't working or the d
 ## [0.6.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.6.0) (2020-11-14)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.5.0...0.6.0)
 
-**Fixed bugs:**
-
-- use\(\) and close\(\) on page sessions should NOT close the web socket [\#4](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/4)
-
 **Upgraded dependencies:**
 
 - Update Chrome DevTools Protocol definitions to 0.0.827510 [\#3](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/3) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
+**Fixed bugs:**
+
+- use\(\) and close\(\) on page sessions should NOT close the web socket [\#4](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/4)
 
 ## [0.5.0](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/0.5.0) (2020-11-14)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/0.4.0...0.5.0)
