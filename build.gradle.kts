@@ -6,11 +6,11 @@ plugins {
     alias(libs.plugins.kotlin.atomicfu)
     alias(libs.plugins.dokka)
     alias(libs.plugins.binary.compatibility.validator)
+    alias(libs.plugins.nexus.publish)
+    alias(libs.plugins.hildan.github.changelog)
+    alias(libs.plugins.hildan.kotlin.publish)
+    alias(libs.plugins.vyarus.github.info)
     signing
-    id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
-    id("org.hildan.github.changelog") version "2.0.0"
-    id("org.hildan.kotlin-publish") version "1.2.0"
-    id("ru.vyarus.github-info") version "1.5.0"
 }
 
 group = "org.hildan.chrome"

@@ -4,23 +4,31 @@
 
 binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binary-compatibility-validator" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka"}
+hildan-github-changelog = { id = "org.hildan.github.changelog", version.ref = "hildan-github-changelog-plugin"}
+hildan-kotlin-publish = { id = "org.hildan.kotlin-publish", version.ref = "hildan-kotlin-publish-plugin"}
+kotlin-atomicfu = { id = "org.jetbrains.kotlin.plugin.atomicfu", version.ref = "kotlin"}
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"}
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin"}
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin"}
-kotlin-atomicfu = { id = "org.jetbrains.kotlin.plugin.atomicfu", version.ref = "kotlin"}
+nexus-publish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "nexus-publish-plugin" }
+vyarus-github-info = { id = "ru.vyarus.github-info", version.ref = "vyarus-github-info-plugin" }
 
 [versions]
 
 binary-compatibility-validator = "0.13.2"
 dokka = "1.8.20"
+hildan-kotlin-publish-plugin = "1.2.0"
+hildan-github-changelog-plugin = "2.0.0"
 kotlin = "1.9.0"
 kotlinpoet = "1.14.2"
 kotlinx-atomicfu = "0.22.0"
 kotlinx-coroutines = "1.7.3"
 kotlinx-serialization = "1.5.1"
 ktor = "2.3.3"
+nexus-publish-plugin = "1.3.0"
 slf4j = "2.0.7"
 testcontainers = "1.18.3"
+vyarus-github-info-plugin = "1.5.0"
 
 [libraries]
 
