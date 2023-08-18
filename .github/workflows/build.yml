@@ -23,6 +23,9 @@ jobs:
       - name: Setup docker (missing on MacOS)
         if: runner.os == 'macos'
         run: |
+          # Workaround for https://github.com/actions/runner-images/issues/8104
+          brew reinstall qemu
+          
           brew install docker
           colima start
           
