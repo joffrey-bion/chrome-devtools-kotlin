@@ -1,5 +1,15 @@
 # Change Log
 
+## [5.5.0\-1191157](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.5.0-1191157) (2023-09-03)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.4.0-1182435...5.5.0-1191157)
+
+**Upgraded dependencies:**
+
+- Update to Chrome DevTools Protocol version 1191157 [\#290](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/290) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Bump kotlin from 1.9.0 to 1.9.10 [\#288](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/288) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ktor from 2.3.3 to 2.3.4 [\#292](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/292) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.jetbrains.kotlinx:kotlinx\-serialization\-json from 1.5.1 to 1.6.0 [\#287](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/287) ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [5.4.0\-1182435](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.4.0-1182435) (2023-08-15)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.3.1-1170846...5.4.0-1182435)
 
@@ -7,10 +17,7 @@
 
 - Bump org.jetbrains.kotlinx:atomicfu from 0.21.0 to 0.22.0 [\#283](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/283) ([@dependabot[bot]](https://github.com/apps/dependabot))
 - Update to Chrome DevTools Protocol version 1182435 [\#276](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/276) ([@github-actions[bot]](https://github.com/apps/github-actions))
-- Bump com.squareup:kotlinpoet from 1.12.0 to 1.14.2 [\#281](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/281) ([@dependabot[bot]](https://github.com/apps/dependabot))
 - Bump org.jetbrains.kotlinx:kotlinx\-coroutines\-core from 1.7.2 to 1.7.3 [\#280](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/280) ([@dependabot[bot]](https://github.com/apps/dependabot))
-- Bump com.gradle.enterprise from 3.12.4 to 3.14.1 [\#279](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/279) ([@dependabot[bot]](https://github.com/apps/dependabot))
-- Bump io.github.gradle\-nexus.publish\-plugin from 1.2.0 to 1.3.0 [\#278](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/278) ([@dependabot[bot]](https://github.com/apps/dependabot))
 - Bump ktor from 2.3.2 to 2.3.3 [\#277](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/277) ([@dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [5.3.1\-1170846](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.3.1-1170846) (2023-07-16)
@@ -22,10 +29,6 @@
 
 ## [5.3.0\-1170846](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.3.0-1170846) (2023-07-16)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.2.0-1167732...5.3.0-1170846)
-
-**Merged pull requests:**
-
-- Update Gradle Wrapper from 8.2 to 8.2.1 [\#270](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/270) ([@joffrey-bion](https://github.com/joffrey-bion))
 
 **Upgraded dependencies:**
 
@@ -49,10 +52,6 @@
 **Implemented enhancements:**
 
 - Add support for `tvosSimulatorArm64` target [\#261](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/261)
-
-**Merged pull requests:**
-
-- Update Gradle Wrapper from 8.1.1 to 8.2 [\#260](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/260) ([@joffrey-bion](https://github.com/joffrey-bion))
 
 **Upgraded dependencies:**
 
