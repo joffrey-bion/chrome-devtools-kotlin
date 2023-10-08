@@ -99,7 +99,13 @@ class ChromeDPClient(
      */
     @Deprecated(
         message = "Prefer richer API via web socket",
-        replaceWith = ReplaceWith("webSocket().attachToNewPage(url)"),
+        replaceWith = ReplaceWith(
+            expression = "webSocket().newPage().goto(url)",
+            imports = [
+                "org.hildan.chrome.devtools.sessions.newPage",
+                "org.hildan.chrome.devtools.sessions.goto",
+            ],
+        ),
     )
     suspend fun newTab(url: String = "about:blank"): ChromeDPTarget =
         httpClient.put("$remoteDebugUrl/json/new?$url").body<ChromeDPTarget>().fixHost()
