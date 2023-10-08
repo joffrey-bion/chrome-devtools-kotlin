@@ -207,11 +207,13 @@ data class ChromeDPTarget(
     val title: String,
     val type: String,
     val description: String,
+    val url: String,
     val devtoolsFrontendUrl: String,
     /**
      * The web socket URL to use with [HttpClient.chromeWebSocket] to connect via the debugger to this target.
      */
     val webSocketDebuggerUrl: String,
+    val faviconUrl: String? = null,
 )
 
 /**

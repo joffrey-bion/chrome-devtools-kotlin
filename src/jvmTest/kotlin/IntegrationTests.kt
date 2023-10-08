@@ -39,11 +39,15 @@ class IntegrationTests {
             assertTrue(version.userAgent.contains("HeadlessChrome"))
             assertTrue(version.webSocketDebuggerUrl.startsWith("ws://localhost"))
 
+            val protocolJson = chrome.protocolJson()
+            assertTrue(protocolJson.isNotEmpty(), "the JSON definition of the protocol should not be empty")
+
             val targets = chrome.targets()
             assertTrue(targets.isNotEmpty(), "there should be at least the about:blank target")
 
-            val protocolJson = chrome.protocolJson()
-            assertTrue(protocolJson.isNotEmpty(), "the JSON definition of the protocol should not be empty")
+            val googleTab = chrome.newTab("https://www.google.com")
+            assertEquals("https://www.google.com", googleTab.url.trimEnd('/'))
+            chrome.closeTab(googleTab.id)
         }
     }
 
