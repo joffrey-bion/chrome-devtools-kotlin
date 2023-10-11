@@ -1,5 +1,18 @@
 # Change Log
 
+## [5.6.0\-1207450](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.6.0-1207450) (2023-10-11)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.5.0-1191157...5.6.0-1207450)
+
+**Implemented enhancements:**
+
+- Add support for `linuxArm64` platform [\#307](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/307)
+- Add `url` and `faviconUrl` properties to `ChromeDPTarget` [\#305](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/305)
+
+**Upgraded dependencies:**
+
+- Update to Chrome DevTools Protocol version 1207450 [\#306](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/306) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Bump ktor from 2.3.4 to 2.3.5 [\#301](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/301) ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [5.5.0\-1191157](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.5.0-1191157) (2023-09-03)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.4.0-1182435...5.5.0-1191157)
 
