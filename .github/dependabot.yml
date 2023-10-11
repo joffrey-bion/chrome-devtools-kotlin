@@ -6,8 +6,8 @@ updates:
     schedule:
       interval: "daily"
     labels:
-      - internal
       - dependencies
+      - internal
 
   - package-ecosystem: "gradle"
     directory: "/"
@@ -15,3 +15,33 @@ updates:
       interval: "daily"
     labels:
       - dependencies
+    ignore:
+      - dependency-name: "com.gradle.enterprise"
+      - dependency-name: "de.fayard.refreshVersions"
+      - dependency-name: "io.github.gradle-nexus.publish-plugin"
+      - dependency-name: "org.hildan.github.changelog"
+      - dependency-name: "org.hildan.kotlin-publish"
+      - dependency-name: "org.jetbrains.kotlinx.binary-compatibility-validator"
+      - dependency-name: "org.jetbrains.dokka"
+      - dependency-name: "org.slf4j:slf4j-simple"
+      - dependency-name: "org.testcontainers:*"
+      - dependency-name: "ru.vyarus.github-info"
+
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - dependencies
+      - internal
+    allow:
+      - dependency-name: "com.gradle.enterprise"
+      - dependency-name: "de.fayard.refreshVersions"
+      - dependency-name: "io.github.gradle-nexus.publish-plugin"
+      - dependency-name: "org.hildan.github.changelog"
+      - dependency-name: "org.hildan.kotlin-publish"
+      - dependency-name: "org.jetbrains.kotlinx.binary-compatibility-validator"
+      - dependency-name: "org.jetbrains.dokka"
+      - dependency-name: "org.slf4j:slf4j-simple"
+      - dependency-name: "org.testcontainers:*"
+      - dependency-name: "ru.vyarus.github-info"
