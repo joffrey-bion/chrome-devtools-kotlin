@@ -33,6 +33,7 @@ kotlin {
     }
     mingwX64()
     linuxX64()
+    linuxArm64()
     macosX64()
     macosArm64()
     iosX64()
@@ -47,12 +48,11 @@ kotlin {
     tvosSimulatorArm64()
 
     // Not supported yet by all dependencies
-    // linuxArm64()         missing in Ktor, coroutines
-    // watchosDeviceArm64() missing in Ktor, coroutines, serialization
-    // androidNativeArm32() missing in Ktor, coroutines, serialization
-    // androidNativeArm64() missing in Ktor, coroutines, serialization
-    // androidNativeX64()   missing in Ktor, coroutines, serialization
-    // androidNativeX86()   missing in Ktor, coroutines, serialization
+    // watchosDeviceArm64() // missing in Ktor
+    // androidNativeArm32() // missing in Ktor
+    // androidNativeArm64() // missing in Ktor
+    // androidNativeX64()   // missing in Ktor
+    // androidNativeX86()   // missing in Ktor
 
     sourceSets {
         commonMain {
