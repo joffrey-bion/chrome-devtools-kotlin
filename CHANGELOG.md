@@ -1,5 +1,12 @@
 # Change Log
 
+## [5.6.0\-1209236](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.6.0-1209236) (2023-10-18)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.6.0-1207450...5.6.0-1209236)
+
+**Upgraded dependencies:**
+
+- Update to Chrome DevTools Protocol version 1209236 [\#308](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/308) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [5.6.0\-1207450](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.6.0-1207450) (2023-10-11)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.5.0-1191157...5.6.0-1207450)
 
