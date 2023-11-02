@@ -34652,6 +34652,38 @@ public final class org/hildan/chrome/devtools/domains/preload/PrerenderFinalStat
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/preload/PrerenderMismatchedHeaders {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/PrerenderMismatchedHeaders$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/preload/PrerenderMismatchedHeaders;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/PrerenderMismatchedHeaders;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/PrerenderMismatchedHeaders;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getActivationValue ()Ljava/lang/String;
+	public final fun getHeaderName ()Ljava/lang/String;
+	public final fun getInitialValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/PrerenderMismatchedHeaders$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/preload/PrerenderMismatchedHeaders$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/preload/PrerenderMismatchedHeaders;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/preload/PrerenderMismatchedHeaders;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/preload/PrerenderMismatchedHeaders$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/preload/RuleSet {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/RuleSet$Companion;
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/RuleSetErrorType;Ljava/lang/String;)V
@@ -34846,17 +34878,19 @@ public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEven
 
 public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated : org/hildan/chrome/devtools/domains/preload/events/PreloadEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated$Companion;
-	public fun <init> (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;)V
-	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;
 	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
 	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public final fun component4 ()Ljava/lang/String;
-	public final fun copy (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;
+	public final fun component5 ()Ljava/util/List;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDisallowedMojoInterface ()Ljava/lang/String;
 	public final fun getKey ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;
+	public final fun getMismatchedHeaders ()Ljava/util/List;
 	public final fun getPrerenderStatus ()Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public final fun getStatus ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
 	public fun hashCode ()I
@@ -38448,9 +38482,10 @@ public final class org/hildan/chrome/devtools/domains/serviceworker/ServiceWorke
 
 public final class org/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersion {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersion$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionRunningStatus;Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionStatus;Ljava/lang/Double;Ljava/lang/Double;Ljava/util/List;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionRunningStatus;Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionStatus;Ljava/lang/Double;Ljava/lang/Double;Ljava/util/List;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionRunningStatus;Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionStatus;Ljava/lang/Double;Ljava/lang/Double;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionRunningStatus;Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionStatus;Ljava/lang/Double;Ljava/lang/Double;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
 	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionRunningStatus;
@@ -38459,11 +38494,12 @@ public final class org/hildan/chrome/devtools/domains/serviceworker/ServiceWorke
 	public final fun component7 ()Ljava/lang/Double;
 	public final fun component8 ()Ljava/util/List;
 	public final fun component9 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionRunningStatus;Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionStatus;Ljava/lang/Double;Ljava/lang/Double;Ljava/util/List;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersion;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersion;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionRunningStatus;Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionStatus;Ljava/lang/Double;Ljava/lang/Double;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersion;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionRunningStatus;Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionStatus;Ljava/lang/Double;Ljava/lang/Double;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersion;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersion;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionRunningStatus;Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionStatus;Ljava/lang/Double;Ljava/lang/Double;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersion;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getControlledClients ()Ljava/util/List;
 	public final fun getRegistrationId ()Ljava/lang/String;
+	public final fun getRouterRules ()Ljava/lang/String;
 	public final fun getRunningStatus ()Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionRunningStatus;
 	public final fun getScriptLastModified ()Ljava/lang/Double;
 	public final fun getScriptResponseTime ()Ljava/lang/Double;
