@@ -27,7 +27,7 @@ kotlinx-serialization = "1.6.1"
 ktor = "2.3.5"
 nexus-publish-plugin = "1.3.0"
 slf4j = "2.0.9"
-testcontainers = "1.19.2"
+testcontainers = "1.19.3"
 vyarus-github-info-plugin = "1.5.0"
 
 [libraries]
