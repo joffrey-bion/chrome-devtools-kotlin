@@ -1647,6 +1647,8 @@
                         "IdTokenHttpNotFound",
                         "IdTokenNoResponse",
                         "IdTokenInvalidResponse",
+                        "IdTokenIdpErrorResponse",
+                        "IdTokenCrossSiteIdpErrorResponse",
                         "IdTokenInvalidRequest",
                         "IdTokenInvalidContentType",
                         "ErrorIdToken",
@@ -2517,7 +2519,7 @@
                 },
                 {
                     "id": "PermissionDescriptor",
-                    "description": "Definition of PermissionDescriptor defined in the Permissions API:\nhttps://w3c.github.io/permissions/#dictdef-permissiondescriptor.",
+                    "description": "Definition of PermissionDescriptor defined in the Permissions API:\nhttps://w3c.github.io/permissions/#dom-permissiondescriptor.",
                     "experimental": true,
                     "type": "object",
                     "properties": [
@@ -3865,6 +3867,11 @@
                             "type": "string"
                         },
                         {
+                            "name": "postScriptName",
+                            "description": "Font's PostScript name reported by platform.",
+                            "type": "string"
+                        },
+                        {
                             "name": "isCustomFont",
                             "description": "Indicates if the font was downloaded or resolved locally.",
                             "type": "boolean"
@@ -4052,6 +4059,34 @@
                         {
                             "name": "syntax",
                             "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "id": "CSSFontPaletteValuesRule",
+                    "description": "CSS font-palette-values rule representation.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "styleSheetId",
+                            "description": "The css style sheet identifier (absent for user agent stylesheet and user-specified\nstylesheet rules) this rule came from.",
+                            "optional": true,
+                            "$ref": "StyleSheetId"
+                        },
+                        {
+                            "name": "origin",
+                            "description": "Parent stylesheet's origin.",
+                            "$ref": "StyleSheetOrigin"
+                        },
+                        {
+                            "name": "fontPaletteName",
+                            "description": "Associated font palette name.",
+                            "$ref": "Value"
+                        },
+                        {
+                            "name": "style",
+                            "description": "Associated style declaration.",
+                            "$ref": "CSSStyle"
                         }
                     ]
                 },
@@ -4398,6 +4433,12 @@
                             "items": {
                                 "$ref": "CSSPropertyRegistration"
                             }
+                        },
+                        {
+                            "name": "cssFontPaletteValuesRule",
+                            "description": "A font-palette-values rule matching this node.",
+                            "optional": true,
+                            "$ref": "CSSFontPaletteValuesRule"
                         },
                         {
                             "name": "parentLayoutNodeId",
@@ -9270,7 +9311,7 @@
                         },
                         {
                             "name": "acceptLanguage",
-                            "description": "Browser langugage to emulate.",
+                            "description": "Browser language to emulate.",
                             "optional": true,
                             "type": "string"
                         },
@@ -12222,6 +12263,17 @@
                     ]
                 },
                 {
+                    "id": "ServiceWorkerRouterInfo",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "ruleIdMatched",
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
                     "id": "Response",
                     "description": "HTTP response data.",
                     "type": "object",
@@ -12310,6 +12362,13 @@
                             "description": "Specifies that the request was served from the prefetch cache.",
                             "optional": true,
                             "type": "boolean"
+                        },
+                        {
+                            "name": "serviceWorkerRouterInfo",
+                            "description": "Infomation about how Service Worker Static Router was used.",
+                            "experimental": true,
+                            "optional": true,
+                            "$ref": "ServiceWorkerRouterInfo"
                         },
                         {
                             "name": "encodedDataLength",
@@ -12584,6 +12643,7 @@
                             "name": "sameParty",
                             "description": "True if cookie is SameParty.",
                             "experimental": true,
+                            "deprecated": true,
                             "type": "boolean"
                         },
                         {
@@ -14018,7 +14078,7 @@
                         },
                         {
                             "name": "acceptLanguage",
-                            "description": "Browser langugage to emulate.",
+                            "description": "Browser language to emulate.",
                             "optional": true,
                             "type": "string"
                         },
@@ -16263,6 +16323,7 @@
                         "unload",
                         "usb",
                         "vertical-scroll",
+                        "web-printing",
                         "web-share",
                         "window-management",
                         "window-placement",
@@ -17638,23 +17699,6 @@
                     ]
                 },
                 {
-                    "name": "getCookies",
-                    "description": "Returns all browser cookies for the page and all of its subframes. Depending\non the backend support, will return detailed cookie information in the\n`cookies` field.",
-                    "experimental": true,
-                    "deprecated": true,
-                    "redirect": "Network",
-                    "returns": [
-                        {
-                            "name": "cookies",
-                            "description": "Array of cookie objects.",
-                            "type": "array",
-                            "items": {
-                                "$ref": "Network.Cookie"
-                            }
-                        }
-                    ]
-                },
-                {
                     "name": "getFrameTree",
                     "description": "Returns present frame tree structure.",
                     "returns": [
@@ -17953,6 +17997,13 @@
                         {
                             "name": "generateTaggedPDF",
                             "description": "Whether or not to generate tagged (accessible) PDF. Defaults to embedder choice.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "generateDocumentOutline",
+                            "description": "Whether or not to embed the document outline into the PDF.",
                             "experimental": true,
                             "optional": true,
                             "type": "boolean"
@@ -20465,6 +20516,25 @@
                     ]
                 },
                 {
+                    "id": "AttributionReportingTriggerSpec",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "triggerData",
+                            "description": "number instead of integer because not all uint32 can be represented by\nint",
+                            "type": "array",
+                            "items": {
+                                "type": "number"
+                            }
+                        },
+                        {
+                            "name": "eventReportWindows",
+                            "$ref": "AttributionReportingEventReportWindows"
+                        }
+                    ]
+                },
+                {
                     "id": "AttributionReportingTriggerDataMatching",
                     "experimental": true,
                     "type": "string",
@@ -20488,8 +20558,11 @@
                             "type": "integer"
                         },
                         {
-                            "name": "eventReportWindows",
-                            "$ref": "AttributionReportingEventReportWindows"
+                            "name": "triggerSpecs",
+                            "type": "array",
+                            "items": {
+                                "$ref": "AttributionReportingTriggerSpec"
+                            }
                         },
                         {
                             "name": "aggregatableReportWindow",
@@ -24526,12 +24599,20 @@
                 },
                 {
                     "id": "DialogType",
-                    "description": "Whether the dialog shown is an account chooser or an auto re-authentication dialog.",
+                    "description": "The types of FedCM dialogs.",
                     "type": "string",
                     "enum": [
                         "AccountChooser",
                         "AutoReauthn",
                         "ConfirmIdpLogin"
+                    ]
+                },
+                {
+                    "id": "DialogButton",
+                    "description": "The buttons on the FedCM dialog.",
+                    "type": "string",
+                    "enum": [
+                        "ConfirmIdpLoginContinue"
                     ]
                 },
                 {
@@ -24646,12 +24727,15 @@
                     ]
                 },
                 {
-                    "name": "confirmIdpLogin",
-                    "description": "Only valid if the dialog type is ConfirmIdpLogin. Acts as if the user had\nclicked the continue button.",
+                    "name": "clickDialogButton",
                     "parameters": [
                         {
                             "name": "dialogId",
                             "type": "string"
+                        },
+                        {
+                            "name": "dialogButton",
+                            "$ref": "DialogButton"
                         }
                     ]
                 },
