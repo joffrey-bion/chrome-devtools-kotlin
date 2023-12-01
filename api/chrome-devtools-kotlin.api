@@ -17698,6 +17698,8 @@ public final class org/hildan/chrome/devtools/domains/fedcm/ClickDialogButtonRes
 public final class org/hildan/chrome/devtools/domains/fedcm/DialogButton : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/fedcm/DialogButton$Companion;
 	public static final field ConfirmIdpLoginContinue Lorg/hildan/chrome/devtools/domains/fedcm/DialogButton;
+	public static final field ErrorGotIt Lorg/hildan/chrome/devtools/domains/fedcm/DialogButton;
+	public static final field ErrorMoreDetails Lorg/hildan/chrome/devtools/domains/fedcm/DialogButton;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/fedcm/DialogButton;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/fedcm/DialogButton;
@@ -17712,6 +17714,7 @@ public final class org/hildan/chrome/devtools/domains/fedcm/DialogType : java/la
 	public static final field AutoReauthn Lorg/hildan/chrome/devtools/domains/fedcm/DialogType;
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/fedcm/DialogType$Companion;
 	public static final field ConfirmIdpLogin Lorg/hildan/chrome/devtools/domains/fedcm/DialogType;
+	public static final field Error Lorg/hildan/chrome/devtools/domains/fedcm/DialogType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/fedcm/DialogType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/fedcm/DialogType;
@@ -31941,6 +31944,7 @@ public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeat
 	public static final field syncXhr Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field unload Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field usb Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field usbUnrestricted Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field verticalScroll Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field webPrinting Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field webShare Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
