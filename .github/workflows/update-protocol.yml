@@ -19,7 +19,7 @@ jobs:
           java-version: 17
 
       - name: Update protocol
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v3
         with:
           arguments: updateProtocolDefinitions
 
@@ -28,7 +28,7 @@ jobs:
         run: echo "version=$(cat protocol/version.txt)" >> $GITHUB_OUTPUT
 
       - name: Update public ABI descriptors
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v3
         with:
           arguments: apiDump
 
