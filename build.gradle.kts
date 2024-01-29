@@ -155,17 +155,3 @@ signing {
     useInMemoryPgpKeys(signingKey, signingPassword)
     sign(extensions.getByType<PublishingExtension>().publications)
 }
-
-// Resolves issues with .asc task output of the sign tasks:
-// Task ':linkDebug<platform>' uses this output of task ':sign<platform>Publication' without declaring an explicit or implicit dependency
-// Task ':compileTestKotlin<platform>' uses this output of task ':sign<platform>Publication' without declaring an explicit or implicit dependency
-// With <platform> being one of LinuxX64, IosSimulatorArm64, MacosArm64
-val problematicNativeTargets = listOf("Ios", "Macos", "Tvos", "Watchos", "Linux", "Mingw")
-tasks.withType<Sign>().configureEach {
-    if (problematicNativeTargets.any { it in name }) {
-        val target = name.removePrefix("sign").removeSuffix("Publication")
-        val linkDebugTestTaskName = "linkDebugTest$target"
-        val compileTestKotlinTaskName = "compileTestKotlin$target"
-        mustRunAfter(linkDebugTestTaskName, compileTestKotlinTaskName)
-    }
-}
