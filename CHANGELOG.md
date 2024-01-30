@@ -1,5 +1,13 @@
 # Change Log
 
+## [5.10.0\-1253004](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.10.0-1253004) (2024-01-30)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.9.0-1239539...5.10.0-1253004)
+
+**Upgraded dependencies:**
+
+- Update to Chrome DevTools Protocol version 1253004 [\#340](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/340) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Bump org.jetbrains.kotlinx:atomicfu from 0.23.1 to 0.23.2 [\#342](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/342) ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [5.9.0\-1239539](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.9.0-1239539) (2023-12-26)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.8.1-1233758...5.9.0-1239539)
 
