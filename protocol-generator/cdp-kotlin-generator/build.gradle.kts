@@ -4,8 +4,8 @@ plugins {
 
 group = "org.hildan.chrome"
 
-repositories {
-    mavenCentral()
+kotlin {
+    jvmToolchain(11)
 }
 
 dependencies {
