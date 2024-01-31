@@ -36,7 +36,7 @@ jobs:
         id: compute-version
 
       - name: Release
-        uses: joffrey-bion/gradle-library-release-action@v1
+        uses: joffrey-bion/gradle-library-release-action@v2
         with:
           version: ${{ steps.compute-version.outputs.fullVersion }}
           gpg-signing-key: ${{ secrets.GPG_SECRET_ASCII_ARMORED }}
