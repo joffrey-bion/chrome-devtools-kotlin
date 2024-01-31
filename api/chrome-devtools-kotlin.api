@@ -23276,6 +23276,38 @@ public final class org/hildan/chrome/devtools/domains/network/AlternateProtocolU
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/network/AssociatedCookie {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/AssociatedCookie$Companion;
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/network/Cookie;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/network/Cookie;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/network/Cookie;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/network/Cookie;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;)Lorg/hildan/chrome/devtools/domains/network/AssociatedCookie;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/AssociatedCookie;Lorg/hildan/chrome/devtools/domains/network/Cookie;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/AssociatedCookie;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBlockedReasons ()Ljava/util/List;
+	public final fun getCookie ()Lorg/hildan/chrome/devtools/domains/network/Cookie;
+	public final fun getExemptionReason ()Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/AssociatedCookie$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/network/AssociatedCookie$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/network/AssociatedCookie;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/network/AssociatedCookie;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/AssociatedCookie$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/network/AuthChallenge {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/AuthChallenge$Companion;
 	public fun <init> (Lorg/hildan/chrome/devtools/domains/network/AuthChallengeSource;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
@@ -23366,35 +23398,6 @@ public final class org/hildan/chrome/devtools/domains/network/AuthChallengeSourc
 }
 
 public final class org/hildan/chrome/devtools/domains/network/AuthChallengeSource$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class org/hildan/chrome/devtools/domains/network/BlockedCookieWithReason {
-	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/BlockedCookieWithReason$Companion;
-	public fun <init> (Ljava/util/List;Lorg/hildan/chrome/devtools/domains/network/Cookie;)V
-	public final fun component1 ()Ljava/util/List;
-	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/network/Cookie;
-	public final fun copy (Ljava/util/List;Lorg/hildan/chrome/devtools/domains/network/Cookie;)Lorg/hildan/chrome/devtools/domains/network/BlockedCookieWithReason;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/BlockedCookieWithReason;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/network/Cookie;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/BlockedCookieWithReason;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getBlockedReasons ()Ljava/util/List;
-	public final fun getCookie ()Lorg/hildan/chrome/devtools/domains/network/Cookie;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class org/hildan/chrome/devtools/domains/network/BlockedCookieWithReason$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/network/BlockedCookieWithReason$$serializer;
-	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/network/BlockedCookieWithReason;
-	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/network/BlockedCookieWithReason;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
-}
-
-public final class org/hildan/chrome/devtools/domains/network/BlockedCookieWithReason$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -23886,6 +23889,26 @@ public final class org/hildan/chrome/devtools/domains/network/CookieBlockedReaso
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/network/CookieExemptionReason : java/lang/Enum {
+	public static final field BrowserHeuristics Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason$Companion;
+	public static final field EnterprisePolicy Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
+	public static final field None Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
+	public static final field StorageAccess Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
+	public static final field TPCDDeprecationTrial Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
+	public static final field TPCDHeuristics Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
+	public static final field TPCDMetadata Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
+	public static final field TopLevelStorageAccess Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
+	public static final field UserSetting Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
+	public static fun values ()[Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/CookieExemptionReason$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/network/CookieParam {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/CookieParam$Companion;
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSameSite;Ljava/lang/Double;Lorg/hildan/chrome/devtools/domains/network/CookiePriority;Ljava/lang/Boolean;Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;Ljava/lang/Integer;Ljava/lang/String;)V
@@ -24366,6 +24389,35 @@ public final class org/hildan/chrome/devtools/domains/network/ErrorReason : java
 }
 
 public final class org/hildan/chrome/devtools/domains/network/ErrorReason$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/ExemptedSetCookieWithReason {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/ExemptedSetCookieWithReason$Companion;
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;Lorg/hildan/chrome/devtools/domains/network/Cookie;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/network/Cookie;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;Lorg/hildan/chrome/devtools/domains/network/Cookie;)Lorg/hildan/chrome/devtools/domains/network/ExemptedSetCookieWithReason;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/ExemptedSetCookieWithReason;Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;Lorg/hildan/chrome/devtools/domains/network/Cookie;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/ExemptedSetCookieWithReason;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCookie ()Lorg/hildan/chrome/devtools/domains/network/Cookie;
+	public final fun getExemptionReason ()Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/ExemptedSetCookieWithReason$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/network/ExemptedSetCookieWithReason$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/network/ExemptedSetCookieWithReason;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/network/ExemptedSetCookieWithReason;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/network/ExemptedSetCookieWithReason$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -27176,8 +27228,8 @@ public final class org/hildan/chrome/devtools/domains/network/events/NetworkEven
 
 public final class org/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfo : org/hildan/chrome/devtools/domains/network/events/NetworkEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfo$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/util/List;
 	public final fun component3 ()Lkotlinx/serialization/json/JsonObject;
@@ -27186,12 +27238,14 @@ public final class org/hildan/chrome/devtools/domains/network/events/NetworkEven
 	public final fun component6 ()Ljava/lang/String;
 	public final fun component7 ()Ljava/lang/String;
 	public final fun component8 ()Ljava/lang/Boolean;
-	public final fun copy (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfo;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfo;Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfo;
+	public final fun component9 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfo;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfo;Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/json/JsonObject;Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;ILjava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/network/events/NetworkEvent$ResponseReceivedExtraInfo;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBlockedCookies ()Ljava/util/List;
 	public final fun getCookiePartitionKey ()Ljava/lang/String;
 	public final fun getCookiePartitionKeyOpaque ()Ljava/lang/Boolean;
+	public final fun getExemptedCookies ()Ljava/util/List;
 	public final fun getHeaders ()Lkotlinx/serialization/json/JsonObject;
 	public final fun getHeadersText ()Ljava/lang/String;
 	public final fun getRequestId ()Ljava/lang/String;
