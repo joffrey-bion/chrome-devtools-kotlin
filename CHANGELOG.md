@@ -1,5 +1,13 @@
 # Change Log
 
+## [5.11.0\-1254350](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.11.0-1254350) (2024-02-02)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.10.0-1253004...5.11.0-1254350)
+
+**Upgraded dependencies:**
+
+- Update to Chrome DevTools Protocol version 1254350 [\#349](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/349) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Bump ktor from 2.3.7 to 2.3.8 [\#351](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/351) ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [5.10.0\-1253004](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.10.0-1253004) (2024-01-30)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.9.0-1239539...5.10.0-1253004)
 
