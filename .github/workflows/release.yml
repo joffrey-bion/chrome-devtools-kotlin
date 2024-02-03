@@ -7,6 +7,8 @@ on:
         description: "New semver version without cdp suffix"
         required: true
 
+run-name: "Release ${{ steps.compute-version.outputs.fullVersion }}"
+
 jobs:
   release:
     runs-on: macos-latest
