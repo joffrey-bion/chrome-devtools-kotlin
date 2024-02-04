@@ -7,7 +7,7 @@ on:
         description: "New semver version without cdp suffix"
         required: true
 
-run-name: "Release ${{ steps.compute-version.outputs.fullVersion }}"
+run-name: "Release ${{ inputs.version }}-(cdp-version)"
 
 jobs:
   release:
