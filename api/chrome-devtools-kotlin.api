@@ -23890,8 +23890,8 @@ public final class org/hildan/chrome/devtools/domains/network/CookieBlockedReaso
 }
 
 public final class org/hildan/chrome/devtools/domains/network/CookieExemptionReason : java/lang/Enum {
-	public static final field BrowserHeuristics Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason$Companion;
+	public static final field CorsOptIn Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
 	public static final field EnterprisePolicy Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
 	public static final field None Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
 	public static final field StorageAccess Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
