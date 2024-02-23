@@ -1,5 +1,14 @@
 # Change Log
 
+## [5.12.0\-1263784](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.12.0-1263784) (2024-02-23)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.11.0-1255431...5.12.0-1263784)
+
+**Upgraded dependencies:**
+
+- Update to Chrome DevTools Protocol version 1263784 [\#360](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/360) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Bump org.jetbrains.kotlinx:kotlinx\-serialization\-json from 1.6.2 to 1.6.3 [\#362](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/362) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.jetbrains.kotlinx:kotlinx\-coroutines\-core from 1.7.3 to 1.8.0 [\#361](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/361) ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [5.11.0\-1255431](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.11.0-1255431) (2024-02-04)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.11.0-1254350...5.11.0-1255431)
 
