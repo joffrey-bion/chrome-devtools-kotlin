@@ -1593,10 +1593,15 @@ public final class org/hildan/chrome/devtools/domains/audits/AttributionReportin
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType$Companion;
 	public static final field InsecureContext Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field InvalidHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
+	public static final field InvalidInfoHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field InvalidRegisterOsSourceHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field InvalidRegisterOsTriggerHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field InvalidRegisterTriggerHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field NavigationRegistrationWithoutTransientUserActivation Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
+	public static final field NoRegisterOsSourceHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
+	public static final field NoRegisterOsTriggerHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
+	public static final field NoRegisterSourceHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
+	public static final field NoRegisterTriggerHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field NoWebOrOsSupport Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field OsSourceIgnored Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field OsTriggerIgnored Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
@@ -30267,6 +30272,7 @@ public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRe
 	public static final field OutstandingNetworkRequestFetch Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field OutstandingNetworkRequestOthers Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field OutstandingNetworkRequestXHR Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field ParserAborted Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field PaymentManager Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field PictureInPicture Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field Portal Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
