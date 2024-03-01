@@ -1468,7 +1468,12 @@
                         "InvalidRegisterOsTriggerHeader",
                         "WebAndOsHeaders",
                         "NoWebOrOsSupport",
-                        "NavigationRegistrationWithoutTransientUserActivation"
+                        "NavigationRegistrationWithoutTransientUserActivation",
+                        "InvalidInfoHeader",
+                        "NoRegisterSourceHeader",
+                        "NoRegisterTriggerHeader",
+                        "NoRegisterOsSourceHeader",
+                        "NoRegisterOsTriggerHeader"
                     ]
                 },
                 {
@@ -17462,6 +17467,7 @@
                         "SmartCard",
                         "LiveMediaStreamTrack",
                         "UnloadHandler",
+                        "ParserAborted",
                         "ContentSecurityHandler",
                         "ContentWebAuthenticationAPI",
                         "ContentFileChooser",
