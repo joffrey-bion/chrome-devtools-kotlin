@@ -4062,6 +4062,7 @@
                 {
                     "id": "CSSPositionFallbackRule",
                     "description": "CSS position-fallback rule representation.",
+                    "deprecated": true,
                     "type": "object",
                     "properties": [
                         {
@@ -4075,6 +4076,34 @@
                             "items": {
                                 "$ref": "CSSTryRule"
                             }
+                        }
+                    ]
+                },
+                {
+                    "id": "CSSPositionTryRule",
+                    "description": "CSS @position-try rule representation.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "name",
+                            "description": "The prelude dashed-ident name",
+                            "$ref": "Value"
+                        },
+                        {
+                            "name": "styleSheetId",
+                            "description": "The css style sheet identifier (absent for user agent stylesheet and user-specified\nstylesheet rules) this rule came from.",
+                            "optional": true,
+                            "$ref": "StyleSheetId"
+                        },
+                        {
+                            "name": "origin",
+                            "description": "Parent stylesheet's origin.",
+                            "$ref": "StyleSheetOrigin"
+                        },
+                        {
+                            "name": "style",
+                            "description": "Associated style declaration.",
+                            "$ref": "CSSStyle"
                         }
                     ]
                 },
@@ -4477,10 +4506,20 @@
                         {
                             "name": "cssPositionFallbackRules",
                             "description": "A list of CSS position fallbacks matching this node.",
+                            "deprecated": true,
                             "optional": true,
                             "type": "array",
                             "items": {
                                 "$ref": "CSSPositionFallbackRule"
+                            }
+                        },
+                        {
+                            "name": "cssPositionTryRules",
+                            "description": "A list of CSS @position-try rules matching this node, based on the position-try-options property.",
+                            "optional": true,
+                            "type": "array",
+                            "items": {
+                                "$ref": "CSSPositionTryRule"
                             }
                         },
                         {
@@ -4580,6 +4619,30 @@
                         {
                             "name": "rootLayer",
                             "$ref": "CSSLayerData"
+                        }
+                    ]
+                },
+                {
+                    "name": "getLocationForSelector",
+                    "description": "Given a CSS selector text and a style sheet ID, getLocationForSelector\nreturns an array of locations of the CSS selector in the style sheet.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "styleSheetId",
+                            "$ref": "StyleSheetId"
+                        },
+                        {
+                            "name": "selectorText",
+                            "type": "string"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "ranges",
+                            "type": "array",
+                            "items": {
+                                "$ref": "SourceRange"
+                            }
                         }
                     ]
                 },
@@ -9058,12 +9121,29 @@
                         },
                         {
                             "name": "devicePosture",
-                            "description": "If set, the posture of a foldable device. If not set the posture is set\nto continuous.",
+                            "description": "If set, the posture of a foldable device. If not set the posture is set\nto continuous.\nDeprecated, use Emulation.setDevicePostureOverride.",
                             "experimental": true,
+                            "deprecated": true,
                             "optional": true,
                             "$ref": "DevicePosture"
                         }
                     ]
+                },
+                {
+                    "name": "setDevicePostureOverride",
+                    "description": "Start reporting the given posture value to the Device Posture API.\nThis override can also be set in setDeviceMetricsOverride().",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "posture",
+                            "$ref": "DevicePosture"
+                        }
+                    ]
+                },
+                {
+                    "name": "clearDevicePostureOverride",
+                    "description": "Clears a device posture override set with either setDeviceMetricsOverride()\nor setDevicePostureOverride() and starts using posture information from the\nplatform again.\nDoes nothing if no override is set.",
+                    "experimental": true
                 },
                 {
                     "name": "setScrollbarsHidden",
@@ -12005,7 +12085,8 @@
                         },
                         {
                             "name": "postData",
-                            "description": "HTTP POST request data.",
+                            "description": "HTTP POST request data.\nUse postDataEntries instead.",
+                            "deprecated": true,
                             "optional": true,
                             "type": "string"
                         },
@@ -12017,7 +12098,7 @@
                         },
                         {
                             "name": "postDataEntries",
-                            "description": "Request body elements. This will be converted from base64 to binary",
+                            "description": "Request body elements (post data broken into individual entries).",
                             "experimental": true,
                             "optional": true,
                             "type": "array",
@@ -12484,6 +12565,12 @@
                             "type": "boolean"
                         },
                         {
+                            "name": "fromEarlyHints",
+                            "description": "Specifies that the request was served from the prefetch cache.",
+                            "optional": true,
+                            "type": "boolean"
+                        },
+                        {
                             "name": "serviceWorkerRouterInfo",
                             "description": "Information about how Service Worker Static Router was used.",
                             "experimental": true,
@@ -12902,6 +12989,11 @@
                             "name": "exemptionReason",
                             "description": "The reason the cookie was exempted.",
                             "$ref": "CookieExemptionReason"
+                        },
+                        {
+                            "name": "cookieLine",
+                            "description": "The string representing this individual cookie as it would appear in the header.",
+                            "type": "string"
                         },
                         {
                             "name": "cookie",
@@ -13818,6 +13910,27 @@
                             "description": "Connection type if known.",
                             "optional": true,
                             "$ref": "ConnectionType"
+                        },
+                        {
+                            "name": "packetLoss",
+                            "description": "WebRTC packet loss (percent, 0-100). 0 disables packet loss emulation, 100 drops all the packets.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "number"
+                        },
+                        {
+                            "name": "packetQueueLength",
+                            "description": "WebRTC packet queue length (packet). 0 removes any queue length limitations.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "packetReordering",
+                            "description": "WebRTC packetReordering feature.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ]
                 },
@@ -15020,6 +15133,23 @@
                             "items": {
                                 "$ref": "ExemptedSetCookieWithReason"
                             }
+                        }
+                    ]
+                },
+                {
+                    "name": "responseReceivedEarlyHints",
+                    "description": "Fired when 103 Early Hints headers is received in addition to the common response.\nNot every responseReceived event will have an responseReceivedEarlyHints fired.\nOnly one responseReceivedEarlyHints may be fired for eached responseReceived event.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "requestId",
+                            "description": "Request identifier. Used to match this information to another responseReceived event.",
+                            "$ref": "RequestId"
+                        },
+                        {
+                            "name": "headers",
+                            "description": "Raw response headers as they were received over the wire.",
+                            "$ref": "Headers"
                         }
                     ]
                 },
@@ -16472,7 +16602,7 @@
                         "ch-ua-platform",
                         "ch-ua-model",
                         "ch-ua-mobile",
-                        "ch-ua-form-factor",
+                        "ch-ua-form-factors",
                         "ch-ua-full-version",
                         "ch-ua-full-version-list",
                         "ch-ua-platform-version",
@@ -17418,6 +17548,7 @@
                         "CookieDisabled",
                         "HTTPAuthRequired",
                         "CookieFlushed",
+                        "BroadcastChannelOnMessage",
                         "WebSocket",
                         "WebTransport",
                         "WebRTC",
@@ -20387,91 +20518,6 @@
                     ]
                 },
                 {
-                    "id": "InterestGroupAd",
-                    "description": "Ad advertising element inside an interest group.",
-                    "type": "object",
-                    "properties": [
-                        {
-                            "name": "renderURL",
-                            "type": "string"
-                        },
-                        {
-                            "name": "metadata",
-                            "optional": true,
-                            "type": "string"
-                        }
-                    ]
-                },
-                {
-                    "id": "InterestGroupDetails",
-                    "description": "The full details of an interest group.",
-                    "type": "object",
-                    "properties": [
-                        {
-                            "name": "ownerOrigin",
-                            "type": "string"
-                        },
-                        {
-                            "name": "name",
-                            "type": "string"
-                        },
-                        {
-                            "name": "expirationTime",
-                            "$ref": "Network.TimeSinceEpoch"
-                        },
-                        {
-                            "name": "joiningOrigin",
-                            "type": "string"
-                        },
-                        {
-                            "name": "biddingLogicURL",
-                            "optional": true,
-                            "type": "string"
-                        },
-                        {
-                            "name": "biddingWasmHelperURL",
-                            "optional": true,
-                            "type": "string"
-                        },
-                        {
-                            "name": "updateURL",
-                            "optional": true,
-                            "type": "string"
-                        },
-                        {
-                            "name": "trustedBiddingSignalsURL",
-                            "optional": true,
-                            "type": "string"
-                        },
-                        {
-                            "name": "trustedBiddingSignalsKeys",
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "name": "userBiddingSignals",
-                            "optional": true,
-                            "type": "string"
-                        },
-                        {
-                            "name": "ads",
-                            "type": "array",
-                            "items": {
-                                "$ref": "InterestGroupAd"
-                            }
-                        },
-                        {
-                            "name": "adComponents",
-                            "type": "array",
-                            "items": {
-                                "$ref": "InterestGroupAd"
-                            }
-                        }
-                    ]
-                },
-                {
                     "id": "SharedStorageAccessType",
                     "description": "Enum of shared storage access types.",
                     "type": "string",
@@ -20483,6 +20529,7 @@
                         "documentAppend",
                         "documentDelete",
                         "documentClear",
+                        "documentGet",
                         "workletSet",
                         "workletAppend",
                         "workletDelete",
@@ -20491,7 +20538,11 @@
                         "workletKeys",
                         "workletEntries",
                         "workletLength",
-                        "workletRemainingBudget"
+                        "workletRemainingBudget",
+                        "headerSet",
+                        "headerAppend",
+                        "headerDelete",
+                        "headerClear"
                     ]
                 },
                 {
@@ -20605,19 +20656,19 @@
                         },
                         {
                             "name": "key",
-                            "description": "Key for a specific entry in an origin's shared storage.\nPresent only for SharedStorageAccessType.documentSet,\nSharedStorageAccessType.documentAppend,\nSharedStorageAccessType.documentDelete,\nSharedStorageAccessType.workletSet,\nSharedStorageAccessType.workletAppend,\nSharedStorageAccessType.workletDelete, and\nSharedStorageAccessType.workletGet.",
+                            "description": "Key for a specific entry in an origin's shared storage.\nPresent only for SharedStorageAccessType.documentSet,\nSharedStorageAccessType.documentAppend,\nSharedStorageAccessType.documentDelete,\nSharedStorageAccessType.workletSet,\nSharedStorageAccessType.workletAppend,\nSharedStorageAccessType.workletDelete,\nSharedStorageAccessType.workletGet,\nSharedStorageAccessType.headerSet,\nSharedStorageAccessType.headerAppend, and\nSharedStorageAccessType.headerDelete.",
                             "optional": true,
                             "type": "string"
                         },
                         {
                             "name": "value",
-                            "description": "Value for a specific entry in an origin's shared storage.\nPresent only for SharedStorageAccessType.documentSet,\nSharedStorageAccessType.documentAppend,\nSharedStorageAccessType.workletSet, and\nSharedStorageAccessType.workletAppend.",
+                            "description": "Value for a specific entry in an origin's shared storage.\nPresent only for SharedStorageAccessType.documentSet,\nSharedStorageAccessType.documentAppend,\nSharedStorageAccessType.workletSet,\nSharedStorageAccessType.workletAppend,\nSharedStorageAccessType.headerSet, and\nSharedStorageAccessType.headerAppend.",
                             "optional": true,
                             "type": "string"
                         },
                         {
                             "name": "ignoreIfPresent",
-                            "description": "Whether or not to set an entry for a key if that key is already present.\nPresent only for SharedStorageAccessType.documentSet and\nSharedStorageAccessType.workletSet.",
+                            "description": "Whether or not to set an entry for a key if that key is already present.\nPresent only for SharedStorageAccessType.documentSet,\nSharedStorageAccessType.workletSet, and\nSharedStorageAccessType.headerSet.",
                             "optional": true,
                             "type": "boolean"
                         }
@@ -20918,7 +20969,8 @@
                         "destinationGlobalLimitReached",
                         "destinationBothLimitsReached",
                         "reportingOriginsPerSiteLimitReached",
-                        "exceedsMaxChannelCapacity"
+                        "exceedsMaxChannelCapacity",
+                        "exceedsMaxTriggerStateCardinality"
                     ]
                 },
                 {
@@ -21133,6 +21185,38 @@
                         "deduplicated",
                         "reportWindowPassed",
                         "excessiveReports"
+                    ]
+                },
+                {
+                    "id": "RelatedWebsiteSet",
+                    "description": "A single Related Website Set object.",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "primarySites",
+                            "description": "The primary site of this set, along with the ccTLDs if there is any.",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "name": "associatedSites",
+                            "description": "The associated sites of this set, along with the ccTLDs if there is any.",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "name": "serviceSites",
+                            "description": "The service sites of this set, along with the ccTLDs if there is any.",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
                     ]
                 }
             ],
@@ -21430,7 +21514,8 @@
                     "returns": [
                         {
                             "name": "details",
-                            "$ref": "InterestGroupDetails"
+                            "description": "This largely corresponds to:\nhttps://wicg.github.io/turtledove/#dictdef-generatebidinterestgroup\nbut has absolute expirationTime instead of relative lifetimeMs and\nalso adds joiningOrigin.",
+                            "type": "object"
                         }
                     ]
                 },
@@ -21626,6 +21711,32 @@
                         {
                             "name": "enable",
                             "type": "boolean"
+                        }
+                    ]
+                },
+                {
+                    "name": "sendPendingAttributionReports",
+                    "description": "Sends all pending Attribution Reports immediately, regardless of their\nscheduled report time.",
+                    "experimental": true,
+                    "returns": [
+                        {
+                            "name": "numSent",
+                            "description": "The number of reports that were sent.",
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
+                    "name": "getRelatedWebsiteSets",
+                    "description": "Returns the effective Related Website Sets in use by this profile for the browser\nsession. The effective Related Website Sets will not change during a browser session.",
+                    "experimental": true,
+                    "returns": [
+                        {
+                            "name": "sets",
+                            "type": "array",
+                            "items": {
+                                "$ref": "RelatedWebsiteSet"
+                            }
                         }
                     ]
                 }
@@ -25466,6 +25577,79 @@
                 {
                     "name": "resetCooldown",
                     "description": "Resets the cooldown time, if any, to allow the next FedCM call to show\na dialog even if one was recently dismissed by the user."
+                }
+            ]
+        },
+        {
+            "domain": "PWA",
+            "description": "This domain allows interacting with the browser to control PWAs.",
+            "experimental": true,
+            "types": [
+                {
+                    "id": "FileHandlerAccept",
+                    "description": "The following types are the replica of\nhttps://crsrc.org/c/chrome/browser/web_applications/proto/web_app_os_integration_state.proto;drc=9910d3be894c8f142c977ba1023f30a656bc13fc;l=67",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "mediaType",
+                            "description": "New name of the mimetype according to\nhttps://www.iana.org/assignments/media-types/media-types.xhtml",
+                            "type": "string"
+                        },
+                        {
+                            "name": "fileExtensions",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "FileHandler",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "action",
+                            "type": "string"
+                        },
+                        {
+                            "name": "accepts",
+                            "type": "array",
+                            "items": {
+                                "$ref": "FileHandlerAccept"
+                            }
+                        },
+                        {
+                            "name": "displayName",
+                            "type": "string"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "getOsAppState",
+                    "description": "Returns the following OS state for the given manifest id.",
+                    "parameters": [
+                        {
+                            "name": "manifestId",
+                            "description": "The id from the webapp's manifest file, commonly it's the url of the\nsite installing the webapp. See\nhttps://web.dev/learn/pwa/web-app-manifest.",
+                            "type": "string"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "badgeCount",
+                            "type": "integer"
+                        },
+                        {
+                            "name": "fileHandlers",
+                            "type": "array",
+                            "items": {
+                                "$ref": "FileHandler"
+                            }
+                        }
+                    ]
                 }
             ]
         }
