@@ -16,7 +16,7 @@ updates:
     labels:
       - dependencies
     ignore:
-      - dependency-name: "com.gradle.enterprise"
+      - dependency-name: "com.gradle.develocity"
       - dependency-name: "de.fayard.refreshVersions"
       - dependency-name: "io.github.gradle-nexus.publish-plugin"
       - dependency-name: "org.hildan.github.changelog"
@@ -35,7 +35,7 @@ updates:
       - dependencies
       - internal
     allow:
-      - dependency-name: "com.gradle.enterprise"
+      - dependency-name: "com.gradle.develocity"
       - dependency-name: "de.fayard.refreshVersions"
       - dependency-name: "io.github.gradle-nexus.publish-plugin"
       - dependency-name: "org.hildan.github.changelog"

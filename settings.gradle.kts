@@ -1,17 +1,17 @@
 import de.fayard.refreshVersions.core.StabilityLevel
 
 plugins {
-    id("com.gradle.enterprise") version "3.17"
+    id("com.gradle.develocity") version "3.17"
     id("de.fayard.refreshVersions") version "0.60.5"
 }
 
 rootProject.name = "chrome-devtools-kotlin"
 
-gradleEnterprise {
+develocity {
     buildScan {
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
-        publishAlways()
+        termsOfUseUrl = "https://gradle.com/terms-of-service"
+        termsOfUseAgree = "yes"
+        uploadInBackground = false // bad for CI, and not critical for local runs
     }
 }
 
