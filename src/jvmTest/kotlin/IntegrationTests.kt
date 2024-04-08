@@ -13,6 +13,7 @@ import org.hildan.chrome.devtools.targets.*
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
+import org.testcontainers.utility.*
 import kotlin.test.*
 import kotlin.time.Duration.Companion.minutes
 
@@ -23,12 +24,20 @@ class IntegrationTests {
     var chromeContainer: GenericContainer<*> = GenericContainer("zenika/alpine-chrome")
         .withExposedPorts(9222)
         .withCommand("--no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 about:blank")
+        .withCopyFileToContainer(
+            MountableFile.forClasspathResource("/test-server-pages/"),
+            "/test-server-pages/"
+        )
 
     private fun chromeDpClient(): ChromeDPClient {
         val chromeDebuggerPort = chromeContainer.firstMappedPort
         return ChromeDPClient("http://localhost:$chromeDebuggerPort")
     }
 
+    private suspend fun PageSession.gotoTestPageResource(resourcePath: String) {
+        goto("file:///test-server-pages/$resourcePath")
+    }
+    
     @Test
     fun httpEndpoints_meta() {
         runBlockingWithTimeout {
@@ -229,21 +238,31 @@ class IntegrationTests {
     }
 
     @Test
-    fun getAttributes_selectedWithoutValue() {
+    fun attributesAccess() {
         runBlockingWithTimeout {
             chromeDpClient().webSocket().use { browser ->
                 browser.newPage().use { page ->
-                    page.goto("https://www.htmlquick.com/reference/tags/select.html")
-                    val nodeId = page.dom.findNodeBySelector("select[name=carbrand] option[selected]")
-                    val attributes1 = page.dom.getTypedAttributes(nodeId!!)
-                    assertEquals(true, attributes1.selected)
-
-                    val attributes2 = page.dom.getTypedAttributes("select[name=carbrand] option[selected]")!!
+                    page.gotoTestPageResource("select.html")
+                    
+                    val nodeId = page.dom.findNodeBySelector("select[name=pets] option[selected]")
+                    assertNull(nodeId, "No option is selected in this <select>")
+                    
+                    val attributes1 = page.dom.getTypedAttributes("select[name=pets] option[selected]")
+                    assertNull(attributes1, "No option is selected in this <select>")
+//
+                    val attributes2 = page.dom.getTypedAttributes("select[name=pets-selected] option[selected]")
+                    assertNotNull(attributes2, "There should be a selected option")
                     assertEquals(true, attributes2.selected)
-
-                    // Attributes without value (e.g. "selected" in <option selected />) are returned as empty strings by the protocol.
-                    val selected = page.dom.getAttributeValue("select[name=carbrand] option[selected]", "selected")!!
+                    assertEquals("cat", attributes2.value)
+                    val value = page.dom.getAttributeValue("select[name=pets-selected] option[selected]", "value")
+                    assertEquals("cat", value)
+                    // Attributes without value (e.g. "selected" in <option name="x" selected />) are returned as empty 
+                    // strings by the protocol.
+                    val selected = page.dom.getAttributeValue("select[name=pets-selected] option[selected]", "selected")
                     assertEquals("", selected)
+
+                    val absentValue = page.dom.getAttributeValue("select[name=pets-selected-without-value] option[selected]", "value")
+                    assertNull(absentValue, "There is no 'value' attribute in this select option")
                 }
             }
         }
