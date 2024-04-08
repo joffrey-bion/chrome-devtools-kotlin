@@ -222,7 +222,6 @@ class IntegrationTests {
         runBlockingWithTimeout {
             chromeDpClient().webSocket().use { browser ->
                 browser.newPage().use { page ->
-                    page.goto("http://www.google.com")
                     assertEquals(42, page.runtime.evaluateJs<Int>("42"))
                     assertEquals(
                         42 to "test",
