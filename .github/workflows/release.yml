@@ -33,6 +33,12 @@ jobs:
           # https://github.com/abiosoft/colima/blob/main/docs/FAQ.md#cannot-connect-to-the-docker-daemon-at-unixvarrundockersock-is-the-docker-daemon-running
           sudo ln -sf $HOME/.colima/default/docker.sock /var/run/docker.sock
 
+      - name: Cache Kotlin/Native binaries
+        uses: actions/cache@v4
+        with:
+          path: ~/.konan
+          key: konan-${{ runner.os }}
+
       - name: Compute full version (with protocol version)
         run: echo "fullVersion=${{ inputs.version }}-$(cat protocol/version.txt)" >> $GITHUB_OUTPUT
         id: compute-version
