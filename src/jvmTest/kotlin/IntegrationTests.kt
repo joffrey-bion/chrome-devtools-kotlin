@@ -248,7 +248,7 @@ class IntegrationTests {
                     
                     val attributes1 = page.dom.getTypedAttributes("select[name=pets] option[selected]")
                     assertNull(attributes1, "No option is selected in this <select>")
-//
+
                     val attributes2 = page.dom.getTypedAttributes("select[name=pets-selected] option[selected]")
                     assertNotNull(attributes2, "There should be a selected option")
                     assertEquals(true, attributes2.selected)
