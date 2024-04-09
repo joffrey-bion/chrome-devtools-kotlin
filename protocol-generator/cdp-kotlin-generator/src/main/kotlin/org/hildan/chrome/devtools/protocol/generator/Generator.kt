@@ -33,7 +33,7 @@ class Generator(
         }
         generateAllDomainsTargetInterfaceFile(allTargets = targets, allDomains = domains)
         generateAllDomainsTargetImplFile(allTargets = targets, allDomains = domains)
-        generateChildSessionsFiles(childTargets = targets.filterNot { it.name == "Browser" })
+        generateChildSessionsFiles(childTargets = targets.filterNot { it.kotlinName == "Browser" })
     }
 
     private fun loadProtocolDomains(): List<ChromeDPDomain> {

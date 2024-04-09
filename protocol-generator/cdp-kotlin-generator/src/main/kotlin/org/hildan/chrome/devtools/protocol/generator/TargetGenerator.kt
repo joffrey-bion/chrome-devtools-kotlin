@@ -11,7 +11,7 @@ private const val SESSION_ARG = "session"
 
 fun createTargetInterface(target: TargetType, domains: List<ChromeDPDomain>): TypeSpec =
     TypeSpec.interfaceBuilder(ExtDeclarations.targetInterface(target)).apply {
-        addKdoc("Represents the available domain APIs in ${target.name} targets")
+        addKdoc("Represents the available domain APIs in ${target.kotlinName} targets")
         domains.forEach {
             addProperty(it.toPropertySpec())
         }

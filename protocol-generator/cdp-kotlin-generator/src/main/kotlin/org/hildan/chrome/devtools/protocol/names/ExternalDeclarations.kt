@@ -27,9 +27,9 @@ object ExtDeclarations {
     val sessionAdaptersFileName = "ChildSessionAdapters"
     val childSessionInterface = ClassName(sessionsPackage, "ChildSession")
 
-    fun targetInterface(target: TargetType): ClassName = ClassName(targetsPackage, "${target.name}Target")
-    fun sessionInterface(target: TargetType): ClassName = ClassName(sessionsPackage, "${target.name}Session")
-    fun sessionAdapter(target: TargetType): ClassName = ClassName(sessionsPackage, "${target.name}SessionAdapter")
+    fun targetInterface(target: TargetType): ClassName = ClassName(targetsPackage, "${target.kotlinName}Target")
+    fun sessionInterface(target: TargetType): ClassName = ClassName(sessionsPackage, "${target.kotlinName}Session")
+    fun sessionAdapter(target: TargetType): ClassName = ClassName(sessionsPackage, "${target.kotlinName}SessionAdapter")
 }
 
 object Annotations {

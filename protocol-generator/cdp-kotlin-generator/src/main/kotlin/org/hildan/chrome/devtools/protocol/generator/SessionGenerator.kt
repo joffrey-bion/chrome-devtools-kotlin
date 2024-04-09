@@ -13,7 +13,7 @@ fun createSessionInterfacesFileSpec(allTargets: List<TargetType>): FileSpec =
 
 private fun createSessionInterface(target: TargetType): TypeSpec =
     TypeSpec.interfaceBuilder(ExtDeclarations.sessionInterface(target)).apply {
-        addKdoc("A session created when attaching to a target of type ${target.name}.")
+        addKdoc("A session created when attaching to a target of type ${target.kotlinName}.")
         addSuperinterface(ExtDeclarations.childSessionInterface)
         addSuperinterface(ExtDeclarations.targetInterface(target))
     }.build()
@@ -58,7 +58,7 @@ private fun createSessionAdapterClass(target: TargetType): TypeSpec =
                 sessionArg,
                 targetInterface,
                 CodeBlock.of(
-                    "Cannot initiate a ${target.name} session with a target of type ${'$'}targetType (target ID: ${'$'}{%N.metaData.targetId})",
+                    "Cannot initiate a ${target.kotlinName} session with a target of type ${'$'}targetType (target ID: ${'$'}{%N.metaData.targetId})",
                     sessionArg
                 )
             )

@@ -1,6 +1,7 @@
 [
   {
-    "name": "Browser",
+    "chromiumSourceFile": "browser_devtools_agent_host.cc",
+    "kotlinName": "Browser",
     "supportedCdpTargets": [
       "browser"
     ],
@@ -18,7 +19,8 @@
     ]
   },
   {
-    "name": "Page",
+    "chromiumSourceFile": "render_frame_devtools_agent_host.cc",
+    "kotlinName": "Page",
     "supportedCdpTargets": [
       "page",
       "iframe",
@@ -68,7 +70,8 @@
     ]
   },
   {
-    "name": "Worker",
+    "chromiumSourceFile": "dedicated_worker_devtools_agent_host.cc",
+    "kotlinName": "Worker",
     "supportedCdpTargets": [
       "worker"
     ],
@@ -79,7 +82,8 @@
     ]
   },
   {
-    "name": "ServiceWorker",
+    "chromiumSourceFile": "service_worker_devtools_agent_host.cc",
+    "kotlinName": "ServiceWorker",
     "supportedCdpTargets": [
       "service_worker"
     ],
@@ -93,7 +97,8 @@
     ]
   },
   {
-    "name": "SharedWorker",
+    "chromiumSourceFile": "shared_worker_devtools_agent_host.cc",
+    "kotlinName": "SharedWorker",
     "supportedCdpTargets": [
       "shared_worker"
     ],
