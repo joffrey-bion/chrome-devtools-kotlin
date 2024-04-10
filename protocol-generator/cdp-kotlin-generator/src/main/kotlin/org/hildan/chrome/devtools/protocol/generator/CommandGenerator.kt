@@ -24,6 +24,12 @@ internal fun ChromeDPCommand.createInputTypeSpec(): TypeSpec {
 private fun ChromeDPCommand.createInputBuilderType(): TypeSpec {
     val cmd = this
     return TypeSpec.classBuilder(names.inputTypeBuilderName).apply {
+        addKdoc(
+            "A builder for [%T], which allows setting the optional parameters of the [%T.%N] command via a lambda.",
+            names.inputTypeName,
+            names.domain.domainClassName,
+            names.methodName,
+        )
         val (optionalProps, mandatoryProps) = cmd.parameters.partition { it.optional }
         addPrimaryConstructorProps(mandatoryProps)
         addProperties(optionalProps.map {
