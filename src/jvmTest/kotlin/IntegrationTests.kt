@@ -56,6 +56,7 @@ class IntegrationTests {
             val targets = chrome.targets()
             assertTrue(targets.isNotEmpty(), "there should be at least the about:blank target")
 
+            @Suppress("DEPRECATION") // the point is to test this deprecated API
             val googleTab = chrome.newTab("https://www.google.com")
             assertEquals("https://www.google.com", googleTab.url.trimEnd('/'))
             chrome.closeTab(googleTab.id)
