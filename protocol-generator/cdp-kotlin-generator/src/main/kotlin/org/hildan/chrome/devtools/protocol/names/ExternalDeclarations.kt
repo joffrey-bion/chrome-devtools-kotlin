@@ -3,11 +3,15 @@ package org.hildan.chrome.devtools.protocol.names
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.MemberName
+import com.squareup.kotlinpoet.MemberName.Companion.member
 import kotlinx.serialization.Serializable
 import org.hildan.chrome.devtools.protocol.json.*
 
 const val ROOT_PACKAGE_NAME = "org.hildan.chrome.devtools"
 
+/**
+ * Represents the naming contract for declarations that are used from non-generated code.
+ */
 object ExtDeclarations {
 
     const val sessionsPackage = "$ROOT_PACKAGE_NAME.sessions"
@@ -26,6 +30,7 @@ object ExtDeclarations {
     val sessionsFileName = "ChildSessions"
     val sessionAdaptersFileName = "ChildSessionAdapters"
     val childSessionInterface = ClassName(sessionsPackage, "ChildSession")
+    val childSessionUnsafeFun = childSessionInterface.member("unsafe")
 
     fun targetInterface(target: TargetType): ClassName = ClassName(targetsPackage, "${target.kotlinName}Target")
     fun sessionInterface(target: TargetType): ClassName = ClassName(sessionsPackage, "${target.kotlinName}Session")

@@ -11,7 +11,20 @@ private const val SESSION_ARG = "session"
 
 fun createTargetInterface(target: TargetType, domains: List<ChromeDPDomain>): TypeSpec =
     TypeSpec.interfaceBuilder(ExtDeclarations.targetInterface(target)).apply {
-        addKdoc("Represents the available domain APIs in ${target.kotlinName} targets")
+        addKdoc("""
+            Represents the available domain APIs in ${target.kotlinName} targets.
+            
+            The subset of domains available for this target type is not strictly defined by the protocol. The
+            subset provided in this interface is guaranteed to work on this target type. However, some
+            domains might be missing in this interface while being effectively supported by the target. If
+            this is the case, you can always use the [%T] interface instead. 
+            
+            This interface is generated to match the latest Chrome DevToolsProtocol definitions. 
+            It is not stable for inheritance, as new properties can be added without major version bump when
+            the protocol changes. It is however safe to use all non-experimental and non-deprecated domains 
+            defined here. The experimental and deprecation cycles of the protocol are reflected in this 
+            interface with the same guarantees.
+        """.trimIndent(), ExtDeclarations.allDomainsTargetInterface)
         domains.forEach {
             addProperty(it.toPropertySpec())
         }
@@ -25,16 +38,29 @@ fun createTargetInterface(target: TargetType, domains: List<ChromeDPDomain>): Ty
 
 fun createAllDomainsTargetInterface(allTargets: List<TargetType>, allDomains: List<ChromeDPDomain>): TypeSpec =
     TypeSpec.interfaceBuilder(ExtDeclarations.allDomainsTargetInterface).apply {
-        addKdoc(
-            "Represents a fictional (unsafe) target with access to all possible domain APIs in all targets. " +
-                    "The domains in this target type are not guaranteed to be supported by the debugger server, " +
-                    "and runtime errors could occur."
-        )
+        addKdoc("""
+            Represents a fictional (unsafe) target with access to all possible domain APIs in all targets.
+            
+            Every target supports only a subset of the protocol domains. Since these subsets are not clearly
+            defined by the protocol definitions, the subset available in each target-specific interface is
+            not strictly guaranteed to cover all the domains that are *effectively* supported by a target.
+            
+            This interface is an escape hatch to provide access to all domain APIs in case some domain is
+            missing in the target-specific interface. It should be used with care, only when you know for
+            sure that the domains you are using are effectively supported by the real attached target,
+            otherwise you'll get runtime errors.
+            
+            This interface is generated to match the latest Chrome DevToolsProtocol definitions. 
+            It is not stable for inheritance, as new properties can be added without major version bump when
+            the protocol changes.
+        """.trimIndent())
+
         allTargets.forEach { target ->
             addSuperinterface(ExtDeclarations.targetInterface(target))
         }
 
-        // we want to add properties for all domains, including those who are technically not supported by any target
+        // All domains supported by at least one target will be implicitly brought by the corresponding superinterface,
+        // but we also need to add properties for domains that are technically not supported by any target interface.
         val domainsPresentInATarget = allTargets.flatMapTo(mutableSetOf()) { it.supportedDomains }
         val danglingDomains = allDomains.filterNot { it.names.domainName in domainsPresentInATarget }
         danglingDomains.forEach {

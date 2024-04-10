@@ -14,6 +14,28 @@ fun createSessionInterfacesFileSpec(allTargets: List<TargetType>): FileSpec =
 private fun createSessionInterface(target: TargetType): TypeSpec =
     TypeSpec.interfaceBuilder(ExtDeclarations.sessionInterface(target)).apply {
         addKdoc("A session created when attaching to a target of type ${target.kotlinName}.")
+        addKdoc("\n\n")
+        // using concatenated strings here so KotlinPoet handles line breaks when it sees fit
+        // (this is important when using dynamic type names in the sentences)
+        addKdoc(
+            format = "The subset of domains available for this target type is not strictly defined by the protocol. " +
+                "The subset provided in this interface is guaranteed to work on this target type. " +
+                "However, some domains might be missing in this interface while being effectively supported by the " +
+                "target. " +
+                "If this is the case, you can use the [%N] function to access all domains.",
+            ExtDeclarations.childSessionUnsafeFun,
+        )
+        addKdoc("\n\n")
+        addKdoc(
+            format = "As a subinterface of [%T], it inherits the generated domain properties that match the latest " +
+                "Chrome DevToolsProtocol definitions. " +
+                "As such, it is not stable for inheritance, as new properties can be added without major version bump" +
+                " when the protocol changes. " +
+                "It is however safe to use all non-experimental and non-deprecated domains defined here. " +
+                "The experimental and deprecation cycles of the protocol are reflected in this interface with the " +
+                "same guarantees.",
+            ExtDeclarations.targetInterface(target),
+        )
         addSuperinterface(ExtDeclarations.childSessionInterface)
         addSuperinterface(ExtDeclarations.targetInterface(target))
     }.build()
