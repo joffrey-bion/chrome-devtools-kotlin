@@ -1,7 +1,6 @@
 package org.hildan.chrome.devtools.domains.utils
 
 import org.hildan.chrome.devtools.domains.dom.Quad
-import org.hildan.chrome.devtools.domains.dom.Rect
 import org.hildan.chrome.devtools.domains.page.Viewport
 
 /**
