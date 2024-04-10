@@ -92,7 +92,8 @@ class GotoConfigBuilder internal constructor() {
 /**
  * An event that a [goto] call can await before considering the navigation complete.
  */
-// Using a sealed class instead of enum here in case new events are added and require configuration
+// Using a class instead of enum here in case new events are added and require configuration.
+// This abstract class is not sealed so we can safely add new completion event types without breaking user code.
 abstract class GotoCompletionEvent {
 
     internal abstract suspend fun await(session: PageSession, navigateRequest: NavigateRequest)
