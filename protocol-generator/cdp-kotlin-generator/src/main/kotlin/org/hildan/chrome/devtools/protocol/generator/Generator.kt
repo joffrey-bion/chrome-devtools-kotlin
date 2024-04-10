@@ -23,12 +23,18 @@ class Generator(
 
         val domains = loadProtocolDomains()
         domains.forEach(::generateDomainFiles)
+        
+        val domainsByName = domains.associateBy { it.names.domainName }
 
         val targets = TargetType.parseJson(targetTypesFile)
         targets.forEach { target ->
             generateTargetInterfaceFile(
                 target = target,
-                domains = domains.filter { it.names.domainName in target.supportedDomains },
+                domains = target.supportedDomains.map {
+                    domainsByName[it]
+                        ?: error("Domain '$it' is not present in the protocol definitions, yet is marked as supported" +
+                                     " for target type '${target.kotlinName}' (${target.chromiumAgentHostType})")
+                },
             )
         }
         generateAllDomainsTargetInterfaceFile(allTargets = targets, allDomains = domains)
