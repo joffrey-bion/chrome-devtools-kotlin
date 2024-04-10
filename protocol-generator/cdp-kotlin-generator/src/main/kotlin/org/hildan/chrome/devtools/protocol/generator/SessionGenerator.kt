@@ -40,9 +40,9 @@ private fun createSessionInterface(target: TargetType): TypeSpec =
         addSuperinterface(ExtDeclarations.targetInterface(target))
     }.build()
 
-fun createSessionAdaptersFileSpec(allTargets: List<TargetType>): FileSpec =
+fun createSessionAdaptersFileSpec(childTargets: List<TargetType>): FileSpec =
     FileSpec.builder(ExtDeclarations.sessionsPackage, ExtDeclarations.sessionAdaptersFileName).apply {
-        allTargets.forEach {
+        childTargets.forEach {
             addFunction(createAdapterExtension(it))
             addType(createSessionAdapterClass(it))
         }

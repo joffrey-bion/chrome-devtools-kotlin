@@ -17,9 +17,10 @@ class Generator(
     private val targetTypesFile: Path,
     private val generatedSourcesDir: Path
 ) {
+    @OptIn(ExperimentalPathApi::class)
     fun generate() {
-        generatedSourcesDir.toFile().deleteRecursively()
-        Files.createDirectories(generatedSourcesDir)
+        generatedSourcesDir.deleteRecursively()
+        generatedSourcesDir.createDirectories()
 
         val domains = loadProtocolDomains()
         domains.forEach(::generateDomainFiles)
@@ -48,6 +49,16 @@ class Generator(
             error("Some descriptors have differing versions: ${descriptors.map { it.version }}")
         }
         return descriptors.flatMap { it.domains }.map { it.pullNestedEnumsToTopLevel().toChromeDPDomain() }
+    }
+
+    private fun generateDomainFiles(domain: ChromeDPDomain) {
+        if (domain.types.isNotEmpty()) {
+            domain.createDomainTypesFileSpec().writeTo(generatedSourcesDir)
+        }
+        if (domain.events.isNotEmpty()) {
+            domain.createDomainEventTypesFileSpec().writeTo(generatedSourcesDir)
+        }
+        domain.createDomainFileSpec().writeTo(generatedSourcesDir)
     }
 
     private fun generateTargetInterfaceFile(target: TargetType, domains: List<ChromeDPDomain>) {
@@ -80,15 +91,5 @@ class Generator(
     private fun generateChildSessionsFiles(childTargets: List<TargetType>) {
         createSessionInterfacesFileSpec(childTargets).writeTo(generatedSourcesDir)
         createSessionAdaptersFileSpec(childTargets).writeTo(generatedSourcesDir)
-    }
-
-    private fun generateDomainFiles(domain: ChromeDPDomain) {
-        if (domain.types.isNotEmpty()) {
-            domain.createDomainTypesFileSpec().writeTo(generatedSourcesDir)
-        }
-        if (domain.events.isNotEmpty()) {
-            domain.createDomainEventTypesFileSpec().writeTo(generatedSourcesDir)
-        }
-        domain.createDomainFileSpec().writeTo(generatedSourcesDir)
     }
 }
