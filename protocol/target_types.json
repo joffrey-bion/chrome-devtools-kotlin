@@ -1,11 +1,20 @@
 [
   {
-    "chromiumSourceFile": "browser_devtools_agent_host.cc",
+    "chromiumAgentHostType": "AuctionWorkletDevToolsAgentHost",
+    "kotlinName": "AuctionWorklet",
+    "supportedCdpTargets": [
+      "auction_worklet"
+    ],
+    "supportedDomainsInChromium": [
+    ]
+  },
+  {
+    "chromiumAgentHostType": "BrowserDevToolsAgentHost",
     "kotlinName": "Browser",
     "supportedCdpTargets": [
       "browser"
     ],
-    "supportedDomains": [
+    "supportedDomainsInChromium": [
       "Target",
       "Browser",
       "IO",
@@ -19,75 +28,79 @@
     ]
   },
   {
-    "chromiumSourceFile": "render_frame_devtools_agent_host.cc",
-    "kotlinName": "Page",
-    "supportedCdpTargets": [
-      "page",
-      "iframe",
-      "webview"
-    ],
-    "supportedDomains": [
-      "Accessibility",
-      "Animation",
-      "ApplicationCache",
-      "Audits",
-      "BackgroundService",
-      "Browser",
-      "CacheStorage",
-      "Console",
-      "CSS",
-      "DOM",
-      "DOMDebugger",
-      "DOMSnapshot",
-      "DOMStorage",
-      "Database",
-      "Debugger",
-      "DeviceOrientation",
-      "Emulation",
-      "Fetch",
-      "HeadlessExperimental",
-      "HeapProfiler",
-      "IndexedDB",
-      "Input",
-      "Inspector",
-      "IO",
-      "LayerTree",
-      "Log",
-      "Memory",
-      "Network",
-      "Overlay",
-      "Page",
-      "Performance",
-      "Profiler",
-      "Runtime",
-      "Schema",
-      "Security",
-      "ServiceWorker",
-      "Storage",
-      "Target",
-      "Tracing",
-      "WebAuthn"
-    ]
-  },
-  {
-    "chromiumSourceFile": "dedicated_worker_devtools_agent_host.cc",
+    "chromiumAgentHostType": "DedicatedWorkerDevToolsAgentHost",
     "kotlinName": "Worker",
     "supportedCdpTargets": [
       "worker"
     ],
-    "supportedDomains": [
+    "supportedDomainsInChromium": [
       "IO",
       "Target",
       "Network"
     ]
   },
   {
-    "chromiumSourceFile": "service_worker_devtools_agent_host.cc",
+    "chromiumAgentHostType": "RenderFrameDevToolsAgentHost",
+    "kotlinName": "Page",
+    "supportedCdpTargets": [
+      "page",
+      "iframe",
+      "webview"
+    ],
+    "supportedDomainsInChromium": [
+      "Audits",
+      "BackgroundService",
+      "Browser",
+      "DeviceAccess",
+      "DeviceOrientation",
+      "DOM",
+      "Emulation",
+      "FedCm",
+      "Fetch",
+      "Input",
+      "Inspector",
+      "IO",
+      "Log",
+      "Memory",
+      "Network",
+      "Overlay",
+      "Page",
+      "Preload",
+      "Schema",
+      "Security",
+      "ServiceWorker",
+      "Storage",
+      "SystemInfo",
+      "Target",
+      "Tracing",
+      "WebAuthn"
+    ],
+    "additionalSupportedDomains": [
+      "Accessibility",
+      "Animation",
+      "CacheStorage",
+      "CSS",
+      "Database",
+      "Debugger",
+      "DOMDebugger",
+      "DOMSnapshot",
+      "DOMStorage",
+      "HeadlessExperimental",
+      "HeapProfiler",
+      "IndexedDB",
+      "LayerTree",
+      "Performance",
+      "Profiler",
+      "Runtime"
+    ]
+  },
+  {
+    "chromiumAgentHostType": "ServiceWorkerDevToolsAgentHost",
     "kotlinName": "ServiceWorker",
     "supportedCdpTargets": [
       "service_worker"
     ],
-    "supportedDomains": [
+    "supportedDomainsInChromium": [
       "Fetch",
       "IO",
       "Inspector",
@@ -97,18 +110,50 @@
     ]
   },
   {
-    "chromiumSourceFile": "shared_worker_devtools_agent_host.cc",
+    "chromiumAgentHostType": "SharedStorageWorkletDevToolsAgentHost",
+    "kotlinName": "SharedStorageWorklet",
+    "supportedCdpTargets": [
+      "shared_storage_worklet"
+    ],
+    "supportedDomainsInChromium": [
+      "Inspector",
+      "Target"
+    ]
+  },
+  {
+    "chromiumAgentHostType": "SharedWorkerDevToolsAgentHost",
     "kotlinName": "SharedWorker",
     "supportedCdpTargets": [
       "shared_worker"
     ],
-    "supportedDomains": [
+    "supportedDomainsInChromium": [
       "Fetch",
       "IO",
       "Inspector",
       "Network",
       "Schema",
       "Target"
+    ]
+  },
+  {
+    "chromiumAgentHostType": "WebContentsDevToolsAgentHost",
+    "kotlinName": "WebContents",
+    "supportedCdpTargets": [
+      "tab"
+    ],
+    "supportedDomainsInChromium": [
+      "IO",
+      "Target",
+      "Tracing"
+    ]
+  },
+  {
+    "chromiumAgentHostType": "WorkletDevToolsAgentHost",
+    "kotlinName": "Worklet",
+    "supportedCdpTargets": [
+      "worklet"
+    ],
+    "supportedDomainsInChromium": [
     ]
   }
 ]
