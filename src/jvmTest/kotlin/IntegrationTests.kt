@@ -1,5 +1,6 @@
 import kotlinx.coroutines.*
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.*
 import org.hildan.chrome.devtools.domains.backgroundservice.ServiceName
 import org.hildan.chrome.devtools.domains.dom.*
 import org.hildan.chrome.devtools.domains.domdebugger.DOMBreakpointType
@@ -7,6 +8,7 @@ import org.hildan.chrome.devtools.domains.runtime.evaluateJs
 import org.hildan.chrome.devtools.protocol.ChromeDPClient
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
 import org.hildan.chrome.devtools.protocol.RequestNotSentException
+import org.hildan.chrome.devtools.protocol.json.*
 import org.hildan.chrome.devtools.sessions.*
 import org.hildan.chrome.devtools.sessions.use
 import org.hildan.chrome.devtools.targets.*
@@ -170,13 +172,31 @@ class IntegrationTests {
     @Test
     fun supportedDomains() {
         runBlockingWithTimeout {
-            chromeDpClient().webSocket().use { browser ->
+            val client = chromeDpClient()
+            val descriptor = Json.decodeFromString<ChromeProtocolDescriptor>(client.protocolJson())
+
+            val knownUnsupportedDomains = setOf(
+                "ApplicationCache", // was removed in tip-of-tree, but still supported by the container
+            )
+            val actualSupportedDomains = descriptor.domains
+                .filterNot { it.domain in knownUnsupportedDomains}
+                .map { it.domain }
+                .toSet()
+            val domainsDiff = actualSupportedDomains - knownUnsupportedDomains - AllDomainsTarget.supportedDomains
+            if (domainsDiff.isNotEmpty()) {
+                fail("The library should support all domains that the ${chromeContainer.dockerImageName} container" +
+                         "actually exposes (apart from $knownUnsupportedDomains), but it's missing: ${domainsDiff.sorted()}")
+            }
+
+            client.webSocket().use { browser ->
                 browser.newPage().use { page ->
+                    page.accessibility.enable()
+                    page.animation.enable()
+                    page.backgroundService.clearEvents(ServiceName.backgroundFetch)
+                    page.browser.getVersion()
                     // Commenting this one out until the issue is better understood
                     // https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/233
                     //page.cacheStorage.requestCacheNames(RequestCacheNamesRequest("google.com"))
-                    page.backgroundService.clearEvents(ServiceName.backgroundFetch)
-                    page.browser.getVersion()
                     page.css.getMediaQueries()
                     page.database.enable()
                     page.debugger.disable()
@@ -188,27 +208,25 @@ class IntegrationTests {
                     page.domSnapshot.enable()
                     page.domStorage.enable()
                     page.fetch.disable()
+                    @Suppress("DEPRECATION") // it's the only working function
+                    page.headlessExperimental.enable()
                     page.heapProfiler.enable()
                     page.indexedDB.enable()
                     page.layerTree.enable()
                     page.performance.disable()
                     page.profiler.disable()
+                    page.runtime.enable()
 
-                    // We can replace this schema Domain call by an HTTP call to /json/protocol
-                    // The Kotlin definitions of that JSON from the buildSrc should work for this,
-                    // but we need a way to share them between test and buildSrc
-                    val supportedByServer = page.schema.getDomains().domains.map { it.name }.toSet()
+                    // We cannot replace this schema Domain call by an HTTP call to /json/protocol, because
+                    // the protocol JSON contains the list of all domains, not just for the page target type.
+                    @Suppress("DEPRECATION")
+                    val actualPageDomains = page.schema.getDomains().domains.map { it.name }.toSet()
 
-                    val knownUnsupportedDomains = setOf(
-                        "ApplicationCache", // was removed in tip-of-tree, but still supported by the server
-                    )
-                    val onlyInServer = supportedByServer - knownUnsupportedDomains - PageTarget.supportedDomains
-                    assertEquals(
-                        emptySet(),
-                        onlyInServer,
-                        "The library should support all domains that the zenika/alpine-chrome container actually " +
-                                "exposes (apart from $knownUnsupportedDomains)"
-                    )
+                    val pageDomainsDiff = actualPageDomains - knownUnsupportedDomains - PageTarget.supportedDomains
+                    if (pageDomainsDiff.isNotEmpty()) {
+                        fail("PageSession should support all domains that the ${chromeContainer.dockerImageName} " +
+                                 "container actually exposes (apart from $knownUnsupportedDomains), but it's missing: ${pageDomainsDiff.sorted()}")
+                    }
                 }
             }
         }
