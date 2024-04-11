@@ -112,13 +112,6 @@ fun createAllDomainsTargetImpl(targetTypes: List<TargetType>, domains: List<Chro
 
 private fun ChromeDPDomain.toPropertySpec(configure: PropertySpec.Builder.() -> Unit = {}): PropertySpec =
     PropertySpec.builder(names.targetFieldName, names.domainClassName).apply {
-        description?.let { addKdoc(it.escapeKDoc()) }
-        addKdoc(linkToDoc(docUrl))
-        if (deprecated) {
-            addAnnotation(Annotations.deprecatedChromeApi)
-        }
-        if (experimental) {
-            addAnnotation(Annotations.experimentalChromeApi)
-        }
+        addKDocAndStabilityAnnotations(this@toPropertySpec)
         configure()
     }.build()

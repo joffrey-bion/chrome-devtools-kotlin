@@ -8,59 +8,68 @@ import org.hildan.chrome.devtools.protocol.json.*
 import org.hildan.chrome.devtools.protocol.names.*
 import kotlin.reflect.KClass
 
+interface ChromeDPElement {
+    val description: String?
+    val docUrl: String?
+    val deprecated: Boolean
+    val experimental: Boolean
+}
+
 data class ChromeDPDomain(
     val names: DomainNaming,
-    val description: String? = null,
-    val deprecated: Boolean = false,
-    val experimental: Boolean = false,
+    override val description: String? = null,
+    override val deprecated: Boolean = false,
+    override val experimental: Boolean = false,
     val dependencies: List<String> = emptyList(),
     val types: List<DomainTypeDeclaration> = emptyList(),
     val commands: List<ChromeDPCommand> = emptyList(),
     val events: List<ChromeDPEvent> = emptyList(),
-) {
-    val docUrl = DocUrls.domain(names.domainName)
+) : ChromeDPElement {
+    override val docUrl = DocUrls.domain(names.domainName)
 }
 
 data class DomainTypeDeclaration(
     val names: DomainTypeNaming,
-    val description: String? = null,
-    val deprecated: Boolean = false,
-    val experimental: Boolean = false,
+    override val description: String? = null,
+    override val deprecated: Boolean = false,
+    override val experimental: Boolean = false,
     val type: ChromeDPType,
-) {
-    val docUrl = DocUrls.type(names.domain.domainName, names.declaredName)
+) : ChromeDPElement {
+    override val docUrl = DocUrls.type(names.domain.domainName, names.declaredName)
 }
 
 data class ChromeDPCommand(
     val names: CommandNaming,
-    val description: String? = null,
-    val deprecated: Boolean = false,
-    val experimental: Boolean = false,
+    override val description: String? = null,
+    override val deprecated: Boolean = false,
+    override val experimental: Boolean = false,
     val redirect: String? = null,
     val parameters: List<ChromeDPParameter> = emptyList(),
     val returns: List<ChromeDPParameter> = emptyList(),
-) {
-    val docUrl = DocUrls.command(names.domain.domainName, names.methodName)
+) : ChromeDPElement {
+    override val docUrl = DocUrls.command(names.domain.domainName, names.methodName)
 }
 
 data class ChromeDPEvent(
     val names: EventNaming,
-    val description: String? = null,
-    val deprecated: Boolean = false,
-    val experimental: Boolean = false,
+    override val description: String? = null,
+    override val deprecated: Boolean = false,
+    override val experimental: Boolean = false,
     val parameters: List<ChromeDPParameter> = emptyList(),
-) {
-    val docUrl = DocUrls.event(names.domain.domainName, names.eventName)
+) : ChromeDPElement {
+    override val docUrl = DocUrls.event(names.domain.domainName, names.eventName)
 }
 
 data class ChromeDPParameter(
     val name: String,
-    val description: String? = null,
-    val deprecated: Boolean = false,
+    override val description: String? = null,
+    override val deprecated: Boolean = false,
     val optional: Boolean = false,
-    val experimental: Boolean = false,
+    override val experimental: Boolean = false,
     val type: TypeName,
-)
+) : ChromeDPElement {
+    override val docUrl: String? = null // there is no anchor link to parameters
+}
 
 fun JsonDomain.toChromeDPDomain(): ChromeDPDomain = ChromeDPDomain(
     names = DomainNaming(domain),

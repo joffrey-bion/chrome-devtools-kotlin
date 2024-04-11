@@ -117,7 +117,7 @@ internal fun ChromeDPCommand.toDslFunctionSpec(): FunSpec {
     val (optionalParams, mandatoryParams) = parameters.partition { it.optional }
     return FunSpec.builder(names.methodName).apply {
         commonCommandFunction(command = this@toDslFunctionSpec)
-        addParameters(mandatoryParams.map { it.toParameterSpec(includeDoc = true, includeAnnotations = true) })
+        addParameters(mandatoryParams.map { it.toParameterSpec() })
 
         if (optionalParams.any()) {
             addAnnotation(Annotations.jvmOverloads)
@@ -138,14 +138,7 @@ internal fun ChromeDPCommand.toDslFunctionSpec(): FunSpec {
 }
 
 private fun FunSpec.Builder.commonCommandFunction(command: ChromeDPCommand) {
-    command.description?.let { addKdoc(it.escapeKDoc()) }
-    addKdoc(linkToDoc(command.docUrl))
-    if (command.deprecated) {
-        addAnnotation(Annotations.deprecatedChromeApi)
-    }
-    if (command.experimental) {
-        addAnnotation(Annotations.experimentalChromeApi)
-    }
+    addKDocAndStabilityAnnotations(command)
     addModifiers(KModifier.SUSPEND)
     returns(command.names.outputTypeName)
 }

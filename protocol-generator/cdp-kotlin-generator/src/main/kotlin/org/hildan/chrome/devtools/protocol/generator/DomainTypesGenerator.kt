@@ -41,25 +41,11 @@ private fun DomainTypeDeclaration.toEnumTypeSpec(type: ChromeDPType.Enum): TypeS
 private fun String.dashesToCamelCase(): String = replace(Regex("""-(\w)""")) { it.groupValues[1].uppercase() }
 
 private fun TypeSpec.Builder.addCommonConfig(domainTypeDeclaration: DomainTypeDeclaration) {
-    domainTypeDeclaration.description?.let { addKdoc(it.escapeKDoc()) }
-    addKdoc(linkToDoc(domainTypeDeclaration.docUrl))
-    if (domainTypeDeclaration.deprecated) {
-        addAnnotation(Annotations.deprecatedChromeApi)
-    }
-    if (domainTypeDeclaration.experimental) {
-        addAnnotation(Annotations.experimentalChromeApi)
-    }
+    addKDocAndStabilityAnnotations(domainTypeDeclaration)
     addAnnotation(Annotations.serializable)
 }
 
 private fun DomainTypeDeclaration.toTypeAliasSpec(type: ChromeDPType.NamedRef): TypeAliasSpec =
     TypeAliasSpec.builder(names.declaredName, type.typeName).apply {
-        description?.let { addKdoc(it.escapeKDoc()) }
-        addKdoc(linkToDoc(docUrl))
-        if (deprecated) {
-            addAnnotation(Annotations.deprecatedChromeApi)
-        }
-        if (experimental) {
-            addAnnotation(Annotations.experimentalChromeApi)
-        }
+        addKDocAndStabilityAnnotations(element = this@toTypeAliasSpec)
     }.build()

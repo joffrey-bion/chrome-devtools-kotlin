@@ -37,14 +37,7 @@ private fun ChromeDPEvent.createEventSubTypeSpec(parentSealedClass: ClassName): 
 }
 
 private fun TypeSpec.Builder.configureCommonSettings(chromeDPEvent: ChromeDPEvent, parentSealedClass: ClassName) {
-    chromeDPEvent.description?.let { addKdoc(it.escapeKDoc()) }
-    addKdoc(linkToDoc(chromeDPEvent.docUrl))
+    addKDocAndStabilityAnnotations(chromeDPEvent)
     superclass(parentSealedClass)
-    if (chromeDPEvent.deprecated) {
-        addAnnotation(Annotations.deprecatedChromeApi)
-    }
-    if (chromeDPEvent.experimental) {
-        addAnnotation(Annotations.experimentalChromeApi)
-    }
     addAnnotation(Annotations.serializable)
 }

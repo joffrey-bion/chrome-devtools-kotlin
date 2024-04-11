@@ -1,10 +1,24 @@
 package org.hildan.chrome.devtools.protocol.generator
 
-import com.squareup.kotlinpoet.TypeName
+import com.squareup.kotlinpoet.*
+import org.hildan.chrome.devtools.protocol.model.*
+import org.hildan.chrome.devtools.protocol.names.*
 
-fun String.escapeKDoc(): String = replace("%", "%%")
+fun <T> T.addKDocAndStabilityAnnotations(element: ChromeDPElement) where T : Annotatable.Builder<*>, T : Documentable.Builder<*> {
+    addKdoc(element.description?.escapeForKotlinPoet() ?: "*(undocumented in the protocol definition)*")
+    element.docUrl?.let {
+        addKdoc("\n\n[Official\u00A0doc]($it)".escapeForKotlinPoet())
+    }
+    if (element.deprecated) {
+        addAnnotation(Annotations.deprecatedChromeApi)
+    }
+    if (element.experimental) {
+        addAnnotation(Annotations.experimentalChromeApi)
+    }
+}
 
-fun linkToDoc(docUrl: String) = "\n\n[Official\u00A0doc]($docUrl)"
+// KotlinPoet interprets % signs as format elements, and we don't use this for docs generated from descriptions
+private fun String.escapeForKotlinPoet(): String = replace("%", "%%")
 
 internal data class ConstructorCallTemplate(
     val template: String,
@@ -14,7 +28,7 @@ internal data class ConstructorCallTemplate(
 internal fun constructorCallTemplate(constructedTypeName: TypeName, paramNames: List<String>): ConstructorCallTemplate {
     val constructedTypeArgName = "cdk_constructedTypeName"
     val commandArgsTemplate = paramNames.joinToString(", ") { "%$it:L" }
-    val commandArgsMapping = paramNames.associate { it to it }
+    val commandArgsMapping = paramNames.associateWith { it }
     check(constructedTypeArgName !in commandArgsMapping) {
         "Unlucky state! An argument for constructor $constructedTypeName has exactly the name $constructedTypeArgName"
     }

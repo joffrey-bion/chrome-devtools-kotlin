@@ -39,14 +39,7 @@ fun ChromeDPDomain.createDomainFileSpec(): FileSpec =
     }.build()
 
 private fun ChromeDPDomain.createDomainClass(): TypeSpec = TypeSpec.classBuilder(names.domainClassName).apply {
-    description?.let { addKdoc(it.escapeKDoc()) }
-    addKdoc(linkToDoc(docUrl))
-    if (deprecated) {
-        addAnnotation(Annotations.deprecatedChromeApi)
-    }
-    if (experimental) {
-        addAnnotation(Annotations.experimentalChromeApi)
-    }
+    addKDocAndStabilityAnnotations(element = this@createDomainClass)
     primaryConstructor(FunSpec.constructorBuilder()
         .addModifiers(KModifier.INTERNAL)
         .addParameter(SESSION_PROP, ExtDeclarations.chromeDPSession)
@@ -74,14 +67,7 @@ private fun ChromeDPDomain.createDomainClass(): TypeSpec = TypeSpec.classBuilder
 
 private fun ChromeDPEvent.toSubscribeFunctionSpec(): FunSpec =
     FunSpec.builder(names.flowMethodName).apply {
-        description?.let { addKdoc(it.escapeKDoc()) }
-        addKdoc(linkToDoc(docUrl))
-        if (deprecated) {
-            addAnnotation(Annotations.deprecatedChromeApi)
-        }
-        if (experimental) {
-            addAnnotation(Annotations.experimentalChromeApi)
-        }
+        addKDocAndStabilityAnnotations(element = this@toSubscribeFunctionSpec)
         returns(coroutineFlowClass.parameterizedBy(names.eventTypeName))
         addStatement("return %N.%M(%S)", SESSION_PROP, ExtDeclarations.sessionTypedEventsExtension, names.fullEventName)
     }.build()
