@@ -22,12 +22,6 @@ internal fun TypeSpec.Builder.addPrimaryConstructorProps(props: List<ChromeDPPar
     addProperties(propertySpecs)
 }
 
-internal fun lambdaTypeWithBuilderReceiver(builderTypeName: TypeName) = LambdaTypeName.get(
-    receiver = builderTypeName,
-    parameters = emptyList(),
-    returnType = Unit::class.asTypeName(),
-)
-
 internal fun ChromeDPParameter.toParameterSpec(includeDocAndAnnotations: Boolean = true): ParameterSpec =
     ParameterSpec.builder(name, type).apply {
         if (includeDocAndAnnotations) {

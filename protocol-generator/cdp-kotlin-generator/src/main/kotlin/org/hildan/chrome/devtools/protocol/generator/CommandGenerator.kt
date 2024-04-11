@@ -122,9 +122,7 @@ internal fun ChromeDPCommand.toDslFunctionSpec(): FunSpec {
         if (optionalParams.any()) {
             addAnnotation(Annotations.jvmOverloads)
             addModifiers(KModifier.INLINE)
-            val initLambdaParam = initBuilderLambdaParam(names.inputTypeBuilderName, "optionalArgs") {
-                defaultValue("{}")
-            }
+            val initLambdaParam = optionalArgsBuilderLambdaParam(names.inputTypeBuilderName)
             addParameter(initLambdaParam)
             val builderConstructorCall = constructorCallTemplate(names.inputTypeBuilderName, mandatoryParams.map { it.name })
             addNamedCode("val builder = ${builderConstructorCall.template}\n", builderConstructorCall.namedArgsMapping)
@@ -143,8 +141,12 @@ private fun FunSpec.Builder.commonCommandFunction(command: ChromeDPCommand) {
     returns(command.names.outputTypeName)
 }
 
-private fun initBuilderLambdaParam(
-    builderTypeName: TypeName,
-    name: String,
-    configure: ParameterSpec.Builder.() -> Unit = {},
-) = ParameterSpec.builder(name = name, type = lambdaTypeWithBuilderReceiver(builderTypeName)).apply(configure).build()
+private fun optionalArgsBuilderLambdaParam(builderTypeName: TypeName) =
+    ParameterSpec.builder(name = "optionalArgs", type = lambdaTypeWithBuilderReceiver(builderTypeName)).apply {
+        defaultValue("{}")
+    }.build()
+
+private fun lambdaTypeWithBuilderReceiver(builderTypeName: TypeName) = LambdaTypeName.get(
+    receiver = builderTypeName,
+    returnType = Unit::class.asTypeName(),
+)
