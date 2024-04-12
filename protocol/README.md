@@ -38,10 +38,11 @@ This file is manually maintained at the moment, as the process is a bit tricky t
 There are 2 kinds of "target types":
 
 * the "protocol" target types are the ones that are used in the protocol for the `TargetInfo.type` field, but besides
-  that they don't translate to Kotlin target types in this library. 
-* the "DevTools agent host" types are more pragmatic, and are a more real/pragmatic embodiment of what a target type is.
-  They directly relate to Chromium's implementation, and they are represented by `*Target` interfaces in the Kotlin code
-  generation.
+  that they don't translate to Kotlin target types in this library, because they don't offer different capabilities on
+  the server.
+* the "DevTools agent host" types directly relate to Chromium's implementation, which means they represent the target
+  types based on their capabilities (the domains they support). This is why they are represented by `*Target`
+  interfaces in the Kotlin code generation of this library.
 
 The list of "protocol" target types is effectively defined by the set of `const char DevToolsAgentHost::kTypeX[]`
 [constants in Chromium's source](https://source.chromium.org/chromium/chromium/src/+/main:content/browser/devtools/devtools_agent_host_impl.cc;l=126-140).
