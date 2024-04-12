@@ -6,17 +6,20 @@ This README describes how the files in this directory are updated or maintained.
 
 The `browser_protocol.json` and `js_protocol.json` files are the official protocol definitions from the "latest" (a.k.a
 ["tip-of-tree"](https://chromedevtools.github.io/devtools-protocol/tot/)) version of the protocol.
-They are automatically fetched from the
-[ChromeDevTools/devtools-protocol](https://github.com/ChromeDevTools/devtools-protocol/tree/master/json) repository.
 
-The `version.txt` file contains the Chromium revision that produced the JSON protocol definitions.
+The `version.txt` file contains the Chromium revision that produced these JSON protocol definitions.
 It's a monotonic version number referring to the chromium master commit position.
-It is also automatically updated by extracting this number from the
-[devtools-protocol package.json](https://github.com/ChromeDevTools/devtools-protocol/blob/master/package.json).
 
-These files are all updated as part of the [update-protocol.yml](..%2F.github%2Fworkflows%2Fupdate-protocol.yml)
-GitHub Actions workflow.
-See the corresponding [Gradle task](..%2FbuildSrc%2Fsrc%2Fmain%2Fkotlin%2FUpdateProtocolDefinitionsTask.kt) from `buildSrc`.
+These files are automatically and regularly updated based on the state of the
+[ChromeDevTools/devtools-protocol](https://github.com/ChromeDevTools/devtools-protocol) repository, via the
+[update-protocol.yml](../.github/workflows/update-protocol.yml) GitHub Actions workflow:
+
+* The JSON definitions are taken as-is from the [json](https://github.com/ChromeDevTools/devtools-protocol/tree/master/json) directory.
+* The Chromium revision is extracted from the npm version defined in the 
+[package.json](https://github.com/ChromeDevTools/devtools-protocol/blob/master/package.json).
+
+For more details, see the corresponding [Gradle task](..%2FbuildSrc%2Fsrc%2Fmain%2Fkotlin%2FUpdateProtocolDefinitionsTask.kt) from `buildSrc`.
+This task can also be run locally using `./gradlew updateProtocolDefinitions`.
 
 ## Manual updates of target types
 
