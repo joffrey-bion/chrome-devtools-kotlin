@@ -37,12 +37,14 @@ This file is manually maintained at the moment, as the process is a bit tricky t
 
 There are 2 kinds of "target types":
 
-* the "protocol" target types are the ones that are used in the protocol for the `TargetInfo.type` field, but besides
-  that they don't translate to Kotlin target types in this library, because they don't offer different capabilities on
-  the server.
+* the "protocol" target types are the ones that are used in the protocol for the `TargetInfo.type` field. They define
+  real-life types of targets (`page`, `iframe`, `worker`), but they don't all differ in their capabilities on the server.
+  For this reason, they don't correspond one-to-one to Kotlin interfaces in this library.
 * the "DevTools agent host" types directly relate to Chromium's implementation, which means they represent the target
   types based on their capabilities (the domains they support). This is why they are represented by `*Target`
   interfaces in the Kotlin code generation of this library.
+  Each of those can handle one or more "protocol" target types. For example the Chromium target type "RenderFrame" is the
+  implementation handling the `page`, `iframe` and `webview` target types from the protocol.
 
 The list of "protocol" target types is effectively defined by the set of `const char DevToolsAgentHost::kTypeX[]`
 [constants in Chromium's source](https://source.chromium.org/chromium/chromium/src/+/main:content/browser/devtools/devtools_agent_host_impl.cc;l=126-140).
@@ -66,7 +68,7 @@ Here are the steps performed to get the information from the Chromium source cod
    defining the protocol target types, and verify you got all of them covered (except maybe "other"). 
 
 4. Search for [domain handler declarations in Chromium's source](https://source.chromium.org/search?q=%22session-%3ECreateAndAddHandler%22%20f:devtools&ss=chromium).
-   Each `session->CreateAndAddHandler<protocol::DomainHandler>();` match in a `*_devtools_agent_host.cc` file represents\
+   Each `session->CreateAndAddHandler<protocol::DomainHandler>();` match in a `*_devtools_agent_host.cc` file represents
    a domain supported by this target type (watch out for macros that only include domains conditionally).
    The domain name is the prefix before `Handler` in the handler type.
    Add all supported domains to the `supportedDomainsInChromium` list of the target type in `target_types.json`.
@@ -75,7 +77,7 @@ Here are the steps performed to get the information from the Chromium source cod
    (`RenderFrame` host agent type). Make sure the missing supported domains are added to this target type in
    `target_types.json`, as the `additionalSupportedDomains` property.
    Note: as of now, it's still unclear *how* these additional domains are supported. Their implementation seems to be
-   in a different part of the code, but I'm not sure how to link these to the agent host types.
+   in a different part of the code, but I'm not sure where they are linked to the agent host types.
 
 6. Each target type also gets a custom name for use in Kotlin code. This name usually matches the agent host type name
    or the main protocol target type supported by the Chromium target type. Pragmatically, `Page` was used instead of
