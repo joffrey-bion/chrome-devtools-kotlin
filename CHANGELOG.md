@@ -1,5 +1,13 @@
 # Change Log
 
+## [5.13.1\-1286932](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.13.1-1286932) (2024-04-15)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.13.0-1282316...5.13.1-1286932)
+
+**Upgraded dependencies:**
+
+- Bump org.slf4j:slf4j\-simple from 2.0.12 to 2.0.13 [\#378](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/378) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Update to Chrome DevTools Protocol version 1286932 [\#376](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/376) ([@github-actions[bot]](https://github.com/apps/github-actions))
+
 ## [5.13.0\-1282316](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.13.0-1282316) (2024-04-09)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.13.0-1266816...5.13.0-1282316)
 
