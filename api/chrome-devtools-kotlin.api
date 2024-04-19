@@ -17918,6 +17918,65 @@ public final class org/hildan/chrome/devtools/domains/eventbreakpoints/SetInstru
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/extensions/ExtensionsDomain {
+	public final fun loadUnpacked (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun loadUnpacked (Lorg/hildan/chrome/devtools/domains/extensions/LoadUnpackedRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/hildan/chrome/devtools/domains/extensions/LoadUnpackedRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/extensions/LoadUnpackedRequest$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/extensions/LoadUnpackedRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/extensions/LoadUnpackedRequest;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/extensions/LoadUnpackedRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getPath ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/hildan/chrome/devtools/domains/extensions/LoadUnpackedRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/extensions/LoadUnpackedRequest$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/extensions/LoadUnpackedRequest;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/extensions/LoadUnpackedRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/extensions/LoadUnpackedRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/extensions/LoadUnpackedResponse {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/extensions/LoadUnpackedResponse$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/extensions/LoadUnpackedResponse;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/extensions/LoadUnpackedResponse;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/extensions/LoadUnpackedResponse;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/hildan/chrome/devtools/domains/extensions/LoadUnpackedResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/extensions/LoadUnpackedResponse$$serializer;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/extensions/LoadUnpackedResponse;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/extensions/LoadUnpackedResponse;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/extensions/LoadUnpackedResponse$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/fedcm/Account {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/fedcm/Account$Companion;
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/fedcm/LoginState;Ljava/lang/String;Ljava/lang/String;)V
@@ -46874,6 +46933,7 @@ public abstract interface class org/hildan/chrome/devtools/targets/AllDomainsTar
 	public abstract fun getCast ()Lorg/hildan/chrome/devtools/domains/cast/CastDomain;
 	public abstract fun getConsole ()Lorg/hildan/chrome/devtools/domains/console/ConsoleDomain;
 	public abstract fun getEventBreakpoints ()Lorg/hildan/chrome/devtools/domains/eventbreakpoints/EventBreakpointsDomain;
+	public abstract fun getExtensions ()Lorg/hildan/chrome/devtools/domains/extensions/ExtensionsDomain;
 	public abstract fun getMedia ()Lorg/hildan/chrome/devtools/domains/media/MediaDomain;
 	public abstract fun getPerformanceTimeline ()Lorg/hildan/chrome/devtools/domains/performancetimeline/PerformanceTimelineDomain;
 	public abstract fun getPwa ()Lorg/hildan/chrome/devtools/domains/pwa/PWADomain;
