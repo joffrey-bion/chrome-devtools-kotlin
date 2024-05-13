@@ -11,7 +11,7 @@ run-name: "Release ${{ inputs.version }}-(cdp-version)"
 
 jobs:
   release:
-    runs-on: macos-latest
+    runs-on: macos-12  # macos-latest uses ARM which doesn't support virtualization
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
