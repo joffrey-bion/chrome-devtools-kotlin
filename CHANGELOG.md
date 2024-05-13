@@ -1,11 +1,21 @@
 # Change Log
 
+## [5.14.0\-1299070](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.14.0-1299070) (2024-05-13)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.13.1-1286932...5.14.0-1299070)
+
+**Upgraded dependencies:**
+
+- Bump org.jetbrains.kotlinx:kotlinx\-coroutines\-core from 1.8.0 to 1.8.1 [\#387](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/387) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Update to Chrome DevTools Protocol version 1299070 [\#382](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/382) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Bump ktor from 2.3.10 to 2.3.11 [\#385](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/385) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump kotlin from 1.9.23 to 1.9.24 [\#383](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/383) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.jetbrains.kotlinx:atomicfu from 0.23.2 to 0.24.0 [\#379](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/379) ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [5.13.1\-1286932](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.13.1-1286932) (2024-04-15)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.13.0-1282316...5.13.1-1286932)
 
 **Upgraded dependencies:**
 
-- Bump org.slf4j:slf4j\-simple from 2.0.12 to 2.0.13 [\#378](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/378) ([@dependabot[bot]](https://github.com/apps/dependabot))
 - Update to Chrome DevTools Protocol version 1286932 [\#376](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/376) ([@github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [5.13.0\-1282316](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.13.0-1282316) (2024-04-09)
