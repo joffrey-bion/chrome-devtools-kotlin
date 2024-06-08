@@ -13,11 +13,14 @@ abstract class GenerateProtocolApiTask : DefaultTask() {
 
     @PathSensitive(PathSensitivity.RELATIVE)
     @InputFiles
-    val protocolPaths = project.files("protocol/browser_protocol.json", "protocol/js_protocol.json")
+    val protocolPaths = project.files(
+        "protocol-definition/browser_protocol.json",
+        "protocol-definition/js_protocol.json",
+    )
 
     @PathSensitive(PathSensitivity.RELATIVE)
     @InputFile
-    val targetTypesPath = project.file("protocol/target_types.json")
+    val targetTypesPath = project.file("protocol-definition/target_types.json")
 
     @OutputDirectory
     val outputDirPath = project.file("src/commonMain/generated")

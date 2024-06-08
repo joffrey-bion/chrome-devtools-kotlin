@@ -25,7 +25,7 @@ jobs:
 
       - name: Read protocol version
         id: protocol-version
-        run: echo "version=$(cat protocol/version.txt)" >> $GITHUB_OUTPUT
+        run: echo "version=$(cat protocol-definition/version.txt)" >> $GITHUB_OUTPUT
 
       - name: Update public ABI descriptors
         uses: gradle/gradle-build-action@v2
@@ -44,7 +44,7 @@ jobs:
           title: "Update to Chrome DevTools Protocol version ${{ steps.protocol-version.outputs.version }}"
           labels: dependencies
           body: |
-            This PR updates the protocol definitions (under `protocol/`) to the latest version found in
+            This PR updates the protocol definitions (under `protocol-definition/`) to the latest version found in
             [the `devtools-protocol` github repo](https://github.com/ChromeDevTools/devtools-protocol/tree/master/json).
 
             The ABI descriptors (under `api/`) are also updated to reflect the changes in the generated code.
