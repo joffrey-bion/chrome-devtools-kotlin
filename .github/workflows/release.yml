@@ -40,7 +40,7 @@ jobs:
           key: konan-${{ runner.os }}
 
       - name: Compute full version (with protocol version)
-        run: echo "fullVersion=${{ inputs.version }}-$(cat protocol/version.txt)" >> $GITHUB_OUTPUT
+        run: echo "fullVersion=${{ inputs.version }}-$(cat protocol-definition/version.txt)" >> $GITHUB_OUTPUT
         id: compute-version
 
       - name: Release

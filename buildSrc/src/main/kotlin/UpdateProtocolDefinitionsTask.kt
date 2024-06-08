@@ -22,7 +22,7 @@ open class UpdateProtocolDefinitionsTask : DefaultTask() {
     val branch: String = "master"
 
     @OutputDirectory
-    val outputDir: Path = project.rootDir.resolve("protocol").toPath()
+    val outputDir: Path = project.rootDir.resolve("protocol-definition").toPath()
 
     @TaskAction
     fun generate() {
