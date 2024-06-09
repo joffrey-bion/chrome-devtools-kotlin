@@ -146,15 +146,40 @@ ChromeDPClient("http://localhost:9222").webSocket().use { browserSession ->
 ### High level extensions
 
 In addition to the generated domain commands and events, some extensions are provided for higher-level functionality.
-Here are some of them:
+You can discover them using auto-complete in your IDE.
 
-* `DOMDomain.findNodeBySelector(selector: String): NodeId?`: finds a node using a selector query
-* `PageSession.clickOnElement(selector: String, clickDurationMillis, mouseButton)`: finds a node using a selector 
-  query and simulates a click on it
-* `PageSession.goto(url: String)`: navigates to a URL and also waits for the next `load` event, or other events 
-* `PageDomain.captureScreenshotToFile(outputFile: Path, request: CaptureScreenshotRequest = ...)` (JVM-only)
-* `Runtime.evaluateJs(js: String): T?`: evaluates JS and returns the result
-  (uses Kotlinx serialization to deserialize JS results)
+The most useful of them are documented in this section.
+
+#### PageSession extensions
+
+* `PageSession.goto(url: String)`: navigates to a URL and also waits for the next `load` event, or other events
+* `PageSession.clickOnElement(selector: CssSelector, clickDuration: Duration, mouseButton: MouseButton)`: finds a node
+  using a selector query and simulates a click on it
+
+#### DOM Domain extensions
+
+* `DOMDomain.getNodeBySelector(selector: CssSelector): NodeId?`: finds a node using a selector query, or throws if not found
+* `DOMDomain.findNodeBySelector(selector: CssSelector): NodeId?`: finds a node using a selector query, or returns null
+* `DOMDomain.awaitNodeBySelector(selector: CssSelector, pollingPeriod: Duration): NodeId?`: suspends until a node
+  corresponding to the selector query appears in the DOM.
+* `DOMDomain.awaitNodeAbsentBySelector(selector: CssSelector, pollingPeriod: Duration): NodeId?`: suspends until a node
+  corresponding to the selector query disappears from the DOM.
+* `DOMDomain.getTypedAttributes(nodeSelector: CssSelector): DOMAttributes?`: gets the attributes of the node
+  corresponding to the given `nodeSelector`, or null if the selector didn't match any node.
+* `DOMDomain.getAttributeValue(nodeSelector: CssSelector, attributeName: String): String?`: gets the value of the 
+  attribute `attributeName` of the node corresponding to the given `nodeSelector`, or null if the node wasn't found.
+* `DOMDomain.setAttributeValue(nodeSelector: CssSelector, name: String, value: String)`: sets the value of the 
+  attribute `attributeName` of the node corresponding to the given `nodeSelector`.
+
+#### Page Domain extensions
+
+* `CaptureScreenshotResponse.decodeData(): ByteArray`: decodes a base64 encoded image (from `PageDomain.captureScreenshot`) into bytes
+* `PageDomain.captureScreenshotToFile(outputFile: Path, options)` (JVM-only)
+
+#### Runtime Domain extensions
+
+* `<T> RuntimeDomain.evaluateJs(js: String): T?`: evaluates JS and returns the result (uses Kotlinx serialization to
+  deserialize JS results)
 
 #### Examples
 
