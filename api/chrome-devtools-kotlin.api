@@ -2235,6 +2235,7 @@ public final class org/hildan/chrome/devtools/domains/audits/FederatedAuthReques
 	public static final field SilentMediationFailure Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
 	public static final field ThirdPartyCookiesBlocked Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
 	public static final field TooManyRequests Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
+	public static final field TypeNotMatching Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
 	public static final field WellKnownHttpNotFound Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
 	public static final field WellKnownInvalidContentType Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
 	public static final field WellKnownInvalidResponse Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
@@ -30852,6 +30853,11 @@ public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRe
 	public static final field WebSocketSticky Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field WebTransport Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field WebTransportSticky Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field WebViewDocumentStartJavascriptChanged Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field WebViewJavaScriptObjectChanged Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field WebViewMessageListenerInjected Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field WebViewSafeBrowsingAllowlistChanged Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field WebViewSettingsChanged Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field WebXR Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
