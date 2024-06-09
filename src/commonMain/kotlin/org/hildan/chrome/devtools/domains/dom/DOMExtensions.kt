@@ -57,16 +57,6 @@ suspend fun DOMDomain.awaitNodeBySelector(selector: CssSelector, pollingPeriod: 
     }
 }
 
-@Deprecated(
-    message = "Prefer the overload using kotlin.time.Duration",
-    replaceWith = ReplaceWith(
-        expression = "this.awaitNodeBySelector(selector, pollingPeriodMillis.milliseconds)",
-        imports = ["kotlin.time.Duration.Companion.milliseconds"],
-    ),
-)
-suspend fun DOMDomain.awaitNodeBySelector(selector: CssSelector, pollingPeriodMillis: Long): NodeId =
-    awaitNodeBySelector(selector, pollingPeriodMillis.milliseconds)
-
 /**
  * Waits until the given [selector] matches no node in the DOM. Inspects the DOM every [pollingPeriod].
  *
