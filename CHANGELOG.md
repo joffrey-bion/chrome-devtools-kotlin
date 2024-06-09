@@ -1,5 +1,27 @@
 # Change Log
 
+## [6.0.0\-1312386](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/6.0.0-1312386) (2024-06-09)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.14.0-1299070...6.0.0-1312386)
+
+**Implemented enhancements:**
+
+- Add overloads of `PageSession.clickOnElement` and `InputDomain.dispatchMouseClick` with `Duration` instead of long milliseconds [\#399](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/399)
+
+**Deprecations:**
+
+- Deprecate `clickOnElement` and `dispatchMouseClick` with long milliseconds in favor of overloads with `Duration` [\#398](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/398)
+
+**Removals:**
+
+- Remove obsolete extensions and classes that were moved/renamed/replaced in v5.0.0\-1140464 [\#397](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/397)
+- Remove the deprecated `awaitNodeBySelector` with `pollingPeriodMillis: Long` [\#396](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/396)
+
+**Upgraded dependencies:**
+
+- Update to Chrome DevTools Protocol version 1312386 [\#395](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/395) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Bump org.jetbrains.kotlinx:kotlinx\-serialization\-json from 1.6.3 to 1.7.0 [\#393](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/393) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump kotlin from 1.9.24 to 2.0.0 [\#390](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/390) ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [5.14.0\-1299070](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/5.14.0-1299070) (2024-05-13)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/5.13.1-1286932...5.14.0-1299070)
 
