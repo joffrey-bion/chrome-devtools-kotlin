@@ -133,19 +133,17 @@ class ChromeDPClient(
      * Opens a web socket connection to interact with the browser.
      *
      * This method attaches to the default browser target, which creates a root session without session ID.
-     * The returned [BrowserSession] thus only provides a limited subset of the possible operations (only the
-     * ones applicable to the browser itself).
+     * The returned [BrowserSession] thus only provides a limited subset of the possible operations (only the ones
+     * applicable to the browser itself). Refer to the documentation of [BrowserSession] to see how to use it to
+     * attach to (and interact with) more specific targets.
      *
-     * To attach to a specific target (such as a web page), call [BrowserSession.attachToPage],
-     * [BrowserSession.attachToNewPage][org.hildan.chrome.devtools.targets.attachToNewPage], or similar
-     * functions. This creates a nested session with a type corresponding to the target type, which provides access to
-     * another set of domains. Such nested sessions use the same underlying web socket connection as the initial
-     * browser session returned here.
+     * Child sessions of returned `BrowserSession` use the same underlying web socket connection as the initial browser
+     * session returned here.
      *
      * Note that the caller of this method is responsible for closing the web socket after use by calling
-     * [BrowserSession.close], or indirectly by calling `use()` on the browser session.
-     * Calling [close()][PageSession.close] or `use()` on a derived [PageSession] doesn't close the
-     * underlying web socket connection, to avoid undesirable interactions between nested sessions.
+     * [BrowserSession.close], or using the auto-close capabilities via [BrowserSession.use].
+     * Calling [ChildSession.close] or [ChildSession.use] on a derived session doesn't close the underlying web socket
+     * connection, to avoid undesirable interactions between child sessions.
      */
     suspend fun webSocket(): BrowserSession {
         val browserDebuggerUrl = version().webSocketDebuggerUrl
@@ -198,8 +196,10 @@ data class ChromeVersion(
  *
  * When a client wants to interact with a target using CDP, it has to first attach to the target.
  * One way to do it is to connect to Chrome via web socket using [ChromeDPClient.webSocket] and then
- * using [BrowserSession.attachToPage] or other attach- methods.
- * The client can then interact with the target using the [ChromePageSession].
+ * using [BrowserSession.attachToTarget].
+ *
+ * However, most of the time, targets don't already exist, so it's easier to just create a new page
+ * using [BrowserSession.newPage] and then interact with it through the returned [PageSession].
  */
 @Serializable
 data class ChromeDPTarget(
@@ -227,9 +227,7 @@ data class ChromeDPTarget(
  *
  * The returned [BrowserSession] only provides a limited subset of the possible operations, because it is
  * attached to the default *browser* target, not a *page* target.
- * To attach to a specific target using the same underlying web socket connection, call
- * [BrowserSession.attachToPage] or
- * [BrowserSession.attachToNewPage][org.hildan.chrome.devtools.targets.attachToNewPage].
+ * To create a new page/tab, use [BrowserSession.newPage] and then interact with it through the returned [PageSession].
  */
 suspend fun HttpClient.chromeWebSocket(webSocketDebuggerUrl: String): BrowserSession =
     webSocketSession(webSocketDebuggerUrl).chromeDp().withSession(sessionId = null).asBrowserSession()

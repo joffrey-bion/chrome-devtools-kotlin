@@ -29,13 +29,38 @@ interface ChromeSession {
 /**
  * A browser session. This is the root session created when initially connecting to the browser's debugger.
  *
- * The root browser session doesn't have a session ID.
+ * Such root session doesn't have the most useful APIs because it represents the connection to the browser target.
+ *
+ * To interact with more interesting targets, such as pages and workers, you need to first attach to that target, which
+ * creates a child session of this session, which offers more APIs:
+ *
+ * * To create a new page/tab, use [BrowserSession.newPage] and then interact with it through the returned
+ * [PageSession], which is a child session of the browser session and has many more APIs.
+ *
+ * * If you want to attach to an already existing target, use the [BrowserSession.target] domain to get information
+ * about the target, and then use [BrowserSession.attachToTarget]. Note that you will only get a plain [ChildSession]
+ * after this. Use one of the converters to convert this session to the proper type depending on the target type you
+ * want to interact with. For example, if you're attaching to a worker, use [ChildSession.asWorkerSession] to get a
+ * [WorkerSession], which offers the relevant domains for you.
+ *
  */
 interface BrowserSession : ChromeSession, BrowserTarget {
 
     /**
      * Creates a new [ChildSession] attached to the target with the given [targetId].
      * The new session shares the same underlying web socket connection as this [BrowserSession].
+     *
+     * Note that a [ChildSession] is a generic session that doesn't carry information about the exact target type, and
+     * thus doesn't offer very useful APIs. It is meant to be converted to a more specific session type using one of the
+     * converter extensions (`ChildSession.as*()`).
+     *
+     * For example, if you're attaching to a worker, use [ChildSession.asWorkerSession] to get a [WorkerSession],
+     * which offers the relevant domains for you.
+     *
+     * **Note:** if you want to create a NEW page (or tab) and attach to it, use [newPage] instead. It will save you
+     * the trouble of creating the target, handling its browser context, and dealing with the return type.
+     *
+     * @see newPage
      */
     suspend fun attachToTarget(targetId: TargetID): ChildSession
 
