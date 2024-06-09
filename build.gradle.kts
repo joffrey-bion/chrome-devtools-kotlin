@@ -1,3 +1,4 @@
+import org.hildan.chrome.devtools.build.*
 import org.jetbrains.kotlin.gradle.targets.jvm.tasks.*
 
 plugins {
@@ -24,6 +25,8 @@ github {
 repositories {
     mavenCentral()
 }
+
+private val generatedProtocolSourcesDirPath = "src/commonMain/generated"
 
 kotlin {
     jvmToolchain(11)
@@ -58,7 +61,7 @@ kotlin {
 
     sourceSets {
         commonMain {
-            kotlin.srcDirs("src/commonMain/generated")
+            kotlin.srcDirs(generatedProtocolSourcesDirPath)
 
             dependencies {
                 implementation(libs.kotlinx.coroutines.core)
@@ -87,11 +90,19 @@ kotlin {
     }
 }
 
-val updateProtocolDefinitions by tasks.registering(org.hildan.chrome.devtools.build.UpdateProtocolDefinitionsTask::class)
+private val protocolDefinitionDir = layout.projectDirectory.dir("protocol-definition")
 
-val generateProtocolApi by tasks.registering(org.hildan.chrome.devtools.build.GenerateProtocolApiTask::class)
+val updateProtocolDefinitions by tasks.registering(UpdateProtocolDefinitionsTask::class) {
+    outputDir = protocolDefinitionDir
+}
 
-val printProtocolStats by tasks.registering(org.hildan.chrome.devtools.build.PrintProtocolStatsTask::class)
+val generateProtocolApi by tasks.registering(GenerateProtocolApiTask::class) {
+    protocolPaths = protocolDefinitionDir.files("browser_protocol.json", "js_protocol.json")
+    targetTypesPath = protocolDefinitionDir.file("target_types.json")
+    outputDirPath = project.file(generatedProtocolSourcesDirPath)
+}
+
+val printProtocolStats by tasks.registering(PrintProtocolStatsTask::class)
 
 tasks.named<KotlinJvmTest>("jvmTest") {
     useJUnitPlatform()

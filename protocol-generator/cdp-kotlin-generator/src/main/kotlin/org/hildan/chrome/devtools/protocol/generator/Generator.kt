@@ -13,8 +13,17 @@ import java.nio.file.Path
 import kotlin.io.path.*
 
 class Generator(
+    /**
+     * The paths to the JSON protocol descriptors.
+     */
     private val protocolFiles: List<Path>,
+    /**
+     * The path to the JSON file describing the target types and their supported domains.
+     */
     private val targetTypesFile: Path,
+    /**
+     * The path to the directory where the Kotlin protocol API classes should be generated.
+     */
     private val generatedSourcesDir: Path
 ) {
     @OptIn(ExperimentalPathApi::class)
