@@ -52,12 +52,21 @@ kotlin {
     tvosArm64()
     tvosSimulatorArm64()
 
-    // Not supported yet by all dependencies
-    // watchosDeviceArm64() // missing in Ktor
-    // androidNativeArm32() // missing in Ktor
-    // androidNativeArm64() // missing in Ktor
-    // androidNativeX64()   // missing in Ktor
-    // androidNativeX86()   // missing in Ktor
+    // Not supported yet by Ktor
+
+    // wasmJs {
+    //     browser()
+    //     nodejs()
+    //     d8()
+    // }
+    // wasmWasi {
+    //     nodejs()
+    // }
+    // watchosDeviceArm64()
+    // androidNativeArm32()
+    // androidNativeArm64()
+    // androidNativeX64()
+    // androidNativeX86()
 
     sourceSets {
         commonMain {
