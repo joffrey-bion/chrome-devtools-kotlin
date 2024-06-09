@@ -21450,6 +21450,8 @@ public final class org/hildan/chrome/devtools/domains/input/InputDomain {
 public final class org/hildan/chrome/devtools/domains/input/InputExtensionsKt {
 	public static final fun dispatchMouseClick (Lorg/hildan/chrome/devtools/domains/input/InputDomain;DDJLorg/hildan/chrome/devtools/domains/input/MouseButton;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun dispatchMouseClick$default (Lorg/hildan/chrome/devtools/domains/input/InputDomain;DDJLorg/hildan/chrome/devtools/domains/input/MouseButton;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun dispatchMouseClick-gwCluXo (Lorg/hildan/chrome/devtools/domains/input/InputDomain;DDJLorg/hildan/chrome/devtools/domains/input/MouseButton;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun dispatchMouseClick-gwCluXo$default (Lorg/hildan/chrome/devtools/domains/input/InputDomain;DDJLorg/hildan/chrome/devtools/domains/input/MouseButton;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public final class org/hildan/chrome/devtools/domains/input/InsertTextRequest {
@@ -47120,6 +47122,8 @@ public final class org/hildan/chrome/devtools/domains/webauthn/events/WebAuthnEv
 public final class org/hildan/chrome/devtools/extensions/CrossDomainExtensionsKt {
 	public static final fun clickOnElement (Lorg/hildan/chrome/devtools/sessions/PageSession;Ljava/lang/String;JLorg/hildan/chrome/devtools/domains/input/MouseButton;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun clickOnElement$default (Lorg/hildan/chrome/devtools/sessions/PageSession;Ljava/lang/String;JLorg/hildan/chrome/devtools/domains/input/MouseButton;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun clickOnElement-1Y68eR8 (Lorg/hildan/chrome/devtools/sessions/PageSession;Ljava/lang/String;JLorg/hildan/chrome/devtools/domains/input/MouseButton;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun clickOnElement-1Y68eR8$default (Lorg/hildan/chrome/devtools/sessions/PageSession;Ljava/lang/String;JLorg/hildan/chrome/devtools/domains/input/MouseButton;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public final class org/hildan/chrome/devtools/protocol/ChromeDPClient {
