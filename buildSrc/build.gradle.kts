@@ -1,6 +1,8 @@
 plugins {
     `kotlin-dsl`
-    kotlin("plugin.serialization") version embeddedKotlinVersion
+    // Can't use embeddedKotlinVersion for serialization yet because kotlinx-serialization-json requires Kotlin >= 2.0
+    // kotlin("plugin.serialization") version embeddedKotlinVersion
+    alias(libs.plugins.kotlin.serialization)
 }
 
 repositories {
