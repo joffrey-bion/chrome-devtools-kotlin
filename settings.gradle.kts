@@ -1,7 +1,7 @@
 import de.fayard.refreshVersions.core.StabilityLevel
 
 plugins {
-    id("com.gradle.develocity") version "3.17.4"
+    id("com.gradle.develocity") version "3.17.5"
     id("de.fayard.refreshVersions") version "0.60.5"
 }
 
