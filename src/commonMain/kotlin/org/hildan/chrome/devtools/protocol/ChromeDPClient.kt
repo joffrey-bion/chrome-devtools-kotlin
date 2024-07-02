@@ -12,7 +12,6 @@ import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-import org.hildan.chrome.devtools.targets.*
 import org.hildan.chrome.devtools.sessions.*
 
 private val DEFAULT_HTTP_CLIENT by lazy { createHttpClient(overrideHostHeader = false) }
@@ -219,8 +218,12 @@ data class ChromeDPTarget(
 /**
  * Connects to the Chrome debugger at the given [webSocketDebuggerUrl].
  *
- * This function expects a *web socket* URL (not HTTP). If you only have the debugger's HTTP URL at hand, use a
- * [ChromeDPClient] and then connect to the web socket using [ChromeDPClient.webSocket].
+ * This function expects a *web socket* URL (not HTTP). It should be something like:
+ * ```
+ * ws://localhost:9222/devtools/browser/b0b8a4fb-bb17-4359-9533-a8d9f3908bd8
+ * ```
+ * If you only have the debugger's HTTP URL at hand (e.g. `http://localhost:9222`), create a [ChromeDPClient] instead,
+ * and then connect to the web socket using [ChromeDPClient.webSocket].
  *
  * This [HttpClient] must have the [WebSockets] plugin installed, as well as the [ContentNegotiation] plugin
  * with Kotlinx Serialization JSON.
