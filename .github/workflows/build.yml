@@ -13,16 +13,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up JDK ${{ matrix.jdk-version }}
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: ${{ matrix.jdk-version }}
+      # It seems we can't control whether macos-12 runners are intel or arm64
+      - name: Check architecture for nested virtualization on macOS
+        if: runner.os == 'macos'
+        shell: bash
+        run: |
+          if [ $(uname -m) != "x86_64" ] 
+          then 
+              echo "$(uname -m) detected. This test must be run on x86_64"
+              exit -1
+          fi
+          exit 0
 
       # Docker is not installed on GitHub's MacOS hosted workers due to licensing issues
       - name: Setup docker (missing on MacOS)
         uses: douglascamata/setup-docker-macos-action@v1-alpha.13
         if: runner.os == 'macos'
+
+      - name: Set up JDK ${{ matrix.jdk-version }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: ${{ matrix.jdk-version }}
 
       - name: Cache Kotlin/Native binaries
         uses: actions/cache@v4
