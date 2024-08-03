@@ -2177,12 +2177,25 @@
         },
         {
             "domain": "Extensions",
-            "description": "Defines commands and events for browser extensions. Available if the client\nis connected using the --remote-debugging-pipe flag and\nthe --enable-unsafe-extension-debugging flag is set.",
+            "description": "Defines commands and events for browser extensions.",
             "experimental": true,
+            "types": [
+                {
+                    "id": "StorageArea",
+                    "description": "Storage areas.",
+                    "type": "string",
+                    "enum": [
+                        "session",
+                        "local",
+                        "sync",
+                        "managed"
+                    ]
+                }
+            ],
             "commands": [
                 {
                     "name": "loadUnpacked",
-                    "description": "Installs an unpacked extension from the filesystem similar to\n--load-extension CLI flags. Returns extension ID once the extension\nhas been installed.",
+                    "description": "Installs an unpacked extension from the filesystem similar to\n--load-extension CLI flags. Returns extension ID once the extension\nhas been installed. Available if the client is connected using the\n--remote-debugging-pipe flag and the --enable-unsafe-extension-debugging\nflag is set.",
                     "parameters": [
                         {
                             "name": "path",
@@ -2195,6 +2208,37 @@
                             "name": "id",
                             "description": "Extension id.",
                             "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "name": "getStorageItems",
+                    "description": "Gets data from extension storage in the given `area`. If `keys` is\nspecified, these are used to filter the result.",
+                    "parameters": [
+                        {
+                            "name": "id",
+                            "description": "ID of extension.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "storageArea",
+                            "description": "StorageArea to retrieve data from.",
+                            "$ref": "StorageArea"
+                        },
+                        {
+                            "name": "keys",
+                            "description": "Keys to retrieve.",
+                            "optional": true,
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "data",
+                            "type": "object"
                         }
                     ]
                 }
@@ -4172,26 +4216,6 @@
                     ]
                 },
                 {
-                    "id": "CSSPositionFallbackRule",
-                    "description": "CSS position-fallback rule representation.",
-                    "deprecated": true,
-                    "type": "object",
-                    "properties": [
-                        {
-                            "name": "name",
-                            "$ref": "Value"
-                        },
-                        {
-                            "name": "tryRules",
-                            "description": "List of keyframes.",
-                            "type": "array",
-                            "items": {
-                                "$ref": "CSSTryRule"
-                            }
-                        }
-                    ]
-                },
-                {
                     "id": "CSSPositionTryRule",
                     "description": "CSS @position-try rule representation.",
                     "type": "object",
@@ -4617,16 +4641,6 @@
                             "type": "array",
                             "items": {
                                 "$ref": "CSSKeyframesRule"
-                            }
-                        },
-                        {
-                            "name": "cssPositionFallbackRules",
-                            "description": "A list of CSS position fallbacks matching this node.",
-                            "deprecated": true,
-                            "optional": true,
-                            "type": "array",
-                            "items": {
-                                "$ref": "CSSPositionFallbackRule"
                             }
                         },
                         {
@@ -9126,6 +9140,37 @@
                     ]
                 },
                 {
+                    "id": "PressureSource",
+                    "experimental": true,
+                    "type": "string",
+                    "enum": [
+                        "cpu"
+                    ]
+                },
+                {
+                    "id": "PressureState",
+                    "experimental": true,
+                    "type": "string",
+                    "enum": [
+                        "nominal",
+                        "fair",
+                        "serious",
+                        "critical"
+                    ]
+                },
+                {
+                    "id": "PressureMetadata",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "available",
+                            "optional": true,
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                {
                     "id": "DisabledImageType",
                     "description": "Enum of image types that can be disabled.",
                     "experimental": true,
@@ -9478,6 +9523,41 @@
                         {
                             "name": "reading",
                             "$ref": "SensorReading"
+                        }
+                    ]
+                },
+                {
+                    "name": "setPressureSourceOverrideEnabled",
+                    "description": "Overrides a pressure source of a given type, as used by the Compute\nPressure API, so that updates to PressureObserver.observe() are provided\nvia setPressureStateOverride instead of being retrieved from\nplatform-provided telemetry data.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "enabled",
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "source",
+                            "$ref": "PressureSource"
+                        },
+                        {
+                            "name": "metadata",
+                            "optional": true,
+                            "$ref": "PressureMetadata"
+                        }
+                    ]
+                },
+                {
+                    "name": "setPressureStateOverride",
+                    "description": "Provides a given pressure state that will be processed and eventually be\ndelivered to PressureObserver users. |source| must have been previously\noverridden by setPressureSourceOverrideEnabled.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "source",
+                            "$ref": "PressureSource"
+                        },
+                        {
+                            "name": "state",
+                            "$ref": "PressureState"
                         }
                     ]
                 },
@@ -16912,6 +16992,7 @@
                     "type": "string",
                     "enum": [
                         "accelerometer",
+                        "all-screens-capture",
                         "ambient-light-sensor",
                         "attribution-reporting",
                         "autoplay",
@@ -16968,6 +17049,7 @@
                         "keyboard-map",
                         "local-fonts",
                         "magnetometer",
+                        "media-playback-while-not-visible",
                         "microphone",
                         "midi",
                         "otp-credentials",
@@ -21604,6 +21686,58 @@
                     ]
                 },
                 {
+                    "id": "AttributionReportingAggregatableDebugReportingData",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "keyPiece",
+                            "$ref": "UnsignedInt128AsBase16"
+                        },
+                        {
+                            "name": "value",
+                            "description": "number instead of integer because not all uint32 can be represented by\nint",
+                            "type": "number"
+                        },
+                        {
+                            "name": "types",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "AttributionReportingAggregatableDebugReportingConfig",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "budget",
+                            "description": "number instead of integer because not all uint32 can be represented by\nint, only present for source registrations",
+                            "optional": true,
+                            "type": "number"
+                        },
+                        {
+                            "name": "keyPiece",
+                            "$ref": "UnsignedInt128AsBase16"
+                        },
+                        {
+                            "name": "debugData",
+                            "type": "array",
+                            "items": {
+                                "$ref": "AttributionReportingAggregatableDebugReportingData"
+                            }
+                        },
+                        {
+                            "name": "aggregationCoordinatorOrigin",
+                            "optional": true,
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
                     "id": "AttributionReportingSourceRegistration",
                     "experimental": true,
                     "type": "object",
@@ -21682,6 +21816,10 @@
                         {
                             "name": "destinationLimitPriority",
                             "$ref": "SignedInt64AsBase10"
+                        },
+                        {
+                            "name": "aggregatableDebugReportingConfig",
+                            "$ref": "AttributionReportingAggregatableDebugReportingConfig"
                         }
                     ]
                 },
@@ -21878,6 +22016,10 @@
                             "name": "triggerContextId",
                             "optional": true,
                             "type": "string"
+                        },
+                        {
+                            "name": "aggregatableDebugReportingConfig",
+                            "$ref": "AttributionReportingAggregatableDebugReportingConfig"
                         }
                     ]
                 },
@@ -25897,7 +26039,9 @@
                         "JavaScriptInterfaceAdded",
                         "JavaScriptInterfaceRemoved",
                         "AllPrerenderingCanceled",
-                        "WindowClosed"
+                        "WindowClosed",
+                        "SlowNetwork",
+                        "OtherPrerenderedPageActivated"
                     ]
                 },
                 {
