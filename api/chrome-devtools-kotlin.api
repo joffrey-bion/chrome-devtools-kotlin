@@ -3733,6 +3733,234 @@ public final class org/hildan/chrome/devtools/domains/backgroundservice/events/B
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/bluetoothemulation/BluetoothEmulationDomain {
+	public final fun disable (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun enable (Lorg/hildan/chrome/devtools/domains/bluetoothemulation/CentralState;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun enable (Lorg/hildan/chrome/devtools/domains/bluetoothemulation/EnableRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun simulateAdvertisement (Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanEntry;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun simulateAdvertisement (Lorg/hildan/chrome/devtools/domains/bluetoothemulation/SimulateAdvertisementRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun simulatePreconnectedPeripheral (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun simulatePreconnectedPeripheral (Lorg/hildan/chrome/devtools/domains/bluetoothemulation/SimulatePreconnectedPeripheralRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/hildan/chrome/devtools/domains/bluetoothemulation/CentralState : java/lang/Enum {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/bluetoothemulation/CentralState$Companion;
+	public static final field absent Lorg/hildan/chrome/devtools/domains/bluetoothemulation/CentralState;
+	public static final field poweredOff Lorg/hildan/chrome/devtools/domains/bluetoothemulation/CentralState;
+	public static final field poweredOn Lorg/hildan/chrome/devtools/domains/bluetoothemulation/CentralState;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/bluetoothemulation/CentralState;
+	public static fun values ()[Lorg/hildan/chrome/devtools/domains/bluetoothemulation/CentralState;
+}
+
+public final class org/hildan/chrome/devtools/domains/bluetoothemulation/CentralState$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/bluetoothemulation/DisableResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/bluetoothemulation/DisableResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/bluetoothemulation/EnableRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/bluetoothemulation/EnableRequest$Companion;
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/bluetoothemulation/CentralState;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/bluetoothemulation/CentralState;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/bluetoothemulation/CentralState;)Lorg/hildan/chrome/devtools/domains/bluetoothemulation/EnableRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/bluetoothemulation/EnableRequest;Lorg/hildan/chrome/devtools/domains/bluetoothemulation/CentralState;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/bluetoothemulation/EnableRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getState ()Lorg/hildan/chrome/devtools/domains/bluetoothemulation/CentralState;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/bluetoothemulation/EnableRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/bluetoothemulation/EnableRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/bluetoothemulation/EnableRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/bluetoothemulation/EnableRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/bluetoothemulation/EnableRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/bluetoothemulation/EnableResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/bluetoothemulation/EnableResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/bluetoothemulation/ManufacturerData {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ManufacturerData$Companion;
+	public fun <init> (ILjava/lang/String;)V
+	public final fun component1 ()I
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (ILjava/lang/String;)Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ManufacturerData;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ManufacturerData;ILjava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ManufacturerData;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getData ()Ljava/lang/String;
+	public final fun getKey ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/bluetoothemulation/ManufacturerData$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ManufacturerData$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ManufacturerData;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ManufacturerData;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/bluetoothemulation/ManufacturerData$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/bluetoothemulation/ScanEntry {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanEntry$Companion;
+	public fun <init> (Ljava/lang/String;ILorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanRecord;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()I
+	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanRecord;
+	public final fun copy (Ljava/lang/String;ILorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanRecord;)Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanEntry;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanEntry;Ljava/lang/String;ILorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanRecord;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanEntry;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDeviceAddress ()Ljava/lang/String;
+	public final fun getRssi ()I
+	public final fun getScanRecord ()Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanRecord;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/bluetoothemulation/ScanEntry$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanEntry$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanEntry;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanEntry;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/bluetoothemulation/ScanEntry$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/bluetoothemulation/ScanRecord {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanRecord$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Ljava/lang/Integer;
+	public final fun component4 ()Ljava/lang/Integer;
+	public final fun component5 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanRecord;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanRecord;Ljava/lang/String;Ljava/util/List;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanRecord;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAppearance ()Ljava/lang/Integer;
+	public final fun getManufacturerData ()Ljava/util/List;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getTxPower ()Ljava/lang/Integer;
+	public final fun getUuids ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/bluetoothemulation/ScanRecord$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanRecord$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanRecord;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanRecord;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/bluetoothemulation/ScanRecord$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/bluetoothemulation/SimulateAdvertisementRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/bluetoothemulation/SimulateAdvertisementRequest$Companion;
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanEntry;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanEntry;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanEntry;)Lorg/hildan/chrome/devtools/domains/bluetoothemulation/SimulateAdvertisementRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/bluetoothemulation/SimulateAdvertisementRequest;Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanEntry;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/bluetoothemulation/SimulateAdvertisementRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEntry ()Lorg/hildan/chrome/devtools/domains/bluetoothemulation/ScanEntry;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/bluetoothemulation/SimulateAdvertisementRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/bluetoothemulation/SimulateAdvertisementRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/bluetoothemulation/SimulateAdvertisementRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/bluetoothemulation/SimulateAdvertisementRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/bluetoothemulation/SimulateAdvertisementRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/bluetoothemulation/SimulateAdvertisementResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/bluetoothemulation/SimulateAdvertisementResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/bluetoothemulation/SimulatePreconnectedPeripheralRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/bluetoothemulation/SimulatePreconnectedPeripheralRequest$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/util/List;
+	public final fun component4 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/bluetoothemulation/SimulatePreconnectedPeripheralRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/bluetoothemulation/SimulatePreconnectedPeripheralRequest;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/bluetoothemulation/SimulatePreconnectedPeripheralRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAddress ()Ljava/lang/String;
+	public final fun getKnownServiceUuids ()Ljava/util/List;
+	public final fun getManufacturerData ()Ljava/util/List;
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/bluetoothemulation/SimulatePreconnectedPeripheralRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/bluetoothemulation/SimulatePreconnectedPeripheralRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/bluetoothemulation/SimulatePreconnectedPeripheralRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/bluetoothemulation/SimulatePreconnectedPeripheralRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/bluetoothemulation/SimulatePreconnectedPeripheralRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/bluetoothemulation/SimulatePreconnectedPeripheralResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/bluetoothemulation/SimulatePreconnectedPeripheralResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/browser/AddPrivacySandboxEnrollmentOverrideRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/browser/AddPrivacySandboxEnrollmentOverrideRequest$Companion;
 	public fun <init> (Ljava/lang/String;)V
@@ -47959,6 +48187,7 @@ public abstract interface class org/hildan/chrome/devtools/sessions/WorkletSessi
 public abstract interface class org/hildan/chrome/devtools/targets/AllDomainsTarget : org/hildan/chrome/devtools/targets/AuctionWorkletTarget, org/hildan/chrome/devtools/targets/BrowserTarget, org/hildan/chrome/devtools/targets/PageTarget, org/hildan/chrome/devtools/targets/ServiceWorkerTarget, org/hildan/chrome/devtools/targets/SharedStorageWorkletTarget, org/hildan/chrome/devtools/targets/SharedWorkerTarget, org/hildan/chrome/devtools/targets/WebContentsTarget, org/hildan/chrome/devtools/targets/WorkerTarget, org/hildan/chrome/devtools/targets/WorkletTarget {
 	public static final field Companion Lorg/hildan/chrome/devtools/targets/AllDomainsTarget$Companion;
 	public abstract fun getAutofill ()Lorg/hildan/chrome/devtools/domains/autofill/AutofillDomain;
+	public abstract fun getBluetoothEmulation ()Lorg/hildan/chrome/devtools/domains/bluetoothemulation/BluetoothEmulationDomain;
 	public abstract fun getCast ()Lorg/hildan/chrome/devtools/domains/cast/CastDomain;
 	public abstract fun getConsole ()Lorg/hildan/chrome/devtools/domains/console/ConsoleDomain;
 	public abstract fun getEventBreakpoints ()Lorg/hildan/chrome/devtools/domains/eventbreakpoints/EventBreakpointsDomain;
