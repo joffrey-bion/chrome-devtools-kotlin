@@ -1,5 +1,13 @@
 # Change Log
 
+## [6.3.0\-1337664](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/6.3.0-1337664) (2024-08-08)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/6.2.0-1336433...6.3.0-1337664)
+
+**Upgraded dependencies:**
+
+- Update to Chrome DevTools Protocol version 1337664 [\#420](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/420) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Bump kotlin from 2.0.0 to 2.0.10 [\#422](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/422) ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [6.2.0\-1336433](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/6.2.0-1336433) (2024-08-07)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/6.2.0-1326544...6.2.0-1336433)
 
