@@ -13605,6 +13605,8 @@ public final class org/hildan/chrome/devtools/domains/dom/PseudoType : java/lang
 	public static final field resizer Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollMarker Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollMarkerGroup Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field scrollNextButton Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field scrollPrevButton Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollbar Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollbarButton Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollbarCorner Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
@@ -31672,7 +31674,9 @@ public final class org/hildan/chrome/devtools/domains/page/ClientNavigationReaso
 	public static final field formSubmissionGet Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
 	public static final field formSubmissionPost Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
 	public static final field httpHeaderRefresh Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
+	public static final field initialFrameNavigation Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
 	public static final field metaTagRefresh Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
+	public static final field other Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
 	public static final field pageBlockInterstitial Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
 	public static final field reload Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
 	public static final field scriptInitiated Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
