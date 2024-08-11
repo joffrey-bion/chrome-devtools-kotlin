@@ -11856,6 +11856,7 @@ public final class org/hildan/chrome/devtools/domains/dom/DOMDomain {
 	public final fun getContentQuads (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getContentQuads (Lorg/hildan/chrome/devtools/domains/dom/GetContentQuadsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getContentQuads$default (Lorg/hildan/chrome/devtools/domains/dom/DOMDomain;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun getDetachedDomNodes (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getDocument (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getDocument (Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getDocument (Lorg/hildan/chrome/devtools/domains/dom/GetDocumentRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -12062,6 +12063,35 @@ public synthetic class org/hildan/chrome/devtools/domains/dom/DescribeNodeRespon
 }
 
 public final class org/hildan/chrome/devtools/domains/dom/DescribeNodeResponse$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/dom/DetachedElementInfo {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/dom/DetachedElementInfo$Companion;
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/dom/Node;Ljava/util/List;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/dom/Node;
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/dom/Node;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/dom/DetachedElementInfo;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/dom/DetachedElementInfo;Lorg/hildan/chrome/devtools/domains/dom/Node;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/dom/DetachedElementInfo;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getRetainedNodeIds ()Ljava/util/List;
+	public final fun getTreeNode ()Lorg/hildan/chrome/devtools/domains/dom/Node;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/dom/DetachedElementInfo$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/dom/DetachedElementInfo$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/dom/DetachedElementInfo;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/dom/DetachedElementInfo;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/dom/DetachedElementInfo$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -12537,6 +12567,33 @@ public synthetic class org/hildan/chrome/devtools/domains/dom/GetContentQuadsRes
 }
 
 public final class org/hildan/chrome/devtools/domains/dom/GetContentQuadsResponse$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/dom/GetDetachedDomNodesResponse {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/dom/GetDetachedDomNodesResponse$Companion;
+	public fun <init> (Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/dom/GetDetachedDomNodesResponse;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/dom/GetDetachedDomNodesResponse;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/dom/GetDetachedDomNodesResponse;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDetachedNodes ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/dom/GetDetachedDomNodesResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/dom/GetDetachedDomNodesResponse$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/dom/GetDetachedDomNodesResponse;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/dom/GetDetachedDomNodesResponse;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/dom/GetDetachedDomNodesResponse$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -13605,6 +13662,8 @@ public final class org/hildan/chrome/devtools/domains/dom/PseudoType : java/lang
 	public static final field resizer Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollMarker Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollMarkerGroup Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field scrollNextButton Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field scrollPrevButton Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollbar Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollbarButton Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollbarCorner Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
@@ -31672,7 +31731,9 @@ public final class org/hildan/chrome/devtools/domains/page/ClientNavigationReaso
 	public static final field formSubmissionGet Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
 	public static final field formSubmissionPost Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
 	public static final field httpHeaderRefresh Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
+	public static final field initialFrameNavigation Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
 	public static final field metaTagRefresh Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
+	public static final field other Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
 	public static final field pageBlockInterstitial Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
 	public static final field reload Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
 	public static final field scriptInitiated Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
@@ -33079,6 +33140,20 @@ public final class org/hildan/chrome/devtools/domains/page/NavigateToHistoryEntr
 
 public final class org/hildan/chrome/devtools/domains/page/NavigateToHistoryEntryResponse {
 	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/NavigateToHistoryEntryResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/NavigatedWithinDocumentNavigationType : java/lang/Enum {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/NavigatedWithinDocumentNavigationType$Companion;
+	public static final field fragment Lorg/hildan/chrome/devtools/domains/page/NavigatedWithinDocumentNavigationType;
+	public static final field historyApi Lorg/hildan/chrome/devtools/domains/page/NavigatedWithinDocumentNavigationType;
+	public static final field other Lorg/hildan/chrome/devtools/domains/page/NavigatedWithinDocumentNavigationType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/NavigatedWithinDocumentNavigationType;
+	public static fun values ()[Lorg/hildan/chrome/devtools/domains/page/NavigatedWithinDocumentNavigationType;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/NavigatedWithinDocumentNavigationType$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -35880,13 +35955,15 @@ public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$Load
 
 public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$NavigatedWithinDocument : org/hildan/chrome/devtools/domains/page/events/PageEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$NavigatedWithinDocument$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/page/NavigatedWithinDocumentNavigationType;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$NavigatedWithinDocument;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$NavigatedWithinDocument;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$NavigatedWithinDocument;
+	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/page/NavigatedWithinDocumentNavigationType;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/page/NavigatedWithinDocumentNavigationType;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$NavigatedWithinDocument;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$NavigatedWithinDocument;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/page/NavigatedWithinDocumentNavigationType;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$NavigatedWithinDocument;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getFrameId ()Ljava/lang/String;
+	public final fun getNavigationType ()Lorg/hildan/chrome/devtools/domains/page/NavigatedWithinDocumentNavigationType;
 	public final fun getUrl ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
