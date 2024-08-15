@@ -18540,13 +18540,51 @@ public final class org/hildan/chrome/devtools/domains/eventbreakpoints/SetInstru
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/extensions/ClearStorageItemsRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/extensions/ClearStorageItemsRequest$Companion;
+	public fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;
+	public final fun copy (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;)Lorg/hildan/chrome/devtools/domains/extensions/ClearStorageItemsRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/extensions/ClearStorageItemsRequest;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/extensions/ClearStorageItemsRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getId ()Ljava/lang/String;
+	public final fun getStorageArea ()Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/extensions/ClearStorageItemsRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/extensions/ClearStorageItemsRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/extensions/ClearStorageItemsRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/extensions/ClearStorageItemsRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/extensions/ClearStorageItemsRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/extensions/ClearStorageItemsResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/extensions/ClearStorageItemsResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/extensions/ExtensionsDomain {
+	public final fun clearStorageItems (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun clearStorageItems (Lorg/hildan/chrome/devtools/domains/extensions/ClearStorageItemsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getStorageItems (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getStorageItems (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getStorageItems (Lorg/hildan/chrome/devtools/domains/extensions/GetStorageItemsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getStorageItems$default (Lorg/hildan/chrome/devtools/domains/extensions/ExtensionsDomain;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun loadUnpacked (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun loadUnpacked (Lorg/hildan/chrome/devtools/domains/extensions/LoadUnpackedRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun removeStorageItems (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun removeStorageItems (Lorg/hildan/chrome/devtools/domains/extensions/RemoveStorageItemsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class org/hildan/chrome/devtools/domains/extensions/GetStorageItemsRequest {
@@ -18668,6 +18706,42 @@ public synthetic class org/hildan/chrome/devtools/domains/extensions/LoadUnpacke
 }
 
 public final class org/hildan/chrome/devtools/domains/extensions/LoadUnpackedResponse$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/extensions/RemoveStorageItemsRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/extensions/RemoveStorageItemsRequest$Companion;
+	public fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;Ljava/util/List;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;
+	public final fun component3 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/extensions/RemoveStorageItemsRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/extensions/RemoveStorageItemsRequest;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/extensions/RemoveStorageItemsRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getId ()Ljava/lang/String;
+	public final fun getKeys ()Ljava/util/List;
+	public final fun getStorageArea ()Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/extensions/RemoveStorageItemsRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/extensions/RemoveStorageItemsRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/extensions/RemoveStorageItemsRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/extensions/RemoveStorageItemsRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/extensions/RemoveStorageItemsRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/extensions/RemoveStorageItemsResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/extensions/RemoveStorageItemsResponse;
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
