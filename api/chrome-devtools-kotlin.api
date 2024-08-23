@@ -31508,6 +31508,7 @@ public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRe
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason$Companion;
 	public static final field ConflictingBrowsingInstance Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field ContainsPlugins Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field ContentDiscarded Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field ContentFileChooser Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field ContentFileSystemAccess Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field ContentMediaDevicesDispatcherHost Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
@@ -33777,6 +33778,7 @@ public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeat
 	public static final field otpCredentials Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field payment Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field pictureInPicture Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field popins Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field privateAggregation Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field privateStateTokenIssuance Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field privateStateTokenRedemption Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
