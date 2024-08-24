@@ -49,5 +49,5 @@ jobs:
           version: ${{ steps.compute-version.outputs.fullVersion }}
           gpg-signing-key: ${{ secrets.GPG_SECRET_ASCII_ARMORED }}
           gpg-signing-password: ${{ secrets.GPG_PASSWORD }}
-          sonatype-username: ${{ secrets.OSSRH_USER_TOKEN }}
-          sonatype-password: ${{ secrets.OSSRH_KEY }}
+          sonatype-username: ${{ secrets.OSSRH_TOKEN_USERNAME }}
+          sonatype-password: ${{ secrets.OSSRH_TOKEN_PASSWORD }}
