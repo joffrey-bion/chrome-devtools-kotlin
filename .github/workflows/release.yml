@@ -51,3 +51,4 @@ jobs:
           gpg-signing-password: ${{ secrets.GPG_PASSWORD }}
           sonatype-username: ${{ secrets.OSSRH_TOKEN_USERNAME }}
           sonatype-password: ${{ secrets.OSSRH_TOKEN_PASSWORD }}
+          gradle-publish-tasks: publishToSonatype closeAndReleaseSonatypeStagingRepository
