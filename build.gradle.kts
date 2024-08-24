@@ -149,7 +149,7 @@ changelog {
 
 nexusPublishing {
     packageGroup.set("org.hildan")
-    this.repositories {
+    repositories {
         sonatype()
     }
 }
