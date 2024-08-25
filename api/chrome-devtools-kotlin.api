@@ -4725,6 +4725,7 @@ public final class org/hildan/chrome/devtools/domains/browser/PermissionType : j
 	public static final field videoCapturePanTiltZoom Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field wakeLockScreen Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field wakeLockSystem Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
+	public static final field webAppInstallation Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field windowManagement Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
@@ -33799,6 +33800,7 @@ public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeat
 	public static final field usb Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field usbUnrestricted Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field verticalScroll Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
+	public static final field webAppInstallation Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field webPrinting Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field webShare Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field windowManagement Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
