@@ -1627,6 +1627,7 @@ public final class org/hildan/chrome/devtools/domains/audits/AttributionReportin
 	public static final field InvalidRegisterOsSourceHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field InvalidRegisterOsTriggerHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field InvalidRegisterTriggerHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
+	public static final field NavigationRegistrationUniqueScopeAlreadySet Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field NavigationRegistrationWithoutTransientUserActivation Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field NoRegisterOsSourceHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field NoRegisterOsTriggerHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
@@ -24161,6 +24162,35 @@ public final class org/hildan/chrome/devtools/domains/media/events/MediaEvent$Pl
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/memory/DOMCounter {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/memory/DOMCounter$Companion;
+	public fun <init> (Ljava/lang/String;I)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()I
+	public final fun copy (Ljava/lang/String;I)Lorg/hildan/chrome/devtools/domains/memory/DOMCounter;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/memory/DOMCounter;Ljava/lang/String;IILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/memory/DOMCounter;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCount ()I
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/memory/DOMCounter$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/memory/DOMCounter$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/memory/DOMCounter;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/memory/DOMCounter;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/memory/DOMCounter$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/memory/ForciblyPurgeJavaScriptMemoryResponse {
 	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/memory/ForciblyPurgeJavaScriptMemoryResponse;
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
@@ -24217,6 +24247,33 @@ public synthetic class org/hildan/chrome/devtools/domains/memory/GetBrowserSampl
 }
 
 public final class org/hildan/chrome/devtools/domains/memory/GetBrowserSamplingProfileResponse$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/memory/GetDOMCountersForLeakDetectionResponse {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/memory/GetDOMCountersForLeakDetectionResponse$Companion;
+	public fun <init> (Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/memory/GetDOMCountersForLeakDetectionResponse;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/memory/GetDOMCountersForLeakDetectionResponse;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/memory/GetDOMCountersForLeakDetectionResponse;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCounters ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/memory/GetDOMCountersForLeakDetectionResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/memory/GetDOMCountersForLeakDetectionResponse$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/memory/GetDOMCountersForLeakDetectionResponse;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/memory/GetDOMCountersForLeakDetectionResponse;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/memory/GetDOMCountersForLeakDetectionResponse$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -24283,6 +24340,7 @@ public final class org/hildan/chrome/devtools/domains/memory/MemoryDomain {
 	public final fun getAllTimeSamplingProfile (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getBrowserSamplingProfile (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getDOMCounters (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getDOMCountersForLeakDetection (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getSamplingProfile (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun prepareForLeakDetection (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setPressureNotificationsSuppressed (Lorg/hildan/chrome/devtools/domains/memory/SetPressureNotificationsSuppressedRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -25166,6 +25224,7 @@ public final class org/hildan/chrome/devtools/domains/network/CookieExemptionRea
 	public static final field TPCDHeuristics Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
 	public static final field TPCDMetadata Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
 	public static final field TopLevelStorageAccess Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
+	public static final field TopLevelTPCDDeprecationTrial Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
 	public static final field UserSetting Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
@@ -41952,6 +42011,8 @@ public final class org/hildan/chrome/devtools/domains/storage/AttributionReporti
 	public static final field destinationPerDayReportingLimitReached Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationResult;
 	public static final field destinationReportingLimitReached Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationResult;
 	public static final field exceedsMaxChannelCapacity Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationResult;
+	public static final field exceedsMaxEventStatesLimit Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationResult;
+	public static final field exceedsMaxScopesChannelCapacity Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationResult;
 	public static final field exceedsMaxTriggerStateCardinality Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationResult;
 	public static final field excessiveReportingOrigins Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationResult;
 	public static final field insufficientSourceCapacity Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationResult;
