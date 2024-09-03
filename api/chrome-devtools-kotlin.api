@@ -33594,6 +33594,8 @@ public final class org/hildan/chrome/devtools/domains/page/PageDomain {
 	public final fun frameStartedLoadingEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun frameStoppedLoading ()Lkotlinx/coroutines/flow/Flow;
 	public final fun frameStoppedLoadingEvents ()Lkotlinx/coroutines/flow/Flow;
+	public final fun frameSubtreeWillBeDetached ()Lkotlinx/coroutines/flow/Flow;
+	public final fun frameSubtreeWillBeDetachedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun generateTestReport (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun generateTestReport (Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun generateTestReport (Lorg/hildan/chrome/devtools/domains/page/GenerateTestReportRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -35993,6 +35995,33 @@ public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$Fram
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$FrameSubtreeWillBeDetached : org/hildan/chrome/devtools/domains/page/events/PageEvent {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$FrameSubtreeWillBeDetached$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$FrameSubtreeWillBeDetached;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$FrameSubtreeWillBeDetached;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$FrameSubtreeWillBeDetached;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFrameId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/page/events/PageEvent$FrameSubtreeWillBeDetached$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$FrameSubtreeWillBeDetached$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$FrameSubtreeWillBeDetached;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$FrameSubtreeWillBeDetached;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$FrameSubtreeWillBeDetached$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/page/events/PageEvent$InterstitialHidden : org/hildan/chrome/devtools/domains/page/events/PageEvent {
 	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/page/events/PageEvent$InterstitialHidden;
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
@@ -36690,7 +36719,6 @@ public final class org/hildan/chrome/devtools/domains/preload/PrefetchStatus : j
 	public static final field PrefetchFailedMIMENotSupported Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
 	public static final field PrefetchFailedNetError Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
 	public static final field PrefetchFailedNon2XX Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
-	public static final field PrefetchFailedPerPageLimitExceeded Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
 	public static final field PrefetchHeldback Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
 	public static final field PrefetchIneligibleRetryAfter Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
 	public static final field PrefetchIsPrivacyDecoy Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
@@ -41948,8 +41976,8 @@ public final class org/hildan/chrome/devtools/domains/storage/AttributionReporti
 
 public final class org/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistration {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistration$Companion;
-	public fun <init> (DILjava/util/List;ILorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceType;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerDataMatching;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;)V
-	public synthetic fun <init> (DILjava/util/List;ILorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceType;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerDataMatching;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (DILjava/util/List;ILorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceType;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerDataMatching;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;Lorg/hildan/chrome/devtools/domains/storage/AttributionScopesData;)V
+	public synthetic fun <init> (DILjava/util/List;ILorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceType;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerDataMatching;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;Lorg/hildan/chrome/devtools/domains/storage/AttributionScopesData;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()D
 	public final fun component10 ()Ljava/lang/String;
 	public final fun component11 ()Ljava/util/List;
@@ -41958,6 +41986,7 @@ public final class org/hildan/chrome/devtools/domains/storage/AttributionReporti
 	public final fun component14 ()Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerDataMatching;
 	public final fun component15 ()Ljava/lang/String;
 	public final fun component16 ()Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;
+	public final fun component17 ()Lorg/hildan/chrome/devtools/domains/storage/AttributionScopesData;
 	public final fun component2 ()I
 	public final fun component3 ()Ljava/util/List;
 	public final fun component4 ()I
@@ -41966,8 +41995,8 @@ public final class org/hildan/chrome/devtools/domains/storage/AttributionReporti
 	public final fun component7 ()Ljava/lang/String;
 	public final fun component8 ()Ljava/util/List;
 	public final fun component9 ()Ljava/lang/String;
-	public final fun copy (DILjava/util/List;ILorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceType;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerDataMatching;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;)Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistration;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistration;DILjava/util/List;ILorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceType;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerDataMatching;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistration;
+	public final fun copy (DILjava/util/List;ILorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceType;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerDataMatching;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;Lorg/hildan/chrome/devtools/domains/storage/AttributionScopesData;)Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistration;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistration;DILjava/util/List;ILorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceType;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerDataMatching;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;Lorg/hildan/chrome/devtools/domains/storage/AttributionScopesData;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistration;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAggregatableDebugReportingConfig ()Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;
 	public final fun getAggregatableReportWindow ()I
@@ -41980,6 +42009,7 @@ public final class org/hildan/chrome/devtools/domains/storage/AttributionReporti
 	public final fun getFilterData ()Ljava/util/List;
 	public final fun getPriority ()Ljava/lang/String;
 	public final fun getReportingOrigin ()Ljava/lang/String;
+	public final fun getScopesData ()Lorg/hildan/chrome/devtools/domains/storage/AttributionScopesData;
 	public final fun getSourceOrigin ()Ljava/lang/String;
 	public final fun getTime ()D
 	public final fun getTriggerDataMatching ()Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerDataMatching;
@@ -42072,12 +42102,13 @@ public final class org/hildan/chrome/devtools/domains/storage/AttributionReporti
 
 public final class org/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerRegistration {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerRegistration$Companion;
-	public fun <init> (Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingFilterPair;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;IZLjava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationTimeConfig;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;)V
-	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingFilterPair;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;IZLjava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationTimeConfig;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingFilterPair;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;IZLjava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationTimeConfig;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;Ljava/util/List;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingFilterPair;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;IZLjava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationTimeConfig;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingFilterPair;
 	public final fun component10 ()Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationTimeConfig;
 	public final fun component11 ()Ljava/lang/String;
 	public final fun component12 ()Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;
+	public final fun component13 ()Ljava/util/List;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/util/List;
 	public final fun component4 ()Ljava/util/List;
@@ -42086,8 +42117,8 @@ public final class org/hildan/chrome/devtools/domains/storage/AttributionReporti
 	public final fun component7 ()I
 	public final fun component8 ()Z
 	public final fun component9 ()Ljava/lang/String;
-	public final fun copy (Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingFilterPair;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;IZLjava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationTimeConfig;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;)Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerRegistration;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerRegistration;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingFilterPair;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;IZLjava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationTimeConfig;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerRegistration;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingFilterPair;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;IZLjava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationTimeConfig;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerRegistration;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerRegistration;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingFilterPair;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;IZLjava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationTimeConfig;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerRegistration;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAggregatableDebugReportingConfig ()Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableDebugReportingConfig;
 	public final fun getAggregatableDedupKeys ()Ljava/util/List;
@@ -42099,6 +42130,7 @@ public final class org/hildan/chrome/devtools/domains/storage/AttributionReporti
 	public final fun getDebugReporting ()Z
 	public final fun getEventTriggerData ()Ljava/util/List;
 	public final fun getFilters ()Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingFilterPair;
+	public final fun getScopes ()Ljava/util/List;
 	public final fun getSourceRegistrationTimeConfig ()Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationTimeConfig;
 	public final fun getTriggerContextId ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -42146,6 +42178,37 @@ public synthetic class org/hildan/chrome/devtools/domains/storage/AttributionRep
 }
 
 public final class org/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerSpec$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/AttributionScopesData {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/AttributionScopesData$Companion;
+	public fun <init> (Ljava/util/List;DD)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()D
+	public final fun component3 ()D
+	public final fun copy (Ljava/util/List;DD)Lorg/hildan/chrome/devtools/domains/storage/AttributionScopesData;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/storage/AttributionScopesData;Ljava/util/List;DDILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/storage/AttributionScopesData;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLimit ()D
+	public final fun getMaxEventStates ()D
+	public final fun getValues ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/storage/AttributionScopesData$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/storage/AttributionScopesData$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/storage/AttributionScopesData;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/storage/AttributionScopesData;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/storage/AttributionScopesData$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
