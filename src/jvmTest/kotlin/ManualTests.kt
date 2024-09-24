@@ -11,7 +11,7 @@ import java.nio.file.Paths
 // Run an actual browser first:
 // "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222 --user-data-dir=C:\remote-profile
 
-fun main(): Unit = runBlocking {
+suspend fun main() {
     testCrossOriginIFrame()
 }
 
