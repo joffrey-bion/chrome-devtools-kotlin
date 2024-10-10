@@ -262,7 +262,7 @@ class DOMAttributes(attributesMap: Map<String, String>): Map<String, String> by 
     val width: Int? by intAttribute()
 }
 
-private fun String.toCharset(): Charset = Charset.forName(this)
+private fun String.toCharset(): Charset = Charsets.forName(this)
 
 private fun attribute(name: String? = null) = attribute(name) { it }
 
