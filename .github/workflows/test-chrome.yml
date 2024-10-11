@@ -1,0 +1,16 @@
+name: test-chrome
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+    steps:
+      - id: setup-chrome
+        uses: browser-actions/setup-chrome@v1
+      - name: Run chrome
+        run: |
+          ${{ steps.setup-chrome.outputs.chrome-path }} --version
