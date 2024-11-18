@@ -7,13 +7,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-13] # macos-latest uses ARM which doesn't support virtualization
+        os: [ubuntu-latest, macos-13] # macos-14 doesn't support virtualization (uses ARM arch)
         jdk-version: [21]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # It seems we can't control whether macos-12 runners are intel or arm64
+      # We can't control the architecture of macOS runners, so we double-check here
       - name: Check architecture for nested virtualization on macOS
         if: runner.os == 'macos'
         shell: bash
@@ -28,13 +28,8 @@ jobs:
       # Docker is not installed on GitHub's MacOS hosted workers due to licensing issues
       - name: Setup docker (missing on MacOS)
         if: runner.os == 'macos'
-        run: |
-          brew install docker
-          colima start
-          
-          # For testcontainers to find the Colima socket
-          # https://github.com/abiosoft/colima/blob/main/docs/FAQ.md#cannot-connect-to-the-docker-daemon-at-unixvarrundockersock-is-the-docker-daemon-running
-          sudo ln -sf $HOME/.colima/default/docker.sock /var/run/docker.sock
+        # colima is not installed in macos-13, so we need this action since macos-12 is deprecated
+        uses: douglascamata/setup-docker-macos-action@v1-alpha
 
       - name: Set up JDK ${{ matrix.jdk-version }}
         uses: actions/setup-java@v4
