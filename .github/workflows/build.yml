@@ -31,6 +31,13 @@ jobs:
         # colima is not installed in macos-13, so we need this action since macos-12 is deprecated
         uses: douglascamata/setup-docker-macos-action@v1-alpha
 
+      # For testcontainers to find the Colima socket
+      # https://github.com/abiosoft/colima/blob/main/docs/FAQ.md#cannot-connect-to-the-docker-daemon-at-unixvarrundockersock-is-the-docker-daemon-running
+      - name: Map docker.sock to colima (macOS only)
+        if: runner.os == 'macos'
+        run: |
+          sudo ln -sf $HOME/.colima/default/docker.sock /var/run/docker.sock
+
       - name: Set up JDK ${{ matrix.jdk-version }}
         uses: actions/setup-java@v4
         with:
