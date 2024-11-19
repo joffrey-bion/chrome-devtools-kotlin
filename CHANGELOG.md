@@ -1,5 +1,17 @@
 # Change Log
 
+## [6.5.0\-1383960](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/6.5.0-1383960) (2024-11-19)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/6.4.1-1347815...6.5.0-1383960)
+
+**Upgraded dependencies:**
+
+- Update to Chrome DevTools Protocol version 1383960 [\#444](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/444) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Bump kotlin from 2.0.20 to 2.0.21 [\#450](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/450) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.jetbrains.kotlinx:atomicfu from 0.25.0 to 0.26.0 [\#451](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/451) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ktor from 2.3.12 to 3.0.1 [\#448](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/448) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.jetbrains.kotlinx:kotlinx\-serialization\-json from 1.7.2 to 1.7.3 [\#443](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/443) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.jetbrains.kotlinx:kotlinx\-coroutines\-core from 1.8.1 to 1.9.0 [\#441](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/441) ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [6.4.1\-1347815](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/6.4.1-1347815) (2024-08-29)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/6.4.0-1346313...6.4.1-1347815)
 
