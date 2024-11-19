@@ -25,12 +25,14 @@ jobs:
       # Docker is not installed on GitHub's MacOS hosted workers due to licensing issues
       - name: Setup docker (missing on MacOS)
         if: runner.os == 'macos'
+        # colima is not installed in macos-13, so we need this action since macos-12 is deprecated
+        uses: douglascamata/setup-docker-macos-action@v1-alpha
+
+      # For testcontainers to find the Colima socket
+      # https://github.com/abiosoft/colima/blob/main/docs/FAQ.md#cannot-connect-to-the-docker-daemon-at-unixvarrundockersock-is-the-docker-daemon-running
+      - name: Map docker.sock to colima (macOS only)
+        if: runner.os == 'macos'
         run: |
-          brew install docker
-          colima start
-          
-          # For testcontainers to find the Colima socket
-          # https://github.com/abiosoft/colima/blob/main/docs/FAQ.md#cannot-connect-to-the-docker-daemon-at-unixvarrundockersock-is-the-docker-daemon-running
           sudo ln -sf $HOME/.colima/default/docker.sock /var/run/docker.sock
 
       - name: Cache Kotlin/Native binaries
