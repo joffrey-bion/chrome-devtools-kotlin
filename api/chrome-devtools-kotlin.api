@@ -1712,6 +1712,7 @@ public final class org/hildan/chrome/devtools/domains/audits/BlockedByResponseRe
 	public static final field CorpNotSameOriginAfterDefaultedToSameOriginByCoepAndDip Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseReason;
 	public static final field CorpNotSameOriginAfterDefaultedToSameOriginByDip Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseReason;
 	public static final field CorpNotSameSite Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseReason;
+	public static final field SRIMessageSignatureMismatch Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseReason;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseReason;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseReason;
@@ -1972,8 +1973,8 @@ public final class org/hildan/chrome/devtools/domains/audits/CookieExclusionReas
 
 public final class org/hildan/chrome/devtools/domains/audits/CookieIssueDetails {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/CookieIssueDetails$Companion;
-	public fun <init> (Lorg/hildan/chrome/devtools/domains/audits/AffectedCookie;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/audits/CookieOperation;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;)V
-	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/audits/AffectedCookie;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/audits/CookieOperation;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/audits/AffectedCookie;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/audits/CookieOperation;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Lorg/hildan/chrome/devtools/domains/audits/CookieIssueInsight;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/audits/AffectedCookie;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/audits/CookieOperation;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Lorg/hildan/chrome/devtools/domains/audits/CookieIssueInsight;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/audits/AffectedCookie;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/util/List;
@@ -1982,13 +1983,15 @@ public final class org/hildan/chrome/devtools/domains/audits/CookieIssueDetails 
 	public final fun component6 ()Ljava/lang/String;
 	public final fun component7 ()Ljava/lang/String;
 	public final fun component8 ()Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;
-	public final fun copy (Lorg/hildan/chrome/devtools/domains/audits/AffectedCookie;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/audits/CookieOperation;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;)Lorg/hildan/chrome/devtools/domains/audits/CookieIssueDetails;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/audits/CookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AffectedCookie;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/audits/CookieOperation;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/audits/CookieIssueDetails;
+	public final fun component9 ()Lorg/hildan/chrome/devtools/domains/audits/CookieIssueInsight;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/audits/AffectedCookie;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/audits/CookieOperation;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Lorg/hildan/chrome/devtools/domains/audits/CookieIssueInsight;)Lorg/hildan/chrome/devtools/domains/audits/CookieIssueDetails;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/audits/CookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AffectedCookie;Ljava/lang/String;Ljava/util/List;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/audits/CookieOperation;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;Lorg/hildan/chrome/devtools/domains/audits/CookieIssueInsight;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/audits/CookieIssueDetails;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getCookie ()Lorg/hildan/chrome/devtools/domains/audits/AffectedCookie;
 	public final fun getCookieExclusionReasons ()Ljava/util/List;
 	public final fun getCookieUrl ()Ljava/lang/String;
 	public final fun getCookieWarningReasons ()Ljava/util/List;
+	public final fun getInsight ()Lorg/hildan/chrome/devtools/domains/audits/CookieIssueInsight;
 	public final fun getOperation ()Lorg/hildan/chrome/devtools/domains/audits/CookieOperation;
 	public final fun getRawCookieLine ()Ljava/lang/String;
 	public final fun getRequest ()Lorg/hildan/chrome/devtools/domains/audits/AffectedRequest;
@@ -2009,6 +2012,36 @@ public synthetic class org/hildan/chrome/devtools/domains/audits/CookieIssueDeta
 }
 
 public final class org/hildan/chrome/devtools/domains/audits/CookieIssueDetails$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/audits/CookieIssueInsight {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/CookieIssueInsight$Companion;
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/audits/InsightType;Ljava/lang/String;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/audits/InsightType;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/audits/InsightType;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/audits/InsightType;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/CookieIssueInsight;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/audits/CookieIssueInsight;Lorg/hildan/chrome/devtools/domains/audits/InsightType;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/audits/CookieIssueInsight;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getTableEntryUrl ()Ljava/lang/String;
+	public final fun getType ()Lorg/hildan/chrome/devtools/domains/audits/InsightType;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/audits/CookieIssueInsight$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/audits/CookieIssueInsight$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/audits/CookieIssueInsight;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/audits/CookieIssueInsight;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/audits/CookieIssueInsight$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -2498,6 +2531,20 @@ public final class org/hildan/chrome/devtools/domains/audits/HeavyAdResolutionSt
 }
 
 public final class org/hildan/chrome/devtools/domains/audits/HeavyAdResolutionStatus$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/audits/InsightType : java/lang/Enum {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/InsightType$Companion;
+	public static final field GitHubResource Lorg/hildan/chrome/devtools/domains/audits/InsightType;
+	public static final field GracePeriod Lorg/hildan/chrome/devtools/domains/audits/InsightType;
+	public static final field Heuristics Lorg/hildan/chrome/devtools/domains/audits/InsightType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/InsightType;
+	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/InsightType;
+}
+
+public final class org/hildan/chrome/devtools/domains/audits/InsightType$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -4703,18 +4750,21 @@ public final class org/hildan/chrome/devtools/domains/browser/PermissionSetting$
 
 public final class org/hildan/chrome/devtools/domains/browser/PermissionType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/browser/PermissionType$Companion;
-	public static final field accessibilityEvents Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
+	public static final field ar Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field audioCapture Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
+	public static final field automaticFullscreen Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field backgroundFetch Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field backgroundSync Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
+	public static final field cameraPanTiltZoom Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field capturedSurfaceControl Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field clipboardReadWrite Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field clipboardSanitizedWrite Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field displayCapture Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field durableStorage Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
-	public static final field flash Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field geolocation Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
+	public static final field handTracking Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field idleDetection Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
+	public static final field keyboardLock Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field localFonts Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field midi Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field midiSysex Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
@@ -4722,16 +4772,19 @@ public final class org/hildan/chrome/devtools/domains/browser/PermissionType : j
 	public static final field notifications Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field paymentHandler Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field periodicBackgroundSync Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
+	public static final field pointerLock Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field protectedMediaIdentifier Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field sensors Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
+	public static final field smartCard Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field speakerSelection Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field storageAccess Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field topLevelStorageAccess Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field videoCapture Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
-	public static final field videoCapturePanTiltZoom Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
+	public static final field vr Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field wakeLockScreen Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field wakeLockSystem Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field webAppInstallation Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
+	public static final field webPrinting Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field windowManagement Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
@@ -13823,7 +13876,7 @@ public final class org/hildan/chrome/devtools/domains/dom/PseudoType : java/lang
 	public static final field after Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field backdrop Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field before Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field check Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field checkmark Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field column Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field detailsContent Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field fileSelectorButton Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
@@ -13835,12 +13888,12 @@ public final class org/hildan/chrome/devtools/domains/dom/PseudoType : java/lang
 	public static final field inputListButton Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field marker Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field picker Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field pickerIcon Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field placeholder Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field resizer Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public static final field scrollButton Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollMarker Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollMarkerGroup Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field scrollNextButton Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field scrollPrevButton Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollbar Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollbarButton Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollbarCorner Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
@@ -13848,7 +13901,6 @@ public final class org/hildan/chrome/devtools/domains/dom/PseudoType : java/lang
 	public static final field scrollbarTrack Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field scrollbarTrackPiece Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field searchText Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
-	public static final field selectArrow Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field selection Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field spellingError Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
 	public static final field targetText Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
@@ -24942,6 +24994,7 @@ public final class org/hildan/chrome/devtools/domains/network/BlockedReason : ja
 	public static final field mixedContent Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
 	public static final field origin Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
 	public static final field other Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
+	public static final field sriMessageSignatureMismatch Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
 	public static final field subresourceFilter Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/BlockedReason;
