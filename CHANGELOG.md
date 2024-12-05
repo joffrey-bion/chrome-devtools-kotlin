@@ -1,5 +1,16 @@
 # Change Log
 
+## [6.6.0\-1391447](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/6.6.0-1391447) (2024-12-05)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/6.5.0-1383960...6.6.0-1391447)
+
+**Upgraded dependencies:**
+
+- Bump testcontainers from 1.20.3 to 1.20.4 [\#459](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/459) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Update to Chrome DevTools Protocol version 1391447 [\#460](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/460) ([@github-actions[bot]](https://github.com/apps/github-actions))
+- Bump kotlin from 2.0.21 to 2.1.0 [\#461](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/461) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.jetbrains.kotlinx:atomicfu from 0.26.0 to 0.26.1 [\#462](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/462) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ktor from 3.0.1 to 3.0.2 [\#463](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/463) ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [6.5.0\-1383960](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/6.5.0-1383960) (2024-11-19)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/6.4.1-1347815...6.5.0-1383960)
 
