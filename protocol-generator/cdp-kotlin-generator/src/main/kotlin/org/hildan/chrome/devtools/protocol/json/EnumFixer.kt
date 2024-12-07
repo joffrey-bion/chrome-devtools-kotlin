@@ -20,29 +20,57 @@ private class EnumFixer {
         return copy(
             commands = fixedCommands,
             events = fixedEvents,
-            types = fixedTypes + extraEnums.deduplicate().map { it.toTypeDeclaration() }
+            types = fixedTypes + extraEnums.deduplicate().map { it.toTypeDeclaration() },
         )
     }
 
     private fun JsonDomainType.replaceNestedEnumsWithReferences(domainNaming: DomainNaming): JsonDomainType {
         val thisType = DomainTypeNaming(declaredName = id, domain = domainNaming)
-        return copy(properties = properties.map { it.replaceNestedEnumsWithReferences(thisType) })
+        return copy(properties = properties.map {
+            it.replaceNestedEnumsWithReferences(
+                containingType = thisType,
+                containerIsDeprecated = deprecated,
+                containerIsExperimental = experimental,
+            )
+        })
     }
 
     private fun JsonDomainCommand.replaceNestedEnumsWithReferences(domainNaming: DomainNaming): JsonDomainCommand {
         val commandNaming = CommandNaming(commandName = name, domain = domainNaming)
         return copy(
-            parameters = parameters.map { it.replaceNestedEnumsWithReferences(commandNaming) },
-            returns = returns.map { it.replaceNestedEnumsWithReferences(commandNaming) },
+            parameters = parameters.map {
+                it.replaceNestedEnumsWithReferences(
+                    containingType = commandNaming,
+                    containerIsDeprecated = deprecated,
+                    containerIsExperimental = experimental,
+                )
+            },
+            returns = returns.map {
+                it.replaceNestedEnumsWithReferences(
+                    containingType = commandNaming,
+                    containerIsDeprecated = deprecated,
+                    containerIsExperimental = experimental,
+                )
+            },
         )
     }
 
     private fun JsonDomainEvent.replaceNestedEnumsWithReferences(domainNaming: DomainNaming): JsonDomainEvent {
         val commandNaming = EventNaming(eventName = name, domain = domainNaming)
-        return copy(parameters = parameters.map { it.replaceNestedEnumsWithReferences(commandNaming) })
+        return copy(parameters = parameters.map {
+            it.replaceNestedEnumsWithReferences(
+                containingType = commandNaming,
+                containerIsDeprecated = deprecated,
+                containerIsExperimental = experimental,
+            )
+        })
     }
 
-    private fun JsonDomainParameter.replaceNestedEnumsWithReferences(containingType: NamingConvention): JsonDomainParameter {
+    private fun JsonDomainParameter.replaceNestedEnumsWithReferences(
+        containingType: NamingConvention,
+        containerIsDeprecated: Boolean,
+        containerIsExperimental: Boolean,
+    ): JsonDomainParameter {
         if (type == "string" && enum != null && enum!!.isNotEmpty()) {
             val inferredName = containingType.inferParamClass(name) // TODO add domain?
             extraEnums.add(
@@ -50,6 +78,10 @@ private class EnumFixer {
                     inferredName = inferredName,
                     sources = listOf(InferenceSource(name, containingType)),
                     enumValues = enum!!,
+                    deprecated = deprecated,
+                    experimental = experimental,
+                    allContainersAreDeprecated = containerIsDeprecated,
+                    allContainersAreExperimental = containerIsExperimental,
                 )
             )
             return copy(
@@ -101,6 +133,10 @@ private data class InferredExtraEnumType(
     val inferredName: String,
     val sources: List<InferenceSource>,
     val enumValues: List<String>,
+    val deprecated: Boolean,
+    val experimental: Boolean,
+    val allContainersAreDeprecated: Boolean,
+    val allContainersAreExperimental: Boolean,
 ) {
     val generatedDescription = "This enum doesn't have a proper description because it was generated from " +
         "${if (sources.size > 1) "" else "an "}inline declaration${if (sources.size > 1) "s" else ""}. " +
@@ -126,14 +162,36 @@ private fun List<InferredExtraEnumType>.merge(): InferredExtraEnumType = reduce 
     require(t1.enumValues == t2.enumValues) {
         "Multiple generated enums named '${t1.inferredName}', but their values differ: ${t1.enumValues} VS ${t2.enumValues}"
     }
-    t1.copy(sources = (t1.sources + t2.sources).distinct())
+    require(t1.deprecated == t2.deprecated) {
+        "Multiple generated enums named '${t1.inferredName}', but their deprecated statuses differ. Sources:\n" +
+            "  - [1] ${t1.sources.joinToString("\n  - [1] ") { "${it.locationDescription} (deprecated = ${t1.deprecated})" }}\n" +
+            "  - [2] ${t2.sources.joinToString("\n  - [2] ") { "${it.locationDescription} (deprecated = ${t2.deprecated})" }}"
+    }
+    require(t1.experimental == t2.experimental) {
+        "Multiple generated enums named '${t1.inferredName}', but their experimental statuses differ. Sources:\n" +
+            "  - [1] ${t1.sources.joinToString("\n  - [1] ") { "${it.locationDescription} (experimental = ${t1.experimental})" }}\n" +
+            "  - [2] ${t2.sources.joinToString("\n  - [2] ") { "${it.locationDescription} (experimental = ${t2.experimental})" }}"
+    }
+    t1.copy(
+        sources = (t1.sources + t2.sources).distinct(),
+        deprecated = t1.deprecated,
+        experimental = t1.experimental,
+        // If all containing declarations are deprecated, we can consider the enum deprecated too (even if not marked as
+        // such). But if some containers aren't, it means the enum is still valid/maintained and just happens to be used
+        // in a deprecated declaration.
+        allContainersAreDeprecated = t1.allContainersAreDeprecated && t2.allContainersAreDeprecated,
+        // If all containing declarations are experimental, we can consider the enum experimental too (even if not
+        // marked as such). But if some containers aren't, it means the enum is stable and just happens to be used in
+        // an experimental declaration.
+        allContainersAreExperimental = t1.allContainersAreExperimental && t2.allContainersAreExperimental,
+    )
 }
 
 private fun InferredExtraEnumType.toTypeDeclaration(): JsonDomainType = JsonDomainType(
     id = inferredName,
     description = generatedDescription,
-    deprecated = false,
-    experimental = false,
+    deprecated = deprecated || allContainersAreDeprecated,
+    experimental = experimental || allContainersAreExperimental,
     type = "string",
     properties = emptyList(),
     enum = enumValues,
