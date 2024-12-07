@@ -4,6 +4,9 @@ import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.MemberName.Companion.member
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.KeepGeneratedSerializer
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.hildan.chrome.devtools.protocol.json.*
 
@@ -35,11 +38,25 @@ object ExtDeclarations {
     fun targetInterface(target: TargetType): ClassName = ClassName(targetsPackage, "${target.kotlinName}Target")
     fun sessionInterface(target: TargetType): ClassName = ClassName(sessionsPackage, "${target.kotlinName}Session")
     fun sessionAdapter(target: TargetType): ClassName = ClassName(sessionsPackage, "${target.kotlinName}SessionAdapter")
+
+    object Serialization {
+        val jsonPrimitiveExtension = MemberName("kotlinx.serialization.json", "jsonPrimitive")
+        val JsonPrimitiveFactory = MemberName("kotlinx.serialization.json", "JsonPrimitive")
+    }
 }
 
 object Annotations {
 
     val serializable = AnnotationSpec.builder(Serializable::class).build()
+
+    fun serialName(name: String) = AnnotationSpec.builder(SerialName::class).addMember("%S", name).build()
+
+    fun serializableWith(serializerClass: ClassName) = AnnotationSpec.builder(Serializable::class)
+        .addMember("with = %T::class", serializerClass)
+        .build()
+
+    @OptIn(ExperimentalSerializationApi::class)
+    val keepGeneratedSerializer = AnnotationSpec.builder(KeepGeneratedSerializer::class).build()
 
     val jvmOverloads = AnnotationSpec.builder(JvmOverloads::class).build()
 
