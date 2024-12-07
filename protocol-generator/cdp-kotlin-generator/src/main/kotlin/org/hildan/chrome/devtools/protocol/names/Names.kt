@@ -2,6 +2,12 @@ package org.hildan.chrome.devtools.protocol.names
 
 import com.squareup.kotlinpoet.ClassName
 
+/**
+ * The name of the synthetic enum entry used to represent deserialized values that are not defined in the protocol.
+ */
+// Note: 'unknown' and 'undefined' already exist in some of the enums, so we want to keep this one different
+const val UndefinedEnumEntryName = "NotDefinedInProtocol"
+
 @JvmInline
 value class DomainNaming(
     val domainName: String,
@@ -48,7 +54,10 @@ sealed class NamingConvention
 data class DomainTypeNaming(
     val declaredName: String,
     val domain: DomainNaming,
-) : NamingConvention()
+) : NamingConvention() {
+    val packageName = domain.packageName
+    val className = ClassName(packageName, declaredName)
+}
 
 data class CommandNaming(
     val commandName: String,
