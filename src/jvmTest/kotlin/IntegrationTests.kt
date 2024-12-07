@@ -1,6 +1,8 @@
 import kotlinx.coroutines.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.*
+import org.hildan.chrome.devtools.domains.accessibility.AXProperty
+import org.hildan.chrome.devtools.domains.accessibility.AXPropertyName
 import org.hildan.chrome.devtools.domains.backgroundservice.ServiceName
 import org.hildan.chrome.devtools.domains.dom.*
 import org.hildan.chrome.devtools.domains.domdebugger.DOMBreakpointType
@@ -132,6 +134,28 @@ class IntegrationTests {
             }
         }
     }
+
+    @OptIn(ExperimentalChromeApi::class)
+    @Test
+    fun test_deserialization_unknown_enum() {
+        runBlockingWithTimeout {
+            chromeDpClient().webSocket().use { browser ->
+                browser.newPage().use { page ->
+                    page.goto("http://www.google.com")
+                    val tree = page.accessibility.getFullAXTree() // just test that this doesn't fail
+
+                    assertTrue("we are no longer testing that unknown AXPropertyName values are deserialized as NotDefinedInProtocol") {
+                        tree.nodes.any { n ->
+                            n.properties.anyUndefinedName() || n.ignoredReasons.anyUndefinedName()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun List<AXProperty>?.anyUndefinedName(): Boolean =
+        this != null && this.any { it.name == AXPropertyName.NotDefinedInProtocol }
 
     @OptIn(ExperimentalChromeApi::class)
     @Test
