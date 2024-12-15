@@ -81,7 +81,7 @@ public final class org/hildan/chrome/devtools/domains/accessibility/AXProperty$C
 
 public final class org/hildan/chrome/devtools/domains/accessibility/AXPropertyName : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/accessibility/AXPropertyName$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/accessibility/AXPropertyName;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/accessibility/AXPropertyName;
 	public static final field actions Lorg/hildan/chrome/devtools/domains/accessibility/AXPropertyName;
 	public static final field activedescendant Lorg/hildan/chrome/devtools/domains/accessibility/AXPropertyName;
 	public static final field atomic Lorg/hildan/chrome/devtools/domains/accessibility/AXPropertyName;
@@ -200,7 +200,7 @@ public final class org/hildan/chrome/devtools/domains/accessibility/AXValue$Comp
 
 public final class org/hildan/chrome/devtools/domains/accessibility/AXValueNativeSourceType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/accessibility/AXValueNativeSourceType$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/accessibility/AXValueNativeSourceType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/accessibility/AXValueNativeSourceType;
 	public static final field description Lorg/hildan/chrome/devtools/domains/accessibility/AXValueNativeSourceType;
 	public static final field figcaption Lorg/hildan/chrome/devtools/domains/accessibility/AXValueNativeSourceType;
 	public static final field label Lorg/hildan/chrome/devtools/domains/accessibility/AXValueNativeSourceType;
@@ -266,7 +266,7 @@ public final class org/hildan/chrome/devtools/domains/accessibility/AXValueSourc
 
 public final class org/hildan/chrome/devtools/domains/accessibility/AXValueSourceType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/accessibility/AXValueSourceType$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/accessibility/AXValueSourceType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/accessibility/AXValueSourceType;
 	public static final field attribute Lorg/hildan/chrome/devtools/domains/accessibility/AXValueSourceType;
 	public static final field contents Lorg/hildan/chrome/devtools/domains/accessibility/AXValueSourceType;
 	public static final field implicit Lorg/hildan/chrome/devtools/domains/accessibility/AXValueSourceType;
@@ -284,7 +284,7 @@ public final class org/hildan/chrome/devtools/domains/accessibility/AXValueSourc
 
 public final class org/hildan/chrome/devtools/domains/accessibility/AXValueType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/accessibility/AXValueType$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/accessibility/AXValueType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/accessibility/AXValueType;
 	public static final field boolean Lorg/hildan/chrome/devtools/domains/accessibility/AXValueType;
 	public static final field booleanOrUndefined Lorg/hildan/chrome/devtools/domains/accessibility/AXValueType;
 	public static final field computedString Lorg/hildan/chrome/devtools/domains/accessibility/AXValueType;
@@ -966,7 +966,7 @@ public final class org/hildan/chrome/devtools/domains/animation/AnimationType : 
 	public static final field CSSAnimation Lorg/hildan/chrome/devtools/domains/animation/AnimationType;
 	public static final field CSSTransition Lorg/hildan/chrome/devtools/domains/animation/AnimationType;
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/animation/AnimationType$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/animation/AnimationType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/animation/AnimationType;
 	public static final field WebAnimation Lorg/hildan/chrome/devtools/domains/animation/AnimationType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/animation/AnimationType;
@@ -1640,13 +1640,13 @@ public final class org/hildan/chrome/devtools/domains/audits/AttributionReportin
 	public static final field NoRegisterSourceHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field NoRegisterTriggerHeader Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field NoWebOrOsSupport Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field OsSourceIgnored Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field OsTriggerIgnored Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field PermissionPolicyDisabled Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field SourceAndTriggerHeaders Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field SourceIgnored Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field TriggerIgnored Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field UntrustworthyReportingOrigin Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static final field WebAndOsHeaders Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -1718,8 +1718,8 @@ public final class org/hildan/chrome/devtools/domains/audits/BlockedByResponseRe
 	public static final field CorpNotSameOriginAfterDefaultedToSameOriginByCoepAndDip Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseReason;
 	public static final field CorpNotSameOriginAfterDefaultedToSameOriginByDip Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseReason;
 	public static final field CorpNotSameSite Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseReason;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseReason;
 	public static final field SRIMessageSignatureMismatch Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseReason;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseReason;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseReason;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseReason;
@@ -1857,7 +1857,7 @@ public final class org/hildan/chrome/devtools/domains/audits/ClientHintIssueReas
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason$Companion;
 	public static final field MetaTagAllowListInvalidOrigin Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason;
 	public static final field MetaTagModifiedHTML Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueReason;
@@ -1909,7 +1909,7 @@ public final class org/hildan/chrome/devtools/domains/audits/ContentSecurityPoli
 
 public final class org/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyViolationType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyViolationType$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyViolationType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyViolationType;
 	public static final field kEvalViolation Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyViolationType;
 	public static final field kInlineViolation Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyViolationType;
 	public static final field kTrustedTypesPolicyViolation Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyViolationType;
@@ -1971,7 +1971,7 @@ public final class org/hildan/chrome/devtools/domains/audits/CookieExclusionReas
 	public static final field ExcludeSchemeMismatch Lorg/hildan/chrome/devtools/domains/audits/CookieExclusionReason;
 	public static final field ExcludeThirdPartyCookieBlockedInFirstPartySet Lorg/hildan/chrome/devtools/domains/audits/CookieExclusionReason;
 	public static final field ExcludeThirdPartyPhaseout Lorg/hildan/chrome/devtools/domains/audits/CookieExclusionReason;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/CookieExclusionReason;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/CookieExclusionReason;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/CookieExclusionReason;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/CookieExclusionReason;
@@ -2057,9 +2057,9 @@ public final class org/hildan/chrome/devtools/domains/audits/CookieIssueInsight$
 
 public final class org/hildan/chrome/devtools/domains/audits/CookieOperation : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/CookieOperation$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/CookieOperation;
 	public static final field ReadCookie Lorg/hildan/chrome/devtools/domains/audits/CookieOperation;
 	public static final field SetCookie Lorg/hildan/chrome/devtools/domains/audits/CookieOperation;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/CookieOperation;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/CookieOperation;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/CookieOperation;
@@ -2071,7 +2071,7 @@ public final class org/hildan/chrome/devtools/domains/audits/CookieOperation$Com
 
 public final class org/hildan/chrome/devtools/domains/audits/CookieWarningReason : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/CookieWarningReason$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/CookieWarningReason;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/CookieWarningReason;
 	public static final field WarnAttributeValueExceedsMaxSize Lorg/hildan/chrome/devtools/domains/audits/CookieWarningReason;
 	public static final field WarnCrossSiteRedirectDowngradeChangesInclusion Lorg/hildan/chrome/devtools/domains/audits/CookieWarningReason;
 	public static final field WarnDeprecationTrialMetadata Lorg/hildan/chrome/devtools/domains/audits/CookieWarningReason;
@@ -2179,7 +2179,7 @@ public final class org/hildan/chrome/devtools/domains/audits/EnableResponse {
 
 public final class org/hildan/chrome/devtools/domains/audits/EncodedResponseEncoding : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/EncodedResponseEncoding$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/EncodedResponseEncoding;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/EncodedResponseEncoding;
 	public static final field jpeg Lorg/hildan/chrome/devtools/domains/audits/EncodedResponseEncoding;
 	public static final field png Lorg/hildan/chrome/devtools/domains/audits/EncodedResponseEncoding;
 	public static final field webp Lorg/hildan/chrome/devtools/domains/audits/EncodedResponseEncoding;
@@ -2283,6 +2283,7 @@ public final class org/hildan/chrome/devtools/domains/audits/FederatedAuthReques
 	public static final field InvalidFieldsSpecified Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
 	public static final field InvalidSigninResponse Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
 	public static final field MissingTransientUserActivation Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
 	public static final field NotSignedInWithIdp Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
 	public static final field RelyingPartyOriginIsOpaque Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
 	public static final field ReplacedByActiveMode Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
@@ -2292,7 +2293,6 @@ public final class org/hildan/chrome/devtools/domains/audits/FederatedAuthReques
 	public static final field ThirdPartyCookiesBlocked Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
 	public static final field TooManyRequests Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
 	public static final field TypeNotMatching Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
 	public static final field WellKnownHttpNotFound Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
 	public static final field WellKnownInvalidContentType Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
 	public static final field WellKnownInvalidResponse Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueReason;
@@ -2342,11 +2342,11 @@ public final class org/hildan/chrome/devtools/domains/audits/FederatedAuthUserIn
 	public static final field NoAccountSharingPermission Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueReason;
 	public static final field NoApiPermission Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueReason;
 	public static final field NoReturningUserFromFetchedAccounts Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueReason;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueReason;
 	public static final field NotIframe Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueReason;
 	public static final field NotPotentiallyTrustworthy Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueReason;
 	public static final field NotSameOrigin Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueReason;
 	public static final field NotSignedInWithIdp Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueReason;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueReason;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueReason;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueReason;
@@ -2404,8 +2404,8 @@ public final class org/hildan/chrome/devtools/domains/audits/GenericIssueErrorTy
 	public static final field FormLabelForMatchesNonExistingIdError Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
 	public static final field FormLabelForNameError Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
 	public static final field FormLabelHasNeitherForNorNestedInput Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
 	public static final field ResponseWasBlockedByORB Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/GenericIssueErrorType;
@@ -2528,7 +2528,7 @@ public final class org/hildan/chrome/devtools/domains/audits/HeavyAdReason : jav
 	public static final field CpuPeakLimit Lorg/hildan/chrome/devtools/domains/audits/HeavyAdReason;
 	public static final field CpuTotalLimit Lorg/hildan/chrome/devtools/domains/audits/HeavyAdReason;
 	public static final field NetworkTotalLimit Lorg/hildan/chrome/devtools/domains/audits/HeavyAdReason;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/HeavyAdReason;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/HeavyAdReason;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/HeavyAdReason;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/HeavyAdReason;
@@ -2542,7 +2542,7 @@ public final class org/hildan/chrome/devtools/domains/audits/HeavyAdResolutionSt
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/HeavyAdResolutionStatus$Companion;
 	public static final field HeavyAdBlocked Lorg/hildan/chrome/devtools/domains/audits/HeavyAdResolutionStatus;
 	public static final field HeavyAdWarning Lorg/hildan/chrome/devtools/domains/audits/HeavyAdResolutionStatus;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/HeavyAdResolutionStatus;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/HeavyAdResolutionStatus;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/HeavyAdResolutionStatus;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/HeavyAdResolutionStatus;
@@ -2557,7 +2557,7 @@ public final class org/hildan/chrome/devtools/domains/audits/InsightType : java/
 	public static final field GitHubResource Lorg/hildan/chrome/devtools/domains/audits/InsightType;
 	public static final field GracePeriod Lorg/hildan/chrome/devtools/domains/audits/InsightType;
 	public static final field Heuristics Lorg/hildan/chrome/devtools/domains/audits/InsightType;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/InsightType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/InsightType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/InsightType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/InsightType;
@@ -2617,12 +2617,12 @@ public final class org/hildan/chrome/devtools/domains/audits/InspectorIssueCode 
 	public static final field LowTextContrastIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static final field MixedContentIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static final field NavigatorUserAgentIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static final field PropertyRuleIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static final field QuirksModeIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static final field SharedArrayBufferIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static final field SharedDictionaryIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static final field StylesheetLoadingIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
@@ -2783,7 +2783,7 @@ public final class org/hildan/chrome/devtools/domains/audits/MixedContentResolut
 	public static final field MixedContentAutomaticallyUpgraded Lorg/hildan/chrome/devtools/domains/audits/MixedContentResolutionStatus;
 	public static final field MixedContentBlocked Lorg/hildan/chrome/devtools/domains/audits/MixedContentResolutionStatus;
 	public static final field MixedContentWarning Lorg/hildan/chrome/devtools/domains/audits/MixedContentResolutionStatus;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/MixedContentResolutionStatus;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/MixedContentResolutionStatus;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/MixedContentResolutionStatus;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/MixedContentResolutionStatus;
@@ -2809,6 +2809,7 @@ public final class org/hildan/chrome/devtools/domains/audits/MixedContentResourc
 	public static final field Import Lorg/hildan/chrome/devtools/domains/audits/MixedContentResourceType;
 	public static final field JSON Lorg/hildan/chrome/devtools/domains/audits/MixedContentResourceType;
 	public static final field Manifest Lorg/hildan/chrome/devtools/domains/audits/MixedContentResourceType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/MixedContentResourceType;
 	public static final field Ping Lorg/hildan/chrome/devtools/domains/audits/MixedContentResourceType;
 	public static final field PluginData Lorg/hildan/chrome/devtools/domains/audits/MixedContentResourceType;
 	public static final field PluginResource Lorg/hildan/chrome/devtools/domains/audits/MixedContentResourceType;
@@ -2820,7 +2821,6 @@ public final class org/hildan/chrome/devtools/domains/audits/MixedContentResourc
 	public static final field SpeculationRules Lorg/hildan/chrome/devtools/domains/audits/MixedContentResourceType;
 	public static final field Stylesheet Lorg/hildan/chrome/devtools/domains/audits/MixedContentResourceType;
 	public static final field Track Lorg/hildan/chrome/devtools/domains/audits/MixedContentResourceType;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/MixedContentResourceType;
 	public static final field Video Lorg/hildan/chrome/devtools/domains/audits/MixedContentResourceType;
 	public static final field Worker Lorg/hildan/chrome/devtools/domains/audits/MixedContentResourceType;
 	public static final field XMLHttpRequest Lorg/hildan/chrome/devtools/domains/audits/MixedContentResourceType;
@@ -2902,7 +2902,7 @@ public final class org/hildan/chrome/devtools/domains/audits/PropertyRuleIssueRe
 	public static final field InvalidInitialValue Lorg/hildan/chrome/devtools/domains/audits/PropertyRuleIssueReason;
 	public static final field InvalidName Lorg/hildan/chrome/devtools/domains/audits/PropertyRuleIssueReason;
 	public static final field InvalidSyntax Lorg/hildan/chrome/devtools/domains/audits/PropertyRuleIssueReason;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/PropertyRuleIssueReason;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/PropertyRuleIssueReason;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/PropertyRuleIssueReason;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/PropertyRuleIssueReason;
@@ -2981,8 +2981,8 @@ public final class org/hildan/chrome/devtools/domains/audits/SharedArrayBufferIs
 public final class org/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueType$Companion;
 	public static final field CreationIssue Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueType;
 	public static final field TransferIssue Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueType;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueType;
@@ -2994,7 +2994,7 @@ public final class org/hildan/chrome/devtools/domains/audits/SharedArrayBufferIs
 
 public final class org/hildan/chrome/devtools/domains/audits/SharedDictionaryError : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/SharedDictionaryError$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/SharedDictionaryError;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/SharedDictionaryError;
 	public static final field UseErrorCrossOriginNoCorsRequest Lorg/hildan/chrome/devtools/domains/audits/SharedDictionaryError;
 	public static final field UseErrorDictionaryLoadFailure Lorg/hildan/chrome/devtools/domains/audits/SharedDictionaryError;
 	public static final field UseErrorMatchingDictionaryNotUsed Lorg/hildan/chrome/devtools/domains/audits/SharedDictionaryError;
@@ -3093,8 +3093,8 @@ public final class org/hildan/chrome/devtools/domains/audits/SourceCodeLocation$
 public final class org/hildan/chrome/devtools/domains/audits/StyleSheetLoadingIssueReason : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/StyleSheetLoadingIssueReason$Companion;
 	public static final field LateImportRule Lorg/hildan/chrome/devtools/domains/audits/StyleSheetLoadingIssueReason;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/audits/StyleSheetLoadingIssueReason;
 	public static final field RequestFailed Lorg/hildan/chrome/devtools/domains/audits/StyleSheetLoadingIssueReason;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/audits/StyleSheetLoadingIssueReason;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/StyleSheetLoadingIssueReason;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/StyleSheetLoadingIssueReason;
@@ -3385,7 +3385,7 @@ public final class org/hildan/chrome/devtools/domains/autofill/FilledField$Compa
 
 public final class org/hildan/chrome/devtools/domains/autofill/FillingStrategy : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/autofill/FillingStrategy$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/autofill/FillingStrategy;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/autofill/FillingStrategy;
 	public static final field autocompleteAttribute Lorg/hildan/chrome/devtools/domains/autofill/FillingStrategy;
 	public static final field autofillInferred Lorg/hildan/chrome/devtools/domains/autofill/FillingStrategy;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -3634,7 +3634,7 @@ public final class org/hildan/chrome/devtools/domains/backgroundservice/EventMet
 
 public final class org/hildan/chrome/devtools/domains/backgroundservice/ServiceName : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/backgroundservice/ServiceName$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/backgroundservice/ServiceName;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/backgroundservice/ServiceName;
 	public static final field backgroundFetch Lorg/hildan/chrome/devtools/domains/backgroundservice/ServiceName;
 	public static final field backgroundSync Lorg/hildan/chrome/devtools/domains/backgroundservice/ServiceName;
 	public static final field notifications Lorg/hildan/chrome/devtools/domains/backgroundservice/ServiceName;
@@ -3826,7 +3826,7 @@ public final class org/hildan/chrome/devtools/domains/bluetoothemulation/Bluetoo
 
 public final class org/hildan/chrome/devtools/domains/bluetoothemulation/CentralState : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/bluetoothemulation/CentralState$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/bluetoothemulation/CentralState;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/bluetoothemulation/CentralState;
 	public static final field absent Lorg/hildan/chrome/devtools/domains/bluetoothemulation/CentralState;
 	public static final field poweredOff Lorg/hildan/chrome/devtools/domains/bluetoothemulation/CentralState;
 	public static final field poweredOn Lorg/hildan/chrome/devtools/domains/bluetoothemulation/CentralState;
@@ -4114,6 +4114,7 @@ public final class org/hildan/chrome/devtools/domains/browser/Bounds$Companion {
 
 public final class org/hildan/chrome/devtools/domains/browser/BrowserCommandId : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/browser/BrowserCommandId$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/browser/BrowserCommandId;
 	public static final field closeTabSearch Lorg/hildan/chrome/devtools/domains/browser/BrowserCommandId;
 	public static final field openTabSearch Lorg/hildan/chrome/devtools/domains/browser/BrowserCommandId;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -4273,6 +4274,7 @@ public final class org/hildan/chrome/devtools/domains/browser/CrashResponse {
 
 public final class org/hildan/chrome/devtools/domains/browser/DownloadBehavior : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/browser/DownloadBehavior$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/browser/DownloadBehavior;
 	public static final field allow Lorg/hildan/chrome/devtools/domains/browser/DownloadBehavior;
 	public static final field allowAndName Lorg/hildan/chrome/devtools/domains/browser/DownloadBehavior;
 	public static final field default Lorg/hildan/chrome/devtools/domains/browser/DownloadBehavior;
@@ -4288,6 +4290,7 @@ public final class org/hildan/chrome/devtools/domains/browser/DownloadBehavior$C
 
 public final class org/hildan/chrome/devtools/domains/browser/DownloadProgressState : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/browser/DownloadProgressState$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/browser/DownloadProgressState;
 	public static final field canceled Lorg/hildan/chrome/devtools/domains/browser/DownloadProgressState;
 	public static final field completed Lorg/hildan/chrome/devtools/domains/browser/DownloadProgressState;
 	public static final field inProgress Lorg/hildan/chrome/devtools/domains/browser/DownloadProgressState;
@@ -4765,6 +4768,7 @@ public final class org/hildan/chrome/devtools/domains/browser/PermissionDescript
 
 public final class org/hildan/chrome/devtools/domains/browser/PermissionSetting : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/browser/PermissionSetting$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/browser/PermissionSetting;
 	public static final field denied Lorg/hildan/chrome/devtools/domains/browser/PermissionSetting;
 	public static final field granted Lorg/hildan/chrome/devtools/domains/browser/PermissionSetting;
 	public static final field prompt Lorg/hildan/chrome/devtools/domains/browser/PermissionSetting;
@@ -4779,6 +4783,7 @@ public final class org/hildan/chrome/devtools/domains/browser/PermissionSetting$
 
 public final class org/hildan/chrome/devtools/domains/browser/PermissionType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/browser/PermissionType$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field ar Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field audioCapture Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
 	public static final field automaticFullscreen Lorg/hildan/chrome/devtools/domains/browser/PermissionType;
@@ -5047,6 +5052,7 @@ public final class org/hildan/chrome/devtools/domains/browser/SetWindowBoundsRes
 
 public final class org/hildan/chrome/devtools/domains/browser/WindowState : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/browser/WindowState$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/browser/WindowState;
 	public static final field fullscreen Lorg/hildan/chrome/devtools/domains/browser/WindowState;
 	public static final field maximized Lorg/hildan/chrome/devtools/domains/browser/WindowState;
 	public static final field minimized Lorg/hildan/chrome/devtools/domains/browser/WindowState;
@@ -5218,7 +5224,7 @@ public final class org/hildan/chrome/devtools/domains/cachestorage/CachedRespons
 
 public final class org/hildan/chrome/devtools/domains/cachestorage/CachedResponseType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/cachestorage/CachedResponseType$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/cachestorage/CachedResponseType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/cachestorage/CachedResponseType;
 	public static final field basic Lorg/hildan/chrome/devtools/domains/cachestorage/CachedResponseType;
 	public static final field cors Lorg/hildan/chrome/devtools/domains/cachestorage/CachedResponseType;
 	public static final field default Lorg/hildan/chrome/devtools/domains/cachestorage/CachedResponseType;
@@ -6073,6 +6079,36 @@ public final class org/hildan/chrome/devtools/domains/css/AddRuleResponse$Compan
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/css/CSSAnimationStyle {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/CSSAnimationStyle$Companion;
+	public fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;)V
+	public synthetic fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/css/CSSStyle;
+	public final fun copy (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;)Lorg/hildan/chrome/devtools/domains/css/CSSAnimationStyle;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/CSSAnimationStyle;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/CSSAnimationStyle;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public final fun getStyle ()Lorg/hildan/chrome/devtools/domains/css/CSSStyle;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/css/CSSAnimationStyle$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/CSSAnimationStyle$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/css/CSSAnimationStyle;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/css/CSSAnimationStyle;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/CSSAnimationStyle$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/css/CSSComputedStyleProperty {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/CSSComputedStyleProperty$Companion;
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
@@ -6160,6 +6196,10 @@ public final class org/hildan/chrome/devtools/domains/css/CSSDomain {
 	public final fun fontsUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun forcePseudoState (ILjava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun forcePseudoState (Lorg/hildan/chrome/devtools/domains/css/ForcePseudoStateRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun forceStartingStyle (IZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun forceStartingStyle (Lorg/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getAnimatedStylesForNode (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getAnimatedStylesForNode (Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getBackgroundColors (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getBackgroundColors (Lorg/hildan/chrome/devtools/domains/css/GetBackgroundColorsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getComputedStyleForNode (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -6179,6 +6219,10 @@ public final class org/hildan/chrome/devtools/domains/css/CSSDomain {
 	public final fun getStyleSheetText (Lorg/hildan/chrome/devtools/domains/css/GetStyleSheetTextRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun mediaQueryResultChanged ()Lkotlinx/coroutines/flow/Flow;
 	public final fun mediaQueryResultChangedEvents ()Lkotlinx/coroutines/flow/Flow;
+	public final fun resolveValues (Ljava/util/List;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun resolveValues (Ljava/util/List;ILkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun resolveValues (Lorg/hildan/chrome/devtools/domains/css/ResolveValuesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun resolveValues$default (Lorg/hildan/chrome/devtools/domains/css/CSSDomain;Ljava/util/List;ILkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun setContainerQueryText (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SourceRange;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setContainerQueryText (Lorg/hildan/chrome/devtools/domains/css/SetContainerQueryTextRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setEffectivePropertyValueForNode (ILjava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -6422,7 +6466,7 @@ public final class org/hildan/chrome/devtools/domains/css/CSSMedia$Companion {
 
 public final class org/hildan/chrome/devtools/domains/css/CSSMediaSource : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/CSSMediaSource$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/css/CSSMediaSource;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/css/CSSMediaSource;
 	public static final field importRule Lorg/hildan/chrome/devtools/domains/css/CSSMediaSource;
 	public static final field inlineSheet Lorg/hildan/chrome/devtools/domains/css/CSSMediaSource;
 	public static final field linkedSheet Lorg/hildan/chrome/devtools/domains/css/CSSMediaSource;
@@ -6639,11 +6683,11 @@ public final class org/hildan/chrome/devtools/domains/css/CSSRuleType : java/lan
 	public static final field ContainerRule Lorg/hildan/chrome/devtools/domains/css/CSSRuleType;
 	public static final field LayerRule Lorg/hildan/chrome/devtools/domains/css/CSSRuleType;
 	public static final field MediaRule Lorg/hildan/chrome/devtools/domains/css/CSSRuleType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/css/CSSRuleType;
 	public static final field ScopeRule Lorg/hildan/chrome/devtools/domains/css/CSSRuleType;
 	public static final field StartingStyleRule Lorg/hildan/chrome/devtools/domains/css/CSSRuleType;
 	public static final field StyleRule Lorg/hildan/chrome/devtools/domains/css/CSSRuleType;
 	public static final field SupportsRule Lorg/hildan/chrome/devtools/domains/css/CSSRuleType;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/css/CSSRuleType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/css/CSSRuleType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/css/CSSRuleType;
@@ -7110,6 +7154,100 @@ public final class org/hildan/chrome/devtools/domains/css/ForcePseudoStateReques
 
 public final class org/hildan/chrome/devtools/domains/css/ForcePseudoStateResponse {
 	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/ForcePseudoStateResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest$Companion;
+	public fun <init> (IZ)V
+	public final fun component1 ()I
+	public final fun component2 ()Z
+	public final fun copy (IZ)Lorg/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest;IZILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getForced ()Z
+	public final fun getNodeId ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/ForceStartingStyleResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/ForceStartingStyleResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest$Companion;
+	public fun <init> (I)V
+	public final fun component1 ()I
+	public final fun copy (I)Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest;IILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getNodeId ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/util/List;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/util/List;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/css/CSSStyle;
+	public final fun component3 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAnimationStyles ()Ljava/util/List;
+	public final fun getInherited ()Ljava/util/List;
+	public final fun getTransitionsStyle ()Lorg/hildan/chrome/devtools/domains/css/CSSStyle;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -7610,6 +7748,37 @@ public final class org/hildan/chrome/devtools/domains/css/GetStyleSheetTextRespo
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/util/List;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;)V
+	public synthetic fun <init> (Ljava/util/List;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/css/CSSStyle;
+	public final fun copy (Ljava/util/List;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;)Lorg/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAnimationStyles ()Ljava/util/List;
+	public final fun getTransitionsStyle ()Lorg/hildan/chrome/devtools/domains/css/CSSStyle;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/css/InheritedPseudoElementMatches {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/InheritedPseudoElementMatches$Companion;
 	public fun <init> (Ljava/util/List;)V
@@ -7794,6 +7963,82 @@ public synthetic class org/hildan/chrome/devtools/domains/css/PseudoElementMatch
 }
 
 public final class org/hildan/chrome/devtools/domains/css/PseudoElementMatches$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/ResolveValuesRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/ResolveValuesRequest$Companion;
+	public fun <init> (Ljava/util/List;ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/dom/PseudoType;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/util/List;ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/dom/PseudoType;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()I
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun copy (Ljava/util/List;ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/dom/PseudoType;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/css/ResolveValuesRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/ResolveValuesRequest;Ljava/util/List;ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/dom/PseudoType;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/ResolveValuesRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getNodeId ()I
+	public final fun getPropertyName ()Ljava/lang/String;
+	public final fun getPseudoIdentifier ()Ljava/lang/String;
+	public final fun getPseudoType ()Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public final fun getValues ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/css/ResolveValuesRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/ResolveValuesRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/css/ResolveValuesRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/css/ResolveValuesRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/ResolveValuesRequest$Builder {
+	public fun <init> (Ljava/util/List;I)V
+	public final fun build ()Lorg/hildan/chrome/devtools/domains/css/ResolveValuesRequest;
+	public final fun getNodeId ()I
+	public final fun getPropertyName ()Ljava/lang/String;
+	public final fun getPseudoIdentifier ()Ljava/lang/String;
+	public final fun getPseudoType ()Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public final fun getValues ()Ljava/util/List;
+	public final fun setPropertyName (Ljava/lang/String;)V
+	public final fun setPseudoIdentifier (Ljava/lang/String;)V
+	public final fun setPseudoType (Lorg/hildan/chrome/devtools/domains/dom/PseudoType;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/css/ResolveValuesRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/ResolveValuesResponse {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/ResolveValuesResponse$Companion;
+	public fun <init> (Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/css/ResolveValuesResponse;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/ResolveValuesResponse;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/ResolveValuesResponse;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getResults ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/css/ResolveValuesResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/ResolveValuesResponse$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/css/ResolveValuesResponse;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/css/ResolveValuesResponse;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/ResolveValuesResponse$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -8646,7 +8891,7 @@ public final class org/hildan/chrome/devtools/domains/css/StyleDeclarationEdit$C
 
 public final class org/hildan/chrome/devtools/domains/css/StyleSheetOrigin : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;
 	public static final field injected Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;
 	public static final field inspector Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;
 	public static final field regular Lorg/hildan/chrome/devtools/domains/css/StyleSheetOrigin;
@@ -9735,6 +9980,7 @@ public final class org/hildan/chrome/devtools/domains/debugger/EvaluateOnCallFra
 
 public final class org/hildan/chrome/devtools/domains/debugger/FrameMode : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/debugger/FrameMode$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/debugger/FrameMode;
 	public static final field StepInto Lorg/hildan/chrome/devtools/domains/debugger/FrameMode;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/debugger/FrameMode;
@@ -10420,6 +10666,7 @@ public final class org/hildan/chrome/devtools/domains/debugger/ScriptSourceStatu
 	public static final field BlockedByTopLevelEsModuleChange Lorg/hildan/chrome/devtools/domains/debugger/ScriptSourceStatus;
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/debugger/ScriptSourceStatus$Companion;
 	public static final field CompileError Lorg/hildan/chrome/devtools/domains/debugger/ScriptSourceStatus;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/debugger/ScriptSourceStatus;
 	public static final field Ok Lorg/hildan/chrome/devtools/domains/debugger/ScriptSourceStatus;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/debugger/ScriptSourceStatus;
@@ -11410,17 +11657,18 @@ public final class org/hildan/chrome/devtools/domains/debugger/events/DebuggerEv
 
 public final class org/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptFailedToParse : org/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptFailedToParse$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun component10 ()Ljava/lang/String;
-	public final fun component11 ()Ljava/lang/Boolean;
+	public final fun component10 ()Lkotlinx/serialization/json/JsonObject;
+	public final fun component11 ()Ljava/lang/String;
 	public final fun component12 ()Ljava/lang/Boolean;
-	public final fun component13 ()Ljava/lang/Integer;
-	public final fun component14 ()Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;
-	public final fun component15 ()Ljava/lang/Integer;
-	public final fun component16 ()Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;
-	public final fun component17 ()Ljava/lang/String;
+	public final fun component13 ()Ljava/lang/Boolean;
+	public final fun component14 ()Ljava/lang/Integer;
+	public final fun component15 ()Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;
+	public final fun component16 ()Ljava/lang/Integer;
+	public final fun component17 ()Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;
+	public final fun component18 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()I
 	public final fun component4 ()I
@@ -11428,10 +11676,11 @@ public final class org/hildan/chrome/devtools/domains/debugger/events/DebuggerEv
 	public final fun component6 ()I
 	public final fun component7 ()I
 	public final fun component8 ()Ljava/lang/String;
-	public final fun component9 ()Lkotlinx/serialization/json/JsonObject;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptFailedToParse;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptFailedToParse;Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptFailedToParse;
+	public final fun component9 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptFailedToParse;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptFailedToParse;Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptFailedToParse;
 	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBuildId ()Ljava/lang/String;
 	public final fun getCodeOffset ()Ljava/lang/Integer;
 	public final fun getEmbedderName ()Ljava/lang/String;
 	public final fun getEndColumn ()I
@@ -11470,30 +11719,32 @@ public final class org/hildan/chrome/devtools/domains/debugger/events/DebuggerEv
 
 public final class org/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptParsed : org/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptParsed$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/util/List;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/util/List;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/util/List;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/util/List;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun component10 ()Ljava/lang/Boolean;
-	public final fun component11 ()Ljava/lang/String;
-	public final fun component12 ()Ljava/lang/Boolean;
+	public final fun component10 ()Lkotlinx/serialization/json/JsonObject;
+	public final fun component11 ()Ljava/lang/Boolean;
+	public final fun component12 ()Ljava/lang/String;
 	public final fun component13 ()Ljava/lang/Boolean;
-	public final fun component14 ()Ljava/lang/Integer;
-	public final fun component15 ()Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;
-	public final fun component16 ()Ljava/lang/Integer;
-	public final fun component17 ()Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;
-	public final fun component18 ()Ljava/util/List;
-	public final fun component19 ()Ljava/lang/String;
+	public final fun component14 ()Ljava/lang/Boolean;
+	public final fun component15 ()Ljava/lang/Integer;
+	public final fun component16 ()Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;
+	public final fun component17 ()Ljava/lang/Integer;
+	public final fun component18 ()Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;
+	public final fun component19 ()Ljava/util/List;
 	public final fun component2 ()Ljava/lang/String;
+	public final fun component20 ()Ljava/lang/String;
 	public final fun component3 ()I
 	public final fun component4 ()I
 	public final fun component5 ()I
 	public final fun component6 ()I
 	public final fun component7 ()I
 	public final fun component8 ()Ljava/lang/String;
-	public final fun component9 ()Lkotlinx/serialization/json/JsonObject;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/util/List;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptParsed;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptParsed;Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptParsed;
+	public final fun component9 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/util/List;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptParsed;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptParsed;Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptParsed;
 	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBuildId ()Ljava/lang/String;
 	public final fun getCodeOffset ()Ljava/lang/Integer;
 	public final fun getDebugSymbols ()Ljava/util/List;
 	public final fun getEmbedderName ()Ljava/lang/String;
@@ -12385,6 +12636,7 @@ public final class org/hildan/chrome/devtools/domains/dom/DiscardSearchResultsRe
 
 public final class org/hildan/chrome/devtools/domains/dom/ElementByRelation : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/dom/ElementByRelation$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/dom/ElementByRelation;
 	public static final field PopoverTarget Lorg/hildan/chrome/devtools/domains/dom/ElementByRelation;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/dom/ElementByRelation;
@@ -13635,6 +13887,7 @@ public final class org/hildan/chrome/devtools/domains/dom/HighlightRectResponse 
 
 public final class org/hildan/chrome/devtools/domains/dom/IncludeWhitespace : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/dom/IncludeWhitespace$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/dom/IncludeWhitespace;
 	public static final field all Lorg/hildan/chrome/devtools/domains/dom/IncludeWhitespace;
 	public static final field none Lorg/hildan/chrome/devtools/domains/dom/IncludeWhitespace;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -15352,6 +15605,7 @@ public final class org/hildan/chrome/devtools/domains/dom/events/DOMEvent$TopLay
 
 public final class org/hildan/chrome/devtools/domains/domdebugger/CSPViolationType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/domdebugger/CSPViolationType$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/domdebugger/CSPViolationType;
 	public static final field trustedtypePolicyViolation Lorg/hildan/chrome/devtools/domains/domdebugger/CSPViolationType;
 	public static final field trustedtypeSinkViolation Lorg/hildan/chrome/devtools/domains/domdebugger/CSPViolationType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -16945,6 +17199,7 @@ public final class org/hildan/chrome/devtools/domains/emulation/DevicePostureTyp
 
 public final class org/hildan/chrome/devtools/domains/emulation/DisabledImageType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/emulation/DisabledImageType$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/emulation/DisabledImageType;
 	public static final field avif Lorg/hildan/chrome/devtools/domains/emulation/DisabledImageType;
 	public static final field webp Lorg/hildan/chrome/devtools/domains/emulation/DisabledImageType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -17228,6 +17483,7 @@ public final class org/hildan/chrome/devtools/domains/emulation/PressureMetadata
 
 public final class org/hildan/chrome/devtools/domains/emulation/PressureSource : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/emulation/PressureSource$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/emulation/PressureSource;
 	public static final field cpu Lorg/hildan/chrome/devtools/domains/emulation/PressureSource;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/emulation/PressureSource;
@@ -17240,6 +17496,7 @@ public final class org/hildan/chrome/devtools/domains/emulation/PressureSource$C
 
 public final class org/hildan/chrome/devtools/domains/emulation/PressureState : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/emulation/PressureState$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/emulation/PressureState;
 	public static final field critical Lorg/hildan/chrome/devtools/domains/emulation/PressureState;
 	public static final field fair Lorg/hildan/chrome/devtools/domains/emulation/PressureState;
 	public static final field nominal Lorg/hildan/chrome/devtools/domains/emulation/PressureState;
@@ -17461,6 +17718,7 @@ public final class org/hildan/chrome/devtools/domains/emulation/SensorReadingXYZ
 
 public final class org/hildan/chrome/devtools/domains/emulation/SensorType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/emulation/SensorType$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/emulation/SensorType;
 	public static final field absoluteOrientation Lorg/hildan/chrome/devtools/domains/emulation/SensorType;
 	public static final field accelerometer Lorg/hildan/chrome/devtools/domains/emulation/SensorType;
 	public static final field ambientLight Lorg/hildan/chrome/devtools/domains/emulation/SensorType;
@@ -18639,6 +18897,7 @@ public final class org/hildan/chrome/devtools/domains/emulation/SetVisibleSizeRe
 
 public final class org/hildan/chrome/devtools/domains/emulation/TouchEventsConfiguration : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/emulation/TouchEventsConfiguration$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/emulation/TouchEventsConfiguration;
 	public static final field desktop Lorg/hildan/chrome/devtools/domains/emulation/TouchEventsConfiguration;
 	public static final field mobile Lorg/hildan/chrome/devtools/domains/emulation/TouchEventsConfiguration;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -18727,6 +18986,7 @@ public final class org/hildan/chrome/devtools/domains/emulation/UserAgentMetadat
 
 public final class org/hildan/chrome/devtools/domains/emulation/VirtualTimePolicy : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/emulation/VirtualTimePolicy$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/emulation/VirtualTimePolicy;
 	public static final field advance Lorg/hildan/chrome/devtools/domains/emulation/VirtualTimePolicy;
 	public static final field pause Lorg/hildan/chrome/devtools/domains/emulation/VirtualTimePolicy;
 	public static final field pauseIfNetworkFetchesPending Lorg/hildan/chrome/devtools/domains/emulation/VirtualTimePolicy;
@@ -19076,7 +19336,7 @@ public final class org/hildan/chrome/devtools/domains/extensions/SetStorageItems
 
 public final class org/hildan/chrome/devtools/domains/extensions/StorageArea : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/extensions/StorageArea$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;
 	public static final field local Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;
 	public static final field managed Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;
 	public static final field session Lorg/hildan/chrome/devtools/domains/extensions/StorageArea;
@@ -19138,9 +19398,9 @@ public final class org/hildan/chrome/devtools/domains/fedcm/Account$Companion {
 
 public final class org/hildan/chrome/devtools/domains/fedcm/AccountUrlType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/fedcm/AccountUrlType$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/fedcm/AccountUrlType;
 	public static final field PrivacyPolicy Lorg/hildan/chrome/devtools/domains/fedcm/AccountUrlType;
 	public static final field TermsOfService Lorg/hildan/chrome/devtools/domains/fedcm/AccountUrlType;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/fedcm/AccountUrlType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/fedcm/AccountUrlType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/fedcm/AccountUrlType;
@@ -19189,7 +19449,7 @@ public final class org/hildan/chrome/devtools/domains/fedcm/DialogButton : java/
 	public static final field ConfirmIdpLoginContinue Lorg/hildan/chrome/devtools/domains/fedcm/DialogButton;
 	public static final field ErrorGotIt Lorg/hildan/chrome/devtools/domains/fedcm/DialogButton;
 	public static final field ErrorMoreDetails Lorg/hildan/chrome/devtools/domains/fedcm/DialogButton;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/fedcm/DialogButton;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/fedcm/DialogButton;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/fedcm/DialogButton;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/fedcm/DialogButton;
@@ -19205,7 +19465,7 @@ public final class org/hildan/chrome/devtools/domains/fedcm/DialogType : java/la
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/fedcm/DialogType$Companion;
 	public static final field ConfirmIdpLogin Lorg/hildan/chrome/devtools/domains/fedcm/DialogType;
 	public static final field Error Lorg/hildan/chrome/devtools/domains/fedcm/DialogType;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/fedcm/DialogType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/fedcm/DialogType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/fedcm/DialogType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/fedcm/DialogType;
@@ -19330,9 +19590,9 @@ public final class org/hildan/chrome/devtools/domains/fedcm/FedCmDomain {
 
 public final class org/hildan/chrome/devtools/domains/fedcm/LoginState : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/fedcm/LoginState$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/fedcm/LoginState;
 	public static final field SignIn Lorg/hildan/chrome/devtools/domains/fedcm/LoginState;
 	public static final field SignUp Lorg/hildan/chrome/devtools/domains/fedcm/LoginState;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/fedcm/LoginState;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/fedcm/LoginState;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/fedcm/LoginState;
@@ -20436,7 +20696,7 @@ public final class org/hildan/chrome/devtools/domains/headlessexperimental/Headl
 
 public final class org/hildan/chrome/devtools/domains/headlessexperimental/ImageFormat : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/headlessexperimental/ImageFormat$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/headlessexperimental/ImageFormat;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/headlessexperimental/ImageFormat;
 	public static final field jpeg Lorg/hildan/chrome/devtools/domains/headlessexperimental/ImageFormat;
 	public static final field png Lorg/hildan/chrome/devtools/domains/headlessexperimental/ImageFormat;
 	public static final field webp Lorg/hildan/chrome/devtools/domains/headlessexperimental/ImageFormat;
@@ -21579,7 +21839,7 @@ public final class org/hildan/chrome/devtools/domains/indexeddb/KeyPath$Companio
 
 public final class org/hildan/chrome/devtools/domains/indexeddb/KeyPathType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/indexeddb/KeyPathType$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/indexeddb/KeyPathType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/indexeddb/KeyPathType;
 	public static final field array Lorg/hildan/chrome/devtools/domains/indexeddb/KeyPathType;
 	public static final field null Lorg/hildan/chrome/devtools/domains/indexeddb/KeyPathType;
 	public static final field string Lorg/hildan/chrome/devtools/domains/indexeddb/KeyPathType;
@@ -21628,7 +21888,7 @@ public final class org/hildan/chrome/devtools/domains/indexeddb/KeyRange$Compani
 
 public final class org/hildan/chrome/devtools/domains/indexeddb/KeyType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/indexeddb/KeyType$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/indexeddb/KeyType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/indexeddb/KeyType;
 	public static final field array Lorg/hildan/chrome/devtools/domains/indexeddb/KeyType;
 	public static final field date Lorg/hildan/chrome/devtools/domains/indexeddb/KeyType;
 	public static final field number Lorg/hildan/chrome/devtools/domains/indexeddb/KeyType;
@@ -22310,6 +22570,7 @@ public final class org/hildan/chrome/devtools/domains/input/DragDataItem$Compani
 
 public final class org/hildan/chrome/devtools/domains/input/DragEventType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/input/DragEventType$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/input/DragEventType;
 	public static final field dragCancel Lorg/hildan/chrome/devtools/domains/input/DragEventType;
 	public static final field dragEnter Lorg/hildan/chrome/devtools/domains/input/DragEventType;
 	public static final field dragOver Lorg/hildan/chrome/devtools/domains/input/DragEventType;
@@ -22393,6 +22654,7 @@ public final class org/hildan/chrome/devtools/domains/input/EmulateTouchFromMous
 
 public final class org/hildan/chrome/devtools/domains/input/GestureSourceType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/input/GestureSourceType$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/input/GestureSourceType;
 	public static final field default Lorg/hildan/chrome/devtools/domains/input/GestureSourceType;
 	public static final field mouse Lorg/hildan/chrome/devtools/domains/input/GestureSourceType;
 	public static final field touch Lorg/hildan/chrome/devtools/domains/input/GestureSourceType;
@@ -23699,9 +23961,9 @@ public final class org/hildan/chrome/devtools/domains/layertree/ScrollRect$Compa
 
 public final class org/hildan/chrome/devtools/domains/layertree/ScrollRectType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/layertree/ScrollRectType$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/layertree/ScrollRectType;
 	public static final field RepaintsOnScroll Lorg/hildan/chrome/devtools/domains/layertree/ScrollRectType;
 	public static final field TouchEventHandler Lorg/hildan/chrome/devtools/domains/layertree/ScrollRectType;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/layertree/ScrollRectType;
 	public static final field WheelEventHandler Lorg/hildan/chrome/devtools/domains/layertree/ScrollRectType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/layertree/ScrollRectType;
@@ -24265,7 +24527,7 @@ public final class org/hildan/chrome/devtools/domains/media/PlayerMessage$Compan
 
 public final class org/hildan/chrome/devtools/domains/media/PlayerMessageLevel : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/media/PlayerMessageLevel$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/media/PlayerMessageLevel;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/media/PlayerMessageLevel;
 	public static final field debug Lorg/hildan/chrome/devtools/domains/media/PlayerMessageLevel;
 	public static final field error Lorg/hildan/chrome/devtools/domains/media/PlayerMessageLevel;
 	public static final field info Lorg/hildan/chrome/devtools/domains/media/PlayerMessageLevel;
@@ -24693,7 +24955,7 @@ public final class org/hildan/chrome/devtools/domains/memory/PrepareForLeakDetec
 
 public final class org/hildan/chrome/devtools/domains/memory/PressureLevel : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/memory/PressureLevel$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/memory/PressureLevel;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/memory/PressureLevel;
 	public static final field critical Lorg/hildan/chrome/devtools/domains/memory/PressureLevel;
 	public static final field moderate Lorg/hildan/chrome/devtools/domains/memory/PressureLevel;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -24881,6 +25143,7 @@ public final class org/hildan/chrome/devtools/domains/memory/StopSamplingRespons
 
 public final class org/hildan/chrome/devtools/domains/network/AlternateProtocolUsage : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/AlternateProtocolUsage$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/AlternateProtocolUsage;
 	public static final field alternativeJobWonRace Lorg/hildan/chrome/devtools/domains/network/AlternateProtocolUsage;
 	public static final field alternativeJobWonWithoutRace Lorg/hildan/chrome/devtools/domains/network/AlternateProtocolUsage;
 	public static final field broken Lorg/hildan/chrome/devtools/domains/network/AlternateProtocolUsage;
@@ -25000,6 +25263,7 @@ public final class org/hildan/chrome/devtools/domains/network/AuthChallengeRespo
 	public static final field CancelAuth Lorg/hildan/chrome/devtools/domains/network/AuthChallengeResponseResponse;
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/AuthChallengeResponseResponse$Companion;
 	public static final field Default Lorg/hildan/chrome/devtools/domains/network/AuthChallengeResponseResponse;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/AuthChallengeResponseResponse;
 	public static final field ProvideCredentials Lorg/hildan/chrome/devtools/domains/network/AuthChallengeResponseResponse;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/AuthChallengeResponseResponse;
@@ -25012,6 +25276,7 @@ public final class org/hildan/chrome/devtools/domains/network/AuthChallengeRespo
 
 public final class org/hildan/chrome/devtools/domains/network/AuthChallengeSource : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/AuthChallengeSource$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/AuthChallengeSource;
 	public static final field Proxy Lorg/hildan/chrome/devtools/domains/network/AuthChallengeSource;
 	public static final field Server Lorg/hildan/chrome/devtools/domains/network/AuthChallengeSource;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -25305,6 +25570,7 @@ public final class org/hildan/chrome/devtools/domains/network/ConnectionType$Com
 
 public final class org/hildan/chrome/devtools/domains/network/ContentEncoding : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/ContentEncoding$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/ContentEncoding;
 	public static final field br Lorg/hildan/chrome/devtools/domains/network/ContentEncoding;
 	public static final field deflate Lorg/hildan/chrome/devtools/domains/network/ContentEncoding;
 	public static final field gzip Lorg/hildan/chrome/devtools/domains/network/ContentEncoding;
@@ -25322,6 +25588,7 @@ public final class org/hildan/chrome/devtools/domains/network/ContentSecurityPol
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/ContentSecurityPolicySource$Companion;
 	public static final field HTTP Lorg/hildan/chrome/devtools/domains/network/ContentSecurityPolicySource;
 	public static final field Meta Lorg/hildan/chrome/devtools/domains/network/ContentSecurityPolicySource;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/ContentSecurityPolicySource;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/ContentSecurityPolicySource;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/network/ContentSecurityPolicySource;
@@ -25491,6 +25758,7 @@ public final class org/hildan/chrome/devtools/domains/network/CookieBlockedReaso
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason$Companion;
 	public static final field DomainMismatch Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason;
 	public static final field NameValuePairExceedsMaxSize Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason;
 	public static final field NotOnPath Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason;
 	public static final field PortMismatch Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason;
 	public static final field SamePartyFromCrossPartyContext Lorg/hildan/chrome/devtools/domains/network/CookieBlockedReason;
@@ -25520,6 +25788,7 @@ public final class org/hildan/chrome/devtools/domains/network/CookieExemptionRea
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason$Companion;
 	public static final field EnterprisePolicy Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
 	public static final field None Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
 	public static final field Scheme Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
 	public static final field StorageAccess Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
 	public static final field TPCDDeprecationTrial Lorg/hildan/chrome/devtools/domains/network/CookieExemptionReason;
@@ -25625,6 +25894,7 @@ public final class org/hildan/chrome/devtools/domains/network/CookiePriority : j
 	public static final field High Lorg/hildan/chrome/devtools/domains/network/CookiePriority;
 	public static final field Low Lorg/hildan/chrome/devtools/domains/network/CookiePriority;
 	public static final field Medium Lorg/hildan/chrome/devtools/domains/network/CookiePriority;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/CookiePriority;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/CookiePriority;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/network/CookiePriority;
@@ -25651,6 +25921,7 @@ public final class org/hildan/chrome/devtools/domains/network/CookieSameSite$Com
 public final class org/hildan/chrome/devtools/domains/network/CookieSourceScheme : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme$Companion;
 	public static final field NonSecure Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;
 	public static final field Secure Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;
 	public static final field Unset Lorg/hildan/chrome/devtools/domains/network/CookieSourceScheme;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -25774,6 +26045,7 @@ public final class org/hildan/chrome/devtools/domains/network/CrossOriginEmbedde
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/CrossOriginEmbedderPolicyValue$Companion;
 	public static final field Credentialless Lorg/hildan/chrome/devtools/domains/network/CrossOriginEmbedderPolicyValue;
 	public static final field None Lorg/hildan/chrome/devtools/domains/network/CrossOriginEmbedderPolicyValue;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/CrossOriginEmbedderPolicyValue;
 	public static final field RequireCorp Lorg/hildan/chrome/devtools/domains/network/CrossOriginEmbedderPolicyValue;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/CrossOriginEmbedderPolicyValue;
@@ -25821,6 +26093,7 @@ public final class org/hildan/chrome/devtools/domains/network/CrossOriginOpenerP
 public final class org/hildan/chrome/devtools/domains/network/CrossOriginOpenerPolicyValue : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/CrossOriginOpenerPolicyValue$Companion;
 	public static final field NoopenerAllowPopups Lorg/hildan/chrome/devtools/domains/network/CrossOriginOpenerPolicyValue;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/CrossOriginOpenerPolicyValue;
 	public static final field RestrictProperties Lorg/hildan/chrome/devtools/domains/network/CrossOriginOpenerPolicyValue;
 	public static final field RestrictPropertiesPlusCoep Lorg/hildan/chrome/devtools/domains/network/CrossOriginOpenerPolicyValue;
 	public static final field SameOrigin Lorg/hildan/chrome/devtools/domains/network/CrossOriginOpenerPolicyValue;
@@ -26473,6 +26746,7 @@ public final class org/hildan/chrome/devtools/domains/network/GetSecurityIsolati
 public final class org/hildan/chrome/devtools/domains/network/IPAddressSpace : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace$Companion;
 	public static final field Local Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;
 	public static final field Private Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;
 	public static final field Public Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;
 	public static final field Unknown Lorg/hildan/chrome/devtools/domains/network/IPAddressSpace;
@@ -26543,6 +26817,7 @@ public final class org/hildan/chrome/devtools/domains/network/InitiatorType$Comp
 public final class org/hildan/chrome/devtools/domains/network/InterceptionStage : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/InterceptionStage$Companion;
 	public static final field HeadersReceived Lorg/hildan/chrome/devtools/domains/network/InterceptionStage;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/InterceptionStage;
 	public static final field Request Lorg/hildan/chrome/devtools/domains/network/InterceptionStage;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/network/InterceptionStage;
@@ -26869,6 +27144,7 @@ public final class org/hildan/chrome/devtools/domains/network/PrivateNetworkRequ
 	public static final field Allow Lorg/hildan/chrome/devtools/domains/network/PrivateNetworkRequestPolicy;
 	public static final field BlockFromInsecureToMorePrivate Lorg/hildan/chrome/devtools/domains/network/PrivateNetworkRequestPolicy;
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/PrivateNetworkRequestPolicy$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/PrivateNetworkRequestPolicy;
 	public static final field PreflightBlock Lorg/hildan/chrome/devtools/domains/network/PrivateNetworkRequestPolicy;
 	public static final field PreflightWarn Lorg/hildan/chrome/devtools/domains/network/PrivateNetworkRequestPolicy;
 	public static final field WarnFromInsecureToMorePrivate Lorg/hildan/chrome/devtools/domains/network/PrivateNetworkRequestPolicy;
@@ -26916,6 +27192,7 @@ public final class org/hildan/chrome/devtools/domains/network/ReplayXHRResponse 
 public final class org/hildan/chrome/devtools/domains/network/ReportStatus : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/ReportStatus$Companion;
 	public static final field MarkedForRemoval Lorg/hildan/chrome/devtools/domains/network/ReportStatus;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/ReportStatus;
 	public static final field Pending Lorg/hildan/chrome/devtools/domains/network/ReportStatus;
 	public static final field Queued Lorg/hildan/chrome/devtools/domains/network/ReportStatus;
 	public static final field Success Lorg/hildan/chrome/devtools/domains/network/ReportStatus;
@@ -27688,6 +27965,7 @@ public final class org/hildan/chrome/devtools/domains/network/SetCookieBlockedRe
 	public static final field InvalidPrefix Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
 	public static final field NameValuePairExceedsMaxSize Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
 	public static final field NoCookieContent Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
 	public static final field OverwriteSecure Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
 	public static final field SamePartyConflictsWithOtherAttributes Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
 	public static final field SamePartyFromCrossPartyContext Lorg/hildan/chrome/devtools/domains/network/SetCookieBlockedReason;
@@ -28048,6 +28326,7 @@ public final class org/hildan/chrome/devtools/domains/network/SignedExchangeErro
 
 public final class org/hildan/chrome/devtools/domains/network/SignedExchangeErrorField : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/SignedExchangeErrorField$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/SignedExchangeErrorField;
 	public static final field signatureCertSha256 Lorg/hildan/chrome/devtools/domains/network/SignedExchangeErrorField;
 	public static final field signatureCertUrl Lorg/hildan/chrome/devtools/domains/network/SignedExchangeErrorField;
 	public static final field signatureIntegrity Lorg/hildan/chrome/devtools/domains/network/SignedExchangeErrorField;
@@ -28293,6 +28572,7 @@ public final class org/hildan/chrome/devtools/domains/network/TrustTokenOperatio
 	public static final field InternalError Lorg/hildan/chrome/devtools/domains/network/TrustTokenOperationDoneStatus;
 	public static final field InvalidArgument Lorg/hildan/chrome/devtools/domains/network/TrustTokenOperationDoneStatus;
 	public static final field MissingIssuerKeys Lorg/hildan/chrome/devtools/domains/network/TrustTokenOperationDoneStatus;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/TrustTokenOperationDoneStatus;
 	public static final field Ok Lorg/hildan/chrome/devtools/domains/network/TrustTokenOperationDoneStatus;
 	public static final field ResourceExhausted Lorg/hildan/chrome/devtools/domains/network/TrustTokenOperationDoneStatus;
 	public static final field ResourceLimited Lorg/hildan/chrome/devtools/domains/network/TrustTokenOperationDoneStatus;
@@ -28310,6 +28590,7 @@ public final class org/hildan/chrome/devtools/domains/network/TrustTokenOperatio
 public final class org/hildan/chrome/devtools/domains/network/TrustTokenOperationType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/TrustTokenOperationType$Companion;
 	public static final field Issuance Lorg/hildan/chrome/devtools/domains/network/TrustTokenOperationType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/TrustTokenOperationType;
 	public static final field Redemption Lorg/hildan/chrome/devtools/domains/network/TrustTokenOperationType;
 	public static final field Signing Lorg/hildan/chrome/devtools/domains/network/TrustTokenOperationType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -28355,6 +28636,7 @@ public final class org/hildan/chrome/devtools/domains/network/TrustTokenParams$C
 
 public final class org/hildan/chrome/devtools/domains/network/TrustTokenRefreshPolicy : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/network/TrustTokenRefreshPolicy$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/network/TrustTokenRefreshPolicy;
 	public static final field Refresh Lorg/hildan/chrome/devtools/domains/network/TrustTokenRefreshPolicy;
 	public static final field UseCached Lorg/hildan/chrome/devtools/domains/network/TrustTokenRefreshPolicy;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -29545,7 +29827,7 @@ public final class org/hildan/chrome/devtools/domains/overlay/BoxStyle$Companion
 
 public final class org/hildan/chrome/devtools/domains/overlay/ColorFormat : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/overlay/ColorFormat$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/overlay/ColorFormat;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/overlay/ColorFormat;
 	public static final field hex Lorg/hildan/chrome/devtools/domains/overlay/ColorFormat;
 	public static final field hsl Lorg/hildan/chrome/devtools/domains/overlay/ColorFormat;
 	public static final field hwb Lorg/hildan/chrome/devtools/domains/overlay/ColorFormat;
@@ -29621,7 +29903,7 @@ public final class org/hildan/chrome/devtools/domains/overlay/ContainerQueryHigh
 
 public final class org/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm;
 	public static final field aa Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm;
 	public static final field aaa Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm;
 	public static final field apca Lorg/hildan/chrome/devtools/domains/overlay/ContrastAlgorithm;
@@ -30390,7 +30672,7 @@ public final class org/hildan/chrome/devtools/domains/overlay/HingeConfig$Compan
 
 public final class org/hildan/chrome/devtools/domains/overlay/InspectMode : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/overlay/InspectMode$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/overlay/InspectMode;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/overlay/InspectMode;
 	public static final field captureAreaScreenshot Lorg/hildan/chrome/devtools/domains/overlay/InspectMode;
 	public static final field none Lorg/hildan/chrome/devtools/domains/overlay/InspectMode;
 	public static final field searchForNode Lorg/hildan/chrome/devtools/domains/overlay/InspectMode;
@@ -30500,7 +30782,7 @@ public final class org/hildan/chrome/devtools/domains/overlay/LineStyle$Companio
 
 public final class org/hildan/chrome/devtools/domains/overlay/LineStylePattern : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/overlay/LineStylePattern$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/overlay/LineStylePattern;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/overlay/LineStylePattern;
 	public static final field dashed Lorg/hildan/chrome/devtools/domains/overlay/LineStylePattern;
 	public static final field dotted Lorg/hildan/chrome/devtools/domains/overlay/LineStylePattern;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -31437,6 +31719,7 @@ public final class org/hildan/chrome/devtools/domains/page/AdFrameExplanation : 
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/AdFrameExplanation$Companion;
 	public static final field CreatedByAdScript Lorg/hildan/chrome/devtools/domains/page/AdFrameExplanation;
 	public static final field MatchedBlockingRule Lorg/hildan/chrome/devtools/domains/page/AdFrameExplanation;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/AdFrameExplanation;
 	public static final field ParentIsAd Lorg/hildan/chrome/devtools/domains/page/AdFrameExplanation;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/AdFrameExplanation;
@@ -31479,6 +31762,7 @@ public final class org/hildan/chrome/devtools/domains/page/AdFrameStatus$Compani
 
 public final class org/hildan/chrome/devtools/domains/page/AdFrameType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/AdFrameType$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/AdFrameType;
 	public static final field child Lorg/hildan/chrome/devtools/domains/page/AdFrameType;
 	public static final field none Lorg/hildan/chrome/devtools/domains/page/AdFrameType;
 	public static final field root Lorg/hildan/chrome/devtools/domains/page/AdFrameType;
@@ -31743,6 +32027,7 @@ public final class org/hildan/chrome/devtools/domains/page/AppManifestParsedProp
 
 public final class org/hildan/chrome/devtools/domains/page/AutoResponseMode : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;
 	public static final field autoAccept Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;
 	public static final field autoOptOut Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;
 	public static final field autoReject Lorg/hildan/chrome/devtools/domains/page/AutoResponseMode;
@@ -31933,6 +32218,7 @@ public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRe
 	public static final field NetworkRequestRedirected Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field NetworkRequestTimeout Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field NoResponseHead Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field NotMostRecentNavigationEntry Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field NotPrimaryMainFrame Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
 	public static final field OutstandingNetworkRequestDirectSocket Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReason;
@@ -32008,6 +32294,7 @@ public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRe
 public final class org/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType : java/lang/Enum {
 	public static final field Circumstantial Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType;
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType;
 	public static final field PageSupportNeeded Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType;
 	public static final field SupportPending Lorg/hildan/chrome/devtools/domains/page/BackForwardCacheNotRestoredReasonType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -32192,6 +32479,7 @@ public final class org/hildan/chrome/devtools/domains/page/ClearGeolocationOverr
 
 public final class org/hildan/chrome/devtools/domains/page/ClientNavigationDisposition : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/ClientNavigationDisposition$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/ClientNavigationDisposition;
 	public static final field currentTab Lorg/hildan/chrome/devtools/domains/page/ClientNavigationDisposition;
 	public static final field download Lorg/hildan/chrome/devtools/domains/page/ClientNavigationDisposition;
 	public static final field newTab Lorg/hildan/chrome/devtools/domains/page/ClientNavigationDisposition;
@@ -32207,6 +32495,7 @@ public final class org/hildan/chrome/devtools/domains/page/ClientNavigationDispo
 
 public final class org/hildan/chrome/devtools/domains/page/ClientNavigationReason : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
 	public static final field anchorClick Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
 	public static final field formSubmissionGet Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
 	public static final field formSubmissionPost Lorg/hildan/chrome/devtools/domains/page/ClientNavigationReason;
@@ -32338,6 +32627,7 @@ public final class org/hildan/chrome/devtools/domains/page/CreateIsolatedWorldRe
 public final class org/hildan/chrome/devtools/domains/page/CrossOriginIsolatedContextType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/CrossOriginIsolatedContextType$Companion;
 	public static final field Isolated Lorg/hildan/chrome/devtools/domains/page/CrossOriginIsolatedContextType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/CrossOriginIsolatedContextType;
 	public static final field NotIsolated Lorg/hildan/chrome/devtools/domains/page/CrossOriginIsolatedContextType;
 	public static final field NotIsolatedFeatureDisabled Lorg/hildan/chrome/devtools/domains/page/CrossOriginIsolatedContextType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -32405,6 +32695,7 @@ public final class org/hildan/chrome/devtools/domains/page/DisableResponse {
 
 public final class org/hildan/chrome/devtools/domains/page/DownloadBehavior : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/DownloadBehavior$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/DownloadBehavior;
 	public static final field allow Lorg/hildan/chrome/devtools/domains/page/DownloadBehavior;
 	public static final field default Lorg/hildan/chrome/devtools/domains/page/DownloadBehavior;
 	public static final field deny Lorg/hildan/chrome/devtools/domains/page/DownloadBehavior;
@@ -32419,6 +32710,7 @@ public final class org/hildan/chrome/devtools/domains/page/DownloadBehavior$Comp
 
 public final class org/hildan/chrome/devtools/domains/page/DownloadProgressState : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/DownloadProgressState$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/DownloadProgressState;
 	public static final field canceled Lorg/hildan/chrome/devtools/domains/page/DownloadProgressState;
 	public static final field completed Lorg/hildan/chrome/devtools/domains/page/DownloadProgressState;
 	public static final field inProgress Lorg/hildan/chrome/devtools/domains/page/DownloadProgressState;
@@ -32644,6 +32936,7 @@ public final class org/hildan/chrome/devtools/domains/page/Frame$Companion {
 
 public final class org/hildan/chrome/devtools/domains/page/FrameDetachedReason : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/FrameDetachedReason$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/FrameDetachedReason;
 	public static final field remove Lorg/hildan/chrome/devtools/domains/page/FrameDetachedReason;
 	public static final field swap Lorg/hildan/chrome/devtools/domains/page/FrameDetachedReason;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -32759,6 +33052,7 @@ public final class org/hildan/chrome/devtools/domains/page/FrameTree$Companion {
 
 public final class org/hildan/chrome/devtools/domains/page/GatedAPIFeatures : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/GatedAPIFeatures$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/GatedAPIFeatures;
 	public static final field PerformanceMeasureMemory Lorg/hildan/chrome/devtools/domains/page/GatedAPIFeatures;
 	public static final field PerformanceProfile Lorg/hildan/chrome/devtools/domains/page/GatedAPIFeatures;
 	public static final field SharedArrayBuffers Lorg/hildan/chrome/devtools/domains/page/GatedAPIFeatures;
@@ -33625,6 +33919,7 @@ public final class org/hildan/chrome/devtools/domains/page/NavigateToHistoryEntr
 
 public final class org/hildan/chrome/devtools/domains/page/NavigatedWithinDocumentNavigationType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/NavigatedWithinDocumentNavigationType$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/NavigatedWithinDocumentNavigationType;
 	public static final field fragment Lorg/hildan/chrome/devtools/domains/page/NavigatedWithinDocumentNavigationType;
 	public static final field historyApi Lorg/hildan/chrome/devtools/domains/page/NavigatedWithinDocumentNavigationType;
 	public static final field other Lorg/hildan/chrome/devtools/domains/page/NavigatedWithinDocumentNavigationType;
@@ -33676,6 +33971,7 @@ public final class org/hildan/chrome/devtools/domains/page/NavigationType : java
 	public static final field BackForwardCacheRestore Lorg/hildan/chrome/devtools/domains/page/NavigationType;
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/NavigationType$Companion;
 	public static final field Navigation Lorg/hildan/chrome/devtools/domains/page/NavigationType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/NavigationType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/NavigationType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/page/NavigationType;
@@ -33719,6 +34015,7 @@ public final class org/hildan/chrome/devtools/domains/page/OriginTrial$Companion
 public final class org/hildan/chrome/devtools/domains/page/OriginTrialStatus : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/OriginTrialStatus$Companion;
 	public static final field Enabled Lorg/hildan/chrome/devtools/domains/page/OriginTrialStatus;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/OriginTrialStatus;
 	public static final field OSNotSupported Lorg/hildan/chrome/devtools/domains/page/OriginTrialStatus;
 	public static final field TrialNotAllowed Lorg/hildan/chrome/devtools/domains/page/OriginTrialStatus;
 	public static final field ValidTokenNotProvided Lorg/hildan/chrome/devtools/domains/page/OriginTrialStatus;
@@ -33776,6 +34073,7 @@ public final class org/hildan/chrome/devtools/domains/page/OriginTrialTokenStatu
 	public static final field Insecure Lorg/hildan/chrome/devtools/domains/page/OriginTrialTokenStatus;
 	public static final field InvalidSignature Lorg/hildan/chrome/devtools/domains/page/OriginTrialTokenStatus;
 	public static final field Malformed Lorg/hildan/chrome/devtools/domains/page/OriginTrialTokenStatus;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/OriginTrialTokenStatus;
 	public static final field NotSupported Lorg/hildan/chrome/devtools/domains/page/OriginTrialTokenStatus;
 	public static final field Success Lorg/hildan/chrome/devtools/domains/page/OriginTrialTokenStatus;
 	public static final field TokenDisabled Lorg/hildan/chrome/devtools/domains/page/OriginTrialTokenStatus;
@@ -33826,6 +34124,7 @@ public final class org/hildan/chrome/devtools/domains/page/OriginTrialTokenWithS
 public final class org/hildan/chrome/devtools/domains/page/OriginTrialUsageRestriction : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/OriginTrialUsageRestriction$Companion;
 	public static final field None Lorg/hildan/chrome/devtools/domains/page/OriginTrialUsageRestriction;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/OriginTrialUsageRestriction;
 	public static final field Subset Lorg/hildan/chrome/devtools/domains/page/OriginTrialUsageRestriction;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/OriginTrialUsageRestriction;
@@ -34072,6 +34371,7 @@ public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyBloc
 	public static final field IframeAttribute Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason;
 	public static final field InFencedFrameTree Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason;
 	public static final field InIsolatedApp Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyBlockReason;
@@ -34083,6 +34383,7 @@ public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyBloc
 
 public final class org/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field accelerometer Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field allScreensCapture Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
 	public static final field ambientLightSensor Lorg/hildan/chrome/devtools/domains/page/PermissionsPolicyFeature;
@@ -34411,6 +34712,7 @@ public final class org/hildan/chrome/devtools/domains/page/ProtocolHandler$Compa
 
 public final class org/hildan/chrome/devtools/domains/page/ReferrerPolicy : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/ReferrerPolicy$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/ReferrerPolicy;
 	public static final field noReferrer Lorg/hildan/chrome/devtools/domains/page/ReferrerPolicy;
 	public static final field noReferrerWhenDowngrade Lorg/hildan/chrome/devtools/domains/page/ReferrerPolicy;
 	public static final field origin Lorg/hildan/chrome/devtools/domains/page/ReferrerPolicy;
@@ -34607,6 +34909,7 @@ public final class org/hildan/chrome/devtools/domains/page/ScopeExtension$Compan
 
 public final class org/hildan/chrome/devtools/domains/page/ScreencastFormat : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/ScreencastFormat$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/ScreencastFormat;
 	public static final field jpeg Lorg/hildan/chrome/devtools/domains/page/ScreencastFormat;
 	public static final field png Lorg/hildan/chrome/devtools/domains/page/ScreencastFormat;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -34844,6 +35147,7 @@ public final class org/hildan/chrome/devtools/domains/page/SecureContextType : j
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/SecureContextType$Companion;
 	public static final field InsecureAncestor Lorg/hildan/chrome/devtools/domains/page/SecureContextType;
 	public static final field InsecureScheme Lorg/hildan/chrome/devtools/domains/page/SecureContextType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/SecureContextType;
 	public static final field Secure Lorg/hildan/chrome/devtools/domains/page/SecureContextType;
 	public static final field SecureLocalhost Lorg/hildan/chrome/devtools/domains/page/SecureContextType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -35542,6 +35846,7 @@ public final class org/hildan/chrome/devtools/domains/page/Shortcut$Companion {
 
 public final class org/hildan/chrome/devtools/domains/page/SnapshotFormat : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/SnapshotFormat$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/SnapshotFormat;
 	public static final field mhtml Lorg/hildan/chrome/devtools/domains/page/SnapshotFormat;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/page/SnapshotFormat;
@@ -35621,6 +35926,7 @@ public final class org/hildan/chrome/devtools/domains/page/StopScreencastRespons
 
 public final class org/hildan/chrome/devtools/domains/page/TouchEmulationEnabledConfiguration : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/TouchEmulationEnabledConfiguration$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/TouchEmulationEnabledConfiguration;
 	public static final field desktop Lorg/hildan/chrome/devtools/domains/page/TouchEmulationEnabledConfiguration;
 	public static final field mobile Lorg/hildan/chrome/devtools/domains/page/TouchEmulationEnabledConfiguration;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -35634,6 +35940,7 @@ public final class org/hildan/chrome/devtools/domains/page/TouchEmulationEnabled
 
 public final class org/hildan/chrome/devtools/domains/page/TransferMode : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/TransferMode$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/TransferMode;
 	public static final field ReturnAsBase64 Lorg/hildan/chrome/devtools/domains/page/TransferMode;
 	public static final field ReturnAsStream Lorg/hildan/chrome/devtools/domains/page/TransferMode;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -35826,6 +36133,7 @@ public final class org/hildan/chrome/devtools/domains/page/WebAppManifest$Compan
 
 public final class org/hildan/chrome/devtools/domains/page/WebLifecycleState : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/page/WebLifecycleState$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/page/WebLifecycleState;
 	public static final field active Lorg/hildan/chrome/devtools/domains/page/WebLifecycleState;
 	public static final field frozen Lorg/hildan/chrome/devtools/domains/page/WebLifecycleState;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -37022,6 +37330,7 @@ public final class org/hildan/chrome/devtools/domains/preload/EnableResponse {
 
 public final class org/hildan/chrome/devtools/domains/preload/PrefetchStatus : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
 	public static final field PrefetchAllowed Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
 	public static final field PrefetchEvictedAfterCandidateRemoved Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
 	public static final field PrefetchEvictedForNewerPrefetch Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
@@ -37052,7 +37361,6 @@ public final class org/hildan/chrome/devtools/domains/preload/PrefetchStatus : j
 	public static final field PrefetchProxyNotAvailable Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
 	public static final field PrefetchResponseUsed Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
 	public static final field PrefetchSuccessfulButNotUsed Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
@@ -37148,12 +37456,12 @@ public final class org/hildan/chrome/devtools/domains/preload/PreloadingAttemptS
 public final class org/hildan/chrome/devtools/domains/preload/PreloadingStatus : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus$Companion;
 	public static final field Failure Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
 	public static final field NotSupported Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
 	public static final field Pending Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
 	public static final field Ready Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
 	public static final field Running Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
 	public static final field Success Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
@@ -37209,6 +37517,7 @@ public final class org/hildan/chrome/devtools/domains/preload/PrerenderFinalStat
 	public static final field NavigationNotCommitted Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field NavigationRequestBlockedByCsp Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field NavigationRequestNetworkError Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field OtherPrerenderedPageActivated Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field PreloadingDisabled Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field PreloadingUnsupportedByWebContents Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
@@ -37235,7 +37544,6 @@ public final class org/hildan/chrome/devtools/domains/preload/PrerenderFinalStat
 	public static final field TriggerBackgrounded Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field TriggerDestroyed Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field TriggerUrlHasEffectiveUrl Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field UaChangeRequiresReload Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field V8OptimizerDisabled Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public static final field WindowClosed Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
@@ -37325,8 +37633,8 @@ public final class org/hildan/chrome/devtools/domains/preload/RuleSet$Companion 
 public final class org/hildan/chrome/devtools/domains/preload/RuleSetErrorType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/RuleSetErrorType$Companion;
 	public static final field InvalidRulesSkipped Lorg/hildan/chrome/devtools/domains/preload/RuleSetErrorType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/preload/RuleSetErrorType;
 	public static final field SourceIsNotJsonObject Lorg/hildan/chrome/devtools/domains/preload/RuleSetErrorType;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/preload/RuleSetErrorType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/preload/RuleSetErrorType;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/preload/RuleSetErrorType;
@@ -37338,9 +37646,9 @@ public final class org/hildan/chrome/devtools/domains/preload/RuleSetErrorType$C
 
 public final class org/hildan/chrome/devtools/domains/preload/SpeculationAction : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/SpeculationAction$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/preload/SpeculationAction;
 	public static final field Prefetch Lorg/hildan/chrome/devtools/domains/preload/SpeculationAction;
 	public static final field Prerender Lorg/hildan/chrome/devtools/domains/preload/SpeculationAction;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/preload/SpeculationAction;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/preload/SpeculationAction;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/preload/SpeculationAction;
@@ -37353,8 +37661,8 @@ public final class org/hildan/chrome/devtools/domains/preload/SpeculationAction$
 public final class org/hildan/chrome/devtools/domains/preload/SpeculationTargetHint : java/lang/Enum {
 	public static final field Blank Lorg/hildan/chrome/devtools/domains/preload/SpeculationTargetHint;
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/SpeculationTargetHint$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/preload/SpeculationTargetHint;
 	public static final field Self Lorg/hildan/chrome/devtools/domains/preload/SpeculationTargetHint;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/preload/SpeculationTargetHint;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/preload/SpeculationTargetHint;
 	public static fun values ()[Lorg/hildan/chrome/devtools/domains/preload/SpeculationTargetHint;
@@ -37376,18 +37684,20 @@ public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEven
 
 public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated : org/hildan/chrome/devtools/domains/preload/events/PreloadEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated$Companion;
-	public fun <init> (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;Ljava/lang/String;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;Ljava/lang/String;)V
 	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
-	public final fun component5 ()Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
-	public final fun component6 ()Ljava/lang/String;
-	public final fun copy (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated;Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
+	public final fun component6 ()Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated;Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getInitiatingFrameId ()Ljava/lang/String;
 	public final fun getKey ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;
+	public final fun getPipelineId ()Ljava/lang/String;
 	public final fun getPrefetchStatus ()Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
 	public final fun getPrefetchUrl ()Ljava/lang/String;
 	public final fun getRequestId ()Ljava/lang/String;
@@ -37477,19 +37787,21 @@ public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEven
 
 public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated : org/hildan/chrome/devtools/domains/preload/events/PreloadEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated$Companion;
-	public fun <init> (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;)V
-	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;
-	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
-	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
-	public final fun component4 ()Ljava/lang/String;
-	public final fun component5 ()Ljava/util/List;
-	public final fun copy (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
+	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/util/List;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDisallowedMojoInterface ()Ljava/lang/String;
 	public final fun getKey ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;
 	public final fun getMismatchedHeaders ()Ljava/util/List;
+	public final fun getPipelineId ()Ljava/lang/String;
 	public final fun getPrerenderStatus ()Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public final fun getStatus ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
 	public fun hashCode ()I
@@ -38146,7 +38458,7 @@ public final class org/hildan/chrome/devtools/domains/pwa/ChangeAppUserSettingsR
 
 public final class org/hildan/chrome/devtools/domains/pwa/DisplayMode : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/pwa/DisplayMode$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/pwa/DisplayMode;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/pwa/DisplayMode;
 	public static final field browser Lorg/hildan/chrome/devtools/domains/pwa/DisplayMode;
 	public static final field standalone Lorg/hildan/chrome/devtools/domains/pwa/DisplayMode;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -39607,6 +39919,7 @@ public final class org/hildan/chrome/devtools/domains/runtime/ObjectPreview$Comp
 
 public final class org/hildan/chrome/devtools/domains/runtime/ObjectPreviewSubtype : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/runtime/ObjectPreviewSubtype$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/runtime/ObjectPreviewSubtype;
 	public static final field array Lorg/hildan/chrome/devtools/domains/runtime/ObjectPreviewSubtype;
 	public static final field arraybuffer Lorg/hildan/chrome/devtools/domains/runtime/ObjectPreviewSubtype;
 	public static final field dataview Lorg/hildan/chrome/devtools/domains/runtime/ObjectPreviewSubtype;
@@ -39637,6 +39950,7 @@ public final class org/hildan/chrome/devtools/domains/runtime/ObjectPreviewSubty
 
 public final class org/hildan/chrome/devtools/domains/runtime/ObjectPreviewType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/runtime/ObjectPreviewType$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/runtime/ObjectPreviewType;
 	public static final field bigint Lorg/hildan/chrome/devtools/domains/runtime/ObjectPreviewType;
 	public static final field boolean Lorg/hildan/chrome/devtools/domains/runtime/ObjectPreviewType;
 	public static final field function Lorg/hildan/chrome/devtools/domains/runtime/ObjectPreviewType;
@@ -39772,6 +40086,7 @@ public final class org/hildan/chrome/devtools/domains/runtime/PropertyPreview$Co
 
 public final class org/hildan/chrome/devtools/domains/runtime/PropertyPreviewSubtype : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/runtime/PropertyPreviewSubtype$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/runtime/PropertyPreviewSubtype;
 	public static final field array Lorg/hildan/chrome/devtools/domains/runtime/PropertyPreviewSubtype;
 	public static final field arraybuffer Lorg/hildan/chrome/devtools/domains/runtime/PropertyPreviewSubtype;
 	public static final field dataview Lorg/hildan/chrome/devtools/domains/runtime/PropertyPreviewSubtype;
@@ -39802,6 +40117,7 @@ public final class org/hildan/chrome/devtools/domains/runtime/PropertyPreviewSub
 
 public final class org/hildan/chrome/devtools/domains/runtime/PropertyPreviewType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/runtime/PropertyPreviewType$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/runtime/PropertyPreviewType;
 	public static final field accessor Lorg/hildan/chrome/devtools/domains/runtime/PropertyPreviewType;
 	public static final field bigint Lorg/hildan/chrome/devtools/domains/runtime/PropertyPreviewType;
 	public static final field boolean Lorg/hildan/chrome/devtools/domains/runtime/PropertyPreviewType;
@@ -40966,6 +41282,7 @@ public final class org/hildan/chrome/devtools/domains/security/SafetyTipInfo$Com
 
 public final class org/hildan/chrome/devtools/domains/security/SafetyTipStatus : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/security/SafetyTipStatus$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/security/SafetyTipStatus;
 	public static final field badReputation Lorg/hildan/chrome/devtools/domains/security/SafetyTipStatus;
 	public static final field lookalike Lorg/hildan/chrome/devtools/domains/security/SafetyTipStatus;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -41555,7 +41872,7 @@ public final class org/hildan/chrome/devtools/domains/serviceworker/ServiceWorke
 
 public final class org/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionRunningStatus : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionRunningStatus$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionRunningStatus;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionRunningStatus;
 	public static final field running Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionRunningStatus;
 	public static final field starting Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionRunningStatus;
 	public static final field stopped Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionRunningStatus;
@@ -41571,7 +41888,7 @@ public final class org/hildan/chrome/devtools/domains/serviceworker/ServiceWorke
 
 public final class org/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionStatus : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionStatus$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionStatus;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionStatus;
 	public static final field activated Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionStatus;
 	public static final field activating Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionStatus;
 	public static final field installed Lorg/hildan/chrome/devtools/domains/serviceworker/ServiceWorkerVersionStatus;
@@ -41972,7 +42289,7 @@ public final class org/hildan/chrome/devtools/domains/storage/AttributionReporti
 
 public final class org/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableResult : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableResult$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableResult;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableResult;
 	public static final field deduplicated Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableResult;
 	public static final field excessiveAttributions Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableResult;
 	public static final field excessiveReportingOrigins Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingAggregatableResult;
@@ -42119,7 +42436,7 @@ public final class org/hildan/chrome/devtools/domains/storage/AttributionReporti
 
 public final class org/hildan/chrome/devtools/domains/storage/AttributionReportingEventLevelResult : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingEventLevelResult$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingEventLevelResult;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingEventLevelResult;
 	public static final field deduplicated Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingEventLevelResult;
 	public static final field excessiveAttributions Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingEventLevelResult;
 	public static final field excessiveReportingOrigins Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingEventLevelResult;
@@ -42363,7 +42680,7 @@ public final class org/hildan/chrome/devtools/domains/storage/AttributionReporti
 
 public final class org/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationResult : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationResult$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationResult;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationResult;
 	public static final field destinationBothLimitsReached Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationResult;
 	public static final field destinationGlobalLimitReached Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationResult;
 	public static final field destinationPerDayReportingLimitReached Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationResult;
@@ -42391,7 +42708,7 @@ public final class org/hildan/chrome/devtools/domains/storage/AttributionReporti
 
 public final class org/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationTimeConfig : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationTimeConfig$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationTimeConfig;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationTimeConfig;
 	public static final field exclude Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationTimeConfig;
 	public static final field include Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceRegistrationTimeConfig;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -42405,7 +42722,7 @@ public final class org/hildan/chrome/devtools/domains/storage/AttributionReporti
 
 public final class org/hildan/chrome/devtools/domains/storage/AttributionReportingSourceType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceType$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceType;
 	public static final field event Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceType;
 	public static final field navigation Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingSourceType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -42419,7 +42736,7 @@ public final class org/hildan/chrome/devtools/domains/storage/AttributionReporti
 
 public final class org/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerDataMatching : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerDataMatching$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerDataMatching;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerDataMatching;
 	public static final field exact Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerDataMatching;
 	public static final field modulus Lorg/hildan/chrome/devtools/domains/storage/AttributionReportingTriggerDataMatching;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -43201,7 +43518,7 @@ public final class org/hildan/chrome/devtools/domains/storage/GetUsageAndQuotaRe
 
 public final class org/hildan/chrome/devtools/domains/storage/InterestGroupAccessType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/InterestGroupAccessType$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/storage/InterestGroupAccessType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/storage/InterestGroupAccessType;
 	public static final field additionalBid Lorg/hildan/chrome/devtools/domains/storage/InterestGroupAccessType;
 	public static final field additionalBidWin Lorg/hildan/chrome/devtools/domains/storage/InterestGroupAccessType;
 	public static final field bid Lorg/hildan/chrome/devtools/domains/storage/InterestGroupAccessType;
@@ -43224,7 +43541,7 @@ public final class org/hildan/chrome/devtools/domains/storage/InterestGroupAcces
 
 public final class org/hildan/chrome/devtools/domains/storage/InterestGroupAuctionEventType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/InterestGroupAuctionEventType$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/storage/InterestGroupAuctionEventType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/storage/InterestGroupAuctionEventType;
 	public static final field configResolved Lorg/hildan/chrome/devtools/domains/storage/InterestGroupAuctionEventType;
 	public static final field started Lorg/hildan/chrome/devtools/domains/storage/InterestGroupAuctionEventType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -43238,7 +43555,7 @@ public final class org/hildan/chrome/devtools/domains/storage/InterestGroupAucti
 
 public final class org/hildan/chrome/devtools/domains/storage/InterestGroupAuctionFetchType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/InterestGroupAuctionFetchType$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/storage/InterestGroupAuctionFetchType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/storage/InterestGroupAuctionFetchType;
 	public static final field bidderJs Lorg/hildan/chrome/devtools/domains/storage/InterestGroupAuctionFetchType;
 	public static final field bidderTrustedSignals Lorg/hildan/chrome/devtools/domains/storage/InterestGroupAuctionFetchType;
 	public static final field bidderWasm Lorg/hildan/chrome/devtools/domains/storage/InterestGroupAuctionFetchType;
@@ -43742,7 +44059,7 @@ public final class org/hildan/chrome/devtools/domains/storage/SharedStorageAcces
 
 public final class org/hildan/chrome/devtools/domains/storage/SharedStorageAccessType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/SharedStorageAccessType$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/storage/SharedStorageAccessType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/storage/SharedStorageAccessType;
 	public static final field documentAddModule Lorg/hildan/chrome/devtools/domains/storage/SharedStorageAccessType;
 	public static final field documentAppend Lorg/hildan/chrome/devtools/domains/storage/SharedStorageAccessType;
 	public static final field documentClear Lorg/hildan/chrome/devtools/domains/storage/SharedStorageAccessType;
@@ -43962,7 +44279,7 @@ public final class org/hildan/chrome/devtools/domains/storage/StorageBucketInfo$
 
 public final class org/hildan/chrome/devtools/domains/storage/StorageBucketsDurability : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/StorageBucketsDurability$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/storage/StorageBucketsDurability;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/storage/StorageBucketsDurability;
 	public static final field relaxed Lorg/hildan/chrome/devtools/domains/storage/StorageBucketsDurability;
 	public static final field strict Lorg/hildan/chrome/devtools/domains/storage/StorageBucketsDurability;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -44080,7 +44397,7 @@ public final class org/hildan/chrome/devtools/domains/storage/StorageDomain {
 
 public final class org/hildan/chrome/devtools/domains/storage/StorageType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/storage/StorageType$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/storage/StorageType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/storage/StorageType;
 	public static final field all Lorg/hildan/chrome/devtools/domains/storage/StorageType;
 	public static final field appcache Lorg/hildan/chrome/devtools/domains/storage/StorageType;
 	public static final field cache_storage Lorg/hildan/chrome/devtools/domains/storage/StorageType;
@@ -45047,7 +45364,7 @@ public final class org/hildan/chrome/devtools/domains/systeminfo/ImageDecodeAcce
 
 public final class org/hildan/chrome/devtools/domains/systeminfo/ImageType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/systeminfo/ImageType$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/systeminfo/ImageType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/systeminfo/ImageType;
 	public static final field jpeg Lorg/hildan/chrome/devtools/domains/systeminfo/ImageType;
 	public static final field unknown Lorg/hildan/chrome/devtools/domains/systeminfo/ImageType;
 	public static final field webp Lorg/hildan/chrome/devtools/domains/systeminfo/ImageType;
@@ -45122,7 +45439,7 @@ public final class org/hildan/chrome/devtools/domains/systeminfo/Size$Companion 
 
 public final class org/hildan/chrome/devtools/domains/systeminfo/SubsamplingFormat : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/systeminfo/SubsamplingFormat$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/systeminfo/SubsamplingFormat;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/systeminfo/SubsamplingFormat;
 	public static final field yuv420 Lorg/hildan/chrome/devtools/domains/systeminfo/SubsamplingFormat;
 	public static final field yuv422 Lorg/hildan/chrome/devtools/domains/systeminfo/SubsamplingFormat;
 	public static final field yuv444 Lorg/hildan/chrome/devtools/domains/systeminfo/SubsamplingFormat;
@@ -46583,6 +46900,7 @@ public final class org/hildan/chrome/devtools/domains/tracing/GetCategoriesRespo
 
 public final class org/hildan/chrome/devtools/domains/tracing/MemoryDumpLevelOfDetail : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/tracing/MemoryDumpLevelOfDetail$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/tracing/MemoryDumpLevelOfDetail;
 	public static final field background Lorg/hildan/chrome/devtools/domains/tracing/MemoryDumpLevelOfDetail;
 	public static final field detailed Lorg/hildan/chrome/devtools/domains/tracing/MemoryDumpLevelOfDetail;
 	public static final field light Lorg/hildan/chrome/devtools/domains/tracing/MemoryDumpLevelOfDetail;
@@ -46771,6 +47089,7 @@ public final class org/hildan/chrome/devtools/domains/tracing/StartResponse {
 
 public final class org/hildan/chrome/devtools/domains/tracing/StreamCompression : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/tracing/StreamCompression$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/tracing/StreamCompression;
 	public static final field gzip Lorg/hildan/chrome/devtools/domains/tracing/StreamCompression;
 	public static final field none Lorg/hildan/chrome/devtools/domains/tracing/StreamCompression;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -46784,6 +47103,7 @@ public final class org/hildan/chrome/devtools/domains/tracing/StreamCompression$
 
 public final class org/hildan/chrome/devtools/domains/tracing/StreamFormat : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/tracing/StreamFormat$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/tracing/StreamFormat;
 	public static final field json Lorg/hildan/chrome/devtools/domains/tracing/StreamFormat;
 	public static final field proto Lorg/hildan/chrome/devtools/domains/tracing/StreamFormat;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -46842,6 +47162,7 @@ public final class org/hildan/chrome/devtools/domains/tracing/TraceConfig$Compan
 
 public final class org/hildan/chrome/devtools/domains/tracing/TraceConfigRecordMode : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/tracing/TraceConfigRecordMode$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/tracing/TraceConfigRecordMode;
 	public static final field echoToConsole Lorg/hildan/chrome/devtools/domains/tracing/TraceConfigRecordMode;
 	public static final field recordAsMuchAsPossible Lorg/hildan/chrome/devtools/domains/tracing/TraceConfigRecordMode;
 	public static final field recordContinuously Lorg/hildan/chrome/devtools/domains/tracing/TraceConfigRecordMode;
@@ -46857,6 +47178,7 @@ public final class org/hildan/chrome/devtools/domains/tracing/TraceConfigRecordM
 
 public final class org/hildan/chrome/devtools/domains/tracing/TracingBackend : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/tracing/TracingBackend$Companion;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/tracing/TracingBackend;
 	public static final field auto Lorg/hildan/chrome/devtools/domains/tracing/TracingBackend;
 	public static final field chrome Lorg/hildan/chrome/devtools/domains/tracing/TracingBackend;
 	public static final field system Lorg/hildan/chrome/devtools/domains/tracing/TracingBackend;
@@ -47125,7 +47447,7 @@ public final class org/hildan/chrome/devtools/domains/webaudio/AudioParam$Compan
 
 public final class org/hildan/chrome/devtools/domains/webaudio/AutomationRate : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/webaudio/AutomationRate$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/webaudio/AutomationRate;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/webaudio/AutomationRate;
 	public static final field aRate Lorg/hildan/chrome/devtools/domains/webaudio/AutomationRate;
 	public static final field kRate Lorg/hildan/chrome/devtools/domains/webaudio/AutomationRate;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -47179,7 +47501,7 @@ public final class org/hildan/chrome/devtools/domains/webaudio/BaseAudioContext$
 
 public final class org/hildan/chrome/devtools/domains/webaudio/ChannelCountMode : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/webaudio/ChannelCountMode$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/webaudio/ChannelCountMode;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/webaudio/ChannelCountMode;
 	public static final field clampedMax Lorg/hildan/chrome/devtools/domains/webaudio/ChannelCountMode;
 	public static final field explicit Lorg/hildan/chrome/devtools/domains/webaudio/ChannelCountMode;
 	public static final field max Lorg/hildan/chrome/devtools/domains/webaudio/ChannelCountMode;
@@ -47194,7 +47516,7 @@ public final class org/hildan/chrome/devtools/domains/webaudio/ChannelCountMode$
 
 public final class org/hildan/chrome/devtools/domains/webaudio/ChannelInterpretation : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/webaudio/ChannelInterpretation$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/webaudio/ChannelInterpretation;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/webaudio/ChannelInterpretation;
 	public static final field discrete Lorg/hildan/chrome/devtools/domains/webaudio/ChannelInterpretation;
 	public static final field speakers Lorg/hildan/chrome/devtools/domains/webaudio/ChannelInterpretation;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -47241,7 +47563,7 @@ public final class org/hildan/chrome/devtools/domains/webaudio/ContextRealtimeDa
 
 public final class org/hildan/chrome/devtools/domains/webaudio/ContextState : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/webaudio/ContextState$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/webaudio/ContextState;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/webaudio/ContextState;
 	public static final field closed Lorg/hildan/chrome/devtools/domains/webaudio/ContextState;
 	public static final field interrupted Lorg/hildan/chrome/devtools/domains/webaudio/ContextState;
 	public static final field running Lorg/hildan/chrome/devtools/domains/webaudio/ContextState;
@@ -47257,7 +47579,7 @@ public final class org/hildan/chrome/devtools/domains/webaudio/ContextState$Comp
 
 public final class org/hildan/chrome/devtools/domains/webaudio/ContextType : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/webaudio/ContextType$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/webaudio/ContextType;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/webaudio/ContextType;
 	public static final field offline Lorg/hildan/chrome/devtools/domains/webaudio/ContextType;
 	public static final field realtime Lorg/hildan/chrome/devtools/domains/webaudio/ContextType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -47858,7 +48180,7 @@ public final class org/hildan/chrome/devtools/domains/webauthn/AddVirtualAuthent
 
 public final class org/hildan/chrome/devtools/domains/webauthn/AuthenticatorProtocol : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorProtocol$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorProtocol;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorProtocol;
 	public static final field ctap2 Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorProtocol;
 	public static final field u2f Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorProtocol;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -47872,7 +48194,7 @@ public final class org/hildan/chrome/devtools/domains/webauthn/AuthenticatorProt
 
 public final class org/hildan/chrome/devtools/domains/webauthn/AuthenticatorTransport : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorTransport$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorTransport;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorTransport;
 	public static final field ble Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorTransport;
 	public static final field cable Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorTransport;
 	public static final field internal Lorg/hildan/chrome/devtools/domains/webauthn/AuthenticatorTransport;
@@ -47969,7 +48291,7 @@ public final class org/hildan/chrome/devtools/domains/webauthn/Credential$Compan
 
 public final class org/hildan/chrome/devtools/domains/webauthn/Ctap2Version : java/lang/Enum {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/webauthn/Ctap2Version$Companion;
-	public static final field UNDEFINED Lorg/hildan/chrome/devtools/domains/webauthn/Ctap2Version;
+	public static final field NotDefinedInProtocol Lorg/hildan/chrome/devtools/domains/webauthn/Ctap2Version;
 	public static final field ctap2_0 Lorg/hildan/chrome/devtools/domains/webauthn/Ctap2Version;
 	public static final field ctap2_1 Lorg/hildan/chrome/devtools/domains/webauthn/Ctap2Version;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
