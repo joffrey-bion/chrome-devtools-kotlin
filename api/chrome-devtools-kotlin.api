@@ -2600,6 +2600,7 @@ public final class org/hildan/chrome/devtools/domains/audits/InspectorIssueCode 
 	public static final field NavigatorUserAgentIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static final field PropertyRuleIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static final field QuirksModeIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
+	public static final field SelectElementAccessibilityIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static final field SharedArrayBufferIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static final field SharedDictionaryIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
 	public static final field StylesheetLoadingIssue Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueCode;
@@ -2615,8 +2616,8 @@ public final class org/hildan/chrome/devtools/domains/audits/InspectorIssueCode$
 public final class org/hildan/chrome/devtools/domains/audits/InspectorIssueDetails {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails$Companion;
 	public fun <init> ()V
-	public fun <init> (Lorg/hildan/chrome/devtools/domains/audits/CookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/GenericIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BounceTrackingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CookieDeprecationMetadataIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/StylesheetLoadingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/PropertyRuleIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedDictionaryIssueDetails;)V
-	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/audits/CookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/GenericIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BounceTrackingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CookieDeprecationMetadataIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/StylesheetLoadingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/PropertyRuleIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedDictionaryIssueDetails;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/audits/CookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/GenericIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BounceTrackingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CookieDeprecationMetadataIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/StylesheetLoadingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/PropertyRuleIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedDictionaryIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueDetails;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/audits/CookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/GenericIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BounceTrackingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CookieDeprecationMetadataIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/StylesheetLoadingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/PropertyRuleIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedDictionaryIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueDetails;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/audits/CookieIssueDetails;
 	public final fun component10 ()Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;
 	public final fun component11 ()Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;
@@ -2631,6 +2632,7 @@ public final class org/hildan/chrome/devtools/domains/audits/InspectorIssueDetai
 	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;
 	public final fun component20 ()Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueDetails;
 	public final fun component21 ()Lorg/hildan/chrome/devtools/domains/audits/SharedDictionaryIssueDetails;
+	public final fun component22 ()Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueDetails;
 	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;
 	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;
 	public final fun component5 ()Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;
@@ -2638,8 +2640,8 @@ public final class org/hildan/chrome/devtools/domains/audits/InspectorIssueDetai
 	public final fun component7 ()Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;
 	public final fun component8 ()Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;
 	public final fun component9 ()Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;
-	public final fun copy (Lorg/hildan/chrome/devtools/domains/audits/CookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/GenericIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BounceTrackingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CookieDeprecationMetadataIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/StylesheetLoadingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/PropertyRuleIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedDictionaryIssueDetails;)Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/GenericIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BounceTrackingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CookieDeprecationMetadataIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/StylesheetLoadingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/PropertyRuleIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedDictionaryIssueDetails;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/audits/CookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/GenericIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BounceTrackingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CookieDeprecationMetadataIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/StylesheetLoadingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/PropertyRuleIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedDictionaryIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueDetails;)Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CookieIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/MixedContentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/HeavyAdIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ContentSecurityPolicyIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/LowTextContrastIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CorsIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/GenericIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/DeprecationIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/ClientHintIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthRequestIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/BounceTrackingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/CookieDeprecationMetadataIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/StylesheetLoadingIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/PropertyRuleIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/FederatedAuthUserInfoRequestIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SharedDictionaryIssueDetails;Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueDetails;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/audits/InspectorIssueDetails;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAttributionReportingIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/AttributionReportingIssueDetails;
 	public final fun getBlockedByResponseIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/BlockedByResponseIssueDetails;
@@ -2659,6 +2661,7 @@ public final class org/hildan/chrome/devtools/domains/audits/InspectorIssueDetai
 	public final fun getNavigatorUserAgentIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/NavigatorUserAgentIssueDetails;
 	public final fun getPropertyRuleIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/PropertyRuleIssueDetails;
 	public final fun getQuirksModeIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails;
+	public final fun getSelectElementAccessibilityIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueDetails;
 	public final fun getSharedArrayBufferIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/SharedArrayBufferIssueDetails;
 	public final fun getSharedDictionaryIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/SharedDictionaryIssueDetails;
 	public final fun getStylesheetLoadingIssueDetails ()Lorg/hildan/chrome/devtools/domains/audits/StylesheetLoadingIssueDetails;
@@ -2921,6 +2924,53 @@ public synthetic class org/hildan/chrome/devtools/domains/audits/QuirksModeIssue
 }
 
 public final class org/hildan/chrome/devtools/domains/audits/QuirksModeIssueDetails$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueDetails {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueDetails$Companion;
+	public fun <init> (ILorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueReason;Z)V
+	public final fun component1 ()I
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueReason;
+	public final fun component3 ()Z
+	public final fun copy (ILorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueReason;Z)Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueDetails;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueDetails;ILorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueReason;ZILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueDetails;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getHasDisallowedAttributes ()Z
+	public final fun getNodeId ()I
+	public final fun getSelectElementAccessibilityIssueReason ()Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueReason;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueDetails$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueDetails$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueDetails;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueDetails;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueDetails$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueReason : java/lang/Enum {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueReason$Companion;
+	public static final field DisallowedOptGroupChild Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueReason;
+	public static final field DisallowedSelectChild Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueReason;
+	public static final field InteractiveContentLegendChild Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueReason;
+	public static final field InteractiveContentOptionChild Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueReason;
+	public static final field NonPhrasingContentOptionChild Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueReason;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueReason;
+	public static fun values ()[Lorg/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueReason;
+}
+
+public final class org/hildan/chrome/devtools/domains/audits/SelectElementAccessibilityIssueReason$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -6043,6 +6093,36 @@ public final class org/hildan/chrome/devtools/domains/css/AddRuleResponse$Compan
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/css/CSSAnimationStyle {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/CSSAnimationStyle$Companion;
+	public fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;)V
+	public synthetic fun <init> (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/css/CSSStyle;
+	public final fun copy (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;)Lorg/hildan/chrome/devtools/domains/css/CSSAnimationStyle;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/CSSAnimationStyle;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/CSSAnimationStyle;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public final fun getStyle ()Lorg/hildan/chrome/devtools/domains/css/CSSStyle;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/css/CSSAnimationStyle$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/CSSAnimationStyle$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/css/CSSAnimationStyle;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/css/CSSAnimationStyle;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/CSSAnimationStyle$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/css/CSSComputedStyleProperty {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/CSSComputedStyleProperty$Companion;
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
@@ -6130,6 +6210,10 @@ public final class org/hildan/chrome/devtools/domains/css/CSSDomain {
 	public final fun fontsUpdatedEvents ()Lkotlinx/coroutines/flow/Flow;
 	public final fun forcePseudoState (ILjava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun forcePseudoState (Lorg/hildan/chrome/devtools/domains/css/ForcePseudoStateRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun forceStartingStyle (IZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun forceStartingStyle (Lorg/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getAnimatedStylesForNode (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getAnimatedStylesForNode (Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getBackgroundColors (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getBackgroundColors (Lorg/hildan/chrome/devtools/domains/css/GetBackgroundColorsRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun getComputedStyleForNode (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -6149,6 +6233,10 @@ public final class org/hildan/chrome/devtools/domains/css/CSSDomain {
 	public final fun getStyleSheetText (Lorg/hildan/chrome/devtools/domains/css/GetStyleSheetTextRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun mediaQueryResultChanged ()Lkotlinx/coroutines/flow/Flow;
 	public final fun mediaQueryResultChangedEvents ()Lkotlinx/coroutines/flow/Flow;
+	public final fun resolveValues (Ljava/util/List;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun resolveValues (Ljava/util/List;ILkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun resolveValues (Lorg/hildan/chrome/devtools/domains/css/ResolveValuesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun resolveValues$default (Lorg/hildan/chrome/devtools/domains/css/CSSDomain;Ljava/util/List;ILkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun setContainerQueryText (Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/css/SourceRange;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setContainerQueryText (Lorg/hildan/chrome/devtools/domains/css/SetContainerQueryTextRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun setEffectivePropertyValueForNode (ILjava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -7081,6 +7169,100 @@ public final class org/hildan/chrome/devtools/domains/css/ForcePseudoStateRespon
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest$Companion;
+	public fun <init> (IZ)V
+	public final fun component1 ()I
+	public final fun component2 ()Z
+	public final fun copy (IZ)Lorg/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest;IZILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getForced ()Z
+	public final fun getNodeId ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/ForceStartingStyleRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/ForceStartingStyleResponse {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/ForceStartingStyleResponse;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest$Companion;
+	public fun <init> (I)V
+	public final fun component1 ()I
+	public final fun copy (I)Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest;IILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getNodeId ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/util/List;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/util/List;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/css/CSSStyle;
+	public final fun component3 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAnimationStyles ()Ljava/util/List;
+	public final fun getInherited ()Ljava/util/List;
+	public final fun getTransitionsStyle ()Lorg/hildan/chrome/devtools/domains/css/CSSStyle;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/GetAnimatedStylesForNodeResponse$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/css/GetBackgroundColorsRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/GetBackgroundColorsRequest$Companion;
 	public fun <init> (I)V
@@ -7578,6 +7760,37 @@ public final class org/hildan/chrome/devtools/domains/css/GetStyleSheetTextRespo
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry$Companion;
+	public fun <init> ()V
+	public fun <init> (Ljava/util/List;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;)V
+	public synthetic fun <init> (Ljava/util/List;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/css/CSSStyle;
+	public final fun copy (Ljava/util/List;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;)Lorg/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry;Ljava/util/List;Lorg/hildan/chrome/devtools/domains/css/CSSStyle;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAnimationStyles ()Ljava/util/List;
+	public final fun getTransitionsStyle ()Lorg/hildan/chrome/devtools/domains/css/CSSStyle;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/InheritedAnimatedStyleEntry$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/hildan/chrome/devtools/domains/css/InheritedPseudoElementMatches {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/InheritedPseudoElementMatches$Companion;
 	public fun <init> (Ljava/util/List;)V
@@ -7762,6 +7975,82 @@ public synthetic class org/hildan/chrome/devtools/domains/css/PseudoElementMatch
 }
 
 public final class org/hildan/chrome/devtools/domains/css/PseudoElementMatches$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/ResolveValuesRequest {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/ResolveValuesRequest$Companion;
+	public fun <init> (Ljava/util/List;ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/dom/PseudoType;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/util/List;ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/dom/PseudoType;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()I
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun copy (Ljava/util/List;ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/dom/PseudoType;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/css/ResolveValuesRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/ResolveValuesRequest;Ljava/util/List;ILjava/lang/String;Lorg/hildan/chrome/devtools/domains/dom/PseudoType;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/ResolveValuesRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getNodeId ()I
+	public final fun getPropertyName ()Ljava/lang/String;
+	public final fun getPseudoIdentifier ()Ljava/lang/String;
+	public final fun getPseudoType ()Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public final fun getValues ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/css/ResolveValuesRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/ResolveValuesRequest$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/css/ResolveValuesRequest;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/css/ResolveValuesRequest;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/ResolveValuesRequest$Builder {
+	public fun <init> (Ljava/util/List;I)V
+	public final fun build ()Lorg/hildan/chrome/devtools/domains/css/ResolveValuesRequest;
+	public final fun getNodeId ()I
+	public final fun getPropertyName ()Ljava/lang/String;
+	public final fun getPseudoIdentifier ()Ljava/lang/String;
+	public final fun getPseudoType ()Lorg/hildan/chrome/devtools/domains/dom/PseudoType;
+	public final fun getValues ()Ljava/util/List;
+	public final fun setPropertyName (Ljava/lang/String;)V
+	public final fun setPseudoIdentifier (Ljava/lang/String;)V
+	public final fun setPseudoType (Lorg/hildan/chrome/devtools/domains/dom/PseudoType;)V
+}
+
+public final class org/hildan/chrome/devtools/domains/css/ResolveValuesRequest$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/ResolveValuesResponse {
+	public static final field Companion Lorg/hildan/chrome/devtools/domains/css/ResolveValuesResponse$Companion;
+	public fun <init> (Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/css/ResolveValuesResponse;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/css/ResolveValuesResponse;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/css/ResolveValuesResponse;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getResults ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class org/hildan/chrome/devtools/domains/css/ResolveValuesResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/hildan/chrome/devtools/domains/css/ResolveValuesResponse$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/hildan/chrome/devtools/domains/css/ResolveValuesResponse;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/hildan/chrome/devtools/domains/css/ResolveValuesResponse;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/hildan/chrome/devtools/domains/css/ResolveValuesResponse$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -11377,17 +11666,18 @@ public final class org/hildan/chrome/devtools/domains/debugger/events/DebuggerEv
 
 public final class org/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptFailedToParse : org/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptFailedToParse$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun component10 ()Ljava/lang/String;
-	public final fun component11 ()Ljava/lang/Boolean;
+	public final fun component10 ()Lkotlinx/serialization/json/JsonObject;
+	public final fun component11 ()Ljava/lang/String;
 	public final fun component12 ()Ljava/lang/Boolean;
-	public final fun component13 ()Ljava/lang/Integer;
-	public final fun component14 ()Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;
-	public final fun component15 ()Ljava/lang/Integer;
-	public final fun component16 ()Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;
-	public final fun component17 ()Ljava/lang/String;
+	public final fun component13 ()Ljava/lang/Boolean;
+	public final fun component14 ()Ljava/lang/Integer;
+	public final fun component15 ()Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;
+	public final fun component16 ()Ljava/lang/Integer;
+	public final fun component17 ()Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;
+	public final fun component18 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()I
 	public final fun component4 ()I
@@ -11395,10 +11685,11 @@ public final class org/hildan/chrome/devtools/domains/debugger/events/DebuggerEv
 	public final fun component6 ()I
 	public final fun component7 ()I
 	public final fun component8 ()Ljava/lang/String;
-	public final fun component9 ()Lkotlinx/serialization/json/JsonObject;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptFailedToParse;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptFailedToParse;Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptFailedToParse;
+	public final fun component9 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptFailedToParse;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptFailedToParse;Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptFailedToParse;
 	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBuildId ()Ljava/lang/String;
 	public final fun getCodeOffset ()Ljava/lang/Integer;
 	public final fun getEmbedderName ()Ljava/lang/String;
 	public final fun getEndColumn ()I
@@ -11437,30 +11728,32 @@ public final class org/hildan/chrome/devtools/domains/debugger/events/DebuggerEv
 
 public final class org/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptParsed : org/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptParsed$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/util/List;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/util/List;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/util/List;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/util/List;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun component10 ()Ljava/lang/Boolean;
-	public final fun component11 ()Ljava/lang/String;
-	public final fun component12 ()Ljava/lang/Boolean;
+	public final fun component10 ()Lkotlinx/serialization/json/JsonObject;
+	public final fun component11 ()Ljava/lang/Boolean;
+	public final fun component12 ()Ljava/lang/String;
 	public final fun component13 ()Ljava/lang/Boolean;
-	public final fun component14 ()Ljava/lang/Integer;
-	public final fun component15 ()Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;
-	public final fun component16 ()Ljava/lang/Integer;
-	public final fun component17 ()Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;
-	public final fun component18 ()Ljava/util/List;
-	public final fun component19 ()Ljava/lang/String;
+	public final fun component14 ()Ljava/lang/Boolean;
+	public final fun component15 ()Ljava/lang/Integer;
+	public final fun component16 ()Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;
+	public final fun component17 ()Ljava/lang/Integer;
+	public final fun component18 ()Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;
+	public final fun component19 ()Ljava/util/List;
 	public final fun component2 ()Ljava/lang/String;
+	public final fun component20 ()Ljava/lang/String;
 	public final fun component3 ()I
 	public final fun component4 ()I
 	public final fun component5 ()I
 	public final fun component6 ()I
 	public final fun component7 ()I
 	public final fun component8 ()Ljava/lang/String;
-	public final fun component9 ()Lkotlinx/serialization/json/JsonObject;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/util/List;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptParsed;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptParsed;Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptParsed;
+	public final fun component9 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/util/List;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptParsed;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptParsed;Ljava/lang/String;Ljava/lang/String;IIIIILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/json/JsonObject;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/runtime/StackTrace;Ljava/lang/Integer;Lorg/hildan/chrome/devtools/domains/debugger/ScriptLanguage;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/debugger/events/DebuggerEvent$ScriptParsed;
 	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBuildId ()Ljava/lang/String;
 	public final fun getCodeOffset ()Ljava/lang/Integer;
 	public final fun getDebugSymbols ()Ljava/util/List;
 	public final fun getEmbedderName ()Ljava/lang/String;
@@ -37322,18 +37615,20 @@ public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEven
 
 public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated : org/hildan/chrome/devtools/domains/preload/events/PreloadEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated$Companion;
-	public fun <init> (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;Ljava/lang/String;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;Ljava/lang/String;)V
 	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
-	public final fun component5 ()Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
-	public final fun component6 ()Ljava/lang/String;
-	public final fun copy (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated;Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
+	public final fun component6 ()Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;Ljava/lang/String;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated;Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;Ljava/lang/String;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrefetchStatusUpdated;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getInitiatingFrameId ()Ljava/lang/String;
 	public final fun getKey ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;
+	public final fun getPipelineId ()Ljava/lang/String;
 	public final fun getPrefetchStatus ()Lorg/hildan/chrome/devtools/domains/preload/PrefetchStatus;
 	public final fun getPrefetchUrl ()Ljava/lang/String;
 	public final fun getRequestId ()Ljava/lang/String;
@@ -37423,19 +37718,21 @@ public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEven
 
 public final class org/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated : org/hildan/chrome/devtools/domains/preload/events/PreloadEvent {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated$Companion;
-	public fun <init> (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;)V
-	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;)V
+	public synthetic fun <init> (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;
-	public final fun component2 ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
-	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
-	public final fun component4 ()Ljava/lang/String;
-	public final fun component5 ()Ljava/util/List;
-	public final fun copy (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
+	public final fun component4 ()Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/util/List;
+	public final fun copy (Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;Ljava/lang/String;Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/preload/events/PreloadEvent$PrerenderStatusUpdated;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getDisallowedMojoInterface ()Ljava/lang/String;
 	public final fun getKey ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingAttemptKey;
 	public final fun getMismatchedHeaders ()Ljava/util/List;
+	public final fun getPipelineId ()Ljava/lang/String;
 	public final fun getPrerenderStatus ()Lorg/hildan/chrome/devtools/domains/preload/PrerenderFinalStatus;
 	public final fun getStatus ()Lorg/hildan/chrome/devtools/domains/preload/PreloadingStatus;
 	public fun hashCode ()I
@@ -45436,25 +45733,29 @@ public final class org/hildan/chrome/devtools/domains/target/CreateBrowserContex
 
 public final class org/hildan/chrome/devtools/domains/target/CreateTargetRequest {
 	public static final field Companion Lorg/hildan/chrome/devtools/domains/target/CreateTargetRequest$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Ljava/lang/Boolean;
 	public final fun component2 ()Ljava/lang/Integer;
 	public final fun component3 ()Ljava/lang/Integer;
-	public final fun component4 ()Ljava/lang/String;
-	public final fun component5 ()Ljava/lang/Boolean;
-	public final fun component6 ()Ljava/lang/Boolean;
+	public final fun component4 ()Ljava/lang/Integer;
+	public final fun component5 ()Ljava/lang/Integer;
+	public final fun component6 ()Ljava/lang/String;
 	public final fun component7 ()Ljava/lang/Boolean;
 	public final fun component8 ()Ljava/lang/Boolean;
-	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)Lorg/hildan/chrome/devtools/domains/target/CreateTargetRequest;
-	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/target/CreateTargetRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/target/CreateTargetRequest;
+	public final fun component9 ()Ljava/lang/Boolean;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)Lorg/hildan/chrome/devtools/domains/target/CreateTargetRequest;
+	public static synthetic fun copy$default (Lorg/hildan/chrome/devtools/domains/target/CreateTargetRequest;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/domains/target/CreateTargetRequest;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBackground ()Ljava/lang/Boolean;
 	public final fun getBrowserContextId ()Ljava/lang/String;
 	public final fun getEnableBeginFrameControl ()Ljava/lang/Boolean;
 	public final fun getForTab ()Ljava/lang/Boolean;
 	public final fun getHeight ()Ljava/lang/Integer;
+	public final fun getLeft ()Ljava/lang/Integer;
 	public final fun getNewWindow ()Ljava/lang/Boolean;
+	public final fun getTop ()Ljava/lang/Integer;
 	public final fun getUrl ()Ljava/lang/String;
 	public final fun getWidth ()Ljava/lang/Integer;
 	public fun hashCode ()I
@@ -45480,7 +45781,9 @@ public final class org/hildan/chrome/devtools/domains/target/CreateTargetRequest
 	public final fun getEnableBeginFrameControl ()Ljava/lang/Boolean;
 	public final fun getForTab ()Ljava/lang/Boolean;
 	public final fun getHeight ()Ljava/lang/Integer;
+	public final fun getLeft ()Ljava/lang/Integer;
 	public final fun getNewWindow ()Ljava/lang/Boolean;
+	public final fun getTop ()Ljava/lang/Integer;
 	public final fun getUrl ()Ljava/lang/String;
 	public final fun getWidth ()Ljava/lang/Integer;
 	public final fun setBackground (Ljava/lang/Boolean;)V
@@ -45488,7 +45791,9 @@ public final class org/hildan/chrome/devtools/domains/target/CreateTargetRequest
 	public final fun setEnableBeginFrameControl (Ljava/lang/Boolean;)V
 	public final fun setForTab (Ljava/lang/Boolean;)V
 	public final fun setHeight (Ljava/lang/Integer;)V
+	public final fun setLeft (Ljava/lang/Integer;)V
 	public final fun setNewWindow (Ljava/lang/Boolean;)V
+	public final fun setTop (Ljava/lang/Integer;)V
 	public final fun setWidth (Ljava/lang/Integer;)V
 }
 
