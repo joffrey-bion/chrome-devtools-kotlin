@@ -154,7 +154,7 @@ class IntegrationTests {
     }
 
     private fun List<AXProperty>?.anyUndefinedName(): Boolean =
-        this != null && this.any { it.name == AXPropertyName.NotDefinedInProtocol }
+        this != null && this.any { it.name is AXPropertyName.NotDefinedInProtocol }
 
     @OptIn(ExperimentalChromeApi::class)
     @Test
