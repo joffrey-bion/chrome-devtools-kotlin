@@ -27,22 +27,19 @@ object ExtDeclarations {
 
     val experimentalChromeApi = ClassName(protocolPackage, "ExperimentalChromeApi")
 
+    val fcEnumSerializer = ClassName(protocolPackage, "FCEnumSerializer")
+
     val allDomainsTargetInterface = ClassName(targetsPackage, "AllDomainsTarget")
     val allDomainsTargetImplementation = ClassName(targetsPackage, "UberTarget")
 
-    val sessionsFileName = "ChildSessions"
-    val sessionAdaptersFileName = "ChildSessionAdapters"
+    const val sessionsFileName = "ChildSessions"
+    const val sessionAdaptersFileName = "ChildSessionAdapters"
     val childSessionInterface = ClassName(sessionsPackage, "ChildSession")
     val childSessionUnsafeFun = childSessionInterface.member("unsafe")
 
     fun targetInterface(target: TargetType): ClassName = ClassName(targetsPackage, "${target.kotlinName}Target")
     fun sessionInterface(target: TargetType): ClassName = ClassName(sessionsPackage, "${target.kotlinName}Session")
     fun sessionAdapter(target: TargetType): ClassName = ClassName(sessionsPackage, "${target.kotlinName}SessionAdapter")
-
-    object Serialization {
-        val jsonPrimitiveExtension = MemberName("kotlinx.serialization.json", "jsonPrimitive")
-        val JsonPrimitiveFactory = MemberName("kotlinx.serialization.json", "JsonPrimitive")
-    }
 }
 
 object Annotations {
@@ -54,9 +51,6 @@ object Annotations {
     fun serializableWith(serializerClass: ClassName) = AnnotationSpec.builder(Serializable::class)
         .addMember("with = %T::class", serializerClass)
         .build()
-
-    @OptIn(ExperimentalSerializationApi::class)
-    val keepGeneratedSerializer = AnnotationSpec.builder(KeepGeneratedSerializer::class).build()
 
     val jvmOverloads = AnnotationSpec.builder(JvmOverloads::class).build()
 
@@ -80,6 +74,12 @@ object Annotations {
         // annotating the relevant property/constructor-arg with experimental annotation. The whole class/constructor
         // would need to be annotated as experimental, which is not desirable
         "OPT_IN_USAGE",
+        // we add @SerializableWith on each sub-object in forward-compatible enum interfaces to avoid issues when using
+        // the serializers of the subtypes directly. The serialization plugin complains because we're using the parent
+        // interface serializer on each subtype instead of a KSerializer<Subtype>, which is technically not safe in
+        // general. We accept the tradeoff in our case, which is that this will throw ClassCaseException:
+        // val value: AXPropertyName.level = Json.decodeFromString<AXPropertyName.level>("\"url\"")
+        "SERIALIZER_TYPE_INCOMPATIBLE",
     )
 
     @Suppress("SameParameterValue")
