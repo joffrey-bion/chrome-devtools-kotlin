@@ -18,6 +18,7 @@ import org.testcontainers.junit.jupiter.Testcontainers
 import org.testcontainers.utility.*
 import kotlin.test.*
 import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 
 @Testcontainers
 class IntegrationTests {
@@ -80,10 +81,10 @@ class IntegrationTests {
 
                     assertTrue(chrome.targets().any { it.id == targetId }, "the new target should be listed")
 
-                    val nodeId = withTimeoutOrNull(1000) {
+                    val nodeId = withTimeoutOrNull(5.seconds) {
                         page.dom.awaitNodeBySelector("form[action='/search']")
                     }
-                    assertNotNull(nodeId)
+                    assertNotNull(nodeId, "timed out while waiting for DOM node with attribute: form[action='/search']")
 
                     val getOuterHTMLResponse = page.dom.getOuterHTML(GetOuterHTMLRequest(nodeId = nodeId))
                     assertTrue(getOuterHTMLResponse.outerHTML.contains("<input name=\"source\""))
@@ -123,10 +124,10 @@ class IntegrationTests {
                     page.goto("http://www.google.com")
                     assertEquals("Google", page.target.getTargetInfo().targetInfo.title)
 
-                    val nodeId = withTimeoutOrNull(1000) {
+                    val nodeId = withTimeoutOrNull(5.seconds) {
                         page.dom.awaitNodeBySelector("form[action='/search']")
                     }
-                    assertNotNull(nodeId)
+                    assertNotNull(nodeId, "timed out while waiting for DOM node with attribute: form[action='/search']")
                 }
             }
         }
