@@ -1017,11 +1017,11 @@
                         {
                             "name": "requestId",
                             "description": "The unique request id.",
+                            "optional": true,
                             "$ref": "Network.RequestId"
                         },
                         {
                             "name": "url",
-                            "optional": true,
                             "type": "string"
                         }
                     ]
@@ -1886,6 +1886,36 @@
                     ]
                 },
                 {
+                    "id": "SelectElementAccessibilityIssueReason",
+                    "type": "string",
+                    "enum": [
+                        "DisallowedSelectChild",
+                        "DisallowedOptGroupChild",
+                        "NonPhrasingContentOptionChild",
+                        "InteractiveContentOptionChild",
+                        "InteractiveContentLegendChild"
+                    ]
+                },
+                {
+                    "id": "SelectElementAccessibilityIssueDetails",
+                    "description": "This isue warns about errors in the select element content model.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "nodeId",
+                            "$ref": "DOM.BackendNodeId"
+                        },
+                        {
+                            "name": "selectElementAccessibilityIssueReason",
+                            "$ref": "SelectElementAccessibilityIssueReason"
+                        },
+                        {
+                            "name": "hasDisallowedAttributes",
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                {
                     "id": "StyleSheetLoadingIssueReason",
                     "type": "string",
                     "enum": [
@@ -1974,7 +2004,8 @@
                         "StylesheetLoadingIssue",
                         "FederatedAuthUserInfoRequestIssue",
                         "PropertyRuleIssue",
-                        "SharedDictionaryIssue"
+                        "SharedDictionaryIssue",
+                        "SelectElementAccessibilityIssue"
                     ]
                 },
                 {
@@ -2087,6 +2118,11 @@
                             "name": "sharedDictionaryIssueDetails",
                             "optional": true,
                             "$ref": "SharedDictionaryIssueDetails"
+                        },
+                        {
+                            "name": "selectElementAccessibilityIssueDetails",
+                            "optional": true,
+                            "$ref": "SelectElementAccessibilityIssueDetails"
                         }
                     ]
                 },
@@ -3394,6 +3430,24 @@
                     ]
                 },
                 {
+                    "id": "CSSAnimationStyle",
+                    "description": "CSS style coming from animations with the name of the animation.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "name",
+                            "description": "The name of the animation.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "style",
+                            "description": "The style coming from the animation.",
+                            "$ref": "CSSStyle"
+                        }
+                    ]
+                },
+                {
                     "id": "InheritedStyleEntry",
                     "description": "Inherited CSS rule collection from ancestor node.",
                     "type": "object",
@@ -3411,6 +3465,28 @@
                             "items": {
                                 "$ref": "RuleMatch"
                             }
+                        }
+                    ]
+                },
+                {
+                    "id": "InheritedAnimatedStyleEntry",
+                    "description": "Inherited CSS style collection for animated styles from ancestor node.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "animationStyles",
+                            "description": "Styles coming from the animations of the ancestor, if any, in the style inheritance chain.",
+                            "optional": true,
+                            "type": "array",
+                            "items": {
+                                "$ref": "CSSAnimationStyle"
+                            }
+                        },
+                        {
+                            "name": "transitionsStyle",
+                            "description": "The style coming from the transitions of the ancestor, if any, in the style inheritance chain.",
+                            "optional": true,
+                            "$ref": "CSSStyle"
                         }
                     ]
                 },
@@ -4645,6 +4721,22 @@
                     ]
                 },
                 {
+                    "name": "forceStartingStyle",
+                    "description": "Ensures that the given node is in its starting-style state.",
+                    "parameters": [
+                        {
+                            "name": "nodeId",
+                            "description": "The element id for which to force the starting-style state.",
+                            "$ref": "DOM.NodeId"
+                        },
+                        {
+                            "name": "forced",
+                            "description": "Boolean indicating if this is on or off.",
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                {
                     "name": "getBackgroundColors",
                     "parameters": [
                         {
@@ -4698,6 +4790,54 @@
                     ]
                 },
                 {
+                    "name": "resolveValues",
+                    "description": "Resolve the specified values in the context of the provided element.\nFor example, a value of '1em' is evaluated according to the computed\n'font-size' of the element and a value 'calc(1px + 2px)' will be\nresolved to '3px'.",
+                    "parameters": [
+                        {
+                            "name": "values",
+                            "description": "Substitution functions (var()/env()/attr()) and cascade-dependent\nkeywords (revert/revert-layer) do not work.",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "name": "nodeId",
+                            "description": "Id of the node in whose context the expression is evaluated",
+                            "$ref": "DOM.NodeId"
+                        },
+                        {
+                            "name": "propertyName",
+                            "description": "Only longhands and custom property names are accepted.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "pseudoType",
+                            "description": "Pseudo element type, only works for pseudo elements that generate\nelements in the tree, such as ::before and ::after.",
+                            "experimental": true,
+                            "optional": true,
+                            "$ref": "DOM.PseudoType"
+                        },
+                        {
+                            "name": "pseudoIdentifier",
+                            "description": "Pseudo element custom ident.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "string"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "results",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    ]
+                },
+                {
                     "name": "getInlineStylesForNode",
                     "description": "Returns the styles defined inline (explicitly in the \"style\" attribute and implicitly, using DOM\nattributes) for a DOM node identified by `nodeId`.",
                     "parameters": [
@@ -4718,6 +4858,43 @@
                             "description": "Attribute-defined element style (e.g. resulting from \"width=20 height=100%\").",
                             "optional": true,
                             "$ref": "CSSStyle"
+                        }
+                    ]
+                },
+                {
+                    "name": "getAnimatedStylesForNode",
+                    "description": "Returns the styles coming from animations & transitions\nincluding the animation & transition styles coming from inheritance chain.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "nodeId",
+                            "$ref": "DOM.NodeId"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "animationStyles",
+                            "description": "Styles coming from animations.",
+                            "optional": true,
+                            "type": "array",
+                            "items": {
+                                "$ref": "CSSAnimationStyle"
+                            }
+                        },
+                        {
+                            "name": "transitionsStyle",
+                            "description": "Style coming from transitions.",
+                            "optional": true,
+                            "$ref": "CSSStyle"
+                        },
+                        {
+                            "name": "inherited",
+                            "description": "Inherited style entries for animationsStyle and transitionsStyle from\nthe inheritance chain of the element.",
+                            "optional": true,
+                            "type": "array",
+                            "items": {
+                                "$ref": "InheritedAnimatedStyleEntry"
+                            }
                         }
                     ]
                 },
@@ -15772,7 +15949,7 @@
                         },
                         {
                             "name": "headers",
-                            "description": "Raw response headers as they were received over the wire.",
+                            "description": "Raw response headers as they were received over the wire.\nDuplicate headers in the response are represented as a single key with their values\nconcatentated using `\\n` as the separator.\nSee also `headersText` that contains verbatim text for HTTP/1.*.",
                             "$ref": "Headers"
                         },
                         {
@@ -15827,7 +16004,7 @@
                         },
                         {
                             "name": "headers",
-                            "description": "Raw response headers as they were received over the wire.",
+                            "description": "Raw response headers as they were received over the wire.\nDuplicate headers in the response are represented as a single key with their values\nconcatentated using `\\n` as the separator.\nSee also `headersText` that contains verbatim text for HTTP/1.*.",
                             "$ref": "Headers"
                         }
                     ]
@@ -23828,6 +24005,20 @@
                             "type": "string"
                         },
                         {
+                            "name": "left",
+                            "description": "Frame left origin in DIP (headless chrome only).",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "top",
+                            "description": "Frame top origin in DIP (headless chrome only).",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
                             "name": "width",
                             "description": "Frame width in DIP (headless chrome only).",
                             "optional": true,
@@ -26355,6 +26546,11 @@
                     ]
                 },
                 {
+                    "id": "PreloadPipelineId",
+                    "description": "Chrome manages different types of preloads together using a\nconcept of preloading pipeline. For example, if a site uses a\nSpeculationRules for prerender, Chrome first starts a prefetch and\nthen upgrades it to prerender.\n\nCDP events for them are emitted separately but they share\n`PreloadPipelineId`.",
+                    "type": "string"
+                },
+                {
                     "id": "PrerenderFinalStatus",
                     "description": "List of FinalStatus reasons for Prerender2.",
                     "type": "string",
@@ -26569,6 +26765,10 @@
                             "$ref": "PreloadingAttemptKey"
                         },
                         {
+                            "name": "pipelineId",
+                            "$ref": "PreloadPipelineId"
+                        },
+                        {
                             "name": "initiatingFrameId",
                             "description": "The frame id of the frame initiating prefetch.",
                             "$ref": "Page.FrameId"
@@ -26598,6 +26798,10 @@
                         {
                             "name": "key",
                             "$ref": "PreloadingAttemptKey"
+                        },
+                        {
+                            "name": "pipelineId",
+                            "$ref": "PreloadPipelineId"
                         },
                         {
                             "name": "status",
