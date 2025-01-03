@@ -165,12 +165,14 @@ class IntegrationTests {
                 // we want all coroutines to finish before we close the browser session
                 withContext(Dispatchers.IO) {
                     repeat(4) {
-                        browser.newPage().use { page ->
-                            page.goto("http://www.google.com")
-                            page.runtime.getHeapUsage()
-                            val docRoot = page.dom.getDocumentRootNodeId()
-                            page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
-                            page.storage.getCookies()
+                        launch {
+                            browser.newPage().use { page ->
+                                page.goto("http://www.google.com")
+                                page.runtime.getHeapUsage()
+                                val docRoot = page.dom.getDocumentRootNodeId()
+                                page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
+                                page.storage.getCookies()
+                            }
                         }
                     }
                 }
