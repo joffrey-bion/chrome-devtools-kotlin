@@ -6,6 +6,11 @@ on:
       version:
         description: "New semver version without cdp suffix"
         required: true
+      doPublish:
+        type: boolean
+        description: "Maven publication (if false, only the changelog and GitHub release are done)"
+        required: true
+        default: true
 
 run-name: "Release ${{ inputs.version }}-(cdp-version)"
 
@@ -53,4 +58,4 @@ jobs:
           gpg-signing-password: ${{ secrets.GPG_PASSWORD }}
           sonatype-username: ${{ secrets.OSSRH_TOKEN_USERNAME }}
           sonatype-password: ${{ secrets.OSSRH_TOKEN_PASSWORD }}
-          gradle-publish-tasks: publishToSonatype closeAndReleaseSonatypeStagingRepository
+          gradle-publish-tasks: ${{ inputs.doPublish && 'publishToSonatype closeAndReleaseSonatypeStagingRepository' || '' }}
