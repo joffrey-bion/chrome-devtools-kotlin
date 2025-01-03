@@ -43,6 +43,7 @@ suspend fun PageSession.clickOnElement(
         expression = "this.clickOnElement(selector, clickDurationMillis.milliseconds, mouseButton)",
         imports = ["kotlin.time.Duration.Companion.milliseconds"],
     ),
+    level = DeprecationLevel.ERROR,
 )
 suspend fun PageSession.clickOnElement(
     selector: CssSelector,

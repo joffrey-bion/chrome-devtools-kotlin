@@ -48,6 +48,7 @@ suspend fun InputDomain.dispatchMouseClick(
         expression = "this.dispatchMouseClick(x, y, clickDurationMillis.milliseconds, button)",
         imports = ["kotlin.time.Duration.Companion.milliseconds"],
     ),
+    level = DeprecationLevel.ERROR,
 )
 suspend fun InputDomain.dispatchMouseClick(
     x: Double,
