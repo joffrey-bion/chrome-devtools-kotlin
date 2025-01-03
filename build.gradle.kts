@@ -1,4 +1,5 @@
 import org.hildan.chrome.devtools.build.*
+import org.jetbrains.kotlin.gradle.*
 import org.jetbrains.kotlin.gradle.targets.jvm.tasks.*
 
 plugins {
@@ -28,6 +29,7 @@ repositories {
 
 private val generatedProtocolSourcesDirPath = "src/commonMain/generated"
 
+@OptIn(ExperimentalWasmDsl::class)
 kotlin {
     jvmToolchain(11)
 
@@ -36,6 +38,12 @@ kotlin {
         browser()
         nodejs()
     }
+    wasmJs {
+        browser()
+        nodejs()
+        d8()
+    }
+
     mingwX64()
     linuxX64()
     linuxArm64()
@@ -47,26 +55,22 @@ kotlin {
     watchosX64()
     watchosArm32()
     watchosArm64()
+    watchosDeviceArm64()
     watchosSimulatorArm64()
     tvosX64()
     tvosArm64()
     tvosSimulatorArm64()
 
+    androidNativeArm32()
+    androidNativeArm64()
+    androidNativeX64()
+    androidNativeX86()
+
     // Not supported yet by Ktor
 
-    // wasmJs {
-    //     browser()
-    //     nodejs()
-    //     d8()
-    // }
     // wasmWasi {
     //     nodejs()
     // }
-    // watchosDeviceArm64()
-    // androidNativeArm32()
-    // androidNativeArm64()
-    // androidNativeX64()
-    // androidNativeX86()
 
     sourceSets {
         commonMain {
