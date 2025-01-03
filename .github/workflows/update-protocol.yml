@@ -34,9 +34,8 @@ jobs:
 
       - name: Create pull-request
         uses: peter-evans/create-pull-request@v7
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }} # using personal token to trigger CI build
         with:
+          token: "${{ secrets.GH_PAT }}" # using personal token to trigger CI build
           branch: "protocol-update"
           author: "Protocol Update Workflow <protocol-updater@users.noreply.github.com>"
           committer: "Protocol Update Workflow <protocol-updater@users.noreply.github.com>"
