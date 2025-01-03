@@ -8,7 +8,7 @@ on:
         required: true
       doPublish:
         type: boolean
-        description: "Maven publication (if false, only the changelog and GitHub release are done)"
+        description: "Publish to maven (if unchecked, only the changelog, GitHub release, and git tag are done)"
         required: true
         default: true
 
@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }} # to bypass branch protection rules to push the changelog
 
       - name: Set up JDK
         uses: actions/setup-java@v4
