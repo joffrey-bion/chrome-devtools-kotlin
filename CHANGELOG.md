@@ -1,5 +1,31 @@
 # Change Log
 
+## [7.0.0\-1400418](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/7.0.0-1400418) (2025-01-04)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/6.6.0-1391447...7.0.0-1400418)
+
+**Implemented enhancements:**
+
+- Add support for `watchosDeviceArm64` target [\#484](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/484)
+- Add support for `wasmJs` target [\#483](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/483)
+- Add support for `androidNative\*` targets [\#482](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/482)
+- Ensure forward compatibility of experimental enums [\#467](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/467)
+- Forward compatible enums [\#476](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/476) ([@joffrey-bion](https://github.com/joffrey-bion))
+
+**Deprecations:**
+
+- Raise deprecation level to `ERROR` for `PageSession.clickOnElement` and `InputDomain.dispatchMouseClick` using long milliseconds [\#481](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/481)
+
+**Upgraded dependencies:**
+
+- Update to Chrome DevTools Protocol version 1400418 [\#480](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/480) ([@joffrey-bion](https://github.com/joffrey-bion))
+- Bump ktor from 3.0.2 to 3.0.3 [\#471](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/471) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.jetbrains.kotlinx:kotlinx\-coroutines\-core from 1.9.0 to 1.10.1 [\#475](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/475) ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+**Fixed bugs:**
+
+- `kotlinx.serialization.SerializationException: org.hildan.chrome.devtools.domains.accessibility.AXPropertyName does not contain element with name 'uninteresting'` [\#466](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/466)
+- Synthetic enum types hypothetically could miss `deprecated`/`experimental` flags [\#468](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/468)
+
 ## [6.6.0\-1391447](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/6.6.0-1391447) (2024-12-05)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/6.5.0-1383960...6.6.0-1391447)
 
