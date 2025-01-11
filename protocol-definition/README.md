@@ -37,13 +37,14 @@ This file is manually maintained at the moment, as the process is a bit tricky t
 
 There are 2 kinds of "target types":
 
-* the "protocol" target types are the ones that are used in the protocol for the `TargetInfo.type` field. They define
-  real-life types of targets (`page`, `iframe`, `worker`), but they don't all differ in their capabilities on the server.
+* the **"protocol" target types** are the ones that are used in the protocol for the
+  [TargetInfo.type](https://chromedevtools.github.io/devtools-protocol/tot/Target/#type-TargetInfo) field.
+  They define real-life types of targets (`page`, `iframe`, `worker`), but they don't all differ in their capabilities on the server.
   For this reason, they don't correspond one-to-one to Kotlin interfaces in this library.
-* the "DevTools agent host" types directly relate to Chromium's implementation, which means they represent the target
-  types based on their capabilities (the domains they support). This is why they are represented by `*Target`
-  interfaces in the Kotlin code generation of this library.
-  Each of those can handle one or more "protocol" target types. For example the Chromium target type "RenderFrame" is the
+* the **"Chromium" target types** (or "DevTools agent host" types) directly relate to Chromium's implementation,
+  which means they represent the target types based on their capabilities (the domains they support).
+  This is why they are represented by `*Target` interfaces in the Kotlin code generation of this library.
+  Each of those can handle one or more "protocol" target types. For example, the Chromium target type "RenderFrame" is the
   implementation handling the `page`, `iframe` and `webview` target types from the protocol.
 
 The list of "protocol" target types is effectively defined by the set of `const char DevToolsAgentHost::kTypeX[]`
