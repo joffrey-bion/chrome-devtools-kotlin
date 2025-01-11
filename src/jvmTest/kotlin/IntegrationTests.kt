@@ -205,6 +205,7 @@ class IntegrationTests {
 
             val knownUnsupportedDomains = setOf(
                 "ApplicationCache", // was removed in tip-of-tree, but still supported by the container
+                "Database",         // was removed in tip-of-tree, but still supported by the container
             )
             val actualSupportedDomains = descriptor.domains
                 .filterNot { it.domain in knownUnsupportedDomains}
@@ -226,7 +227,6 @@ class IntegrationTests {
                     // https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/233
                     //page.cacheStorage.requestCacheNames(RequestCacheNamesRequest("google.com"))
                     page.css.getMediaQueries()
-                    page.database.enable()
                     page.debugger.disable()
                     page.deviceOrientation.clearDeviceOrientationOverride()
                     page.domDebugger.setDOMBreakpoint(
