@@ -13696,7 +13696,8 @@
                         "EnterprisePolicy",
                         "StorageAccess",
                         "TopLevelStorageAccess",
-                        "Scheme"
+                        "Scheme",
+                        "SameSiteNoneCookiesInSandbox"
                     ]
                 },
                 {
@@ -23063,6 +23064,36 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "getAffectedUrlsForThirdPartyCookieMetadata",
+                    "description": "Returns the list of URLs from a page and its embedded resources that match\nexisting grace period URL pattern rules.\nhttps://developers.google.com/privacy-sandbox/cookies/temporary-exceptions/grace-period",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "firstPartyUrl",
+                            "description": "The URL of the page currently being visited.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "thirdPartyUrls",
+                            "description": "The list of embedded resource URLs from the page.",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "matchedUrls",
+                            "description": "Array of matching URLs. If there is a primary pattern match for the first-\nparty URL, only the first-party URL is returned in the array.",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    ]
                 }
             ],
             "events": [
@@ -23771,6 +23802,18 @@
                             "type": "integer"
                         }
                     ]
+                },
+                {
+                    "id": "WindowState",
+                    "description": "The state of the target window.",
+                    "experimental": true,
+                    "type": "string",
+                    "enum": [
+                        "normal",
+                        "minimized",
+                        "maximized",
+                        "fullscreen"
+                    ]
                 }
             ],
             "commands": [
@@ -23946,6 +23989,12 @@
                             "description": "Frame height in DIP (requires newWindow to be true or headless shell).",
                             "optional": true,
                             "type": "integer"
+                        },
+                        {
+                            "name": "windowState",
+                            "description": "Frame window state (requires newWindow to be true or headless shell).\nDefault is normal.",
+                            "optional": true,
+                            "$ref": "WindowState"
                         },
                         {
                             "name": "browserContextId",
