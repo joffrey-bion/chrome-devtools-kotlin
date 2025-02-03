@@ -1,5 +1,17 @@
 # Change Log
 
+## [7.1.0\-1410712](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/7.1.0-1410712) (2025-02-03)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/7.0.0-1400418...7.1.0-1410712)
+
+**Upgraded dependencies:**
+
+- Update to Chrome DevTools Protocol version 1410712 [\#489](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/489) ([@joffrey-bion](https://github.com/joffrey-bion))
+- Bump kotlin from 2.1.0 to 2.1.10 [\#492](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/492) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.jetbrains.kotlinx:kotlinx\-serialization\-json from 1.7.3 to 1.8.0 [\#486](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/486) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Update to Chrome DevTools Protocol version 1404580 [\#487](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/487) ([@joffrey-bion](https://github.com/joffrey-bion))
+- Bump org.jetbrains.kotlinx:atomicfu from 0.26.1 to 0.27.0 [\#488](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/488) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Update to Chrome DevTools Protocol version 1402036 [\#485](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/485) ([@joffrey-bion](https://github.com/joffrey-bion))
+
 ## [7.0.0\-1400418](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/7.0.0-1400418) (2025-01-04)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/6.6.0-1391447...7.0.0-1400418)
 
