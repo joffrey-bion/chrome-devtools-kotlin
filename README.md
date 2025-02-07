@@ -65,10 +65,11 @@ if the attached target supports a given domain.
 For instance, `PageSession.dom` gives access to the DOM domain in this page session, which allows to issue commands 
 and listen to DOM events.
 
-> Note: The supported set of domains for each target type is not clearly defined by the protocol, so I have to
-> regularly extract this information from
-> [Chromium's source code itself](https://source.chromium.org/search?q=%22session-%3ECreateAndAddHandler%22%20f:devtools&ss=chromium)
-> and update my own extra definition file: [target_types.json](protocol-definition/target_types.json).
+> Note: The supported set of domains for each target type is 
+> [not clearly defined](https://github.com/ChromeDevTools/devtools-protocol/issues/311) by the protocol, so I have to
+> regularly extract this information from Chromium's source code and update my own extra definition file:
+> [target_types.json](protocol-definition/target_types.json).
+> This process is described in details in a dedicated [README](protocol-definition/README.md).
 > 
 > Because of this, there might be some missing domains on some session types at some point in time that require
 > manual adjustment.
