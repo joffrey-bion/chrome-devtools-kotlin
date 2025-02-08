@@ -20,8 +20,8 @@ interface ChromeSession {
     fun unsafe(): AllDomainsTarget
 
     /**
-     * Closes the underlying web socket connection, effectively closing every session based on the same web socket
-     * connection.
+     * Closes the underlying web socket connection of this session, effectively closing every other session based on
+     * the same web socket connection. This is equivalent to closing the entire browser session.
      */
     suspend fun closeWebSocket()
 }
