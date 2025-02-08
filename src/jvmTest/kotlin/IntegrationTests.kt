@@ -25,6 +25,12 @@ import kotlin.time.Duration.Companion.seconds
 @Testcontainers
 class IntegrationTests {
 
+    /**
+     * A container running the "raw" Chrome with support for the JSON HTTP API of the DevTools protocol (in addition to
+     * the web socket API).
+     *
+     * One must first connect via the HTTP API at `http://localhost:{port}` and then get the web socket URL from there.
+     */
     @Container
     var chromeContainer: GenericContainer<*> = GenericContainer("zenika/alpine-chrome")
         .withExposedPorts(9222)
@@ -51,17 +57,18 @@ class IntegrationTests {
             val version = chrome.version()
             assertTrue(version.browser.contains("Chrome"))
             assertTrue(version.userAgent.contains("HeadlessChrome"))
-            assertTrue(version.webSocketDebuggerUrl.startsWith("ws://localhost"))
+            assertTrue(version.webSocketDebuggerUrl.startsWith("ws://"), "the debugger URL should start with ws://, but was: ${version.webSocketDebuggerUrl}")
 
             val protocolJson = chrome.protocolJson()
             assertTrue(protocolJson.isNotEmpty(), "the JSON definition of the protocol should not be empty")
 
-            val targets = chrome.targets()
-            assertTrue(targets.isNotEmpty(), "there should be at least the about:blank target")
-
             @Suppress("DEPRECATION") // the point is to test this deprecated API
-            val googleTab = chrome.newTab("https://www.google.com")
+            val googleTab = chrome.newTab(url = "https://www.google.com")
             assertEquals("https://www.google.com", googleTab.url.trimEnd('/'))
+
+            val targets = chrome.targets()
+            assertTrue(targets.any { it.url.trimEnd('/') == "https://www.google.com" }, "the google.com page target should be listed, got: $targets")
+
             chrome.closeTab(googleTab.id)
         }
     }
