@@ -1,6 +1,7 @@
 import io.ktor.client.*
 import io.ktor.client.plugins.websocket.*
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.first
 import kotlinx.serialization.*
 import kotlinx.serialization.json.*
 import org.hildan.chrome.devtools.domains.accessibility.*
@@ -8,6 +9,7 @@ import org.hildan.chrome.devtools.domains.backgroundservice.*
 import org.hildan.chrome.devtools.domains.dom.*
 import org.hildan.chrome.devtools.domains.domdebugger.*
 import org.hildan.chrome.devtools.domains.runtime.*
+import org.hildan.chrome.devtools.extensions.clickOnElement
 import org.hildan.chrome.devtools.protocol.*
 import org.hildan.chrome.devtools.protocol.json.*
 import org.hildan.chrome.devtools.sessions.*
@@ -286,6 +288,27 @@ abstract class IntegrationTestBase {
                         Person("Bob", "Lee Swagger"),
                         page.runtime.evaluateJs<Person>("""eval({firstName: "Bob", lastName: "Lee Swagger"})""")
                     )
+                }
+            }
+        }
+    }
+
+    @OptIn(ExperimentalChromeApi::class)
+    @Test
+    open fun missingExpiresInCookie() {
+        runBlockingWithTimeout {
+            chromeWebSocket().use { browser ->
+                browser.newPage().use { page ->
+                    page.goto("https://x.com")
+                    page.network.enable()
+                    coroutineScope {
+                        launch {
+                            // ensures we don't crash on deserialization
+                            page.network.responseReceivedExtraInfoEvents().first()
+                        }
+                        page.dom.awaitNodeBySelector("a[href=\"/login\"]")
+                        page.clickOnElement("a[href=\"/login\"]")
+                    }
                 }
             }
         }

@@ -20,7 +20,9 @@ suspend fun PageSession.clickOnElement(
     clickDuration: Duration = 100.milliseconds,
     mouseButton: MouseButton = MouseButton.left,
 ) {
-    val box = dom.getBoxModel(selector) ?: error("Cannot click on element, no node found using selector '$selector'")
+    val box = dom.getBoxModel(selector)
+        ?: error("Cannot click on element, no node found using selector '$selector'. " +
+                     "If the node might appear later, use PageSession.dom.awaitNodeBySelector(...) first.")
     val elementCenter = box.content.center
 
     input.dispatchMouseClick(

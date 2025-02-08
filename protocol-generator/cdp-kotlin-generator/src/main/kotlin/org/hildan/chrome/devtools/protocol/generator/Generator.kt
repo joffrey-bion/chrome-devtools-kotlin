@@ -3,12 +3,11 @@ package org.hildan.chrome.devtools.protocol.generator
 import com.squareup.kotlinpoet.FileSpec
 import org.hildan.chrome.devtools.protocol.json.ChromeProtocolDescriptor
 import org.hildan.chrome.devtools.protocol.json.TargetType
-import org.hildan.chrome.devtools.protocol.json.pullNestedEnumsToTopLevel
 import org.hildan.chrome.devtools.protocol.model.ChromeDPDomain
 import org.hildan.chrome.devtools.protocol.model.toChromeDPDomain
 import org.hildan.chrome.devtools.protocol.names.Annotations
 import org.hildan.chrome.devtools.protocol.names.ExtDeclarations
-import java.nio.file.Files
+import org.hildan.chrome.devtools.protocol.preprocessing.preprocessed
 import java.nio.file.Path
 import kotlin.io.path.*
 
@@ -31,7 +30,7 @@ class Generator(
         generatedSourcesDir.deleteRecursively()
         generatedSourcesDir.createDirectories()
 
-        val domains = loadProtocolDomains()
+        val domains = readProtocolDomains()
         domains.forEach(::generateDomainFiles)
         
         val domainsByName = domains.associateBy { it.names.domainName }
@@ -52,12 +51,12 @@ class Generator(
         generateChildSessionsFiles(childTargets = targets.filterNot { it.kotlinName == "Browser" })
     }
 
-    private fun loadProtocolDomains(): List<ChromeDPDomain> {
+    private fun readProtocolDomains(): List<ChromeDPDomain> {
         val descriptors = protocolFiles.map { ChromeProtocolDescriptor.fromJson(it.readText()) }
         if (descriptors.distinctBy { it.version }.size > 1) {
             error("Some descriptors have differing versions: ${descriptors.map { it.version }}")
         }
-        return descriptors.flatMap { it.domains }.map { it.pullNestedEnumsToTopLevel().toChromeDPDomain() }
+        return descriptors.flatMap { it.domains }.preprocessed().map { it.toChromeDPDomain() }
     }
 
     private fun generateDomainFiles(domain: ChromeDPDomain) {

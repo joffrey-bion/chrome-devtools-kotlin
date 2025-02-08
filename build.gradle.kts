@@ -145,6 +145,10 @@ tasks.dokkaHtml {
     dependsOn(generateProtocolApi)
 }
 
+tasks.apiDump {
+    dependsOn(generateProtocolApi)
+}
+
 changelog {
     githubUser = github.user
     futureVersionTag = project.version.toString()
