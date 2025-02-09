@@ -5,8 +5,10 @@ import io.ktor.client.call.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.websocket.*
 import io.ktor.client.request.*
+import io.ktor.client.request.put
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import io.ktor.http.takeFrom
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -101,8 +103,23 @@ class ChromeDPClient(
             ],
         ),
     )
-    suspend fun newTab(url: String = "about:blank"): ChromeDPTarget =
-        httpPut("/json/new?$url").body<ChromeDPTarget>().fixHost()
+    suspend fun newTab(url: String = "about:blank"): ChromeDPTarget {
+        // The /json/new endpoint takes a target URL instead of the query, it's not a real query parameter.
+        // The hack that follows allows to append this weird parameter after a potentially existing query.
+        val encodedTargetUrl = url.encodeURLParameter(spaceToPlus = false)
+        val urlWithEndpoint = URLBuilder(remoteDebugUrl).apply { encodedPath += "/json/new" }.build()
+        val urlStr = urlWithEndpoint.toString()
+        val jsonNewUrl =  if (urlWithEndpoint.encodedQuery.isEmpty()) {
+            "${urlStr}?${encodedTargetUrl}"
+        } else {
+            "${urlStr}&${encodedTargetUrl}"
+        }
+        return httpClient.put(jsonNewUrl) {
+            if (overrideHostHeader) {
+                headers["Host"] = "localhost"
+            }
+        }.body<ChromeDPTarget>().fixHost()
+    }
 
     /**
      * Brings the page identified by the given [targetId] into the foreground (activates a tab).
@@ -144,13 +161,9 @@ class ChromeDPClient(
         return httpClient.chromeWebSocket(browserDebuggerUrl)
     }
 
-    private suspend fun httpPut(endpoint: String): HttpResponse = httpClient.put(remoteDebugUrl + endpoint) {
-        if (overrideHostHeader) {
-            headers["Host"] = "localhost"
-        }
-    }
-
-    private suspend fun httpGet(endpoint: String): HttpResponse = httpClient.get(remoteDebugUrl + endpoint) {
+    private suspend fun httpGet(endpoint: String): HttpResponse = httpClient.get {
+        url.takeFrom(remoteDebugUrl)
+        url.encodedPath += endpoint
         if (overrideHostHeader) {
             headers["Host"] = "localhost"
         }
