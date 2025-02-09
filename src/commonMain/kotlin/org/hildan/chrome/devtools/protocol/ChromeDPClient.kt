@@ -232,8 +232,7 @@ data class ChromeDPTarget(
  * If you only have the debugger's HTTP URL at hand (e.g. `http://localhost:9222`), create a [ChromeDPClient] instead,
  * and then connect to the web socket using [ChromeDPClient.webSocket].
  *
- * This [HttpClient] must have the [WebSockets] plugin installed, as well as the [ContentNegotiation] plugin
- * with Kotlinx Serialization JSON.
+ * This [HttpClient] must have the [WebSockets] plugin installed.
  *
  * The returned [BrowserSession] only provides a limited subset of the possible operations, because it is
  * attached to the default *browser* target, not a *page* target.
