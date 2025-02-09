@@ -228,7 +228,7 @@ abstract class IntegrationTestBase {
 
     @OptIn(ExperimentalChromeApi::class)
     @Test
-    fun supportedDomains() {
+    fun supportedDomains_pageTarget() {
         runBlockingWithTimeout {
             chromeWebSocket().use { browser ->
                 browser.newPage().use { page ->
