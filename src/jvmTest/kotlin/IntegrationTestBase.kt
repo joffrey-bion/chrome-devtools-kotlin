@@ -1,58 +1,57 @@
+import io.ktor.client.*
+import io.ktor.client.plugins.websocket.*
 import kotlinx.coroutines.*
-import kotlinx.serialization.Serializable
+import kotlinx.serialization.*
 import kotlinx.serialization.json.*
-import org.hildan.chrome.devtools.domains.accessibility.AXProperty
-import org.hildan.chrome.devtools.domains.accessibility.AXPropertyName
-import org.hildan.chrome.devtools.domains.backgroundservice.ServiceName
+import org.hildan.chrome.devtools.domains.accessibility.*
+import org.hildan.chrome.devtools.domains.backgroundservice.*
 import org.hildan.chrome.devtools.domains.dom.*
-import org.hildan.chrome.devtools.domains.domdebugger.DOMBreakpointType
-import org.hildan.chrome.devtools.domains.runtime.evaluateJs
-import org.hildan.chrome.devtools.protocol.ChromeDPClient
-import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
-import org.hildan.chrome.devtools.protocol.RequestNotSentException
+import org.hildan.chrome.devtools.domains.domdebugger.*
+import org.hildan.chrome.devtools.domains.runtime.*
+import org.hildan.chrome.devtools.protocol.*
 import org.hildan.chrome.devtools.protocol.json.*
 import org.hildan.chrome.devtools.sessions.*
-import org.hildan.chrome.devtools.sessions.use
 import org.hildan.chrome.devtools.targets.*
-import org.testcontainers.containers.GenericContainer
-import org.testcontainers.junit.jupiter.Container
-import org.testcontainers.junit.jupiter.Testcontainers
-import org.testcontainers.utility.*
 import kotlin.test.*
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
-@Testcontainers
-class IntegrationTests {
+private val httpClientWithWs = HttpClient { install(WebSockets) }
+
+abstract class IntegrationTestBase {
 
     /**
-     * A container running the "raw" Chrome with support for the JSON HTTP API of the DevTools protocol (in addition to
-     * the web socket API).
-     *
-     * One must first connect via the HTTP API at `http://localhost:{port}` and then get the web socket URL from there.
+     * Must be HTTP, it's used for HTTP JSON API usage.
      */
-    @Container
-    var chromeContainer: GenericContainer<*> = GenericContainer("zenika/alpine-chrome")
-        .withExposedPorts(9222)
-        .withCommand("--no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 about:blank")
-        .withCopyFileToContainer(
-            MountableFile.forClasspathResource("/test-server-pages/"),
-            "/test-server-pages/"
-        )
+    protected abstract val httpUrl: String
 
-    private fun chromeDpClient(): ChromeDPClient {
-        val chromeDebuggerPort = chromeContainer.firstMappedPort
-        return ChromeDPClient("http://localhost:$chromeDebuggerPort")
-    }
+    /**
+     * Can be HTTP or WS, it's used for direct web socket connection.
+     */
+    protected abstract val wsConnectUrl: String
 
-    private suspend fun PageSession.gotoTestPageResource(resourcePath: String) {
-        goto("file:///test-server-pages/$resourcePath")
-    }
-    
+    private val knownUnsupportedDomains = setOf(
+        "ApplicationCache", // was removed in tip-of-tree, but still supported by the latest Chrome
+        "Database",         // was removed in tip-of-tree, but still supported by the latest Chrome
+    )
+
+    protected fun chromeHttp(): ChromeDPClient = ChromeDPClient(httpUrl)
+
+    protected suspend fun chromeWebSocket(): BrowserSession =
+        if (wsConnectUrl.startsWith("http")) {
+            // We enable overrideHostHeader not really to override the host header per se, but rather because the
+            // Browserless container's /json/version endpoint returns a web socket URL with IP 0.0.0.0 instead of
+            // localhost, leading to a connection refused error.
+            // Enabling overrideHostHeader replaces the IP with the original 'localhost' host, which makes it work.
+            ChromeDPClient(wsConnectUrl).webSocket()
+        } else {
+            httpClientWithWs.chromeWebSocket(wsConnectUrl)
+        }
+
     @Test
-    fun httpEndpoints_meta() {
+    fun httpMetadataEndpoints() {
         runBlockingWithTimeout {
-            val chrome = chromeDpClient()
+            val chrome = chromeHttp()
 
             val version = chrome.version()
             assertTrue(version.browser.contains("Chrome"))
@@ -61,6 +60,13 @@ class IntegrationTests {
 
             val protocolJson = chrome.protocolJson()
             assertTrue(protocolJson.isNotEmpty(), "the JSON definition of the protocol should not be empty")
+        }
+    }
+
+    @Test
+    open fun httpTabEndpoints() {
+        runBlockingWithTimeout {
+            val chrome = chromeHttp()
 
             @Suppress("DEPRECATION") // the point is to test this deprecated API
             val googleTab = chrome.newTab(url = "https://www.google.com")
@@ -77,9 +83,7 @@ class IntegrationTests {
     @Test
     fun webSocket_basic() {
         runBlockingWithTimeout {
-            val chrome = chromeDpClient()
-
-            chrome.webSocket().use { browser ->
+            chromeWebSocket().use { browser ->
                 val pageSession = browser.newPage()
                 val targetId = pageSession.metaData.targetId
 
@@ -88,7 +92,7 @@ class IntegrationTests {
 
                     assertEquals("Google", page.target.getTargetInfo().targetInfo.title)
 
-                    assertTrue(chrome.targets().any { it.id == targetId }, "the new target should be listed")
+                    assertTrue(browser.target.getTargets().targetInfos.any { it.targetId == targetId }, "the new target should be listed")
 
                     val nodeId = withTimeoutOrNull(5.seconds) {
                         page.dom.awaitNodeBySelector("form[action='/search']")
@@ -98,7 +102,7 @@ class IntegrationTests {
                     val getOuterHTMLResponse = page.dom.getOuterHTML(GetOuterHTMLRequest(nodeId = nodeId))
                     assertTrue(getOuterHTMLResponse.outerHTML.contains("<input name=\"source\""))
                 }
-                assertTrue(chrome.targets().none { it.id == targetId }, "the new target should be closed (not listed)")
+                assertTrue(browser.target.getTargets().targetInfos.none { it.targetId == targetId }, "the new target should be closed (not listed)")
             }
         }
     }
@@ -107,9 +111,7 @@ class IntegrationTests {
     @Test
     fun sessionThrowsIOExceptionIfAlreadyClosed() {
         runBlockingWithTimeout {
-            val chrome = chromeDpClient()
-
-            val browser = chrome.webSocket()
+            val browser = chromeWebSocket()
             val session = browser.newPage()
             session.goto("http://www.google.com")
 
@@ -125,7 +127,7 @@ class IntegrationTests {
     @Test
     fun pageSession_goto() {
         runBlockingWithTimeout {
-            chromeDpClient().webSocket().use { browser ->
+            chromeWebSocket().use { browser ->
                 browser.newPage().use { page ->
                     page.goto("https://kotlinlang.org/")
                     assertEquals("Kotlin Programming Language", page.target.getTargetInfo().targetInfo.title)
@@ -146,7 +148,7 @@ class IntegrationTests {
     @Test
     fun test_deserialization_unknown_enum() {
         runBlockingWithTimeout {
-            chromeDpClient().webSocket().use { browser ->
+            chromeWebSocket().use { browser ->
                 browser.newPage().use { page ->
                     page.goto("http://www.google.com")
                     val tree = page.accessibility.getFullAXTree() // just test that this doesn't fail
@@ -168,7 +170,7 @@ class IntegrationTests {
     @Test
     fun test_parallelPages() {
         runBlockingWithTimeout {
-            chromeDpClient().webSocket().use { browser ->
+            chromeWebSocket().use { browser ->
                 // we want all coroutines to finish before we close the browser session
                 withContext(Dispatchers.IO) {
                     repeat(4) {
@@ -190,7 +192,7 @@ class IntegrationTests {
     @Test
     fun page_getTargets() {
         runBlockingWithTimeout {
-            chromeDpClient().webSocket().use { browser ->
+            chromeWebSocket().use { browser ->
                 browser.newPage().use { page ->
                     page.goto("http://www.google.com")
                     val targets = page.target.getTargets().targetInfos
@@ -205,26 +207,28 @@ class IntegrationTests {
 
     @OptIn(ExperimentalChromeApi::class)
     @Test
-    fun supportedDomains() {
+    fun supportedDomains_all() {
         runBlockingWithTimeout {
-            val client = chromeDpClient()
+            val client = chromeHttp()
             val descriptor = Json.decodeFromString<ChromeProtocolDescriptor>(client.protocolJson())
 
-            val knownUnsupportedDomains = setOf(
-                "ApplicationCache", // was removed in tip-of-tree, but still supported by the container
-                "Database",         // was removed in tip-of-tree, but still supported by the container
-            )
             val actualSupportedDomains = descriptor.domains
                 .filterNot { it.domain in knownUnsupportedDomains}
                 .map { it.domain }
                 .toSet()
             val domainsDiff = actualSupportedDomains - knownUnsupportedDomains - AllDomainsTarget.supportedDomains
             if (domainsDiff.isNotEmpty()) {
-                fail("The library should support all domains that the ${chromeContainer.dockerImageName} container" +
-                         "actually exposes (apart from $knownUnsupportedDomains), but it's missing: ${domainsDiff.sorted()}")
+                fail("The library should support all domains that the server actually exposes (apart from " +
+                         "$knownUnsupportedDomains), but it's missing: ${domainsDiff.sorted()}")
             }
+        }
+    }
 
-            client.webSocket().use { browser ->
+    @OptIn(ExperimentalChromeApi::class)
+    @Test
+    fun supportedDomains() {
+        runBlockingWithTimeout {
+            chromeWebSocket().use { browser ->
                 browser.newPage().use { page ->
                     page.accessibility.enable()
                     page.animation.enable()
@@ -243,8 +247,6 @@ class IntegrationTests {
                     page.domSnapshot.enable()
                     page.domStorage.enable()
                     page.fetch.disable()
-                    @Suppress("DEPRECATION") // it's the only working function
-                    page.headlessExperimental.enable()
                     page.heapProfiler.enable()
                     page.indexedDB.enable()
                     page.layerTree.enable()
@@ -259,8 +261,8 @@ class IntegrationTests {
 
                     val pageDomainsDiff = actualPageDomains - knownUnsupportedDomains - PageTarget.supportedDomains
                     if (pageDomainsDiff.isNotEmpty()) {
-                        fail("PageSession should support all domains that the ${chromeContainer.dockerImageName} " +
-                                 "container actually exposes (apart from $knownUnsupportedDomains), but it's missing: ${pageDomainsDiff.sorted()}")
+                        fail("PageSession should support all domains that the server actually exposes (apart from " +
+                                 "$knownUnsupportedDomains), but it's missing: ${pageDomainsDiff.sorted()}")
                     }
                 }
             }
@@ -273,7 +275,7 @@ class IntegrationTests {
     @Test
     fun runtime_evaluateJs() {
         runBlockingWithTimeout {
-            chromeDpClient().webSocket().use { browser ->
+            chromeWebSocket().use { browser ->
                 browser.newPage().use { page ->
                     assertEquals(42, page.runtime.evaluateJs<Int>("42"))
                     assertEquals(
@@ -289,38 +291,7 @@ class IntegrationTests {
         }
     }
 
-    @Test
-    fun attributesAccess() {
-        runBlockingWithTimeout {
-            chromeDpClient().webSocket().use { browser ->
-                browser.newPage().use { page ->
-                    page.gotoTestPageResource("select.html")
-                    
-                    val nodeId = page.dom.findNodeBySelector("select[name=pets] option[selected]")
-                    assertNull(nodeId, "No option is selected in this <select>")
-                    
-                    val attributes1 = page.dom.getTypedAttributes("select[name=pets] option[selected]")
-                    assertNull(attributes1, "No option is selected in this <select>")
-
-                    val attributes2 = page.dom.getTypedAttributes("select[name=pets-selected] option[selected]")
-                    assertNotNull(attributes2, "There should be a selected option")
-                    assertEquals(true, attributes2.selected)
-                    assertEquals("cat", attributes2.value)
-                    val value = page.dom.getAttributeValue("select[name=pets-selected] option[selected]", "value")
-                    assertEquals("cat", value)
-                    // Attributes without value (e.g. "selected" in <option name="x" selected />) are returned as empty 
-                    // strings by the protocol.
-                    val selected = page.dom.getAttributeValue("select[name=pets-selected] option[selected]", "selected")
-                    assertEquals("", selected)
-
-                    val absentValue = page.dom.getAttributeValue("select[name=pets-selected-without-value] option[selected]", "value")
-                    assertNull(absentValue, "There is no 'value' attribute in this select option")
-                }
-            }
-        }
+    protected fun runBlockingWithTimeout(block: suspend CoroutineScope.() -> Unit) = runBlocking {
+        withTimeout(1.minutes, block)
     }
-}
-
-private fun runBlockingWithTimeout(block: suspend CoroutineScope.() -> Unit) = runBlocking {
-    withTimeout(1.minutes, block)
 }
