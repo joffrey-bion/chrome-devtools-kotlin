@@ -76,6 +76,13 @@ class ChromeDPClient(
      */
     private val httpClient: HttpClient = if (overrideHostHeader) DEFAULT_HTTP_CLIENT_WITH_HOST_OVERRIDE else DEFAULT_HTTP_CLIENT,
 ) {
+    init {
+        require(remoteDebugUrl.startsWith("http://") || remoteDebugUrl.startsWith("https://")) {
+            "This function is meant to be used with 'http://' or 'https://' URLs, but got $remoteDebugUrl. " +
+                "If you already have a web socket URL, use ChromeDP.connect(wsUrl) directly instead."
+        }
+    }
+
     /**
      * Fetches the browser version metadata via the debugger's HTTP API.
      */
