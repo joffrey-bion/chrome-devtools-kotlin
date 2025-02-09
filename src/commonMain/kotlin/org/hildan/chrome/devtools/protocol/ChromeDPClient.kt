@@ -2,7 +2,6 @@ package org.hildan.chrome.devtools.protocol
 
 import io.ktor.client.*
 import io.ktor.client.call.*
-import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.websocket.*
 import io.ktor.client.request.*
@@ -14,20 +13,13 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import org.hildan.chrome.devtools.sessions.*
 
-private val DEFAULT_HTTP_CLIENT by lazy { createHttpClient(overrideHostHeader = false) }
+private val DEFAULT_HTTP_CLIENT by lazy { createHttpClient() }
 
-private val DEFAULT_HTTP_CLIENT_WITH_HOST_OVERRIDE by lazy { createHttpClient(overrideHostHeader = true) }
-
-private fun createHttpClient(overrideHostHeader: Boolean) = HttpClient {
+private fun createHttpClient() = HttpClient {
     install(ContentNegotiation) {
         json(Json { ignoreUnknownKeys = true })
     }
     install(WebSockets)
-    if (overrideHostHeader) {
-        install(DefaultRequest) {
-            headers["Host"] = "localhost"
-        }
-    }
 }
 
 /**
@@ -42,14 +34,12 @@ private fun createHttpClient(overrideHostHeader: Boolean) = HttpClient {
  *
  * ## Host override
  *
- * Chrome doesn't accept a `Host` header that is not an IP nor `localhost`, but in some environments it might be hard
- * to provide this (e.g. docker services in a docker swarm, communicating using service names).
+ * Chrome doesn't accept a `Host` header that is not an IP nor `localhost`, but in some environments the URL has to
+ * have a named host (e.g. docker services in a docker swarm, communicating using service names).
  *
- * To work around this problem, simply set [overrideHostHeader] to true.
- * This overrides the `Host` header to "localhost" in the HTTP requests to the Chrome debugger to make it happy, and
- * also replaces the host in subsequent web socket URLs (returned by Chrome) by the initial host provided in
- * [remoteDebugUrl].
- * This is necessary because Chrome uses the `Host` header to build these URLs, and it would be incorrect to keep this.
+ * Enabling [overrideHostHeader] works around this problem by setting the `Host` header to "localhost" in the HTTP
+ * requests to the Chrome debugger. It also restores the original host in URLs that are returned by Chrome
+ * (Chrome uses the `Host` header to build the URLs that it returns, so they would contain `localhost` otherwise).
  */
 class ChromeDPClient(
     /**
@@ -74,7 +64,7 @@ class ChromeDPClient(
      * You should only need to override it to work around an issue in the client's configuration/behaviour, or if you
      * want to also reuse your own client here.
      */
-    private val httpClient: HttpClient = if (overrideHostHeader) DEFAULT_HTTP_CLIENT_WITH_HOST_OVERRIDE else DEFAULT_HTTP_CLIENT,
+    private val httpClient: HttpClient = DEFAULT_HTTP_CLIENT,
 ) {
     init {
         require(remoteDebugUrl.startsWith("http://") || remoteDebugUrl.startsWith("https://")) {
@@ -86,19 +76,17 @@ class ChromeDPClient(
     /**
      * Fetches the browser version metadata via the debugger's HTTP API.
      */
-    suspend fun version(): ChromeVersion =
-        httpClient.get("$remoteDebugUrl/json/version").body<ChromeVersion>().fixHost()
+    suspend fun version(): ChromeVersion = httpGet("/json/version").body<ChromeVersion>().fixHost()
 
     /**
      * Fetches the current Chrome DevTools Protocol definition, as a JSON string.
      */
-    suspend fun protocolJson(): String = httpClient.get("$remoteDebugUrl/json/protocol").bodyAsText()
+    suspend fun protocolJson(): String = httpGet("/json/protocol").bodyAsText()
 
     /**
      * Fetches the list of all available web socket targets (e.g. browser tabs).
      */
-    suspend fun targets(): List<ChromeDPTarget> =
-        httpClient.get("$remoteDebugUrl/json/list").body<List<ChromeDPTarget>>().map { it.fixHost() }
+    suspend fun targets(): List<ChromeDPTarget> = httpGet("/json/list").body<List<ChromeDPTarget>>().map { it.fixHost() }
 
     /**
      * Opens a new tab, and returns the websocket target data for the new tab.
@@ -114,17 +102,17 @@ class ChromeDPClient(
         ),
     )
     suspend fun newTab(url: String = "about:blank"): ChromeDPTarget =
-        httpClient.put("$remoteDebugUrl/json/new?$url").body<ChromeDPTarget>().fixHost()
+        httpPut("/json/new?$url").body<ChromeDPTarget>().fixHost()
 
     /**
      * Brings the page identified by the given [targetId] into the foreground (activates a tab).
      */
-    suspend fun activateTab(targetId: String): String = httpClient.get("$remoteDebugUrl/json/activate/$targetId").body()
+    suspend fun activateTab(targetId: String): String = httpGet("/json/activate/$targetId").body()
 
     /**
      * Closes the page identified by [targetId].
      */
-    suspend fun closeTab(targetId: String): String = httpClient.get("$remoteDebugUrl/json/close/$targetId").body()
+    suspend fun closeTab(targetId: String): String = httpGet("/json/close/$targetId").body()
 
     /**
      * Closes all targets.
@@ -154,6 +142,18 @@ class ChromeDPClient(
     suspend fun webSocket(): BrowserSession {
         val browserDebuggerUrl = version().webSocketDebuggerUrl
         return httpClient.chromeWebSocket(browserDebuggerUrl)
+    }
+
+    private suspend fun httpPut(endpoint: String): HttpResponse = httpClient.put(remoteDebugUrl + endpoint) {
+        if (overrideHostHeader) {
+            headers["Host"] = "localhost"
+        }
+    }
+
+    private suspend fun httpGet(endpoint: String): HttpResponse = httpClient.get(remoteDebugUrl + endpoint) {
+        if (overrideHostHeader) {
+            headers["Host"] = "localhost"
+        }
     }
 
     private fun ChromeVersion.fixHost() = when {
