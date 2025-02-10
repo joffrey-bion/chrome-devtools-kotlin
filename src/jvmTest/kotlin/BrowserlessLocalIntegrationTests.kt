@@ -2,20 +2,20 @@ import org.testcontainers.containers.*
 import org.testcontainers.junit.jupiter.*
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.utility.*
-import kotlin.test.*
 
 @Testcontainers
 class BrowserlessLocalIntegrationTests : IntegrationTestBase() {
 
     /**
-     * A container running the Browserless with Chromium support.
+     * A container running Browserless with Chromium support.
      * It is meant to be used mostly with the web socket API, which is accessible directly at `ws://localhost:{port}`
      * (no need for an intermediate HTTP call).
      *
-     * It provides a bridge to the JSON HTTP API of the DevTools protocol as well, but only for a subset of the
-     * endpoints. See [Browser REST APIs](https://docs.browserless.io/open-api#tag/Browser-REST-APIs) in the docs.
-     *
-     * Also, there is [a bug](https://github.com/browserless/browserless/issues/4566) with the `/json/new` endpoint.
+     * It provides a bridge to the HTTP endpoints `/json/protocol` and `/json/version` of the DevTools protocol as well,
+     * but not for endpoints related to tab manipulation.
+     * The `/json/list` and `/json/new` endpoints are just mocked to allow some clients to get the WS URL, but they
+     * don't actually reflect the reality or affect the browser's state.
+     * See [Browser REST APIs](https://docs.browserless.io/open-api#tag/Browser-REST-APIs) in the docs.
      */
     @Container
     var browserlessChromium: GenericContainer<*> = GenericContainer("ghcr.io/browserless/chromium:latest")
@@ -27,9 +27,4 @@ class BrowserlessLocalIntegrationTests : IntegrationTestBase() {
 
     override val wsConnectUrl: String
         get() = "ws://localhost:${browserlessChromium.firstMappedPort}"
-
-    @Ignore("The /json/new endpoint doesn't work with the HTTP API of Browserless: " +
-                "https://github.com/browserless/browserless/issues/4566")
-    override fun httpTabEndpoints() {
-    }
 }

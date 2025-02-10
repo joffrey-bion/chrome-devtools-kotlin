@@ -65,22 +65,6 @@ abstract class IntegrationTestBase {
         }
     }
 
-    @Test
-    open fun httpTabEndpoints() {
-        runBlockingWithTimeout {
-            val chrome = chromeHttp()
-
-            @Suppress("DEPRECATION") // the point is to test this deprecated API
-            val googleTab = chrome.newTab(url = "https://www.google.com")
-            assertEquals("https://www.google.com", googleTab.url.trimEnd('/'))
-
-            val targets = chrome.targets()
-            assertTrue(targets.any { it.url.trimEnd('/') == "https://www.google.com" }, "the google.com page target should be listed, got: $targets")
-
-            chrome.closeTab(googleTab.id)
-        }
-    }
-
     @OptIn(ExperimentalChromeApi::class)
     @Test
     fun webSocket_basic() {
