@@ -54,6 +54,8 @@ jobs:
 
       - name: Release
         uses: joffrey-bion/gradle-library-release-action@v2
+        env:
+          BROWSERLESS_API_TOKEN: ${{ secrets.BROWSERLESS_API_TOKEN }}
         with:
           version: ${{ steps.compute-version.outputs.fullVersion }}
           gpg-signing-key: ${{ secrets.GPG_SECRET_ASCII_ARMORED }}
