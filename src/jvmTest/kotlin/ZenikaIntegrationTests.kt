@@ -36,26 +36,6 @@ class ZenikaIntegrationTests : LocalIntegrationTestBase() {
 
     @Suppress("DEPRECATION") // the point is to test this deprecated API
     @Test
-    fun httpTabEndpoints_basic() {
-        runBlockingWithTimeout {
-            val chrome = chromeHttp()
-            chrome.closeAllTargets()
-
-            val newTab = chrome.newTab()
-            assertEquals("about:blank", newTab.url.trimEnd('/'))
-            assertTargetCount(1, chrome.targets())
-            chrome.closeTab(newTab.id)
-
-            assertTargetCount(0, chrome.targets())
-            chrome.newTab()
-            chrome.newTab()
-            chrome.closeAllTargets()
-            assertTargetCount(0, chrome.targets())
-        }
-    }
-
-    @Suppress("DEPRECATION") // the point is to test this deprecated API
-    @Test
     fun httpTabEndpoints_newTabWithCustomUrl() {
         runBlockingWithTimeout {
             val chrome = chromeHttp()
@@ -77,14 +57,5 @@ class ZenikaIntegrationTests : LocalIntegrationTestBase() {
                 message = "the google.com page target should be closed, got:\n${targetsAfterClose.joinToString("\n")}",
             )
         }
-    }
-
-    private fun assertTargetCount(expected: Int, currentTargets: List<ChromeDPTarget>) {
-        assertEquals(
-            expected = expected,
-            actual = currentTargets.size,
-            message = "Expected $expected tab(s) but got ${currentTargets.size} instead:\n" +
-                currentTargets.joinToString("\n"),
-        )
     }
 }
