@@ -39,14 +39,14 @@ class ZenikaIntegrationTests : LocalIntegrationTestBase() {
     fun httpTabEndpoints_basic() {
         runBlockingWithTimeout {
             val chrome = chromeHttp()
-            val originalTabCount = chrome.targets().size
+            chrome.closeAllTargets()
 
             val newTab = chrome.newTab()
             assertEquals("about:blank", newTab.url.trimEnd('/'))
-            assertTargetCount(originalTabCount + 1, chrome.targets())
+            assertTargetCount(1, chrome.targets())
             chrome.closeTab(newTab.id)
 
-            assertTargetCount(originalTabCount, chrome.targets())
+            assertTargetCount(0, chrome.targets())
             chrome.newTab()
             chrome.newTab()
             chrome.closeAllTargets()
