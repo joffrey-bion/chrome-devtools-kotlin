@@ -30,7 +30,7 @@ class ZenikaIntegrationTests : LocalIntegrationTestBase() {
     override val wsConnectUrl: String
         get() = "http://localhost:${zenikaChrome.firstMappedPort}"
 
-    @Ignore("The Zenika container seems out of data and still treats cookiePartitionKey as a string instead of object")
+    @Ignore("The Zenika container seems out of date and still treats cookiePartitionKey as a string instead of object")
     override fun missingExpiresInCookie() {
     }
 
