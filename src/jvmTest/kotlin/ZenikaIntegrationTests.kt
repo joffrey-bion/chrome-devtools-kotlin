@@ -1,4 +1,4 @@
-import org.hildan.chrome.devtools.protocol.ChromeDPTarget
+import kotlinx.coroutines.delay
 import org.junit.jupiter.api.Test
 import org.testcontainers.containers.*
 import org.testcontainers.junit.jupiter.*
@@ -50,6 +50,7 @@ class ZenikaIntegrationTests : LocalIntegrationTestBase() {
             )
 
             chrome.closeTab(googleTab.id)
+            delay(100) // wait for the tab to actually close (fails on CI otherwise)
 
             val targetsAfterClose = chrome.targets()
             assertTrue(
