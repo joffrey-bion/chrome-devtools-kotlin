@@ -91,7 +91,7 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        val jvmTest by getting {
+        jvmTest {
             dependencies {
                 implementation(libs.ktor.client.cio)
                 implementation(libs.slf4j.simple)
