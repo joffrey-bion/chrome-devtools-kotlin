@@ -17,7 +17,9 @@ data class ChromeProtocolDescriptor(
 data class ChromeProtocolVersion(
     val major: Int,
     val minor: Int
-)
+) {
+    override fun toString(): String = "$major.$minor"
+}
 
 @Serializable
 data class JsonDomain(

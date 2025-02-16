@@ -59,9 +59,12 @@ abstract class IntegrationTestBase {
             assertTrue(version.browser.contains("Chrome"))
             assertTrue(version.userAgent.contains("HeadlessChrome"))
             assertTrue(version.webSocketDebuggerUrl.startsWith("ws://"), "the debugger URL should start with ws://, but was: ${version.webSocketDebuggerUrl}")
+            println("Chrome version: $version")
 
             val protocolJson = chrome.protocolJson()
             assertTrue(protocolJson.isNotEmpty(), "the JSON definition of the protocol should not be empty")
+            val descriptor = Json.decodeFromString<ChromeProtocolDescriptor>(protocolJson)
+            println("Chrome protocol JSON version: ${descriptor.version}")
         }
     }
 
