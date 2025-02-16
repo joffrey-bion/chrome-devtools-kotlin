@@ -93,7 +93,7 @@ kotlin {
         }
         jvmTest {
             dependencies {
-                implementation(libs.ktor.client.cio)
+                implementation(libs.ktor.client.java)
                 implementation(libs.slf4j.simple)
                 implementation(libs.testcontainers.base)
                 implementation(libs.testcontainers.junit.jupiter)
