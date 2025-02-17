@@ -1,4 +1,5 @@
 import kotlinx.coroutines.delay
+import org.hildan.chrome.devtools.protocol.LegacyChromeTargetHttpApi
 import org.junit.jupiter.api.Test
 import org.testcontainers.containers.*
 import org.testcontainers.junit.jupiter.*
@@ -35,7 +36,7 @@ class ZenikaIntegrationTests : LocalIntegrationTestBase() {
     override fun missingExpiresInCookie() {
     }
 
-    @Suppress("DEPRECATION") // the point is to test this deprecated API
+    @OptIn(LegacyChromeTargetHttpApi::class)
     @Test
     fun httpTabEndpoints_newTabWithCustomUrl() {
         runBlockingWithTimeout {
