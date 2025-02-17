@@ -1,7 +1,6 @@
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
+import org.hildan.chrome.devtools.ChromeDP
 import org.hildan.chrome.devtools.extensions.clickOnElement
-import org.hildan.chrome.devtools.protocol.ChromeDPClient
 import org.hildan.chrome.devtools.sessions.asPageSession
 import org.hildan.chrome.devtools.sessions.childPages
 import org.hildan.chrome.devtools.sessions.goto
@@ -17,7 +16,7 @@ suspend fun main() {
 
 private suspend fun testCrossOriginIFrame() {
     println(Paths.get("../resources/page-with-cross-origin-iframe.html").toAbsolutePath())
-    val chromeClient = ChromeDPClient()
+    val chromeClient = ChromeDP.httpApi("http://localhost:9222")
     val browserSession = chromeClient.webSocket()
 
     println("Connected to browser")
@@ -54,7 +53,7 @@ private suspend fun testCrossOriginIFrame() {
 
 private suspend fun testChildPage() {
     println(Paths.get("../resources/child.html").toAbsolutePath())
-    val browserSession = ChromeDPClient().webSocket()
+    val browserSession = ChromeDP.connect("http://localhost:9222")
 
     println("Connected to browser")
     delay(1000)

@@ -98,24 +98,45 @@ dependencies {
 
 This library doesn't provide a way to start a browser programmatically.
 It assumes a browser was started externally and exposes a debugger server.
+Below are some options to get a browser running.
 
-For instance, you can start a Headless Chrome browser with the following docker command, 
-which exposes the debugger server at `http://localhost:9222`:
+#### Docker: Zenika Alpine Chrome
 
+Start a Headless Chrome browser using 
+[the `zenika/alpine-chrome` Docker image](https://hub.docker.com/r/zenika/alpine-chrome) with the following command:
+
+```shell
+docker run --rm -p 9222:9222 zenika/alpine-chrome --no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 about:blank
 ```
-docker container run -d -p 9222:9222 zenika/alpine-chrome --no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 about:blank
+
+This exposes the debugger server at `http://localhost:9222` (see the next section for how to connect).
+
+#### Docker: Browserless Chromium
+
+Start a Headless Chromium using the [Browserless Docker image](https://docs.browserless.io/baas/docker/quickstart):
+
+```shell
+docker run --rm -p 3000:3000 ghcr.io/browserless/chromium
 ```
+
+This allows direct web socket connections at `ws://localhost:3000` (see the next section for how to connect).
+
+#### Browserless - Browser as a Service (BaaS)
+
+[Browserless BaaS](https://docs.browserless.io/baas/hosted-service/how-it-works) provides readily available chrome
+browsers so you don't have to start anything locally.
+They have some free plan which might be useful when Docker is not an option.
+
+Once you have registered and got your token, you will be able to connect to the web socket directly using the URL
+`wss://production-sfo.browserless.io/?token=<TOKEN>` (see the next section for how to connect).
 
 ### Connecting to the browser
 
-The starting point of this library is the `ChromeDPClient`, which is created using the 
-"remote-debugging" URL that was passed to Chrome.
-You can then open a `webSocket()` to the browser debugger, which automatically attaches to the browser target and 
-starts a "browser session":
+Once you got your HTTP or web socket URL to the Chrome debugger, use `ChromeDP.connect(url)` to connect to the debugger
+and start your browser session:
 
 ```kotlin
-val client = ChromeDPClient("http://localhost:9222")
-val browserSession: BrowserSession = client.webSocket()
+val browserSession: BrowserSession = ChromeDP.connect("http://localhost:9222")
 ```
 
 When you're done with the session, don't forget to `close()` it in order to close the underlying web socket.
@@ -129,7 +150,7 @@ Once you have your browser session, you can use it to create child page targets 
 Here is an example to create a new page target and attach to it:
 
 ```kotlin
-ChromeDPClient("http://localhost:9222").webSocket().use { browserSession ->
+ChromeDP.connect("http://localhost:9222").use { browserSession ->
     browserSession.newPage().use { pageSession ->
         // goto() navigates the current page to the URL and awaits the 'load' event by default
         pageSession.goto("http://example.com")
