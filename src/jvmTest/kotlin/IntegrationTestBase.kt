@@ -1,14 +1,14 @@
-import io.ktor.client.*
-import io.ktor.client.plugins.websocket.*
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.*
 import kotlinx.serialization.*
 import kotlinx.serialization.json.*
+import org.hildan.chrome.devtools.*
+import org.hildan.chrome.devtools.domains.accessibility.*
 import org.hildan.chrome.devtools.domains.backgroundservice.*
 import org.hildan.chrome.devtools.domains.dom.*
 import org.hildan.chrome.devtools.domains.domdebugger.*
 import org.hildan.chrome.devtools.domains.runtime.*
-import org.hildan.chrome.devtools.extensions.clickOnElement
+import org.hildan.chrome.devtools.extensions.*
 import org.hildan.chrome.devtools.protocol.*
 import org.hildan.chrome.devtools.protocol.json.*
 import org.hildan.chrome.devtools.sessions.*
@@ -16,8 +16,6 @@ import org.hildan.chrome.devtools.targets.*
 import kotlin.test.*
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
-
-private val httpClientWithWs = HttpClient { install(WebSockets) }
 
 abstract class IntegrationTestBase {
 
@@ -36,18 +34,9 @@ abstract class IntegrationTestBase {
         "Database",         // was removed in tip-of-tree, but still supported by the latest Chrome
     )
 
-    protected fun chromeHttp(): ChromeDPClient = ChromeDPClient(httpUrl)
+    protected fun chromeHttp(): ChromeDPHttpApi = ChromeDP.httpApi(httpUrl)
 
-    protected suspend fun chromeWebSocket(): BrowserSession =
-        if (wsConnectUrl.startsWith("http")) {
-            // We enable overrideHostHeader not really to override the host header per se, but rather because the
-            // Browserless container's /json/version endpoint returns a web socket URL with IP 0.0.0.0 instead of
-            // localhost, leading to a connection refused error.
-            // Enabling overrideHostHeader replaces the IP with the original 'localhost' host, which makes it work.
-            ChromeDPClient(wsConnectUrl).webSocket()
-        } else {
-            httpClientWithWs.chromeWebSocket(wsConnectUrl)
-        }
+    protected suspend fun chromeWebSocket(): BrowserSession = ChromeDP.connect(wsConnectUrl)
 
     @Test
     fun httpMetadataEndpoints() {

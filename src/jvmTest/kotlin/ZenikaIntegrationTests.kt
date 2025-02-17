@@ -5,6 +5,7 @@ import kotlinx.coroutines.withContext
 import org.hildan.chrome.devtools.domains.dom.DescribeNodeRequest
 import org.hildan.chrome.devtools.domains.dom.getDocumentRootNodeId
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
+import org.hildan.chrome.devtools.protocol.LegacyChromeTargetHttpApi
 import org.hildan.chrome.devtools.sessions.goto
 import org.hildan.chrome.devtools.sessions.newPage
 import org.hildan.chrome.devtools.sessions.use
@@ -44,7 +45,7 @@ class ZenikaIntegrationTests : LocalIntegrationTestBase() {
     override fun missingExpiresInCookie() {
     }
 
-    @Suppress("DEPRECATION") // the point is to test this deprecated API
+    @OptIn(LegacyChromeTargetHttpApi::class)
     @Test
     fun httpTabEndpoints_newTabWithCustomUrl() {
         runBlockingWithTimeout {
