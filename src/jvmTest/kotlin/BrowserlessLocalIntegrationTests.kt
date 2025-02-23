@@ -1,3 +1,4 @@
+import org.hildan.chrome.devtools.protocol.TargetCrashedException
 import org.testcontainers.containers.*
 import org.testcontainers.junit.jupiter.*
 import org.testcontainers.junit.jupiter.Container
@@ -27,4 +28,10 @@ class BrowserlessLocalIntegrationTests : IntegrationTestBase() {
 
     override val wsConnectUrl: String
         get() = "ws://localhost:${browserlessChromium.firstMappedPort}"
+
+    override fun onTargetCrashed(e: TargetCrashedException) {
+        println("=== Chrome container logs ===")
+        println(browserlessChromium.logs)
+        println("=== End of logs ===")
+    }
 }

@@ -147,24 +147,31 @@ abstract class IntegrationTestBase {
     @Test
     fun test_parallelPages() {
         runBlockingWithTimeout {
-            chromeWebSocket().use { browser ->
-                // we want all coroutines to finish before we close the browser session
-                withContext(Dispatchers.IO) {
-                    repeat(4) {
-                        launch {
-                            browser.newPage().use { page ->
-                                page.goto("http://www.google.com")
-                                page.runtime.getHeapUsage()
-                                val docRoot = page.dom.getDocumentRootNodeId()
-                                page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
-                                page.storage.getCookies()
+            try {
+                chromeWebSocket().use { browser ->
+                    // we want all coroutines to finish before we close the browser session
+                    withContext(Dispatchers.IO) {
+                        repeat(4) {
+                            launch {
+                                browser.newPage().use { page ->
+                                    page.goto("http://www.google.com")
+                                    page.runtime.getHeapUsage()
+                                    val docRoot = page.dom.getDocumentRootNodeId()
+                                    page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
+                                    page.storage.getCookies()
+                                }
                             }
                         }
                     }
                 }
+            } catch (e: TargetCrashedException) {
+                onTargetCrashed(e)
+                throw e
             }
         }
     }
+
+    open fun onTargetCrashed(e: TargetCrashedException) {}
 
     @Test
     fun page_getTargets() {

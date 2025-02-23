@@ -1,5 +1,6 @@
 import kotlinx.coroutines.delay
 import org.hildan.chrome.devtools.protocol.LegacyChromeTargetHttpApi
+import org.hildan.chrome.devtools.protocol.TargetCrashedException
 import org.junit.jupiter.api.Test
 import org.testcontainers.containers.*
 import org.testcontainers.junit.jupiter.*
@@ -30,6 +31,12 @@ class ZenikaIntegrationTests : LocalIntegrationTestBase() {
     // the WS URL is not known in advance and needs to be queried first via the HTTP API, hence the HTTP URL here
     override val wsConnectUrl: String
         get() = "http://localhost:${zenikaChrome.firstMappedPort}"
+
+    override fun onTargetCrashed(e: TargetCrashedException) {
+        println("=== Chrome container logs ===")
+        println(zenikaChrome.logs)
+        println("=== End of logs ===")
+    }
 
     @Ignore("The Zenika container seems out of date and still treats cookiePartitionKey as a string instead of object")
     override fun missingExpiresInCookie() {
