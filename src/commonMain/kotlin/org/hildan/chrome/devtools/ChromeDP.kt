@@ -8,6 +8,8 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import org.hildan.chrome.devtools.protocol.*
 import org.hildan.chrome.devtools.sessions.*
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 
 /**
  * This is the entry point of the interactions with a Chrome browser.
@@ -64,12 +66,15 @@ object ChromeDP {
      *
      * @param wsOrHttpUrl the HTTP or web socket URL of the Chrome debugger.
      *
+     * @param sessionContext a custom [CoroutineContext] for the coroutines used in the Chrome session to process events
+     *
      * @param configureClient Adds extra configuration to the default [HttpClient] used to connect to the debugger's
      *                        web socket. If you need to reuse an existing [HttpClient] entirely, use the
      *                        `HttpClient.connectChromeDebugger` extension instead.
      */
     suspend fun connect(
         wsOrHttpUrl: String,
+        sessionContext: CoroutineContext = EmptyCoroutineContext,
         configureClient: (HttpClientConfig<*>.() -> Unit)? = null,
     ): BrowserSession {
         val httpClient = if (configureClient == null) {
@@ -77,7 +82,7 @@ object ChromeDP {
         } else {
             defaultHttpClient.config(configureClient)
         }
-        return httpClient.connectChromeDebugger(wsOrHttpUrl)
+        return httpClient.connectChromeDebugger(wsOrHttpUrl, sessionContext)
     }
 
     /**

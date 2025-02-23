@@ -2,26 +2,34 @@ package org.hildan.chrome.devtools.protocol
 
 import io.ktor.websocket.*
 import kotlinx.coroutines.*
-import kotlinx.coroutines.channels.ClosedSendChannelException
 import kotlinx.coroutines.flow.*
-import kotlinx.serialization.encodeToString
+import kotlin.coroutines.*
 
 /**
  * Wraps this [WebSocketSession] to provide Chrome DevTools Protocol capabilities.
  *
  * The returned [ChromeDPConnection] can be used to send requests and listen to events.
+ *
+ * It launches a coroutine internally to process and share incoming events.
+ * The [eventProcessingContext] can be used to customize the context of this coroutine.
  */
-internal fun WebSocketSession.chromeDp(): ChromeDPConnection = ChromeDPConnection(this)
+internal fun WebSocketSession.chromeDp(
+    eventProcessingContext: CoroutineContext = EmptyCoroutineContext,
+): ChromeDPConnection = ChromeDPConnection(this, eventProcessingContext)
 
 /**
  * A connection to Chrome, providing communication primitives for the Chrome DevTools protocol.
  *
  * It encodes/decodes ChromeDP frames, and handles sharing of incoming events.
+ *
+ * It launches a coroutine internally to process and share incoming events.
+ * The [eventProcessingContext] can be used to customize the context of this coroutine.
  */
 internal class ChromeDPConnection(
     private val webSocket: WebSocketSession,
+    eventProcessingContext: CoroutineContext = EmptyCoroutineContext,
 ) {
-    private val coroutineScope = CoroutineScope(CoroutineName("ChromeDP-frame-decoder"))
+    private val coroutineScope = CoroutineScope(CoroutineName("ChromeDP-frame-decoder") + eventProcessingContext)
 
     private val frames = webSocket.incoming.receiveAsFlow()
         .filterIsInstance<Frame.Text>()
