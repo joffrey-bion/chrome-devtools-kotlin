@@ -5,6 +5,8 @@ import io.ktor.client.plugins.websocket.*
 import io.ktor.websocket.*
 import org.hildan.chrome.devtools.protocol.*
 import org.hildan.chrome.devtools.sessions.*
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 
 /**
  * Connects to the Chrome debugger at the given [wsOrHttpUrl] (either web socket or HTTP), opening a [BrowserSession].
@@ -31,8 +33,14 @@ import org.hildan.chrome.devtools.sessions.*
  * Because all child sessions of the returned [BrowserSession] use the same underlying web socket connection,
  * calling [ChildSession.close] or [use] on a derived session doesn't close the connection (to avoid undesirable
  * interactions between child sessions).
+ *
+ * @param wsOrHttpUrl the web socket URL to use to connect, or the HTTP URL to use to find the web socket URL
+ * @param sessionContext a custom [CoroutineContext] for the coroutines used in the Chrome session to process events
  */
-suspend fun HttpClient.connectChromeDebugger(wsOrHttpUrl: String): BrowserSession {
+suspend fun HttpClient.connectChromeDebugger(
+    wsOrHttpUrl: String,
+    sessionContext: CoroutineContext = EmptyCoroutineContext,
+): BrowserSession {
     val wsUrl = when {
         wsOrHttpUrl.startsWith("ws://") || wsOrHttpUrl.startsWith("wss://") -> wsOrHttpUrl
         wsOrHttpUrl.startsWith("http://") || wsOrHttpUrl.startsWith("https://") -> {
@@ -40,7 +48,7 @@ suspend fun HttpClient.connectChromeDebugger(wsOrHttpUrl: String): BrowserSessio
         }
         else -> throw IllegalArgumentException("Unsupported URL scheme in $wsOrHttpUrl (please use ws, wss, http, or https)")
     }
-    return chromeWebSocket(wsUrl)
+    return chromeWebSocket(wsUrl, sessionContext)
 }
 
 /**
@@ -69,13 +77,16 @@ suspend fun HttpClient.connectChromeDebugger(wsOrHttpUrl: String): BrowserSessio
  * calling [ChildSession.close] or [use] on a derived session doesn't close the connection (to avoid undesirable
  * interactions between child sessions).
  */
-internal suspend fun HttpClient.chromeWebSocket(webSocketDebuggerUrl: String): BrowserSession {
+internal suspend fun HttpClient.chromeWebSocket(
+    webSocketDebuggerUrl: String,
+    sessionContext: CoroutineContext = EmptyCoroutineContext,
+): BrowserSession {
     require(webSocketDebuggerUrl.startsWith("ws://") || webSocketDebuggerUrl.startsWith("wss://")) {
         "The web socket API requires a 'ws://' or 'wss://' URL, but got $webSocketDebuggerUrl."
     }
     val webSocketSession = webSocketSession(webSocketDebuggerUrl)
     return try {
-        webSocketSession.chromeDp().withSession(sessionId = null).asBrowserSession()
+        webSocketSession.chromeDp(sessionContext).withSession(sessionId = null).asBrowserSession()
     } catch (e: Exception) {
         // the caller won't have the opportunity to clean this up if any of these conversion/wrapping operations fails
         webSocketSession.close()
