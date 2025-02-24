@@ -1,6 +1,7 @@
 import kotlinx.coroutines.delay
 import org.hildan.chrome.devtools.protocol.LegacyChromeTargetHttpApi
 import org.hildan.chrome.devtools.protocol.TargetCrashedException
+import org.hildan.chrome.devtools.runTestWithRealTime
 import org.junit.jupiter.api.Test
 import org.testcontainers.containers.*
 import org.testcontainers.junit.jupiter.*
@@ -44,27 +45,25 @@ class ZenikaIntegrationTests : LocalIntegrationTestBase() {
 
     @OptIn(LegacyChromeTargetHttpApi::class)
     @Test
-    fun httpTabEndpoints_newTabWithCustomUrl() {
-        runBlockingWithTimeout {
-            val chrome = chromeHttp()
+    fun httpTabEndpoints_newTabWithCustomUrl() = runTestWithRealTime {
+        val chrome = chromeHttp()
 
-            val googleTab = chrome.newTab(url = "https://www.google.com")
-            assertEquals("https://www.google.com", googleTab.url.trimEnd('/'))
+        val googleTab = chrome.newTab(url = "https://www.google.com")
+        assertEquals("https://www.google.com", googleTab.url.trimEnd('/'))
 
-            val targets = chrome.targets()
-            assertTrue(
-                actual = targets.any { it.url.trimEnd('/') == "https://www.google.com" },
-                message = "the google.com page target should be listed, got:\n${targets.joinToString("\n")}",
-            )
+        val targets = chrome.targets()
+        assertTrue(
+            actual = targets.any { it.url.trimEnd('/') == "https://www.google.com" },
+            message = "the google.com page target should be listed, got:\n${targets.joinToString("\n")}",
+        )
 
-            chrome.closeTab(googleTab.id)
-            delay(100) // wait for the tab to actually close (fails on CI otherwise)
+        chrome.closeTab(googleTab.id)
+        delay(100) // wait for the tab to actually close (fails on CI otherwise)
 
-            val targetsAfterClose = chrome.targets()
-            assertTrue(
-                actual = targetsAfterClose.none { it.url.trimEnd('/') == "https://www.google.com" },
-                message = "the google.com page target should be closed, got:\n${targetsAfterClose.joinToString("\n")}",
-            )
-        }
+        val targetsAfterClose = chrome.targets()
+        assertTrue(
+            actual = targetsAfterClose.none { it.url.trimEnd('/') == "https://www.google.com" },
+            message = "the google.com page target should be closed, got:\n${targetsAfterClose.joinToString("\n")}",
+        )
     }
 }

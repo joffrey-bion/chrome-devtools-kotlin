@@ -14,7 +14,6 @@ import org.hildan.chrome.devtools.protocol.json.*
 import org.hildan.chrome.devtools.sessions.*
 import org.hildan.chrome.devtools.targets.*
 import kotlin.test.*
-import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
 abstract class IntegrationTestBase {
@@ -36,104 +35,101 @@ abstract class IntegrationTestBase {
 
     protected fun chromeHttp(): ChromeDPHttpApi = ChromeDP.httpApi(httpUrl)
 
-    protected suspend fun chromeWebSocket(): BrowserSession = ChromeDP.connect(wsConnectUrl)
+    protected suspend fun RealTimeTestScope.chromeWebSocket(): BrowserSession = ChromeDP.connect(
+        wsOrHttpUrl = wsConnectUrl,
+        sessionContext = backgroundScope.coroutineContext,
+    )
 
     @Test
-    fun httpMetadataEndpoints() {
-        runBlockingWithTimeout {
-            val chrome = chromeHttp()
+    fun httpMetadataEndpoints() = runTestWithRealTime {
+        val chrome = chromeHttp()
 
-            val version = chrome.version()
-            assertTrue(version.browser.contains("Chrome"))
-            assertTrue(version.userAgent.contains("HeadlessChrome"))
-            assertTrue(version.webSocketDebuggerUrl.startsWith("ws://"), "the debugger URL should start with ws://, but was: ${version.webSocketDebuggerUrl}")
-            println("Chrome version: $version")
+        val version = chrome.version()
+        assertTrue(version.browser.contains("Chrome"))
+        assertTrue(version.userAgent.contains("HeadlessChrome"))
+        assertTrue(version.webSocketDebuggerUrl.startsWith("ws://"), "the debugger URL should start with ws://, but was: ${version.webSocketDebuggerUrl}")
+        println("Chrome version: $version")
 
-            val protocolJson = chrome.protocolJson()
-            assertTrue(protocolJson.isNotEmpty(), "the JSON definition of the protocol should not be empty")
-            val descriptor = Json.decodeFromString<ChromeProtocolDescriptor>(protocolJson)
-            println("Chrome protocol JSON version: ${descriptor.version}")
-        }
+        val protocolJson = chrome.protocolJson()
+        assertTrue(protocolJson.isNotEmpty(), "the JSON definition of the protocol should not be empty")
+        val descriptor = Json.decodeFromString<ChromeProtocolDescriptor>(protocolJson)
+        println("Chrome protocol JSON version: ${descriptor.version}")
     }
 
     @OptIn(ExperimentalChromeApi::class)
     @Test
-    fun webSocket_basic() {
-        runBlockingWithTimeout {
-            chromeWebSocket().use { browser ->
-                val pageSession = browser.newPage()
-                val targetId = pageSession.metaData.targetId
+    fun webSocket_basic() = runTestWithRealTime {
+        chromeWebSocket().use { browser ->
+            val pageSession = browser.newPage()
+            val targetId = pageSession.metaData.targetId
 
-                pageSession.use { page ->
-                    page.goto("http://www.google.com")
+            pageSession.use { page ->
+                page.goto("http://www.google.com")
 
-                    assertEquals("Google", page.target.getTargetInfo().targetInfo.title)
+                assertEquals("Google", page.target.getTargetInfo().targetInfo.title)
 
-                    assertTrue(browser.target.getTargets().targetInfos.any { it.targetId == targetId }, "the new target should be listed")
+                assertTrue(browser.hasTarget(targetId), "the new target should be listed")
 
-                    val nodeId = withTimeoutOrNull(5.seconds) {
-                        page.dom.awaitNodeBySelector("form[action='/search']")
-                    }
-                    assertNotNull(nodeId, "timed out while waiting for DOM node with attribute: form[action='/search']")
-
-                    val getOuterHTMLResponse = page.dom.getOuterHTML(GetOuterHTMLRequest(nodeId = nodeId))
-                    assertTrue(getOuterHTMLResponse.outerHTML.contains("<input name=\"source\""))
+                val nodeId = withTimeoutOrNull(5.seconds) {
+                    page.dom.awaitNodeBySelector("form[action='/search']")
                 }
-                assertTrue(browser.target.getTargets().targetInfos.none { it.targetId == targetId }, "the new target should be closed (not listed)")
+                assertNotNull(nodeId, "timed out while waiting for DOM node with attribute: form[action='/search']")
+
+                val getOuterHTMLResponse = page.dom.getOuterHTML(GetOuterHTMLRequest(nodeId = nodeId))
+                assertTrue(getOuterHTMLResponse.outerHTML.contains("<input name=\"source\""))
             }
+            assertFalse(browser.hasTarget(targetId), "the new target should be closed (not listed)")
+        }
+    }
+
+    @OptIn(ExperimentalChromeApi::class)
+    private suspend fun BrowserSession.hasTarget(targetId: String) =
+        target.getTargets().targetInfos.any { it.targetId == targetId }
+
+    @OptIn(ExperimentalChromeApi::class)
+    @Test
+    fun sessionThrowsIOExceptionIfAlreadyClosed() = runTestWithRealTime {
+        val browser = chromeWebSocket()
+        val session = browser.newPage()
+        session.goto("http://www.google.com")
+
+        browser.close()
+
+        assertFailsWith<RequestNotSentException> {
+            session.target.getTargetInfo().targetInfo
         }
     }
 
     @OptIn(ExperimentalChromeApi::class)
     @Test
-    fun sessionThrowsIOExceptionIfAlreadyClosed() {
-        runBlockingWithTimeout {
-            val browser = chromeWebSocket()
-            val session = browser.newPage()
-            session.goto("http://www.google.com")
+    fun pageSession_goto() = runTestWithRealTime {
+        chromeWebSocket().use { browser ->
+            browser.newPage().use { page ->
+                page.goto("https://kotlinlang.org/")
+                assertEquals("Kotlin Programming Language", page.target.getTargetInfo().targetInfo.title)
 
-            browser.close()
+                page.goto("http://www.google.com")
+                assertEquals("Google", page.target.getTargetInfo().targetInfo.title)
 
-            assertFailsWith<RequestNotSentException> {
-                session.target.getTargetInfo().targetInfo
-            }
-        }
-    }
-
-    @OptIn(ExperimentalChromeApi::class)
-    @Test
-    fun pageSession_goto() {
-        runBlockingWithTimeout {
-            chromeWebSocket().use { browser ->
-                browser.newPage().use { page ->
-                    page.goto("https://kotlinlang.org/")
-                    assertEquals("Kotlin Programming Language", page.target.getTargetInfo().targetInfo.title)
-
-                    page.goto("http://www.google.com")
-                    assertEquals("Google", page.target.getTargetInfo().targetInfo.title)
-
-                    val nodeId = withTimeoutOrNull(5.seconds) {
-                        page.dom.awaitNodeBySelector("form[action='/search']")
-                    }
-                    assertNotNull(nodeId, "timed out while waiting for DOM node with attribute: form[action='/search']")
+                val nodeId = withTimeoutOrNull(5.seconds) {
+                    page.dom.awaitNodeBySelector("form[action='/search']")
                 }
+                assertNotNull(nodeId, "timed out while waiting for DOM node with attribute: form[action='/search']")
             }
         }
     }
 
     @OptIn(ExperimentalChromeApi::class)
     @Test
-    fun test_deserialization_unknown_enum() {
-        runBlockingWithTimeout {
-            chromeWebSocket().use { browser ->
-                browser.newPage().use { page ->
-                    page.goto("http://www.google.com")
-                    val tree = page.accessibility.getFullAXTree() // just test that this doesn't fail
+    fun test_deserialization_unknown_enum() = runTestWithRealTime {
+        chromeWebSocket().use { browser ->
+            browser.newPage().use { page ->
+                page.goto("http://www.google.com")
+                val tree = page.accessibility.getFullAXTree() // just test that this doesn't fail
 
-                    assertTrue("we are no longer testing that unknown AXPropertyName values are deserialized as NotDefinedInProtocol") {
-                        tree.nodes.any { n ->
-                            n.properties.anyUndefinedName() || n.ignoredReasons.anyUndefinedName()
-                        }
+                assertTrue("we are no longer testing that unknown AXPropertyName values are deserialized as NotDefinedInProtocol") {
+                    tree.nodes.any { n ->
+                        n.properties.anyUndefinedName() || n.ignoredReasons.anyUndefinedName()
                     }
                 }
             }
@@ -145,109 +141,105 @@ abstract class IntegrationTestBase {
 
     @OptIn(ExperimentalChromeApi::class)
     @Test
-    fun test_parallelPages() {
-        runBlockingWithTimeout {
-            try {
-                chromeWebSocket().use { browser ->
-                    // we want all coroutines to finish before we close the browser session
-                    withContext(Dispatchers.IO) {
-                        repeat(4) {
-                            launch {
-                                browser.newPage().use { page ->
-                                    page.goto("http://www.google.com")
-                                    page.runtime.getHeapUsage()
-                                    val docRoot = page.dom.getDocumentRootNodeId()
-                                    page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
-                                    page.storage.getCookies()
-                                }
+    fun test_parallelPages() = runTestWithRealTime {
+        try {
+            chromeWebSocket().use { browser ->
+                // we want all coroutines to finish before we close the browser session
+                withContext(Dispatchers.IO) {
+                    repeat(4) {
+                        launch {
+                            browser.newPage().use { page ->
+                                page.goto("http://www.google.com")
+                                page.runtime.getHeapUsage()
+                                val docRoot = page.dom.getDocumentRootNodeId()
+                                page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
+                                page.storage.getCookies()
                             }
                         }
                     }
                 }
-            } catch (e: TargetCrashedException) {
-                onTargetCrashed(e)
-                throw e
             }
+        } catch (e: TargetCrashedException) {
+            onTargetCrashed(e)
+            throw e
         }
     }
 
     open fun onTargetCrashed(e: TargetCrashedException) {}
 
     @Test
-    fun page_getTargets() {
-        runBlockingWithTimeout {
-            chromeWebSocket().use { browser ->
-                browser.newPage().use { page ->
-                    page.goto("http://www.google.com")
-                    val targets = page.target.getTargets().targetInfos
-                    val targetInfo = targets.first { it.targetId == page.metaData.targetId }
-                    assertEquals("page", targetInfo.type)
-                    assertTrue(targetInfo.attached)
-                    assertTrue(targetInfo.url.contains("www.google.com")) // redirected
-                }
+    fun page_getTargets() = runTestWithRealTime {
+        chromeWebSocket().use { browser ->
+            browser.newPage().use { page ->
+                page.goto("http://www.google.com")
+                val targets = page.target.getTargets().targetInfos
+                val targetInfo = targets.first { it.targetId == page.metaData.targetId }
+                assertEquals("page", targetInfo.type)
+                assertTrue(targetInfo.attached)
+                assertTrue(targetInfo.url.contains("www.google.com")) // redirected
             }
         }
     }
 
     @OptIn(ExperimentalChromeApi::class)
     @Test
-    fun supportedDomains_all() {
-        runBlockingWithTimeout {
-            val client = chromeHttp()
-            val descriptor = Json.decodeFromString<ChromeProtocolDescriptor>(client.protocolJson())
+    fun supportedDomains_all() = runTestWithRealTime {
+        val client = chromeHttp()
+        val descriptor = Json.decodeFromString<ChromeProtocolDescriptor>(client.protocolJson())
 
-            val actualSupportedDomains = descriptor.domains
-                .filterNot { it.domain in knownUnsupportedDomains}
-                .map { it.domain }
-                .toSet()
-            val domainsDiff = actualSupportedDomains - knownUnsupportedDomains - AllDomainsTarget.supportedDomains
-            if (domainsDiff.isNotEmpty()) {
-                fail("The library should support all domains that the server actually exposes (apart from " +
-                         "$knownUnsupportedDomains), but it's missing: ${domainsDiff.sorted()}")
-            }
+        val actualSupportedDomains = descriptor.domains
+            .filterNot { it.domain in knownUnsupportedDomains }
+            .map { it.domain }
+            .toSet()
+        val domainsDiff = actualSupportedDomains - knownUnsupportedDomains - AllDomainsTarget.supportedDomains
+        if (domainsDiff.isNotEmpty()) {
+            fail(
+                "The library should support all domains that the server actually exposes (apart from " +
+                    "$knownUnsupportedDomains), but it's missing: ${domainsDiff.sorted()}"
+            )
         }
     }
 
     @OptIn(ExperimentalChromeApi::class)
     @Test
-    fun supportedDomains_pageTarget() {
-        runBlockingWithTimeout {
-            chromeWebSocket().use { browser ->
-                browser.newPage().use { page ->
-                    page.accessibility.enable()
-                    page.animation.enable()
-                    page.backgroundService.clearEvents(ServiceName.backgroundFetch)
-                    page.browser.getVersion()
-                    // Commenting this one out until the issue is better understood
-                    // https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/233
-                    //page.cacheStorage.requestCacheNames(RequestCacheNamesRequest("google.com"))
-                    page.css.getMediaQueries()
-                    page.debugger.disable()
-                    page.deviceOrientation.clearDeviceOrientationOverride()
-                    page.domDebugger.setDOMBreakpoint(
-                        nodeId = page.dom.getDocumentRootNodeId(),
-                        type = DOMBreakpointType.attributeModified,
+    fun supportedDomains_pageTarget() = runTestWithRealTime {
+        chromeWebSocket().use { browser ->
+            browser.newPage().use { page ->
+                page.accessibility.enable()
+                page.animation.enable()
+                page.backgroundService.clearEvents(ServiceName.backgroundFetch)
+                page.browser.getVersion()
+                // Commenting this one out until the issue is better understood
+                // https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/233
+                //page.cacheStorage.requestCacheNames(RequestCacheNamesRequest("google.com"))
+                page.css.getMediaQueries()
+                page.debugger.disable()
+                page.deviceOrientation.clearDeviceOrientationOverride()
+                page.domDebugger.setDOMBreakpoint(
+                    nodeId = page.dom.getDocumentRootNodeId(),
+                    type = DOMBreakpointType.attributeModified,
+                )
+                page.domSnapshot.enable()
+                page.domStorage.enable()
+                page.fetch.disable()
+                page.heapProfiler.enable()
+                page.indexedDB.enable()
+                page.layerTree.enable()
+                page.performance.disable()
+                page.profiler.disable()
+                page.runtime.enable()
+
+                // We cannot replace this schema Domain call by an HTTP call to /json/protocol, because
+                // the protocol JSON contains the list of all domains, not just for the page target type.
+                @Suppress("DEPRECATION")
+                val actualPageDomains = page.schema.getDomains().domains.map { it.name }.toSet()
+
+                val pageDomainsDiff = actualPageDomains - knownUnsupportedDomains - PageTarget.supportedDomains
+                if (pageDomainsDiff.isNotEmpty()) {
+                    fail(
+                        "PageSession should support all domains that the server actually exposes (apart from " +
+                            "$knownUnsupportedDomains), but it's missing: ${pageDomainsDiff.sorted()}"
                     )
-                    page.domSnapshot.enable()
-                    page.domStorage.enable()
-                    page.fetch.disable()
-                    page.heapProfiler.enable()
-                    page.indexedDB.enable()
-                    page.layerTree.enable()
-                    page.performance.disable()
-                    page.profiler.disable()
-                    page.runtime.enable()
-
-                    // We cannot replace this schema Domain call by an HTTP call to /json/protocol, because
-                    // the protocol JSON contains the list of all domains, not just for the page target type.
-                    @Suppress("DEPRECATION")
-                    val actualPageDomains = page.schema.getDomains().domains.map { it.name }.toSet()
-
-                    val pageDomainsDiff = actualPageDomains - knownUnsupportedDomains - PageTarget.supportedDomains
-                    if (pageDomainsDiff.isNotEmpty()) {
-                        fail("PageSession should support all domains that the server actually exposes (apart from " +
-                                 "$knownUnsupportedDomains), but it's missing: ${pageDomainsDiff.sorted()}")
-                    }
                 }
             }
         }
@@ -257,46 +249,38 @@ abstract class IntegrationTestBase {
     data class Person(val firstName: String, val lastName: String)
 
     @Test
-    fun runtime_evaluateJs() {
-        runBlockingWithTimeout {
-            chromeWebSocket().use { browser ->
-                browser.newPage().use { page ->
-                    assertEquals(42, page.runtime.evaluateJs<Int>("42"))
-                    assertEquals(
-                        42 to "test",
-                        page.runtime.evaluateJs<Pair<Int, String>>("""eval({first: 42, second: "test"})""")
-                    )
-                    assertEquals(
-                        Person("Bob", "Lee Swagger"),
-                        page.runtime.evaluateJs<Person>("""eval({firstName: "Bob", lastName: "Lee Swagger"})""")
-                    )
-                }
+    fun runtime_evaluateJs() = runTestWithRealTime {
+        chromeWebSocket().use { browser ->
+            browser.newPage().use { page ->
+                assertEquals(42, page.runtime.evaluateJs<Int>("42"))
+                assertEquals(
+                    42 to "test",
+                    page.runtime.evaluateJs<Pair<Int, String>>("""eval({first: 42, second: "test"})""")
+                )
+                assertEquals(
+                    Person("Bob", "Lee Swagger"),
+                    page.runtime.evaluateJs<Person>("""eval({firstName: "Bob", lastName: "Lee Swagger"})""")
+                )
             }
         }
     }
 
     @OptIn(ExperimentalChromeApi::class)
     @Test
-    open fun missingExpiresInCookie() {
-        runBlockingWithTimeout {
-            chromeWebSocket().use { browser ->
-                browser.newPage().use { page ->
-                    page.goto("https://x.com")
-                    page.network.enable()
-                    coroutineScope {
-                        launch {
-                            // ensures we don't crash on deserialization
-                            page.network.responseReceivedExtraInfoEvents().first()
-                        }
-                        page.dom.awaitNodeBySelector("a[href=\"/login\"]")
-                        page.clickOnElement("a[href=\"/login\"]")
+    open fun missingExpiresInCookie() = runTestWithRealTime {
+        chromeWebSocket().use { browser ->
+            browser.newPage().use { page ->
+                page.goto("https://x.com")
+                page.network.enable()
+                coroutineScope {
+                    launch {
+                        // ensures we don't crash on deserialization
+                        page.network.responseReceivedExtraInfoEvents().first()
                     }
+                    page.dom.awaitNodeBySelector("a[href=\"/login\"]")
+                    page.clickOnElement("a[href=\"/login\"]")
                 }
             }
         }
-    }
-
-    protected fun runBlockingWithTimeout(block: suspend CoroutineScope.() -> Unit) = runBlocking {
-        withTimeout(1.minutes, block)
     }
 }
