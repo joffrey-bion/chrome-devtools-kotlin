@@ -1335,6 +1335,7 @@
                         "kInlineViolation",
                         "kEvalViolation",
                         "kURLViolation",
+                        "kSRIViolation",
                         "kTrustedTypesSinkViolation",
                         "kTrustedTypesPolicyViolation",
                         "kWasmEvalViolation"
@@ -1560,6 +1561,32 @@
                     ]
                 },
                 {
+                    "id": "SRIMessageSignatureError",
+                    "type": "string",
+                    "enum": [
+                        "MissingSignatureHeader",
+                        "MissingSignatureInputHeader",
+                        "InvalidSignatureHeader",
+                        "InvalidSignatureInputHeader",
+                        "SignatureHeaderValueIsNotByteSequence",
+                        "SignatureHeaderValueIsParameterized",
+                        "SignatureHeaderValueIsIncorrectLength",
+                        "SignatureInputHeaderMissingLabel",
+                        "SignatureInputHeaderValueNotInnerList",
+                        "SignatureInputHeaderValueMissingComponents",
+                        "SignatureInputHeaderInvalidComponentType",
+                        "SignatureInputHeaderInvalidComponentName",
+                        "SignatureInputHeaderInvalidHeaderComponentParameter",
+                        "SignatureInputHeaderInvalidDerivedComponentParameter",
+                        "SignatureInputHeaderKeyIdLength",
+                        "SignatureInputHeaderInvalidParameter",
+                        "SignatureInputHeaderMissingRequiredParameters",
+                        "ValidationFailedSignatureExpired",
+                        "ValidationFailedInvalidLength",
+                        "ValidationFailedSignatureMismatch"
+                    ]
+                },
+                {
                     "id": "AttributionReportingIssueDetails",
                     "description": "Details for issues around \"Attribution Reporting API\" usage.\nExplainer: https://github.com/WICG/attribution-reporting-api",
                     "type": "object",
@@ -1636,6 +1663,20 @@
                         {
                             "name": "sharedDictionaryError",
                             "$ref": "SharedDictionaryError"
+                        },
+                        {
+                            "name": "request",
+                            "$ref": "AffectedRequest"
+                        }
+                    ]
+                },
+                {
+                    "id": "SRIMessageSignatureIssueDetails",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "error",
+                            "$ref": "SRIMessageSignatureError"
                         },
                         {
                             "name": "request",
@@ -1821,7 +1862,8 @@
                         "InvalidFieldsSpecified",
                         "RelyingPartyOriginIsOpaque",
                         "TypeNotMatching",
-                        "UiDismissedNoEmbargo"
+                        "UiDismissedNoEmbargo",
+                        "CorsError"
                     ]
                 },
                 {
@@ -1883,6 +1925,30 @@
                             "name": "requestId",
                             "optional": true,
                             "$ref": "Network.RequestId"
+                        }
+                    ]
+                },
+                {
+                    "id": "PartitioningBlobURLInfo",
+                    "type": "string",
+                    "enum": [
+                        "BlockedCrossPartitionFetching",
+                        "EnforceNoopenerForNavigation"
+                    ]
+                },
+                {
+                    "id": "PartitioningBlobURLIssueDetails",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "url",
+                            "description": "The BlobURL that failed to load.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "partitioningBlobURLInfo",
+                            "description": "Additional information about the Partitioning Blob URL issue.",
+                            "$ref": "PartitioningBlobURLInfo"
                         }
                     ]
                 },
@@ -1995,6 +2061,7 @@
                         "CorsIssue",
                         "AttributionReportingIssue",
                         "QuirksModeIssue",
+                        "PartitioningBlobURLIssue",
                         "NavigatorUserAgentIssue",
                         "GenericIssue",
                         "DeprecationIssue",
@@ -2006,7 +2073,8 @@
                         "FederatedAuthUserInfoRequestIssue",
                         "PropertyRuleIssue",
                         "SharedDictionaryIssue",
-                        "SelectElementAccessibilityIssue"
+                        "SelectElementAccessibilityIssue",
+                        "SRIMessageSignatureIssue"
                     ]
                 },
                 {
@@ -2063,6 +2131,11 @@
                             "name": "quirksModeIssueDetails",
                             "optional": true,
                             "$ref": "QuirksModeIssueDetails"
+                        },
+                        {
+                            "name": "partitioningBlobURLIssueDetails",
+                            "optional": true,
+                            "$ref": "PartitioningBlobURLIssueDetails"
                         },
                         {
                             "name": "navigatorUserAgentIssueDetails",
@@ -2124,6 +2197,11 @@
                             "name": "selectElementAccessibilityIssueDetails",
                             "optional": true,
                             "$ref": "SelectElementAccessibilityIssueDetails"
+                        },
+                        {
+                            "name": "sriMessageSignatureIssueDetails",
+                            "optional": true,
+                            "$ref": "SRIMessageSignatureIssueDetails"
                         }
                     ]
                 },
@@ -2281,6 +2359,17 @@
                         }
                     ],
                     "returns": [
+                        {
+                            "name": "id",
+                            "description": "Extension id.",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "name": "uninstall",
+                    "description": "Uninstalls an unpacked extension (others not supported) from the profile.\nAvailable if the client is connected using the --remote-debugging-pipe flag\nand the --enable-unsafe-extension-debugging.",
+                    "parameters": [
                         {
                             "name": "id",
                             "description": "Extension id.",
@@ -4570,6 +4659,119 @@
                     ]
                 },
                 {
+                    "id": "CSSFunctionParameter",
+                    "description": "CSS function argument representation.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "name",
+                            "description": "The parameter name.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The parameter type.",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "id": "CSSFunctionConditionNode",
+                    "description": "CSS function conditional block representation.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "media",
+                            "description": "Media query for this conditional block. Only one type of condition should be set.",
+                            "optional": true,
+                            "$ref": "CSSMedia"
+                        },
+                        {
+                            "name": "containerQueries",
+                            "description": "Container query for this conditional block. Only one type of condition should be set.",
+                            "optional": true,
+                            "$ref": "CSSContainerQuery"
+                        },
+                        {
+                            "name": "supports",
+                            "description": "@supports CSS at-rule condition. Only one type of condition should be set.",
+                            "optional": true,
+                            "$ref": "CSSSupports"
+                        },
+                        {
+                            "name": "children",
+                            "description": "Block body.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "CSSFunctionNode"
+                            }
+                        },
+                        {
+                            "name": "conditionText",
+                            "description": "The condition text.",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "id": "CSSFunctionNode",
+                    "description": "Section of the body of a CSS function rule.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "condition",
+                            "description": "A conditional block. If set, style should not be set.",
+                            "optional": true,
+                            "$ref": "CSSFunctionConditionNode"
+                        },
+                        {
+                            "name": "style",
+                            "description": "Values set by this node. If set, condition should not be set.",
+                            "optional": true,
+                            "$ref": "CSSStyle"
+                        }
+                    ]
+                },
+                {
+                    "id": "CSSFunctionRule",
+                    "description": "CSS function at-rule representation.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "name",
+                            "description": "Name of the function.",
+                            "$ref": "Value"
+                        },
+                        {
+                            "name": "styleSheetId",
+                            "description": "The css style sheet identifier (absent for user agent stylesheet and user-specified\nstylesheet rules) this rule came from.",
+                            "optional": true,
+                            "$ref": "StyleSheetId"
+                        },
+                        {
+                            "name": "origin",
+                            "description": "Parent stylesheet's origin.",
+                            "$ref": "StyleSheetOrigin"
+                        },
+                        {
+                            "name": "parameters",
+                            "description": "List of parameters.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "CSSFunctionParameter"
+                            }
+                        },
+                        {
+                            "name": "children",
+                            "description": "Function body.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "CSSFunctionNode"
+                            }
+                        }
+                    ]
+                },
+                {
                     "id": "CSSKeyframeRule",
                     "description": "CSS keyframe rule representation.",
                     "type": "object",
@@ -4684,6 +4886,12 @@
                             "name": "frameId",
                             "description": "Identifier of the frame where \"via-inspector\" stylesheet should be created.",
                             "$ref": "Page.FrameId"
+                        },
+                        {
+                            "name": "force",
+                            "description": "If true, creates a new stylesheet for every call. If false,\nreturns a stylesheet previously created by a call with force=false\nfor the frame's document if it exists or creates a new stylesheet\n(default: false).",
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ],
                     "returns": [
@@ -5034,6 +5242,16 @@
                             "experimental": true,
                             "optional": true,
                             "$ref": "DOM.NodeId"
+                        },
+                        {
+                            "name": "cssFunctionRules",
+                            "description": "A list of CSS at-function rules referenced by styles of this node.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "array",
+                            "items": {
+                                "$ref": "CSSFunctionRule"
+                            }
                         }
                     ]
                 },
@@ -7110,7 +7328,8 @@
                             "description": "Type of relation to get.",
                             "type": "string",
                             "enum": [
-                                "PopoverTarget"
+                                "PopoverTarget",
+                                "InterestTarget"
                             ]
                         }
                     ],
@@ -9168,6 +9387,61 @@
             ],
             "types": [
                 {
+                    "id": "SafeAreaInsets",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "top",
+                            "description": "Overrides safe-area-inset-top.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "topMax",
+                            "description": "Overrides safe-area-max-inset-top.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "left",
+                            "description": "Overrides safe-area-inset-left.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "leftMax",
+                            "description": "Overrides safe-area-max-inset-left.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "bottom",
+                            "description": "Overrides safe-area-inset-bottom.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "bottomMax",
+                            "description": "Overrides safe-area-max-inset-bottom.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "right",
+                            "description": "Overrides safe-area-inset-right.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "rightMax",
+                            "description": "Overrides safe-area-max-inset-right.",
+                            "optional": true,
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
                     "id": "ScreenOrientation",
                     "description": "Screen orientation.",
                     "type": "object",
@@ -9559,6 +9833,17 @@
                             "description": "RGBA of the default background color. If not specified, any existing override will be\ncleared.",
                             "optional": true,
                             "$ref": "DOM.RGBA"
+                        }
+                    ]
+                },
+                {
+                    "name": "setSafeAreaInsetsOverride",
+                    "description": "Overrides the values for env(safe-area-inset-*) and env(safe-area-max-inset-*). Unset values will cause the\nrespective variables to be undefined, even if previously overridden.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "insets",
+                            "$ref": "SafeAreaInsets"
                         }
                     ]
                 },
@@ -13075,7 +13360,8 @@
                         "PreflightMissingPrivateNetworkAccessId",
                         "PreflightMissingPrivateNetworkAccessName",
                         "PrivateNetworkAccessPermissionUnavailable",
-                        "PrivateNetworkAccessPermissionDenied"
+                        "PrivateNetworkAccessPermissionDenied",
+                        "LocalNetworkAccessPermissionDenied"
                     ]
                 },
                 {
@@ -14159,7 +14445,8 @@
                         "BlockFromInsecureToMorePrivate",
                         "WarnFromInsecureToMorePrivate",
                         "PreflightBlock",
-                        "PreflightWarn"
+                        "PreflightWarn",
+                        "PermissionBlock"
                     ]
                 },
                 {
@@ -17355,7 +17642,7 @@
                 },
                 {
                     "id": "PermissionsPolicyFeature",
-                    "description": "All Permissions Policy features. This enum should match the one defined\nin third_party/blink/renderer/core/permissions_policy/permissions_policy_features.json5.",
+                    "description": "All Permissions Policy features. This enum should match the one defined\nin services/network/public/cpp/permissions_policy/permissions_policy_features.json5.",
                     "experimental": true,
                     "type": "string",
                     "enum": [
@@ -17619,6 +17906,19 @@
                     ]
                 },
                 {
+                    "id": "SecurityOriginDetails",
+                    "description": "Additional information about the frame document's security origin.",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "isLocalhost",
+                            "description": "Indicates whether the frame document's security origin is one\nof the local hostnames (e.g. \"localhost\") or IP addresses (IPv4\n127.0.0.0/8 or IPv6 ::1).",
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                {
                     "id": "Frame",
                     "description": "Information about the Frame on the page.",
                     "type": "object",
@@ -17667,6 +17967,13 @@
                             "name": "securityOrigin",
                             "description": "Frame document's security origin.",
                             "type": "string"
+                        },
+                        {
+                            "name": "securityOriginDetails",
+                            "description": "Additional details about the frame document's security origin.",
+                            "experimental": true,
+                            "optional": true,
+                            "$ref": "SecurityOriginDetails"
                         },
                         {
                             "name": "mimeType",
@@ -18791,7 +19098,8 @@
                         "EmbedderExtensionMessagingForOpenPort",
                         "EmbedderExtensionSentMessageToCachedFrame",
                         "RequestedByWebViewClient",
-                        "PostMessageByWebViewClient"
+                        "PostMessageByWebViewClient",
+                        "CacheControlNoStoreDeviceBoundSessionTerminated"
                     ]
                 },
                 {
@@ -19111,7 +19419,16 @@
                 },
                 {
                     "name": "enable",
-                    "description": "Enables page domain notifications."
+                    "description": "Enables page domain notifications.",
+                    "parameters": [
+                        {
+                            "name": "enableFileChooserOpenedEvent",
+                            "description": "If true, the `Page.fileChooserOpened` event will be emitted regardless of the state set by\n`Page.setInterceptFileChooserDialog` command (default: false).",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "boolean"
+                        }
+                    ]
                 },
                 {
                     "name": "getAppManifest",
@@ -20259,6 +20576,42 @@
                 {
                     "name": "frameResized",
                     "experimental": true
+                },
+                {
+                    "name": "frameStartedNavigating",
+                    "description": "Fired when a navigation starts. This event is fired for both\nrenderer-initiated and browser-initiated navigations. For renderer-initiated\nnavigations, the event is fired after `frameRequestedNavigation`.\nNavigation may still be cancelled after the event is issued. Multiple events\ncan be fired for a single navigation, for example, when a same-document\nnavigation becomes a cross-document navigation (such as in the case of a\nframeset).",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "frameId",
+                            "description": "ID of the frame that is being navigated.",
+                            "$ref": "FrameId"
+                        },
+                        {
+                            "name": "url",
+                            "description": "The URL the navigation started with. The final URL can be different.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "loaderId",
+                            "description": "Loader identifier. Even though it is present in case of same-document\nnavigation, the previously committed loaderId would not change unless\nthe navigation changes from a same-document to a cross-document\nnavigation.",
+                            "$ref": "Network.LoaderId"
+                        },
+                        {
+                            "name": "navigationType",
+                            "type": "string",
+                            "enum": [
+                                "reload",
+                                "reloadBypassingCache",
+                                "restore",
+                                "restoreWithPost",
+                                "historySameDocument",
+                                "historyDifferentDocument",
+                                "sameDocument",
+                                "differentDocument"
+                            ]
+                        }
+                    ]
                 },
                 {
                     "name": "frameRequestedNavigation",
@@ -23894,6 +24247,12 @@
                             "description": "Binding name, 'cdp' if not specified.",
                             "optional": true,
                             "type": "string"
+                        },
+                        {
+                            "name": "inheritPermissions",
+                            "description": "If true, inherits the current root session's permissions (default: false).",
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ]
                 },
@@ -26593,7 +26952,8 @@
                         "SlowNetwork",
                         "OtherPrerenderedPageActivated",
                         "V8OptimizerDisabled",
-                        "PrerenderFailedDuringPrefetch"
+                        "PrerenderFailedDuringPrefetch",
+                        "BrowsingDataRemoved"
                     ]
                 },
                 {
