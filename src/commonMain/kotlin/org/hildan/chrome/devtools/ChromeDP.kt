@@ -1,15 +1,14 @@
 package org.hildan.chrome.devtools
 
-import io.ktor.client.HttpClient
-import io.ktor.client.HttpClientConfig
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.plugins.websocket.WebSockets
-import io.ktor.serialization.kotlinx.json.json
-import kotlinx.serialization.json.Json
+import io.ktor.client.*
+import io.ktor.client.plugins.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.websocket.*
+import io.ktor.serialization.kotlinx.json.*
+import kotlinx.serialization.json.*
 import org.hildan.chrome.devtools.protocol.*
 import org.hildan.chrome.devtools.sessions.*
-import kotlin.coroutines.CoroutineContext
-import kotlin.coroutines.EmptyCoroutineContext
+import kotlin.coroutines.*
 
 /**
  * This is the entry point of the interactions with a Chrome browser.
@@ -30,6 +29,10 @@ object ChromeDP {
 
     internal val defaultHttpClient by lazy {
         HttpClient {
+            install(UserAgent) {
+                agent = "Chrome DevTools Kotlin"
+            }
+
             install(WebSockets)
 
             // for HTTP /json/* endpoints
