@@ -6,6 +6,7 @@ import org.hildan.chrome.devtools.domains.dom.DescribeNodeRequest
 import org.hildan.chrome.devtools.domains.dom.getDocumentRootNodeId
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
 import org.hildan.chrome.devtools.protocol.LegacyChromeTargetHttpApi
+import org.hildan.chrome.devtools.runTestWithRealTime
 import org.hildan.chrome.devtools.sessions.goto
 import org.hildan.chrome.devtools.sessions.newPage
 import org.hildan.chrome.devtools.sessions.use
@@ -47,47 +48,43 @@ class ZenikaIntegrationTests : LocalIntegrationTestBase() {
 
     @OptIn(LegacyChromeTargetHttpApi::class)
     @Test
-    fun httpTabEndpoints_newTabWithCustomUrl() {
-        runBlockingWithTimeout {
-            val chrome = chromeHttp()
+    fun httpTabEndpoints_newTabWithCustomUrl() = runTestWithRealTime {
+        val chrome = chromeHttp()
 
-            val googleTab = chrome.newTab(url = "https://www.google.com")
-            assertEquals("https://www.google.com", googleTab.url.trimEnd('/'))
+        val googleTab = chrome.newTab(url = "https://www.google.com")
+        assertEquals("https://www.google.com", googleTab.url.trimEnd('/'))
 
-            val targets = chrome.targets()
-            assertTrue(
-                actual = targets.any { it.url.trimEnd('/') == "https://www.google.com" },
-                message = "the google.com page target should be listed, got:\n${targets.joinToString("\n")}",
-            )
+        val targets = chrome.targets()
+        assertTrue(
+            actual = targets.any { it.url.trimEnd('/') == "https://www.google.com" },
+            message = "the google.com page target should be listed, got:\n${targets.joinToString("\n")}",
+        )
 
-            chrome.closeTab(googleTab.id)
-            delay(100) // wait for the tab to actually close (fails on CI otherwise)
+        chrome.closeTab(googleTab.id)
+        delay(100) // wait for the tab to actually close (fails on CI otherwise)
 
-            val targetsAfterClose = chrome.targets()
-            assertTrue(
-                actual = targetsAfterClose.none { it.url.trimEnd('/') == "https://www.google.com" },
-                message = "the google.com page target should be closed, got:\n${targetsAfterClose.joinToString("\n")}",
-            )
-        }
+        val targetsAfterClose = chrome.targets()
+        assertTrue(
+            actual = targetsAfterClose.none { it.url.trimEnd('/') == "https://www.google.com" },
+            message = "the google.com page target should be closed, got:\n${targetsAfterClose.joinToString("\n")}",
+        )
     }
 
     @OptIn(ExperimentalChromeApi::class)
     @Test
-    fun parallelPages() {
-        runBlockingWithTimeout {
-            withResourceServerForTestcontainers { baseUrl ->
-                chromeWebSocket().use { browser ->
-                    // we want all coroutines to finish before we close the browser session
-                    withContext(Dispatchers.IO) {
-                        repeat(20) {
-                            launch {
-                                browser.newPage().use { page ->
-                                    page.goto("$baseUrl/test-server-pages/basic.html")
-                                    page.runtime.getHeapUsage()
-                                    val docRoot = page.dom.getDocumentRootNodeId()
-                                    page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
-                                    page.storage.getCookies()
-                                }
+    fun parallelPages() = runTestWithRealTime {
+        withResourceServerForTestcontainers { baseUrl ->
+            chromeWebSocket().use { browser ->
+                // we want all coroutines to finish before we close the browser session
+                withContext(Dispatchers.IO) {
+                    repeat(20) {
+                        launch {
+                            browser.newPage().use { page ->
+                                page.goto("$baseUrl/test-server-pages/basic.html")
+                                page.runtime.getHeapUsage()
+                                val docRoot = page.dom.getDocumentRootNodeId()
+                                page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
+                                page.storage.getCookies()
                             }
                         }
                     }
