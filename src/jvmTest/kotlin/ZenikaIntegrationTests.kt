@@ -24,11 +24,11 @@ class ZenikaIntegrationTests : LocalIntegrationTestBase() {
         .withCopyFileToContainer(MountableFile.forClasspathResource("/test-server-pages/"), "/test-server-pages/")
 
     override val httpUrl: String
-        get() = "http://localhost:${zenikaChrome.firstMappedPort}"
+        get() = "http://${zenikaChrome.host}:${zenikaChrome.getMappedPort(9222)}"
 
     // the WS URL is not known in advance and needs to be queried first via the HTTP API, hence the HTTP URL here
     override val wsConnectUrl: String
-        get() = "http://localhost:${zenikaChrome.firstMappedPort}"
+        get() = "http://${zenikaChrome.host}:${zenikaChrome.getMappedPort(9222)}"
 
     @Ignore("The Zenika container seems out of date and still treats cookiePartitionKey as a string instead of object")
     override fun missingExpiresInCookie() {

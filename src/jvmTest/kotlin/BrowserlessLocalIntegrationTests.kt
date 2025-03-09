@@ -23,8 +23,8 @@ class BrowserlessLocalIntegrationTests : IntegrationTestBase() {
         .withCopyFileToContainer(MountableFile.forClasspathResource("/test-server-pages/"), "/test-server-pages/")
 
     override val httpUrl: String
-        get() = "http://localhost:${browserlessChromium.firstMappedPort}"
+        get() = "http://${browserlessChromium.host}:${browserlessChromium.getMappedPort(3000)}"
 
     override val wsConnectUrl: String
-        get() = "ws://localhost:${browserlessChromium.firstMappedPort}"
+        get() = "ws://${browserlessChromium.host}:${browserlessChromium.getMappedPort(3000)}"
 }
