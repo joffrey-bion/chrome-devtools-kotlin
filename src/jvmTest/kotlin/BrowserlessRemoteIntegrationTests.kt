@@ -1,3 +1,6 @@
+import org.junit.jupiter.api.Disabled
+
+@Disabled("Getting HTTP 429 even before reaching the quota")
 class BrowserlessRemoteIntegrationTests : IntegrationTestBase() {
 
     private val token = System.getenv("BROWSERLESS_API_TOKEN")
