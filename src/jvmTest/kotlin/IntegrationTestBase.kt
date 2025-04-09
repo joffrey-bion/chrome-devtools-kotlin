@@ -4,7 +4,6 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.first
 import kotlinx.serialization.*
 import kotlinx.serialization.json.*
-import org.hildan.chrome.devtools.domains.accessibility.*
 import org.hildan.chrome.devtools.domains.backgroundservice.*
 import org.hildan.chrome.devtools.domains.dom.*
 import org.hildan.chrome.devtools.domains.domdebugger.*
@@ -70,7 +69,7 @@ abstract class IntegrationTestBase {
 
     @OptIn(ExperimentalChromeApi::class)
     @Test
-    fun webSocket_basic() {
+    fun basicFlow_remote() {
         runBlockingWithTimeout {
             chromeWebSocket().use { browser ->
                 val pageSession = browser.newPage()
@@ -92,104 +91,6 @@ abstract class IntegrationTestBase {
                     assertTrue(getOuterHTMLResponse.outerHTML.contains("<input name=\"source\""))
                 }
                 assertTrue(browser.target.getTargets().targetInfos.none { it.targetId == targetId }, "the new target should be closed (not listed)")
-            }
-        }
-    }
-
-    @OptIn(ExperimentalChromeApi::class)
-    @Test
-    fun sessionThrowsIOExceptionIfAlreadyClosed() {
-        runBlockingWithTimeout {
-            val browser = chromeWebSocket()
-            val session = browser.newPage()
-            session.goto("http://www.google.com")
-
-            browser.close()
-
-            assertFailsWith<RequestNotSentException> {
-                session.target.getTargetInfo().targetInfo
-            }
-        }
-    }
-
-    @OptIn(ExperimentalChromeApi::class)
-    @Test
-    fun pageSession_goto() {
-        runBlockingWithTimeout {
-            chromeWebSocket().use { browser ->
-                browser.newPage().use { page ->
-                    page.goto("https://kotlinlang.org/")
-                    assertEquals("Kotlin Programming Language", page.target.getTargetInfo().targetInfo.title)
-
-                    page.goto("http://www.google.com")
-                    assertEquals("Google", page.target.getTargetInfo().targetInfo.title)
-
-                    val nodeId = withTimeoutOrNull(5.seconds) {
-                        page.dom.awaitNodeBySelector("form[action='/search']")
-                    }
-                    assertNotNull(nodeId, "timed out while waiting for DOM node with attribute: form[action='/search']")
-                }
-            }
-        }
-    }
-
-    @OptIn(ExperimentalChromeApi::class)
-    @Test
-    fun test_deserialization_unknown_enum() {
-        runBlockingWithTimeout {
-            chromeWebSocket().use { browser ->
-                browser.newPage().use { page ->
-                    page.goto("http://www.google.com")
-                    val tree = page.accessibility.getFullAXTree() // just test that this doesn't fail
-
-                    assertTrue("we are no longer testing that unknown AXPropertyName values are deserialized as NotDefinedInProtocol") {
-                        tree.nodes.any { n ->
-                            n.properties.anyUndefinedName() || n.ignoredReasons.anyUndefinedName()
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private fun List<AXProperty>?.anyUndefinedName(): Boolean =
-        this != null && this.any { it.name is AXPropertyName.NotDefinedInProtocol }
-
-    @OptIn(ExperimentalChromeApi::class)
-    @Test
-    fun test_parallelPages() {
-        runBlockingWithTimeout {
-            chromeWebSocket().use { browser ->
-                // we want all coroutines to finish before we close the browser session
-                withContext(Dispatchers.IO) {
-                    repeat(4) {
-                        launch {
-                            browser.newPage().use { page ->
-                                page.goto("http://www.google.com")
-                                page.runtime.getHeapUsage()
-                                val docRoot = page.dom.getDocumentRootNodeId()
-                                page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
-                                page.storage.getCookies()
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @Test
-    fun page_getTargets() {
-        runBlockingWithTimeout {
-            chromeWebSocket().use { browser ->
-                browser.newPage().use { page ->
-                    page.goto("http://www.google.com")
-                    val targets = page.target.getTargets().targetInfos
-                    val targetInfo = targets.first { it.targetId == page.metaData.targetId }
-                    assertEquals("page", targetInfo.type)
-                    assertTrue(targetInfo.attached)
-                    assertTrue(targetInfo.url.contains("www.google.com")) // redirected
-                }
             }
         }
     }

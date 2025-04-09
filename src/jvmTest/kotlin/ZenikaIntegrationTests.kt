@@ -20,6 +20,7 @@ class ZenikaIntegrationTests : LocalIntegrationTestBase() {
     @Container
     var zenikaChrome: GenericContainer<*> = GenericContainer("zenika/alpine-chrome:latest")
         .withExposedPorts(9222)
+        .withAccessToHost(true)
         .withCommand("--no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 about:blank")
         .withCopyFileToContainer(MountableFile.forClasspathResource("/test-server-pages/"), "/test-server-pages/")
 

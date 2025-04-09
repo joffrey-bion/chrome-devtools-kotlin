@@ -1,12 +1,144 @@
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeoutOrNull
+import org.hildan.chrome.devtools.domains.accessibility.AXProperty
+import org.hildan.chrome.devtools.domains.accessibility.AXPropertyName
 import org.hildan.chrome.devtools.domains.dom.*
+import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
+import org.hildan.chrome.devtools.protocol.RequestNotSentException
 import org.hildan.chrome.devtools.sessions.*
 import org.junit.jupiter.api.Test
+import org.testcontainers.Testcontainers
 import kotlin.test.*
+import kotlin.time.Duration.Companion.seconds
 
 abstract class LocalIntegrationTestBase : IntegrationTestBase() {
 
-    private suspend fun PageSession.gotoTestPageResource(resourcePath: String) {
+    protected suspend fun PageSession.gotoTestPageResource(resourcePath: String) {
         goto("file:///test-server-pages/$resourcePath")
+    }
+
+    @OptIn(ExperimentalChromeApi::class)
+    @Test
+    fun basicFlow_fileScheme() {
+        runBlockingWithTimeout {
+            chromeWebSocket().use { browser ->
+                val pageSession = browser.newPage()
+                val targetId = pageSession.metaData.targetId
+
+                pageSession.use { page ->
+                    page.gotoTestPageResource("basic.html")
+                    assertEquals("Basic tab title", page.target.getTargetInfo().targetInfo.title)
+                    assertTrue(browser.target.getTargets().targetInfos.any { it.targetId == targetId }, "the new target should be listed")
+                }
+                assertTrue(browser.target.getTargets().targetInfos.none { it.targetId == targetId }, "the new target should be closed (not listed)")
+            }
+        }
+    }
+
+    @OptIn(ExperimentalChromeApi::class)
+    @Test
+    fun basicFlow_httpScheme() {
+        runBlockingWithTimeout {
+            withResourceServerForTestcontainers { baseUrl ->
+                chromeWebSocket().use { browser ->
+                    val pageSession = browser.newPage()
+                    val targetId = pageSession.metaData.targetId
+
+                    pageSession.use { page ->
+                        page.goto("$baseUrl/test-server-pages/basic.html")
+                        assertEquals("Basic tab title", page.target.getTargetInfo().targetInfo.title)
+                        assertTrue(
+                            browser.target.getTargets().targetInfos.any { it.targetId == targetId },
+                            "the new target should be listed"
+                        )
+                    }
+                    assertTrue(
+                        browser.target.getTargets().targetInfos.none { it.targetId == targetId },
+                        "the new target should be closed (not listed)"
+                    )
+                }
+            }
+        }
+    }
+
+    @Test
+    fun page_getTargets_fileScheme() {
+        runBlockingWithTimeout {
+            chromeWebSocket().use { browser ->
+                browser.newPage().use { page ->
+                    page.gotoTestPageResource("basic.html")
+                    val targets = page.target.getTargets().targetInfos
+                    val targetInfo = targets.first { it.targetId == page.metaData.targetId }
+                    assertEquals("page", targetInfo.type)
+                    assertTrue(targetInfo.attached)
+                    assertTrue(targetInfo.url.contains("basic.html"))
+                }
+            }
+        }
+    }
+
+    @Test
+    fun page_getTargets_httpScheme() {
+        runBlockingWithTimeout {
+            withResourceServerForTestcontainers { baseUrl ->
+                chromeWebSocket().use { browser ->
+                    browser.newPage().use { page ->
+                        page.goto("$baseUrl/test-server-pages/basic.html")
+                        val targets = page.target.getTargets().targetInfos
+                        val targetInfo = targets.first { it.targetId == page.metaData.targetId }
+                        assertEquals("page", targetInfo.type)
+                        assertTrue(targetInfo.attached)
+                        assertTrue(targetInfo.url.contains("basic.html"))
+                    }
+                }
+            }
+        }
+    }
+
+    @OptIn(ExperimentalChromeApi::class)
+    @Test
+    fun page_goto() {
+        runBlockingWithTimeout {
+            withResourceServerForTestcontainers { baseUrl ->
+                chromeWebSocket().use { browser ->
+                    browser.newPage().use { page ->
+                        page.goto("$baseUrl/test-server-pages/basic.html")
+                        assertEquals("Basic tab title", page.target.getTargetInfo().targetInfo.title)
+
+                        page.goto("$baseUrl/test-server-pages/other.html")
+                        assertEquals("Other tab title", page.target.getTargetInfo().targetInfo.title)
+                        val nodeId = withTimeoutOrNull(5.seconds) {
+                            page.dom.awaitNodeBySelector("p[class='some-p-class']")
+                        }
+                        assertNotNull(
+                            nodeId,
+                            "timed out while waiting for DOM node with attribute: p[class='some-p-class']"
+                        )
+
+                        val getOuterHTMLResponse = page.dom.getOuterHTML(GetOuterHTMLRequest(nodeId = nodeId))
+                        assertTrue(getOuterHTMLResponse.outerHTML.contains("<p class=\"some-p-class\">"))
+                    }
+                }
+            }
+        }
+    }
+
+    @OptIn(ExperimentalChromeApi::class)
+    @Test
+    fun sessionThrowsIOExceptionIfAlreadyClosed() {
+        runBlockingWithTimeout {
+            val browser = chromeWebSocket()
+            val session = browser.newPage()
+            session.gotoTestPageResource("basic.html")
+
+            browser.close()
+
+            assertFailsWith<RequestNotSentException> {
+                session.target.getTargetInfo().targetInfo
+            }
+        }
     }
 
     @Test
@@ -39,4 +171,58 @@ abstract class LocalIntegrationTestBase : IntegrationTestBase() {
             }
         }
     }
+
+    @OptIn(ExperimentalChromeApi::class)
+    @Test
+    fun parallelPages() {
+        runBlockingWithTimeout {
+            withResourceServerForTestcontainers { baseUrl ->
+                chromeWebSocket().use { browser ->
+                    // we want all coroutines to finish before we close the browser session
+                    withContext(Dispatchers.IO) {
+                        repeat(20) {
+                            launch {
+                                browser.newPage().use { page ->
+                                    page.goto("$baseUrl/test-server-pages/basic.html")
+                                    page.runtime.getHeapUsage()
+                                    val docRoot = page.dom.getDocumentRootNodeId()
+                                    page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
+                                    page.storage.getCookies()
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @OptIn(ExperimentalChromeApi::class)
+    @Test
+    fun test_deserialization_unknown_enum() {
+        runBlockingWithTimeout {
+            chromeWebSocket().use { browser ->
+                browser.newPage().use { page ->
+                    page.gotoTestPageResource("basic.html")
+                    val tree = page.accessibility.getFullAXTree() // just test that this doesn't fail
+
+                    assertTrue("we are no longer testing that unknown AXPropertyName values are deserialized as NotDefinedInProtocol") {
+                        tree.nodes.any { n ->
+                            n.properties.anyUndefinedName() || n.ignoredReasons.anyUndefinedName()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private suspend fun withResourceServerForTestcontainers(block: suspend (baseUrl: String) -> Unit) {
+        withResourceHttpServer { port ->
+            Testcontainers.exposeHostPorts(port)
+            block("http://host.testcontainers.internal:$port")
+        }
+    }
+
+    private fun List<AXProperty>?.anyUndefinedName(): Boolean =
+        this != null && this.any { it.name is AXPropertyName.NotDefinedInProtocol }
 }

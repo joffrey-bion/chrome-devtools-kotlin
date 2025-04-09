@@ -4,7 +4,7 @@ import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.utility.*
 
 @Testcontainers
-class BrowserlessLocalIntegrationTests : IntegrationTestBase() {
+class BrowserlessLocalIntegrationTests : LocalIntegrationTestBase() {
 
     /**
      * A container running Browserless with Chromium support.
@@ -20,6 +20,7 @@ class BrowserlessLocalIntegrationTests : IntegrationTestBase() {
     @Container
     var browserlessChromium: GenericContainer<*> = GenericContainer("ghcr.io/browserless/chromium:latest")
         .withExposedPorts(3000)
+        .withAccessToHost(true)
         .withCopyFileToContainer(MountableFile.forClasspathResource("/test-server-pages/"), "/test-server-pages/")
 
     override val httpUrl: String
