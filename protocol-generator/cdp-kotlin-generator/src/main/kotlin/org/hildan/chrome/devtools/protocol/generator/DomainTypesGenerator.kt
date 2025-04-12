@@ -59,9 +59,15 @@ private fun DomainTypeDeclaration.toFCEnumTypeSpec(type: ChromeDPType.Enum, seri
         addAnnotation(Annotations.serializableWith(serializerClass))
 
         type.enumValues.forEach {
-            addType(TypeSpec.objectBuilder(protocolEnumEntryNameToKotlinName(it)).apply {
+            val kotlinName = protocolEnumEntryNameToKotlinName(it)
+            addType(TypeSpec.objectBuilder(kotlinName).apply {
                 addModifiers(KModifier.DATA)
                 addSuperinterface(names.className)
+
+                // Reserved in JS
+                if (kotlinName == "length") {
+                    addAnnotation(Annotations.jsName("length_kt"))
+                }
 
                 // For calls to serializers made directly with this sub-object instead of the FC enum's interface.
                 // Example: Json.encodeToString(AXPropertyName.url)

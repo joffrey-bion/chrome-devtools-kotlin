@@ -48,6 +48,8 @@ object Annotations {
 
     fun serialName(name: String) = AnnotationSpec.builder(SerialName::class).addMember("%S", name).build()
 
+    fun jsName(name: String) = AnnotationSpec.builder(ClassName("kotlin.js", "JsName")).addMember("%S", name).build()
+
     fun serializableWith(serializerClass: ClassName) = AnnotationSpec.builder(Serializable::class)
         .addMember("with = %T::class", serializerClass)
         .build()
