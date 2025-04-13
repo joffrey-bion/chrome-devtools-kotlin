@@ -34,6 +34,7 @@ internal class ChromeDPConnection(
     private val frames = webSocket.incoming.receiveAsFlow()
         .filterIsInstance<Frame.Text>()
         .map { frame -> chromeDpJson.decodeFromString(InboundFrameSerializer, frame.readText()) }
+        .materializeErrors()
         .shareIn(
             scope = coroutineScope,
             started = SharingStarted.Eagerly,
@@ -47,6 +48,7 @@ internal class ChromeDPConnection(
      */
     suspend fun request(request: RequestFrame): ResponseFrame {
         val resultFrame = frames.onSubscription { sendOrFailUniformly(request) }
+            .dematerializeErrors()
             .filterIsInstance<ResultFrame>()
             .filter { it.matchesRequest(request) }
             .first() // a shared flow never completes, so this will never throw NoSuchElementException (but can hang forever)
@@ -76,7 +78,7 @@ internal class ChromeDPConnection(
     /**
      * A flow of incoming events.
      */
-    fun events() = frames.filterIsInstance<EventFrame>()
+    fun events() = frames.dematerializeErrors().filterIsInstance<EventFrame>()
 
     /**
      * Stops listening to incoming events and closes the underlying web socket connection.
@@ -86,6 +88,17 @@ internal class ChromeDPConnection(
         webSocket.close()
     }
 }
+
+private fun Flow<InboundFrame>.materializeErrors(): Flow<InboundFrameOrError> =
+    catch<InboundFrameOrError> { emit(InboundFramesConnectionError(cause = it)) }
+
+private fun Flow<InboundFrameOrError>.dematerializeErrors(): Flow<InboundFrame> =
+    map {
+        when (it) {
+            is InboundFramesConnectionError -> throw it.cause
+            is InboundFrame -> it
+        }
+    }
 
 /**
  * An exception thrown when an error occurred during the processing of a request on Chrome side.

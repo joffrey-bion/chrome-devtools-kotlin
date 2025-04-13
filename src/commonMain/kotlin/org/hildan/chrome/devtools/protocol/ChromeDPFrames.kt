@@ -34,9 +34,19 @@ data class RequestFrame(
 )
 
 /**
+ * General interface represent both real incoming .
+ */
+internal sealed interface InboundFrameOrError
+
+/**
+ * Represents errors in the incoming frames flow.
+ */
+internal class InboundFramesConnectionError(val cause: Throwable) : InboundFrameOrError
+
+/**
  * A generic inbound frame received from the server. It can represent responses to requests, or server-initiated events.
  */
-internal sealed class InboundFrame {
+internal sealed class InboundFrame : InboundFrameOrError {
     /** The session ID of the target concerned by this event. */
     abstract val sessionId: SessionID?
 }
