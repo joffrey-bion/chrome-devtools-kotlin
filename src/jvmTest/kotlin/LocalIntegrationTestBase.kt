@@ -174,31 +174,6 @@ abstract class LocalIntegrationTestBase : IntegrationTestBase() {
 
     @OptIn(ExperimentalChromeApi::class)
     @Test
-    fun parallelPages() {
-        runBlockingWithTimeout {
-            withResourceServerForTestcontainers { baseUrl ->
-                chromeWebSocket().use { browser ->
-                    // we want all coroutines to finish before we close the browser session
-                    withContext(Dispatchers.IO) {
-                        repeat(20) {
-                            launch {
-                                browser.newPage().use { page ->
-                                    page.goto("$baseUrl/test-server-pages/basic.html")
-                                    page.runtime.getHeapUsage()
-                                    val docRoot = page.dom.getDocumentRootNodeId()
-                                    page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
-                                    page.storage.getCookies()
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @OptIn(ExperimentalChromeApi::class)
-    @Test
     fun test_deserialization_unknown_enum() {
         runBlockingWithTimeout {
             chromeWebSocket().use { browser ->
@@ -216,7 +191,7 @@ abstract class LocalIntegrationTestBase : IntegrationTestBase() {
         }
     }
 
-    private suspend fun withResourceServerForTestcontainers(block: suspend (baseUrl: String) -> Unit) {
+    protected suspend fun withResourceServerForTestcontainers(block: suspend (baseUrl: String) -> Unit) {
         withResourceHttpServer { port ->
             Testcontainers.exposeHostPorts(port)
             block("http://host.testcontainers.internal:$port")
