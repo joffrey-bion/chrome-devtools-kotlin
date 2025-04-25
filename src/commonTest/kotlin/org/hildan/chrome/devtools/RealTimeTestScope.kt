@@ -7,6 +7,7 @@ import kotlinx.coroutines.plus
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
+import kotlin.time.Duration.Companion.minutes
 
 interface RealTimeTestScope : CoroutineScope {
     val backgroundScope: CoroutineScope
@@ -18,7 +19,7 @@ interface RealTimeTestScope : CoroutineScope {
 fun runTestWithRealTime(
     nestedContext: CoroutineContext = Dispatchers.Default,
     block: suspend RealTimeTestScope.() -> Unit,
-) = runTest {
+) = runTest(timeout = 3.minutes) { // increased timeout for local server setup
     val testScopeBackground = backgroundScope + CoroutineExceptionHandler { _, e ->
         println("Error in background scope: $e")
     }
