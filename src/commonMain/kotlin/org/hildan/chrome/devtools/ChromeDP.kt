@@ -90,7 +90,7 @@ object ChromeDP {
 
     /**
      * Creates a client that uses Chrome's [JSON HTTP endpoints](https://chromedevtools.github.io/devtools-protocol/#endpoints)
-     * to query metadata about the browser or the protocol, and to list, create and close target (e.g. tabs).
+     * to query metadata about the browser or the protocol, and to list, create and close targets (e.g. tabs).
      *
      * Avoid using the returned [ChromeDPHttpApi] to manage targets (list/open/close tabs).
      * Not all headless browsers support these endpoints, and they are superseded by the web socket API.
