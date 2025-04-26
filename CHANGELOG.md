@@ -1,5 +1,35 @@
 # Change Log
 
+## [8.0.0\-1410712](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/8.0.0-1410712) (2025-04-26)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/7.1.0-1410712...8.0.0-1410712)
+
+**Breaking changes:**
+
+- Rework entry point API [\#495](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/495)
+
+**Implemented enhancements:**
+
+- Allow customizing the coroutine context for frame processing [\#511](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/511)
+- Add default user agent for default HTTP client [\#510](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/510)
+
+**Upgraded dependencies:**
+
+- Bump com.gradle.develocity from 3.19.2 to 4.0 [\#512](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/512) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump testcontainers from 1.20.5 to 1.20.6 [\#505](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/505) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump kotlin from 2.1.10 to 2.1.20 [\#506](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/506) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.jetbrains.kotlinx:kotlinx\-serialization\-json from 1.8.0 to 1.8.1 [\#508](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/508) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ktor from 3.1.0 to 3.1.2 [\#507](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/507) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.jetbrains.kotlinx:kotlinx\-coroutines\-core from 1.10.1 to 1.10.2 [\#509](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/509) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump testcontainers from 1.20.4 to 1.20.5 [\#499](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/499) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump com.gradle.develocity from 3.19.1 to 3.19.2 [\#500](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/500) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump Ktor to 3.1.0 [\#498](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/498)
+
+**Fixed bugs:**
+
+- HTTP endpoints don't support query params in the `remoteDebugUrl` [\#496](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/496)
+- JsonDecodingException when Cookie.expires is null [\#494](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/494)
+- `ChromeDPClient` hangs when using a WS URL instead of HTTP [\#465](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/465)
+
 ## [7.1.0\-1410712](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/7.1.0-1410712) (2025-02-03)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/7.0.0-1400418...7.1.0-1410712)
 
@@ -8,9 +38,7 @@
 - Update to Chrome DevTools Protocol version 1410712 [\#489](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/489) ([@joffrey-bion](https://github.com/joffrey-bion))
 - Bump kotlin from 2.1.0 to 2.1.10 [\#492](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/492) ([@dependabot[bot]](https://github.com/apps/dependabot))
 - Bump org.jetbrains.kotlinx:kotlinx\-serialization\-json from 1.7.3 to 1.8.0 [\#486](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/486) ([@dependabot[bot]](https://github.com/apps/dependabot))
-- Update to Chrome DevTools Protocol version 1404580 [\#487](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/487) ([@joffrey-bion](https://github.com/joffrey-bion))
 - Bump org.jetbrains.kotlinx:atomicfu from 0.26.1 to 0.27.0 [\#488](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/488) ([@dependabot[bot]](https://github.com/apps/dependabot))
-- Update to Chrome DevTools Protocol version 1402036 [\#485](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/485) ([@joffrey-bion](https://github.com/joffrey-bion))
 
 ## [7.0.0\-1400418](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/7.0.0-1400418) (2025-01-04)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/6.6.0-1391447...7.0.0-1400418)
