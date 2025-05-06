@@ -14,6 +14,9 @@ suspend fun withResourceHttpServer(block: suspend (port: Int) -> Unit) {
                 return@createContext
             }
             val resourcePath = exchange.requestURI.path.removePrefix("/")
+            if (exchange.requestURI.query.contains("cookie-without-expires=true")) {
+                exchange.responseHeaders.add("Set-Cookie", "name=value; HttpOnly")
+            }
             exchange.respondWithResource(resourcePath)
         }
 

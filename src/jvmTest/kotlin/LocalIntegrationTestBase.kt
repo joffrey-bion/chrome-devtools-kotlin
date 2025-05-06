@@ -169,6 +169,27 @@ abstract class LocalIntegrationTestBase : IntegrationTestBase() {
         }
     }
 
+    @OptIn(ExperimentalChromeApi::class)
+    @Test
+    open fun missingExpiresInCookie_local() = runTestWithRealTime {
+        withResourceServerForTestcontainers { baseUrl ->
+            chromeWebSocket().use { browser ->
+                browser.newPage().use { page ->
+                    page.goto("$baseUrl?cookie-without-expires=true")
+                    page.network.enable()
+                    coroutineScope {
+                        launch {
+                            // ensures we don't crash on deserialization
+                            page.network.responseReceivedExtraInfoEvents().first()
+                        }
+                        page.dom.awaitNodeBySelector("a[href=\"/login\"]")
+                        page.clickOnElement("a[href=\"/login\"]")
+                    }
+                }
+            }
+        }
+    }
+
     protected suspend fun withResourceServerForTestcontainers(block: suspend (baseUrl: String) -> Unit) {
         withResourceHttpServer { port ->
             Testcontainers.exposeHostPorts(port)

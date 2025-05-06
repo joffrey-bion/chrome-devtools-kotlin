@@ -7,6 +7,7 @@ import kotlinx.coroutines.plus
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.minutes
 
 interface RealTimeTestScope : CoroutineScope {
@@ -17,9 +18,10 @@ interface RealTimeTestScope : CoroutineScope {
  * Provides the same facilities as [runTest] but without delay skipping.
  */
 fun runTestWithRealTime(
+    timeout: Duration = 1.minutes,
     nestedContext: CoroutineContext = Dispatchers.Default,
     block: suspend RealTimeTestScope.() -> Unit,
-) = runTest(timeout = 3.minutes) { // increased timeout for local server setup
+) = runTest(timeout = timeout) {
     val testScopeBackground = backgroundScope + CoroutineExceptionHandler { _, e ->
         println("Error in background scope: $e")
     }
