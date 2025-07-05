@@ -1,8 +1,11 @@
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
 import org.hildan.chrome.devtools.domains.accessibility.AXProperty
 import org.hildan.chrome.devtools.domains.accessibility.AXPropertyName
 import org.hildan.chrome.devtools.domains.dom.*
+import org.hildan.chrome.devtools.extensions.clickOnElement
 import org.hildan.chrome.devtools.runTestWithRealTime
 import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
 import org.hildan.chrome.devtools.protocol.RequestNotSentException
@@ -163,6 +166,27 @@ abstract class LocalIntegrationTestBase : IntegrationTestBase() {
                 assertTrue("we are no longer testing that unknown AXPropertyName values are deserialized as NotDefinedInProtocol") {
                     tree.nodes.any { n ->
                         n.properties.anyUndefinedName() || n.ignoredReasons.anyUndefinedName()
+                    }
+                }
+            }
+        }
+    }
+
+    @OptIn(ExperimentalChromeApi::class)
+    @Test
+    open fun missingExpiresInCookie_local() = runTestWithRealTime {
+        withResourceServerForTestcontainers { baseUrl ->
+            chromeWebSocket().use { browser ->
+                browser.newPage().use { page ->
+                    page.goto("$baseUrl?cookie-without-expires=true")
+                    page.network.enable()
+                    coroutineScope {
+                        launch {
+                            // ensures we don't crash on deserialization
+                            page.network.responseReceivedExtraInfoEvents().first()
+                        }
+                        page.dom.awaitNodeBySelector("a[href=\"/login\"]")
+                        page.clickOnElement("a[href=\"/login\"]")
                     }
                 }
             }
