@@ -1,23 +1,15 @@
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import org.hildan.chrome.devtools.domains.dom.DescribeNodeRequest
-import org.hildan.chrome.devtools.domains.dom.getDocumentRootNodeId
-import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
-import org.hildan.chrome.devtools.protocol.LegacyChromeTargetHttpApi
-import org.hildan.chrome.devtools.runTestWithRealTime
-import org.hildan.chrome.devtools.sessions.goto
-import org.hildan.chrome.devtools.sessions.newPage
-import org.hildan.chrome.devtools.sessions.use
+import kotlinx.coroutines.*
+import org.hildan.chrome.devtools.*
+import org.hildan.chrome.devtools.domains.dom.*
+import org.hildan.chrome.devtools.protocol.*
+import org.hildan.chrome.devtools.sessions.*
 import org.junit.jupiter.api.Test
 import org.testcontainers.containers.*
 import org.testcontainers.junit.jupiter.*
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.utility.*
-import kotlin.test.Ignore
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
+import java.time.*
+import kotlin.test.*
 
 @Testcontainers
 class ZenikaIntegrationTests : LocalIntegrationTestBase() {
@@ -30,6 +22,7 @@ class ZenikaIntegrationTests : LocalIntegrationTestBase() {
      */
     @Container
     var zenikaChrome: GenericContainer<*> = GenericContainer("zenika/alpine-chrome:latest")
+        .withStartupTimeout(Duration.ofMinutes(5)) // sometimes more than the default 2 minutes on CI
         .withExposedPorts(9222)
         .withAccessToHost(true)
         .withCommand("--no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 about:blank")

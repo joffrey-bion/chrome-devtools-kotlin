@@ -2,6 +2,7 @@ import org.testcontainers.containers.*
 import org.testcontainers.junit.jupiter.*
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.utility.*
+import java.time.Duration
 
 @Testcontainers
 class BrowserlessLocalIntegrationTests : LocalIntegrationTestBase() {
@@ -19,6 +20,7 @@ class BrowserlessLocalIntegrationTests : LocalIntegrationTestBase() {
      */
     @Container
     var browserlessChromium: GenericContainer<*> = GenericContainer("ghcr.io/browserless/chromium:latest")
+        .withStartupTimeout(Duration.ofMinutes(5)) // sometimes more than the default 2 minutes on CI
         .withExposedPorts(3000)
         .withAccessToHost(true)
         .withCopyFileToContainer(MountableFile.forClasspathResource("/test-server-pages/"), "/test-server-pages/")
