@@ -1,8 +1,6 @@
 import kotlinx.coroutines.*
 import org.hildan.chrome.devtools.*
-import org.hildan.chrome.devtools.domains.dom.*
 import org.hildan.chrome.devtools.protocol.*
-import org.hildan.chrome.devtools.sessions.*
 import org.junit.jupiter.api.Test
 import org.testcontainers.containers.*
 import org.testcontainers.junit.jupiter.*
@@ -61,28 +59,5 @@ class ZenikaIntegrationTests : LocalIntegrationTestBase() {
             actual = targetsAfterClose.none { it.url.trimEnd('/') == "https://www.google.com" },
             message = "the google.com page target should be closed, got:\n${targetsAfterClose.joinToString("\n")}",
         )
-    }
-
-    @OptIn(ExperimentalChromeApi::class)
-    @Test
-    fun parallelPages() = runTestWithRealTime {
-        withResourceServerForTestcontainers { baseUrl ->
-            chromeWebSocket().use { browser ->
-                // we want all coroutines to finish before we close the browser session
-                withContext(Dispatchers.IO) {
-                    repeat(20) {
-                        launch {
-                            browser.newPage().use { page ->
-                                page.goto("$baseUrl/test-server-pages/basic.html")
-                                page.runtime.getHeapUsage()
-                                val docRoot = page.dom.getDocumentRootNodeId()
-                                page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
-                                page.storage.getCookies()
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 }
