@@ -12,6 +12,7 @@ import org.hildan.chrome.devtools.protocol.*
 import org.hildan.chrome.devtools.protocol.json.*
 import org.hildan.chrome.devtools.sessions.*
 import org.hildan.chrome.devtools.targets.*
+import org.junit.jupiter.api.Disabled
 import kotlin.test.*
 import kotlin.time.Duration.Companion.seconds
 
@@ -168,6 +169,7 @@ abstract class IntegrationTestBase {
         }
     }
 
+    @Disabled // https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/535
     @OptIn(ExperimentalChromeApi::class)
     @Test
     open fun missingExpiresInCookie() = runTestWithRealTime {
