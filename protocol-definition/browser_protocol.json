@@ -1335,6 +1335,7 @@
                         "kInlineViolation",
                         "kEvalViolation",
                         "kURLViolation",
+                        "kSRIViolation",
                         "kTrustedTypesSinkViolation",
                         "kTrustedTypesPolicyViolation",
                         "kWasmEvalViolation"
@@ -1560,6 +1561,33 @@
                     ]
                 },
                 {
+                    "id": "SRIMessageSignatureError",
+                    "type": "string",
+                    "enum": [
+                        "MissingSignatureHeader",
+                        "MissingSignatureInputHeader",
+                        "InvalidSignatureHeader",
+                        "InvalidSignatureInputHeader",
+                        "SignatureHeaderValueIsNotByteSequence",
+                        "SignatureHeaderValueIsParameterized",
+                        "SignatureHeaderValueIsIncorrectLength",
+                        "SignatureInputHeaderMissingLabel",
+                        "SignatureInputHeaderValueNotInnerList",
+                        "SignatureInputHeaderValueMissingComponents",
+                        "SignatureInputHeaderInvalidComponentType",
+                        "SignatureInputHeaderInvalidComponentName",
+                        "SignatureInputHeaderInvalidHeaderComponentParameter",
+                        "SignatureInputHeaderInvalidDerivedComponentParameter",
+                        "SignatureInputHeaderKeyIdLength",
+                        "SignatureInputHeaderInvalidParameter",
+                        "SignatureInputHeaderMissingRequiredParameters",
+                        "ValidationFailedSignatureExpired",
+                        "ValidationFailedInvalidLength",
+                        "ValidationFailedSignatureMismatch",
+                        "ValidationFailedIntegrityMismatch"
+                    ]
+                },
+                {
                     "id": "AttributionReportingIssueDetails",
                     "description": "Details for issues around \"Attribution Reporting API\" usage.\nExplainer: https://github.com/WICG/attribution-reporting-api",
                     "type": "object",
@@ -1636,6 +1664,31 @@
                         {
                             "name": "sharedDictionaryError",
                             "$ref": "SharedDictionaryError"
+                        },
+                        {
+                            "name": "request",
+                            "$ref": "AffectedRequest"
+                        }
+                    ]
+                },
+                {
+                    "id": "SRIMessageSignatureIssueDetails",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "error",
+                            "$ref": "SRIMessageSignatureError"
+                        },
+                        {
+                            "name": "signatureBase",
+                            "type": "string"
+                        },
+                        {
+                            "name": "integrityAssertions",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
                         },
                         {
                             "name": "request",
@@ -1821,7 +1874,9 @@
                         "InvalidFieldsSpecified",
                         "RelyingPartyOriginIsOpaque",
                         "TypeNotMatching",
-                        "UiDismissedNoEmbargo"
+                        "UiDismissedNoEmbargo",
+                        "CorsError",
+                        "SuppressedBySegmentationPlatform"
                     ]
                 },
                 {
@@ -1887,19 +1942,44 @@
                     ]
                 },
                 {
-                    "id": "SelectElementAccessibilityIssueReason",
+                    "id": "PartitioningBlobURLInfo",
+                    "type": "string",
+                    "enum": [
+                        "BlockedCrossPartitionFetching",
+                        "EnforceNoopenerForNavigation"
+                    ]
+                },
+                {
+                    "id": "PartitioningBlobURLIssueDetails",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "url",
+                            "description": "The BlobURL that failed to load.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "partitioningBlobURLInfo",
+                            "description": "Additional information about the Partitioning Blob URL issue.",
+                            "$ref": "PartitioningBlobURLInfo"
+                        }
+                    ]
+                },
+                {
+                    "id": "ElementAccessibilityIssueReason",
                     "type": "string",
                     "enum": [
                         "DisallowedSelectChild",
                         "DisallowedOptGroupChild",
                         "NonPhrasingContentOptionChild",
                         "InteractiveContentOptionChild",
-                        "InteractiveContentLegendChild"
+                        "InteractiveContentLegendChild",
+                        "InteractiveContentSummaryDescendant"
                     ]
                 },
                 {
-                    "id": "SelectElementAccessibilityIssueDetails",
-                    "description": "This issue warns about errors in the select element content model.",
+                    "id": "ElementAccessibilityIssueDetails",
+                    "description": "This issue warns about errors in the select or summary element content model.",
                     "type": "object",
                     "properties": [
                         {
@@ -1907,8 +1987,8 @@
                             "$ref": "DOM.BackendNodeId"
                         },
                         {
-                            "name": "selectElementAccessibilityIssueReason",
-                            "$ref": "SelectElementAccessibilityIssueReason"
+                            "name": "elementAccessibilityIssueReason",
+                            "$ref": "ElementAccessibilityIssueReason"
                         },
                         {
                             "name": "hasDisallowedAttributes",
@@ -1981,6 +2061,31 @@
                     ]
                 },
                 {
+                    "id": "UserReidentificationIssueType",
+                    "type": "string",
+                    "enum": [
+                        "BlockedFrameNavigation",
+                        "BlockedSubresource"
+                    ]
+                },
+                {
+                    "id": "UserReidentificationIssueDetails",
+                    "description": "This issue warns about uses of APIs that may be considered misuse to\nre-identify users.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "type",
+                            "$ref": "UserReidentificationIssueType"
+                        },
+                        {
+                            "name": "request",
+                            "description": "Applies to BlockedFrameNavigation and BlockedSubresource issue types.",
+                            "optional": true,
+                            "$ref": "AffectedRequest"
+                        }
+                    ]
+                },
+                {
                     "id": "InspectorIssueCode",
                     "description": "A unique identifier for the type of issue. Each type may use one of the\noptional fields in InspectorIssueDetails to convey more specific\ninformation about the kind of issue.",
                     "type": "string",
@@ -1995,6 +2100,7 @@
                         "CorsIssue",
                         "AttributionReportingIssue",
                         "QuirksModeIssue",
+                        "PartitioningBlobURLIssue",
                         "NavigatorUserAgentIssue",
                         "GenericIssue",
                         "DeprecationIssue",
@@ -2006,7 +2112,9 @@
                         "FederatedAuthUserInfoRequestIssue",
                         "PropertyRuleIssue",
                         "SharedDictionaryIssue",
-                        "SelectElementAccessibilityIssue"
+                        "ElementAccessibilityIssue",
+                        "SRIMessageSignatureIssue",
+                        "UserReidentificationIssue"
                     ]
                 },
                 {
@@ -2065,6 +2173,11 @@
                             "$ref": "QuirksModeIssueDetails"
                         },
                         {
+                            "name": "partitioningBlobURLIssueDetails",
+                            "optional": true,
+                            "$ref": "PartitioningBlobURLIssueDetails"
+                        },
+                        {
                             "name": "navigatorUserAgentIssueDetails",
                             "deprecated": true,
                             "optional": true,
@@ -2121,9 +2234,19 @@
                             "$ref": "SharedDictionaryIssueDetails"
                         },
                         {
-                            "name": "selectElementAccessibilityIssueDetails",
+                            "name": "elementAccessibilityIssueDetails",
                             "optional": true,
-                            "$ref": "SelectElementAccessibilityIssueDetails"
+                            "$ref": "ElementAccessibilityIssueDetails"
+                        },
+                        {
+                            "name": "sriMessageSignatureIssueDetails",
+                            "optional": true,
+                            "$ref": "SRIMessageSignatureIssueDetails"
+                        },
+                        {
+                            "name": "userReidentificationIssueDetails",
+                            "optional": true,
+                            "$ref": "UserReidentificationIssueDetails"
                         }
                     ]
                 },
@@ -2281,6 +2404,17 @@
                         }
                     ],
                     "returns": [
+                        {
+                            "name": "id",
+                            "description": "Extension id.",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "name": "uninstall",
+                    "description": "Uninstalls an unpacked extension (others not supported) from the profile.\nAvailable if the client is connected using the --remote-debugging-pipe flag\nand the --enable-unsafe-extension-debugging.",
+                    "parameters": [
                         {
                             "name": "id",
                             "description": "Extension id.",
@@ -2841,6 +2975,7 @@
                         "idleDetection",
                         "keyboardLock",
                         "localFonts",
+                        "localNetworkAccess",
                         "midi",
                         "midiSysex",
                         "nfc",
@@ -2923,7 +3058,8 @@
                     "type": "string",
                     "enum": [
                         "openTabSearch",
-                        "closeTabSearch"
+                        "closeTabSearch",
+                        "openGlic"
                     ]
                 },
                 {
@@ -2978,6 +3114,15 @@
                                 "$ref": "Bucket"
                             }
                         }
+                    ]
+                },
+                {
+                    "id": "PrivacySandboxAPI",
+                    "experimental": true,
+                    "type": "string",
+                    "enum": [
+                        "BiddingAndAuctionServices",
+                        "TrustedKeyValue"
                     ]
                 }
             ],
@@ -3279,6 +3424,30 @@
                     ]
                 },
                 {
+                    "name": "setContentsSize",
+                    "description": "Set size of the browser contents resizing browser window as necessary.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "windowId",
+                            "description": "Browser window id.",
+                            "$ref": "WindowID"
+                        },
+                        {
+                            "name": "width",
+                            "description": "The window contents width in DIP. Assumes current width if omitted.\nMust be specified if 'height' is omitted.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "height",
+                            "description": "The window contents height in DIP. Assumes current height if omitted.\nMust be specified if 'width' is omitted.",
+                            "optional": true,
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
                     "name": "setDockTile",
                     "description": "Set dock tile details, platform-specific.",
                     "experimental": true,
@@ -3314,6 +3483,30 @@
                         {
                             "name": "url",
                             "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "name": "addPrivacySandboxCoordinatorKeyConfig",
+                    "description": "Configures encryption keys used with a given privacy sandbox API to talk\nto a trusted coordinator.  Since this is intended for test automation only,\ncoordinatorOrigin must be a .test domain. No existing coordinator\nconfiguration for the origin may exist.",
+                    "parameters": [
+                        {
+                            "name": "api",
+                            "$ref": "PrivacySandboxAPI"
+                        },
+                        {
+                            "name": "coordinatorOrigin",
+                            "type": "string"
+                        },
+                        {
+                            "name": "keyConfig",
+                            "type": "string"
+                        },
+                        {
+                            "name": "browserContextId",
+                            "description": "BrowserContext to perform the action in. When omitted, default browser\ncontext is used.",
+                            "optional": true,
+                            "$ref": "BrowserContextID"
                         }
                     ]
                 }
@@ -3375,6 +3568,13 @@
                                 "completed",
                                 "canceled"
                             ]
+                        },
+                        {
+                            "name": "filePath",
+                            "description": "If download is \"completed\", provides the path of the downloaded file.\nDepending on the platform, it is not guaranteed to be set, nor the file\nis guaranteed to exist.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "string"
                         }
                     ]
                 }
@@ -4570,6 +4770,119 @@
                     ]
                 },
                 {
+                    "id": "CSSFunctionParameter",
+                    "description": "CSS function argument representation.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "name",
+                            "description": "The parameter name.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "type",
+                            "description": "The parameter type.",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "id": "CSSFunctionConditionNode",
+                    "description": "CSS function conditional block representation.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "media",
+                            "description": "Media query for this conditional block. Only one type of condition should be set.",
+                            "optional": true,
+                            "$ref": "CSSMedia"
+                        },
+                        {
+                            "name": "containerQueries",
+                            "description": "Container query for this conditional block. Only one type of condition should be set.",
+                            "optional": true,
+                            "$ref": "CSSContainerQuery"
+                        },
+                        {
+                            "name": "supports",
+                            "description": "@supports CSS at-rule condition. Only one type of condition should be set.",
+                            "optional": true,
+                            "$ref": "CSSSupports"
+                        },
+                        {
+                            "name": "children",
+                            "description": "Block body.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "CSSFunctionNode"
+                            }
+                        },
+                        {
+                            "name": "conditionText",
+                            "description": "The condition text.",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "id": "CSSFunctionNode",
+                    "description": "Section of the body of a CSS function rule.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "condition",
+                            "description": "A conditional block. If set, style should not be set.",
+                            "optional": true,
+                            "$ref": "CSSFunctionConditionNode"
+                        },
+                        {
+                            "name": "style",
+                            "description": "Values set by this node. If set, condition should not be set.",
+                            "optional": true,
+                            "$ref": "CSSStyle"
+                        }
+                    ]
+                },
+                {
+                    "id": "CSSFunctionRule",
+                    "description": "CSS function at-rule representation.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "name",
+                            "description": "Name of the function.",
+                            "$ref": "Value"
+                        },
+                        {
+                            "name": "styleSheetId",
+                            "description": "The css style sheet identifier (absent for user agent stylesheet and user-specified\nstylesheet rules) this rule came from.",
+                            "optional": true,
+                            "$ref": "StyleSheetId"
+                        },
+                        {
+                            "name": "origin",
+                            "description": "Parent stylesheet's origin.",
+                            "$ref": "StyleSheetOrigin"
+                        },
+                        {
+                            "name": "parameters",
+                            "description": "List of parameters.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "CSSFunctionParameter"
+                            }
+                        },
+                        {
+                            "name": "children",
+                            "description": "Function body.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "CSSFunctionNode"
+                            }
+                        }
+                    ]
+                },
+                {
                     "id": "CSSKeyframeRule",
                     "description": "CSS keyframe rule representation.",
                     "type": "object",
@@ -4684,6 +4997,12 @@
                             "name": "frameId",
                             "description": "Identifier of the frame where \"via-inspector\" stylesheet should be created.",
                             "$ref": "Page.FrameId"
+                        },
+                        {
+                            "name": "force",
+                            "description": "If true, creates a new stylesheet for every call. If false,\nreturns a stylesheet previously created by a call with force=false\nfor the frame's document if it exists or creates a new stylesheet\n(default: false).",
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ],
                     "returns": [
@@ -4792,7 +5111,8 @@
                 },
                 {
                     "name": "resolveValues",
-                    "description": "Resolve the specified values in the context of the provided element.\nFor example, a value of '1em' is evaluated according to the computed\n'font-size' of the element and a value 'calc(1px + 2px)' will be\nresolved to '3px'.",
+                    "description": "Resolve the specified values in the context of the provided element.\nFor example, a value of '1em' is evaluated according to the computed\n'font-size' of the element and a value 'calc(1px + 2px)' will be\nresolved to '3px'.\nIf the `propertyName` was specified the `values` are resolved as if\nthey were property's declaration. If a value cannot be parsed according\nto the provided property syntax, the value is parsed using combined\nsyntax as if null `propertyName` was provided. If the value cannot be\nresolved even then, return the provided value without any changes.",
+                    "experimental": true,
                     "parameters": [
                         {
                             "name": "values",
@@ -4816,14 +5136,12 @@
                         {
                             "name": "pseudoType",
                             "description": "Pseudo element type, only works for pseudo elements that generate\nelements in the tree, such as ::before and ::after.",
-                            "experimental": true,
                             "optional": true,
                             "$ref": "DOM.PseudoType"
                         },
                         {
                             "name": "pseudoIdentifier",
                             "description": "Pseudo element custom ident.",
-                            "experimental": true,
                             "optional": true,
                             "type": "string"
                         }
@@ -5034,6 +5352,16 @@
                             "experimental": true,
                             "optional": true,
                             "$ref": "DOM.NodeId"
+                        },
+                        {
+                            "name": "cssFunctionRules",
+                            "description": "A list of CSS at-function rules referenced by styles of this node.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "array",
+                            "items": {
+                                "$ref": "CSSFunctionRule"
+                            }
                         }
                     ]
                 },
@@ -5987,12 +6315,14 @@
                         "view-transition",
                         "view-transition-group",
                         "view-transition-image-pair",
+                        "view-transition-group-children",
                         "view-transition-old",
                         "view-transition-new",
                         "placeholder",
                         "file-selector-button",
                         "details-content",
-                        "picker"
+                        "picker",
+                        "permission-icon"
                     ]
                 },
                 {
@@ -6847,6 +7177,13 @@
                             "description": "JavaScript object id of the node wrapper.",
                             "optional": true,
                             "$ref": "Runtime.RemoteObjectId"
+                        },
+                        {
+                            "name": "includeShadowDOM",
+                            "description": "Include all shadow roots. Equals to false if not specified.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ],
                     "returns": [
@@ -7110,7 +7447,9 @@
                             "description": "Type of relation to get.",
                             "type": "string",
                             "enum": [
-                                "PopoverTarget"
+                                "PopoverTarget",
+                                "InterestTarget",
+                                "CommandFor"
                             ]
                         }
                     ],
@@ -9168,6 +9507,61 @@
             ],
             "types": [
                 {
+                    "id": "SafeAreaInsets",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "top",
+                            "description": "Overrides safe-area-inset-top.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "topMax",
+                            "description": "Overrides safe-area-max-inset-top.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "left",
+                            "description": "Overrides safe-area-inset-left.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "leftMax",
+                            "description": "Overrides safe-area-max-inset-left.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "bottom",
+                            "description": "Overrides safe-area-inset-bottom.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "bottomMax",
+                            "description": "Overrides safe-area-max-inset-bottom.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "right",
+                            "description": "Overrides safe-area-inset-right.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "rightMax",
+                            "description": "Overrides safe-area-max-inset-right.",
+                            "optional": true,
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
                     "id": "ScreenOrientation",
                     "description": "Screen orientation.",
                     "type": "object",
@@ -9330,6 +9724,15 @@
                             "name": "wow64",
                             "optional": true,
                             "type": "boolean"
+                        },
+                        {
+                            "name": "formFactors",
+                            "description": "Used to specify User Agent form-factor values.\nSee https://wicg.github.io/ua-client-hints/#sec-ch-ua-form-factors",
+                            "optional": true,
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
                         }
                     ]
                 },
@@ -9563,6 +9966,17 @@
                     ]
                 },
                 {
+                    "name": "setSafeAreaInsetsOverride",
+                    "description": "Overrides the values for env(safe-area-inset-*) and env(safe-area-max-inset-*). Unset values will cause the\nrespective variables to be undefined, even if previously overridden.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "insets",
+                            "$ref": "SafeAreaInsets"
+                        }
+                    ]
+                },
+                {
                     "name": "setDeviceMetricsOverride",
                     "description": "Overrides the values of device screen dimensions (window.screen.width, window.screen.height,\nwindow.innerWidth, window.innerHeight, and \"device-width\"/\"device-height\"-related CSS media\nquery results).",
                     "parameters": [
@@ -9643,8 +10057,9 @@
                         },
                         {
                             "name": "displayFeature",
-                            "description": "If set, the display feature of a multi-segment screen. If not set, multi-segment support\nis turned-off.",
+                            "description": "If set, the display feature of a multi-segment screen. If not set, multi-segment support\nis turned-off.\nDeprecated, use Emulation.setDisplayFeaturesOverride.",
                             "experimental": true,
+                            "deprecated": true,
                             "optional": true,
                             "$ref": "DisplayFeature"
                         },
@@ -9672,6 +10087,25 @@
                 {
                     "name": "clearDevicePostureOverride",
                     "description": "Clears a device posture override set with either setDeviceMetricsOverride()\nor setDevicePostureOverride() and starts using posture information from the\nplatform again.\nDoes nothing if no override is set.",
+                    "experimental": true
+                },
+                {
+                    "name": "setDisplayFeaturesOverride",
+                    "description": "Start using the given display features to pupulate the Viewport Segments API.\nThis override can also be set in setDeviceMetricsOverride().",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "features",
+                            "type": "array",
+                            "items": {
+                                "$ref": "DisplayFeature"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "clearDisplayFeaturesOverride",
+                    "description": "Clears the display features override set with either setDeviceMetricsOverride()\nor setDisplayFeaturesOverride() and starts using display features from the\nplatform again.\nDoes nothing if no override is set.",
                     "experimental": true
                 },
                 {
@@ -9759,8 +10193,19 @@
                     ]
                 },
                 {
+                    "name": "setEmulatedOSTextScale",
+                    "description": "Emulates the given OS text scale.",
+                    "parameters": [
+                        {
+                            "name": "scale",
+                            "optional": true,
+                            "type": "number"
+                        }
+                    ]
+                },
+                {
                     "name": "setGeolocationOverride",
-                    "description": "Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position\nunavailable.",
+                    "description": "Overrides the Geolocation Position or Error. Omitting latitude, longitude or\naccuracy emulates position unavailable.",
                     "parameters": [
                         {
                             "name": "latitude",
@@ -9777,6 +10222,30 @@
                         {
                             "name": "accuracy",
                             "description": "Mock accuracy",
+                            "optional": true,
+                            "type": "number"
+                        },
+                        {
+                            "name": "altitude",
+                            "description": "Mock altitude",
+                            "optional": true,
+                            "type": "number"
+                        },
+                        {
+                            "name": "altitudeAccuracy",
+                            "description": "Mock altitudeAccuracy",
+                            "optional": true,
+                            "type": "number"
+                        },
+                        {
+                            "name": "heading",
+                            "description": "Mock heading",
+                            "optional": true,
+                            "type": "number"
+                        },
+                        {
+                            "name": "speed",
+                            "description": "Mock speed",
                             "optional": true,
                             "type": "number"
                         }
@@ -9855,7 +10324,7 @@
                 },
                 {
                     "name": "setPressureStateOverride",
-                    "description": "Provides a given pressure state that will be processed and eventually be\ndelivered to PressureObserver users. |source| must have been previously\noverridden by setPressureSourceOverrideEnabled.",
+                    "description": "TODO: OBSOLETE: To remove when setPressureDataOverride is merged.\nProvides a given pressure state that will be processed and eventually be\ndelivered to PressureObserver users. |source| must have been previously\noverridden by setPressureSourceOverrideEnabled.",
                     "experimental": true,
                     "parameters": [
                         {
@@ -9865,6 +10334,26 @@
                         {
                             "name": "state",
                             "$ref": "PressureState"
+                        }
+                    ]
+                },
+                {
+                    "name": "setPressureDataOverride",
+                    "description": "Provides a given pressure data set that will be processed and eventually be\ndelivered to PressureObserver users. |source| must have been previously\noverridden by setPressureSourceOverrideEnabled.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "source",
+                            "$ref": "PressureSource"
+                        },
+                        {
+                            "name": "state",
+                            "$ref": "PressureState"
+                        },
+                        {
+                            "name": "ownContributionEstimate",
+                            "optional": true,
+                            "type": "number"
                         }
                     ]
                 },
@@ -10034,6 +10523,19 @@
                     ]
                 },
                 {
+                    "name": "setDataSaverOverride",
+                    "description": "Override the value of navigator.connection.saveData",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "dataSaverEnabled",
+                            "description": "Override value. Omitting the parameter disables the override.",
+                            "optional": true,
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                {
                     "name": "setHardwareConcurrencyOverride",
                     "experimental": true,
                     "parameters": [
@@ -10083,6 +10585,18 @@
                             "name": "enabled",
                             "description": "Whether the override should be enabled.",
                             "type": "boolean"
+                        }
+                    ]
+                },
+                {
+                    "name": "setSmallViewportHeightDifferenceOverride",
+                    "description": "Allows overriding the difference between the small and large viewport sizes, which determine the\nvalue of the `svh` and `lvh` unit, respectively. Only supported for top-level frames.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "difference",
+                            "description": "This will cause an element of size 100svh to be `difference` pixels smaller than an element\nof size 100lvh.",
+                            "type": "integer"
                         }
                     ]
                 }
@@ -12521,6 +13035,7 @@
                         "Ping",
                         "CSPViolationReport",
                         "Preflight",
+                        "FedCM",
                         "Other"
                     ]
                 },
@@ -13025,6 +13540,7 @@
                         "mixed-content",
                         "origin",
                         "inspector",
+                        "integrity",
                         "subresource-filter",
                         "content-type",
                         "coep-frame-resource-needs-coep-header",
@@ -13075,7 +13591,8 @@
                         "PreflightMissingPrivateNetworkAccessId",
                         "PreflightMissingPrivateNetworkAccessName",
                         "PrivateNetworkAccessPermissionUnavailable",
-                        "PrivateNetworkAccessPermissionDenied"
+                        "PrivateNetworkAccessPermissionDenied",
+                        "LocalNetworkAccessPermissionDenied"
                     ]
                 },
                 {
@@ -13167,7 +13684,8 @@
                         "network",
                         "cache",
                         "fetch-event",
-                        "race-network-and-fetch-handler"
+                        "race-network-and-fetch-handler",
+                        "race-network-and-cache"
                     ]
                 },
                 {
@@ -13678,7 +14196,8 @@
                         "SamePartyFromCrossPartyContext",
                         "NameValuePairExceedsMaxSize",
                         "PortMismatch",
-                        "SchemeMismatch"
+                        "SchemeMismatch",
+                        "AnonymousContext"
                     ]
                 },
                 {
@@ -14116,6 +14635,11 @@
                             "$ref": "Response"
                         },
                         {
+                            "name": "hasExtraInfo",
+                            "description": "Whether network response for the signed exchange was accompanied by\nextra headers.",
+                            "type": "boolean"
+                        },
+                        {
                             "name": "header",
                             "description": "Information about the signed exchange header.",
                             "optional": true,
@@ -14151,6 +14675,119 @@
                     ]
                 },
                 {
+                    "id": "DirectSocketDnsQueryType",
+                    "experimental": true,
+                    "type": "string",
+                    "enum": [
+                        "ipv4",
+                        "ipv6"
+                    ]
+                },
+                {
+                    "id": "DirectTCPSocketOptions",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "noDelay",
+                            "description": "TCP_NODELAY option",
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "keepAliveDelay",
+                            "description": "Expected to be unsigned integer.",
+                            "optional": true,
+                            "type": "number"
+                        },
+                        {
+                            "name": "sendBufferSize",
+                            "description": "Expected to be unsigned integer.",
+                            "optional": true,
+                            "type": "number"
+                        },
+                        {
+                            "name": "receiveBufferSize",
+                            "description": "Expected to be unsigned integer.",
+                            "optional": true,
+                            "type": "number"
+                        },
+                        {
+                            "name": "dnsQueryType",
+                            "optional": true,
+                            "$ref": "DirectSocketDnsQueryType"
+                        }
+                    ]
+                },
+                {
+                    "id": "DirectUDPSocketOptions",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "remoteAddr",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "remotePort",
+                            "description": "Unsigned int 16.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "localAddr",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "localPort",
+                            "description": "Unsigned int 16.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "dnsQueryType",
+                            "optional": true,
+                            "$ref": "DirectSocketDnsQueryType"
+                        },
+                        {
+                            "name": "sendBufferSize",
+                            "description": "Expected to be unsigned integer.",
+                            "optional": true,
+                            "type": "number"
+                        },
+                        {
+                            "name": "receiveBufferSize",
+                            "description": "Expected to be unsigned integer.",
+                            "optional": true,
+                            "type": "number"
+                        }
+                    ]
+                },
+                {
+                    "id": "DirectUDPMessage",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "data",
+                            "type": "string"
+                        },
+                        {
+                            "name": "remoteAddr",
+                            "description": "Null for connected mode.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "remotePort",
+                            "description": "Null for connected mode.\nExpected to be unsigned integer.",
+                            "optional": true,
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
                     "id": "PrivateNetworkRequestPolicy",
                     "experimental": true,
                     "type": "string",
@@ -14159,7 +14796,9 @@
                         "BlockFromInsecureToMorePrivate",
                         "WarnFromInsecureToMorePrivate",
                         "PreflightBlock",
-                        "PreflightWarn"
+                        "PreflightWarn",
+                        "PermissionBlock",
+                        "PermissionWarn"
                     ]
                 },
                 {
@@ -14167,7 +14806,7 @@
                     "experimental": true,
                     "type": "string",
                     "enum": [
-                        "Local",
+                        "Loopback",
                         "Private",
                         "Public",
                         "Unknown"
@@ -14707,6 +15346,13 @@
                             "description": "Longest post body size (in bytes) that would be included in requestWillBeSent notification",
                             "optional": true,
                             "type": "integer"
+                        },
+                        {
+                            "name": "reportDirectSocketTraffic",
+                            "description": "Whether DirectSocket chunk send/receive events should be reported.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ]
                 },
@@ -15207,7 +15853,7 @@
                 },
                 {
                     "name": "setCookieControls",
-                    "description": "Sets Controls for third-party cookie access\nPage reload is required before the new cookie bahavior will be observed",
+                    "description": "Sets Controls for third-party cookie access\nPage reload is required before the new cookie behavior will be observed",
                     "experimental": true,
                     "parameters": [
                         {
@@ -15799,6 +16445,277 @@
                         {
                             "name": "timestamp",
                             "description": "Timestamp.",
+                            "$ref": "MonotonicTime"
+                        }
+                    ]
+                },
+                {
+                    "name": "directTCPSocketCreated",
+                    "description": "Fired upon direct_socket.TCPSocket creation.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "identifier",
+                            "$ref": "RequestId"
+                        },
+                        {
+                            "name": "remoteAddr",
+                            "type": "string"
+                        },
+                        {
+                            "name": "remotePort",
+                            "description": "Unsigned int 16.",
+                            "type": "integer"
+                        },
+                        {
+                            "name": "options",
+                            "$ref": "DirectTCPSocketOptions"
+                        },
+                        {
+                            "name": "timestamp",
+                            "$ref": "MonotonicTime"
+                        },
+                        {
+                            "name": "initiator",
+                            "optional": true,
+                            "$ref": "Initiator"
+                        }
+                    ]
+                },
+                {
+                    "name": "directTCPSocketOpened",
+                    "description": "Fired when direct_socket.TCPSocket connection is opened.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "identifier",
+                            "$ref": "RequestId"
+                        },
+                        {
+                            "name": "remoteAddr",
+                            "type": "string"
+                        },
+                        {
+                            "name": "remotePort",
+                            "description": "Expected to be unsigned integer.",
+                            "type": "integer"
+                        },
+                        {
+                            "name": "timestamp",
+                            "$ref": "MonotonicTime"
+                        },
+                        {
+                            "name": "localAddr",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "localPort",
+                            "description": "Expected to be unsigned integer.",
+                            "optional": true,
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
+                    "name": "directTCPSocketAborted",
+                    "description": "Fired when direct_socket.TCPSocket is aborted.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "identifier",
+                            "$ref": "RequestId"
+                        },
+                        {
+                            "name": "errorMessage",
+                            "type": "string"
+                        },
+                        {
+                            "name": "timestamp",
+                            "$ref": "MonotonicTime"
+                        }
+                    ]
+                },
+                {
+                    "name": "directTCPSocketClosed",
+                    "description": "Fired when direct_socket.TCPSocket is closed.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "identifier",
+                            "$ref": "RequestId"
+                        },
+                        {
+                            "name": "timestamp",
+                            "$ref": "MonotonicTime"
+                        }
+                    ]
+                },
+                {
+                    "name": "directTCPSocketChunkSent",
+                    "description": "Fired when data is sent to tcp direct socket stream.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "identifier",
+                            "$ref": "RequestId"
+                        },
+                        {
+                            "name": "data",
+                            "type": "string"
+                        },
+                        {
+                            "name": "timestamp",
+                            "$ref": "MonotonicTime"
+                        }
+                    ]
+                },
+                {
+                    "name": "directTCPSocketChunkReceived",
+                    "description": "Fired when data is received from tcp direct socket stream.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "identifier",
+                            "$ref": "RequestId"
+                        },
+                        {
+                            "name": "data",
+                            "type": "string"
+                        },
+                        {
+                            "name": "timestamp",
+                            "$ref": "MonotonicTime"
+                        }
+                    ]
+                },
+                {
+                    "name": "directUDPSocketCreated",
+                    "description": "Fired upon direct_socket.UDPSocket creation.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "identifier",
+                            "$ref": "RequestId"
+                        },
+                        {
+                            "name": "options",
+                            "$ref": "DirectUDPSocketOptions"
+                        },
+                        {
+                            "name": "timestamp",
+                            "$ref": "MonotonicTime"
+                        },
+                        {
+                            "name": "initiator",
+                            "optional": true,
+                            "$ref": "Initiator"
+                        }
+                    ]
+                },
+                {
+                    "name": "directUDPSocketOpened",
+                    "description": "Fired when direct_socket.UDPSocket connection is opened.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "identifier",
+                            "$ref": "RequestId"
+                        },
+                        {
+                            "name": "localAddr",
+                            "type": "string"
+                        },
+                        {
+                            "name": "localPort",
+                            "description": "Expected to be unsigned integer.",
+                            "type": "integer"
+                        },
+                        {
+                            "name": "timestamp",
+                            "$ref": "MonotonicTime"
+                        },
+                        {
+                            "name": "remoteAddr",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "remotePort",
+                            "description": "Expected to be unsigned integer.",
+                            "optional": true,
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
+                    "name": "directUDPSocketAborted",
+                    "description": "Fired when direct_socket.UDPSocket is aborted.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "identifier",
+                            "$ref": "RequestId"
+                        },
+                        {
+                            "name": "errorMessage",
+                            "type": "string"
+                        },
+                        {
+                            "name": "timestamp",
+                            "$ref": "MonotonicTime"
+                        }
+                    ]
+                },
+                {
+                    "name": "directUDPSocketClosed",
+                    "description": "Fired when direct_socket.UDPSocket is closed.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "identifier",
+                            "$ref": "RequestId"
+                        },
+                        {
+                            "name": "timestamp",
+                            "$ref": "MonotonicTime"
+                        }
+                    ]
+                },
+                {
+                    "name": "directUDPSocketChunkSent",
+                    "description": "Fired when message is sent to udp direct socket stream.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "identifier",
+                            "$ref": "RequestId"
+                        },
+                        {
+                            "name": "message",
+                            "$ref": "DirectUDPMessage"
+                        },
+                        {
+                            "name": "timestamp",
+                            "$ref": "MonotonicTime"
+                        }
+                    ]
+                },
+                {
+                    "name": "directUDPSocketChunkReceived",
+                    "description": "Fired when message is received from udp direct socket stream.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "identifier",
+                            "$ref": "RequestId"
+                        },
+                        {
+                            "name": "message",
+                            "$ref": "DirectUDPMessage"
+                        },
+                        {
+                            "name": "timestamp",
                             "$ref": "MonotonicTime"
                         }
                     ]
@@ -16737,7 +17654,6 @@
                         "searchForNode",
                         "searchForUAShadowDOM",
                         "captureAreaScreenshot",
-                        "showDistances",
                         "none"
                     ]
                 }
@@ -17303,19 +18219,41 @@
                 },
                 {
                     "id": "AdScriptId",
-                    "description": "Identifies the bottom-most script which caused the frame to be labelled\nas an ad.",
+                    "description": "Identifies the script which caused a script or frame to be labelled as an\nad.",
                     "experimental": true,
                     "type": "object",
                     "properties": [
                         {
                             "name": "scriptId",
-                            "description": "Script Id of the bottom-most script which caused the frame to be labelled\nas an ad.",
+                            "description": "Script Id of the script which caused a script or frame to be labelled as\nan ad.",
                             "$ref": "Runtime.ScriptId"
                         },
                         {
                             "name": "debuggerId",
-                            "description": "Id of adScriptId's debugger.",
+                            "description": "Id of scriptId's debugger.",
                             "$ref": "Runtime.UniqueDebuggerId"
+                        }
+                    ]
+                },
+                {
+                    "id": "AdScriptAncestry",
+                    "description": "Encapsulates the script ancestry and the root script filterlist rule that\ncaused the frame to be labelled as an ad. Only created when `ancestryChain`\nis not empty.",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "ancestryChain",
+                            "description": "A chain of `AdScriptId`s representing the ancestry of an ad script that\nled to the creation of a frame. The chain is ordered from the script\nitself (lower level) up to its root ancestor that was flagged by\nfilterlist.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "AdScriptId"
+                            }
+                        },
+                        {
+                            "name": "rootScriptFilterlistRule",
+                            "description": "The filterlist rule that caused the root (last) script in\n`ancestryChain` to be ad-tagged. Only populated if the rule is\navailable.",
+                            "optional": true,
+                            "type": "string"
                         }
                     ]
                 },
@@ -17355,13 +18293,14 @@
                 },
                 {
                     "id": "PermissionsPolicyFeature",
-                    "description": "All Permissions Policy features. This enum should match the one defined\nin third_party/blink/renderer/core/permissions_policy/permissions_policy_features.json5.",
+                    "description": "All Permissions Policy features. This enum should match the one defined\nin services/network/public/cpp/permissions_policy/permissions_policy_features.json5.\nLINT.IfChange(PermissionsPolicyFeature)",
                     "experimental": true,
                     "type": "string",
                     "enum": [
                         "accelerometer",
                         "all-screens-capture",
                         "ambient-light-sensor",
+                        "aria-notify",
                         "attribution-reporting",
                         "autoplay",
                         "bluetooth",
@@ -17399,6 +18338,7 @@
                         "cross-origin-isolated",
                         "deferred-fetch",
                         "deferred-fetch-minimal",
+                        "device-attributes",
                         "digital-credentials-get",
                         "direct-sockets",
                         "direct-sockets-private",
@@ -17420,11 +18360,15 @@
                         "interest-cohort",
                         "join-ad-interest-group",
                         "keyboard-map",
+                        "language-detector",
+                        "language-model",
                         "local-fonts",
+                        "local-network-access",
                         "magnetometer",
                         "media-playback-while-not-visible",
                         "microphone",
                         "midi",
+                        "on-device-speech-recognition",
                         "otp-credentials",
                         "payment",
                         "picture-in-picture",
@@ -17434,6 +18378,8 @@
                         "private-state-token-redemption",
                         "publickey-credentials-create",
                         "publickey-credentials-get",
+                        "record-ad-auction-events",
+                        "rewriter",
                         "run-ad-auction",
                         "screen-wake-lock",
                         "serial",
@@ -17444,7 +18390,9 @@
                         "speaker-selection",
                         "storage-access",
                         "sub-apps",
+                        "summarizer",
                         "sync-xhr",
+                        "translator",
                         "unload",
                         "usb",
                         "usb-unrestricted",
@@ -17453,6 +18401,7 @@
                         "web-printing",
                         "web-share",
                         "window-management",
+                        "writer",
                         "xr-spatial-tracking"
                     ]
                 },
@@ -17619,6 +18568,19 @@
                     ]
                 },
                 {
+                    "id": "SecurityOriginDetails",
+                    "description": "Additional information about the frame document's security origin.",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "isLocalhost",
+                            "description": "Indicates whether the frame document's security origin is one\nof the local hostnames (e.g. \"localhost\") or IP addresses (IPv4\n127.0.0.0/8 or IPv6 ::1).",
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                {
                     "id": "Frame",
                     "description": "Information about the Frame on the page.",
                     "type": "object",
@@ -17667,6 +18629,13 @@
                             "name": "securityOrigin",
                             "description": "Frame document's security origin.",
                             "type": "string"
+                        },
+                        {
+                            "name": "securityOriginDetails",
+                            "description": "Additional details about the frame document's security origin.",
+                            "experimental": true,
+                            "optional": true,
+                            "$ref": "SecurityOriginDetails"
                         },
                         {
                             "name": "mimeType",
@@ -18626,18 +19595,6 @@
                     ]
                 },
                 {
-                    "id": "AutoResponseMode",
-                    "description": "Enum of possible auto-response for permission / prompt dialogs.",
-                    "experimental": true,
-                    "type": "string",
-                    "enum": [
-                        "none",
-                        "autoAccept",
-                        "autoReject",
-                        "autoOptOut"
-                    ]
-                },
-                {
                     "id": "NavigationType",
                     "description": "The type of a frameNavigated event.",
                     "experimental": true,
@@ -18733,6 +19690,7 @@
                         "BroadcastChannel",
                         "WebXR",
                         "SharedWorker",
+                        "SharedWorkerMessage",
                         "WebLocks",
                         "WebHID",
                         "WebShare",
@@ -18791,7 +19749,10 @@
                         "EmbedderExtensionMessagingForOpenPort",
                         "EmbedderExtensionSentMessageToCachedFrame",
                         "RequestedByWebViewClient",
-                        "PostMessageByWebViewClient"
+                        "PostMessageByWebViewClient",
+                        "CacheControlNoStoreDeviceBoundSessionTerminated",
+                        "CacheLimitPrunedOnModerateMemoryPressure",
+                        "CacheLimitPrunedOnCriticalMemoryPressure"
                     ]
                 },
                 {
@@ -19111,7 +20072,16 @@
                 },
                 {
                     "name": "enable",
-                    "description": "Enables page domain notifications."
+                    "description": "Enables page domain notifications.",
+                    "parameters": [
+                        {
+                            "name": "enableFileChooserOpenedEvent",
+                            "description": "If true, the `Page.fileChooserOpened` event will be emitted regardless of the state set by\n`Page.setInterceptFileChooserDialog` command (default: false).",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "boolean"
+                        }
+                    ]
                 },
                 {
                     "name": "getAppManifest",
@@ -19203,7 +20173,7 @@
                     ]
                 },
                 {
-                    "name": "getAdScriptId",
+                    "name": "getAdScriptAncestry",
                     "experimental": true,
                     "parameters": [
                         {
@@ -19213,10 +20183,10 @@
                     ],
                     "returns": [
                         {
-                            "name": "adScriptId",
-                            "description": "Identifies the bottom-most script which caused the frame to be labelled\nas an ad. Only sent if frame is labelled as an ad and id is available.",
+                            "name": "adScriptAncestry",
+                            "description": "The ancestry chain of ad script identifiers leading to this frame's\ncreation, along with the root script's filterlist rule. The ancestry\nchain is ordered from the most immediate script (in the frame creation\nstack) to more distant ancestors (that created the immediately preceding\nscript). Only sent if frame is labelled as an ad and ids are available.",
                             "optional": true,
-                            "$ref": "AdScriptId"
+                            "$ref": "AdScriptAncestry"
                         }
                     ]
                 },
@@ -20064,7 +21034,14 @@
                     "parameters": [
                         {
                             "name": "mode",
-                            "$ref": "AutoResponseMode"
+                            "type": "string",
+                            "enum": [
+                                "none",
+                                "autoAccept",
+                                "autoChooseToAuthAnotherWay",
+                                "autoReject",
+                                "autoOptOut"
+                            ]
                         }
                     ]
                 },
@@ -20075,7 +21052,12 @@
                     "parameters": [
                         {
                             "name": "mode",
-                            "$ref": "AutoResponseMode"
+                            "type": "string",
+                            "enum": [
+                                "none",
+                                "autoAccept",
+                                "autoReject"
+                            ]
                         }
                     ]
                 },
@@ -20108,6 +21090,13 @@
                     "parameters": [
                         {
                             "name": "enabled",
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "cancel",
+                            "description": "If true, cancels the dialog by emitting relevant events (if any)\nin addition to not showing it if the interception is enabled\n(default: false).",
+                            "experimental": true,
+                            "optional": true,
                             "type": "boolean"
                         }
                     ]
@@ -20261,6 +21250,42 @@
                     "experimental": true
                 },
                 {
+                    "name": "frameStartedNavigating",
+                    "description": "Fired when a navigation starts. This event is fired for both\nrenderer-initiated and browser-initiated navigations. For renderer-initiated\nnavigations, the event is fired after `frameRequestedNavigation`.\nNavigation may still be cancelled after the event is issued. Multiple events\ncan be fired for a single navigation, for example, when a same-document\nnavigation becomes a cross-document navigation (such as in the case of a\nframeset).",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "frameId",
+                            "description": "ID of the frame that is being navigated.",
+                            "$ref": "FrameId"
+                        },
+                        {
+                            "name": "url",
+                            "description": "The URL the navigation started with. The final URL can be different.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "loaderId",
+                            "description": "Loader identifier. Even though it is present in case of same-document\nnavigation, the previously committed loaderId would not change unless\nthe navigation changes from a same-document to a cross-document\nnavigation.",
+                            "$ref": "Network.LoaderId"
+                        },
+                        {
+                            "name": "navigationType",
+                            "type": "string",
+                            "enum": [
+                                "reload",
+                                "reloadBypassingCache",
+                                "restore",
+                                "restoreWithPost",
+                                "historySameDocument",
+                                "historyDifferentDocument",
+                                "sameDocument",
+                                "differentDocument"
+                            ]
+                        }
+                    ]
+                },
+                {
                     "name": "frameRequestedNavigation",
                     "description": "Fired when a renderer-initiated navigation is requested.\nNavigation may still be cancelled after the event is issued.",
                     "experimental": true,
@@ -20412,6 +21437,12 @@
                     "description": "Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been\nclosed.",
                     "parameters": [
                         {
+                            "name": "frameId",
+                            "description": "Frame id.",
+                            "experimental": true,
+                            "$ref": "FrameId"
+                        },
+                        {
                             "name": "result",
                             "description": "Whether dialog was confirmed.",
                             "type": "boolean"
@@ -20431,6 +21462,12 @@
                             "name": "url",
                             "description": "Frame url.",
                             "type": "string"
+                        },
+                        {
+                            "name": "frameId",
+                            "description": "Frame id.",
+                            "experimental": true,
+                            "$ref": "FrameId"
                         },
                         {
                             "name": "message",
@@ -21516,15 +22553,6 @@
                     "name": "enable"
                 },
                 {
-                    "name": "inspectWorker",
-                    "parameters": [
-                        {
-                            "name": "versionId",
-                            "type": "string"
-                        }
-                    ]
-                },
-                {
                     "name": "setForceUpdateOnPageLoad",
                     "parameters": [
                         {
@@ -21728,31 +22756,36 @@
                     ]
                 },
                 {
-                    "id": "SharedStorageAccessType",
-                    "description": "Enum of shared storage access types.",
+                    "id": "SharedStorageAccessScope",
+                    "description": "Enum of shared storage access scopes.",
                     "type": "string",
                     "enum": [
-                        "documentAddModule",
-                        "documentSelectURL",
-                        "documentRun",
-                        "documentSet",
-                        "documentAppend",
-                        "documentDelete",
-                        "documentClear",
-                        "documentGet",
-                        "workletSet",
-                        "workletAppend",
-                        "workletDelete",
-                        "workletClear",
-                        "workletGet",
-                        "workletKeys",
-                        "workletEntries",
-                        "workletLength",
-                        "workletRemainingBudget",
-                        "headerSet",
-                        "headerAppend",
-                        "headerDelete",
-                        "headerClear"
+                        "window",
+                        "sharedStorageWorklet",
+                        "protectedAudienceWorklet",
+                        "header"
+                    ]
+                },
+                {
+                    "id": "SharedStorageAccessMethod",
+                    "description": "Enum of shared storage access methods.",
+                    "type": "string",
+                    "enum": [
+                        "addModule",
+                        "createWorklet",
+                        "selectURL",
+                        "run",
+                        "batchUpdate",
+                        "set",
+                        "append",
+                        "delete",
+                        "clear",
+                        "get",
+                        "keys",
+                        "values",
+                        "entries",
+                        "length",
+                        "remainingBudget"
                     ]
                 },
                 {
@@ -21793,6 +22826,36 @@
                         {
                             "name": "bytesUsed",
                             "description": "Total number of bytes stored as key-value pairs in origin's shared\nstorage.",
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
+                    "id": "SharedStoragePrivateAggregationConfig",
+                    "description": "Represents a dictionary object passed in as privateAggregationConfig to\nrun or selectURL.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "aggregationCoordinatorOrigin",
+                            "description": "The chosen aggregation service deployment.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "contextId",
+                            "description": "The context ID provided.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "filteringIdMaxBytes",
+                            "description": "Configures the maximum size allowed for filtering IDs.",
+                            "type": "integer"
+                        },
+                        {
+                            "name": "maxContributions",
+                            "description": "The limit on the number of contributions in the final report.",
+                            "optional": true,
                             "type": "integer"
                         }
                     ]
@@ -21839,25 +22902,49 @@
                     "properties": [
                         {
                             "name": "scriptSourceUrl",
-                            "description": "Spec of the module script URL.\nPresent only for SharedStorageAccessType.documentAddModule.",
+                            "description": "Spec of the module script URL.\nPresent only for SharedStorageAccessMethods: addModule and\ncreateWorklet.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "dataOrigin",
+                            "description": "String denoting \"context-origin\", \"script-origin\", or a custom\norigin to be used as the worklet's data origin.\nPresent only for SharedStorageAccessMethod: createWorklet.",
                             "optional": true,
                             "type": "string"
                         },
                         {
                             "name": "operationName",
-                            "description": "Name of the registered operation to be run.\nPresent only for SharedStorageAccessType.documentRun and\nSharedStorageAccessType.documentSelectURL.",
+                            "description": "Name of the registered operation to be run.\nPresent only for SharedStorageAccessMethods: run and selectURL.",
                             "optional": true,
                             "type": "string"
                         },
                         {
+                            "name": "operationId",
+                            "description": "ID of the operation call.\nPresent only for SharedStorageAccessMethods: run and selectURL.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "keepAlive",
+                            "description": "Whether or not to keep the worket alive for future run or selectURL\ncalls.\nPresent only for SharedStorageAccessMethods: run and selectURL.",
+                            "optional": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "privateAggregationConfig",
+                            "description": "Configures the private aggregation options.\nPresent only for SharedStorageAccessMethods: run and selectURL.",
+                            "optional": true,
+                            "$ref": "SharedStoragePrivateAggregationConfig"
+                        },
+                        {
                             "name": "serializedData",
-                            "description": "The operation's serialized data in bytes (converted to a string).\nPresent only for SharedStorageAccessType.documentRun and\nSharedStorageAccessType.documentSelectURL.",
+                            "description": "The operation's serialized data in bytes (converted to a string).\nPresent only for SharedStorageAccessMethods: run and selectURL.\nTODO(crbug.com/401011862): Consider updating this parameter to binary.",
                             "optional": true,
                             "type": "string"
                         },
                         {
                             "name": "urlsWithMetadata",
-                            "description": "Array of candidate URLs' specs, along with any associated metadata.\nPresent only for SharedStorageAccessType.documentSelectURL.",
+                            "description": "Array of candidate URLs' specs, along with any associated metadata.\nPresent only for SharedStorageAccessMethod: selectURL.",
                             "optional": true,
                             "type": "array",
                             "items": {
@@ -21865,22 +22952,58 @@
                             }
                         },
                         {
+                            "name": "urnUuid",
+                            "description": "Spec of the URN:UUID generated for a selectURL call.\nPresent only for SharedStorageAccessMethod: selectURL.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
                             "name": "key",
-                            "description": "Key for a specific entry in an origin's shared storage.\nPresent only for SharedStorageAccessType.documentSet,\nSharedStorageAccessType.documentAppend,\nSharedStorageAccessType.documentDelete,\nSharedStorageAccessType.workletSet,\nSharedStorageAccessType.workletAppend,\nSharedStorageAccessType.workletDelete,\nSharedStorageAccessType.workletGet,\nSharedStorageAccessType.headerSet,\nSharedStorageAccessType.headerAppend, and\nSharedStorageAccessType.headerDelete.",
+                            "description": "Key for a specific entry in an origin's shared storage.\nPresent only for SharedStorageAccessMethods: set, append, delete, and\nget.",
                             "optional": true,
                             "type": "string"
                         },
                         {
                             "name": "value",
-                            "description": "Value for a specific entry in an origin's shared storage.\nPresent only for SharedStorageAccessType.documentSet,\nSharedStorageAccessType.documentAppend,\nSharedStorageAccessType.workletSet,\nSharedStorageAccessType.workletAppend,\nSharedStorageAccessType.headerSet, and\nSharedStorageAccessType.headerAppend.",
+                            "description": "Value for a specific entry in an origin's shared storage.\nPresent only for SharedStorageAccessMethods: set and append.",
                             "optional": true,
                             "type": "string"
                         },
                         {
                             "name": "ignoreIfPresent",
-                            "description": "Whether or not to set an entry for a key if that key is already present.\nPresent only for SharedStorageAccessType.documentSet,\nSharedStorageAccessType.workletSet, and\nSharedStorageAccessType.headerSet.",
+                            "description": "Whether or not to set an entry for a key if that key is already present.\nPresent only for SharedStorageAccessMethod: set.",
                             "optional": true,
                             "type": "boolean"
+                        },
+                        {
+                            "name": "workletOrdinal",
+                            "description": "A number denoting the (0-based) order of the worklet's\ncreation relative to all other shared storage worklets created by\ndocuments using the current storage partition.\nPresent only for SharedStorageAccessMethods: addModule, createWorklet.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "workletTargetId",
+                            "description": "Hex representation of the DevTools token used as the TargetID for the\nassociated shared storage worklet.\nPresent only for SharedStorageAccessMethods: addModule, createWorklet,\nrun, selectURL, and any other SharedStorageAccessMethod when the\nSharedStorageAccessScope is sharedStorageWorklet.",
+                            "optional": true,
+                            "$ref": "Target.TargetID"
+                        },
+                        {
+                            "name": "withLock",
+                            "description": "Name of the lock to be acquired, if present.\nOptionally present only for SharedStorageAccessMethods: batchUpdate,\nset, append, delete, and clear.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "batchUpdateId",
+                            "description": "If the method has been called as part of a batchUpdate, then this\nnumber identifies the batch to which it belongs.\nOptionally present only for SharedStorageAccessMethods:\nbatchUpdate (required), set, append, delete, and clear.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "batchSize",
+                            "description": "Number of modifier methods sent in batch.\nPresent only for SharedStorageAccessMethod: batchUpdate.",
+                            "optional": true,
+                            "type": "integer"
                         }
                     ]
                 },
@@ -22058,25 +23181,6 @@
                     ]
                 },
                 {
-                    "id": "AttributionReportingTriggerSpec",
-                    "experimental": true,
-                    "type": "object",
-                    "properties": [
-                        {
-                            "name": "triggerData",
-                            "description": "number instead of integer because not all uint32 can be represented by\nint",
-                            "type": "array",
-                            "items": {
-                                "type": "number"
-                            }
-                        },
-                        {
-                            "name": "eventReportWindows",
-                            "$ref": "AttributionReportingEventReportWindows"
-                        }
-                    ]
-                },
-                {
                     "id": "AttributionReportingTriggerDataMatching",
                     "experimental": true,
                     "type": "string",
@@ -22161,6 +23265,21 @@
                     ]
                 },
                 {
+                    "id": "AttributionReportingNamedBudgetDef",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "name",
+                            "type": "string"
+                        },
+                        {
+                            "name": "budget",
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
                     "id": "AttributionReportingSourceRegistration",
                     "experimental": true,
                     "type": "object",
@@ -22175,11 +23294,16 @@
                             "type": "integer"
                         },
                         {
-                            "name": "triggerSpecs",
+                            "name": "triggerData",
+                            "description": "number instead of integer because not all uint32 can be represented by\nint",
                             "type": "array",
                             "items": {
-                                "$ref": "AttributionReportingTriggerSpec"
+                                "type": "number"
                             }
+                        },
+                        {
+                            "name": "eventReportWindows",
+                            "$ref": "AttributionReportingEventReportWindows"
                         },
                         {
                             "name": "aggregatableReportWindow",
@@ -22252,6 +23376,21 @@
                         {
                             "name": "maxEventLevelReports",
                             "type": "integer"
+                        },
+                        {
+                            "name": "namedBudgets",
+                            "type": "array",
+                            "items": {
+                                "$ref": "AttributionReportingNamedBudgetDef"
+                            }
+                        },
+                        {
+                            "name": "debugReporting",
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "eventLevelEpsilon",
+                            "type": "number"
                         }
                     ]
                 },
@@ -22388,6 +23527,22 @@
                     ]
                 },
                 {
+                    "id": "AttributionReportingNamedBudgetCandidate",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "name",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "filters",
+                            "$ref": "AttributionReportingFilterPair"
+                        }
+                    ]
+                },
+                {
                     "id": "AttributionReportingTriggerRegistration",
                     "experimental": true,
                     "type": "object",
@@ -22461,6 +23616,13 @@
                             "items": {
                                 "type": "string"
                             }
+                        },
+                        {
+                            "name": "namedBudgets",
+                            "type": "array",
+                            "items": {
+                                "$ref": "AttributionReportingNamedBudgetCandidate"
+                            }
                         }
                     ]
                 },
@@ -22510,6 +23672,17 @@
                         "deduplicated",
                         "reportWindowPassed",
                         "excessiveReports"
+                    ]
+                },
+                {
+                    "id": "AttributionReportingReportResult",
+                    "experimental": true,
+                    "type": "string",
+                    "enum": [
+                        "sent",
+                        "prohibited",
+                        "failedToAssemble",
+                        "expired"
                     ]
                 },
                 {
@@ -23094,6 +24267,26 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "setProtectedAudienceKAnonymity",
+                    "parameters": [
+                        {
+                            "name": "owner",
+                            "type": "string"
+                        },
+                        {
+                            "name": "name",
+                            "type": "string"
+                        },
+                        {
+                            "name": "hashes",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    ]
                 }
             ],
             "events": [
@@ -23303,9 +24496,14 @@
                             "$ref": "Network.TimeSinceEpoch"
                         },
                         {
-                            "name": "type",
+                            "name": "scope",
+                            "description": "Enum value indicating the access scope.",
+                            "$ref": "SharedStorageAccessScope"
+                        },
+                        {
+                            "name": "method",
                             "description": "Enum value indicating the Shared Storage API method invoked.",
-                            "$ref": "SharedStorageAccessType"
+                            "$ref": "SharedStorageAccessMethod"
                         },
                         {
                             "name": "mainFrameId",
@@ -23314,13 +24512,59 @@
                         },
                         {
                             "name": "ownerOrigin",
-                            "description": "Serialized origin for the context that invoked the Shared Storage API.",
+                            "description": "Serialization of the origin owning the Shared Storage data.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "ownerSite",
+                            "description": "Serialization of the site owning the Shared Storage data.",
                             "type": "string"
                         },
                         {
                             "name": "params",
                             "description": "The sub-parameters wrapped by `params` are all optional and their\npresence/absence depends on `type`.",
                             "$ref": "SharedStorageAccessParams"
+                        }
+                    ]
+                },
+                {
+                    "name": "sharedStorageWorkletOperationExecutionFinished",
+                    "description": "A shared storage run or selectURL operation finished its execution.\nThe following parameters are included in all events.",
+                    "parameters": [
+                        {
+                            "name": "finishedTime",
+                            "description": "Time that the operation finished.",
+                            "$ref": "Network.TimeSinceEpoch"
+                        },
+                        {
+                            "name": "executionTime",
+                            "description": "Time, in microseconds, from start of shared storage JS API call until\nend of operation execution in the worklet.",
+                            "type": "integer"
+                        },
+                        {
+                            "name": "method",
+                            "description": "Enum value indicating the Shared Storage API method invoked.",
+                            "$ref": "SharedStorageAccessMethod"
+                        },
+                        {
+                            "name": "operationId",
+                            "description": "ID of the operation call.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "workletTargetId",
+                            "description": "Hex representation of the DevTools token used as the TargetID for the\nassociated shared storage worklet.",
+                            "$ref": "Target.TargetID"
+                        },
+                        {
+                            "name": "mainFrameId",
+                            "description": "DevTools Frame Token for the primary frame tree's root.",
+                            "$ref": "Page.FrameId"
+                        },
+                        {
+                            "name": "ownerOrigin",
+                            "description": "Serialization of the origin owning the Shared Storage data.",
+                            "type": "string"
                         }
                     ]
                 },
@@ -23371,6 +24615,73 @@
                         {
                             "name": "aggregatable",
                             "$ref": "AttributionReportingAggregatableResult"
+                        }
+                    ]
+                },
+                {
+                    "name": "attributionReportingReportSent",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "url",
+                            "type": "string"
+                        },
+                        {
+                            "name": "body",
+                            "type": "object"
+                        },
+                        {
+                            "name": "result",
+                            "$ref": "AttributionReportingReportResult"
+                        },
+                        {
+                            "name": "netError",
+                            "description": "If result is `sent`, populated with net/HTTP status.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "netErrorName",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "httpStatusCode",
+                            "optional": true,
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
+                    "name": "attributionReportingVerboseDebugReportSent",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "url",
+                            "type": "string"
+                        },
+                        {
+                            "name": "body",
+                            "optional": true,
+                            "type": "array",
+                            "items": {
+                                "type": "object"
+                            }
+                        },
+                        {
+                            "name": "netError",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "netErrorName",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "httpStatusCode",
+                            "optional": true,
+                            "type": "integer"
                         }
                     ]
                 }
@@ -23894,6 +25205,12 @@
                             "description": "Binding name, 'cdp' if not specified.",
                             "optional": true,
                             "type": "string"
+                        },
+                        {
+                            "name": "inheritPermissions",
+                            "description": "If true, inherits the current root session's permissions (default: false).",
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ]
                 },
@@ -24028,6 +25345,13 @@
                             "experimental": true,
                             "optional": true,
                             "type": "boolean"
+                        },
+                        {
+                            "name": "hidden",
+                            "description": "Whether to create a hidden target. The hidden target is observable via protocol, but not\npresent in the tab UI strip. Cannot be created with `forTab: true`, `newWindow: true` or\n`background: false`. The life-time of the tab is limited to the life-time of the session.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ],
                     "returns": [
@@ -24134,7 +25458,7 @@
                 },
                 {
                     "name": "setAutoAttach",
-                    "description": "Controls whether to automatically attach to new targets which are considered to be related to\nthis one. When turned on, attaches to all existing related targets as well. When turned off,\nautomatically detaches from all currently attached targets.\nThis also clears all targets added by `autoAttachRelated` from the list of targets to watch\nfor creation of related targets.",
+                    "description": "Controls whether to automatically attach to new targets which are considered\nto be directly related to this one (for example, iframes or workers).\nWhen turned on, attaches to all existing related targets as well. When turned off,\nautomatically detaches from all currently attached targets.\nThis also clears all targets added by `autoAttachRelated` from the list of targets to watch\nfor creation of related targets.\nYou might want to call this recursively for auto-attached targets to attach\nto all available targets.",
                     "parameters": [
                         {
                             "name": "autoAttach",
@@ -24398,7 +25722,7 @@
                     "properties": [
                         {
                             "name": "recordMode",
-                            "description": "Controls how the trace buffer stores data.",
+                            "description": "Controls how the trace buffer stores data. The default is `recordUntilFull`.",
                             "experimental": true,
                             "optional": true,
                             "type": "string",
@@ -26527,7 +27851,6 @@
                         "InvalidSchemeRedirect",
                         "InvalidSchemeNavigation",
                         "NavigationRequestBlockedByCsp",
-                        "MainFrameNavigation",
                         "MojoBinderPolicy",
                         "RendererProcessCrashed",
                         "RendererProcessKilled",
@@ -26593,7 +27916,8 @@
                         "SlowNetwork",
                         "OtherPrerenderedPageActivated",
                         "V8OptimizerDisabled",
-                        "PrerenderFailedDuringPrefetch"
+                        "PrerenderFailedDuringPrefetch",
+                        "BrowsingDataRemoved"
                     ]
                 },
                 {
@@ -26620,6 +27944,7 @@
                         "PrefetchFailedMIMENotSupported",
                         "PrefetchFailedNetError",
                         "PrefetchFailedNon2XX",
+                        "PrefetchEvictedAfterBrowsingDataRemoved",
                         "PrefetchEvictedAfterCandidateRemoved",
                         "PrefetchEvictedForNewerPrefetch",
                         "PrefetchHeldback",
@@ -26635,6 +27960,9 @@
                         "PrefetchNotEligibleSchemeIsNotHttps",
                         "PrefetchNotEligibleUserHasCookies",
                         "PrefetchNotEligibleUserHasServiceWorker",
+                        "PrefetchNotEligibleUserHasServiceWorkerNoFetchHandler",
+                        "PrefetchNotEligibleRedirectFromServiceWorker",
+                        "PrefetchNotEligibleRedirectToServiceWorker",
                         "PrefetchNotEligibleBatterySaverEnabled",
                         "PrefetchNotEligiblePreloadingDisabled",
                         "PrefetchNotFinishedInTime",
@@ -27110,7 +28438,7 @@
                 },
                 {
                     "name": "install",
-                    "description": "Installs the given manifest identity, optionally using the given install_url\nor IWA bundle location.\n\nTODO(crbug.com/337872319) Support IWA to meet the following specific\nrequirement.\nIWA-specific install description: If the manifest_id is isolated-app://,\ninstall_url_or_bundle_url is required, and can be either an http(s) URL or\nfile:// URL pointing to a signed web bundle (.swbn). The .swbn file's\nsigning key must correspond to manifest_id. If Chrome is not in IWA dev\nmode, the installation will fail, regardless of the state of the allowlist.",
+                    "description": "Installs the given manifest identity, optionally using the given installUrlOrBundleUrl\n\nIWA-specific install description:\nmanifestId corresponds to isolated-app:// + web_package::SignedWebBundleId\n\nFile installation mode:\nThe installUrlOrBundleUrl can be either file:// or http(s):// pointing\nto a signed web bundle (.swbn). In this case SignedWebBundleId must correspond to\nThe .swbn file's signing key.\n\nDev proxy installation mode:\ninstallUrlOrBundleUrl must be http(s):// that serves dev mode IWA.\nweb_package::SignedWebBundleId must be of type dev proxy.\n\nThe advantage of dev proxy mode is that all changes to IWA\nautomatically will be reflected in the running app without\nreinstallation.\n\nTo generate bundle id for proxy mode:\n1. Generate 32 random bytes.\n2. Add a specific suffix 0x00 at the end.\n3. Encode the entire sequence using Base32 without padding.\n\nIf Chrome is not in IWA dev\nmode, the installation will fail, regardless of the state of the allowlist.",
                     "parameters": [
                         {
                             "name": "manifestId",
@@ -27232,6 +28560,45 @@
                     ]
                 },
                 {
+                    "id": "GATTOperationType",
+                    "description": "Indicates the various types of GATT event.",
+                    "type": "string",
+                    "enum": [
+                        "connection",
+                        "discovery"
+                    ]
+                },
+                {
+                    "id": "CharacteristicWriteType",
+                    "description": "Indicates the various types of characteristic write.",
+                    "type": "string",
+                    "enum": [
+                        "write-default-deprecated",
+                        "write-with-response",
+                        "write-without-response"
+                    ]
+                },
+                {
+                    "id": "CharacteristicOperationType",
+                    "description": "Indicates the various types of characteristic operation.",
+                    "type": "string",
+                    "enum": [
+                        "read",
+                        "write",
+                        "subscribe-to-notifications",
+                        "unsubscribe-from-notifications"
+                    ]
+                },
+                {
+                    "id": "DescriptorOperationType",
+                    "description": "Indicates the various types of descriptor operation.",
+                    "type": "string",
+                    "enum": [
+                        "read",
+                        "write"
+                    ]
+                },
+                {
                     "id": "ManufacturerData",
                     "description": "Stores the manufacturer data",
                     "type": "object",
@@ -27307,12 +28674,75 @@
                             "$ref": "ScanRecord"
                         }
                     ]
+                },
+                {
+                    "id": "CharacteristicProperties",
+                    "description": "Describes the properties of a characteristic. This follows Bluetooth Core\nSpecification BT 4.2 Vol 3 Part G 3.3.1. Characteristic Properties.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "broadcast",
+                            "optional": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "read",
+                            "optional": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "writeWithoutResponse",
+                            "optional": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "write",
+                            "optional": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "notify",
+                            "optional": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "indicate",
+                            "optional": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "authenticatedSignedWrites",
+                            "optional": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "extendedProperties",
+                            "optional": true,
+                            "type": "boolean"
+                        }
+                    ]
                 }
             ],
             "commands": [
                 {
                     "name": "enable",
                     "description": "Enable the BluetoothEmulation domain.",
+                    "parameters": [
+                        {
+                            "name": "state",
+                            "description": "State of the simulated central.",
+                            "$ref": "CentralState"
+                        },
+                        {
+                            "name": "leSupported",
+                            "description": "If the simulated central supports low-energy.",
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                {
+                    "name": "setSimulatedCentralState",
+                    "description": "Set the state of the simulated central.",
                     "parameters": [
                         {
                             "name": "state",
@@ -27360,6 +28790,236 @@
                         {
                             "name": "entry",
                             "$ref": "ScanEntry"
+                        }
+                    ]
+                },
+                {
+                    "name": "simulateGATTOperationResponse",
+                    "description": "Simulates the response code from the peripheral with |address| for a\nGATT operation of |type|. The |code| value follows the HCI Error Codes from\nBluetooth Core Specification Vol 2 Part D 1.3 List Of Error Codes.",
+                    "parameters": [
+                        {
+                            "name": "address",
+                            "type": "string"
+                        },
+                        {
+                            "name": "type",
+                            "$ref": "GATTOperationType"
+                        },
+                        {
+                            "name": "code",
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
+                    "name": "simulateCharacteristicOperationResponse",
+                    "description": "Simulates the response from the characteristic with |characteristicId| for a\ncharacteristic operation of |type|. The |code| value follows the Error\nCodes from Bluetooth Core Specification Vol 3 Part F 3.4.1.1 Error Response.\nThe |data| is expected to exist when simulating a successful read operation\nresponse.",
+                    "parameters": [
+                        {
+                            "name": "characteristicId",
+                            "type": "string"
+                        },
+                        {
+                            "name": "type",
+                            "$ref": "CharacteristicOperationType"
+                        },
+                        {
+                            "name": "code",
+                            "type": "integer"
+                        },
+                        {
+                            "name": "data",
+                            "optional": true,
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "name": "simulateDescriptorOperationResponse",
+                    "description": "Simulates the response from the descriptor with |descriptorId| for a\ndescriptor operation of |type|. The |code| value follows the Error\nCodes from Bluetooth Core Specification Vol 3 Part F 3.4.1.1 Error Response.\nThe |data| is expected to exist when simulating a successful read operation\nresponse.",
+                    "parameters": [
+                        {
+                            "name": "descriptorId",
+                            "type": "string"
+                        },
+                        {
+                            "name": "type",
+                            "$ref": "DescriptorOperationType"
+                        },
+                        {
+                            "name": "code",
+                            "type": "integer"
+                        },
+                        {
+                            "name": "data",
+                            "optional": true,
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "name": "addService",
+                    "description": "Adds a service with |serviceUuid| to the peripheral with |address|.",
+                    "parameters": [
+                        {
+                            "name": "address",
+                            "type": "string"
+                        },
+                        {
+                            "name": "serviceUuid",
+                            "type": "string"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "serviceId",
+                            "description": "An identifier that uniquely represents this service.",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "name": "removeService",
+                    "description": "Removes the service respresented by |serviceId| from the simulated central.",
+                    "parameters": [
+                        {
+                            "name": "serviceId",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "name": "addCharacteristic",
+                    "description": "Adds a characteristic with |characteristicUuid| and |properties| to the\nservice represented by |serviceId|.",
+                    "parameters": [
+                        {
+                            "name": "serviceId",
+                            "type": "string"
+                        },
+                        {
+                            "name": "characteristicUuid",
+                            "type": "string"
+                        },
+                        {
+                            "name": "properties",
+                            "$ref": "CharacteristicProperties"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "characteristicId",
+                            "description": "An identifier that uniquely represents this characteristic.",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "name": "removeCharacteristic",
+                    "description": "Removes the characteristic respresented by |characteristicId| from the\nsimulated central.",
+                    "parameters": [
+                        {
+                            "name": "characteristicId",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "name": "addDescriptor",
+                    "description": "Adds a descriptor with |descriptorUuid| to the characteristic respresented\nby |characteristicId|.",
+                    "parameters": [
+                        {
+                            "name": "characteristicId",
+                            "type": "string"
+                        },
+                        {
+                            "name": "descriptorUuid",
+                            "type": "string"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "descriptorId",
+                            "description": "An identifier that uniquely represents this descriptor.",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "name": "removeDescriptor",
+                    "description": "Removes the descriptor with |descriptorId| from the simulated central.",
+                    "parameters": [
+                        {
+                            "name": "descriptorId",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "name": "simulateGATTDisconnection",
+                    "description": "Simulates a GATT disconnection from the peripheral with |address|.",
+                    "parameters": [
+                        {
+                            "name": "address",
+                            "type": "string"
+                        }
+                    ]
+                }
+            ],
+            "events": [
+                {
+                    "name": "gattOperationReceived",
+                    "description": "Event for when a GATT operation of |type| to the peripheral with |address|\nhappened.",
+                    "parameters": [
+                        {
+                            "name": "address",
+                            "type": "string"
+                        },
+                        {
+                            "name": "type",
+                            "$ref": "GATTOperationType"
+                        }
+                    ]
+                },
+                {
+                    "name": "characteristicOperationReceived",
+                    "description": "Event for when a characteristic operation of |type| to the characteristic\nrespresented by |characteristicId| happened. |data| and |writeType| is\nexpected to exist when |type| is write.",
+                    "parameters": [
+                        {
+                            "name": "characteristicId",
+                            "type": "string"
+                        },
+                        {
+                            "name": "type",
+                            "$ref": "CharacteristicOperationType"
+                        },
+                        {
+                            "name": "data",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "writeType",
+                            "optional": true,
+                            "$ref": "CharacteristicWriteType"
+                        }
+                    ]
+                },
+                {
+                    "name": "descriptorOperationReceived",
+                    "description": "Event for when a descriptor operation of |type| to the descriptor\nrespresented by |descriptorId| happened. |data| is expected to exist when\n|type| is write.",
+                    "parameters": [
+                        {
+                            "name": "descriptorId",
+                            "type": "string"
+                        },
+                        {
+                            "name": "type",
+                            "$ref": "DescriptorOperationType"
+                        },
+                        {
+                            "name": "data",
+                            "optional": true,
+                            "type": "string"
                         }
                     ]
                 }
