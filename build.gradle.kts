@@ -8,11 +8,9 @@ plugins {
     alias(libs.plugins.kotlin.atomicfu)
     alias(libs.plugins.dokka)
     alias(libs.plugins.binary.compatibility.validator)
-    alias(libs.plugins.nexus.publish)
+    alias(libs.plugins.vanniktech.maven.publish)
     alias(libs.plugins.hildan.github.changelog)
-    alias(libs.plugins.hildan.kotlin.publish)
     alias(libs.plugins.vyarus.github.info)
-    signing
 }
 
 group = "org.hildan.chrome"
@@ -142,7 +140,7 @@ tasks.sourcesJar {
     dependsOn(generateProtocolApi)
 }
 
-tasks.dokkaHtml {
+tasks.dokkaGeneratePublicationHtml {
     dependsOn(generateProtocolApi)
 }
 
@@ -156,33 +154,37 @@ changelog {
     sinceTag = "0.5.0"
 }
 
-nexusPublishing {
-    packageGroup.set("org.hildan")
-    repositories {
-        sonatype()
+mavenPublishing {
+    publishToMavenCentral()
+    signAllPublications()
+
+    pom {
+        name.set(project.name)
+        description.set(project.description)
+        developers {
+            developer {
+                id.set("joffrey-bion")
+                name.set("Joffrey Bion")
+                email.set("joffrey.bion@gmail.com")
+            }
+        }
     }
 }
 
-publishing {
-    // configureEach reacts on new publications being registered and configures them too
-    publications.configureEach {
-        if (this is MavenPublication) {
-            pom {
-                developers {
-                    developer {
-                        id.set("joffrey-bion")
-                        name.set("Joffrey Bion")
-                        email.set("joffrey.bion@gmail.com")
-                    }
+dokka {
+    dokkaSourceSets {
+        configureEach {
+            sourceRoots.forEach { sourceRootDir ->
+                val sourceRootRelativePath = sourceRootDir.relativeTo(rootProject.projectDir).toSlashSeparatedString()
+                sourceLink {
+                    localDirectory.set(sourceRootDir)
+                    // HEAD points to the default branch of the repo.
+                    remoteUrl("${github.repositoryUrl}/blob/HEAD/$sourceRootRelativePath")
                 }
             }
         }
     }
 }
 
-signing {
-    val signingKey: String? by project
-    val signingPassword: String? by project
-    useInMemoryPgpKeys(signingKey, signingPassword)
-    sign(extensions.getByType<PublishingExtension>().publications)
-}
+// ensures slash separator even on Windows, useful for URLs creation
+private fun File.toSlashSeparatedString(): String = toPath().joinToString("/")
