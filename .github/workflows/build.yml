@@ -11,7 +11,7 @@ jobs:
         jdk-version: [21]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # We can't control the architecture of macOS runners, so we double-check here
       - name: Check architecture for nested virtualization on macOS
