@@ -19,7 +19,7 @@ jobs:
     runs-on: macos-13  # to force intel arch (macos-14+ use ARM which doesn't support virtualization)
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           token: ${{ secrets.GH_PAT }} # to bypass branch protection rules to push the changelog
 
