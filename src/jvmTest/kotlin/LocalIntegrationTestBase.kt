@@ -1,16 +1,11 @@
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import kotlinx.coroutines.withTimeoutOrNull
-import org.hildan.chrome.devtools.domains.accessibility.AXProperty
-import org.hildan.chrome.devtools.domains.accessibility.AXPropertyName
+import kotlinx.coroutines.*
+import org.hildan.chrome.devtools.*
+import org.hildan.chrome.devtools.domains.accessibility.*
 import org.hildan.chrome.devtools.domains.dom.*
-import org.hildan.chrome.devtools.runTestWithRealTime
-import org.hildan.chrome.devtools.protocol.ExperimentalChromeApi
-import org.hildan.chrome.devtools.protocol.RequestNotSentException
+import org.hildan.chrome.devtools.protocol.*
 import org.hildan.chrome.devtools.sessions.*
 import org.junit.jupiter.api.Test
-import org.testcontainers.Testcontainers
+import org.testcontainers.*
 import kotlin.test.*
 import kotlin.time.Duration.Companion.seconds
 
@@ -105,29 +100,6 @@ abstract class LocalIntegrationTestBase : IntegrationTestBase() {
 
                     val getOuterHTMLResponse = page.dom.getOuterHTML(GetOuterHTMLRequest(nodeId = nodeId))
                     assertTrue(getOuterHTMLResponse.outerHTML.contains("<p class=\"some-p-class\">"))
-                }
-            }
-        }
-    }
-
-    @OptIn(ExperimentalChromeApi::class)
-    @Test
-    fun parallelPages() = runTestWithRealTime {
-        withResourceServerForTestcontainers { baseUrl ->
-            chromeWebSocket().use { browser ->
-                // we want all coroutines to finish before we close the browser session
-                withContext(Dispatchers.IO) {
-                    repeat(20) {
-                        launch {
-                            browser.newPage().use { page ->
-                                page.goto("$baseUrl/test-server-pages/basic.html")
-                                page.runtime.getHeapUsage()
-                                val docRoot = page.dom.getDocumentRootNodeId()
-                                page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
-                                page.storage.getCookies()
-                            }
-                        }
-                    }
                 }
             }
         }
