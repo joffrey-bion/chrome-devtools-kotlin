@@ -1,6 +1,5 @@
 package org.hildan.chrome.devtools.protocol
 
-import kotlinx.serialization.*
 import kotlinx.serialization.json.*
 import org.hildan.chrome.devtools.domains.accessibility.*
 import org.hildan.chrome.devtools.domains.bluetoothemulation.*
@@ -13,6 +12,8 @@ class FCEnumSerializerTest {
         assertEquals(AXPropertyName.url, Json.decodeFromString<AXPropertyName>("\"url\""))
         assertEquals(AXPropertyName.level, Json.decodeFromString<AXPropertyName>("\"level\""))
         assertEquals(AXPropertyName.hiddenRoot, Json.decodeFromString<AXPropertyName>("\"hiddenRoot\""))
+        assertEquals(AXPropertyName.notRendered, Json.decodeFromString<AXPropertyName>("\"notRendered\""))
+        assertEquals(AXPropertyName.uninteresting, Json.decodeFromString<AXPropertyName>("\"uninteresting\""))
     }
 
     @Test
@@ -23,8 +24,7 @@ class FCEnumSerializerTest {
 
     @Test
     fun deserializesUnknownValues() {
-        assertEquals(AXPropertyName.NotDefinedInProtocol("notRendered"), Json.decodeFromString<AXPropertyName>("\"notRendered\""))
-        assertEquals(AXPropertyName.NotDefinedInProtocol("uninteresting"), Json.decodeFromString<AXPropertyName>("\"uninteresting\""))
+        assertEquals(AXPropertyName.NotDefinedInProtocol("totallyInexistentStuff"), Json.decodeFromString<AXPropertyName>("\"totallyInexistentStuff\""))
     }
 
     @Test
@@ -38,12 +38,12 @@ class FCEnumSerializerTest {
     fun serializesKnownValues_withDashes() {
         assertEquals("\"powered-on\"", Json.encodeToString(CentralState.poweredOn))
         assertEquals("\"powered-off\"", Json.encodeToString(CentralState.poweredOff))
+        assertEquals("\"notRendered\"", Json.encodeToString(AXPropertyName.notRendered))
+        assertEquals("\"uninteresting\"", Json.encodeToString(AXPropertyName.uninteresting))
     }
 
     @Test
     fun serializesUnknownValues() {
-        assertEquals("\"notRendered\"", Json.encodeToString<AXPropertyName>(AXPropertyName.NotDefinedInProtocol("notRendered")))
-        assertEquals("\"uninteresting\"", Json.encodeToString(AXPropertyName.NotDefinedInProtocol("uninteresting")))
         assertEquals("\"totallyInexistentStuff\"", Json.encodeToString(AXPropertyName.NotDefinedInProtocol("totallyInexistentStuff")))
     }
 }
