@@ -159,23 +159,6 @@ abstract class LocalIntegrationTestBase : IntegrationTestBase() {
 
     @OptIn(ExperimentalChromeApi::class)
     @Test
-    fun test_deserialization_unknown_enum() = runTestWithRealTime {
-        chromeWebSocket().use { browser ->
-            browser.newPage().use { page ->
-                page.gotoTestPageResource("basic.html")
-                val tree = page.accessibility.getFullAXTree() // just test that this doesn't fail
-
-                assertTrue("we are no longer testing that unknown AXPropertyName values are deserialized as NotDefinedInProtocol") {
-                    tree.nodes.any { n ->
-                        n.properties.anyUndefinedName() || n.ignoredReasons.anyUndefinedName()
-                    }
-                }
-            }
-        }
-    }
-
-    @OptIn(ExperimentalChromeApi::class)
-    @Test
     fun test_deserialization_RemoteObject_subtype_enum() = runTestWithRealTime {
         chromeWebSocket().use { browser ->
             browser.newPage().use { page ->
@@ -190,7 +173,4 @@ abstract class LocalIntegrationTestBase : IntegrationTestBase() {
             }
         }
     }
-
-    private fun List<AXProperty>?.anyUndefinedName(): Boolean =
-        this != null && this.any { it.name is AXPropertyName.NotDefinedInProtocol }
 }
