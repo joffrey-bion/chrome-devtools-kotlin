@@ -1,6 +1,38 @@
 import com.sun.net.httpserver.*
+import org.junit.jupiter.api.extension.AfterAllCallback
+import org.junit.jupiter.api.extension.AfterEachCallback
+import org.junit.jupiter.api.extension.BeforeAllCallback
+import org.junit.jupiter.api.extension.BeforeEachCallback
+import org.junit.jupiter.api.extension.Extension
+import org.junit.jupiter.api.extension.ExtensionContext
+import org.testcontainers.Testcontainers
 import java.io.*
 import java.net.*
+import kotlin.properties.Delegates
+
+class TestResourcesServerExtension : Extension, BeforeAllCallback, AfterAllCallback {
+    private lateinit var httpServer: HttpServer
+
+    val port: Int
+        get() = httpServer.address.port
+
+    override fun beforeAll(context: ExtensionContext?) {
+        httpServer = HttpServer.create(InetSocketAddress(InetAddress.getLoopbackAddress(), 0), 10)
+        httpServer.createContext("/") { exchange ->
+            if (exchange.requestMethod != "GET") {
+                exchange.respondInvalidMethod(listOf("GET"))
+                return@createContext
+            }
+            val resourcePath = exchange.requestURI.path.removePrefix("/")
+            exchange.respondWithResource(resourcePath)
+        }
+        httpServer.start()
+    }
+
+    override fun afterAll(context: ExtensionContext?) {
+        httpServer.stop(0)
+    }
+}
 
 /**
  * Creates an HTTP server that serves Java resources from the current program at '/'.

@@ -68,19 +68,17 @@ class ZenikaIntegrationTests : LocalIntegrationTestBase() {
     @OptIn(ExperimentalChromeApi::class)
     @Test
     fun parallelPages() = runTestWithRealTime {
-        withResourceServerForTestcontainers {
-            chromeWebSocket().use { browser ->
-                // we want all coroutines to finish before we close the browser session
-                withContext(Dispatchers.IO) {
-                    repeat(20) {
-                        launch {
-                            browser.newPage().use { page ->
-                                page.gotoTestPageResource("basic.html")
-                                page.runtime.getHeapUsage()
-                                val docRoot = page.dom.getDocumentRootNodeId()
-                                page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
-                                page.storage.getCookies()
-                            }
+        chromeWebSocket().use { browser ->
+            // we want all coroutines to finish before we close the browser session
+            withContext(Dispatchers.IO) {
+                repeat(20) {
+                    launch {
+                        browser.newPage().use { page ->
+                            page.gotoTestPageResource("basic.html")
+                            page.runtime.getHeapUsage()
+                            val docRoot = page.dom.getDocumentRootNodeId()
+                            page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))
+                            page.storage.getCookies()
                         }
                     }
                 }
