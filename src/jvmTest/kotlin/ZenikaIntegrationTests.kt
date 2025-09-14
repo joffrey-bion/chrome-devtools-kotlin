@@ -29,7 +29,6 @@ class ZenikaIntegrationTests : LocalIntegrationTestBase() {
         .withExposedPorts(9222)
         .withAccessToHost(true)
         .withCommand("--no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 about:blank")
-        .withCopyFileToContainer(MountableFile.forClasspathResource("/test-server-pages/"), "/test-server-pages/")
 
     override val httpUrl: String
         get() = "http://${zenikaChrome.host}:${zenikaChrome.getMappedPort(9222)}"
@@ -69,14 +68,14 @@ class ZenikaIntegrationTests : LocalIntegrationTestBase() {
     @OptIn(ExperimentalChromeApi::class)
     @Test
     fun parallelPages() = runTestWithRealTime {
-        withResourceServerForTestcontainers { baseUrl ->
+        withResourceServerForTestcontainers {
             chromeWebSocket().use { browser ->
                 // we want all coroutines to finish before we close the browser session
                 withContext(Dispatchers.IO) {
                     repeat(20) {
                         launch {
                             browser.newPage().use { page ->
-                                page.goto("$baseUrl/test-server-pages/basic.html")
+                                page.gotoTestPageResource("basic.html")
                                 page.runtime.getHeapUsage()
                                 val docRoot = page.dom.getDocumentRootNodeId()
                                 page.dom.describeNode(DescribeNodeRequest(docRoot, depth = 2))

@@ -23,7 +23,6 @@ class BrowserlessLocalIntegrationTests : LocalIntegrationTestBase() {
         .withStartupTimeout(Duration.ofMinutes(5)) // sometimes more than the default 2 minutes on CI
         .withExposedPorts(3000)
         .withAccessToHost(true)
-        .withCopyFileToContainer(MountableFile.forClasspathResource("/test-server-pages/"), "/test-server-pages/")
 
     override val httpUrl: String
         get() = "http://${browserlessChromium.host}:${browserlessChromium.getMappedPort(3000)}"
