@@ -5,6 +5,9 @@ import kotlinx.serialization.descriptors.*
 import kotlinx.serialization.encoding.*
 import kotlin.reflect.*
 
+/**
+ * A serializer for forward-compatible enum types.
+ */
 abstract class FCEnumSerializer<FC : Any>(fcClass: KClass<FC>) : KSerializer<FC> {
 
     override val descriptor = PrimitiveSerialDescriptor(

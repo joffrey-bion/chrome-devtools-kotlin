@@ -6,6 +6,7 @@ import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import org.hildan.chrome.devtools.protocol.json.*
 import org.hildan.chrome.devtools.protocol.names.*
+import kotlin.Boolean
 import kotlin.reflect.KClass
 
 interface ChromeDPElement {
@@ -94,6 +95,7 @@ private fun JsonDomainType.toDomainTypeDeclaration(domain: DomainNaming) = Domai
         arrayItemType = items,
         ref = null,
         domain = domain,
+        isNonExhaustiveEnum = isNonExhaustiveEnum,
     ),
 )
 
@@ -123,6 +125,7 @@ private fun JsonDomainParameter.toParameter(domain: DomainNaming): ChromeDPParam
         arrayItemType = items,
         ref = `$ref`,
         domain = domain,
+        isNonExhaustiveEnum = isNonExhaustiveEnum,
     )
     val namedRef = (type as? ChromeDPType.NamedRef) ?: error("Nested enums or objects are not allowed in parameters")
 
@@ -162,7 +165,10 @@ sealed class ChromeDPType {
         }
     }
 
-    data class Enum(val enumValues: List<String>) : ChromeDPType()
+    data class Enum(
+        val enumValues: List<String>,
+        val isNonExhaustive: Boolean,
+    ) : ChromeDPType()
 
     data class Object(val properties: List<ChromeDPParameter>) : ChromeDPType()
 
@@ -173,14 +179,15 @@ sealed class ChromeDPType {
             enumValues: List<String>?,
             arrayItemType: ArrayItemDescriptor?,
             ref: String?,
-            domain: DomainNaming
+            domain: DomainNaming,
+            isNonExhaustiveEnum: Boolean,
         ) = when (type) {
             "any" -> NamedRef.DynamicValue
             "boolean" -> NamedRef.Primitive(Boolean::class)
             "integer" -> NamedRef.Primitive(Int::class)
             "number" -> NamedRef.Primitive(Double::class)
             "string" -> when {
-                enumValues != null -> Enum(enumValues)
+                enumValues != null -> Enum(enumValues = enumValues, isNonExhaustive = isNonExhaustiveEnum)
                 else -> NamedRef.Primitive(String::class)
             }
             "array" -> NamedRef.Array(
@@ -202,6 +209,7 @@ sealed class ChromeDPType {
             arrayItemType = null,
             ref = arrayItemDescriptor.`$ref`,
             domain = domain,
+            isNonExhaustiveEnum = arrayItemDescriptor.isNonExhaustiveEnum,
         ) as? NamedRef ?: error("Array item type is not a named ref")
 
         private fun reference(ref: String, domain: DomainNaming): NamedRef.Reference {

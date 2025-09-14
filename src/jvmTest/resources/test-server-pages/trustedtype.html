@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Test case for trustedtype in RemoteObject.subtype</title>
+    </head>
+    <body>
+        <p>
+            This page should log something to the console. This is a reproducer for
+            <a href="https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/546">this GitHub issue</a>.
+        </p>
+        <script>
+            const policy = trustedTypes.createPolicy("default", {
+                createScriptURL(s) {
+                    return s;
+                },
+            });
+            const sanitized = policy.createScriptURL(
+                "https://example.com/my-script.js",
+            );
+            console.log(sanitized);
+        </script>
+    </body>
+</html>

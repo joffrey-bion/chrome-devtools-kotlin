@@ -32,7 +32,7 @@ private fun DomainTypeDeclaration.toDataClassTypeSpec(type: ChromeDPType.Object)
     }.build()
 
 private fun DomainTypeDeclaration.toEnumAndSerializerTypeSpecs(type: ChromeDPType.Enum, experimentalDomain: Boolean): List<TypeSpec> =
-    if (experimental || experimentalDomain) {
+    if (experimental || experimentalDomain || type.isNonExhaustive) {
         val serializerTypeSpec = serializerForFCEnum(names.className, type.enumValues)
         val serializerClass = ClassName(names.packageName, serializerTypeSpec.name!!)
         listOf(serializerTypeSpec, toFCEnumTypeSpec(type, serializerClass))

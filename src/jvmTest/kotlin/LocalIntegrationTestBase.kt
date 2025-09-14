@@ -1,7 +1,9 @@
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.first
 import org.hildan.chrome.devtools.*
 import org.hildan.chrome.devtools.domains.accessibility.*
 import org.hildan.chrome.devtools.domains.dom.*
+import org.hildan.chrome.devtools.domains.runtime.RemoteObjectSubtype
 import org.hildan.chrome.devtools.protocol.*
 import org.hildan.chrome.devtools.sessions.*
 import org.junit.jupiter.api.Test
@@ -161,6 +163,25 @@ abstract class LocalIntegrationTestBase : IntegrationTestBase() {
                     tree.nodes.any { n ->
                         n.properties.anyUndefinedName() || n.ignoredReasons.anyUndefinedName()
                     }
+                }
+            }
+        }
+    }
+
+    @OptIn(ExperimentalChromeApi::class)
+    @Test
+    fun test_deserialization_RemoteObject_subtype_enum() = runTestWithRealTime {
+        withResourceServerForTestcontainers { baseUrl ->
+            chromeWebSocket().use { browser ->
+                browser.newPage().use { page ->
+                    page.runtime.enable()
+                    val deferredEvent = async(start = CoroutineStart.UNDISPATCHED) {
+                        page.runtime.consoleAPICalledEvents().first()
+                    }
+                    page.goto("$baseUrl/test-server-pages/trustedtype.html")
+                    val event = deferredEvent.await()
+                    // proof that we have to provide this subtype as enum value
+                    assertEquals(RemoteObjectSubtype.trustedtype, event.args.first().subtype)
                 }
             }
         }

@@ -30,7 +30,7 @@ data class JsonDomain(
     val dependencies: List<String> = emptyList(),
     val types: List<JsonDomainType> = emptyList(),
     val commands: List<JsonDomainCommand> = emptyList(),
-    val events: List<JsonDomainEvent> = emptyList()
+    val events: List<JsonDomainEvent> = emptyList(),
 )
 
 @Serializable
@@ -42,8 +42,14 @@ data class JsonDomainType(
     val type: String,
     val properties: List<JsonDomainParameter> = emptyList(), // only for type="object"?
     val enum: List<String>? = null, // only for type="string"?
-    val items: ArrayItemDescriptor? = null // only for type="array"?
-    // add maxItems/minItems? present in the go generator but never appear in the actual protocol JSONs
+    val items: ArrayItemDescriptor? = null, // only for type="array"?
+    /**
+     * True for string types that have [enum] values that don't actually represent the whole set of possible values.
+     *
+     * This is a custom marker that's not part of the protocol. It's added to mitigate bugs in the protocol definition.
+     */
+    @Transient
+    val isNonExhaustiveEnum: Boolean = false,
 )
 
 @Serializable
@@ -56,14 +62,28 @@ data class JsonDomainParameter(
     val experimental: Boolean = false,
     val enum: List<String>? = null, // only for type="string"?
     val items: ArrayItemDescriptor? = null, // only for type="array"?
-    val `$ref`: String? = null
+    val `$ref`: String? = null,
+    /**
+     * True for string types that have [enum] values that don't actually represent the whole set of possible values.
+     *
+     * This is a custom marker that's not part of the protocol. It's added to mitigate bugs in the protocol definition.
+     */
+    @Transient
+    val isNonExhaustiveEnum: Boolean = false,
 )
 
 @Serializable
 data class ArrayItemDescriptor(
     val type: String? = null, // null if $ref is present, string (even for enum), integer, boolean, array?, object
     val enum: List<String>? = null, // only for type="string"?
-    val `$ref`: String? = null
+    val `$ref`: String? = null,
+    /**
+     * True for string types that have [enum] values that don't actually represent the whole set of possible values.
+     *
+     * This is a custom marker that's not part of the protocol. It's added to mitigate bugs in the protocol definition.
+     */
+    @Transient
+    val isNonExhaustiveEnum: Boolean = false,
 )
 
 @Serializable

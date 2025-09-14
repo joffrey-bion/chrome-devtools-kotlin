@@ -79,6 +79,7 @@ private class EnumFixer {
                     inferredName = inferredName,
                     sources = listOf(InferenceSource(name, containingType)),
                     enumValues = enum!!,
+                    nonExhaustive = isNonExhaustiveEnum,
                     deprecated = deprecated,
                     experimental = experimental,
                     allContainersAreDeprecated = containerIsDeprecated,
@@ -134,13 +135,14 @@ private data class InferredExtraEnumType(
     val inferredName: String,
     val sources: List<InferenceSource>,
     val enumValues: List<String>,
+    val nonExhaustive: Boolean,
     val deprecated: Boolean,
     val experimental: Boolean,
     val allContainersAreDeprecated: Boolean,
     val allContainersAreExperimental: Boolean,
 ) {
     val generatedDescription = "This enum doesn't have a proper description because it was generated from " +
-        "${if (sources.size > 1) "" else "an "}inline declaration${if (sources.size > 1) "s" else ""}. " +
+        "${if (sources.size > 1) "inline declarations" else "an inline declaration"}. " +
         "Its name was inferred based on the place${if (sources.size > 1) "s" else ""} where it is used:\n" +
         " - ${sources.joinToString("\n - ") { it.locationDescription }}"
 }
@@ -197,6 +199,7 @@ private fun InferredExtraEnumType.toTypeDeclaration(): JsonDomainType = JsonDoma
     properties = emptyList(),
     enum = enumValues,
     items = null,
+    isNonExhaustiveEnum = nonExhaustive,
 )
 
 private fun String.capitalize() = replaceFirstChar { it.titlecase() }

@@ -12,6 +12,12 @@ internal fun List<JsonDomain>.preprocessed(): List<JsonDomain> = this
     .makeNewExperimentalPropsOptional()
     // Workaround for https://github.com/ChromeDevTools/devtools-protocol/issues/317
     .transformDomainTypeProperty("Network", "Cookie", "expires") { it.copy(optional = true) }
+    // Workaround for https://issues.chromium.org/issues/444471169
+    // We both add the "trustedType" enum value because we know it pops uo even though it's not in the protocol,
+    // but we also mark the enum as non-exhaustive, as suggested by Google folks, because more values may be unknown.
+    .transformDomainTypeProperty("Runtime", "RemoteObject", "subtype") {
+        it.copy(enum = it.enum.orEmpty() + "trustedtype", isNonExhaustiveEnum = true)
+    }
     // Workaround for https://github.com/ChromeDevTools/devtools-protocol/issues/244
     .map { it.pullNestedEnumsToTopLevel() }
 
