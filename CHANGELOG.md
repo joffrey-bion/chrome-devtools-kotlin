@@ -1,5 +1,24 @@
 # Change Log
 
+## [8.1.0\-1515189](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/8.1.0-1515189) (2025-09-15)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/8.0.0-1410712...8.1.0-1515189)
+
+**Implemented enhancements:**
+
+- Materialize connection errors to fail event flow consumers [\#516](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/516)
+
+**Upgraded dependencies:**
+
+- Update to Chrome DevTools Protocol version 1515189 [\#493](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/493) ([@joffrey-bion](https://github.com/joffrey-bion))
+- Bump ktor from 3.2.3 to 3.3.0 [\#547](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/547) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump kotlin from 2.2.0 to 2.2.20 [\#545](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/545) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.jetbrains.kotlinx:kotlinx\-serialization\-json from 1.8.1 to 1.9.0 [\#533](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/533) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.jetbrains.kotlinx:atomicfu from 0.27.0 to 0.29.0 [\#527](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/527) ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+**Fixed bugs:**
+
+- RemoteObjectSubtype=trustedtype crashes deserialization [\#546](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/546)
+
 ## [8.0.0\-1410712](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/8.0.0-1410712) (2025-04-26)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/7.1.0-1410712...8.0.0-1410712)
 
@@ -14,14 +33,10 @@
 
 **Upgraded dependencies:**
 
-- Bump com.gradle.develocity from 3.19.2 to 4.0 [\#512](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/512) ([@dependabot[bot]](https://github.com/apps/dependabot))
-- Bump testcontainers from 1.20.5 to 1.20.6 [\#505](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/505) ([@dependabot[bot]](https://github.com/apps/dependabot))
 - Bump kotlin from 2.1.10 to 2.1.20 [\#506](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/506) ([@dependabot[bot]](https://github.com/apps/dependabot))
 - Bump org.jetbrains.kotlinx:kotlinx\-serialization\-json from 1.8.0 to 1.8.1 [\#508](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/508) ([@dependabot[bot]](https://github.com/apps/dependabot))
 - Bump ktor from 3.1.0 to 3.1.2 [\#507](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/507) ([@dependabot[bot]](https://github.com/apps/dependabot))
 - Bump org.jetbrains.kotlinx:kotlinx\-coroutines\-core from 1.10.1 to 1.10.2 [\#509](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/509) ([@dependabot[bot]](https://github.com/apps/dependabot))
-- Bump testcontainers from 1.20.4 to 1.20.5 [\#499](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/499) ([@dependabot[bot]](https://github.com/apps/dependabot))
-- Bump com.gradle.develocity from 3.19.1 to 3.19.2 [\#500](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/500) ([@dependabot[bot]](https://github.com/apps/dependabot))
 - Bump Ktor to 3.1.0 [\#498](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/498)
 
 **Fixed bugs:**
@@ -71,7 +86,6 @@
 
 **Upgraded dependencies:**
 
-- Bump testcontainers from 1.20.3 to 1.20.4 [\#459](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/459) ([@dependabot[bot]](https://github.com/apps/dependabot))
 - Update to Chrome DevTools Protocol version 1391447 [\#460](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/460) ([@github-actions[bot]](https://github.com/apps/github-actions))
 - Bump kotlin from 2.0.21 to 2.1.0 [\#461](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/461) ([@dependabot[bot]](https://github.com/apps/dependabot))
 - Bump org.jetbrains.kotlinx:atomicfu from 0.26.0 to 0.26.1 [\#462](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/462) ([@dependabot[bot]](https://github.com/apps/dependabot))
@@ -133,7 +147,6 @@
 **Upgraded dependencies:**
 
 - Update to Chrome DevTools Protocol version 1336433 [\#411](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/411) ([@github-actions[bot]](https://github.com/apps/github-actions))
-- Bump testcontainers from 1.20.0 to 1.20.1 [\#417](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/417) ([@dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [6.2.0\-1326544](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/6.2.0-1326544) (2024-07-13)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/6.1.0-1319565...6.2.0-1326544)
