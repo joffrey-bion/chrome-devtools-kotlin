@@ -29,7 +29,7 @@ jobs:
       - name: Setup docker (missing on MacOS)
         if: runner.os == 'macos'
         # colima is not installed in macos-13, so we need this action since macos-12 is deprecated
-        uses: douglascamata/setup-docker-macos-action@v1.0.0
+        uses: douglascamata/setup-docker-macos-action@v1.0.1
 
       # For testcontainers to find the Colima socket
       # https://github.com/abiosoft/colima/blob/main/docs/FAQ.md#cannot-connect-to-the-docker-daemon-at-unixvarrundockersock-is-the-docker-daemon-running
