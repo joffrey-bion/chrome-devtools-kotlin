@@ -1,5 +1,19 @@
 # Change Log
 
+## [8.2.0\-1528500](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/8.2.0-1528500) (2025-10-14)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/8.1.0-1515189...8.2.0-1528500)
+
+**Implemented enhancements:**
+
+- Make the `PerformanceTimeline` domain avaible [\#555](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/555)
+
+**Upgraded dependencies:**
+
+- Update to Chrome DevTools Protocol version 1528500 [\#557](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/557) ([@joffrey-bion](https://github.com/joffrey-bion))
+- Bump com.gradle.develocity from 4.2 to 4.2.2 [\#556](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/556) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ktor from 3.3.0 to 3.3.1 [\#554](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/554) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump com.gradle.develocity from 4.1.1 to 4.2 [\#549](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/549) ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [8.1.0\-1515189](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/8.1.0-1515189) (2025-09-15)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/8.0.0-1410712...8.1.0-1515189)
 
