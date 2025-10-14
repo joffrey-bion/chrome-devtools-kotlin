@@ -16,7 +16,9 @@ internal fun List<JsonDomain>.preprocessed(): List<JsonDomain> = this
     // We both add the "trustedType" enum value because we know it pops uo even though it's not in the protocol,
     // but we also mark the enum as non-exhaustive, as suggested by Google folks, because more values may be unknown.
     .transformDomainTypeProperty("Runtime", "RemoteObject", "subtype") {
-        it.copy(enum = it.enum.orEmpty() + "trustedtype", isNonExhaustiveEnum = true)
+        // Temporarily conditional because the new protocol versions have this value now
+        val newValues = if ("trustedtype" !in it.enum.orEmpty()) listOf("trustedtype") else emptyList()
+        it.copy(enum = it.enum.orEmpty() + newValues, isNonExhaustiveEnum = true)
     }
     // Workaround for https://github.com/ChromeDevTools/devtools-protocol/issues/244
     .map { it.pullNestedEnumsToTopLevel() }
