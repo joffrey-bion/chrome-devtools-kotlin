@@ -89,6 +89,7 @@
       "IndexedDB",
       "LayerTree",
       "Performance",
+      "PerformanceTimeline",
       "Profiler",
       "Runtime"
     ]

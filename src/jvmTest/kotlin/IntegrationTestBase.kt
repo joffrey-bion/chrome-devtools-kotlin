@@ -130,6 +130,7 @@ abstract class IntegrationTestBase {
                 page.indexedDB.enable()
                 page.layerTree.enable()
                 page.performance.disable()
+                page.performanceTimeline.enable(listOf("largest-contentful-paint"))
                 page.profiler.disable()
                 page.runtime.enable()
 
