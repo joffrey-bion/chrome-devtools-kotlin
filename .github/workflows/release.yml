@@ -16,7 +16,7 @@ run-name: "Release ${{ inputs.version }}-(cdp-version)"
 
 jobs:
   release:
-    runs-on: macos-13  # to force intel arch (macos-14+ use ARM which doesn't support virtualization)
+    runs-on: macos-15-intel  # ARM runners don't support nested virtualization
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -32,7 +32,7 @@ jobs:
       # Docker is not installed on GitHub's MacOS hosted workers due to licensing issues
       - name: Setup docker (missing on MacOS)
         if: runner.os == 'macos'
-        # colima is not installed in macos-13, so we need this action since macos-12 is deprecated
+        # colima is not installed in macos-15-intel, so we need this action now
         uses: douglascamata/setup-docker-macos-action@v1.0.1
 
       # For testcontainers to find the Colima socket

@@ -7,28 +7,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-13] # macos-14 doesn't support virtualization (uses ARM arch)
+        os: [ubuntu-latest, macos-15-intel] # ARM runners don't support nested virtualization
         jdk-version: [21]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      # We can't control the architecture of macOS runners, so we double-check here
-      - name: Check architecture for nested virtualization on macOS
-        if: runner.os == 'macos'
-        shell: bash
-        run: |
-          if [ $(uname -m) != "x86_64" ] 
-          then 
-              echo "$(uname -m) detected. This test must be run on x86_64"
-              exit -1
-          fi
-          exit 0
-
       # Docker is not installed on GitHub's MacOS hosted workers due to licensing issues
       - name: Setup docker (missing on MacOS)
         if: runner.os == 'macos'
-        # colima is not installed in macos-13, so we need this action since macos-12 is deprecated
+        # colima is not installed in macos-15-intel, so we need this action now
         uses: douglascamata/setup-docker-macos-action@v1.0.1
 
       # For testcontainers to find the Colima socket
