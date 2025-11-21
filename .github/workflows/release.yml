@@ -19,7 +19,7 @@ jobs:
     runs-on: macos-15-intel  # ARM runners don't support nested virtualization
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.GH_PAT }} # to bypass branch protection rules to push the changelog
 

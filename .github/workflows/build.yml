@@ -11,7 +11,7 @@ jobs:
         jdk-version: [21]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       # Docker is not installed on GitHub's MacOS hosted workers due to licensing issues
       - name: Setup docker (missing on MacOS)
