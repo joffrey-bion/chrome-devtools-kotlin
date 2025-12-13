@@ -1,8 +1,8 @@
+import org.junit.jupiter.api.Disabled
 import org.testcontainers.containers.*
 import org.testcontainers.junit.jupiter.*
 import org.testcontainers.junit.jupiter.Container
-import org.testcontainers.utility.*
-import java.time.Duration
+import java.time.*
 
 @Testcontainers
 class BrowserlessLocalIntegrationTests : LocalIntegrationTestBase() {

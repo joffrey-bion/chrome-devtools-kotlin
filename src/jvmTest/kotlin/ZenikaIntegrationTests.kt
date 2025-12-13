@@ -1,16 +1,12 @@
 import kotlinx.coroutines.*
 import org.hildan.chrome.devtools.*
-import org.hildan.chrome.devtools.domains.dom.DescribeNodeRequest
-import org.hildan.chrome.devtools.domains.dom.getDocumentRootNodeId
+import org.hildan.chrome.devtools.domains.dom.*
 import org.hildan.chrome.devtools.protocol.*
-import org.hildan.chrome.devtools.sessions.goto
-import org.hildan.chrome.devtools.sessions.newPage
-import org.hildan.chrome.devtools.sessions.use
+import org.hildan.chrome.devtools.sessions.*
 import org.junit.jupiter.api.Test
 import org.testcontainers.containers.*
 import org.testcontainers.junit.jupiter.*
 import org.testcontainers.junit.jupiter.Container
-import org.testcontainers.utility.*
 import java.time.*
 import kotlin.test.*
 

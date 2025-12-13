@@ -1,14 +1,7 @@
 import com.sun.net.httpserver.*
-import org.junit.jupiter.api.extension.AfterAllCallback
-import org.junit.jupiter.api.extension.AfterEachCallback
-import org.junit.jupiter.api.extension.BeforeAllCallback
-import org.junit.jupiter.api.extension.BeforeEachCallback
-import org.junit.jupiter.api.extension.Extension
-import org.junit.jupiter.api.extension.ExtensionContext
-import org.testcontainers.Testcontainers
+import org.junit.jupiter.api.extension.*
 import java.io.*
 import java.net.*
-import kotlin.properties.Delegates
 
 class TestResourcesServerExtension : Extension, BeforeAllCallback, AfterAllCallback {
     private lateinit var httpServer: HttpServer

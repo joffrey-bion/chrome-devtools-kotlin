@@ -1,7 +1,6 @@
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.first
 import org.hildan.chrome.devtools.*
-import org.hildan.chrome.devtools.domains.accessibility.*
 import org.hildan.chrome.devtools.domains.dom.*
 import org.hildan.chrome.devtools.domains.runtime.RemoteObjectSubtype
 import org.hildan.chrome.devtools.protocol.*
