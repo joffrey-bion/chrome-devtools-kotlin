@@ -15,12 +15,16 @@ updates:
       interval: "daily"
     labels:
       - dependencies
+    groups:
+      kotlin-ecosystem:
+        patterns:
+          # Matches Kotlin itself, but also kotlinx stuff like serialization, atomicfu, etc.
+          - org.jetbrains.kotlin*
+    # We ignore "internal" dependencies here so we can set a different label in the other update configuration
     ignore:
       - dependency-name: "com.gradle.develocity"
-      - dependency-name: "de.fayard.refreshVersions"
-      - dependency-name: "io.github.gradle-nexus.publish-plugin"
+      - dependency-name: "com.vanniktech.maven.publish"
       - dependency-name: "org.hildan.github.changelog"
-      - dependency-name: "org.hildan.kotlin-publish"
       - dependency-name: "org.jetbrains.kotlinx.binary-compatibility-validator"
       - dependency-name: "org.jetbrains.dokka"
       - dependency-name: "org.slf4j:slf4j-simple"
@@ -36,10 +40,8 @@ updates:
       - internal
     allow:
       - dependency-name: "com.gradle.develocity"
-      - dependency-name: "de.fayard.refreshVersions"
-      - dependency-name: "io.github.gradle-nexus.publish-plugin"
+      - dependency-name: "com.vanniktech.maven.publish"
       - dependency-name: "org.hildan.github.changelog"
-      - dependency-name: "org.hildan.kotlin-publish"
       - dependency-name: "org.jetbrains.kotlinx.binary-compatibility-validator"
       - dependency-name: "org.jetbrains.dokka"
       - dependency-name: "org.slf4j:slf4j-simple"
