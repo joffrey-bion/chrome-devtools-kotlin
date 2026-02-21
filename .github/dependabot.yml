@@ -25,14 +25,12 @@ updates:
           - *:org.hildan.github.changelog*
           - *:org.jetbrains.dokka*
           - *:org.jetbrains.kotlinx.binary-compatibility-validator*
-          - *:org.slf4j:slf4j-simple*
-          - *:org.testcontainers:**
           - *:ru.vyarus.github-info*
         labels:
           - internal
       test-dependencies:
         patterns:
-          - *:org.slf4j:slf4j-simple*
-          - *:org.testcontainers:**
+          - org.slf4j:slf4j-simple
+          - org.testcontainers:*
         labels:
           - internal
