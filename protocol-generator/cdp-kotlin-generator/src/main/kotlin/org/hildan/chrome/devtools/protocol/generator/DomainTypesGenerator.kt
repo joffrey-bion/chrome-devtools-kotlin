@@ -105,7 +105,6 @@ private fun DomainTypeDeclaration.notInProtocolClassTypeSpec(serializerClass: Cl
 
 private fun serializerForFCEnum(fcEnumClass: ClassName, enumValues: List<String>): TypeSpec =
     TypeSpec.objectBuilder("${fcEnumClass.simpleName}Serializer").apply {
-        addModifiers(KModifier.PRIVATE)
         superclass(ExtDeclarations.fcEnumSerializer.parameterizedBy(fcEnumClass))
         addSuperclassConstructorParameter("%T::class", fcEnumClass)
 
