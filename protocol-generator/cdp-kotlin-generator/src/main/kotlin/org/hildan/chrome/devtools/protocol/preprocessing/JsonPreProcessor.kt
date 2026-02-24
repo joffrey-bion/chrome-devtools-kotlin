@@ -2,6 +2,7 @@ package org.hildan.chrome.devtools.protocol.preprocessing
 
 import org.hildan.chrome.devtools.protocol.json.JsonDomain
 import org.hildan.chrome.devtools.protocol.json.JsonDomainCommand
+import org.hildan.chrome.devtools.protocol.json.JsonDomainEvent
 import org.hildan.chrome.devtools.protocol.json.JsonDomainParameter
 import org.hildan.chrome.devtools.protocol.json.JsonDomainType
 
@@ -15,6 +16,8 @@ internal fun List<JsonDomain>.preprocessed(): List<JsonDomain> = this
     // We mark the enum as non-exhaustive, as suggested by Google folks, because more values may be unknown.
     // See https://issues.chromium.org/issues/444471169
     .transformDomainTypeProperty("Runtime", "RemoteObject", "subtype") { it.copy(isNonExhaustiveEnum = true) }
+    // Workaround for https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/585
+    .transformDomainEventParameter("Debugger", "scriptParsed", "buildId") { it.copy(optional = true) }
     // Workaround for https://github.com/ChromeDevTools/devtools-protocol/issues/244
     .map { it.pullNestedEnumsToTopLevel() }
 
@@ -42,6 +45,17 @@ private fun List<JsonDomain>.transformDomainTypeProperty(
     }
 }
 
+private fun List<JsonDomain>.transformDomainEventParameter(
+    domain: String,
+    event: String,
+    property: String,
+    transform: (JsonDomainParameter) -> JsonDomainParameter,
+): List<JsonDomain> = transformDomain(domain) { d ->
+    d.transformEvent(event) { e ->
+        e.transformParameter(property, transform)
+    }
+}
+
 private fun List<JsonDomain>.transformDomainCommandReturnProp(
     domain: String,
     command: String,
@@ -63,10 +77,20 @@ private fun JsonDomain.transformType(
     transform: (JsonDomainType) -> JsonDomainType,
 ): JsonDomain = copy(types = types.transformIf({ it.id == name }) { transform(it) })
 
+private fun JsonDomain.transformEvent(
+    name: String,
+    transform: (JsonDomainEvent) -> JsonDomainEvent,
+): JsonDomain = copy(events = events.transformIf({ it.name == name }) { transform(it) })
+
 private fun JsonDomainType.transformProperty(
     name: String,
     transform: (JsonDomainParameter) -> JsonDomainParameter,
 ): JsonDomainType = copy(properties = properties.transformIf({ it.name == name }) { transform(it) })
+
+private fun JsonDomainEvent.transformParameter(
+    name: String,
+    transform: (JsonDomainParameter) -> JsonDomainParameter,
+): JsonDomainEvent = copy(parameters = parameters.transformIf({ it.name == name }) { transform(it) })
 
 private fun JsonDomain.transformCommand(
     name: String,
