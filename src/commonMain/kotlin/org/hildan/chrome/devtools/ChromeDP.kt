@@ -29,6 +29,8 @@ object ChromeDP {
 
     internal val defaultHttpClient by lazy {
         HttpClient {
+            expectSuccess = true
+
             install(UserAgent) {
                 agent = "Chrome DevTools Kotlin"
             }
