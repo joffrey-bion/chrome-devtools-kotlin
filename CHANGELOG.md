@@ -1,5 +1,20 @@
 # Change Log
 
+## [8.3.0\-1589152](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/8.3.0-1589152) (2026-02-28)
+[View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/8.2.0-1528500...8.3.0-1589152)
+
+**Upgraded dependencies:**
+
+- Update to Chrome DevTools Protocol version 1589152 [\#587](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/587) ([@joffrey-bion](https://github.com/joffrey-bion))
+- Bump org.jetbrains.kotlinx:kotlinx\-serialization\-json from 1.9.0 to 1.10.0 [\#579](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/579) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump org.jetbrains.kotlinx:atomicfu from 0.30.0 to 0.31.0 [\#584](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/584) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump kotlin from 2.3.0 to 2.3.10 [\#583](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/583) ([@dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ktor from 3.3.1 to 3.3.3 [\#567](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/567) ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+**Fixed bugs:**
+
+- `MissingFieldException`: Field `buildId` is required for `Debugger.scriptParsed` event [\#585](https://github.com/joffrey-bion/chrome-devtools-kotlin/issues/585)
+
 ## [8.2.0\-1528500](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/8.2.0-1528500) (2025-10-14)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/8.1.0-1515189...8.2.0-1528500)
 
@@ -12,7 +27,6 @@
 - Update to Chrome DevTools Protocol version 1528500 [\#557](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/557) ([@joffrey-bion](https://github.com/joffrey-bion))
 - Bump com.gradle.develocity from 4.2 to 4.2.2 [\#556](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/556) ([@dependabot[bot]](https://github.com/apps/dependabot))
 - Bump ktor from 3.3.0 to 3.3.1 [\#554](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/554) ([@dependabot[bot]](https://github.com/apps/dependabot))
-- Bump com.gradle.develocity from 4.1.1 to 4.2 [\#549](https://github.com/joffrey-bion/chrome-devtools-kotlin/pull/549) ([@dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [8.1.0\-1515189](https://github.com/joffrey-bion/chrome-devtools-kotlin/tree/8.1.0-1515189) (2025-09-15)
 [View commits](https://github.com/joffrey-bion/chrome-devtools-kotlin/compare/8.0.0-1410712...8.1.0-1515189)
