@@ -17,6 +17,7 @@ binary-compatibility-validator = "0.18.1"
 dokka = "2.1.0"
 hildan-kotlin-publish-plugin = "1.7.0"
 hildan-github-changelog-plugin = "2.2.0"
+jetbrains-annotations = "26.1.0"
 kotlin = "2.3.10"
 kotlinpoet = "2.2.0"
 kotlinx-atomicfu = "0.31.0"
@@ -30,6 +31,7 @@ vyarus-github-info-plugin = "2.0.0"
 
 [libraries]
 
+jetbrains-annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrains-annotations" }
 kotlinpoet = { module = "com.squareup:kotlinpoet", version.ref = "kotlinpoet"}
 kotlinx-atomicfu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "kotlinx-atomicfu" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }

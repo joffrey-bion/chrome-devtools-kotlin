@@ -3,6 +3,7 @@ package org.hildan.chrome.devtools.domains.runtime
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
+import org.intellij.lang.annotations.Language
 
 private val json = Json { ignoreUnknownKeys = true }
 
@@ -12,7 +13,8 @@ private val json = Json { ignoreUnknownKeys = true }
  * The value is converted from JSON using Kotlinx Serialization, so the type [T] must be
  * [@Serializable][kotlinx.serialization.Serializable].
  */
-suspend inline fun <reified T> RuntimeDomain.evaluateJs(js: String): T? = evaluateJs(js, serializer())
+suspend inline fun <reified T> RuntimeDomain.evaluateJs(@Language("JavaScript") js: String): T? =
+    evaluateJs(js, serializer())
 
 /**
  * Evaluates the given [js] expression, and returns the result as a value of type [T] using the provided [deserializer].
@@ -20,7 +22,10 @@ suspend inline fun <reified T> RuntimeDomain.evaluateJs(js: String): T? = evalua
  * The value is converted from JSON using Kotlinx Serialization, so the type [T] must be
  * [@Serializable][kotlinx.serialization.Serializable].
  */
-suspend fun <T> RuntimeDomain.evaluateJs(js: String, deserializer: DeserializationStrategy<T>): T? {
+suspend fun <T> RuntimeDomain.evaluateJs(
+    @Language("JavaScript") js: String,
+    deserializer: DeserializationStrategy<T>,
+): T? {
     val response = evaluate(js) { returnByValue = true }
     if (response.exceptionDetails != null) {
         throw RuntimeJSEvaluationException(js, response.exceptionDetails)
@@ -36,6 +41,7 @@ suspend fun <T> RuntimeDomain.evaluateJs(js: String, deserializer: Deserializati
  */
 class RuntimeJSEvaluationException(
     /** The expression that failed to evaluate. */
+    @Language("JavaScript")
     val jsExpression: String,
     /** The details of the evaluation error. */
     val details: ExceptionDetails,

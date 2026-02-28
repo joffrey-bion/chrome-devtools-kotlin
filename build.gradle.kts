@@ -30,6 +30,9 @@ private val generatedProtocolSourcesDirPath = "src/commonMain/generated"
 @OptIn(ExperimentalWasmDsl::class)
 kotlin {
     jvmToolchain(11)
+    compilerOptions {
+        freeCompilerArgs.add("-Xannotation-default-target=param-property")
+    }
 
     jvm()
     js {
@@ -75,6 +78,7 @@ kotlin {
             kotlin.srcDirs(generatedProtocolSourcesDirPath)
 
             dependencies {
+                implementation(libs.jetbrains.annotations)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.kotlinx.atomicfu)

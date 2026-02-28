@@ -6,6 +6,7 @@ import org.hildan.chrome.devtools.domains.input.MouseButton
 import org.hildan.chrome.devtools.domains.input.dispatchMouseClick
 import org.hildan.chrome.devtools.domains.utils.center
 import org.hildan.chrome.devtools.sessions.PageSession
+import org.intellij.lang.annotations.Language
 import kotlin.time.*
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -16,7 +17,7 @@ import kotlin.time.Duration.Companion.milliseconds
  * If this click opens a new tab, that new tab may become focused, but this session still targets the old tab.
  */
 suspend fun PageSession.clickOnElement(
-    selector: CssSelector,
+    @Language("CSS") selector: CssSelector,
     clickDuration: Duration = 100.milliseconds,
     mouseButton: MouseButton = MouseButton.left,
 ) {
@@ -48,7 +49,7 @@ suspend fun PageSession.clickOnElement(
     level = DeprecationLevel.ERROR,
 )
 suspend fun PageSession.clickOnElement(
-    selector: CssSelector,
+    @Language("CSS") selector: CssSelector,
     clickDurationMillis: Long,
     mouseButton: MouseButton = MouseButton.left,
 ) {
