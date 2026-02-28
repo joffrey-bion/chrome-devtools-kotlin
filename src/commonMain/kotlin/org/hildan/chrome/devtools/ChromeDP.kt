@@ -145,7 +145,7 @@ object ChromeDP {
                 "The HTTP API requires 'http://' or 'https://' URLs, but got $httpUrl."
             }
         }
-        @Suppress("DEPRECATION") // TODO remove this suppress when the ChromeDPClient class is made internal
+        @Suppress("DEPRECATION_ERROR") // TODO remove this suppress when the ChromeDPClient class is made internal
         return ChromeDPClient(
             remoteDebugUrl = httpUrl,
             overrideHostHeader = overrideHostHeader,

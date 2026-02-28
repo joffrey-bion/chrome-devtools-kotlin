@@ -39,7 +39,7 @@ import org.hildan.chrome.devtools.sessions.*
         "removed in a future version. If you still need to access similar HTTP API methods, please use the " +
         "ChromeDPHttpApi interface instead.",
     replaceWith = ReplaceWith("ChromeDPHttpApi", "org.hildan.chrome.devtools.protocol.ChromeDPHttpApi"),
-    level = DeprecationLevel.WARNING,
+    level = DeprecationLevel.ERROR,
 )
 class ChromeDPClient
 @Deprecated(
@@ -53,7 +53,7 @@ class ChromeDPClient
         expression = "ChromeDP.httpApi(remoteDebugUrl, overrideHostHeader)",
         imports = [ "org.hildan.chrome.devtools.ChromeDP" ],
     ),
-    level = DeprecationLevel.WARNING,
+    level = DeprecationLevel.ERROR,
 )
 constructor(
     /**
@@ -194,7 +194,7 @@ constructor(
         "This extension will be removed in a future version of chrome-devtools-kotlin. " +
         "If you need a custom HttpClient, use HttpClient.connectChromeDebugger(url) instead.",
     replaceWith = ReplaceWith("this.connectChromeDebugger(webSocketDebuggerUrl)", "org.hildan.chrome.devtools.connectChromeDebugger"),
-    level = DeprecationLevel.WARNING,
+    level = DeprecationLevel.ERROR,
 )
 suspend fun HttpClient.chromeWebSocket(webSocketDebuggerUrl: String): BrowserSession =
     webSocketSession(webSocketDebuggerUrl).chromeDp().withSession(sessionId = null).asBrowserSession()
