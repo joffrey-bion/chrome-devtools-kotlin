@@ -1806,7 +1806,8 @@
                         "NavigationEntryMarkedSkippable",
                         "AutofillAndManualTextPolicyControlledFeaturesInfo",
                         "AutofillPolicyControlledFeatureInfo",
-                        "ManualTextPolicyControlledFeatureInfo"
+                        "ManualTextPolicyControlledFeatureInfo",
+                        "FormModelContextParameterMissingTitleAndDescription"
                     ]
                 },
                 {
@@ -4632,6 +4633,16 @@
                             "items": {
                                 "$ref": "CSSStartingStyle"
                             }
+                        },
+                        {
+                            "name": "navigations",
+                            "description": "@navigation CSS at-rule array.\nThe array enumerates @navigation at-rules starting with the innermost one, going outwards.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "array",
+                            "items": {
+                                "$ref": "CSSNavigation"
+                            }
                         }
                     ]
                 },
@@ -4647,7 +4658,8 @@
                         "LayerRule",
                         "ScopeRule",
                         "StyleRule",
-                        "StartingStyleRule"
+                        "StartingStyleRule",
+                        "NavigationRule"
                     ]
                 },
                 {
@@ -5031,6 +5043,37 @@
                         {
                             "name": "active",
                             "description": "Whether the supports condition is satisfied.",
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "range",
+                            "description": "The associated rule header range in the enclosing stylesheet (if\navailable).",
+                            "optional": true,
+                            "$ref": "SourceRange"
+                        },
+                        {
+                            "name": "styleSheetId",
+                            "description": "Identifier of the stylesheet containing this object (if exists).",
+                            "optional": true,
+                            "$ref": "DOM.StyleSheetId"
+                        }
+                    ]
+                },
+                {
+                    "id": "CSSNavigation",
+                    "description": "CSS Navigation at-rule descriptor.",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "text",
+                            "description": "Navigation rule text.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "active",
+                            "description": "Whether the navigation condition is satisfied.",
+                            "optional": true,
                             "type": "boolean"
                         },
                         {
@@ -5483,6 +5526,12 @@
                             "description": "@supports CSS at-rule condition. Only one type of condition should be set.",
                             "optional": true,
                             "$ref": "CSSSupports"
+                        },
+                        {
+                            "name": "navigation",
+                            "description": "@navigation condition. Only one type of condition should be set.",
+                            "optional": true,
+                            "$ref": "CSSNavigation"
                         },
                         {
                             "name": "children",
@@ -6335,6 +6384,32 @@
                             "name": "supports",
                             "description": "The resulting CSS Supports rule after modification.",
                             "$ref": "CSSSupports"
+                        }
+                    ]
+                },
+                {
+                    "name": "setNavigationText",
+                    "description": "Modifies the expression of a navigation at-rule.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "styleSheetId",
+                            "$ref": "DOM.StyleSheetId"
+                        },
+                        {
+                            "name": "range",
+                            "$ref": "SourceRange"
+                        },
+                        {
+                            "name": "text",
+                            "type": "string"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "navigation",
+                            "description": "The resulting CSS Navigation rule after modification.",
+                            "$ref": "CSSNavigation"
                         }
                     ]
                 },
@@ -11068,6 +11143,13 @@
                                 "overlay",
                                 "default"
                             ]
+                        },
+                        {
+                            "name": "screenOrientationLockEmulation",
+                            "description": "If set to true, enables screen orientation lock emulation, which\nintercepts screen.orientation.lock() calls from the page and reports\norientation changes via screenOrientationLockChanged events. This is\nuseful for emulating mobile device orientation lock behavior in\nresponsive design mode.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ]
                 },
@@ -11682,6 +11764,84 @@
                     ]
                 },
                 {
+                    "name": "updateScreen",
+                    "description": "Updates specified screen parameters. Only supported in headless mode.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "screenId",
+                            "description": "Target screen identifier.",
+                            "$ref": "ScreenId"
+                        },
+                        {
+                            "name": "left",
+                            "description": "Offset of the left edge of the screen in pixels.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "top",
+                            "description": "Offset of the top edge of the screen in pixels.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "width",
+                            "description": "The width of the screen in pixels.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "height",
+                            "description": "The height of the screen in pixels.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "workAreaInsets",
+                            "description": "Specifies the screen's work area.",
+                            "optional": true,
+                            "$ref": "WorkAreaInsets"
+                        },
+                        {
+                            "name": "devicePixelRatio",
+                            "description": "Specifies the screen's device pixel ratio.",
+                            "optional": true,
+                            "type": "number"
+                        },
+                        {
+                            "name": "rotation",
+                            "description": "Specifies the screen's rotation angle. Available values are 0, 90, 180 and 270.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "colorDepth",
+                            "description": "Specifies the screen's color depth in bits.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "label",
+                            "description": "Specifies the descriptive label for the screen.",
+                            "optional": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "isInternal",
+                            "description": "Indicates whether the screen is internal to the device or external, attached to the device. Default is false.",
+                            "optional": true,
+                            "type": "boolean"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "screenInfo",
+                            "$ref": "ScreenInfo"
+                        }
+                    ]
+                },
+                {
                     "name": "removeScreen",
                     "description": "Remove screen from the device. Only supported in headless mode.",
                     "experimental": true,
@@ -11709,6 +11869,24 @@
                     "name": "virtualTimeBudgetExpired",
                     "description": "Notification sent after the virtual time budget for the current VirtualTimePolicy has run out.",
                     "experimental": true
+                },
+                {
+                    "name": "screenOrientationLockChanged",
+                    "description": "Fired when a page calls screen.orientation.lock() or screen.orientation.unlock()\nwhile device emulation is enabled. This allows the DevTools frontend to update the\nemulated device orientation accordingly.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "locked",
+                            "description": "Whether the screen orientation is currently locked.",
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "orientation",
+                            "description": "The orientation lock type requested by the page. Only set when locked is true.",
+                            "optional": true,
+                            "$ref": "ScreenOrientation"
+                        }
+                    ]
                 }
             ]
         },
