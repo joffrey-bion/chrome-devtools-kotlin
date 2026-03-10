@@ -1472,40 +1472,6 @@
                     ]
                 },
                 {
-                    "id": "LowTextContrastIssueDetails",
-                    "type": "object",
-                    "properties": [
-                        {
-                            "name": "violatingNodeId",
-                            "$ref": "DOM.BackendNodeId"
-                        },
-                        {
-                            "name": "violatingNodeSelector",
-                            "type": "string"
-                        },
-                        {
-                            "name": "contrastRatio",
-                            "type": "number"
-                        },
-                        {
-                            "name": "thresholdAA",
-                            "type": "number"
-                        },
-                        {
-                            "name": "thresholdAAA",
-                            "type": "number"
-                        },
-                        {
-                            "name": "fontSize",
-                            "type": "string"
-                        },
-                        {
-                            "name": "fontWeight",
-                            "type": "string"
-                        }
-                    ]
-                },
-                {
                     "id": "CorsIssueDetails",
                     "description": "Details for a CORS related issue, e.g. a warning or error related to\nCORS RFC1918 enforcement.",
                     "type": "object",
@@ -2340,7 +2306,6 @@
                         "HeavyAdIssue",
                         "ContentSecurityPolicyIssue",
                         "SharedArrayBufferIssue",
-                        "LowTextContrastIssue",
                         "CorsIssue",
                         "AttributionReportingIssue",
                         "QuirksModeIssue",
@@ -2400,11 +2365,6 @@
                             "name": "sharedArrayBufferIssueDetails",
                             "optional": true,
                             "$ref": "SharedArrayBufferIssueDetails"
-                        },
-                        {
-                            "name": "lowTextContrastIssueDetails",
-                            "optional": true,
-                            "$ref": "LowTextContrastIssueDetails"
                         },
                         {
                             "name": "corsIssueDetails",
@@ -2610,18 +2570,6 @@
                 {
                     "name": "enable",
                     "description": "Enables issues domain, sends the issues collected so far to the client by means of the\n`issueAdded` event."
-                },
-                {
-                    "name": "checkContrast",
-                    "description": "Runs the contrast check for the target page. Found issues are reported\nusing Audits.issueAdded event.",
-                    "parameters": [
-                        {
-                            "name": "reportAAA",
-                            "description": "Whether to report WCAG AAA level issues. Default is false.",
-                            "optional": true,
-                            "type": "boolean"
-                        }
-                    ]
                 },
                 {
                     "name": "checkFormsIssues",
@@ -22960,6 +22908,7 @@
                         "BackForwardCacheDisabledForPrerender",
                         "UserAgentOverrideDiffers",
                         "ForegroundCacheLimit",
+                        "ForwardCacheDisabled",
                         "BrowsingInstanceNotSwapped",
                         "BackForwardCacheDisabledForDelegate",
                         "UnloadHandlerExistsInMainFrame",
@@ -31431,6 +31380,118 @@
                         {
                             "name": "credential",
                             "$ref": "Credential"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "domain": "WebMCP",
+            "experimental": true,
+            "dependencies": [
+                "Runtime",
+                "Page",
+                "DOM"
+            ],
+            "types": [
+                {
+                    "id": "Annotation",
+                    "description": "Tool annotations",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "readOnly",
+                            "description": "A hint indicating that the tool does not modify any state.",
+                            "optional": true,
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "autosubmit",
+                            "description": "If the declarative tool was declared with the autosubmit attribute.",
+                            "optional": true,
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                {
+                    "id": "Tool",
+                    "description": "Definition of a tool that can be invoked.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "name",
+                            "description": "Tool name.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "description",
+                            "description": "Tool description.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "inputSchema",
+                            "description": "Schema for the tool's input parameters.",
+                            "optional": true,
+                            "type": "object"
+                        },
+                        {
+                            "name": "annotations",
+                            "description": "Optional annotations for the tool.",
+                            "optional": true,
+                            "$ref": "Annotation"
+                        },
+                        {
+                            "name": "frameId",
+                            "description": "Frame identifier associated with the tool registration.",
+                            "$ref": "Page.FrameId"
+                        },
+                        {
+                            "name": "backendNodeId",
+                            "description": "Optional node ID for declarative tools.",
+                            "optional": true,
+                            "$ref": "DOM.BackendNodeId"
+                        },
+                        {
+                            "name": "stackTrace",
+                            "description": "The stack trace at the time of the registration.",
+                            "optional": true,
+                            "$ref": "Runtime.StackTrace"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "enable",
+                    "description": "Enables the WebMCP domain, allowing events to be sent. Enabling the domain will trigger a toolsAdded event for\nall currently registered tools."
+                }
+            ],
+            "events": [
+                {
+                    "name": "toolsAdded",
+                    "description": "Event fired when new tools are added.",
+                    "parameters": [
+                        {
+                            "name": "tools",
+                            "description": "Array of tools that were added.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "Tool"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "toolsRemoved",
+                    "description": "Event fired when tools are removed.",
+                    "parameters": [
+                        {
+                            "name": "tools",
+                            "description": "Array of tools that were removed.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "Tool"
+                            }
                         }
                     ]
                 }
