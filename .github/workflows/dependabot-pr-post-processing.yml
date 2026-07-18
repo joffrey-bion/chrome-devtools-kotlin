@@ -1,0 +1,17 @@
+name: dependabot-pr-post-processing
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write # to commit yarn.lock files
+  pull-requests: write # to label PRs
+
+jobs:
+  dependabot-pr-post-processing:
+    uses: joffrey-bion/gh-workflows/.github/workflows/dependabot-pr-post-processing.yml@main
+    with:
+      internal-dependency-groups: infra-gradle
+    secrets:
+      github-token: ${{ github.token }}
