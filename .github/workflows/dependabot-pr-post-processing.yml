@@ -12,6 +12,8 @@ jobs:
   dependabot-pr-post-processing:
     uses: joffrey-bion/gh-workflows/.github/workflows/dependabot-pr-post-processing.yml@main
     with:
-      internal-dependency-groups: infra-gradle
+      internal-dependency-groups: |
+        infra-gradle
+        test-dependencies
     secrets:
       github-token: ${{ github.token }}

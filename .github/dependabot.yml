@@ -16,9 +16,9 @@ updates:
     labels:
       - dependencies
     groups:
-      # Gradle plugins that don't have user visible consequences and
+      # Gradle wrapper and plugins that don't have user visible consequences and
       # thus shouldn't appear in the changelog (mark as 'internal')
-      infra-gradle-plugins:
+      infra-gradle:
         patterns:
           - gradle-wrapper
           - com.gradle.develocity
