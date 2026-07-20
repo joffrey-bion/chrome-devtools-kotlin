@@ -15,19 +15,3 @@ updates:
       interval: "daily"
     labels:
       - dependencies
-    groups:
-      # Gradle wrapper and plugins that don't have user visible consequences and
-      # thus shouldn't appear in the changelog (mark as 'internal')
-      infra-gradle:
-        patterns:
-          - gradle-wrapper
-          - com.gradle.develocity
-          - com.vanniktech.maven.publish*
-          - org.hildan.github.changelog*
-          - org.jetbrains.dokka*
-          - org.jetbrains.kotlinx.binary-compatibility-validator*
-          - ru.vyarus.github-info*
-      test-dependencies:
-        patterns:
-          - org.slf4j:slf4j-simple
-          - org.testcontainers:*
