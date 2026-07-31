@@ -3,5 +3,9 @@
 *.sh text eol=lf
 *.bat text eol=crlf
 
+# There is no extension, so we need to add this one explicitly for correct checkout on Windows
+# (this POSIX script might be used in Git Bash)
+gradlew text eol=lf
+
 # The binary-compatibility-validator generates LF line endings on all platforms
 *.api text eol=lf
