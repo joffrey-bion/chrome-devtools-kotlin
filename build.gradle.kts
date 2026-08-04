@@ -30,9 +30,6 @@ private val generatedProtocolSourcesDirPath = "src/commonMain/generated"
 @OptIn(ExperimentalWasmDsl::class)
 kotlin {
     jvmToolchain(11)
-    compilerOptions {
-        freeCompilerArgs.add("-Xannotation-default-target=param-property")
-    }
 
     jvm()
     js {
