@@ -85,7 +85,6 @@ abstract class IntegrationTestBase {
     protected suspend fun BrowserSession.hasTarget(targetId: String) =
         target.getTargets().targetInfos.any { it.targetId == targetId }
 
-    @OptIn(ExperimentalChromeApi::class)
     @Test
     fun supportedDomains_all() = runTestWithRealTime {
         val client = chromeHttp()
