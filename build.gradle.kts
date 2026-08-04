@@ -105,17 +105,19 @@ kotlin {
 
 private val protocolDefinitionDir = layout.projectDirectory.dir("protocol-definition")
 
-val updateProtocolDefinitions by tasks.registering(UpdateProtocolDefinitionsTask::class) {
+val updateProtocolDefinitions = tasks.register<UpdateProtocolDefinitionsTask>("updateProtocolDefinitions") {
+    description = "Update Chrome DevTools protocol definitions from the latest spec"
     outputDir = protocolDefinitionDir
 }
 
-val generateProtocolApi by tasks.registering(GenerateProtocolApiTask::class) {
+val generateProtocolApi = tasks.register<GenerateProtocolApiTask>("generateProtocolApi") {
+    description = "Generate the Kotlin API matching the local protocol definitions"
     protocolPaths = protocolDefinitionDir.files("browser_protocol.json", "js_protocol.json")
     targetTypesPath = protocolDefinitionDir.file("target_types.json")
     outputDirPath = project.file(generatedProtocolSourcesDirPath)
 }
 
-val printProtocolStats by tasks.registering(PrintProtocolStatsTask::class)
+val printProtocolStats = tasks.register<PrintProtocolStatsTask>("printProtocolStats")
 
 tasks.named<KotlinJvmTest>("jvmTest") {
     useJUnitPlatform()
