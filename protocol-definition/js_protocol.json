@@ -280,6 +280,13 @@
                             "description": "Location in the source code where scope ends",
                             "optional": true,
                             "$ref": "Location"
+                        },
+                        {
+                            "name": "empty",
+                            "description": "True if the scope does not declare any variables or have a runtime context.\nOnly present if true.\nEmpty scopes are retained in the scope chain because\nthey can be targeted via `evaluateOnCallFrame` (using `scopeNumber`) or\nmatched against scopes in source maps.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ]
                 },
@@ -507,6 +514,13 @@
                             "experimental": true,
                             "optional": true,
                             "$ref": "Runtime.TimeDelta"
+                        },
+                        {
+                            "name": "scopeNumber",
+                            "description": "Specifies the scope number to evaluate the expression in (default: 0, innermost scope).",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "integer"
                         }
                     ],
                     "returns": [
@@ -1033,7 +1047,8 @@
                 },
                 {
                     "name": "setScriptSource",
-                    "description": "Edits JavaScript source live.\n\nIn general, functions that are currently on the stack can not be edited with\na single exception: If the edited function is the top-most stack frame and\nthat is the only activation of that function on the stack. In this case\nthe live edit will be successful and a `Debugger.restartFrame` for the\ntop-most function is automatically triggered.",
+                    "description": "Live edit is no longer supported and this command always fails with a \"no longer available\" error.",
+                    "deprecated": true,
                     "parameters": [
                         {
                             "name": "scriptId",
@@ -2363,6 +2378,7 @@
                                 "dataview",
                                 "webassemblymemory",
                                 "wasmvalue",
+                                "deferredmodule",
                                 "trustedtype"
                             ]
                         },
@@ -2482,6 +2498,7 @@
                                 "dataview",
                                 "webassemblymemory",
                                 "wasmvalue",
+                                "deferredmodule",
                                 "trustedtype"
                             ]
                         },
@@ -2578,6 +2595,7 @@
                                 "dataview",
                                 "webassemblymemory",
                                 "wasmvalue",
+                                "deferredmodule",
                                 "trustedtype"
                             ]
                         }
