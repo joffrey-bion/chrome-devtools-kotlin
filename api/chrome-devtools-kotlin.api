@@ -1,7 +1,9 @@
 public final class org/hildan/chrome/devtools/ChromeDP {
 	public static final field INSTANCE Lorg/hildan/chrome/devtools/ChromeDP;
-	public final fun connect (Ljava/lang/String;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final synthetic fun connect (Ljava/lang/String;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun connect (Ljava/lang/String;Lkotlin/coroutines/CoroutineContext;Lorg/hildan/chrome/devtools/protocol/config/ChromeDPConfig;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun connect$default (Lorg/hildan/chrome/devtools/ChromeDP;Ljava/lang/String;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun connect$default (Lorg/hildan/chrome/devtools/ChromeDP;Ljava/lang/String;Lkotlin/coroutines/CoroutineContext;Lorg/hildan/chrome/devtools/protocol/config/ChromeDPConfig;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun httpApi (Ljava/lang/String;ZLio/ktor/client/HttpClient;)Lorg/hildan/chrome/devtools/protocol/ChromeDPHttpApi;
 	public final fun httpApi (Ljava/lang/String;ZLkotlin/jvm/functions/Function1;)Lorg/hildan/chrome/devtools/protocol/ChromeDPHttpApi;
 	public static synthetic fun httpApi$default (Lorg/hildan/chrome/devtools/ChromeDP;Ljava/lang/String;ZLio/ktor/client/HttpClient;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/protocol/ChromeDPHttpApi;
@@ -9,8 +11,12 @@ public final class org/hildan/chrome/devtools/ChromeDP {
 }
 
 public final class org/hildan/chrome/devtools/KtorClientExtensionsKt {
-	public static final fun connectChromeDebugger (Lio/ktor/client/HttpClient;Ljava/lang/String;Lkotlin/coroutines/CoroutineContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final synthetic fun connectChromeDebugger (Lio/ktor/client/HttpClient;Ljava/lang/String;Lkotlin/coroutines/CoroutineContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun connectChromeDebugger (Lio/ktor/client/HttpClient;Ljava/lang/String;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun connectChromeDebugger (Lio/ktor/client/HttpClient;Ljava/lang/String;Lorg/hildan/chrome/devtools/protocol/config/ChromeDPConfig;Lkotlin/coroutines/CoroutineContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun connectChromeDebugger$default (Lio/ktor/client/HttpClient;Ljava/lang/String;Lkotlin/coroutines/CoroutineContext;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun connectChromeDebugger$default (Lio/ktor/client/HttpClient;Ljava/lang/String;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun connectChromeDebugger$default (Lio/ktor/client/HttpClient;Ljava/lang/String;Lorg/hildan/chrome/devtools/protocol/config/ChromeDPConfig;Lkotlin/coroutines/CoroutineContext;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public final class org/hildan/chrome/devtools/domains/accessibility/AXNode {
@@ -69235,6 +69241,41 @@ public final class org/hildan/chrome/devtools/protocol/TargetCrashedException : 
 	public final fun getCrashEventName ()Ljava/lang/String;
 	public final fun getCrashEventPayload ()Lkotlinx/serialization/json/JsonElement;
 	public final fun getSessionId ()Ljava/lang/String;
+}
+
+public abstract interface class org/hildan/chrome/devtools/protocol/config/ChromeDPConfig {
+	public static final field Companion Lorg/hildan/chrome/devtools/protocol/config/ChromeDPConfig$Companion;
+	public abstract fun getJsonPatcher ()Lorg/hildan/chrome/devtools/protocol/config/ChromeDPJsonPatcher;
+}
+
+public final class org/hildan/chrome/devtools/protocol/config/ChromeDPConfig$Companion {
+	public final fun invoke (Lkotlin/jvm/functions/Function1;)Lorg/hildan/chrome/devtools/protocol/config/ChromeDPConfig;
+	public static synthetic fun invoke$default (Lorg/hildan/chrome/devtools/protocol/config/ChromeDPConfig$Companion;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/hildan/chrome/devtools/protocol/config/ChromeDPConfig;
+}
+
+public final class org/hildan/chrome/devtools/protocol/config/ChromeDPConfigBuilder {
+	public final fun jsonPatcher (Lkotlin/jvm/functions/Function1;)V
+}
+
+public abstract interface class org/hildan/chrome/devtools/protocol/config/ChromeDPJsonPatcher {
+	public fun patchCommand (Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;)Lkotlinx/serialization/json/JsonElement;
+	public fun patchEvent (Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;)Lkotlinx/serialization/json/JsonElement;
+	public fun patchResponse (Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;)Lkotlinx/serialization/json/JsonElement;
+}
+
+public final class org/hildan/chrome/devtools/protocol/config/ChromeDPJsonPatcher$DefaultImpls {
+	public static fun patchCommand (Lorg/hildan/chrome/devtools/protocol/config/ChromeDPJsonPatcher;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;)Lkotlinx/serialization/json/JsonElement;
+	public static fun patchEvent (Lorg/hildan/chrome/devtools/protocol/config/ChromeDPJsonPatcher;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;)Lkotlinx/serialization/json/JsonElement;
+	public static fun patchResponse (Lorg/hildan/chrome/devtools/protocol/config/ChromeDPJsonPatcher;Ljava/lang/String;Lkotlinx/serialization/json/JsonElement;)Lkotlinx/serialization/json/JsonElement;
+}
+
+public final class org/hildan/chrome/devtools/protocol/config/ChromeDPJsonPatcherBuilder {
+	public final fun transformCommands (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun transformEvents (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun transformResponses (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+}
+
+public abstract interface annotation class org/hildan/chrome/devtools/protocol/config/ExperimentalJsonTransformations : java/lang/annotation/Annotation {
 }
 
 public abstract interface class org/hildan/chrome/devtools/sessions/AuctionWorkletSession : org/hildan/chrome/devtools/sessions/ChildSession, org/hildan/chrome/devtools/targets/AuctionWorkletTarget {

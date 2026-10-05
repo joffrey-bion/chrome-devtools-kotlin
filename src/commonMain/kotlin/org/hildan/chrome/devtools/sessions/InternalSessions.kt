@@ -33,7 +33,7 @@ private class BrowserSessionImpl(
         val sessionId = target.attachToTarget(targetId = targetId) { flatten = true }.sessionId
         val targetInfo = target.getTargetInfo { this.targetId = targetId }.targetInfo
         return ChildSessionImpl(
-            session = session.connection.withSession(sessionId = sessionId),
+            session = session.connection.withSession(sessionId = sessionId, session.config),
             parent = this,
             metaData = MetaData(sessionId, targetInfo),
         )

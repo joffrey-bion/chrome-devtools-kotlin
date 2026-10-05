@@ -9,7 +9,10 @@ import io.ktor.client.statement.*
 import io.ktor.http.*
 import org.hildan.chrome.devtools.*
 import org.hildan.chrome.devtools.chromeWebSocket
+import org.hildan.chrome.devtools.connectChromeDebugger
+import org.hildan.chrome.devtools.protocol.config.ChromeDPConfig
 import org.hildan.chrome.devtools.sessions.*
+import kotlin.coroutines.EmptyCoroutineContext
 
 /**
  * A client using the Chrome Devtools Protocol to communicate with a running Chrome browser via the debugger API.
@@ -127,7 +130,11 @@ constructor(
 
     override suspend fun webSocket(): BrowserSession {
         val browserDebuggerUrl = version().webSocketDebuggerUrl
-        return httpClient.chromeWebSocket(browserDebuggerUrl)
+        return httpClient.chromeWebSocket(
+            webSocketDebuggerUrl = browserDebuggerUrl,
+            config = ChromeDPConfig(),
+            sessionContext = EmptyCoroutineContext,
+        )
     }
 
     private suspend fun httpGet(endpoint: String): HttpResponse = httpClient.get {
@@ -197,4 +204,4 @@ constructor(
     level = DeprecationLevel.ERROR,
 )
 suspend fun HttpClient.chromeWebSocket(webSocketDebuggerUrl: String): BrowserSession =
-    webSocketSession(webSocketDebuggerUrl).chromeDp().withSession(sessionId = null).asBrowserSession()
+    chromeWebSocket(webSocketDebuggerUrl, config = ChromeDPConfig(), sessionContext = EmptyCoroutineContext)

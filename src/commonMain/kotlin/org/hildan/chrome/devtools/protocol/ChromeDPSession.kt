@@ -1,17 +1,23 @@
 package org.hildan.chrome.devtools.protocol
 
 import kotlinx.atomicfu.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import kotlinx.serialization.json.*
 import org.hildan.chrome.devtools.domains.inspector.events.*
 import org.hildan.chrome.devtools.domains.target.events.*
 import org.hildan.chrome.devtools.domains.target.SessionID
+import org.hildan.chrome.devtools.protocol.config.ChromeDPConfig
+import org.hildan.chrome.devtools.protocol.config.ChromeDPJsonPatcher
 
 /**
  * Creates a [ChromeDPSession] backed by this connection to handle session-scoped request IDs and filter events of
  * the session with the given [sessionId]. The session ID may be null to represent the root browser sessions.
  */
-internal fun ChromeDPConnection.withSession(sessionId: SessionID?) = ChromeDPSession(this, sessionId)
+internal fun ChromeDPConnection.withSession(sessionId: SessionID?, config: ChromeDPConfig) =
+    ChromeDPSession(this, sessionId, config)
 
 /**
  * A wrapper around a [ChromeDPConnection] to handle session-scoped request IDs and filter events of a specific session.
@@ -25,6 +31,12 @@ internal class ChromeDPSession(
      * The ID of this session, or null if this is the root browser session.
      */
     val sessionId: SessionID?,
+    /**
+     * A configuration for how to interact with the protocol. For instance, it provides a way to pre- or post-process
+     * JSON elements to compensate when debugger servers deviate from the protocol, or when the protocol definitions
+     * don't match reality.
+     */
+    val config: ChromeDPConfig,
 ) {
     /**
      * Ids must be unique at least within a session.
@@ -38,10 +50,12 @@ internal class ChromeDPSession(
         val request = RequestFrame(
             id = nextRequestId.incrementAndGet(),
             method = methodName,
-            params = params,
+            params = params?.let { config.jsonPatcher.patchCommand(methodName, params = it) },
             sessionId = sessionId,
         )
-        return connection.request(request)
+        return connection.request(request).let {
+            it.copy(payload = config.jsonPatcher.patchResponse(methodName, it.payload))
+        }
     }
 
     /**
@@ -49,6 +63,7 @@ internal class ChromeDPSession(
      */
     fun events() = connection.events()
         .filter { it.sessionId == sessionId }
+        .map { it.copy(payload = config.jsonPatcher.patchEvent(it.eventName, it.payload)) }
         .onEach {
             // We throw to immediately stop collectors when a target will not respond (instead of hanging).
             // Note that Inspector.targetCrashed events are received even without InspectorDomain.enable() call.
@@ -91,8 +106,8 @@ private fun buildTargetCrashedMessage(sessionId: SessionID?, crashEventName: Str
     val payloadText = when (payload) {
         is JsonNull -> null
         is JsonPrimitive -> if (payload.isString) "\"${payload.content}\"" else payload.content
-        is JsonObject -> if (payload.size > 0) payload.toString() else null
-        is JsonArray -> if (payload.size > 0) payload.toString() else null
+        is JsonObject -> if (payload.isNotEmpty()) payload.toString() else null
+        is JsonArray -> if (payload.isNotEmpty()) payload.toString() else null
     }
     val payloadInfo = if (payloadText == null) "without payload." else "with payload: $payloadText"
     val eventInfo = "Received event '$crashEventName' $payloadInfo"

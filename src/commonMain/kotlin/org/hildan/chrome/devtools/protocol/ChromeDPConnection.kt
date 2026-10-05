@@ -13,9 +13,8 @@ import kotlin.coroutines.*
  * It launches a coroutine internally to process and share incoming events.
  * The [eventProcessingContext] can be used to customize the context of this coroutine.
  */
-internal fun WebSocketSession.chromeDp(
-    eventProcessingContext: CoroutineContext = EmptyCoroutineContext,
-): ChromeDPConnection = ChromeDPConnection(this, eventProcessingContext)
+internal fun WebSocketSession.chromeDp(eventProcessingContext: CoroutineContext): ChromeDPConnection =
+    ChromeDPConnection(this, eventProcessingContext)
 
 /**
  * A connection to Chrome, providing communication primitives for the Chrome DevTools protocol.
@@ -27,7 +26,7 @@ internal fun WebSocketSession.chromeDp(
  */
 internal class ChromeDPConnection(
     private val webSocket: WebSocketSession,
-    eventProcessingContext: CoroutineContext = EmptyCoroutineContext,
+    eventProcessingContext: CoroutineContext,
 ) {
     private val coroutineScope = CoroutineScope(CoroutineName("ChromeDP-frame-decoder") + eventProcessingContext)
 

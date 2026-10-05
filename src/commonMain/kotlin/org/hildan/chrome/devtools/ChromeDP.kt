@@ -7,6 +7,7 @@ import io.ktor.client.plugins.websocket.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.*
 import org.hildan.chrome.devtools.protocol.*
+import org.hildan.chrome.devtools.protocol.config.ChromeDPConfig
 import org.hildan.chrome.devtools.sessions.*
 import kotlin.coroutines.*
 
@@ -73,13 +74,16 @@ object ChromeDP {
      *
      * @param sessionContext a custom [CoroutineContext] for the coroutines used in the Chrome session to process events
      *
+     * @param chromeDpConfig configures some inner workings of the protocol interactions, like JSON (de)serialization
+     *
      * @param configureClient Adds extra configuration to the default [HttpClient] used to connect to the debugger's
      *                        web socket. If you need to reuse an existing [HttpClient] entirely, use the
-     *                        `HttpClient.connectChromeDebugger` extension instead.
+     *                        [HttpClient.connectChromeDebugger] extension instead.
      */
     suspend fun connect(
         wsOrHttpUrl: String,
         sessionContext: CoroutineContext = EmptyCoroutineContext,
+        chromeDpConfig: ChromeDPConfig = ChromeDPConfig(),
         configureClient: (HttpClientConfig<*>.() -> Unit)? = null,
     ): BrowserSession {
         val httpClient = if (configureClient == null) {
@@ -87,8 +91,15 @@ object ChromeDP {
         } else {
             defaultHttpClient.config(configureClient)
         }
-        return httpClient.connectChromeDebugger(wsOrHttpUrl, sessionContext)
+        return httpClient.connectChromeDebugger(wsOrHttpUrl, chromeDpConfig, sessionContext)
     }
+
+    @Deprecated("for binary compatibility", level = DeprecationLevel.HIDDEN)
+    suspend fun connect(
+        wsOrHttpUrl: String,
+        sessionContext: CoroutineContext = EmptyCoroutineContext,
+        configureClient: (HttpClientConfig<*>.() -> Unit)? = null,
+    ): BrowserSession = connect(wsOrHttpUrl, sessionContext, ChromeDPConfig(), configureClient)
 
     /**
      * Creates a client that uses Chrome's [JSON HTTP endpoints](https://chromedevtools.github.io/devtools-protocol/#endpoints)
