@@ -3601,6 +3601,20 @@
                             "type": "string"
                         }
                     ]
+                },
+                {
+                    "name": "simulateGATTMtuChange",
+                    "description": "Simulates the ATT MTU exchange procedure from Bluetooth Core Specification\nVol 3 Part F 3.4.2 establishing |mtu| for the connection to the peripheral\nwith |address|.",
+                    "parameters": [
+                        {
+                            "name": "address",
+                            "type": "string"
+                        },
+                        {
+                            "name": "mtu",
+                            "type": "integer"
+                        }
+                    ]
                 }
             ],
             "events": [
@@ -4257,16 +4271,6 @@
                         {
                             "name": "commandId",
                             "$ref": "BrowserCommandId"
-                        }
-                    ]
-                },
-                {
-                    "name": "addPrivacySandboxEnrollmentOverride",
-                    "description": "Allows a site to use privacy sandbox features that require enrollment\nwithout the site actually being enrolled. Only supported on page targets.",
-                    "parameters": [
-                        {
-                            "name": "url",
-                            "type": "string"
                         }
                     ]
                 },
@@ -7401,7 +7405,6 @@
                         "select-listbox",
                         "permission-icon",
                         "overscroll-area-parent",
-                        "overscroll-backdrop",
                         "skeleton"
                     ]
                 },
@@ -22157,6 +22160,7 @@
                         "publickey-credentials-remote-client-data-json",
                         "rewriter",
                         "screen-wake-lock",
+                        "semantic-embedder",
                         "serial",
                         "smart-card",
                         "speaker-selection",
@@ -31100,7 +31104,7 @@
                 },
                 {
                     "name": "invokeTool",
-                    "description": "Invokes a registered tool.",
+                    "description": "Invokes a registered tool. Exactly one of `toolId` and `toolName` must be specified; the command fails if both or\nneither are.",
                     "parameters": [
                         {
                             "name": "frameId",
@@ -31108,8 +31112,16 @@
                             "$ref": "Page.FrameId"
                         },
                         {
+                            "name": "toolId",
+                            "description": "Identifier of the tool to invoke, as reported in `Tool.toolId`. Invokes exactly that tool, and fails if it is no\nlonger registered, even if a different tool has since been registered under the same name.",
+                            "optional": true,
+                            "$ref": "ToolId"
+                        },
+                        {
                             "name": "toolName",
-                            "description": "Name of the tool to invoke.",
+                            "description": "Name of the tool to invoke. Deprecated: invokes whichever tool is registered under this name when the command\nis handled, which may not be the tool the client observed if the page has since replaced it. Use `toolId`\ninstead.",
+                            "deprecated": true,
+                            "optional": true,
                             "type": "string"
                         },
                         {
