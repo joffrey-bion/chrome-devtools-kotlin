@@ -24,4 +24,4 @@ jobs:
         org.slf4j:slf4j-simple
         org.testcontainers:*
     secrets:
-      github-token: ${{ secrets.GH_PAT }}
+      github-token: ${{ secrets.GH_PAT_FOR_DEPENDABOT }}
