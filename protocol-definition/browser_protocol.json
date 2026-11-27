@@ -2215,12 +2215,15 @@
                         "NonPhrasingContentOptionChild",
                         "InteractiveContentOptionChild",
                         "InteractiveContentLegendChild",
-                        "InteractiveContentSummaryDescendant"
+                        "InteractiveContentSummaryDescendant",
+                        "AnchorMenuDescendant",
+                        "InteractiveContentMenuDescendant",
+                        "TextMenuDescendant"
                     ]
                 },
                 {
                     "id": "ElementAccessibilityIssueDetails",
-                    "description": "This issue warns about errors in the select or summary element content model.",
+                    "description": "This issue warns about errors in the select, summary, or menu element content model.",
                     "type": "object",
                     "properties": [
                         {
@@ -2488,6 +2491,18 @@
                     ]
                 },
                 {
+                    "id": "ViewportFitCoverMissingSafeAreaInsetTopIssueDetails",
+                    "description": "Details for issues about a page that declares viewport-fit=cover, receives\na non-zero top safe-area inset (e.g. a device cutout or system status bar),\nbut does not consume env(safe-area-inset-top) anywhere in its CSS while\nhaving DOM content likely to be occluded by that inset.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "frameId",
+                            "description": "The frame that triggered the issue.",
+                            "$ref": "Page.FrameId"
+                        }
+                    ]
+                },
+                {
                     "id": "InspectorIssueCode",
                     "description": "A unique identifier for the type of issue. Each type may use one of the\noptional fields in InspectorIssueDetails to convey more specific\ninformation about the kind of issue.",
                     "type": "string",
@@ -2522,7 +2537,8 @@
                         "SelectivePermissionsInterventionIssue",
                         "EmailVerificationRequestIssue",
                         "LazyLoadImageIssue",
-                        "WebInstallIssue"
+                        "WebInstallIssue",
+                        "ViewportFitCoverMissingSafeAreaInsetTopIssue"
                     ]
                 },
                 {
@@ -2685,6 +2701,11 @@
                             "name": "webInstallIssueDetails",
                             "optional": true,
                             "$ref": "WebInstallIssueDetails"
+                        },
+                        {
+                            "name": "viewportFitCoverMissingSafeAreaInsetTopIssueDetails",
+                            "optional": true,
+                            "$ref": "ViewportFitCoverMissingSafeAreaInsetTopIssueDetails"
                         }
                     ]
                 },
@@ -3601,6 +3622,20 @@
                             "type": "string"
                         }
                     ]
+                },
+                {
+                    "name": "simulateGATTMtuChange",
+                    "description": "Simulates the ATT MTU exchange procedure from Bluetooth Core Specification\nVol 3 Part F 3.4.2 establishing |mtu| for the connection to the peripheral\nwith |address|.",
+                    "parameters": [
+                        {
+                            "name": "address",
+                            "type": "string"
+                        },
+                        {
+                            "name": "mtu",
+                            "type": "integer"
+                        }
+                    ]
                 }
             ],
             "events": [
@@ -4082,12 +4117,12 @@
                 },
                 {
                     "name": "addMockCamera",
-                    "description": "Adds or updates a mock camera in the shared video capture device list for\ntest automation. The mock camera is not scoped to a particular page or\nframe and is removed when the DevTools session that created it disconnects.",
+                    "description": "Adds a mock camera in the shared video capture device list for\ntest automation. The mock camera is not scoped to a particular page or\nframe and is removed when the DevTools session that created it disconnects.\nReturns success after the video capture service confirms registration.\nDoes not wait for device-list updates or devicechange events in pages.\nRegistration failures are reported as errors.",
                     "experimental": true,
                     "parameters": [
                         {
                             "name": "deviceId",
-                            "description": "Required non-empty identifier for the mock camera within the current\nDevTools session. Different sessions can use the same identifier\nwithout replacing each other's cameras. This is not the\nMediaDeviceInfo.deviceId exposed to the page.",
+                            "description": "Required non-empty identifier for the mock camera within the current\nDevTools session. Different sessions can use the same identifier\nwithout replacing each other's cameras. This is not the\nMediaDeviceInfo.deviceId exposed to the page.\nAn identifier that is already registered or being registered in this\nsession is rejected. The existing camera or registration attempt is\nleft unchanged, including any active streams.",
                             "type": "string"
                         }
                     ]
@@ -4257,16 +4292,6 @@
                         {
                             "name": "commandId",
                             "$ref": "BrowserCommandId"
-                        }
-                    ]
-                },
-                {
-                    "name": "addPrivacySandboxEnrollmentOverride",
-                    "description": "Allows a site to use privacy sandbox features that require enrollment\nwithout the site actually being enrolled. Only supported on page targets.",
-                    "parameters": [
-                        {
-                            "name": "url",
-                            "type": "string"
                         }
                     ]
                 },
@@ -7401,7 +7426,6 @@
                         "select-listbox",
                         "permission-icon",
                         "overscroll-area-parent",
-                        "overscroll-backdrop",
                         "skeleton"
                     ]
                 },
@@ -11482,18 +11506,6 @@
                         {
                             "name": "insets",
                             "$ref": "SafeAreaInsets"
-                        }
-                    ]
-                },
-                {
-                    "name": "setVirtualKeyboardGeometryOverride",
-                    "description": "Overrides virtual keyboard geometry in CSS pixels, relative to the top-level viewport. The\nprovided rect is used for navigator.virtualKeyboard.boundingRect, geometrychange events, and\nenv(keyboard-inset-*) values on the inspected frame. The override applies independently of\nnavigator.virtualKeyboard.overlaysContent so clients can preview overlay geometry without\nmutating page state. Values are rounded to the nearest CSS pixel. Omitting the rect clears the\noverride.",
-                    "experimental": true,
-                    "parameters": [
-                        {
-                            "name": "keyboardRect",
-                            "optional": true,
-                            "$ref": "DOM.Rect"
                         }
                     ]
                 },
@@ -15964,6 +15976,7 @@
                         "CSPViolationReport",
                         "Preflight",
                         "FedCM",
+                        "EmailVerification",
                         "Other"
                     ]
                 },
@@ -16322,6 +16335,13 @@
                             "experimental": true,
                             "optional": true,
                             "type": "boolean"
+                        },
+                        {
+                            "name": "adProvenance",
+                            "description": "The provenance of an ad resource request, if it is ad-related and\nprovenance is available.",
+                            "experimental": true,
+                            "optional": true,
+                            "$ref": "AdProvenance"
                         }
                     ]
                 },
@@ -16930,6 +16950,7 @@
                                 "SignedExchange",
                                 "preflight",
                                 "FedCM",
+                                "EmailVerification",
                                 "other"
                             ]
                         },
@@ -18347,7 +18368,8 @@
                         "PreProvisionedKeyNotFound",
                         "AttestationCertificationError",
                         "AttestationSigningError",
-                        "FederatedRegistrationRedirected"
+                        "FederatedRegistrationRedirected",
+                        "CrossSiteRefreshSessionConfig"
                     ]
                 },
                 {
@@ -22157,6 +22179,7 @@
                         "publickey-credentials-remote-client-data-json",
                         "rewriter",
                         "screen-wake-lock",
+                        "semantic-embedder",
                         "serial",
                         "smart-card",
                         "speaker-selection",
@@ -24416,6 +24439,13 @@
                             "experimental": true,
                             "optional": true,
                             "$ref": "Network.LoaderId"
+                        },
+                        {
+                            "name": "checkForRepost",
+                            "description": "If true and the page has POST data, the browser shows the form\nresubmission dialog before the reload. The command returns after the\nuser responds to the dialog. If the user cancels the dialog, the\ncommand returns an error. The default value is false.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ]
                 },
@@ -26142,7 +26172,9 @@
                         "PrerenderHostReused",
                         "FormSubmitWhenPrerendering",
                         "CrossDocumentRestart",
-                        "PrefetchFailedCrossOriginSubframe"
+                        "PrefetchFailedCrossOriginSubframe",
+                        "UnexpectedMainFrameNavigation",
+                        "AudioOutput"
                     ]
                 },
                 {
@@ -28902,7 +28934,7 @@
                         },
                         {
                             "name": "subtype",
-                            "description": "Provides additional details for specific target types. For example, for\nthe type of \"page\", this may be set to \"prerender\".",
+                            "description": "Provides additional details for specific target types. For example, for\nthe type of \"page\", this may be set to \"prerender\", and for \"tab\", this\nmay be set to \"unloaded\". An unloaded tab has a history entry, but no\ndocument for it: for example, after the tab was discarded, after\nsession restore without load, or after the renderer crashed. The tab\nstays unloaded until a new document commits. A new tab that has not\nnavigated is not unloaded. Target.targetInfoChanged reports changes of\nthis value for tabs.",
                             "experimental": true,
                             "optional": true,
                             "type": "string"
@@ -31100,7 +31132,7 @@
                 },
                 {
                     "name": "invokeTool",
-                    "description": "Invokes a registered tool.",
+                    "description": "Invokes a registered tool. Exactly one of `toolId` and `toolName` must be specified; the command fails if both or\nneither are.",
                     "parameters": [
                         {
                             "name": "frameId",
@@ -31108,8 +31140,16 @@
                             "$ref": "Page.FrameId"
                         },
                         {
+                            "name": "toolId",
+                            "description": "Identifier of the tool to invoke, as reported in `Tool.toolId`. Invokes exactly that tool, and fails if it is no\nlonger registered, even if a different tool has since been registered under the same name.",
+                            "optional": true,
+                            "$ref": "ToolId"
+                        },
+                        {
                             "name": "toolName",
-                            "description": "Name of the tool to invoke.",
+                            "description": "Name of the tool to invoke. Deprecated: invokes whichever tool is registered under this name when the command\nis handled, which may not be the tool the client observed if the page has since replaced it. Use `toolId`\ninstead.",
+                            "deprecated": true,
+                            "optional": true,
                             "type": "string"
                         },
                         {
